@@ -7,7 +7,7 @@ namespace NihongoQCards.Data;
 public class ApplicationDbContext : IdentityDbContext<AppUser>
 {
     public DbSet<AppUser> AppUsers { get; set; }
-    public DbSet<Kanji> Kanjis { get; set; }
+    public DbSet<Character> Characters { get; set; }
     public DbSet<Meaning> Meanings { get; set; }
     public DbSet<Word> Words { get; set; }
     
