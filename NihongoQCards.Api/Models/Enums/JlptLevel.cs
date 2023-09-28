@@ -1,4 +1,4 @@
-namespace NihongoQCards.Models;
+namespace DanilvarKanji.Models.Enums;
 
 public enum JlptLevel
 {

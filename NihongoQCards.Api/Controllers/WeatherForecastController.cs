@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web.Resource;
+using NihongoQCards;
 
-namespace NihongoQCards.Controllers
+namespace DanilvarKanji.Controllers
 {
     [Authorize]
     [ApiController]

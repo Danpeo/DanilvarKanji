@@ -1,6 +1,7 @@
+using DanilvarKanji.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 
-namespace NihongoQCards.Models;
+namespace DanilvarKanji.Models;
 
 public class AppUser : IdentityUser
 {

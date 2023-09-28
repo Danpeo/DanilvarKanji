@@ -1,25 +1,28 @@
+using DanilvarKanji.Attributes;
+using DanilvarKanji.Data;
+using DanilvarKanji.DTO;
+using DanilvarKanji.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NihongoQCards.Data;
-using NihongoQCards.DTO;
 
-namespace NihongoQCards.Controllers;
+namespace DanilvarKanji.Controllers;
 
-[Authorize]
+[Todo("Add Authorize later")]
 [Route("api/[controller]")]
 [ApiController]
 public class CharacterController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ICharacterService _characterService;
 
-    public CharacterController(ApplicationDbContext context)
+    public CharacterController(ApplicationDbContext context, ICharacterService characterService)
     {
-        _context = context;
+        _characterService = characterService;
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CharacterDto characterDto)
     {
-        return Ok();
+        bool result = await _characterService.CreateAsync(characterDto);
+        return result ? Ok() : NotFound();
     }
 }

@@ -1,9 +1,9 @@
-using NihongoQCards.Data;
-using NihongoQCards.DTO;
-using NihongoQCards.Models;
-using NihongoQCards.Services.Common;
+using DanilvarKanji.Data;
+using DanilvarKanji.DTO;
+using DanilvarKanji.Models;
+using DanilvarKanji.Services.Common;
 
-namespace NihongoQCards.Services;
+namespace DanilvarKanji.Services;
 
 public interface ICharacterService
 {

@@ -1,4 +1,6 @@
-namespace NihongoQCards.Models;
+using DanilvarKanji.Models.Enums;
+
+namespace DanilvarKanji.Models;
 
 public class CharacterLearning
 {

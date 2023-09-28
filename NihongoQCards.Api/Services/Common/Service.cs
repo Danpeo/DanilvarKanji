@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace NihongoQCards.Services.Common;
+namespace DanilvarKanji.Services.Common;
 
 public abstract class Service<TDbContext> where TDbContext : DbContext
 {

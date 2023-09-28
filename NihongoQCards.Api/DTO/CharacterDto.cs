@@ -1,6 +1,7 @@
-using NihongoQCards.Models;
+using DanilvarKanji.Models;
+using DanilvarKanji.Models.Enums;
 
-namespace NihongoQCards.DTO;
+namespace DanilvarKanji.DTO;
 
 public class CharacterDto
 {
@@ -10,7 +11,7 @@ public class CharacterDto
     public CharacterType CharacterType { get; set; }
     public string? Mnemonic { get; set; }
     public ICollection<Meaning> Meanings { get; set; }
-    public ICollection<string>? Kunyomis { get; set; }
-    public ICollection<string>? Onyomis { get; set; }
+    public List<Kunyomi>? Kunyomis { get; set; }
+    public List<Onyomi>? Onyomis { get; set; }
     public ICollection<Word>? SampleWords { get; set; }
 }
