@@ -10,4 +10,5 @@ public class AppUser : IdentityUser
     public DateTime DateOfBirth { get; set; }
     public DateTime RegistrationDate { get; set; }
     public DateTime LastStudied { get; set; }
+    public ICollection<CharacterLearning> CharacterLearnings { get; set; }
 }

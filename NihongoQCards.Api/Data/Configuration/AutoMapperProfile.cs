@@ -8,6 +8,8 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<Character, CharacterDto>().ReverseMap();
+        CreateMap<Character, CharacterDto>();
+        CreateMap<CharacterDto, Character>()
+            .ForMember(x => x.Id, opt => opt.Ignore());
     }
 }

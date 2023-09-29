@@ -22,5 +22,31 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         base.OnModelCreating(modelBuilder);
         
+        modelBuilder.Entity<Character>()
+            .HasMany(c => c.KanjiMeanings)
+            .WithOne(k => k.Character)
+            .OnDelete(DeleteBehavior.Cascade);
+        /*
+
+modelBuilder.Entity<Character>()
+    .HasMany(c => c.Kunyomis)
+    .WithOne(k => k.Character)
+    .OnDelete(DeleteBehavior.Cascade);
+
+modelBuilder.Entity<Character>()
+    .HasMany(c => c.Onyomis)
+    .WithOne(k => k.Character)
+    .OnDelete(DeleteBehavior.Cascade);
+
+modelBuilder.Entity<Character>()
+    .HasMany(c => c.Words)
+    .WithOne(k => k.Character)
+    .OnDelete(DeleteBehavior.Cascade);
+    */
+        
+        modelBuilder.Entity<Word>()
+            .HasMany(c => c.WordMeanings)
+            .WithOne(k => k.Word)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

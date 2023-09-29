@@ -25,14 +25,24 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         });
         return await SaveAsync();
     }
+    
+    public async Task<bool> CreateAsync(Character characterDto)
+    {
+        TryAction(delegate
+        {
+            var character = characterDto;
+            Context.Characters.Add(character);
+        });
+        return await SaveAsync();
+    }
 
     public async Task<IEnumerable<CharacterDto>> GetAllAsync()
     {
         var characters = await Context.Characters
-            .Include(x => x.KanjiMeanings)
+            /*.Include(x => x.KanjiMeanings)
             .Include(x => x.Kunyomis)
             .Include(x => x.Onyomis)
-            .Include(x => x.SampleWords)
+            .Include(x => x.SampleWords)*/
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<CharacterDto>>(characters);
@@ -41,10 +51,10 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     public async Task<CharacterDto> GetAsync(int id)
     {
         Character? character = await Context.Characters
-            .Include(x => x.KanjiMeanings)
+            /*.Include(x => x.KanjiMeanings)
             .Include(x => x.Kunyomis)
             .Include(x => x.Onyomis)
-            .Include(x => x.SampleWords)
+            .Include(x => x.SampleWords)*/
             .FirstOrDefaultAsync(x => x.Id == id);
 
         return _mapper.Map<CharacterDto>(character);
@@ -54,7 +64,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     {
         Character? character = Context.Characters.FirstOrDefault(x => x.Id == id);
 
-        if (character == null)
+        if (character != null)
         {
             TryAction(delegate { _mapper.Map(characterDto, character); });
         }

@@ -49,7 +49,7 @@ public class CharacterController : ControllerBase
         return Ok(character);
     }
 
-    [HttpPatch("{id}")]
+    [HttpPatch("{id:int}")]
     public async Task<IActionResult> UpdateAsync(int id, [FromBody] CharacterDto characterDto)
     {
         bool result = await _characterService.UpdateAsync(id, characterDto);
