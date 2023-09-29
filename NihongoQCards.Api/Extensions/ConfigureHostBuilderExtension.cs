@@ -1,4 +1,7 @@
+using AutoMapper;
+using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Services;
+using DanilvarKanji.Services.Characters;
 using Lamar;
 using Lamar.Microsoft.DependencyInjection;
 

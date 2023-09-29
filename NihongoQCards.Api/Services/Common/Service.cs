@@ -22,7 +22,7 @@ public abstract class Service<TDbContext> where TDbContext : DbContext
             Console.WriteLine(e);
         }
     }
-    
+
     protected virtual async Task<bool> SaveAsync()
     {
         int saved = await Context.SaveChangesAsync();

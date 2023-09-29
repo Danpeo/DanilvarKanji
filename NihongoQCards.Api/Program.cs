@@ -1,4 +1,5 @@
 using DanilvarKanji.Data;
+using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Extensions;
 using DanilvarKanji.Services;
 using Lamar;
@@ -11,6 +12,8 @@ using Microsoft.Identity.Web;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.AddLamarServices();
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

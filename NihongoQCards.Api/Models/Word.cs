@@ -9,6 +9,5 @@ public class Word
     public string Romaji { get; set; }
     public string FullJapanese { get; set; }
     public PartOfSpeach PartOfSpeach { get; set; }
-    public JlptLevel? JlptLevel { get; set; }
-    public ICollection<Meaning> Meanings { get; set; }
+    public ICollection<WordMeaning> WordMeanings { get; set; }
 }
