@@ -2,10 +2,8 @@ namespace DanilvarKanji.Attributes;
 
 public class TodoAttribute : Attribute
 {
-    public string Description { get; set; }
+    public string Message { get; }
 
-    public TodoAttribute(string description)
-    {
-        Description = description;
-    }
+    public TodoAttribute(string message) => 
+        Message = message;
 }

@@ -30,8 +30,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     {
         TryAction(delegate
         {
-            var character = characterDto;
-            Context.Characters.Add(character);
+            Context.Characters.Add(characterDto);
         });
         return await SaveAsync();
     }
@@ -39,10 +38,11 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     public async Task<IEnumerable<CharacterDto>> GetAllAsync()
     {
         var characters = await Context.Characters
-            /*.Include(x => x.KanjiMeanings)
+            .Include(x => x.KanjiMeanings)
             .Include(x => x.Kunyomis)
             .Include(x => x.Onyomis)
-            .Include(x => x.SampleWords)*/
+            .Include(x => x.Words)
+            .ThenInclude(x => x.WordMeanings)
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<CharacterDto>>(characters);
@@ -51,10 +51,11 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     public async Task<CharacterDto> GetAsync(int id)
     {
         Character? character = await Context.Characters
-            /*.Include(x => x.KanjiMeanings)
+            .Include(x => x.KanjiMeanings)
             .Include(x => x.Kunyomis)
             .Include(x => x.Onyomis)
-            .Include(x => x.SampleWords)*/
+            .Include(x => x.Words)
+            .ThenInclude(x => x.WordMeanings)
             .FirstOrDefaultAsync(x => x.Id == id);
 
         return _mapper.Map<CharacterDto>(character);

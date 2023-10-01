@@ -1,3 +1,4 @@
+using DanilvarKanji.Services.Auth;
 using DanilvarKanji.Services.Characters;
 using Lamar;
 using Lamar.Microsoft.DependencyInjection;
@@ -11,6 +12,9 @@ public static class ConfigureHostBuilderExtension
         host.UseLamar((context, registry) =>
         {
             registry.For<ICharacterService>().Add<CharacterService>().Scoped();
+            registry.For<ICharacterLearningService>().Add<CharacterLearningService>().Scoped();
+            registry.For<IUserService>().Add<UserService>().Scoped();
+            registry.For<ITokenService>().Add<TokenService>().Scoped();
         });
     }
 }

@@ -1,9 +1,6 @@
 using DanilvarKanji.Attributes;
 using DanilvarKanji.DTO;
-using DanilvarKanji.Extensions;
-using DanilvarKanji.Services;
 using DanilvarKanji.Services.Characters;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DanilvarKanji.Controllers;

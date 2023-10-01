@@ -10,10 +10,9 @@ public class CharacterDto
     public JlptLevel? JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
     public string? Mnemonic { get; set; }
-    public ICollection<KanjiMeaning> KanjiMeanings { get; set; }
-    /*public ICollection<KanjiMeaning> KanjiMeanings { get; set; }
+    public ICollection<KanjiMeaning>? KanjiMeanings { get; set; }
     public ICollection<Kunyomi>? Kunyomis { get; set; }
     public ICollection<Onyomi>? Onyomis { get; set; }
-    public ICollection<Word>? Words { get; set; }*/
-
+    public ICollection<Word>? Words { get; set; }
+    
 }
