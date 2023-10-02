@@ -15,6 +15,6 @@ public class UserService : Service<ApplicationDbContext>, IUserService
         _userManager = userManager;
     }
 
-    public async Task<bool> Exists(string userName) =>
+    public async Task<bool> Exist(string userName) =>
         await _userManager.Users.AnyAsync(x => x.UserName == userName.ToLower());
 }

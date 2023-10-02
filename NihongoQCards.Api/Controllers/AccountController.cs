@@ -26,10 +26,10 @@ public class AccountController : ControllerBase
         _tokenService = tokenService;
     }
 
-    [HttpPost("register")]
+    [HttpPost("Register")]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
-        if (await _userService.Exists(registerDto.UserName))
+        if (await _userService.Exist(registerDto.UserName))
             return BadRequest("User Name is taken");
 
         var user = _mapper.Map<AppUser>(registerDto);
@@ -48,7 +48,7 @@ public class AccountController : ControllerBase
         };
     }
 
-    [HttpPost("login")]
+    [HttpPost("Login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
         AppUser? user = await _userManager.Users

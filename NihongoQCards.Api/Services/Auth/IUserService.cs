@@ -2,5 +2,5 @@ namespace DanilvarKanji.Services.Auth;
 
 public interface IUserService
 {
-    Task<bool> Exists(string userName);
+    Task<bool> Exist(string userName);
 }

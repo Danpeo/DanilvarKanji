@@ -25,19 +25,10 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         });
         return await SaveAsync();
     }
-    
-    public async Task<bool> CreateAsync(Character characterDto)
-    {
-        TryAction(delegate
-        {
-            Context.Characters.Add(characterDto);
-        });
-        return await SaveAsync();
-    }
 
     public async Task<IEnumerable<CharacterDto>> GetAllAsync()
     {
-        var characters = await Context.Characters
+        List<Character> characters = await Context.Characters
             .Include(x => x.KanjiMeanings)
             .Include(x => x.Kunyomis)
             .Include(x => x.Onyomis)
@@ -67,7 +58,11 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
 
         if (character != null)
         {
-            TryAction(delegate { _mapper.Map(characterDto, character); });
+            TryAction(delegate
+            {
+                _mapper.Map(characterDto, character);
+                Context.Characters.Update(character);
+            });
         }
 
         return await SaveAsync();
@@ -77,14 +72,12 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     {
         Character? character = Context.Characters.FirstOrDefault(x => x.Id == id);
 
-        if (character != null)
-        {
+        if (character != null) 
             TryAction(delegate { Context.Characters.Remove(character); });
-        }
 
         return await SaveAsync();
     }
 
-    public bool Exist(int id) =>
-        Context.Characters.Any(x => x.Id == id);
+    public Task<bool> Exist(int id) =>
+        Context.Characters.AnyAsync(x => x.Id == id);
 }
