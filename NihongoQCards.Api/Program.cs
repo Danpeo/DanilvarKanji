@@ -1,18 +1,22 @@
+using System.Text.Json.Serialization;
 using DanilvarKanji.Data;
 using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Extensions;
-using DanilvarKanji.Services;
 using DanilvarKanji.Utils;
-using Lamar;
-using Lamar.Microsoft.DependencyInjection;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.AddLamarServices();
+
+builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true)
+    .AddFluentValidationClientsideAdapters();
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
@@ -27,7 +31,13 @@ builder.Services.AddIdentityServices(builder.Configuration);
 /*builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));*/
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.Converters.Add(new NumberToStringConverter());
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

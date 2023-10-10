@@ -28,12 +28,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
 
     public async Task<IEnumerable<CharacterDto>> GetAllAsync()
     {
-        List<Character> characters = await Context.Characters
-            .Include(x => x.KanjiMeanings)
-            .Include(x => x.Kunyomis)
-            .Include(x => x.Onyomis)
-            .Include(x => x.Words)
-            .ThenInclude(x => x.WordMeanings)
+        List<Character> characters = await GetCharactersWithRelatedData()
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<CharacterDto>>(characters);
@@ -41,12 +36,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
 
     public async Task<CharacterDto> GetAsync(int id)
     {
-        Character? character = await Context.Characters
-            .Include(x => x.KanjiMeanings)
-            .Include(x => x.Kunyomis)
-            .Include(x => x.Onyomis)
-            .Include(x => x.Words)
-            .ThenInclude(x => x.WordMeanings)
+        Character? character = await GetCharactersWithRelatedData()
             .FirstOrDefaultAsync(x => x.Id == id);
 
         return _mapper.Map<CharacterDto>(character);
@@ -80,4 +70,14 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
 
     public Task<bool> Exist(int id) =>
         Context.Characters.AnyAsync(x => x.Id == id);
+    
+    private IQueryable<Character> GetCharactersWithRelatedData()
+    {
+        return Context.Characters
+            .Include(x => x.KanjiMeanings)
+            .Include(x => x.Kunyomis)
+            .Include(x => x.Onyomis)
+            .Include(x => x.Words)
+            .ThenInclude(x => x.WordMeanings);
+    }
 }

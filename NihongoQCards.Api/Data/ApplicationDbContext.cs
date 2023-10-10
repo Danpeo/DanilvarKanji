@@ -14,7 +14,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<Word> Words { get; set; }
     public DbSet<Kunyomi> Kunyomis { get; set; }
     public DbSet<Onyomi> Onyomis { get; set; }
-
+    public DbSet<TEST> Tests { get; set; }
+    
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {
     }

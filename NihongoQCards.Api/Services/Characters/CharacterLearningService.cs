@@ -1,107 +1,80 @@
-using System.Linq.Expressions;
-using AutoMapper;
 using DanilvarKanji.Data;
-using DanilvarKanji.DTO;
+using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Models;
+using DanilvarKanji.Models.Enums;
 using DanilvarKanji.Services.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace DanilvarKanji.Services.Characters;
 
 public class CharacterLearningService : Service<ApplicationDbContext>, ICharacterLearningService
 {
-    private readonly IMapper _mapper;
+    private readonly IOptionsSnapshot<CharacterLearningSettings> _optionsSnapshot;
 
-    public CharacterLearningService(ApplicationDbContext context, IMapper mapper) :
-        base(context)
+    public CharacterLearningService(ApplicationDbContext context,
+        IOptionsSnapshot<CharacterLearningSettings> optionsSnapshot) : base(context)
     {
-        _mapper = mapper;
+        _optionsSnapshot = optionsSnapshot;
     }
 
-    public async Task<bool> AddCharacterLearning(CharacterForLearnDto characterDto, AppUser appUser)
-    {
-        await TryActionAsync(async () =>
-        {
-            var characterLearning = new CharacterLearning()
-            {
-                AppUser = appUser,
-                Character = await Context.Characters
-                    .FirstOrDefaultAsync(x => x.Id == characterDto.Id) ?? new Character(),
-                LearningProgress = 0.0f,
-                LearningState = characterDto.LearningState
-            };
+    public async Task<bool> IncreaseLearningRateAsync(int id, AppUser appUser, float value) =>
+        await UpdateLearningRateAsync(id, appUser, value);
 
-            Context.CharacterLearnings.Add(characterLearning);
-        });
+    public async Task<bool> DecreaseLearningRateAsync(int id, AppUser appUser, float value) =>
+        await UpdateLearningRateAsync(id, appUser, -value);
 
-        return await SaveAsync();
-    }
-
-    public async Task<bool> UpdateCharacterLearning(int id, CharacterForLearnDto characterDto)
-    {
-        await TryActionAsync(async () =>
-        {
-            CharacterLearning? characterLearning = await Context.CharacterLearnings
-                .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (characterLearning != null)
-            {
-                _mapper.Map(characterDto, characterLearning);
-                Context.CharacterLearnings.Update(characterLearning);
-            }
-        });
-
-        return await SaveAsync();
-    }
-
-    public async Task<bool> DeleteAsync(int id) =>
-        await DeleteWithFilterAsync(x => x.Id == id);
-
-    public async Task<bool> DeleteForUserAsync(int id, AppUser appUser) =>
-        await DeleteWithFilterAsync(x => x.Id == id && x.AppUser == appUser);
-
-    public async Task<IEnumerable<CharacterForLearnDto>> GetAllAsync() =>
-        await GetAllCharacterLearningsAsync();
-
-    public async Task<IEnumerable<CharacterForLearnDto>> GetAllForUserAsync(AppUser? appUser) =>
-        await GetAllCharacterLearningsAsync(appUser);
-
-    public async Task<CharacterForLearnDto> GetAsync(int id) => 
-        await GetWithFilterAsync(x => x.Id == id);
-
-    public async Task<CharacterForLearnDto> GetForUserAsync(int id, AppUser? appUser) => 
-        await GetWithFilterAsync(x => x.Id == id && x.AppUser == appUser);
-
-    public Task<bool> Exist(int id) =>
-        Context.CharacterLearnings.AnyAsync(x => x.Id == id);
-
-    private async Task<bool> DeleteWithFilterAsync(Expression<Func<CharacterLearning, bool>> filter)
-    {
-        CharacterLearning? characterLearning = await Context.CharacterLearnings.FirstOrDefaultAsync(filter);
-
-        if (characterLearning != null)
-            TryAction(delegate { Context.CharacterLearnings.Remove(characterLearning); });
-
-        return await SaveAsync();
-    }
-
-    private async Task<IEnumerable<CharacterForLearnDto>> GetAllCharacterLearningsAsync(AppUser? appUser = null)
-    {
-        IQueryable<CharacterLearning> query = Context.CharacterLearnings;
-
-        if (appUser != null)
-            query = query.Where(x => x.AppUser == appUser);
-
-        List<CharacterLearning> characterLearnings = await query.ToListAsync();
-
-        return _mapper.Map<IEnumerable<CharacterForLearnDto>>(characterLearnings);
-    }
-
-    private async Task<CharacterForLearnDto> GetWithFilterAsync(Expression<Func<CharacterLearning, bool>> filter)
+    private async Task<bool> UpdateLearningRateAsync(int id, AppUser appUser, float value)
     {
         CharacterLearning? characterLearning = await Context.CharacterLearnings
-            .FirstOrDefaultAsync(filter);
+            .FirstOrDefaultAsync(x => x.Id == id && x.AppUser == appUser);
 
-        return _mapper.Map<CharacterForLearnDto>(characterLearning);
+        if (CanChangeCharacterLearningProgress(characterLearning))
+        {
+            characterLearning.LearningProgress += value;
+            
+            CheckIfLessThanMinLearningRate(characterLearning);
+
+            if (IfLearned(characterLearning))
+            {
+                SetCharacterToLearned(characterLearning);
+                CheckIfCompletelyLearned(value, characterLearning);
+            }
+
+            Context.CharacterLearnings.Update(characterLearning);
+        }
+
+        return await SaveAsync();
     }
+
+    private void CheckIfCompletelyLearned(float value, CharacterLearning characterLearning)
+    {
+        if (value > 0)
+            characterLearning.LearnedCount++;
+        else
+            characterLearning.LearnedCount = 0;
+
+        if (characterLearning.LearnedCount >= _optionsSnapshot.Value.LearnedCountToCompletelyLearn)
+            characterLearning.LearningState = LearningState.CompletelyLearned;
+    }
+
+    private void CheckIfLessThanMinLearningRate(CharacterLearning characterLearning)
+    {
+        if (characterLearning.LearningProgress < _optionsSnapshot.Value.MinLearningRate)
+            characterLearning.LearningProgress = _optionsSnapshot.Value.MinLearningRate;
+    }
+
+    private void SetCharacterToLearned(CharacterLearning characterLearning)
+    {
+        characterLearning.LearningProgress = _optionsSnapshot.Value.MinLearningRate;
+        characterLearning.LearningState = LearningState.LearnedForSomeTime;
+    }
+
+    private bool CanChangeCharacterLearningProgress(CharacterLearning? characterLearning) =>
+        characterLearning != null &&
+        characterLearning.LearningProgress <= _optionsSnapshot.Value.MaxLearningRate &&
+        characterLearning.LearningProgress >= _optionsSnapshot.Value.MinLearningRate;
+
+    private bool IfLearned(CharacterLearning characterLearning) =>
+        characterLearning.LearningProgress >= _optionsSnapshot.Value.MaxLearningRate;
 }

@@ -9,21 +9,23 @@ namespace DanilvarKanji.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("Api/[controller]")]
+[Route("Api/[controller]s")]
 public class CharacterLearningController : ControllerBase
 {
-    private readonly UserManager<AppUser> _userManager;
     private readonly ICharacterLearningService _characterLearningService;
+    private readonly ICharacterLearningManagementService _charLearnManageService;
+    private readonly UserManager<AppUser> _userManager;
 
-    public CharacterLearningController(UserManager<AppUser> userManager,
-        ICharacterLearningService characterLearningService)
+    public CharacterLearningController(ICharacterLearningService characterLearningService,
+        UserManager<AppUser> userManager, ICharacterLearningManagementService charLearnManageService)
     {
-        _userManager = userManager;
         _characterLearningService = characterLearningService;
+        _userManager = userManager;
+        _charLearnManageService = charLearnManageService;
     }
-
+    
     [HttpPost]
-    public async Task<IActionResult> AddCharacterForLearning([FromBody] CharacterForLearnDto characterDto)
+    public async Task<IActionResult> AddCharacterForLearning([FromBody] CharacterLearningDto characterDto)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
@@ -33,15 +35,15 @@ public class CharacterLearningController : ControllerBase
         if (user == null)
             return Unauthorized();
 
-        bool result = await _characterLearningService.AddCharacterLearning(characterDto, user);
+        bool result = await _charLearnManageService.AddCharacterLearning(characterDto, user);
 
         return result ? Ok() : NotFound();
     }
 
     [HttpPatch("{id:int}")]
-    public async Task<IActionResult> UpdateAsync(int id, [FromBody] CharacterForLearnDto characterDto)
+    public async Task<IActionResult> UpdateAsync(int id, [FromBody] CharacterLearningDto characterDto)
     {
-        bool result = await _characterLearningService.UpdateCharacterLearning(id, characterDto);
+        bool result = await _charLearnManageService.UpdateCharacterLearning(id, characterDto);
 
         if (!ModelState.IsValid)
             return BadRequest();
@@ -55,7 +57,7 @@ public class CharacterLearningController : ControllerBase
         if (User.Identity is { IsAuthenticated: false })
             return Unauthorized();
 
-        IEnumerable<CharacterForLearnDto> characters = await _characterLearningService.GetAllAsync();
+        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.GetAllAsync();
         return Ok(characters);
     }
 
@@ -67,7 +69,7 @@ public class CharacterLearningController : ControllerBase
 
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        IEnumerable<CharacterForLearnDto> characters = await _characterLearningService.GetAllForUserAsync(user);
+        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.GetAllForUserAsync(user);
 
         return Ok(characters);
     }
@@ -78,12 +80,12 @@ public class CharacterLearningController : ControllerBase
         if (User.Identity is { IsAuthenticated: false })
             return Unauthorized();
 
-        if (!await _characterLearningService.Exist(id))
+        if (!await _charLearnManageService.Exist(id))
             return NotFound();
 
         AppUser? user = await _userManager.GetUserAsync(User);
-        
-        CharacterForLearnDto character = await _characterLearningService.GetForUserAsync(id, user);
+
+        CharacterLearningDto character = await _charLearnManageService.GetForUserAsync(id, user);
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -97,14 +99,62 @@ public class CharacterLearningController : ControllerBase
         if (User.Identity is { IsAuthenticated: false })
             return Unauthorized();
 
-        if (!await _characterLearningService.Exist(id))
+        if (!await _charLearnManageService.Exist(id))
             return NotFound();
-        
-        CharacterForLearnDto character = await _characterLearningService.GetAsync(id);
+
+        CharacterLearningDto character = await _charLearnManageService.GetAsync(id);
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         return Ok(character);
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        if (User.Identity is { IsAuthenticated: false })
+            return Unauthorized();
+
+        return await _charLearnManageService.DeleteAsync(id) ? Ok() : NotFound();
+    }
+
+    [HttpDelete("FromAll/{id:int}")]
+    public async Task<IActionResult> DeleteForUserAsync(int id)
+    {
+        if (User.Identity is { IsAuthenticated: false })
+            return Unauthorized();
+
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        return user != null && await _charLearnManageService.DeleteForUserAsync(id, user) ? Ok() : NotFound();
+    }
+
+    [HttpPatch("Increase/{id:int}")]
+    public async Task<IActionResult> IncreaseLearningProgressAsync(int id, float value)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        bool result = user != null &&
+                      await _characterLearningService.IncreaseLearningRateAsync(id, user, value);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        return result ? Ok() : NotFound();
+    }
+
+    [HttpPatch("Decrease/{id:int}")]
+    public async Task<IActionResult> DecreaseLearningProgressAsync(int id, float value)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        bool result = user != null &&
+                      await _characterLearningService.DecreaseLearningRateAsync(id, user, value);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        return result ? Ok() : NotFound();
     }
 }

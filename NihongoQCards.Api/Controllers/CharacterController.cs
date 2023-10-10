@@ -1,4 +1,3 @@
-using DanilvarKanji.Attributes;
 using DanilvarKanji.DTO;
 using DanilvarKanji.Services.Characters;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +7,7 @@ namespace DanilvarKanji.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("Api/[controller]")]
+[Route("Api/[controller]s")]
 public class CharacterController : ControllerBase
 {
     private readonly ICharacterService _characterService;
@@ -59,6 +58,9 @@ public class CharacterController : ControllerBase
     [HttpPatch("{id:int}")]
     public async Task<IActionResult> UpdateAsync(int id, [FromBody] CharacterDto characterDto)
     {
+        if (User.Identity is { IsAuthenticated: false })
+            return Unauthorized();
+        
         bool result = await _characterService.UpdateAsync(id, characterDto);
 
         if (!ModelState.IsValid)
@@ -68,6 +70,11 @@ public class CharacterController : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteAsync(int id) =>
-        await _characterService.DeleteAsync(id) ? Ok() : NotFound();
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        if (User.Identity is { IsAuthenticated: false })
+            return Unauthorized();
+        
+        return await _characterService.DeleteAsync(id) ? Ok() : NotFound();
+    }
 }

@@ -9,4 +9,5 @@ public class CharacterLearning
     public Character Character { get; set; }
     public LearningState LearningState { get; set; }
     public float LearningProgress { get; set; }
+    public int LearnedCount { get; set; }
 }

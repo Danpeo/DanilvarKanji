@@ -1,3 +1,4 @@
+using DanilvarKanji.Attributes;
 using DanilvarKanji.Models;
 using DanilvarKanji.Models.Enums;
 
@@ -10,6 +11,12 @@ public class CharacterDto
     public JlptLevel? JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
     public string? Mnemonic { get; set; }
+    
+    [SerializeAsNumericString]
+    public int? StrokeCount { get; set; }
+
+    [SerializeAsNumericString]
+    public string TEST { get; set; }
     public ICollection<KanjiMeaning>? KanjiMeanings { get; set; }
     public ICollection<Kunyomi>? Kunyomis { get; set; }
     public ICollection<Onyomi>? Onyomis { get; set; }

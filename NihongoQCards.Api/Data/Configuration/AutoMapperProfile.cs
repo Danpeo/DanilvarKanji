@@ -15,9 +15,9 @@ public class AutoMapperProfile : Profile
 
         CreateMap<RegisterDto, AppUser>();
 
-        CreateMap<CharacterLearning, CharacterForLearnDto>();
+        CreateMap<CharacterLearning, CharacterLearningDto>();
 
-        CreateMap<CharacterForLearnDto, CharacterLearning>()
+        CreateMap<CharacterLearningDto, CharacterLearning>()
             .ForMember(x => x.Id, opt => opt.Ignore());
     }
 }
