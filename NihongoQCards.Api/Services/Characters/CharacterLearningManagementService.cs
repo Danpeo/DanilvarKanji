@@ -37,7 +37,7 @@ public class CharacterLearningManagementService : Service<ApplicationDbContext>,
         return await SaveAsync();
     }
 
-    public async Task<bool> UpdateCharacterLearning(int id, CharacterLearningDto characterDto)
+    public async Task<bool> UpdateCharacterLearning(Guid id, CharacterLearningDto characterDto)
     {
         await TryActionAsync(async () =>
         {
@@ -54,10 +54,10 @@ public class CharacterLearningManagementService : Service<ApplicationDbContext>,
         return await SaveAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id) =>
+    public async Task<bool> DeleteAsync(Guid id) =>
         await DeleteWithFilterAsync(x => x.Id == id);
 
-    public async Task<bool> DeleteForUserAsync(int id, AppUser appUser) =>
+    public async Task<bool> DeleteForUserAsync(Guid id, AppUser appUser) =>
         await DeleteWithFilterAsync(x => x.Id == id && x.AppUser == appUser);
 
     public async Task<IEnumerable<CharacterLearningDto>> GetAllAsync() =>
@@ -66,13 +66,13 @@ public class CharacterLearningManagementService : Service<ApplicationDbContext>,
     public async Task<IEnumerable<CharacterLearningDto>> GetAllForUserAsync(AppUser? appUser) =>
         await GetAllCharacterLearningsAsync(appUser);
 
-    public async Task<CharacterLearningDto> GetAsync(int id) => 
+    public async Task<CharacterLearningDto> GetAsync(Guid id) => 
         await GetWithFilterAsync(x => x.Id == id);
 
-    public async Task<CharacterLearningDto> GetForUserAsync(int id, AppUser? appUser) => 
+    public async Task<CharacterLearningDto> GetForUserAsync(Guid id, AppUser? appUser) => 
         await GetWithFilterAsync(x => x.Id == id && x.AppUser == appUser);
 
-    public Task<bool> Exist(int id) =>
+    public Task<bool> Exist(Guid id) =>
         Context.CharacterLearnings.AnyAsync(x => x.Id == id);
 
     private async Task<bool> DeleteWithFilterAsync(Expression<Func<CharacterLearning, bool>> filter)

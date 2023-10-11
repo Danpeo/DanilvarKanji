@@ -40,8 +40,8 @@ public class CharacterLearningController : ControllerBase
         return result ? Ok() : NotFound();
     }
 
-    [HttpPatch("{id:int}")]
-    public async Task<IActionResult> UpdateAsync(int id, [FromBody] CharacterLearningDto characterDto)
+    [HttpPatch("{id:Guid}")]
+    public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CharacterLearningDto characterDto)
     {
         bool result = await _charLearnManageService.UpdateCharacterLearning(id, characterDto);
 
@@ -54,9 +54,6 @@ public class CharacterLearningController : ControllerBase
     [HttpGet("All")]
     public async Task<IActionResult> GetAllAsync()
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.GetAllAsync();
         return Ok(characters);
     }
@@ -64,9 +61,6 @@ public class CharacterLearningController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllForUserAsync()
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         AppUser? user = await _userManager.GetUserAsync(User);
 
         IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.GetAllForUserAsync(user);
@@ -74,12 +68,9 @@ public class CharacterLearningController : ControllerBase
         return Ok(characters);
     }
 
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetForUserAsync(int id)
+    [HttpGet("{id:Guid}")]
+    public async Task<IActionResult> GetForUserAsync(Guid id)
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         if (!await _charLearnManageService.Exist(id))
             return NotFound();
 
@@ -93,12 +84,9 @@ public class CharacterLearningController : ControllerBase
         return Ok(character);
     }
 
-    [HttpGet("FromAll/{id:int}")]
-    public async Task<IActionResult> GetAsync(int id)
+    [HttpGet("FromAll/{id:Guid}")]
+    public async Task<IActionResult> GetAsync(Guid id)
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         if (!await _charLearnManageService.Exist(id))
             return NotFound();
 
@@ -110,28 +98,22 @@ public class CharacterLearningController : ControllerBase
         return Ok(character);
     }
 
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteAsync(int id)
+    [HttpDelete("{id:Guid}")]
+    public async Task<IActionResult> DeleteAsync(Guid id)
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         return await _charLearnManageService.DeleteAsync(id) ? Ok() : NotFound();
     }
 
-    [HttpDelete("FromAll/{id:int}")]
-    public async Task<IActionResult> DeleteForUserAsync(int id)
+    [HttpDelete("FromAll/{id:Guid}")]
+    public async Task<IActionResult> DeleteForUserAsync(Guid id)
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         AppUser? user = await _userManager.GetUserAsync(User);
 
         return user != null && await _charLearnManageService.DeleteForUserAsync(id, user) ? Ok() : NotFound();
     }
 
-    [HttpPatch("Increase/{id:int}")]
-    public async Task<IActionResult> IncreaseLearningProgressAsync(int id, float value)
+    [HttpPatch("Increase/{id:Guid}")]
+    public async Task<IActionResult> IncreaseLearningProgressAsync(Guid id, float value)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
@@ -144,8 +126,8 @@ public class CharacterLearningController : ControllerBase
         return result ? Ok() : NotFound();
     }
 
-    [HttpPatch("Decrease/{id:int}")]
-    public async Task<IActionResult> DecreaseLearningProgressAsync(int id, float value)
+    [HttpPatch("Decrease/{id:Guid}")]
+    public async Task<IActionResult> DecreaseLearningProgressAsync(Guid id, float value)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 

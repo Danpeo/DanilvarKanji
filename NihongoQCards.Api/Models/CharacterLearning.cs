@@ -1,10 +1,12 @@
+using System.ComponentModel.DataAnnotations;
 using DanilvarKanji.Models.Enums;
 
 namespace DanilvarKanji.Models;
 
 public class CharacterLearning
 {
-    public int Id { get; set; }
+    [Key]
+    public Guid Id { get; set; }
     public AppUser AppUser { get; set; }
     public Character Character { get; set; }
     public LearningState LearningState { get; set; }

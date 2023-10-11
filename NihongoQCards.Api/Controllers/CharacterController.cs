@@ -31,19 +31,13 @@ public class CharacterController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         IEnumerable<CharacterDto> characters = await _characterService.GetAllAsync();
         return Ok(characters);
     }
 
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetAsync(int id)
+    [HttpGet("{id:Guid}")]
+    public async Task<IActionResult> GetAsync(Guid id)
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-
         if (!await _characterService.Exist(id))
             return NotFound();
 
@@ -55,12 +49,9 @@ public class CharacterController : ControllerBase
         return Ok(character);
     }
 
-    [HttpPatch("{id:int}")]
-    public async Task<IActionResult> UpdateAsync(int id, [FromBody] CharacterDto characterDto)
+    [HttpPatch("{id:Guid}")]
+    public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CharacterDto characterDto)
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-        
         bool result = await _characterService.UpdateAsync(id, characterDto);
 
         if (!ModelState.IsValid)
@@ -69,12 +60,9 @@ public class CharacterController : ControllerBase
         return result ? Ok() : NotFound();
     }
 
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteAsync(int id)
+    [HttpDelete("{id:Guid}")]
+    public async Task<IActionResult> DeleteAsync(Guid id)
     {
-        if (User.Identity is { IsAuthenticated: false })
-            return Unauthorized();
-        
         return await _characterService.DeleteAsync(id) ? Ok() : NotFound();
     }
 }

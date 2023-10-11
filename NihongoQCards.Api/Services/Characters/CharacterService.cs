@@ -34,7 +34,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         return _mapper.Map<IEnumerable<CharacterDto>>(characters);
     }
 
-    public async Task<CharacterDto> GetAsync(int id)
+    public async Task<CharacterDto> GetAsync(Guid id)
     {
         Character? character = await GetCharactersWithRelatedData()
             .FirstOrDefaultAsync(x => x.Id == id);
@@ -42,7 +42,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         return _mapper.Map<CharacterDto>(character);
     }
 
-    public async Task<bool> UpdateAsync(int id, CharacterDto characterDto)
+    public async Task<bool> UpdateAsync(Guid id, CharacterDto characterDto)
     {
         Character? character = Context.Characters.FirstOrDefault(x => x.Id == id);
 
@@ -58,7 +58,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         return await SaveAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(Guid id)
     {
         Character? character = Context.Characters.FirstOrDefault(x => x.Id == id);
 
@@ -68,7 +68,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         return await SaveAsync();
     }
 
-    public Task<bool> Exist(int id) =>
+    public Task<bool> Exist(Guid id) =>
         Context.Characters.AnyAsync(x => x.Id == id);
     
     private IQueryable<Character> GetCharactersWithRelatedData()

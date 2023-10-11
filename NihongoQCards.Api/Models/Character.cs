@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using DanilvarKanji.Attributes;
 using DanilvarKanji.DTO;
@@ -9,13 +10,12 @@ namespace DanilvarKanji.Models;
 
 public class Character
 {
-    public int Id { get; set; }
+    [Key]
+    public Guid Id { get; set; }
     public string Definition { get; set; }
     public JlptLevel? JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
     public string? Mnemonic { get; set; }
-    
-    [SerializeAsNumericString]
     public int? StrokeCount { get; set; }
     public ICollection<KanjiMeaning>? KanjiMeanings { get; set; }
     public ICollection<Kunyomi>? Kunyomis { get; set; }
@@ -28,7 +28,7 @@ public class Character
 
     public Character(CharacterDto dto)
     {
-        Id = dto.Id;
+        //Id = dto.Id;
         Definition = dto.Definition;
         CharacterType = dto.CharacterType;
         Mnemonic = dto.Mnemonic;
