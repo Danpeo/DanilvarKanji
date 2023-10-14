@@ -18,7 +18,7 @@ public class CharacterLearningManagementService : Service<ApplicationDbContext>,
         _mapper = mapper;
     }
 
-    public async Task<bool> AddCharacterLearning(CharacterLearningDto characterDto, AppUser appUser)
+    public async Task<bool> CreateAsync(CharacterLearningDto characterDto, AppUser appUser)
     {
         await TryActionAsync(async () =>
         {
@@ -37,7 +37,7 @@ public class CharacterLearningManagementService : Service<ApplicationDbContext>,
         return await SaveAsync();
     }
 
-    public async Task<bool> UpdateCharacterLearning(Guid id, CharacterLearningDto characterDto)
+    public async Task<bool> Update(string id, CharacterLearningDto characterDto)
     {
         await TryActionAsync(async () =>
         {
@@ -54,25 +54,25 @@ public class CharacterLearningManagementService : Service<ApplicationDbContext>,
         return await SaveAsync();
     }
 
-    public async Task<bool> DeleteAsync(Guid id) =>
+    public async Task<bool> DeleteAsync(string id) =>
         await DeleteWithFilterAsync(x => x.Id == id);
 
-    public async Task<bool> DeleteForUserAsync(Guid id, AppUser appUser) =>
+    public async Task<bool> DeleteForUserAsync(string id, AppUser appUser) =>
         await DeleteWithFilterAsync(x => x.Id == id && x.AppUser == appUser);
 
-    public async Task<IEnumerable<CharacterLearningDto>> GetAllAsync() =>
+    public async Task<IEnumerable<CharacterLearningDto>> ListAsync() =>
         await GetAllCharacterLearningsAsync();
 
-    public async Task<IEnumerable<CharacterLearningDto>> GetAllForUserAsync(AppUser? appUser) =>
+    public async Task<IEnumerable<CharacterLearningDto>> ListForUserAsync(AppUser? appUser) =>
         await GetAllCharacterLearningsAsync(appUser);
 
-    public async Task<CharacterLearningDto> GetAsync(Guid id) => 
+    public async Task<CharacterLearningDto> GetAsync(string id) => 
         await GetWithFilterAsync(x => x.Id == id);
 
-    public async Task<CharacterLearningDto> GetForUserAsync(Guid id, AppUser? appUser) => 
+    public async Task<CharacterLearningDto> GetForUserAsync(string id, AppUser? appUser) => 
         await GetWithFilterAsync(x => x.Id == id && x.AppUser == appUser);
 
-    public Task<bool> Exist(Guid id) =>
+    public Task<bool> Exist(string id) =>
         Context.CharacterLearnings.AnyAsync(x => x.Id == id);
 
     private async Task<bool> DeleteWithFilterAsync(Expression<Func<CharacterLearning, bool>> filter)

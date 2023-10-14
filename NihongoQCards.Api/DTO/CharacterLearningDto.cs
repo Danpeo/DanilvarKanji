@@ -8,5 +8,5 @@ public class CharacterLearningDto
     public float LearningProgress { get; set; }
     public LearningState LearningState { get; set; }
     public int LearnedCount { get; set; } = 0;
-    public Guid CharacterId { get; set; }
+    public string CharacterId { get; set; }
 }

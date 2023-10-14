@@ -5,9 +5,11 @@ namespace DanilvarKanji.Services.Characters;
 public interface ICharacterService
 {
     Task<bool> CreateAsync(CharacterDto characterDto);
-    Task<IEnumerable<CharacterDto>> GetAllAsync();
-    Task<CharacterDto> GetAsync(Guid id);
-    Task<bool> Exist(Guid id);
-    Task<bool> UpdateAsync(Guid id, CharacterDto characterDto);
-    Task<bool> DeleteAsync(Guid id);
+    Task<IEnumerable<CharacterDto>> ListAsync();
+    Task<CharacterDto> GetAsync(string id);
+    Task<bool> Exist(string id);
+    Task<bool> UpdateAsync(string id, CharacterDto characterDto);
+    Task<bool> DeleteAsync(string id);
+    Task<bool> ReplaceAsync(string id, CharacterDto characterDto);
+    Task<CharacterDto?> GetPartialAsync(string id, List<string> fields);
 }

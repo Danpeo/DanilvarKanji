@@ -18,13 +18,13 @@ public class CharacterLearningService : Service<ApplicationDbContext>, ICharacte
         _optionsSnapshot = optionsSnapshot;
     }
 
-    public async Task<bool> IncreaseLearningRateAsync(Guid id, AppUser appUser, float value) =>
+    public async Task<bool> IncreaseLearningRateAsync(string id, AppUser appUser, float value) =>
         await UpdateLearningRateAsync(id, appUser, value);
 
-    public async Task<bool> DecreaseLearningRateAsync(Guid id, AppUser appUser, float value) =>
+    public async Task<bool> DecreaseLearningRateAsync(string id, AppUser appUser, float value) =>
         await UpdateLearningRateAsync(id, appUser, -value);
 
-    private async Task<bool> UpdateLearningRateAsync(Guid id, AppUser appUser, float value)
+    private async Task<bool> UpdateLearningRateAsync(string id, AppUser appUser, float value)
     {
         CharacterLearning? characterLearning = await Context.CharacterLearnings
             .FirstOrDefaultAsync(x => x.Id == id && x.AppUser == appUser);

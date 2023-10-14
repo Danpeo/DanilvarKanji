@@ -11,7 +11,7 @@ namespace DanilvarKanji.Models;
 public class Character
 {
     [Key]
-    public Guid Id { get; set; }
+    public string Id { get; set; }
     public string Definition { get; set; }
     public JlptLevel? JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
@@ -24,13 +24,13 @@ public class Character
 
     public Character()
     {
+        Id = Guid.NewGuid().ToString("N");
     }
 
-    public Character(CharacterDto dto)
+    public Character(CharacterDto dto) : this()
     {
-        //Id = dto.Id;
         Definition = dto.Definition;
-        CharacterType = dto.CharacterType;
+        CharacterType = dto.CharacterType ?? CharacterType.Kanji;
         Mnemonic = dto.Mnemonic;
         StrokeCount = dto.StrokeCount;
         KanjiMeanings = dto.KanjiMeanings;

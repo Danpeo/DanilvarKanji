@@ -20,8 +20,11 @@ builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
+/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")))*/;
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSql")));
 
 // Add services to the container.
 

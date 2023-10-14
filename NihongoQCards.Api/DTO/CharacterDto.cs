@@ -6,10 +6,10 @@ namespace DanilvarKanji.DTO;
 
 public class CharacterDto
 {
-    public Guid Id { get; set; }
-    public string Definition { get; set; }
+    public string Id { get; set; }
+    public string? Definition { get; set; }
     public JlptLevel? JlptLevel { get; set; }
-    public CharacterType CharacterType { get; set; }
+    public CharacterType? CharacterType { get; set; }
     public string? Mnemonic { get; set; }
     
     public int? StrokeCount { get; set; }
@@ -19,5 +19,10 @@ public class CharacterDto
     public ICollection<Kunyomi>? Kunyomis { get; set; }
     public ICollection<Onyomi>? Onyomis { get; set; }
     public ICollection<Word>? Words { get; set; }
+
+    public CharacterDto()
+    {
+        Id = Guid.NewGuid().ToString("N");
+    }
     
 }

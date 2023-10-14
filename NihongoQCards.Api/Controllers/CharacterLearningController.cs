@@ -25,7 +25,7 @@ public class CharacterLearningController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddCharacterForLearning([FromBody] CharacterLearningDto characterDto)
+    public async Task<IActionResult> CreateAsync([FromBody] CharacterLearningDto characterDto)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
@@ -35,15 +35,15 @@ public class CharacterLearningController : ControllerBase
         if (user == null)
             return Unauthorized();
 
-        bool result = await _charLearnManageService.AddCharacterLearning(characterDto, user);
+        bool result = await _charLearnManageService.CreateAsync(characterDto, user);
 
         return result ? Ok() : NotFound();
     }
 
-    [HttpPatch("{id:Guid}")]
-    public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CharacterLearningDto characterDto)
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> UpdateAsync(string id, [FromBody] CharacterLearningDto characterDto)
     {
-        bool result = await _charLearnManageService.UpdateCharacterLearning(id, characterDto);
+        bool result = await _charLearnManageService.Update(id, characterDto);
 
         if (!ModelState.IsValid)
             return BadRequest();
@@ -52,24 +52,24 @@ public class CharacterLearningController : ControllerBase
     }
 
     [HttpGet("All")]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> ListAsync()
     {
-        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.GetAllAsync();
+        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListAsync();
         return Ok(characters);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllForUserAsync()
+    public async Task<IActionResult> ListForUserAsync()
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.GetAllForUserAsync(user);
+        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListForUserAsync(user);
 
         return Ok(characters);
     }
 
-    [HttpGet("{id:Guid}")]
-    public async Task<IActionResult> GetForUserAsync(Guid id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetForUserAsync(string id)
     {
         if (!await _charLearnManageService.Exist(id))
             return NotFound();
@@ -84,8 +84,8 @@ public class CharacterLearningController : ControllerBase
         return Ok(character);
     }
 
-    [HttpGet("FromAll/{id:Guid}")]
-    public async Task<IActionResult> GetAsync(Guid id)
+    [HttpGet("FromAll/{id}")]
+    public async Task<IActionResult> GetAsync(string id)
     {
         if (!await _charLearnManageService.Exist(id))
             return NotFound();
@@ -98,22 +98,22 @@ public class CharacterLearningController : ControllerBase
         return Ok(character);
     }
 
-    [HttpDelete("{id:Guid}")]
-    public async Task<IActionResult> DeleteAsync(Guid id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(string id)
     {
         return await _charLearnManageService.DeleteAsync(id) ? Ok() : NotFound();
     }
 
-    [HttpDelete("FromAll/{id:Guid}")]
-    public async Task<IActionResult> DeleteForUserAsync(Guid id)
+    [HttpDelete("FromAll/{id}")]
+    public async Task<IActionResult> DeleteForUserAsync(string id)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
         return user != null && await _charLearnManageService.DeleteForUserAsync(id, user) ? Ok() : NotFound();
     }
 
-    [HttpPatch("Increase/{id:Guid}")]
-    public async Task<IActionResult> IncreaseLearningProgressAsync(Guid id, float value)
+    [HttpPatch("Increase/{id}")]
+    public async Task<IActionResult> IncreaseLearningProgressAsync(string id, float value)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
@@ -126,8 +126,8 @@ public class CharacterLearningController : ControllerBase
         return result ? Ok() : NotFound();
     }
 
-    [HttpPatch("Decrease/{id:Guid}")]
-    public async Task<IActionResult> DecreaseLearningProgressAsync(Guid id, float value)
+    [HttpPatch("Decrease/{id}")]
+    public async Task<IActionResult> DecreaseLearningProgressAsync(string id, float value)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
