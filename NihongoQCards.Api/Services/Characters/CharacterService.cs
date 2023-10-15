@@ -43,11 +43,11 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         return _mapper.Map<CharacterDto>(character);
     }
 
-    public async Task<CharacterDto?> GetPartialAsync(string id, List<string> fields)
+    public async Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields)
     {
         IQueryable<Character> query = GetCharactersWithRelatedData()
             .Where(x => x.Id == id);
-        
+
         Character? character = await query.FirstOrDefaultAsync();
 
         CharacterDto? characterDto = _mapper.Map<CharacterDto>(character);
@@ -57,7 +57,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
             PropertyInfo[] propertyInfos = typeof(CharacterDto).GetProperties();
             IEnumerable<PropertyInfo> includedProperties =
                 propertyInfos.Where(p => fields.Contains(p.Name, StringComparer.OrdinalIgnoreCase));
-            
+
             IEnumerable<PropertyInfo> excludedProperties = propertyInfos.Except(includedProperties);
 
             foreach (PropertyInfo property in excludedProperties)
@@ -112,6 +112,9 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
 
     public Task<bool> Exist(string id) =>
         Context.Characters.AnyAsync(x => x.Id == id);
+    
+    public Task<bool> AnyExist() =>
+        Context.Characters.AnyAsync();
 
     private IQueryable<Character> GetCharactersWithRelatedData()
     {

@@ -30,6 +30,7 @@ public class Character
     public Character(CharacterDto dto) : this()
     {
         Definition = dto.Definition;
+        JlptLevel = dto.JlptLevel ?? Enums.JlptLevel.N5;
         CharacterType = dto.CharacterType ?? CharacterType.Kanji;
         Mnemonic = dto.Mnemonic;
         StrokeCount = dto.StrokeCount;

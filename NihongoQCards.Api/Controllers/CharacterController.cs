@@ -20,97 +20,90 @@ public class CharacterController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CharacterDto characterDto)
     {
-        bool result = await _characterService.CreateAsync(characterDto);
-
-        if (!ModelState.IsValid)
-            return BadRequest();
-
-        if (result)
+        if (await _characterService.CreateAsync(characterDto))
+        {
             return CreatedAtAction("Get", new { id = characterDto.Id }, characterDto);
+        }
 
-        return NotFound();
+        return BadRequest("Error when creating a symbol.");
     }
+
 
     [HttpGet]
     public async Task<IActionResult> ListAsync()
     {
-        IEnumerable<CharacterDto> characters = await _characterService.ListAsync();
-        return Ok(characters);
+        if (await _characterService.AnyExist())
+        {
+            IEnumerable<CharacterDto> characters = await _characterService.ListAsync();
+            return Ok(characters);
+        } 
+        
+        return NotFound("No characters");
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {
         if (!await _characterService.Exist(id))
-            return NotFound();
+            return NotFound("Character with this ID was not found");
 
         CharacterDto character = await _characterService.GetAsync(id);
-
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
+        
         return Ok(character);
     }
 
-    [HttpGet("{id}/partial")]
-    public async Task<IActionResult> GetPartialAsync(string id, [FromQuery] List<string> fields)
+    [HttpGet("{id}/Partial")]
+    public async Task<IActionResult> GetPartialAsync(string id, [FromQuery] IEnumerable<string> fields)
     {
-        if (!await _characterService.Exist(id))
-        {
-            return NotFound();
-        }
+        if (!await _characterService.Exist(id)) 
+            return NotFound("Character with this ID was not found");
 
         CharacterDto? character = await _characterService.GetPartialAsync(id, fields);
 
-        if (character == null)
-            return NotFound();
+        if (character != null)
+        {
+            var nonNullFields = character.GetType()
+                .GetProperties()
+                .Where(prop => prop.GetValue(character) != null)
+                .ToDictionary(prop => prop.Name, prop => prop.GetValue(character));
 
-        Dictionary<string,object?> nonNullFields = character.GetType()
-            .GetProperties()
-            .Where(prop => prop.GetValue(character) != null)
-            .ToDictionary(prop => prop.Name, prop => prop.GetValue(character));
+            return Ok(nonNullFields);
+        }
 
-        return Ok(nonNullFields);
+        return NotFound("Partial data was not found");
     }
 
 
     [HttpPatch("{id}")]
     public async Task<IActionResult> UpdateAsync(string id, [FromBody] CharacterDto characterDto)
     {
-        bool result = await _characterService.UpdateAsync(id, characterDto);
-
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        if (result)
+        if (await _characterService.UpdateAsync(id, characterDto))
         {
             CharacterDto updatedCharacter = await _characterService.GetAsync(id);
             return Ok(updatedCharacter);
         }
 
-        return NotFound();
+        return NotFound("The character was not found or an error occurred during the update.");
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> ReplaceAsync(string id, [FromBody] CharacterDto characterDto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        bool result = await _characterService.ReplaceAsync(id, characterDto);
-
-        if (result)
+        if (await _characterService.ReplaceAsync(id, characterDto))
         {
             CharacterDto updatedCharacter = await _characterService.GetAsync(id);
             return Ok(updatedCharacter);
         }
 
-        return NotFound();
+        return NotFound("The character was not found or an error occurred during the replace.");
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(string id)
     {
-        return await _characterService.DeleteAsync(id) ? Ok() : NotFound();
+        if (await _characterService.DeleteAsync(id))
+            return Ok("The character was successfully deleted.");
+
+        return NotFound("The character was not found or an error occurred during the delete.");
     }
 }

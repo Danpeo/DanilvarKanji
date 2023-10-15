@@ -11,5 +11,6 @@ public interface ICharacterService
     Task<bool> UpdateAsync(string id, CharacterDto characterDto);
     Task<bool> DeleteAsync(string id);
     Task<bool> ReplaceAsync(string id, CharacterDto characterDto);
-    Task<CharacterDto?> GetPartialAsync(string id, List<string> fields);
+    Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields);
+    Task<bool> AnyExist();
 }
