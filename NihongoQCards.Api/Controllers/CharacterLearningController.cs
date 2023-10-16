@@ -23,39 +23,28 @@ public class CharacterLearningController : ControllerBase
         _userManager = userManager;
         _charLearnManageService = charLearnManageService;
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CharacterLearningDto characterDto)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        if (!ModelState.IsValid)
-            return BadRequest();
+        if (await _charLearnManageService.CreateAsync(characterDto, user))
+            return CreatedAtAction("GetForUser", new { id = characterDto.Id }, characterDto);
 
-        if (user == null)
-            return Unauthorized();
-
-        bool result = await _charLearnManageService.CreateAsync(characterDto, user);
-
-        return result ? Ok() : NotFound();
-    }
-
-    [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateAsync(string id, [FromBody] CharacterLearningDto characterDto)
-    {
-        bool result = await _charLearnManageService.Update(id, characterDto);
-
-        if (!ModelState.IsValid)
-            return BadRequest();
-
-        return result ? Ok() : NotFound();
+        return BadRequest("Error when creating a characater learning.");
     }
 
     [HttpGet("All")]
     public async Task<IActionResult> ListAsync()
     {
-        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListAsync();
-        return Ok(characters);
+        if (await _charLearnManageService.AnyExist())
+        {
+            IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListAsync();
+            return Ok(characters);
+        }
+
+        return NotFound("No character learning");
     }
 
     [HttpGet]
@@ -63,23 +52,23 @@ public class CharacterLearningController : ControllerBase
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListForUserAsync(user);
+        if (await _charLearnManageService.AnyExist(user))
+        {
+            IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListForUserAsync(user);
+            return Ok(characters);
+        }
 
-        return Ok(characters);
+        return NotFound("No character learning");
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetForUserAsync(string id)
     {
         if (!await _charLearnManageService.Exist(id))
-            return NotFound();
+            return NotFound("Character learning with this ID was not found");
 
         AppUser? user = await _userManager.GetUserAsync(User);
-
         CharacterLearningDto character = await _charLearnManageService.GetForUserAsync(id, user);
-
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
 
         return Ok(character);
     }
@@ -88,20 +77,44 @@ public class CharacterLearningController : ControllerBase
     public async Task<IActionResult> GetAsync(string id)
     {
         if (!await _charLearnManageService.Exist(id))
-            return NotFound();
+            return NotFound("Character learning with this ID was not found");
 
         CharacterLearningDto character = await _charLearnManageService.GetAsync(id);
 
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
         return Ok(character);
+    }
+
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> UpdateAsync(string id, [FromBody] CharacterLearningDto characterDto)
+    {
+        if (await _charLearnManageService.UpdateAsync(id, characterDto))
+        {
+            CharacterLearningDto characterLearningDto = await _charLearnManageService.GetAsync(id);
+            return Ok(characterLearningDto);
+        }
+
+        return NotFound("The character learning was not found or an error occurred during the update.");
+    }
+    
+    [HttpPut("{id}")]
+    public async Task<IActionResult> ReplaceAsync(string id, [FromBody] CharacterLearningDto characterDto)
+    {
+        if (await _charLearnManageService.ReplaceAsync(id, characterDto))
+        {
+            CharacterLearningDto updatedCharacter = await _charLearnManageService.GetAsync(id);
+            return Ok(updatedCharacter);
+        }
+
+        return NotFound("The character was not found or an error occurred during the replace.");
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(string id)
     {
-        return await _charLearnManageService.DeleteAsync(id) ? Ok() : NotFound();
+        if (await _charLearnManageService.DeleteAsync(id))
+            return Ok("The character learning was successfully deleted.");
+
+        return NotFound("The character learning was not found or an error occurred during the delete.");
     }
 
     [HttpDelete("FromAll/{id}")]
@@ -109,7 +122,10 @@ public class CharacterLearningController : ControllerBase
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        return user != null && await _charLearnManageService.DeleteForUserAsync(id, user) ? Ok() : NotFound();
+        if (user != null && await _charLearnManageService.DeleteForUserAsync(id, user))
+            return Ok("The character learning was successfully deleted.");
+
+        return NotFound("The character learning was not found or an error occurred during the delete.");
     }
 
     [HttpPatch("Increase/{id}")]
@@ -119,9 +135,6 @@ public class CharacterLearningController : ControllerBase
 
         bool result = user != null &&
                       await _characterLearningService.IncreaseLearningRateAsync(id, user, value);
-
-        if (!ModelState.IsValid)
-            return BadRequest();
 
         return result ? Ok() : NotFound();
     }
@@ -133,9 +146,6 @@ public class CharacterLearningController : ControllerBase
 
         bool result = user != null &&
                       await _characterLearningService.DecreaseLearningRateAsync(id, user, value);
-
-        if (!ModelState.IsValid)
-            return BadRequest();
 
         return result ? Ok() : NotFound();
     }

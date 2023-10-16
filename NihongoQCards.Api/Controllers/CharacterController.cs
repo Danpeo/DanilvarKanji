@@ -21,11 +21,9 @@ public class CharacterController : ControllerBase
     public async Task<IActionResult> CreateAsync([FromBody] CharacterDto characterDto)
     {
         if (await _characterService.CreateAsync(characterDto))
-        {
             return CreatedAtAction("Get", new { id = characterDto.Id }, characterDto);
-        }
 
-        return BadRequest("Error when creating a symbol.");
+        return BadRequest("Error when creating a characater.");
     }
 
 

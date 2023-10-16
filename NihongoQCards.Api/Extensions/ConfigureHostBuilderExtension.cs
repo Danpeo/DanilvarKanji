@@ -13,7 +13,7 @@ public static class ConfigureHostBuilderExtension
         {
             registry.For<ICharacterService>().Add<CharacterService>().Scoped();
             registry.For<ICharacterLearningManagementService>().Add<CharacterLearningManagementService>().Scoped();
-            registry.For<IUserService>().Add<UserService>().Scoped();
+            registry.For<IMemberService>().Add<MemberService>().Scoped();
             registry.For<ITokenService>().Add<TokenService>().Scoped();
             registry.For<ICharacterLearningService>().Add<CharacterLearningService>().Scoped();
         });

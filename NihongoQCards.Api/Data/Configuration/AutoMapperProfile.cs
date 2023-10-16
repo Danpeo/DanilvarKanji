@@ -15,9 +15,19 @@ public class AutoMapperProfile : Profile
             .ForMember(x => x.Id, opt => opt.Ignore())
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<RegisterDto, AppUser>();
+        CreateMap<RegisterDto, AppUser>()
+            .ForMember(x => x.Id, opt => opt.Ignore())
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<CharacterLearning, CharacterLearningDto>();
+        CreateMap<AppUser, MemberDto>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<MemberDto, AppUser>()
+            .ForMember(x => x.Id, opt => opt.Ignore())
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<CharacterLearning, CharacterLearningDto>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<CharacterLearningDto, CharacterLearning>()
             .ForMember(x => x.Id, opt => opt.Ignore())
