@@ -2,5 +2,10 @@ namespace DanilvarKanji.Models.Common;
 
 public class ModelBase
 {
-    public bool? Concealed { get; set; } = false;
+    public string Id { get; set; }
+    
+    public ModelBase()
+    {
+        
+    }
 }

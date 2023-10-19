@@ -1,7 +1,11 @@
 using AutoMapper;
+using CloudinaryDotNet.Actions;
 using DanilvarKanji.DTO;
 using DanilvarKanji.Models;
+using DanilvarKanji.Services;
 using DanilvarKanji.Services.Auth;
+using DanilvarKanji.Services.Images;
+using DanilvarKanji.Services.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +18,18 @@ public class AccountController : ControllerBase
     private readonly IMapper _mapper;
     private readonly UserManager<AppUser> _userManager;
     private readonly ITokenService _tokenService;
+    private readonly IImageService _imageService;
+    private readonly IUnitOfWork _uow;
 
-    public AccountController(IMemberService memberService, IMapper mapper, UserManager<AppUser> userManager, ITokenService tokenService)
+    public AccountController(IMemberService memberService, IMapper mapper, UserManager<AppUser> userManager,
+        ITokenService tokenService, IImageService imageService, IUnitOfWork uow)
     {
         _memberService = memberService;
         _mapper = mapper;
         _userManager = userManager;
         _tokenService = tokenService;
+        _imageService = imageService;
+        _uow = uow;
     }
 
     [HttpPost("Register")]
@@ -44,6 +53,7 @@ public class AccountController : ControllerBase
             {
                 ModelState.AddModelError(error.Code, error.Description);
             }
+
             return BadRequest(ModelState);
         }
 
@@ -87,5 +97,32 @@ public class AccountController : ControllerBase
         };
 
         return userDto;
+    }
+
+    [HttpPost("SetProfileImg")]
+    public async Task<IActionResult> SetProfileImage(IFormFile file)
+    {
+        ImageUploadResult? result = await _imageService.UploadImageAsync(file);
+
+        if (result?.Error != null)
+            return BadRequest(result.Error.Message);
+
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        if (result != null)
+        {
+            var image = new Image()
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            if (user != null)
+                user.ProfileImage = image;
+
+            return Ok("Profile Image was successfully uploaded");
+        }
+
+        return BadRequest("Problem uploading Profile Image");
     }
 }

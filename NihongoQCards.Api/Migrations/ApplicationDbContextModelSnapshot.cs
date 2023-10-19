@@ -70,7 +70,7 @@ namespace DanilvarKanji.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Photo")
+                    b.Property<string>("ProfileImageId")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("RegistrationDate")
@@ -94,6 +94,8 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
+
+                    b.HasIndex("ProfileImageId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -152,6 +154,24 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("CharacterId");
 
                     b.ToTable("CharacterLearnings");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Models.Image", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Image");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Models.KanjiMeaning", b =>
@@ -416,6 +436,15 @@ namespace DanilvarKanji.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Models.AppUser", b =>
+                {
+                    b.HasOne("DanilvarKanji.Models.Image", "ProfileImage")
+                        .WithMany()
+                        .HasForeignKey("ProfileImageId");
+
+                    b.Navigation("ProfileImage");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Models.CharacterLearning", b =>

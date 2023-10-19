@@ -4,6 +4,7 @@ using DanilvarKanji.Services.Characters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace DanilvarKanji.Controllers;
 
@@ -35,6 +36,7 @@ public class CharacterLearningController : ControllerBase
         return BadRequest("Error when creating a characater learning.");
     }
 
+    [EnableQuery]
     [HttpGet("All")]
     public async Task<IActionResult> ListAsync()
     {
@@ -46,7 +48,8 @@ public class CharacterLearningController : ControllerBase
 
         return NotFound("No character learning");
     }
-
+    
+    [EnableQuery]
     [HttpGet]
     public async Task<IActionResult> ListForUserAsync()
     {
@@ -61,6 +64,7 @@ public class CharacterLearningController : ControllerBase
         return NotFound("No character learning");
     }
 
+    [EnableQuery]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetForUserAsync(string id)
     {
@@ -73,6 +77,7 @@ public class CharacterLearningController : ControllerBase
         return Ok(character);
     }
 
+    [EnableQuery]
     [HttpGet("FromAll/{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {

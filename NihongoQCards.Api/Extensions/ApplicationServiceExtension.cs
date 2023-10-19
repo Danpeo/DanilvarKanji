@@ -10,6 +10,10 @@ public static class ApplicationServiceExtension
         services.AddCors();
         services.Configure<CharacterLearningSettings>(config
             .GetSection("CharacterLearningSettings"));
+        
+        services.Configure<CloudinarySettings>(config
+            .GetSection("CloudinarySettings"));
+
 
         return services;
     }

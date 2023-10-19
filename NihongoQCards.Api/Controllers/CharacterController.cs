@@ -2,6 +2,7 @@ using DanilvarKanji.DTO;
 using DanilvarKanji.Services.Characters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace DanilvarKanji.Controllers;
 
@@ -27,6 +28,7 @@ public class CharacterController : ControllerBase
     }
 
 
+    [EnableQuery]
     [HttpGet]
     public async Task<IActionResult> ListAsync()
     {
@@ -39,6 +41,7 @@ public class CharacterController : ControllerBase
         return NotFound("No characters");
     }
 
+    [EnableQuery]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {
