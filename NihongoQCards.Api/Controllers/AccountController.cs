@@ -73,6 +73,7 @@ public class AccountController : ControllerBase
     {
         AppUser? user = await _userManager.Users
             .Include(x => x.CharacterLearnings)
+            .ThenInclude(x => x.LearningProgress)
             .SingleOrDefaultAsync(x => x.Email == loginDto.Email);
 
         if (user == null)

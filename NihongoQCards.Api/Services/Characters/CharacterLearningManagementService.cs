@@ -27,7 +27,7 @@ public class CharacterLearningManagementService : Service<ApplicationDbContext>,
                 AppUser = appUser,
                 Character = await Context.Characters
                     .FirstOrDefaultAsync(x => x.Id == characterDto.CharacterId) ?? new Character(),
-                LearningProgress = 0.0f,
+                LearningProgress = new LearningProgress(),
                 LearningState = characterDto.LearningState
             };
 

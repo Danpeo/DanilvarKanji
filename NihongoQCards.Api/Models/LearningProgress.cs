@@ -11,5 +11,7 @@ public class LearningProgress
     public LearningProgress()
     {
         Id = Guid.NewGuid().ToString("N");
+        LearningLevel = LearningLevel.Novice;
+        Value = 0.0f;
     }
 }

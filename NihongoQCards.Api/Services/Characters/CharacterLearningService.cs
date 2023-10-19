@@ -31,7 +31,7 @@ public class CharacterLearningService : Service<ApplicationDbContext>, ICharacte
 
         if (CanChangeCharacterLearningProgress(characterLearning))
         {
-            characterLearning.LearningProgress += value;
+            characterLearning.LearningProgress.Value += value;
             
             CheckIfLessThanMinLearningRate(characterLearning);
 
@@ -60,21 +60,21 @@ public class CharacterLearningService : Service<ApplicationDbContext>, ICharacte
 
     private void CheckIfLessThanMinLearningRate(CharacterLearning characterLearning)
     {
-        if (characterLearning.LearningProgress < _optionsSnapshot.Value.MinLearningRate)
-            characterLearning.LearningProgress = _optionsSnapshot.Value.MinLearningRate;
+        if (characterLearning.LearningProgress.Value < _optionsSnapshot.Value.MinLearningRate)
+            characterLearning.LearningProgress.Value = _optionsSnapshot.Value.MinLearningRate;
     }
 
     private void SetCharacterToLearned(CharacterLearning characterLearning)
     {
-        characterLearning.LearningProgress = _optionsSnapshot.Value.MinLearningRate;
+        characterLearning.LearningProgress.Value = _optionsSnapshot.Value.MinLearningRate;
         characterLearning.LearningState = LearningState.LearnedForSomeTime;
     }
 
     private bool CanChangeCharacterLearningProgress(CharacterLearning? characterLearning) =>
         characterLearning != null &&
-        characterLearning.LearningProgress <= _optionsSnapshot.Value.MaxLearningRate &&
-        characterLearning.LearningProgress >= _optionsSnapshot.Value.MinLearningRate;
+        characterLearning.LearningProgress.Value <= _optionsSnapshot.Value.MaxLearningRate &&
+        characterLearning.LearningProgress.Value >= _optionsSnapshot.Value.MinLearningRate;
 
     private bool IfLearned(CharacterLearning characterLearning) =>
-        characterLearning.LearningProgress >= _optionsSnapshot.Value.MaxLearningRate;
+        characterLearning.LearningProgress.Value >= _optionsSnapshot.Value.MaxLearningRate;
 }

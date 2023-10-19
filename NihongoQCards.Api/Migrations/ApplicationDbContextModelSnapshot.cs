@@ -141,8 +141,8 @@ namespace DanilvarKanji.Migrations
                     b.Property<int>("LearnedCount")
                         .HasColumnType("integer");
 
-                    b.Property<float>("LearningProgress")
-                        .HasColumnType("real");
+                    b.Property<string>("LearningProgressId")
+                        .HasColumnType("text");
 
                     b.Property<int>("LearningState")
                         .HasColumnType("integer");
@@ -152,6 +152,8 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("AppUserId");
 
                     b.HasIndex("CharacterId");
+
+                    b.HasIndex("LearningProgressId");
 
                     b.ToTable("CharacterLearnings");
                 });
@@ -216,6 +218,22 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("CharacterId");
 
                     b.ToTable("Kunyomis");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Models.LearningProgress", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("LearningLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<float>("Value")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LearningProgresses");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Models.Onyomi", b =>
@@ -459,9 +477,15 @@ namespace DanilvarKanji.Migrations
                         .WithMany()
                         .HasForeignKey("CharacterId");
 
+                    b.HasOne("DanilvarKanji.Models.LearningProgress", "LearningProgress")
+                        .WithMany()
+                        .HasForeignKey("LearningProgressId");
+
                     b.Navigation("AppUser");
 
                     b.Navigation("Character");
+
+                    b.Navigation("LearningProgress");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Models.KanjiMeaning", b =>

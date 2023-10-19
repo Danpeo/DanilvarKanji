@@ -10,7 +10,8 @@ public class CharacterLearning
     public AppUser AppUser { get; set; }
     public Character Character { get; set; }
     public LearningState LearningState { get; set; }
-    public float LearningProgress { get; set; }
+    //public float LearningProgress { get; set; }
+    public LearningProgress LearningProgress { get; set; }
     public int LearnedCount { get; set; }
 
     public CharacterLearning()

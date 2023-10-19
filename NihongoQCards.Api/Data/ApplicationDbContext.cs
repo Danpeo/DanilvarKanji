@@ -9,6 +9,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<AppUser> AppUsers { get; set; }
     public DbSet<Character> Characters { get; set; }
     public DbSet<CharacterLearning> CharacterLearnings { get; set; }
+    public DbSet<LearningProgress> LearningProgresses { get; set; }
     public DbSet<KanjiMeaning> KanjiMeanings { get; set; }
     public DbSet<WordMeaning> WordMeanings { get; set; }
     public DbSet<Word> Words { get; set; }
