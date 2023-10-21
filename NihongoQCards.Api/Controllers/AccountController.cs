@@ -1,11 +1,10 @@
 using AutoMapper;
 using CloudinaryDotNet.Actions;
-using DanilvarKanji.DTO;
-using DanilvarKanji.Models;
-using DanilvarKanji.Services;
 using DanilvarKanji.Services.Auth;
 using DanilvarKanji.Services.Images;
 using DanilvarKanji.Services.Infrastructure;
+using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Shared.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

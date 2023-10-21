@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DanilvarKanji.Api", "NihongoQCards.Api\DanilvarKanji.Api.csproj", "{F6A91818-A641-43F9-B462-EAA22E748AC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanilvarKanji.Shared", "DanilvarKanji.Shared\DanilvarKanji.Shared.csproj", "{954538D7-808D-4AAD-8D17-4C56528E7BF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F6A91818-A641-43F9-B462-EAA22E748AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6A91818-A641-43F9-B462-EAA22E748AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6A91818-A641-43F9-B462-EAA22E748AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{954538D7-808D-4AAD-8D17-4C56528E7BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{954538D7-808D-4AAD-8D17-4C56528E7BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954538D7-808D-4AAD-8D17-4C56528E7BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{954538D7-808D-4AAD-8D17-4C56528E7BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

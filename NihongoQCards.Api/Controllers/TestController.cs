@@ -1,6 +1,5 @@
 using DanilvarKanji.Data;
-using DanilvarKanji.Models;
-using Microsoft.AspNetCore.Authorization;
+using DanilvarKanji.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DanilvarKanji.Controllers;
@@ -9,7 +8,7 @@ namespace DanilvarKanji.Controllers;
 [Route("Api/[controller]s")]
 public class TestController : ControllerBase
 {
-    private ApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
 
     public TestController(ApplicationDbContext context)
     {

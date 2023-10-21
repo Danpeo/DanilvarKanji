@@ -2889,6 +2889,19 @@
             "rid": "win"
           }
         }
+      },
+      "DanilvarKanji.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11"
+        },
+        "compile": {
+          "bin/placeholder/DanilvarKanji.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DanilvarKanji.Shared.dll": {}
+        }
       }
     }
   },
@@ -8015,6 +8028,11 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "DanilvarKanji.Shared/1.0.0": {
+      "type": "project",
+      "path": "../DanilvarKanji.Shared/DanilvarKanji.Shared.csproj",
+      "msbuildProject": "../DanilvarKanji.Shared/DanilvarKanji.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8022,6 +8040,7 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "CloudinaryDotNet >= 1.22.0",
+      "DanilvarKanji.Shared >= 1.0.0",
       "FluentValidation.AspNetCore >= 11.3.0",
       "Lamar.Microsoft.DependencyInjection >= 12.0.1",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.11",
@@ -8066,7 +8085,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

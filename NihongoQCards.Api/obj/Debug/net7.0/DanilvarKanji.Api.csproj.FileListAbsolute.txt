@@ -107,3 +107,5 @@ C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Microsoft.OData.ModelBuilder.dll
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Microsoft.Spatial.dll
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\CloudinaryDotNet.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Shared.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Shared.pdb

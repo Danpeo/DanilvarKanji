@@ -1,7 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using DanilvarKanji.Models;
+using DanilvarKanji.Shared.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DanilvarKanji.Services.Auth;

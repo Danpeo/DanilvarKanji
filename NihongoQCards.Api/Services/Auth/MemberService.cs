@@ -2,9 +2,9 @@ using System.Reflection;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using DanilvarKanji.Data;
-using DanilvarKanji.DTO;
-using DanilvarKanji.Models;
 using DanilvarKanji.Services.Common;
+using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Shared.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

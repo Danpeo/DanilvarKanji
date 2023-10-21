@@ -1,6 +1,6 @@
-using DanilvarKanji.DTO;
-using DanilvarKanji.Models;
 using DanilvarKanji.Services.Characters;
+using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

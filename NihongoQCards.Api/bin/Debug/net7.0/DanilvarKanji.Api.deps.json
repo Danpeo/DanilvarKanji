@@ -11,6 +11,7 @@
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "CloudinaryDotNet": "1.22.0",
+          "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "Lamar.Microsoft.DependencyInjection": "12.0.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
@@ -1546,6 +1547,14 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+      },
+      "DanilvarKanji.Shared/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11"
+        },
+        "runtime": {
+          "DanilvarKanji.Shared.dll": {}
+        }
       }
     }
   },
@@ -2716,6 +2725,11 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "DanilvarKanji.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

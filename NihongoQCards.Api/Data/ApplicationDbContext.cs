@@ -1,4 +1,4 @@
-using DanilvarKanji.Models;
+using DanilvarKanji.Shared.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
