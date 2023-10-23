@@ -11,7 +11,8 @@ public class NumberToStringConverter : JsonConverter<string>
         {
             return reader.GetString().Substring(2,3);
         }
-        else if (reader.TokenType == JsonTokenType.Number)
+
+        if (reader.TokenType == JsonTokenType.Number)
         {
             return reader.GetDecimal().ToString(); // Пример преобразования числа в строку
         }

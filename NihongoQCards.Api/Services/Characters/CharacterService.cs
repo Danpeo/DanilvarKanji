@@ -21,7 +21,8 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     {
         TryAction(delegate
         {
-            var character = new Character(characterDto);
+            var character = _mapper.Map<Character>(characterDto);
+
             Context.Characters.Add(character);
         });
         return await SaveAsync();

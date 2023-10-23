@@ -7,6 +7,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 
@@ -81,7 +82,9 @@ builder.Services.AddControllers()
         .AddRouteComponents("odata", modelBuilder.GetEdmModel()))
     .AddJsonOptions(options =>
     {
+        /*
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        */
         //options.JsonSerializerOptions.Converters.Add(new NumberToStringConverter());
     });
 
@@ -97,6 +100,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy =>
+    policy.WithOrigins("http://localhost:7106", "https://localhost:7106", "http://localhost:7046", "https://localhost:7046")
+        .AllowAnyMethod()
+        .WithHeaders(HeaderNames.ContentType)
+);
 
 app.UseHttpsRedirection();
 
