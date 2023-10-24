@@ -1,0 +1,41 @@
+:root {
+    --dark-color-main: #1f1f1f;
+    --dark-color-secondary: #2e2e31;
+    --pink-color-bright: #ff0059;
+    --pink-color-mid: #ec3664;
+    --pink-color-light: #eae7e7;
+    --white-color: #e8e8e8;
+    --gray-color: #3f3f3f;
+}
+
+.txt-bright-pink {
+    color: var(--pink-color-bright) !important;
+}
+
+.txt-mid-pink {
+    color: var(--pink-color-mid) !important;
+}
+
+.txt-white {
+    color: var(--white-color) !important;
+}
+
+.txt-gray {
+    color: var(--gray-color) !important;
+}
+
+.bg-main {
+    background-color: var(--dark-color-main) !important;
+}
+
+.bg-secondary {
+    background-color: var(--dark-color-secondary) !important;
+}
+
+.dark-grad-bg-img {
+    background-image: linear-gradient(180deg, rgb(44 44 44) 0%, #1a1919 70%) !important;
+}
+
+.dark-grad-bg {
+    background: linear-gradient(45deg, #3237ef, #795df6);
+}

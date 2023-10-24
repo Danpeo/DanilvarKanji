@@ -15,4 +15,14 @@
       <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\img" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\Characters\Characters.cs">
+        <DependentUpon>Characters.razor</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

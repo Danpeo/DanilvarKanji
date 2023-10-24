@@ -1,29 +1,19 @@
 @page "/Characters"
-@using DanilvarKanji.Shared.DTO
-@using DanilvarKanji.Shared.Models
-@using DanilvarKanji.Client.Extensions
-@inherits CharactersBase
 
-@if (Characters == null)
+@if (CharacterItems == null)
 {
-    <h3>Loading characters...</h3>
+    <DisplayLoading></DisplayLoading>
 }
 else
 {
     <h3 class="mb-5">Products</h3>
 
-    int productCount = Characters.Count();
+    int productCount = CharacterItems.Count();
 
     if (productCount > 0)
     {
-        foreach (CharacterDto character in Characters)
-        {
-            <h4>@character.Definition</h4>
-            <p>@character.JlptLevel.GetDisplayName()</p>
-            foreach (Kunyomi kunyomi in @character.Kunyomis)
-            {
-                <p>@kunyomi.Romaji</p>
-            }
-        }
+        <div class="row mt-3">
+            <DisplayCharacters CharacterItems="CharacterItems"/>
+        </div>
     }
 }

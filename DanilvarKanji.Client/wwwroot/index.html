@@ -2,31 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>DanilvarKanji.Client</title>
-    <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link href="DanilvarKanji.Client.styles.css" rel="stylesheet" />
+    <base href="/"/>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="css/colors.css" rel="stylesheet"/>
+    <link href="css/general.css" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link href="DanilvarKanji.Client.styles.css" rel="stylesheet"/>
 </head>
 
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+<div id="app" class="bg-secondary">
+    <div class="vh-100 d-flex align-items-center justify-content-center gap-3">
+        <!--
+                <div class="h5 spinner-border txt-bright-pink"></div>
+        -->
+        <img alt="loading" id="randomImage" width="128" height="128"/>
+        <div class="h2 txt-bright-pink">ローディング</div>
+        <img alt="loading" id="randomImage2" width="128" height="128"/>
     </div>
+</div>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+<script src="_framework/blazor.webassembly.js"></script>
 </body>
+<script>
+    // Define the folder path where your images are located
+    const folderPath = 'img/loading/';  // Change this to your specific folder path
 
+    // Get a list of image file names in the folder
+    const imageFiles = [
+        'raven.gif',
+        'rabbit.gif',
+        'hero.gif',
+        'hero_emo.gif',
+        // Add more image file names as needed
+    ];
+
+    // Function to set a random image for the specified img element
+    function setRandomImage(imgElement) {
+        // Get a random image file name
+        const randomFileName = imageFiles[Math.floor(Math.random() * imageFiles.length)];
+
+        // Set the source of the img element to the randomly selected image file
+        imgElement.src = folderPath + randomFileName;
+    }
+
+    // Set random images for the two img elements
+    setRandomImage(document.getElementById('randomImage'));
+    setRandomImage(document.getElementById('randomImage2'));
+</script>
 </html>

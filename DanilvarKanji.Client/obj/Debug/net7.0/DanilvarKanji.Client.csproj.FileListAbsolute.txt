@@ -875,3 +875,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\3NuIkiT3.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\fFowWB94.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\K9FIdHAT.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Shared\DisplayLoading.razor.rz.scp.css
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Pages\Characters\Characters.razor.rz.scp.css
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Pages\Characters\DisplayCharacters.razor.rz.scp.css

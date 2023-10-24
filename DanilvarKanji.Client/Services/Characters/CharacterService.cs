@@ -6,13 +6,12 @@ namespace DanilvarKanji.Client.Services.Characters;
 public class CharacterService : ICharacterService
 {
     private readonly HttpClient _httpClient;
-
     public CharacterService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
 
-    public async Task<IEnumerable<CharacterDto?>> ListCharactersAsync()
+    public async Task<IEnumerable<CharacterDto?>?> ListCharactersAsync()
     {
         try
         {

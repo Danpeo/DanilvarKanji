@@ -20,8 +20,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/Characters.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xDaGFyYWN0ZXJzLnJhem9y
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/DisplayKunyomi.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xEaXNwbGF5S3VueW9taS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Counter.razor]
@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/NavMenuHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnVIZWFkZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -43,6 +47,18 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/Characters.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xDaGFyYWN0ZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-yg2qh1f95b
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/DisplayCharacters.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xEaXNwbGF5Q2hhcmFjdGVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ricpcbxni2
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/DisplayLoading.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERpc3BsYXlMb2FkaW5nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-tlx6skvr6d
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Header.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEhlYWRlci5yYXpvcg==

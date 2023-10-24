@@ -1,0 +1,59 @@
+@using DanilvarKanji.Shared.Models
+@using System.Text.RegularExpressions
+@using DanilvarKanji.Shared.DTO
+
+@{
+    System.Diagnostics.Debug.Assert(Character.Kunyomis != null, "Character.Kunyomis != null");
+}
+
+@{
+    var kunyomiList = Character.Kunyomis.ToList();
+
+    for (int i = 0; i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count); i++)
+    {
+        string japaneseWriting = kunyomiList[i].JapaneseWriting;
+
+        var regex = new Regex(@"\(([^)]+)\)");
+        MatchCollection matches = regex.Matches(japaneseWriting);
+
+        if (matches.Count > 0)
+        {
+            int startIndex = 0;
+
+            foreach (Match match in matches)
+            {
+                int matchIndex = match.Index;
+                int matchLength = match.Length;
+
+                // Display text before the match
+                <span>@japaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
+
+                // Display text within parentheses in gray
+                <span class="txt-gray">@match.Groups[1].Value</span>
+
+                startIndex = matchIndex + matchLength;
+            }
+
+            // Display any remaining text after the last match
+            <span>@japaneseWriting.Substring(startIndex)</span>
+            if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
+            {
+                <span>, </span>
+            }
+        }
+        else
+        {
+            @japaneseWriting
+        }
+    }
+}
+
+@code
+{
+    [Parameter]
+    [EditorRequired]
+    public CharacterDto Character { get; set; } = default!;
+
+    [Parameter]
+    public int MaxReadingsToDisplay { get; set; } = 2;
+}

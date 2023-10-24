@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Components;
 
 namespace DanilvarKanji.Client.Pages.Characters;
 
-public class CharactersBase : ComponentBase
+public partial class Characters
 {
     [Inject] public ICharacterService? CharacterService { get; set; }
 
-    public IEnumerable<CharacterDto> Characters { get; set; }
+    public IEnumerable<CharacterDto>? CharacterItems { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Characters = await CharacterService.ListCharactersAsync();
+        CharacterItems = await CharacterService.ListCharactersAsync();
     }
 }

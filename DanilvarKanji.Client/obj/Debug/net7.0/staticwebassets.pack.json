@@ -25,6 +25,14 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\colors.css",
+      "PackagePath": "staticwebassets\\css\\colors.css"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\general.css",
+      "PackagePath": "staticwebassets\\css\\general.css"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },
@@ -67,6 +75,26 @@
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\DVKanjiLogo.png",
+      "PackagePath": "staticwebassets\\img\\DVKanjiLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\hero.gif",
+      "PackagePath": "staticwebassets\\img\\loading\\hero.gif"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\hero_emo.gif",
+      "PackagePath": "staticwebassets\\img\\loading\\hero_emo.gif"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\rabbit.gif",
+      "PackagePath": "staticwebassets\\img\\loading\\rabbit.gif"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\raven.gif",
+      "PackagePath": "staticwebassets\\img\\loading\\raven.gif"
     },
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\index.html",
