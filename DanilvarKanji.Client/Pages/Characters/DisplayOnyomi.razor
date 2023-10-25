@@ -1,0 +1,56 @@
+@using System.Text.RegularExpressions
+@using DanilvarKanji.Shared.DTO
+
+@{
+    System.Diagnostics.Debug.Assert(Character.Onyomis != null, "Character.Onyomis != null");
+}
+
+@{
+    var onymiList = Character.Onyomis.ToList();
+
+    for (int i = 0; i < Math.Min(MaxReadingsToDisplay, onymiList.Count); i++)
+    {
+        string japaneseWriting = onymiList[i].JapaneseWriting;
+
+        var regex = new Regex(@"\(([^)]+)\)");
+        MatchCollection matches = regex.Matches(japaneseWriting);
+
+        if (matches.Count > 0)
+        {
+            int startIndex = 0;
+
+            foreach (Match match in matches)
+            {
+                int matchIndex = match.Index;
+                int matchLength = match.Length;
+
+                <span>@japaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
+
+                <span class="txt-gray">@match.Groups[1].Value</span>
+
+                startIndex = matchIndex + matchLength;
+            }
+
+            <span>@japaneseWriting.Substring(startIndex)</span>
+        }
+        else
+        {
+            @japaneseWriting
+        }
+
+        if (i < Math.Min(MaxReadingsToDisplay, onymiList.Count) - 1)
+        {
+            <span>, </span>
+        }
+    }
+}
+
+@code
+{
+    [Parameter]
+    [EditorRequired]
+    public CharacterDto Character { get; set; } = default!;
+
+    [Parameter]
+    public int MaxReadingsToDisplay { get; set; } = 3;
+}

@@ -11,7 +11,7 @@ public partial class DisplayCharacters
 
     private List<string> GetKanjiMeaningsOrderedByPrioiry(CharacterDto character, int takeQty = 2) =>
         character.KanjiMeanings
-            .OrderBy(x => x.Priority)
+            .OrderByDescending(x => x.Priority)
             .Take(takeQty)
             .Select(x => x.Definition)
             .ToList();

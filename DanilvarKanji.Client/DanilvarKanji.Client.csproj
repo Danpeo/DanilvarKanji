@@ -5,24 +5,74 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-
+    
+    <PropertyGroup>
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    </PropertyGroup>
+    
     <ItemGroup>
+        <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
+        <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\img" />
+        <Folder Include="Resources\Pages\Shared" />
+        <Folder Include="wwwroot\img" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Pages\Characters\Characters.cs">
-        <DependentUpon>Characters.razor</DependentUpon>
-      </Compile>
+        <Compile Update="Pages\Characters\Characters.cs">
+            <DependentUpon>Characters.razor</DependentUpon>
+        </Compile>
+        <Compile Update="Pages\Characters\CharacterDetails.cs">
+            <DependentUpon>CharacterDetails.razor</DependentUpon>
+        </Compile>
+        <Compile Update="Pages\Characters\DisplayCharacters.cs">
+            <DependentUpon>DisplayCharacters.razor</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages\Index.en-US.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Index.en-US.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\App.en-US.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>App.en-US.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\App.ru-RU.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>App.ru-Ru.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\App.ru-RU.Designer.cs">
+          <DependentUpon>App.ru-RU.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Resources\Pages\Index.en-US.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Index.en-US.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages\Index.ru-RU.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Index.ru-RU.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\App.en-US.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>App.en-US.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\App.ru-RU.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>App.ru-RU.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
     </ItemGroup>
 
 </Project>

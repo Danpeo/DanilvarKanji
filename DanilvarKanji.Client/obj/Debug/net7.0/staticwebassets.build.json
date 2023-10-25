@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UaNoCafzNf0gU+D0aKy9hjH/4J7l6UvCQQNcsgUuiNs=",
+  "Hash": "bCriK87drCCoPKGgowFVw+pUaNNQ3P8N0bnrRcm/2Q0=",
   "Source": "DanilvarKanji.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\7.0.11\\build\\net7.0\\blazor.webassembly.js"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Blazored.LocalStorage.dll",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.LocalStorage.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\blazored.localstorage\\4.4.0\\lib\\net7.0\\Blazored.LocalStorage.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\DanilvarKanji.Client.dll",
@@ -168,6 +185,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.11\\runtimes\\browser-wasm\\native\\dotnet.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\en-US\\DanilvarKanji.Client.resources.dll",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/en-US/DanilvarKanji.Client.resources.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Related",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\DanilvarKanji.Client.dll",
+      "AssetTraitName": "Culture",
+      "AssetTraitValue": "en-US",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\en-US\\DanilvarKanji.Client.resources.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\icudt_CJK.dat",
@@ -697,6 +731,40 @@
       "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.identity.stores\\7.0.11\\lib\\net7.0\\Microsoft.Extensions.Identity.Stores.dll"
     },
     {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.dll",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Localization.Abstractions.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.13\\lib\\net7.0\\Microsoft.Extensions.Localization.Abstractions.dll"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Localization.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.localization\\7.0.13\\lib\\net7.0\\Microsoft.Extensions.Localization.dll"
+    },
+    {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.Abstractions.dll",
       "SourceId": "DanilvarKanji.Client",
       "SourceType": "Computed",
@@ -899,6 +967,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.11\\runtimes\\browser-wasm\\lib\\net7.0\\netstandard.dll"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\ru-RU\\DanilvarKanji.Client.resources.dll",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/ru-RU/DanilvarKanji.Client.resources.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Related",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\DanilvarKanji.Client.dll",
+      "AssetTraitName": "Culture",
+      "AssetTraitValue": "ru-RU",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\ru-RU\\DanilvarKanji.Client.resources.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.AppContext.dll",
@@ -3859,6 +3944,23 @@
       "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Diagnostics.StackTrace.dll"
     },
     {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\0Et6G7KI.gz",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/ru-RU/DanilvarKanji.Client.resources.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\ru-RU\\DanilvarKanji.Client.resources.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\ru-RU\\DanilvarKanji.Client.resources.dll"
+    },
+    {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\0kZGrh3Q.gz",
       "SourceId": "DanilvarKanji.Client",
       "SourceType": "Computed",
@@ -4335,6 +4437,23 @@
       "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.dll"
     },
     {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\6N7VNgq4.gz",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/en-US/DanilvarKanji.Client.resources.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\en-US\\DanilvarKanji.Client.resources.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\en-US\\DanilvarKanji.Client.resources.dll"
+    },
+    {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\6NpwthQu.gz",
       "SourceId": "DanilvarKanji.Client",
       "SourceType": "Computed",
@@ -4401,6 +4520,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Private.Uri.dll"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\7Befrw0q.gz",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.LocalStorage.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Blazored.LocalStorage.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Blazored.LocalStorage.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\7cvsYLMg.gz",
@@ -5183,6 +5319,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\DanilvarKanji.Shared.dll"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\Fm5eRsaQ.gz",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Localization.Abstractions.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\Frs8AeG4.gz",
@@ -6441,6 +6594,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Resources.Writer.dll"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\S59HqKcF.gz",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Localization.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\build-gz\\Sd3mbygk.gz",

@@ -25,25 +25,23 @@
                 int matchIndex = match.Index;
                 int matchLength = match.Length;
 
-                // Display text before the match
                 <span>@japaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
 
-                // Display text within parentheses in gray
                 <span class="txt-gray">@match.Groups[1].Value</span>
 
                 startIndex = matchIndex + matchLength;
             }
 
-            // Display any remaining text after the last match
             <span>@japaneseWriting.Substring(startIndex)</span>
-            if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
-            {
-                <span>, </span>
-            }
         }
         else
         {
             @japaneseWriting
+        }
+        
+        if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
+        {
+            <span>, </span>
         }
     }
 }
@@ -55,5 +53,5 @@
     public CharacterDto Character { get; set; } = default!;
 
     [Parameter]
-    public int MaxReadingsToDisplay { get; set; } = 2;
+    public int MaxReadingsToDisplay { get; set; } = 3;
 }

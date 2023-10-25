@@ -1,8 +1,14 @@
 ﻿@page "/"
 @using DanilvarKanji.Client.Data
+@using DanilvarKanji.Client.Localization
+@using DanilvarKanji.Client.Localization.LocaleKeys
+@inject IStringLocalizer<Index> Loc
+@inject IStringLocalizer<App> Loc2
 
-<PageTitle>@AppDisplaySettings.AppTitle - главная</PageTitle>
-<div class="text-center txt-white">
-    <h1 class="display-4">Добро пожаловать на @AppDisplaySettings.AppTitle</h1>
+<PageTitle>@AppDisplaySettings.AppTitle - @Loc["HomeTitle"]</PageTitle>
+<div class="text-center">
+    <h1 class="display-4 txt-white main-font">
+        @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="txt-bright-pink">@AppDisplaySettings.AppTitle</b>
+    </h1>
+    <h1>@Loc2["Test"]</h1>
 </div>
-

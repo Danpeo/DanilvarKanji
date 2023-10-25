@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
 img {
     transition: 0.5s ease-in-out;
 }
@@ -8,4 +11,12 @@ img {
 
 .display-7 {
     font-size: 1rem;
+}
+
+.jap-font {
+    font-family: 'Noto Serif JP', serif;
+}
+
+.main-font {
+    font-family: 'Didact Gothic', sans-serif;
 }

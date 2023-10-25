@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "B9Gqs2scK8m2Mx54ibJg4v6DZVa19rOKNEbMIV3czK/oxG5D4C0oOpKOw4fZPHKt4ggzuaBP+6dMk9x61TMmjg==",
+  "dgSpecHash": "mM41YVovFNrv0oikaW8k+dXQnmAdq1UMCll2KKFjGNZGyuOy+6QboxeiSXvSLrYR/wFmicUaBK+Q64uRC7Hgtw==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\danil\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.11\\microsoft.aspnetcore.authorization.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.11\\microsoft.aspnetcore.components.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.11\\microsoft.aspnetcore.components.analyzers.7.0.11.nupkg.sha512",
@@ -33,6 +34,8 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\7.0.0\\microsoft.extensions.filesystemglobbing.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.identity.core\\7.0.11\\microsoft.extensions.identity.core.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.identity.stores\\7.0.11\\microsoft.extensions.identity.stores.7.0.11.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.localization\\7.0.13\\microsoft.extensions.localization.7.0.13.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.13\\microsoft.extensions.localization.abstractions.7.0.13.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",

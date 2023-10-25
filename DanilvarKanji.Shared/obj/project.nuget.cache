@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BKC/NoZLpvOa4fpaymUwYn/xoIueAlWuGnVM2WfW4Nu4RxflPhnQt3pOyXZ996QSatpHnwxJCBfIZxIVkGcUgg==",
+  "dgSpecHash": "RYOCkTdnxIb+3x/0ug6JnS6m7fm0f5kDdbTvXp0UO8qkMJZsir/zIe6Qf+imtBoZhdDmRO1GzVbVUECTG/8aTA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj",
   "expectedPackageFiles": [
@@ -18,8 +18,10 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.identity.core\\7.0.11\\microsoft.extensions.identity.core.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.identity.stores\\7.0.11\\microsoft.extensions.identity.stores.7.0.11.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.localization\\7.0.13\\microsoft.extensions.localization.7.0.13.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.13\\microsoft.extensions.localization.abstractions.7.0.13.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
   ],

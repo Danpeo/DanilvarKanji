@@ -5,20 +5,28 @@
 @foreach (CharacterDto character in CharacterItems)
 {
     <div class="col-md-3 mb-2">
-        <a href="/CharacterDetail/@character.Id">
+        <a href="/@character.Id">
             <div class="card bg-main">
                 <div class="card-body">
-                    <h1 class="card-title display-1 mb-3 txt-mid-pink text-center">
+                    <h1 class="card-title display-1 mb-3 jap-font txt-mid-pink text-center">
                         @character.Definition
                     </h1>
-                    <p class="card-text display-5 txt-white">
+                    <p class="card-text display-7 txt-light-pink main-font">
                         @if (character.KanjiMeanings != null)
                         {
                             List<string> sortedKanjiMeanings = GetKanjiMeaningsOrderedByPrioiry(character);
 
-                            foreach (string kanjiMeaning in sortedKanjiMeanings)
+                            for (var i = 0; i < sortedKanjiMeanings.Count; i++)
                             {
-                                @kanjiMeaning
+                                string kanjiMeaning = sortedKanjiMeanings[i];
+                                string resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
+
+                                @resultMeaning
+
+                                if (i < sortedKanjiMeanings.Count - 1)
+                                {
+                                    <span>, </span>
+                                }
                             }
                         }
                     </p>
@@ -35,11 +43,7 @@
                     @if (character.Onyomis is {Count: > 0 })
                     {
                         <p class="card-text txt-white">
-
-                            @foreach (Onyomi onyomi in character.Onyomis)
-                            {
-                                @onyomi.JapaneseWriting
-                            }
+                            <DisplayOnyomi Character="character"/>
                         </p>
                     }
                     else
@@ -47,7 +51,7 @@
                         <p class="card-text txt-white">-----</p>
                     }
                     <p class="card-text txt-gray">
-                        @character.JlptLevel.GetDisplayName()
+                        JLPT @character.JlptLevel.GetDisplayName()
                     </p>
                 </div>
             </div>

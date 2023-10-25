@@ -3,9 +3,9 @@
     --dark-color-secondary: #2e2e31;
     --pink-color-bright: #ff0059;
     --pink-color-mid: #ec3664;
-    --pink-color-light: #eae7e7;
+    --pink-color-light: #f87ba6;
     --white-color: #e8e8e8;
-    --gray-color: #3f3f3f;
+    --gray-color: #4d4c4c;
 }
 
 .txt-bright-pink {
@@ -14,6 +14,10 @@
 
 .txt-mid-pink {
     color: var(--pink-color-mid) !important;
+}
+
+.txt-light-pink {
+    color: var(--pink-color-light) !important;
 }
 
 .txt-white {

@@ -37,4 +37,29 @@ public class CharacterService : ICharacterService
             throw;
         }
     }
+
+    public async Task<CharacterDto?> GetCharacterAsync(string? id)
+    {
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters/{id}");
+            
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return default;
+                }
+
+                return await response.Content.ReadFromJsonAsync<CharacterDto>();
+            }
+            string message = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

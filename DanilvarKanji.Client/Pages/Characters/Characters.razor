@@ -6,11 +6,9 @@
 }
 else
 {
-    <h3 class="mb-5">Products</h3>
-
-    int productCount = CharacterItems.Count();
-
-    if (productCount > 0)
+    <h3 class="mb-5 display-3 txt-white">Кандзи</h3>
+    
+    if (CharacterItems.Any())
     {
         <div class="row mt-3">
             <DisplayCharacters CharacterItems="CharacterItems"/>
