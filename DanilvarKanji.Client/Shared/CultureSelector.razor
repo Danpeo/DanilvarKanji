@@ -27,7 +27,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var culture = await LocalStorage.GetItemAsync<string>("culture");
+        string? culture = await LocalStorage.GetItemAsync<string>("culture");
         if (culture == "")
             SelectedCulture = LocalizerSettings.NeutralCulture;
         else

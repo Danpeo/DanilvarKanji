@@ -69,11 +69,11 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ТЕСТ.
+        ///   Looks up a localized string similar to Наруто.
         /// </summary>
-        internal static string Test {
+        internal static string Naruto {
             get {
-                return ResourceManager.GetString("Test", resourceCulture);
+                return ResourceManager.GetString("Naruto", resourceCulture);
             }
         }
     }

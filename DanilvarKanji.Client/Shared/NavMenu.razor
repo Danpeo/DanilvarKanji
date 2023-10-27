@@ -1,5 +1,7 @@
 ﻿@using DanilvarKanji.Client.Data
-
+@using DanilvarKanji.Client.Localization.LocaleKeys
+@inject IStringLocalizer<NavMenu> Loc
+@inject IStringLocalizer<App> Loc2
 @*<div class="top-row ps-3 navbar navbar-dark">
     
 </div>*@
@@ -15,12 +17,12 @@
         </a>
         <div class="nav-item px-3">
             <NavLink class="nav-link main-font" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Главная
+                <span class="oi oi-home" aria-hidden="true"></span> @Loc[nameof(NavMenuLocaleKeys.Home)]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link main-font" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                <span class="oi oi-plus" aria-hidden="true"></span> @Loc2["Naruto"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
@@ -28,7 +30,7 @@
                 <span class="display-7">
                     <b>字</b>
                 </span>
-                <span class="oi" aria-hidden="true"></span> Кандзи
+                <span class="oi" aria-hidden="true"></span> @Loc[nameof(NavMenuLocaleKeys.Kanji)]
             </NavLink>
         </div>
         <div class="nav-item px-3">

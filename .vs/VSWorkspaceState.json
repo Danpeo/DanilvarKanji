@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NihongoQCards.Api"
   ],
-  "SelectedNode": "\\DanilvarKanji.sln",
+  "SelectedNode": "\\NihongoQCards.Api\\DanilvarKanji.Api.csproj",
   "PreviewInSolutionExplorer": false
 }

@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Resources\Pages\Shared" />
         <Folder Include="wwwroot\img" />
     </ItemGroup>
 
@@ -54,6 +53,16 @@
         <Compile Update="Resources\App.ru-RU.Designer.cs">
           <DependentUpon>App.ru-RU.resx</DependentUpon>
         </Compile>
+        <Compile Update="Resources\Pages\Shared\NavMenu.en-US.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>NavMenu.en-US.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages\Shared\NavMenu.ru-RU.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>NavMenu.ru-RU.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -72,6 +81,22 @@
         <EmbeddedResource Update="Resources\App.ru-RU.resx">
           <Generator>ResXFileCodeGenerator</Generator>
           <LastGenOutput>App.ru-RU.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages\Shared\NavMenu.en-US.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>NavMenu.en-US.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages\Shared\NavMenu.ru-RU.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>NavMenu.ru-RU.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Shared\NavMenu.en-US.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>NavMenu.en-US.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Shared\NavMenu.ru-RU.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>NavMenu.ru-RU.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
 

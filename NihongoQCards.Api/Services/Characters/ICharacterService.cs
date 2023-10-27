@@ -1,4 +1,5 @@
 using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Shared.Models.Enums;
 
 namespace DanilvarKanji.Services.Characters;
 
@@ -13,4 +14,7 @@ public interface ICharacterService
     Task<bool> ReplaceAsync(string id, CharacterDto characterDto);
     Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields);
     Task<bool> AnyExist();
+
+    Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
+        Culture culture);
 }

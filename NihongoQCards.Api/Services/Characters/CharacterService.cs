@@ -4,6 +4,7 @@ using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
 using DanilvarKanji.Shared.DTO;
 using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Services.Characters;
@@ -44,6 +45,20 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         return _mapper.Map<CharacterDto>(character);
     }
 
+    public async Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
+        Culture culture)
+    {
+        CharacterDto character = await GetAsync(characterId);
+        return character.KanjiMeanings
+            .Where(x => x.Definitions != null)
+            .OrderByDescending(x => x.Priority)
+            .Take(takeQty)
+            .SelectMany(x => x.Definitions)
+            .Where(d => d.Culture == culture)
+            .Select(x => x.Value)
+            .ToList();
+    }
+
     public async Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields)
     {
         IQueryable<Character> query = GetCharactersWithRelatedData()
@@ -69,7 +84,6 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
 
         return characterDto;
     }
-
 
     public async Task<bool> UpdateAsync(string id, CharacterDto characterDto)
     {
@@ -113,14 +127,16 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
 
     public Task<bool> Exist(string id) =>
         Context.Characters.AnyAsync(x => x.Id == id);
-    
+
     public Task<bool> AnyExist() =>
         Context.Characters.AnyAsync();
 
     private IQueryable<Character> GetCharactersWithRelatedData()
     {
         return Context.Characters
+            .Include(x => x.Definitions)
             .Include(x => x.KanjiMeanings)
+            .ThenInclude(x => x.Definitions)
             .Include(x => x.Kunyomis)
             .Include(x => x.Onyomis)
             .Include(x => x.Words)

@@ -1,12 +1,15 @@
 using DanilvarKanji.Shared.Models;
 using DanilvarKanji.Shared.Models.Enums;
+using Microsoft.OData.ModelBuilder;
 
 namespace DanilvarKanji.Shared.DTO;
 
 public class CharacterDto
 {
     public string Id { get; set; }
-    public string? Definition { get; set; }
+    //public string? Definition { get; set; }
+    
+    public ICollection<StringDefinition>? Definitions { get; set; }
     public JlptLevel JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
     public string? Mnemonic { get; set; }

@@ -1,6 +1,8 @@
 @using DanilvarKanji.Shared.DTO
 @using DanilvarKanji.Shared.Models
 @using DanilvarKanji.Client.Extensions
+@using DanilvarKanji.Shared.Models.Enums
+@inject ILocalStorageService LocalStorage
 
 @foreach (CharacterDto character in CharacterItems)
 {
@@ -9,21 +11,22 @@
             <div class="card bg-main">
                 <div class="card-body">
                     <h1 class="card-title display-1 mb-3 jap-font txt-mid-pink text-center">
-                        @character.Definition
+                        @if (character.Definitions != null)
+                        {
+                            @GetCharacterDefinitionByCulture(character);
+                        }
                     </h1>
                     <p class="card-text display-7 txt-light-pink main-font">
-                        @if (character.KanjiMeanings != null)
+                        @if (_allKanjiMeanings != null && _allKanjiMeanings.ContainsKey(character.Id))
                         {
-                            List<string> sortedKanjiMeanings = GetKanjiMeaningsOrderedByPrioiry(character);
-
-                            for (var i = 0; i < sortedKanjiMeanings.Count; i++)
+                            for (var i = 0; i < _allKanjiMeanings[character.Id].Count; i++)
                             {
-                                string kanjiMeaning = sortedKanjiMeanings[i];
+                                string kanjiMeaning = _allKanjiMeanings[character.Id][i];
                                 string resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
 
                                 @resultMeaning
 
-                                if (i < sortedKanjiMeanings.Count - 1)
+                                if (i < _allKanjiMeanings[character.Id].Count - 1)
                                 {
                                     <span>, </span>
                                 }

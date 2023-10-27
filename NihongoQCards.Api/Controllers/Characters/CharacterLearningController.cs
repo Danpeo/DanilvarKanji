@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 
-namespace DanilvarKanji.Controllers;
+namespace DanilvarKanji.Controllers.Characters;
 
 [Authorize]
 [ApiController]

@@ -28,33 +28,37 @@ builder.Services.AddODataQueryFilter();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { 
-        Title = "DanilvarKanji API", 
-        Version = "v1" 
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "DanilvarKanji API",
+        Version = "v1"
     });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
-        In = ParameterLocation.Header, 
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
         Description = "Please insert JWT with Bearer into field",
         Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey 
+        Type = SecuritySchemeType.ApiKey
     });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-        { 
-            new OpenApiSecurityScheme 
-            { 
-                Reference = new OpenApiReference 
-                { 
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer" 
-                } 
+                    Id = "Bearer"
+                }
             },
-            new string[] { } 
-        } 
+            new string[] { }
+        }
     });
 });
 
 /*builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")))*/;
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")))*/
+;
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSql")));
@@ -68,8 +72,9 @@ builder.Services.AddIdentityServices(builder.Configuration);
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));*/
 
 var modelBuilder = new ODataConventionModelBuilder();
-modelBuilder.EntityType<AppUser>();
+/*modelBuilder.EntityType<AppUser>();
 modelBuilder.EntitySet<Character>("Characters");
+modelBuilder.EntitySet<StringDefinition>("Definitions");*/
 
 builder.Services.AddControllers()
     .AddOData(options => options
@@ -102,7 +107,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(policy =>
-    policy.WithOrigins("http://localhost:7106", "https://localhost:7106", "http://localhost:7046", "https://localhost:7046")
+    policy.WithOrigins("http://localhost:7106", "https://localhost:7106", "http://localhost:7046",
+            "https://localhost:7046")
         .AllowAnyMethod()
         .WithHeaders(HeaderNames.ContentType)
 );

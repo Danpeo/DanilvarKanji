@@ -47,6 +47,10 @@
             "Microsoft.Extensions.Localization": {
               "target": "Package",
               "version": "[7.0.13, )"
+            },
+            "Microsoft.OData.ModelBuilder": {
+              "target": "Package",
+              "version": "[1.0.9, )"
             }
           },
           "imports": [

@@ -1,11 +1,13 @@
 using System.Net.Http.Json;
 using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Shared.Models.Enums;
 
 namespace DanilvarKanji.Client.Services.Characters;
 
 public class CharacterService : ICharacterService
 {
     private readonly HttpClient _httpClient;
+
     public CharacterService(HttpClient httpClient)
     {
         _httpClient = httpClient;
@@ -43,7 +45,7 @@ public class CharacterService : ICharacterService
         try
         {
             HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters/{id}");
-            
+
             if (response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
@@ -53,6 +55,34 @@ public class CharacterService : ICharacterService
 
                 return await response.Content.ReadFromJsonAsync<CharacterDto>();
             }
+
+            string message = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<List<string>?> GetCharacterKanjiMeanings(string? id, int takeQty, Culture culture)
+    {
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters/{id}/KanjiMeanings?takeQty={takeQty}&culture={culture}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return new List<string>();
+                }
+
+                return await response.Content.ReadFromJsonAsync<List<string>>();
+
+            }
+
             string message = await response.Content.ReadAsStringAsync();
             throw new Exception($"Http status code: {response.StatusCode} message: {message}");
         }

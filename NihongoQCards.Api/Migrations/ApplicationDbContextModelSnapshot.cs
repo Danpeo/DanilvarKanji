@@ -108,10 +108,6 @@ namespace DanilvarKanji.Migrations
                     b.Property<int>("CharacterType")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Definition")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("JlptLevel")
                         .HasColumnType("integer");
 
@@ -184,10 +180,6 @@ namespace DanilvarKanji.Migrations
                     b.Property<string>("CharacterId")
                         .HasColumnType("text");
 
-                    b.Property<string>("Definition")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<float?>("Priority")
                         .HasColumnType("real");
 
@@ -258,6 +250,38 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Onyomis");
                 });
 
+            modelBuilder.Entity("DanilvarKanji.Shared.Models.StringDefinition", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CharacterId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Culture")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("KanjiMeaningId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("WordMeaningId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("KanjiMeaningId");
+
+                    b.HasIndex("WordMeaningId");
+
+                    b.ToTable("StringDefinitions");
+                });
+
             modelBuilder.Entity("DanilvarKanji.Shared.Models.TEST", b =>
                 {
                     b.Property<Guid>("Id")
@@ -305,10 +329,6 @@ namespace DanilvarKanji.Migrations
             modelBuilder.Entity("DanilvarKanji.Shared.Models.WordMeaning", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Definition")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<float?>("Priority")
@@ -509,6 +529,21 @@ namespace DanilvarKanji.Migrations
                         .HasForeignKey("CharacterId");
                 });
 
+            modelBuilder.Entity("DanilvarKanji.Shared.Models.StringDefinition", b =>
+                {
+                    b.HasOne("DanilvarKanji.Shared.Models.Character", null)
+                        .WithMany("Definitions")
+                        .HasForeignKey("CharacterId");
+
+                    b.HasOne("DanilvarKanji.Shared.Models.KanjiMeaning", null)
+                        .WithMany("Definitions")
+                        .HasForeignKey("KanjiMeaningId");
+
+                    b.HasOne("DanilvarKanji.Shared.Models.WordMeaning", null)
+                        .WithMany("Definitions")
+                        .HasForeignKey("WordMeaningId");
+                });
+
             modelBuilder.Entity("DanilvarKanji.Shared.Models.Word", b =>
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Character", null)
@@ -581,6 +616,8 @@ namespace DanilvarKanji.Migrations
 
             modelBuilder.Entity("DanilvarKanji.Shared.Models.Character", b =>
                 {
+                    b.Navigation("Definitions");
+
                     b.Navigation("KanjiMeanings");
 
                     b.Navigation("Kunyomis");
@@ -590,9 +627,19 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("Words");
                 });
 
+            modelBuilder.Entity("DanilvarKanji.Shared.Models.KanjiMeaning", b =>
+                {
+                    b.Navigation("Definitions");
+                });
+
             modelBuilder.Entity("DanilvarKanji.Shared.Models.Word", b =>
                 {
                     b.Navigation("WordMeanings");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Shared.Models.WordMeaning", b =>
+                {
+                    b.Navigation("Definitions");
                 });
 #pragma warning restore 612, 618
         }

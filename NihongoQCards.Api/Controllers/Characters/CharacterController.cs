@@ -1,14 +1,16 @@
 using DanilvarKanji.Services.Characters;
 using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Shared.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 
-namespace DanilvarKanji.Controllers;
+namespace DanilvarKanji.Controllers.Characters;
 
 //[Authorize]
 [ApiController]
 [Route("Api/[controller]s")]
-public class CharacterController : ControllerBase
+public class CharacterController : ODataController
 {
     private readonly ICharacterService _characterService;
 
@@ -35,8 +37,8 @@ public class CharacterController : ControllerBase
         {
             IEnumerable<CharacterDto> characters = await _characterService.ListAsync();
             return Ok(characters);
-        } 
-        
+        }
+
         return NotFound("No characters");
     }
 
@@ -48,14 +50,28 @@ public class CharacterController : ControllerBase
             return NotFound("Character with this ID was not found");
 
         CharacterDto character = await _characterService.GetAsync(id);
-        
+
         return Ok(character);
+    }
+
+    [EnableQuery]
+    [HttpGet("{id}/KanjiMeanings")]
+    public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(string id, int takeQty, Culture culture)
+    {
+        if (!await _characterService.Exist(id))
+            return NotFound("Character with this ID was not found");
+
+        CharacterDto character = await _characterService.GetAsync(id);
+
+        IEnumerable<string> kanjiMeanings = await _characterService.GetKanjiMeaningsByPriority(character.Id, takeQty, culture);
+
+        return Ok(kanjiMeanings);
     }
 
     [HttpGet("{id}/Partial")]
     public async Task<IActionResult> GetPartialAsync(string id, [FromQuery] IEnumerable<string> fields)
     {
-        if (!await _characterService.Exist(id)) 
+        if (!await _characterService.Exist(id))
             return NotFound("Character with this ID was not found");
 
         CharacterDto? character = await _characterService.GetPartialAsync(id, fields);
