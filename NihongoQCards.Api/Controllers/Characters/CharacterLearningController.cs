@@ -31,8 +31,10 @@ public class CharacterLearningController : ControllerBase
         AppUser? user = await _userManager.GetUserAsync(User);
 
         if (await _charLearnManageService.CreateAsync(characterDto, user))
+            /*
             return CreatedAtAction("GetForUser", new { id = characterDto.Id }, characterDto);
-
+            */
+            return Ok();
         return BadRequest("Error when creating a characater learning.");
     }
 

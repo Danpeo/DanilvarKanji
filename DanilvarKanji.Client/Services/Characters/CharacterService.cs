@@ -70,7 +70,8 @@ public class CharacterService : ICharacterService
     {
         try
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters/{id}/KanjiMeanings?takeQty={takeQty}&culture={culture}");
+            HttpResponseMessage response =
+                await _httpClient.GetAsync($"api/Characters/{id}/KanjiMeanings?takeQty={takeQty}&culture={culture}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -80,7 +81,6 @@ public class CharacterService : ICharacterService
                 }
 
                 return await response.Content.ReadFromJsonAsync<List<string>>();
-
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -92,4 +92,24 @@ public class CharacterService : ICharacterService
             throw;
         }
     }
+
+    public async Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<CharacterDto> CharacterItems, int takeQty, Culture culture)
+    {
+        Dictionary<string, List<string>> allKanjiMeanings = new Dictionary<string, List<string>>();
+
+        foreach (CharacterDto characterItem in CharacterItems)
+        {
+            List<string>? kanjiMeanings = await GetCharacterKanjiMeanings(characterItem.Id, takeQty, culture);
+
+            if (kanjiMeanings != null)
+                allKanjiMeanings![characterItem.Id] = kanjiMeanings;
+        }
+
+        return allKanjiMeanings;
+    }
+
+    public string GetCharacterDefinitionByCulture(CharacterDto character, Culture culture = Culture.EnUS) =>
+        character.Definitions
+            .FirstOrDefault(x => x.Culture == culture)
+            ?.Value;
 }

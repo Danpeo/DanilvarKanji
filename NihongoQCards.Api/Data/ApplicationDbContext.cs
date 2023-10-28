@@ -17,7 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<Onyomi> Onyomis { get; set; }
     public DbSet<StringDefinition> StringDefinitions { get; set; }
     public DbSet<TEST> Tests { get; set; }
-    
+
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {
     }
@@ -25,32 +25,45 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        /*
 
-    modelBuilder.Entity<Character>()
-        .HasMany(c => c.KanjiMeanings)
-        .WithOne(k => k.Character)
-        .OnDelete(DeleteBehavior.Cascade);
-
-modelBuilder.Entity<Character>()
-.HasMany(c => c.Kunyomis)
-.WithOne(k => k.Character)
-.OnDelete(DeleteBehavior.Cascade);
-
-modelBuilder.Entity<Character>()
-.HasMany(c => c.Onyomis)
-.WithOne(k => k.Character)
-.OnDelete(DeleteBehavior.Cascade);
-
-modelBuilder.Entity<Character>()
-.HasMany(c => c.Words)
-.WithOne(k => k.Character)
-.OnDelete(DeleteBehavior.Cascade);
-*/
+        modelBuilder.Entity<CharacterLearning>()
+            .HasOne(cl => cl.Character)
+            .WithMany()
+            .OnDelete(DeleteBehavior.Cascade);
         
-        /*modelBuilder.Entity<Word>()
-            .HasMany(c => c.WordMeanings)
-            .WithOne(k => k.Word)
-            .OnDelete(DeleteBehavior.Cascade);*/
+        modelBuilder.Entity<Character>()
+            .HasMany(x => x.Kunyomis)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Character>()
+            .HasMany(x => x.Onyomis)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Character>()
+            .HasMany(x => x.KanjiMeanings)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Character>()
+            .HasMany(x => x.Definitions)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Character>()
+            .HasMany(x => x.Words)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<KanjiMeaning>()
+            .HasMany(x => x.Definitions)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Word>()
+            .HasMany(x => x.WordMeanings)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

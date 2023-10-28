@@ -2,37 +2,25 @@
 @using DanilvarKanji.Shared.Models
 @using DanilvarKanji.Client.Extensions
 @using DanilvarKanji.Shared.Models.Enums
-@inject ILocalStorageService LocalStorage
+
 
 @foreach (CharacterDto character in CharacterItems)
 {
     <div class="col-md-3 mb-2">
-        <a href="/@character.Id">
+        <a @onclick="@(async () => await OnSelected.InvokeAsync(character))">
             <div class="card bg-main">
                 <div class="card-body">
                     <h1 class="card-title display-1 mb-3 jap-font txt-mid-pink text-center">
                         @if (character.Definitions != null)
                         {
-                            @GetCharacterDefinitionByCulture(character);
+                            @CharacterService.GetCharacterDefinitionByCulture(character, _culture);
                         }
                     </h1>
-                    <p class="card-text display-7 txt-light-pink main-font">
-                        @if (_allKanjiMeanings != null && _allKanjiMeanings.ContainsKey(character.Id))
-                        {
-                            for (var i = 0; i < _allKanjiMeanings[character.Id].Count; i++)
-                            {
-                                string kanjiMeaning = _allKanjiMeanings[character.Id][i];
-                                string resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
-
-                                @resultMeaning
-
-                                if (i < _allKanjiMeanings[character.Id].Count - 1)
-                                {
-                                    <span>, </span>
-                                }
-                            }
-                        }
-                    </p>
+                    
+                    @if (_allKanjiMeanings != null)
+                    {
+                        <DisplayKanjiMeanings AllKanjiMeanings="_allKanjiMeanings" CharacterId="@character.Id"/>
+                    }
                     @if (character.Kunyomis is {Count: > 0})
                     {
                         <p class="card-text txt-white">

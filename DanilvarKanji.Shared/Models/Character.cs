@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using DanilvarKanji.Shared.DTO;
 using DanilvarKanji.Shared.Models.Enums;
-using Microsoft.OData.ModelBuilder;
 
 namespace DanilvarKanji.Shared.Models;
 

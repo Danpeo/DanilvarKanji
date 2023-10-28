@@ -10,8 +10,10 @@ else
     
     if (CharacterItems.Any())
     {
+        <CharacterDetails Character="_selectedCharacter"/>
+
         <div class="row mt-3">
-            <DisplayCharacters CharacterItems="CharacterItems"/>
+            <DisplayCharacters CharacterItems="CharacterItems" OnSelected="HandleTrailSelected"/>
         </div>
     }
 }

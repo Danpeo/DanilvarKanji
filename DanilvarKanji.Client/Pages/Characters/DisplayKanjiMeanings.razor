@@ -1,0 +1,27 @@
+<p class="card-text display-7 txt-light-pink main-font">
+    @if (AllKanjiMeanings.ContainsKey(CharacterId))
+    {
+        for (var i = 0; i < AllKanjiMeanings[CharacterId].Count; i++)
+        {
+            string kanjiMeaning = AllKanjiMeanings[CharacterId][i];
+            string resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
+
+            @resultMeaning
+
+            if (i < AllKanjiMeanings[CharacterId].Count - 1)
+            {
+                <span>, </span>
+            }
+        }
+    }
+</p>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public Dictionary<string, List<string>> AllKanjiMeanings { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string CharacterId { get; set; } = default!;
+
+}

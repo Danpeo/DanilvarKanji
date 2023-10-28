@@ -132,6 +132,7 @@ namespace DanilvarKanji.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("CharacterId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("LearnedCount")
@@ -495,7 +496,9 @@ namespace DanilvarKanji.Migrations
 
                     b.HasOne("DanilvarKanji.Shared.Models.Character", "Character")
                         .WithMany()
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DanilvarKanji.Shared.Models.LearningProgress", "LearningProgress")
                         .WithMany()
@@ -512,32 +515,37 @@ namespace DanilvarKanji.Migrations
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Character", null)
                         .WithMany("KanjiMeanings")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Models.Kunyomi", b =>
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Character", null)
                         .WithMany("Kunyomis")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Models.Onyomi", b =>
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Character", null)
                         .WithMany("Onyomis")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Models.StringDefinition", b =>
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Character", null)
                         .WithMany("Definitions")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DanilvarKanji.Shared.Models.KanjiMeaning", null)
                         .WithMany("Definitions")
-                        .HasForeignKey("KanjiMeaningId");
+                        .HasForeignKey("KanjiMeaningId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DanilvarKanji.Shared.Models.WordMeaning", null)
                         .WithMany("Definitions")
@@ -548,14 +556,16 @@ namespace DanilvarKanji.Migrations
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Character", null)
                         .WithMany("Words")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Models.WordMeaning", b =>
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Word", null)
                         .WithMany("WordMeanings")
-                        .HasForeignKey("WordId");
+                        .HasForeignKey("WordId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
