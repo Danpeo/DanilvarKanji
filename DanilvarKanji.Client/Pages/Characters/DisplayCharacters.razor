@@ -24,7 +24,7 @@
                     @if (character.Kunyomis is {Count: > 0})
                     {
                         <p class="card-text txt-white">
-                            <DisplayKunyomi Character="character"/>
+                            <DisplayKunyomi Character="character" MaxReadingsToDisplay="3"/>
                         </p>
                     }
                     else
@@ -34,7 +34,7 @@
                     @if (character.Onyomis is {Count: > 0 })
                     {
                         <p class="card-text txt-white">
-                            <DisplayOnyomi Character="character"/>
+                            <DisplayOnyomi Character="character" MaxReadingsToDisplay="3"/>
                         </p>
                     }
                     else

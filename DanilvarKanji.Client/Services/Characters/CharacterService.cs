@@ -112,4 +112,9 @@ public class CharacterService : ICharacterService
         character.Definitions
             .FirstOrDefault(x => x.Culture == culture)
             ?.Value;
+    
+    public async Task<HttpResponseMessage> AddCharacterAsync(CharacterDto character)
+    {
+        return await _httpClient.PostAsJsonAsync("api/characters", character);
+    }
 }

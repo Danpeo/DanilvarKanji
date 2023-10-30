@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xEaXNwbGF5T255b21pLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/Manage/AddCharacter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xNYW5hZ2VcQWRkQ2hhcmFjdGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,6 +50,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/CultureSelector.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1bHR1cmVTZWxlY3Rvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Forms/FormFieldSet.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZvcm1zXEZvcm1GaWVsZFNldC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Forms/FormSection.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZvcm1zXEZvcm1TZWN0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/NavMenuHeader.razor]

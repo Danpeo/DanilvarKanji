@@ -7,8 +7,8 @@ public class CharacterDto
 {
     public string Id { get; set; }
     //public string? Definition { get; set; }
-    
-    public ICollection<StringDefinition>? Definitions { get; set; }
+
+    public ICollection<StringDefinition>? Definitions { get; set; } = new List<StringDefinition>();
     public JlptLevel JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
     public string? Mnemonic { get; set; }

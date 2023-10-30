@@ -63,6 +63,9 @@
           <AutoGen>True</AutoGen>
           <DependentUpon>NavMenu.ru-RU.resx</DependentUpon>
         </Compile>
+        <Compile Update="Pages\Characters\Manage\AddCharacter.cs">
+          <DependentUpon>AddCharacter.razor</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
