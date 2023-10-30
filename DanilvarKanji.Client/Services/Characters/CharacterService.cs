@@ -108,8 +108,8 @@ public class CharacterService : ICharacterService
         return allKanjiMeanings;
     }
 
-    public string GetCharacterDefinitionByCulture(CharacterDto character, Culture culture = Culture.EnUS) =>
-        character.Definitions
+    public string GetCharacterMnemonicByCulture(CharacterDto character, Culture culture = Culture.EnUS) =>
+        character.Mnemonics
             .FirstOrDefault(x => x.Culture == culture)
             ?.Value;
     

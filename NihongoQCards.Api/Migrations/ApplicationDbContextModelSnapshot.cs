@@ -108,11 +108,11 @@ namespace DanilvarKanji.Migrations
                     b.Property<int>("CharacterType")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Definition")
+                        .HasColumnType("text");
+
                     b.Property<int>("JlptLevel")
                         .HasColumnType("integer");
-
-                    b.Property<string>("Mnemonic")
-                        .HasColumnType("text");
 
                     b.Property<int?>("StrokeCount")
                         .HasColumnType("integer");
@@ -538,7 +538,7 @@ namespace DanilvarKanji.Migrations
             modelBuilder.Entity("DanilvarKanji.Shared.Models.StringDefinition", b =>
                 {
                     b.HasOne("DanilvarKanji.Shared.Models.Character", null)
-                        .WithMany("Definitions")
+                        .WithMany("Mnemonics")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -626,11 +626,11 @@ namespace DanilvarKanji.Migrations
 
             modelBuilder.Entity("DanilvarKanji.Shared.Models.Character", b =>
                 {
-                    b.Navigation("Definitions");
-
                     b.Navigation("KanjiMeanings");
 
                     b.Navigation("Kunyomis");
+
+                    b.Navigation("Mnemonics");
 
                     b.Navigation("Onyomis");
 

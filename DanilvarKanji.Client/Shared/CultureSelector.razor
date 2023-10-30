@@ -4,9 +4,9 @@
 @inject ILocalStorageService LocalStorage
 @inject IStringLocalizer<App> Loc
 
-<span>
-    @Loc[nameof(AppLocaleKeys.Language)]:&nbsp;
-    <select @onchange="NewCultureSelectedAsync">
+<span class="custom-select txt-bright-pink">
+    @Loc[nameof(AppLocaleKeys.Language)]&nbsp;
+    <select class="styled-select bg-secondary txt-white" @onchange="NewCultureSelectedAsync">
         @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
         {
             @if (SelectedCulture != null && culture == SelectedCulture)

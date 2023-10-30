@@ -7,11 +7,11 @@ public class Character
 {
     [Key]
     public string Id { get; set; }
-    //public string Definition { get; set; }
-    public ICollection<StringDefinition>? Definitions { get; set; }
+    public string? Definition { get; set; }
+    //public ICollection<StringDefinition>? Definitions { get; set; }
     public JlptLevel JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
-    public string? Mnemonic { get; set; }
+    public ICollection<StringDefinition>? Mnemonics { get; set; }
     public int? StrokeCount { get; set; }
     public ICollection<KanjiMeaning>? KanjiMeanings { get; set; }
     public ICollection<Kunyomi>? Kunyomis { get; set; }

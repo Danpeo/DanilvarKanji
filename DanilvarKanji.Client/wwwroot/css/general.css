@@ -36,3 +36,55 @@ img {
     background-color: #0056b3; /* Цвет фона при наведении */
     /* Дополнительные стили для состояния наведения, если необходимо */
 }
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+/* Стилизация контейнера span */
+.custom-select {
+    display: inline-block;
+    position: relative;
+}
+
+/* Стилизация селекта */
+.styled-select {
+    appearance: none; /* Скрыть стандартные стили браузера */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #ccc;
+    padding: 5px 25px 5px 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none; /* Убрать рамку фокуса */
+}
+
+/* Стилизация опций */
+.styled-select option {
+    padding: 5px;
+}
+
+/* Стилизация стрелки (можно использовать иконку) */
+.styled-select::after {
+    content: '\25BC'; /* Юникод-символ для стрелки вниз */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+/* При наведении изменяем цвет селекта */
+.styled-select:hover {
+    border-color: #999;
+}
+
+.card-brand {
+    border-top: 4px solid var(--pink-color-bright);
+}
+
+.big-input {
+    height: 4rem;
+    width: 8rem;
+    font-size: 2.5rem;
+}

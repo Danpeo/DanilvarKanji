@@ -134,7 +134,7 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     private IQueryable<Character> GetCharactersWithRelatedData()
     {
         return Context.Characters
-            .Include(x => x.Definitions)
+            .Include(x => x.Mnemonics)
             .Include(x => x.KanjiMeanings)
             .ThenInclude(x => x.Definitions)
             .Include(x => x.Kunyomis)

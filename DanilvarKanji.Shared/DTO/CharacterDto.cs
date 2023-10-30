@@ -6,12 +6,12 @@ namespace DanilvarKanji.Shared.DTO;
 public class CharacterDto
 {
     public string Id { get; set; }
-    //public string? Definition { get; set; }
+    public string? Definition { get; set; }
 
-    public ICollection<StringDefinition>? Definitions { get; set; } = new List<StringDefinition>();
+    //public ICollection<StringDefinition>? Definitions { get; set; } = new List<StringDefinition>();
     public JlptLevel JlptLevel { get; set; }
     public CharacterType CharacterType { get; set; }
-    public string? Mnemonic { get; set; }
+    public ICollection<StringDefinition>? Mnemonics { get; set; } = new List<StringDefinition>();
     
     public int? StrokeCount { get; set; }
     public ICollection<KanjiMeaning>? KanjiMeanings { get; set; }

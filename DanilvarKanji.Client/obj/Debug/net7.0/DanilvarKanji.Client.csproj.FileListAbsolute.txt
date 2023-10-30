@@ -922,3 +922,4 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\wTWXzsxX.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\eJqoOW0j.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Pages\Characters\CharacterDetails.razor.rz.scp.css
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Shared\Forms\FormSection.razor.rz.scp.css

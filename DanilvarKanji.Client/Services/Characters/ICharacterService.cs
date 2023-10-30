@@ -8,7 +8,7 @@ public interface ICharacterService
     Task<IEnumerable<CharacterDto?>?> ListCharactersAsync();
     Task<CharacterDto?> GetCharacterAsync(string? id);
     Task<List<string>?> GetCharacterKanjiMeanings(string? id, int takeQty, Culture culture);
-    string GetCharacterDefinitionByCulture(CharacterDto character, Culture culture = Culture.EnUS);
+    string GetCharacterMnemonicByCulture(CharacterDto character, Culture culture = Culture.EnUS);
     Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<CharacterDto> CharacterItems, int takeQty, Culture culture);
     Task<HttpResponseMessage> AddCharacterAsync(CharacterDto character);
 }

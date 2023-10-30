@@ -47,7 +47,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
             .OnDelete(DeleteBehavior.Cascade);
         
         modelBuilder.Entity<Character>()
-            .HasMany(x => x.Definitions)
+            .HasMany(x => x.Mnemonics)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
         

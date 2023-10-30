@@ -7,13 +7,13 @@
 @foreach (CharacterDto character in CharacterItems)
 {
     <div class="col-md-3 mb-2">
-        <a @onclick="@(async () => await OnSelected.InvokeAsync(character))">
+        <a class="pointer-cursor" @onclick="@(async () => await OnSelected.InvokeAsync(character))">
             <div class="card bg-main">
                 <div class="card-body">
                     <h1 class="card-title display-1 mb-3 jap-font txt-mid-pink text-center">
-                        @if (character.Definitions != null)
+                        @if (character.Definition != null)
                         {
-                            @CharacterService.GetCharacterDefinitionByCulture(character, _culture);
+                            @character.Definition
                         }
                     </h1>
                     
