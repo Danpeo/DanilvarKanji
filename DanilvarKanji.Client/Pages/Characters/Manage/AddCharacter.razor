@@ -6,22 +6,25 @@
 
 <PageTitle>Add Character - @AppDisplaySettings.AppTitle</PageTitle>
 
-<h3 class="mt-5 mb-4 txt-bright-pink">Add Character</h3>
+<h1 class="mt-5 mb-4 animated-blink main-font display-3">
+    Add Character
+</h1>
 
 <EditForm Model="_character" OnValidSubmit="HandleSubmit">
 
     <FormSection Title="Character Basic Details" HelpText="Character basic details common for all cultures">
 
-        <FormFieldSet Width="col-3">
-            <label for="trailDescription" class="font-weight-bold txt-light-pink">Definition</label>
-            <InputText @bind-Value="_character.Definition" class="form-control bg-secondary big-input" id="trailDescription"/>
+        @*<FormFieldSet Width="col-3">
+            <label for="characterDefinition" class="font-weight-bold txt-light-pink">Definition</label>
+            <InputText @bind-Value="_character.Definition" class="form-control bg-secondary txt-white jap-font" id="characterDefinition"/>
+        </FormFieldSet>*@
+
+        <FormFieldSet Label="Definition" LabelFor="characterDefinition" HelpText="">
+            <InputText @bind-Value="_character.Definition" class="form-control bg-secondary txt-white jap-font no-border" id="characterDefinition" placeholder="見"/>
         </FormFieldSet>
 
-
-
-        <FormFieldSet Width="col-3">
-            <label for="routeInstructionDescription" class="font-weight-bold txt-light-pink">JLPT Level</label>
-            <InputSelect @bind-Value="_character.JlptLevel" class="bg-secondary txt-light-pink">
+        <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
+            <InputSelect @bind-Value="_character.JlptLevel" class="form-control bg-secondary txt-white no-border" id="jlptLevel">
                 <option value="@JlptLevel.N5">JLPT N5</option>
                 <option value="@JlptLevel.N4">JLPT N4</option>
                 <option value="@JlptLevel.N3">JLPT N3</option>
@@ -30,78 +33,60 @@
             </InputSelect>
         </FormFieldSet>
 
-        <FormFieldSet Width="col-3">
-            <label for="routeInstructionDescription" class="font-weight-bold txt-light-pink">Character Type</label>
-            <InputSelect @bind-Value="_character.CharacterType" class="bg-secondary txt-light-pink">
+        <FormFieldSet Label="Character Type" LabelFor="characterType" HelpText="">
+            <InputSelect @bind-Value="_character.CharacterType" class="form-control bg-secondary txt-white no-border" id="characterType">
                 <option value="@CharacterType.Kanji">Kanji</option>
                 <option value="@CharacterType.Radical">Radical</option>
             </InputSelect>
         </FormFieldSet>
 
-        <FormFieldSet Width="col-3">
-            <label for="trailLength" class="font-weight-bold txt-light-pink">Number of strokes</label>
-            <InputNumber @bind-Value="_character.StrokeCount" class="form-control bg-secondary txt-light-pink" id="trailLength"/>
+        <FormFieldSet Label="Stroke Count" LabelFor="strokeCount" HelpText="">
+            <InputNumber @bind-Value="_character.StrokeCount" class="form-control bg-secondary txt-white no-border" id="strokeCount" placeholder="Stroke Count"/>
         </FormFieldSet>
+    </FormSection>
 
-        <FormSection Title="..." HelpText="...">
+    <FormSection Title="Character Definitions" HelpText="Add Character Definitions with different cultures">
+        <DynamicStringDefinition StringDefinitions="_character.Mnemonics" AddButtonText="Add Mnemonic"/>
+    </FormSection>
 
-        </FormSection>
-        <div class="mt-4 mb-5">
+    <FormSection Title="Kunyomi Readings" HelpText="Add kunyomi readings">
+        @foreach (Kunyomi kunyomi in _character.Kunyomis)
+        {
             <div class="row">
-                <div class="offset-4 col-8 text-right">
-                    <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _character = new CharacterDto())">Reset</button>
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                <div class="col mb-3">
+                    <div class="form-group">
+                        <InputText @bind-Value="@kunyomi.JapaneseWriting" class="form-control bg-secondary txt-white no-border" id="japWriting" placeholder="Japanese Writing"/>
+                    </div>
                 </div>
+
+                <div class="col mb-3">
+                    <div class="form-group">
+                        <InputText @bind-Value="@kunyomi.Romaji" class="form-control bg-secondary txt-white no-border" id="romaji" placeholder="Romaji"/>
+                    </div>
+                </div>
+
+                <div class="col mb-3">
+                    <button @onclick="@(() => _character.Kunyomis.Remove(kunyomi))" class="btn btn-link" type="button">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        }
+        <div class="row mt-3">
+            <div class="col">
+                <button class="btn btn-outline-primary" type="button" @onclick="@(() => _character.Kunyomis.Add(new Kunyomi()))">Add Kunyomi</button>
             </div>
         </div>
     </FormSection>
-    <FormSection Title="Character Definitions" HelpText="Add Character Definitions with different cultures">
-        <FormFieldSet Width="col-6">
-            @{ var i = 0; }
 
-            @if (_character.Mnemonics != null)
-            {
-                foreach (StringDefinition mnemonic in _character.Mnemonics)
-                {
-                    i++;
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label class="font-weight-bold text-secondary">Definition</label>
-                                <p>@i</p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="routeInstructionDescription" class="font-weight-bold text-secondary">Value</label>
-                                <InputText @bind-Value="@mnemonic.Value" class="form-control" id="routeInstructionDescription"/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="routeInstructionDescription" class="font-weight-bold text-secondary">Value</label>
-                                <InputSelect @bind-Value="@mnemonic.Culture" class="form-control" id="routeInstructionDescription">
-                                    <option value="@Culture.EnUS">English</option>
-                                    <option value="@Culture.RuRU">Russian</option>
-                                </InputSelect>
-                            </div>
-                        </div>
-
-                        <div class="col-1 d-flex mt-3">
-                            <button @onclick="@(() => _character.Mnemonics.Remove(mnemonic))" class="btn btn-link" type="button">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                }
-            }
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-outline-primary" type="button" @onclick="@(() => _character.Mnemonics.Add(new StringDefinition()))">Add Definition</button>
-                </div>
+    <div class="mt-4 mb-5">
+        <div class="row">
+            <div class="offset-4 col-8 text-right">
+                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _character = new CharacterDto())">Reset</button>
+                <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
             </div>
-        </FormFieldSet>
-    </FormSection>
+        </div>
+    </div>
 </EditForm>
