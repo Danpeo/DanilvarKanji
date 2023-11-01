@@ -1,16 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+using DanilvarKanji.Shared.Models.Common;
 
 namespace DanilvarKanji.Shared.Models;
 
-public class Kunyomi
+public class Kunyomi : Reading
 {
-    [Key]
-    public string Id { get; set; }
-    public string JapaneseWriting { get; set; }
-    public string? Romaji { get; set; }
-
-    public Kunyomi()
-    {
-        Id = Guid.NewGuid().ToString("N");
-    }
 }

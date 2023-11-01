@@ -1,16 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+using DanilvarKanji.Shared.Models.Common;
 
 namespace DanilvarKanji.Shared.Models;
 
-public class Onyomi
+public class Onyomi : Reading
 {
-    [Key]
-    public string Id { get; set; }
-    public string JapaneseWriting { get; set; }
-    public string? Romaji { get; set; }
-
-    public Onyomi()
-    {
-        Id = Guid.NewGuid().ToString("N");
-    }
 }
