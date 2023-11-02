@@ -92,3 +92,13 @@
 .animated-blink-bg {
     animation: blink-bg 3s linear infinite;
 }
+
+.btn-outline-primary {
+    border-color: var(--pink-color-mid);
+    color: var(--pink-color-mid);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--pink-color-mid);
+    border-color: var(--pink-color-mid);
+}

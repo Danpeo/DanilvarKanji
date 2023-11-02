@@ -1,0 +1,65 @@
+@page "/sel"
+
+@using System.Linq
+
+<div class="input-group">
+    <input type="text" class="form-control" @bind="searchTerm" placeholder="Search..." @oninput="FilterItems" />
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" @onclick="ToggleDropdown">
+            <i class="bi bi-caret-down"></i>
+        </button>
+    </div>
+</div>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" @onclick="ToggleDropdown">
+        @selectedItem
+    </button>
+    <div class="dropdown-menu" style="@dropdownStyle">
+        @if (!string.IsNullOrEmpty(searchTerm))
+        {
+            foreach (var item in items.Where(item => item.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
+            {
+                <button class="dropdown-item" @onclick="() => SelectItem(item)">@item</button>
+            }
+        }
+        else
+        {
+            foreach (var item in items)
+            {
+                <button class="dropdown-item" @onclick="() => SelectItem(item)">@item</button>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private string searchTerm = "";
+    private string selectedItem = "Select an item";
+    private List<string> items = new List<string>
+    {
+        "Item 1",
+        "Item 2",
+        "Item 3",
+        "Item 4",
+    // Добавьте здесь ваш список элементов
+    };
+    private bool isDropdownOpen = false;
+    private string dropdownStyle => isDropdownOpen ? "display: block;" : "display: none";
+
+    private void FilterItems(ChangeEventArgs e)
+    {
+        searchTerm = e.Value.ToString();
+    }
+
+    private void ToggleDropdown()
+    {
+        isDropdownOpen = !isDropdownOpen;
+    }
+
+    private void SelectItem(string item)
+    {
+        selectedItem = item;
+        isDropdownOpen = false;
+    }
+}

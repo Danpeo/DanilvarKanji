@@ -18,6 +18,8 @@ public class Character
     public ICollection<Onyomi>? Onyomis { get; set; }
     public ICollection<Word>? Words { get; set; }
 
+    public List<string>? ChildCharacterIds { get; set; }
+    
     public Character()
     {
         Id = Guid.NewGuid().ToString("N");

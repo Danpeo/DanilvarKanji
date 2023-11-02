@@ -59,6 +59,24 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
             .ToList();
     }
 
+    public async Task<IEnumerable<CharacterDto>> ListChildCharacters(string id)
+    {
+        CharacterDto character = await GetAsync(id);
+
+        List<Character> childCharacters = new();
+
+        if (character.ChildCharacterIds != null)
+            foreach (string childCharacterId in character.ChildCharacterIds)
+            {
+                Character? child = Context.Characters.FirstOrDefault(x => x.Id == childCharacterId);
+                
+                if (child != null) 
+                    childCharacters.Add(child);
+            }
+
+        return _mapper.Map<IEnumerable<CharacterDto>>(childCharacters);
+    }
+
     public async Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields)
     {
         IQueryable<Character> query = GetCharactersWithRelatedData()

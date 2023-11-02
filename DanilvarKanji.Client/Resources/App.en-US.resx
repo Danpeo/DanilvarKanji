@@ -24,4 +24,10 @@
     <data name="Naruto" xml:space="preserve">
         <value>NARUTO</value>
     </data>
+    <data name="NotEmptyCharDef" xml:space="preserve">
+        <value>Please enter a definition</value>
+    </data>
+    <data name="ValueTooLong" xml:space="preserve">
+        <value>The value must not exceed </value>
+    </data>
 </root>

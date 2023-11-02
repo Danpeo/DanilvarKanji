@@ -12,6 +12,9 @@ public partial class CharacterDetails
     [Inject] public ILocalizationService? LocalizationService { get; set; }
     [Parameter, EditorRequired] public CharacterDto? Character { get; set; }
 
+    [Parameter] public int TakeQty { get; set; } = 2;
+
+    private Dictionary<string, List<string>> _kanjiMeanings = new();
     private Culture _culture = Culture.EnUS;
     private bool _isOpen;
     private CharacterDto? _activeCharacter;
@@ -20,16 +23,19 @@ public partial class CharacterDetails
     {
         await GetCurrentCulture();
     }
-
-    protected override void OnParametersSet()
+    
+    protected async override Task OnParametersSetAsync()
     {
         if (Character != null)
         {
             _activeCharacter = Character;
             _isOpen = true;
+            
+            _kanjiMeanings[_activeCharacter.Id] =
+                await CharacterService.GetCharacterKanjiMeanings(_activeCharacter.Id, TakeQty, _culture);
         }
     }
-    
+
     private async Task GetCurrentCulture()
     {
         _culture = await LocalizationService.GetCurrentCulture();

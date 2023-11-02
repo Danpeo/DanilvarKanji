@@ -29,8 +29,7 @@ public class CharacterController : ODataController
     }
 
 
-    [EnableQuery]
-    [HttpGet]
+    [EnableQuery, HttpGet]
     public async Task<IActionResult> ListAsync()
     {
         if (await _characterService.AnyExist())
@@ -42,8 +41,17 @@ public class CharacterController : ODataController
         return NotFound("No characters");
     }
 
-    [EnableQuery]
-    [HttpGet("{id}")]
+    [EnableQuery, HttpGet("{id}:Child")]
+    public async Task<IActionResult> ListChildCharacters(string id)
+    {
+        if (!await _characterService.Exist(id))
+            return NotFound("Character with this ID was not found");
+
+        IEnumerable<CharacterDto> characters = await _characterService.ListChildCharacters(id);
+        return Ok(characters);
+    }
+
+    [EnableQuery, HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {
         if (!await _characterService.Exist(id))
@@ -54,8 +62,7 @@ public class CharacterController : ODataController
         return Ok(character);
     }
 
-    [EnableQuery]
-    [HttpGet("{id}/KanjiMeanings")]
+    [EnableQuery, HttpGet("{id}:KanjiMeanings")]
     public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(string id, int takeQty, Culture culture)
     {
         if (!await _characterService.Exist(id))

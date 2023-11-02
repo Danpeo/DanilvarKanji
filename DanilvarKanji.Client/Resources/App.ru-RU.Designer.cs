@@ -76,5 +76,23 @@ namespace DanilvarKanji.Client.Resources {
                 return ResourceManager.GetString("Naruto", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пожалуйста введите определение.
+        /// </summary>
+        internal static string NotEmptyCharDef {
+            get {
+                return ResourceManager.GetString("NotEmptyCharDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Значение не может быть больше чем .
+        /// </summary>
+        internal static string ValueTooLong {
+            get {
+                return ResourceManager.GetString("ValueTooLong", resourceCulture);
+            }
+        }
     }
 }

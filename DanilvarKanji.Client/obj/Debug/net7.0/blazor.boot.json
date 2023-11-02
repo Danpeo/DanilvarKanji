@@ -7,7 +7,9 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "Blazored.FluentValidation.dll": "sha256-pmAnzGHbzjJkqlA1\/MjJe3bE8oA0PM8Cld1vLp+68sI=",
       "Blazored.LocalStorage.dll": "sha256-5V8ovY1srbIIz7lzzMhLd3nNJ9LJ6bHoBOnLJahv8Go=",
+      "FluentValidation.dll": "sha256-v\/82bFHarJ21YNg26d6u2S35cW14zYvJiL\/ZLtG7Nx4=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-+79HPC+snrhJjzOJbwBnWtkWOY6jdopnEnle7ZiRr7Y=",
       "Microsoft.AspNetCore.Components.dll": "sha256-Ai5PTdfbdzeheOh7Ly3Uoqa3f175oOxvfu2QfxDZGso=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-IcQfwp7uOUAjEcK6s\/W097tVi886KFG0KQicOqtu2SU=",
@@ -214,15 +216,15 @@
       "mscorlib.dll": "sha256-X+o60j6cZnlI2vFFjdH81yYTAxx13\/wqnNSWTKbDsyw=",
       "netstandard.dll": "sha256-Cr6slBs\/R2v2t\/vecFDHbQHakbEhar0adYu0YemwiXI=",
       "System.Private.CoreLib.dll": "sha256-dDw5nzGJhW1jOjGfSJcs\/Mi4KQ+DZygXnoK+vJ+jHyk=",
-      "DanilvarKanji.Shared.dll": "sha256-cIVyIVyfSve69Dy\/+Fgahp04couuiqxZqQOnuHVVAPA=",
-      "DanilvarKanji.Client.dll": "sha256-94+2voiTy+CrmJbZI5+Uth5xrCKKq7VXnTVovC+4AWI="
+      "DanilvarKanji.Shared.dll": "sha256-ZvmerYaHi6a70XdI2Suie\/pmhHka0+ixEz0tSspMHa4=",
+      "DanilvarKanji.Client.dll": "sha256-vT9xN23hY\/tA7SDZhgR1jYyLRajLxYeV52k3JDt5ZjQ="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "DanilvarKanji.Shared.pdb": "sha256-ACpvmfAtfY2ZaJ8oynwRKAf9FE5sjNvvRvOhnRmwaiU=",
-      "DanilvarKanji.Client.pdb": "sha256-rs3Zo3s6W8QJ+Jf2kCj28arCTBuPAx992l9xUjh0C30="
+      "DanilvarKanji.Shared.pdb": "sha256-Cen3bI7AIE3fAYhAVHaqqQKf3NlHKf\/Z6eovxI1twxs=",
+      "DanilvarKanji.Client.pdb": "sha256-L+8qE0Dli4EyRH38AOfyeLr9ojQtpSTJPa3G7nTEdeA="
     },
     "runtime": {
       "dotnet.7.0.11.owucaeanmw.js": "sha256-RtIVigdAD1mUvR4pxoKyD8kcQgw4INP81v+PVSqkeQY=",
@@ -241,10 +243,10 @@
     },
     "satelliteResources": {
       "en-US": {
-        "en-US\/DanilvarKanji.Client.resources.dll": "sha256-ddx5KCa3VHSP2k4XJQMP\/lNtqfxXi3DuEUvOupk2rSA="
+        "en-US\/DanilvarKanji.Client.resources.dll": "sha256-UOKgnJiEW6stEJoLho\/7ou\/oSHWi0Ltb8UxBbsNLfog="
       },
       "ru-RU": {
-        "ru-RU\/DanilvarKanji.Client.resources.dll": "sha256-p3dhN93bgqPFcm6+ikY9\/amlRLQwvNUcrJDJGNu7XH4="
+        "ru-RU\/DanilvarKanji.Client.resources.dll": "sha256-lX9UvNoTWpfRENRjlr\/1NNh2e3oRJuBubS0SOBSrPvg="
       }
     }
   }

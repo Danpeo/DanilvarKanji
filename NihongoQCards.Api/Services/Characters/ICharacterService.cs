@@ -17,4 +17,6 @@ public interface ICharacterService
 
     Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
         Culture culture);
+
+    Task<IEnumerable<CharacterDto>> ListChildCharacters(string id);
 }

@@ -71,7 +71,7 @@ public class CharacterService : ICharacterService
         try
         {
             HttpResponseMessage response =
-                await _httpClient.GetAsync($"api/Characters/{id}/KanjiMeanings?takeQty={takeQty}&culture={culture}");
+                await _httpClient.GetAsync($"api/Characters/{id}:KanjiMeanings?takeQty={takeQty}&culture={culture}");
 
             if (response.IsSuccessStatusCode)
             {

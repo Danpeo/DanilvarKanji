@@ -2,5 +2,7 @@ namespace DanilvarKanji.Client.Localization.LocaleKeys;
 
 public enum AppLocaleKeys
 {
-    Language
+    Language,
+    NotEmptyCharDef,
+    ValueTooLong
 }

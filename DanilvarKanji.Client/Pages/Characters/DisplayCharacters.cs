@@ -16,12 +16,12 @@ public partial class DisplayCharacters
     [Parameter] public int TakeQty { get; set; } = 2;
 
     private Culture _culture = Culture.EnUS;
-    private Dictionary<string, List<string>>? _allKanjiMeanings = new();
+    private Dictionary<string, List<string>>? _kanjiMeanings = new();
 
     protected override async Task OnInitializedAsync()
     {
         await GetCurrentCulture();
-        _allKanjiMeanings = await CharacterService!.SetKanjiMeanings(CharacterItems, TakeQty, _culture);
+        _kanjiMeanings = await CharacterService!.SetKanjiMeanings(CharacterItems, TakeQty, _culture);
     }
 
     private async Task GetCurrentCulture()

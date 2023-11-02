@@ -41,8 +41,11 @@
             <div class="drawer-content">
                 <div class="trail-details">
                     <h1 class="txt-mid-pink display-1 text-center jap-font">
-                        @CharacterService.GetCharacterMnemonicByCulture(_activeCharacter, _culture)
+                        @_activeCharacter.Definition
                     </h1>
+                    <h3 class="txt-light-pink display-3 main-font">
+                        <DisplayKanjiMeanings CharacterId="@_activeCharacter.Id" KanjiMeanings="_kanjiMeanings" DisplayStyle="display-4"/>
+                    </h3>
                     <h6 class="mb-3 text-muted">
                         <span class="oi oi-map-marker"></span>@_activeCharacter.JlptLevel
                     </h6>

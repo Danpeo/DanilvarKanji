@@ -24,4 +24,10 @@
     <data name="Naruto" xml:space="preserve">
         <value>Наруто</value>
     </data>
+    <data name="NotEmptyCharDef" xml:space="preserve">
+        <value>Пожалуйста введите определение</value>
+    </data>
+    <data name="ValueTooLong" xml:space="preserve">
+        <value>Значение не может быть больше чем </value>
+    </data>
 </root>

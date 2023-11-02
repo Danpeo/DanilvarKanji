@@ -1,14 +1,14 @@
-<p class="card-text display-7 txt-light-pink main-font">
-    @if (AllKanjiMeanings.ContainsKey(CharacterId))
+<p class="card-text @DisplayStyle txt-light-pink main-font">
+    @if (KanjiMeanings.ContainsKey(CharacterId))
     {
-        for (var i = 0; i < AllKanjiMeanings[CharacterId].Count; i++)
+        for (var i = 0; i < KanjiMeanings[CharacterId].Count; i++)
         {
-            string kanjiMeaning = AllKanjiMeanings[CharacterId][i];
+            string kanjiMeaning = KanjiMeanings[CharacterId][i];
             string resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
 
             @resultMeaning
 
-            if (i < AllKanjiMeanings[CharacterId].Count - 1)
+            if (i < KanjiMeanings[CharacterId].Count - 1)
             {
                 <span>, </span>
             }
@@ -19,9 +19,12 @@
 @code {
 
     [Parameter, EditorRequired]
-    public Dictionary<string, List<string>> AllKanjiMeanings { get; set; } = default!;
+    public Dictionary<string, List<string>> KanjiMeanings { get; set; } = default!;
 
     [Parameter, EditorRequired]
     public string CharacterId { get; set; } = default!;
+
+    [Parameter]
+    public string DisplayStyle { get; set; } = "display-7";
 
 }

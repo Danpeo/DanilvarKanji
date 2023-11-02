@@ -23,5 +23,5 @@ builder.Services.AddBlazoredLocalStorage();
 //await builder.Build().RunAsync();
 
 WebAssemblyHost host = builder.Build();
-await host.SetDefaultCulture(); // Retrieves local storage value and sets the thread's current culture.
+await host.SetDefaultCulture(); 
 await host.RunAsync();

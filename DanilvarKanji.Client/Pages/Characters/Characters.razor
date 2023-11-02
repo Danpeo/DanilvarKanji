@@ -1,4 +1,7 @@
 @page "/Characters"
+@using DanilvarKanji.Client.Data
+
+<PageTitle>Kanji - @AppDisplaySettings.AppTitle</PageTitle>
 
 @if (CharacterItems == null)
 {
@@ -6,7 +9,7 @@
 }
 else
 {
-    <h3 class="mb-5 display-3 txt-white">Кандзи</h3>
+    <h3 class="mb-5 display-3 animated-blink main-font">Кандзи</h3>
     
     if (CharacterItems.Any())
     {
