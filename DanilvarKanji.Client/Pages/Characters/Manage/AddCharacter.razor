@@ -11,7 +11,7 @@
 </h1>
 
 <EditForm Model="_character" OnValidSubmit="HandleSubmit">
-    <FluentValidationValidator />
+    <FluentValidationValidator/>
 
     <FormSection Title="Character Basic Details" HelpText="Character basic details common for all cultures">
 
@@ -39,21 +39,25 @@
 
         <FormFieldSet Label="Stroke Count" LabelFor="strokeCount" HelpText="">
             <InputNumber @bind-Value="_character.StrokeCount" class="form-control bg-secondary txt-white no-border" id="strokeCount" placeholder="Stroke Count"/>
+            <ValidationMessage For="@(() => _character.StrokeCount)"/>
         </FormFieldSet>
     </FormSection>
 
     <FormSection Title="Character Definitions" HelpText="Add Character Definitions with different cultures">
         <DynamicStringDefinition StringDefinitions="_character.Mnemonics" AddButtonText="Add Mnemonic"/>
+        <ValidationMessage For="@(() => _character.Mnemonics)"/>
     </FormSection>
 
-    <FormSection Title="Kunyomi Readings" HelpText="Add kunyomi readings">
-        <AddKunyomis Kunyomis="_character.Kunyomis"/>
-    </FormSection>
+    @if (_character.CharacterType == CharacterType.Kanji)
+    {
+        <FormSection Title="Kunyomi Readings" HelpText="Add kunyomi readings">
+            <AddKunyomis Kunyomis="_character.Kunyomis"/>
+        </FormSection>
 
-    <FormSection Title="Onyomi Readings" HelpText="Add onyomi readings">
-        <AddOnyomis Onyomis="_character.Onyomis"/>
-    </FormSection>
-
+        <FormSection Title="Onyomi Readings" HelpText="Add onyomi readings">
+            <AddOnyomis Onyomis="_character.Onyomis"/>
+        </FormSection>
+    }
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">

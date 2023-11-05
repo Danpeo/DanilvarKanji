@@ -1,20 +1,19 @@
 @using DanilvarKanji.Shared.Models
+@using WanaKanaNet
 
 @foreach (Kunyomi kunyomi in Kunyomis)
 {
     <div class="row">
         <div class="col mb-3">
             <div class="form-group">
-                <InputText @bind-Value="@kunyomi.JapaneseWriting" class="form-control bg-secondary txt-white no-border" id="japWriting" placeholder="Japanese Writing"/>
+                <InputText @bind-Value="@kunyomi.JapaneseWriting" class="form-control bg-secondary txt-white no-border" id="japWriting" placeholder="Japanese Writing" @oninput="HandleInput"/>
             </div>
         </div>
-
         <div class="col mb-3">
             <div class="form-group">
                 <InputText @bind-Value="@kunyomi.Romaji" class="form-control bg-secondary txt-white no-border" id="romaji" placeholder="Romaji"/>
             </div>
         </div>
-
         <div class="col mb-3">
             <button @onclick="@(() => Kunyomis.Remove(kunyomi))" class="btn btn-link" type="button">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -34,4 +33,24 @@
 {
     [Parameter, EditorRequired]
     public ICollection<Kunyomi> Kunyomis { get; set; } = default!;
+    private Kunyomi kunyomi = new Kunyomi(); // Замените MyModel на вашу модель
+
+    private string _convertedText = string.Empty;
+    
+    private void ConvertToHiragana(Kunyomi kunyomi)
+    {
+        string romajiInput = kunyomi.JapaneseWriting;
+        string hiraganaOutput = WanaKana.ToHiragana(romajiInput);
+        kunyomi.JapaneseWriting = hiraganaOutput;
+    }
+
+    private string JapaneseWriting = "";
+
+    private void HandleInput(ChangeEventArgs e)
+    {
+        string inputText = e.Value.ToString(); // Получите введенный текст
+        string modifiedText = "hihi"; // Преобразуйте текст
+
+        JapaneseWriting = modifiedText;
+    }
 }

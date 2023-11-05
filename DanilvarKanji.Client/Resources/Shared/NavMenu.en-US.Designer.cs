@@ -76,5 +76,23 @@ namespace DanilvarKanji.Client.Resources.Shared {
                 return ResourceManager.GetString("Kanji", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A character should contain at least one meaning.
+        /// </summary>
+        internal static string NoMeanings {
+            get {
+                return ResourceManager.GetString("NoMeanings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a value.
+        /// </summary>
+        internal static string NotEmptyValue {
+            get {
+                return ResourceManager.GetString("NotEmptyValue", resourceCulture);
+            }
+        }
     }
 }

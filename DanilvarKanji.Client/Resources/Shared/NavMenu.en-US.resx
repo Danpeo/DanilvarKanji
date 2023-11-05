@@ -24,4 +24,10 @@
     <data name="Kanji" xml:space="preserve">
         <value>Kanji</value>
     </data>
+    <data name="NoMeanings" xml:space="preserve">
+        <value>A character should contain at least one meaning</value>
+    </data>
+    <data name="NotEmptyValue" xml:space="preserve">
+        <value>Please enter a value</value>
+    </data>
 </root>

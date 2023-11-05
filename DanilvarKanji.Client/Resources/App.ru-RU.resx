@@ -30,4 +30,19 @@
     <data name="ValueTooLong" xml:space="preserve">
         <value>Значение не может быть больше чем </value>
     </data>
+    <data name="NotEmptyStrokeCount" xml:space="preserve">
+        <value>Пожалуйста введите количество штрихов</value>
+    </data>
+    <data name="NoMnemonics" xml:space="preserve">
+        <value>Иероглиф должен содержать хотя бы одну мнемонику</value>
+    </data>
+    <data name="NoMeanings" xml:space="preserve">
+        <value>Иероглиф должен содержать хотя бы одно значение</value>
+    </data>
+    <data name="NotFound" xml:space="preserve">
+        <value>Не найдено</value>
+    </data>
+    <data name="NothingAtAddress" xml:space="preserve">
+        <value>Извините, на этом адресе ничего не найдено.</value>
+    </data>
 </root>

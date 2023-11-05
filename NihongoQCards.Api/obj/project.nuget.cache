@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ngNNKKF8eYgDzBWS5Es8hRP3W7BvbC9gIiKtOeL906ylwQ/jG9vM3jqsUQat7cibXSqNDt+ZWsVqoPzRgGXIlg==",
+  "dgSpecHash": "IleMUOIIhUj8PhjXT768ij6qaE4PUTLzRk+CZOztCa6oQpKjQ6EbM5EhWSG4BOk0k1iKqRZlIynpjyZUlPR0qA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\NihongoQCards.Api\\DanilvarKanji.Api.csproj",
   "expectedPackageFiles": [
@@ -171,7 +171,8 @@
     "C:\\Users\\danil\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\danil\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\wanakana-net\\1.0.0\\wanakana-net.1.0.0.nupkg.sha512"
   ],
   "logs": []
 }

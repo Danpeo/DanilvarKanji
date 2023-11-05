@@ -112,7 +112,34 @@ public class CharacterService : ICharacterService
         character.Mnemonics
             .FirstOrDefault(x => x.Culture == culture)
             ?.Value;
-    
+
+    public async Task<IEnumerable<CharacterDto>> ListCharactersFilteredBy(string filter, string term)
+    {
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters?$filter={filter.ToLower()} eq '{term}'");
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return Enumerable.Empty<CharacterDto>();
+                }
+
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterDto>>() ??
+                       Array.Empty<CharacterDto>();
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        } 
+    }
+
     public async Task<HttpResponseMessage> AddCharacterAsync(CharacterDto character)
     {
         return await _httpClient.PostAsJsonAsync("api/characters", character);

@@ -1,11 +1,12 @@
 @using DanilvarKanji.Shared.Models
+@using WanaKanaNet
 
 @foreach (Onyomi onyomi in Onyomis)
 {
     <div class="row">
         <div class="col mb-3">
             <div class="form-group">
-                <InputText @bind-Value="@onyomi.JapaneseWriting" class="form-control bg-secondary txt-white no-border" id="japWriting" placeholder="Japanese Writing"/>
+                <InputText @bind-Value="@onyomi.JapaneseWriting" @oninput="ConvertToKatakana" class="form-control bg-secondary txt-white no-border" id="japWriting" placeholder="Japanese Writing"/>
             </div>
         </div>
 
@@ -34,4 +35,13 @@
 {
     [Parameter, EditorRequired]
     public ICollection<Onyomi> Onyomis { get; set; } = default!;
+    
+    private string _convertedText = string.Empty;
+
+    private void ConvertToKatakana(ChangeEventArgs e)
+    {
+        string romajiInput = e.Value.ToString();
+        string katakanaOutput = WanaKana.ToKatakana(romajiInput);
+        _convertedText = katakanaOutput;
+    }
 }

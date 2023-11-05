@@ -11,6 +11,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
         <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13" />
         <PackageReference Include="Microsoft.OData.ModelBuilder" Version="1.0.9" />
+        <PackageReference Include="WanaKana-net" Version="1.0.0" />
         
     </ItemGroup>
 

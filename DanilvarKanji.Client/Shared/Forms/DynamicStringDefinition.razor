@@ -4,10 +4,13 @@
 
 @foreach (StringDefinition definition in StringDefinitions)
 {
+    <FluentValidationValidator/>
+
     <div class="row">
         <div class="col mb-3">
             <div class="form-group">
                 <InputText @bind-Value="@definition.Value" class="form-control bg-secondary txt-white no-border" id="value" placeholder="Value"/>
+                <ValidationMessage For="() => definition.Value"/>
             </div>
         </div>
 
@@ -40,7 +43,7 @@
 {
     [Parameter, EditorRequired]
     public ICollection<StringDefinition> StringDefinitions { get; set; } = default!;
-    
-    [Parameter, EditorRequired]
-    public string AddButtonText { get; set; } = default!;
+
+    [Parameter]
+    public string AddButtonText { get; set; } = "+";
 }

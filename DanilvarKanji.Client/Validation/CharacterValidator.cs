@@ -11,8 +11,24 @@ public class CharacterValidator : AbstractValidator<CharacterDto>
     {
         RuleFor(x => x.Definition)
             .NotEmpty()
-            .WithMessage(localizer[nameof(AppLocaleKeys.NotEmptyCharDef)])
-            .MaximumLength(1)
-            .WithMessage($"{localizer[nameof(AppLocaleKeys.ValueTooLong)]}1");
+            .WithMessage(localizer[nameof(AppLocaleKeys.NotEmptyCharDef)]);
+        
+        RuleFor(x => x.StrokeCount)
+            .NotEmpty()
+            .WithMessage(localizer[nameof(AppLocaleKeys.NotEmptyStrokeCount)])
+            .GreaterThan(0)
+            .WithMessage($"{localizer[nameof(AppLocaleKeys.ValueTooLong)]}0");
+
+        RuleFor(x => x.Mnemonics)
+            .NotEmpty()
+            .WithMessage(localizer[nameof(AppLocaleKeys.NoMnemonics)])
+            .NotNull()
+            .WithMessage(localizer[nameof(AppLocaleKeys.NoMnemonics)]);
+        
+        RuleFor(x => x.KanjiMeanings)
+            .NotEmpty()
+            .WithMessage(localizer["NoMeanings"])
+            .NotNull()
+            .WithMessage(localizer["NoMeanings"]);
     }
 }

@@ -24,4 +24,10 @@
     <data name="Home" xml:space="preserve">
         <value>Главная</value>
     </data>
+    <data name="NoMeanings" xml:space="preserve">
+        <value>Иероглиф должен содержать хотя бы одно значение</value>
+    </data>
+    <data name="NotEmptyValue" xml:space="preserve">
+        <value>Пожалуйста введите значение</value>
+    </data>
 </root>

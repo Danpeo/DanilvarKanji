@@ -1,0 +1,42 @@
+@using WanaKanaNet
+
+@*
+<input @CssClass type="text" @onchange="SetJapaneseText" value="@_text" />
+*@
+
+@*<input type="text" @attributes=AdditionalAttributes  @oninput="SetJapText" class=@CssClass @bind="@CurrentValueAsString" @oninput="SetJapText"/>
+<p>@WanaKana.ToHiragana(Value ?? string.Empty)</p>
+
+@code {
+    
+    protected override bool TryParseValueFromString(string? value, out string result, out string? validationErrorMessage)
+    {
+        result = WanaKana.ToHiragana(value);
+        validationErrorMessage = null;
+        return true;
+    }
+
+    private void SetJapText()
+    {
+        if (CurrentValueAsString != null) CurrentValueAsString = WanaKana.ToHiragana(CurrentValueAsString);
+    }
+}*@
+
+<input type="text" @bind="inputText" @oninput="UpdateText" />
+
+<p>@outputText</p>
+
+@code {
+    private string inputText = "";
+    private string outputText = "";
+
+    private void UpdateText(ChangeEventArgs e)
+    {
+        string newText = "";
+        foreach (char c in inputText)
+        {
+            newText += c + "2";
+        }
+        outputText = newText;
+    }
+}

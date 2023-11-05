@@ -78,11 +78,56 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Иероглиф должен содержать хотя бы одно значение.
+        /// </summary>
+        internal static string NoMeanings {
+            get {
+                return ResourceManager.GetString("NoMeanings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Иероглиф должен содержать хотя бы одну мнемонику.
+        /// </summary>
+        internal static string NoMnemonics {
+            get {
+                return ResourceManager.GetString("NoMnemonics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пожалуйста введите определение.
         /// </summary>
         internal static string NotEmptyCharDef {
             get {
                 return ResourceManager.GetString("NotEmptyCharDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пожалуйста введите количество штрихов.
+        /// </summary>
+        internal static string NotEmptyStrokeCount {
+            get {
+                return ResourceManager.GetString("NotEmptyStrokeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не найдено.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Извините, на этом адресе ничего не найдено..
+        /// </summary>
+        internal static string NothingAtAddress {
+            get {
+                return ResourceManager.GetString("NothingAtAddress", resourceCulture);
             }
         }
         

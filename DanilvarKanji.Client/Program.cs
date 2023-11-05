@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DanilvarKanji.Client;
 using DanilvarKanji.Client.Extensions;
 using DanilvarKanji.Client.Localization;
+using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Characters;
+using DanilvarKanji.Shared.DTO;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -16,6 +18,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7106/") });
 
 builder.Services.AddScoped<ICharacterService, CharacterService>();
+builder.Services.AddScoped<IBaseQueryService<CharacterDto>, BaseQueryService<CharacterDto>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 
 builder.Services.AddBlazoredLocalStorage();

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "11cvFgWfB7XpAwZQcA5oA/cI3WX/H+pmZ93saOl7TwsOeoEZS5+GzVqc2euSPXFbIrlmv+xECk4Kd6LaEoQ95Q==",
+  "dgSpecHash": "bvCqCAciq/cUpi7cPMOB3yseEZs13Wu04Rdb8rvpBJEv+aeKGY/u7uEpvbfMU0UOi2QHCmeN3ded00KwSrce7A==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj",
   "expectedPackageFiles": [
@@ -31,7 +31,8 @@
     "C:\\Users\\danil\\.nuget\\packages\\system.componentmodel.annotations\\4.6.0\\system.componentmodel.annotations.4.6.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.text.encodings.web\\4.6.0\\system.text.encodings.web.4.6.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\system.text.json\\4.6.0\\system.text.json.4.6.0.nupkg.sha512"
+    "C:\\Users\\danil\\.nuget\\packages\\system.text.json\\4.6.0\\system.text.json.4.6.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\wanakana-net\\1.0.0\\wanakana-net.1.0.0.nupkg.sha512"
   ],
   "logs": []
 }

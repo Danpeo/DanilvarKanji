@@ -14,7 +14,7 @@ public class CharacterDto
     public ICollection<StringDefinition>? Mnemonics { get; set; } = new List<StringDefinition>();
     
     public int? StrokeCount { get; set; }
-    public ICollection<KanjiMeaning>? KanjiMeanings { get; set; }
+    public ICollection<KanjiMeaning>? KanjiMeanings { get; set; } = new List<KanjiMeaning>();
     public ICollection<Kunyomi>? Kunyomis { get; set; } = new List<Kunyomi>();
     public ICollection<Onyomi>? Onyomis { get; set; } = new List<Onyomi>();
     public ICollection<Word>? Words { get; set; }

@@ -1,0 +1,42 @@
+@using DanilvarKanji.Client.Services
+@typeparam TItem
+
+<div class="jumbotron">
+    <p class="mt-4">
+        <input @onkeydown="SearchForTrail"
+               @bind="_searchTerm"
+               @bind:event="oninput"
+               type="text"
+               placeholder="Search for a trail..."
+               class="form-control form-control-lg" />
+    </p>
+</div>
+
+
+@code {
+
+    [Parameter, EditorRequired]
+    public IEnumerable<TItem> Items { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string ItemsString { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string Filter { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string Term { get; set; } = default!;
+
+    [Inject]
+    public IBaseQueryService<TItem> BaseQueryService { get; set; } = default!;
+    
+    private string _searchTerm = "";
+
+    private async Task SearchForTrail(KeyboardEventArgs args)
+    {
+        if (args.Key != "Enter") 
+            return;
+
+        Items = await BaseQueryService.ListItemsFilteredBy(ItemsString, Filter, Term);
+    }
+}

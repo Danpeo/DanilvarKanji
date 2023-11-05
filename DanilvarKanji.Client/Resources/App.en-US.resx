@@ -30,4 +30,19 @@
     <data name="ValueTooLong" xml:space="preserve">
         <value>The value must not exceed </value>
     </data>
+    <data name="NotEmptyStrokeCount" xml:space="preserve">
+        <value>Please enter stroke count</value>
+    </data>
+    <data name="NoMnemonics" xml:space="preserve">
+        <value>A character should contain at least one mnemonic</value>
+    </data>
+    <data name="NoMeanings" xml:space="preserve">
+        <value>A character should contain at least one meaning</value>
+    </data>
+    <data name="NotFound" xml:space="preserve">
+        <value>Not Found</value>
+    </data>
+    <data name="NothingAtAddress" xml:space="preserve">
+        <value>Sorry, there's nothing at this address.</value>
+    </data>
 </root>

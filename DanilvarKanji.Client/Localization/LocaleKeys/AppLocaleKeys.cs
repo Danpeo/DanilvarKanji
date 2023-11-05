@@ -4,5 +4,7 @@ public enum AppLocaleKeys
 {
     Language,
     NotEmptyCharDef,
-    ValueTooLong
+    NotEmptyStrokeCount,
+    ValueTooLong,
+    NoMnemonics
 }

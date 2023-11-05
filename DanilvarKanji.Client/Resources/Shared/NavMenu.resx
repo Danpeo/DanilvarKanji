@@ -14,4 +14,10 @@
     <data name="Home" xml:space="preserve">
         <value />
     </data>
+    <data name="NoMeanings" xml:space="preserve">
+        <value />
+    </data>
+    <data name="NotEmptyValue" xml:space="preserve">
+        <value />
+    </data>
 </root>

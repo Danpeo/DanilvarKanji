@@ -78,11 +78,56 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A character should contain at least one meaning.
+        /// </summary>
+        internal static string NoMeanings {
+            get {
+                return ResourceManager.GetString("NoMeanings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A character should contain at least one mnemonic.
+        /// </summary>
+        internal static string NoMnemonics {
+            get {
+                return ResourceManager.GetString("NoMnemonics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a definition.
         /// </summary>
         internal static string NotEmptyCharDef {
             get {
                 return ResourceManager.GetString("NotEmptyCharDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter stroke count.
+        /// </summary>
+        internal static string NotEmptyStrokeCount {
+            get {
+                return ResourceManager.GetString("NotEmptyStrokeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Found.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, there&apos;s nothing at this address..
+        /// </summary>
+        internal static string NothingAtAddress {
+            get {
+                return ResourceManager.GetString("NothingAtAddress", resourceCulture);
             }
         }
         

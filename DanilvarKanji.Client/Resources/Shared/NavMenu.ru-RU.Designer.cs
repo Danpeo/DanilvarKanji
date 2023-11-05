@@ -76,5 +76,23 @@ namespace DanilvarKanji.Client.Resources.Shared {
                 return ResourceManager.GetString("Kanji", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Иероглиф должен содержать хотя бы одно значение.
+        /// </summary>
+        internal static string NoMeanings {
+            get {
+                return ResourceManager.GetString("NoMeanings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пожалуйста введите значение.
+        /// </summary>
+        internal static string NotEmptyValue {
+            get {
+                return ResourceManager.GetString("NotEmptyValue", resourceCulture);
+            }
+        }
     }
 }
