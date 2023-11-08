@@ -102,3 +102,20 @@
     background-color: var(--pink-color-mid);
     border-color: var(--pink-color-mid);
 }
+
+
+.round-button {
+    width: 50px; /* Задайте желаемую ширину и высоту кнопки */
+    height: 50px;
+    border-radius: 50%; /* Задайте радиус, равный половине ширины (или высоты), чтобы сделать кнопку круглой */
+    background-color: var(--pink-color-light); /* Цвет фона кнопки */
+    color: var(--dark-color-main); /* Цвет текста кнопки */
+    text-align: center;
+    line-height: 50px; /* Выравнивание текста по центру вертикально */
+    text-decoration: none; /* Убрать подчеркивание при наведении */
+}
+
+.round-button:hover {
+    background-color: var(--pink-color-mid); /* Цвет фона при наведении */
+    /* Дополнительные стили для состояния наведения, если необходимо */
+}

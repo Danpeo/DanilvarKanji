@@ -5,7 +5,8 @@
 @inject IStringLocalizer<App> Loc
 
 <span class="custom-select txt-bright-pink">
-    @Loc[nameof(AppLocaleKeys.Language)]&nbsp;
+    <i class="fa fa-language txt-mid-pink"></i>
+    
     <select class="styled-select bg-secondary txt-white" @onchange="NewCultureSelectedAsync">
         @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
         {
@@ -31,7 +32,9 @@
         if (culture == "")
             SelectedCulture = LocalizerSettings.NeutralCulture;
         else
-            SelectedCulture = (LocalizerSettings.SupportedCulturesWithName.Where(x => x.Culture == culture)).FirstOrDefault();
+            SelectedCulture = (LocalizerSettings.SupportedCulturesWithName
+                .Where(x => x.Culture == culture))
+                .FirstOrDefault();
     }
 
     private async Task NewCultureSelectedAsync(ChangeEventArgs args)

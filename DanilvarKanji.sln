@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanilvarKanji.Shared", "Dan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanilvarKanji.Client", "DanilvarKanji.Client\DanilvarKanji.Client.csproj", "{C5EDEE28-542C-41E3-BCA2-CB8B52CB5B0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Danilvar.Components", "Danilvar.Components\Danilvar.Components.csproj", "{F7BCB5EF-3F27-424F-84C3-918693D6C450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Danilvar.SmartEnum", "Danilvar.SmartEnum\Danilvar.SmartEnum.csproj", "{9DA6C0ED-F652-4317-990E-C6B59FAEA020}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C5EDEE28-542C-41E3-BCA2-CB8B52CB5B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5EDEE28-542C-41E3-BCA2-CB8B52CB5B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5EDEE28-542C-41E3-BCA2-CB8B52CB5B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7BCB5EF-3F27-424F-84C3-918693D6C450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7BCB5EF-3F27-424F-84C3-918693D6C450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7BCB5EF-3F27-424F-84C3-918693D6C450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7BCB5EF-3F27-424F-84C3-918693D6C450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA6C0ED-F652-4317-990E-C6B59FAEA020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA6C0ED-F652-4317-990E-C6B59FAEA020}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA6C0ED-F652-4317-990E-C6B59FAEA020}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA6C0ED-F652-4317-990E-C6B59FAEA020}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

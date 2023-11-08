@@ -22,6 +22,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
+        <ProjectReference Include="..\Danilvar.Components\Danilvar.Components.csproj" />
     </ItemGroup>
 
     <ItemGroup>

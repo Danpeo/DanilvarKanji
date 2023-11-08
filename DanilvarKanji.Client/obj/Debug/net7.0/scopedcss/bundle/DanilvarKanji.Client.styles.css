@@ -1,3 +1,5 @@
+@import '_content/Danilvar.Components/Danilvar.Components.bundle.scp.css';
+
 /* /Pages/Characters/CharacterDetails.razor.rz.scp.css */
 .drawer-mask[b-igrduns1kb] {
     visibility: hidden;

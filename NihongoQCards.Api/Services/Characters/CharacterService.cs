@@ -4,8 +4,10 @@ using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
 using DanilvarKanji.Shared.DTO;
 using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Models.Common;
 using DanilvarKanji.Shared.Models.Enums;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace DanilvarKanji.Services.Characters;
 
@@ -29,9 +31,9 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
         return await SaveAsync();
     }
 
-    public async Task<IEnumerable<CharacterDto>> ListAsync()
+    public async Task<IEnumerable<CharacterDto>> ListAsync(PaginationParams? paginationParams)
     {
-        List<Character> characters = await GetCharactersWithRelatedData()
+        List<Character> characters = await GetCharactersWithRelatedData(paginationParams)
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<CharacterDto>>(characters);
@@ -69,12 +71,46 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
             foreach (string childCharacterId in character.ChildCharacterIds)
             {
                 Character? child = Context.Characters.FirstOrDefault(x => x.Id == childCharacterId);
-                
-                if (child != null) 
+
+                if (child != null)
                     childCharacters.Add(child);
             }
 
         return _mapper.Map<IEnumerable<CharacterDto>>(childCharacters);
+    }
+
+    public async Task<IEnumerable<CharacterDto>> SearchAsync(string searchTerm, PaginationParams paginationParams)
+    {
+        if (string.IsNullOrEmpty(searchTerm) || searchTerm.ToLower() == "any")
+            return await ListAsync(paginationParams);
+
+        /*List<Character> query = await Context.Characters
+            .Where(x => x.Definition != null && x.Definition.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                        x.KanjiMeanings != null && x.KanjiMeanings.Any(kanjiMeaning =>
+                            kanjiMeaning.Definitions != null && kanjiMeaning.Definitions.Any(stringDefinition =>
+                                stringDefinition.Value.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))) ||
+                        x.Kunyomis != null && x.Kunyomis.Any(kunyomi =>
+                            kunyomi.Romaji != null &&
+                            (kunyomi.JapaneseWriting.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                             kunyomi.Romaji.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))) ||
+                        x.Onyomis != null && x.Onyomis.Any(onyomi =>
+                            onyomi.Romaji != null &&
+                            (onyomi.JapaneseWriting.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                             onyomi.Romaji.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))).ToListAsync();*/
+
+        List<Character> query = await Context.Characters
+            .Where(x =>
+                EF.Functions.ILike(x.Definition, $"%{searchTerm}%") ||
+                x.KanjiMeanings.Any(km => km.Definitions.Any(d => EF.Functions.ILike(d.Value, $"%{searchTerm}%"))) ||
+                x.Kunyomis.Any(k =>
+                    EF.Functions.ILike(k.JapaneseWriting, $"%{searchTerm}%") ||
+                    EF.Functions.ILike(k.Romaji, $"%{searchTerm}%")) ||
+                x.Onyomis.Any(o =>
+                    EF.Functions.ILike(o.JapaneseWriting, $"%{searchTerm}%") ||
+                    EF.Functions.ILike(o.Romaji, $"%{searchTerm}%")))
+            .ToListAsync();
+
+        return _mapper.Map<IEnumerable<CharacterDto>>(query);
     }
 
     public async Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields)
@@ -149,9 +185,9 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
     public Task<bool> AnyExist() =>
         Context.Characters.AnyAsync();
 
-    private IQueryable<Character> GetCharactersWithRelatedData()
+    private IQueryable<Character> GetCharactersWithRelatedData(PaginationParams? paginationParams = null)
     {
-        return Context.Characters
+        var characters = Context.Characters
             .Include(x => x.Mnemonics)
             .Include(x => x.KanjiMeanings)
             .ThenInclude(x => x.Definitions)
@@ -159,5 +195,14 @@ public class CharacterService : Service<ApplicationDbContext>, ICharacterService
             .Include(x => x.Onyomis)
             .Include(x => x.Words)
             .ThenInclude(x => x.WordMeanings);
+
+        if (paginationParams != null && paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
+        {
+            return characters
+                .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)
+                .Take(paginationParams.PageSize);
+        }
+
+        return characters;
     }
 }

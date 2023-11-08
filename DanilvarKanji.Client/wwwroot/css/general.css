@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/arrow-down-o.css');
 
 img {
     transition: 0.5s ease-in-out;
@@ -19,22 +20,6 @@ img {
 
 .main-font {
     font-family: 'Didact Gothic', sans-serif;
-}
-
-.round-button {
-    width: 50px; /* Задайте желаемую ширину и высоту кнопки */
-    height: 50px;
-    border-radius: 50%; /* Задайте радиус, равный половине ширины (или высоты), чтобы сделать кнопку круглой */
-    background-color: #007bff; /* Цвет фона кнопки */
-    color: #fff; /* Цвет текста кнопки */
-    text-align: center;
-    line-height: 50px; /* Выравнивание текста по центру вертикально */
-    text-decoration: none; /* Убрать подчеркивание при наведении */
-}
-
-.round-button:hover {
-    background-color: #0056b3; /* Цвет фона при наведении */
-    /* Дополнительные стили для состояния наведения, если необходимо */
 }
 
 .pointer-cursor {
@@ -97,6 +82,8 @@ a {
     text-decoration: none;
     transition: font-size 0.2s, font-weight 0.2s;
 }
+
+
 
 
 

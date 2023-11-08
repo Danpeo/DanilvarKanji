@@ -3,19 +3,10 @@
 
 <PageTitle>Kanji - @AppDisplaySettings.AppTitle</PageTitle>
 
-@if (CharacterItems == null)
-{
-    <DisplayLoading></DisplayLoading>
-}
-else
-{
-    <h3 class="mb-5 display-3 animated-blink main-font">Кандзи</h3>
-    
-    if (CharacterItems.Any())
-    {
-        <CharacterDetails Character="_selectedCharacter"/>
-        <div class="row mt-3">
-            <DisplayCharacters CharacterItems="CharacterItems" OnSelected="HandleTrailSelected"/>
-        </div>
-    }
-}
+
+<h3 class="mb-5 display-3 animated-blink main-font">Кандзи</h3>
+
+<CharacterDetails Character="_selectedCharacter"/>
+<div class="row mt-3">
+    <DisplayCharacters OnSelected="HandleTrailSelected"/>
+</div>

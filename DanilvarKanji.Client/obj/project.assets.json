@@ -40,10 +40,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authorization/7.0.11": {
+      "Microsoft.AspNetCore.Authorization/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "7.0.11",
+          "Microsoft.AspNetCore.Metadata": "7.0.13",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.1",
           "Microsoft.Extensions.Options": "7.0.1"
         },
@@ -58,11 +58,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/7.0.11": {
+      "Microsoft.AspNetCore.Components/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "7.0.11",
-          "Microsoft.AspNetCore.Components.Analyzers": "7.0.11"
+          "Microsoft.AspNetCore.Authorization": "7.0.13",
+          "Microsoft.AspNetCore.Components.Analyzers": "7.0.13"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Components.dll": {
@@ -75,16 +75,16 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/7.0.11": {
+      "Microsoft.AspNetCore.Components.Analyzers/7.0.13": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
         }
       },
-      "Microsoft.AspNetCore.Components.Forms/7.0.11": {
+      "Microsoft.AspNetCore.Components.Forms/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "7.0.11"
+          "Microsoft.AspNetCore.Components": "7.0.13"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Components.Forms.dll": {
@@ -97,13 +97,13 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Web/7.0.11": {
+      "Microsoft.AspNetCore.Components.Web/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "7.0.11",
-          "Microsoft.AspNetCore.Components.Forms": "7.0.11",
+          "Microsoft.AspNetCore.Components": "7.0.13",
+          "Microsoft.AspNetCore.Components.Forms": "7.0.13",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.JSInterop": "7.0.11",
+          "Microsoft.JSInterop": "7.0.13",
           "System.IO.Pipelines": "7.0.0"
         },
         "compile": {
@@ -192,7 +192,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Metadata/7.0.11": {
+      "Microsoft.AspNetCore.Metadata/7.0.13": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -646,7 +646,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.JSInterop/7.0.11": {
+      "Microsoft.JSInterop/7.0.13": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.JSInterop.dll": {
@@ -816,6 +816,19 @@
           "lib/netstandard2.0/WanaKanaNet.dll": {}
         }
       },
+      "Danilvar.Components/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.13"
+        },
+        "compile": {
+          "bin/placeholder/Danilvar.Components.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Danilvar.Components.dll": {}
+        }
+      },
       "DanilvarKanji.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -873,10 +886,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authorization/7.0.11": {
+      "Microsoft.AspNetCore.Authorization/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "7.0.11",
+          "Microsoft.AspNetCore.Metadata": "7.0.13",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.1",
           "Microsoft.Extensions.Options": "7.0.1"
         },
@@ -891,11 +904,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/7.0.11": {
+      "Microsoft.AspNetCore.Components/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "7.0.11",
-          "Microsoft.AspNetCore.Components.Analyzers": "7.0.11"
+          "Microsoft.AspNetCore.Authorization": "7.0.13",
+          "Microsoft.AspNetCore.Components.Analyzers": "7.0.13"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Components.dll": {
@@ -908,16 +921,16 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/7.0.11": {
+      "Microsoft.AspNetCore.Components.Analyzers/7.0.13": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
         }
       },
-      "Microsoft.AspNetCore.Components.Forms/7.0.11": {
+      "Microsoft.AspNetCore.Components.Forms/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "7.0.11"
+          "Microsoft.AspNetCore.Components": "7.0.13"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Components.Forms.dll": {
@@ -930,13 +943,13 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Web/7.0.11": {
+      "Microsoft.AspNetCore.Components.Web/7.0.13": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "7.0.11",
-          "Microsoft.AspNetCore.Components.Forms": "7.0.11",
+          "Microsoft.AspNetCore.Components": "7.0.13",
+          "Microsoft.AspNetCore.Components.Forms": "7.0.13",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.JSInterop": "7.0.11",
+          "Microsoft.JSInterop": "7.0.13",
           "System.IO.Pipelines": "7.0.0"
         },
         "compile": {
@@ -1025,7 +1038,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Metadata/7.0.11": {
+      "Microsoft.AspNetCore.Metadata/7.0.13": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -1479,7 +1492,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.JSInterop/7.0.11": {
+      "Microsoft.JSInterop/7.0.13": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.JSInterop.dll": {
@@ -1643,6 +1656,19 @@
           "lib/netstandard2.0/WanaKanaNet.dll": {}
         }
       },
+      "Danilvar.Components/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.13"
+        },
+        "compile": {
+          "bin/placeholder/Danilvar.Components.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Danilvar.Components.dll": {}
+        }
+      },
       "DanilvarKanji.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -1714,10 +1740,10 @@
         "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
-    "Microsoft.AspNetCore.Authorization/7.0.11": {
-      "sha512": "3zCVWaDXNO7o8mjzOoIwfB8yYqV3+t4rLp+/dB4Db4BbUKS1MK2mnXBiDST6s1QaVMEuEz+pXv58JXeh3Pv7mw==",
+    "Microsoft.AspNetCore.Authorization/7.0.13": {
+      "sha512": "aLjbkxY+0xJcsupIOqgfntFEoYV1k9K11VUpSineBfefVnSccRyYke1CmWEiYRbFsb4Q5ULAYPIlTCXrOmCpQw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authorization/7.0.11",
+      "path": "microsoft.aspnetcore.authorization/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1729,14 +1755,14 @@
         "lib/net7.0/Microsoft.AspNetCore.Authorization.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
-        "microsoft.aspnetcore.authorization.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.7.0.13.nupkg.sha512",
         "microsoft.aspnetcore.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components/7.0.11": {
-      "sha512": "+BbcKgUUrsdt9cu5XyVmTR3BpYKoPUbGYU8VNmG36+K8jkm82z4cIu5q0AOGINEIfiNfY+Pd9uqT/MnUeTC0YQ==",
+    "Microsoft.AspNetCore.Components/7.0.13": {
+      "sha512": "jAEY7107l/dVJ+a+hcQlrcJgwJL9msZWoG/3DaSWGfUHFWT4PGkJtQlxgvMCjrb3Z7PH8A0bVVNApw5qmnBJ/w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components/7.0.11",
+      "path": "microsoft.aspnetcore.components/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1744,14 +1770,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net7.0/Microsoft.AspNetCore.Components.dll",
         "lib/net7.0/Microsoft.AspNetCore.Components.xml",
-        "microsoft.aspnetcore.components.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.components.7.0.13.nupkg.sha512",
         "microsoft.aspnetcore.components.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Analyzers/7.0.11": {
-      "sha512": "s6kRCZsUuPQraMgruPRAr3Tz9rX4JpISkfKjjyA7VE4epnEtV/6QFpl4VTIr5TlR4iQhpVUBZKoKMEEgKcVp7w==",
+    "Microsoft.AspNetCore.Components.Analyzers/7.0.13": {
+      "sha512": "i/gFyeRuLYG6mB5zEFsJuVaavy5HFghpiZkRcqeFyb+rKGsUTjEQH46d+/+Rj4oPWtrhu/r0PPaR8nTtf8A/kA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.analyzers/7.0.11",
+      "path": "microsoft.aspnetcore.components.analyzers/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1760,14 +1786,14 @@
         "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
         "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
         "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
-        "microsoft.aspnetcore.components.analyzers.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.7.0.13.nupkg.sha512",
         "microsoft.aspnetcore.components.analyzers.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Forms/7.0.11": {
-      "sha512": "XbyHFap4Mirqy0YgIl3g8qa+05IXDH0Kqtb74NvW1CPI3SC58LT7iM+wEKcB+lpW/R2Vx7Yz5x1SmaqziHT3aw==",
+    "Microsoft.AspNetCore.Components.Forms/7.0.13": {
+      "sha512": "+iKnETZf8DqigGVwmuN66oPHK/JETUhlu5DbwoyvofYmprYzTDRGjGsPLdEZjiniyQFl6gG/x6hsWM9A9Sk0lg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.forms/7.0.11",
+      "path": "microsoft.aspnetcore.components.forms/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1775,14 +1801,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net7.0/Microsoft.AspNetCore.Components.Forms.dll",
         "lib/net7.0/Microsoft.AspNetCore.Components.Forms.xml",
-        "microsoft.aspnetcore.components.forms.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.7.0.13.nupkg.sha512",
         "microsoft.aspnetcore.components.forms.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Web/7.0.11": {
-      "sha512": "kUvwVcjYEdkajSSdXrgKgbdMfKERGp/Jg8KRaAMDm9ogH/Lia1C8McwbFHrixy0xAP3Zh5KUDEMgPuZeMWqqxQ==",
+    "Microsoft.AspNetCore.Components.Web/7.0.13": {
+      "sha512": "6Y5D8eekF5Gb+4Ui6RJUls3PqsHDSXoTTxs0aCSftmeoZvGJWyPBFtNXFJ9OGVE9Tbm5EplQsJbVZSkyssASYw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.web/7.0.11",
+      "path": "microsoft.aspnetcore.components.web/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1790,7 +1816,7 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net7.0/Microsoft.AspNetCore.Components.Web.dll",
         "lib/net7.0/Microsoft.AspNetCore.Components.Web.xml",
-        "microsoft.aspnetcore.components.web.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.7.0.13.nupkg.sha512",
         "microsoft.aspnetcore.components.web.nuspec"
       ]
     },
@@ -2002,10 +2028,10 @@
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Metadata/7.0.11": {
-      "sha512": "G1sQeLED6V+KoPj/6f6dtMvSOskRs38fo79hOQmuEpt+JA1dvZM//c15Hk3rQ+qqQ2D80IGAdlet2u2zlV6OXw==",
+    "Microsoft.AspNetCore.Metadata/7.0.13": {
+      "sha512": "wnQ+neovgezOP2MqAoPEeSxJFJ2a8YrW3G0zzhXzZQI2CxTo76GOB/L9i7+1KzkuBRchVnJnV0uXbzeA6qr3RA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.metadata/7.0.11",
+      "path": "microsoft.aspnetcore.metadata/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2017,7 +2043,7 @@
         "lib/net7.0/Microsoft.AspNetCore.Metadata.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
-        "microsoft.aspnetcore.metadata.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.7.0.13.nupkg.sha512",
         "microsoft.aspnetcore.metadata.nuspec"
       ]
     },
@@ -2639,10 +2665,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.JSInterop/7.0.11": {
-      "sha512": "lLNuiZJFIr+mICaqyPBlDl6pVRnDEV2uhf5mjqxg/NpqFYq59ux9995fg4duL6ZgSsc3twbdLwROy1l4XvDxeQ==",
+    "Microsoft.JSInterop/7.0.13": {
+      "sha512": "h+6J4rDJborkPb6O2Akoa+0khTTIsuYGo3NpTASglgE7ihBxkyE9FiHJAo1KmHJwh35ubosHpZ4iDc93lEwcHQ==",
       "type": "package",
-      "path": "microsoft.jsinterop/7.0.11",
+      "path": "microsoft.jsinterop/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2650,7 +2676,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.JSInterop.dll",
         "lib/net7.0/Microsoft.JSInterop.xml",
-        "microsoft.jsinterop.7.0.11.nupkg.sha512",
+        "microsoft.jsinterop.7.0.13.nupkg.sha512",
         "microsoft.jsinterop.nuspec"
       ]
     },
@@ -2975,6 +3001,11 @@
         "wanikani.png"
       ]
     },
+    "Danilvar.Components/1.0.0": {
+      "type": "project",
+      "path": "../Danilvar.Components/Danilvar.Components.csproj",
+      "msbuildProject": "../Danilvar.Components/Danilvar.Components.csproj"
+    },
     "DanilvarKanji.Shared/1.0.0": {
       "type": "project",
       "path": "../DanilvarKanji.Shared/DanilvarKanji.Shared.csproj",
@@ -2985,6 +3016,7 @@
     "net7.0": [
       "Blazored.FluentValidation >= 2.1.0",
       "Blazored.LocalStorage >= 4.4.0",
+      "Danilvar.Components >= 1.0.0",
       "DanilvarKanji.Shared >= 1.0.0",
       "FluentValidation >= 11.8.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.11",
@@ -3020,6 +3052,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj"
+            },
             "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
               "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
             }

@@ -13,11 +13,11 @@ public class CharacterService : ICharacterService
         _httpClient = httpClient;
     }
 
-    public async Task<IEnumerable<CharacterDto?>?> ListCharactersAsync()
+    public async Task<IEnumerable<CharacterDto?>?> ListCharactersAsync(int pageNumber = 0, int pageSize = 0)
     {
         try
         {
-            HttpResponseMessage response = await _httpClient.GetAsync("api/Characters");
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters?PageNumber={pageNumber}&PageSize={pageSize}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -93,7 +93,8 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<CharacterDto> CharacterItems, int takeQty, Culture culture)
+    public async Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<CharacterDto?>? CharacterItems,
+        int takeQty, Culture culture)
     {
         Dictionary<string, List<string>> allKanjiMeanings = new Dictionary<string, List<string>>();
 
@@ -118,6 +119,36 @@ public class CharacterService : ICharacterService
         try
         {
             HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters?$filter={filter.ToLower()} eq '{term}'");
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    return Enumerable.Empty<CharacterDto>();
+                }
+
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterDto>>() ??
+                       Array.Empty<CharacterDto>();
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        } 
+    }
+
+    public async Task<IEnumerable<CharacterDto>> SearchCharacters(string searchTerm)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+                searchTerm = "any";
+                
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters/{searchTerm}:Search");
 
             if (response.IsSuccessStatusCode)
             {

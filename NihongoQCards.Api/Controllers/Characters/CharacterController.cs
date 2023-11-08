@@ -1,5 +1,6 @@
 using DanilvarKanji.Services.Characters;
 using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Shared.Models.Common;
 using DanilvarKanji.Shared.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
@@ -30,14 +31,26 @@ public class CharacterController : ODataController
 
 
     [EnableQuery, HttpGet]
-    public async Task<IActionResult> ListAsync()
+    public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
         if (await _characterService.AnyExist())
         {
-            IEnumerable<CharacterDto> characters = await _characterService.ListAsync();
+            IEnumerable<CharacterDto> characters = await _characterService.ListAsync(paginationParams);
             return Ok(characters);
         }
 
+        return NotFound("No characters");
+    }
+
+    [HttpGet("{searchTerm}:Search")]
+    public async Task<IActionResult> SearchAsync( [FromQuery] PaginationParams paginationParams, string searchTerm = "any")
+    {
+        if (await _characterService.AnyExist())
+        {
+            IEnumerable<CharacterDto> characters = await _characterService.SearchAsync(searchTerm, paginationParams);
+            return Ok(characters);
+        }
+        
         return NotFound("No characters");
     }
 
