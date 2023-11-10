@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 using DanilvarKanji.Data;
 using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Extensions;
-using DanilvarKanji.Shared.Models;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.OData;

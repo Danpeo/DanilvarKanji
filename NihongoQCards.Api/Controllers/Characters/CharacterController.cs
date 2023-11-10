@@ -1,7 +1,7 @@
 using DanilvarKanji.Services.Characters;
 using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Models.Common;
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities.Common;
+using DanilvarKanji.Shared.Entities.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;

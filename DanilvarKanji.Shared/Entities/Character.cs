@@ -1,12 +1,11 @@
 using System.ComponentModel.DataAnnotations;
-using DanilvarKanji.Shared.Models.Enums;
+using Danilvar.Entity;
+using DanilvarKanji.Shared.Entities.Enums;
 
-namespace DanilvarKanji.Shared.Models;
+namespace DanilvarKanji.Shared.Entities;
 
-public class Character
+public class Character : Entity
 {
-    [Key]
-    public string Id { get; set; }
     public string? Definition { get; set; }
     //public ICollection<StringDefinition>? Definitions { get; set; }
     public JlptLevel JlptLevel { get; set; }
@@ -19,10 +18,5 @@ public class Character
     public ICollection<Word>? Words { get; set; }
 
     public List<string>? ChildCharacterIds { get; set; }
-    
-    public Character()
-    {
-        Id = Guid.NewGuid().ToString("N");
-    }
     
 }

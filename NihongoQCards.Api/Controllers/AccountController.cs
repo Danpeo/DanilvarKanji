@@ -4,7 +4,7 @@ using DanilvarKanji.Services.Auth;
 using DanilvarKanji.Services.Images;
 using DanilvarKanji.Services.Infrastructure;
 using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

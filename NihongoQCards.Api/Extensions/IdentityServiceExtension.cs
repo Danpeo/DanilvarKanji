@@ -1,6 +1,6 @@
 using System.Text;
 using DanilvarKanji.Data;
-using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;

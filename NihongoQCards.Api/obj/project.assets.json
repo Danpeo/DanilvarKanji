@@ -132,6 +132,15 @@
           }
         }
       },
+      "Danilvar.Entity/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Danilvar.Entity.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Danilvar.Entity.dll": {}
+        }
+      },
       "FastExpressionCompiler/3.3.4": {
         "type": "package",
         "compile": {
@@ -2935,6 +2944,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Danilvar.Entity": "1.0.0",
           "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Microsoft.Extensions.Localization": "7.0.13",
@@ -3067,6 +3077,19 @@
         "lib/netstandard1.3/CloudinaryDotNet.xml",
         "lib/netstandard2.0/CloudinaryDotNet.dll",
         "lib/netstandard2.0/CloudinaryDotNet.xml"
+      ]
+    },
+    "Danilvar.Entity/1.0.0": {
+      "sha512": "6vQqZsz0Cx/9gmSBz2Ea9U/zZVjwXA6+xS49PAq68mDj+3PMGgtrjAhrhsqCOzJIj1tFCq1GYyYG37IWaNyKgw==",
+      "type": "package",
+      "path": "danilvar.entity/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "danilvar.entity.1.0.0.nupkg.sha512",
+        "danilvar.entity.nuspec",
+        "lib/net7.0/Danilvar.Entity.dll"
       ]
     },
     "FastExpressionCompiler/3.3.4": {

@@ -1,7 +1,7 @@
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 
-namespace DanilvarKanji.Shared.Models;
+namespace DanilvarKanji.Shared.Entities;
 
 public class AppUser : IdentityUser
 {

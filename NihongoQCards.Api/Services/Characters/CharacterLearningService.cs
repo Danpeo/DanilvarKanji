@@ -1,8 +1,8 @@
 using DanilvarKanji.Data;
 using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Services.Common;
-using DanilvarKanji.Shared.Models;
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities;
+using DanilvarKanji.Shared.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 

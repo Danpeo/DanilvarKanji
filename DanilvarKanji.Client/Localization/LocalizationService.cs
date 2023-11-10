@@ -1,5 +1,5 @@
 using Blazored.LocalStorage;
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities.Enums;
 
 namespace DanilvarKanji.Client.Localization;
 

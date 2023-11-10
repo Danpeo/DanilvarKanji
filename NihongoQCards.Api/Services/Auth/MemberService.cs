@@ -4,7 +4,7 @@ using AutoMapper.QueryableExtensions;
 using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
 using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

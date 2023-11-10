@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using WanaKanaNet;
 
-namespace DanilvarKanji.Shared.Models.Common;
+namespace DanilvarKanji.Shared.Entities.Common;
 
 public class Reading
 {

@@ -1,16 +1,18 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace DanilvarKanji.Shared.Models;
+namespace DanilvarKanji.Shared.Entities;
 
-public class WordMeaning
+public class KanjiMeaning
 {
     [Key]
     public string Id { get; set; }
     //public string Definition { get; set; }
-    public ICollection<StringDefinition> Definitions { get; set; }
     public float? Priority { get; set; }
 
-    public WordMeaning()
+    public ICollection<StringDefinition>? Definitions { get; set; }
+    //public Character? Character { get; set; }
+
+    public KanjiMeaning()
     {
         Id = Guid.NewGuid().ToString("N");
     }

@@ -1,7 +1,7 @@
 using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities.Enums;
 using Microsoft.AspNetCore.Components;
 
 namespace DanilvarKanji.Client.Pages.Characters;

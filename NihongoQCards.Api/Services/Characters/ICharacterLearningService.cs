@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Entities;
 
 namespace DanilvarKanji.Services.Characters;
 

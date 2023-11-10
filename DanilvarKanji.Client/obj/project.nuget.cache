@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TRzAsbCGw98stoZRCHEfIzfsq9TKitYuqV8pa0U0ZWTJwijhL/+Cyz8HX4lBUiSR8MbQDX1pJ98JLX3hfE5CqQ==",
+  "dgSpecHash": "4sNczsq12705T4HRUppWnm/78mtINuU6traMjFwMegbON1UlFGmx6fNgucw3xF4DiGunqeX8jagc//LLzDX37w==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\blazored.fluentvalidation\\2.1.0\\blazored.fluentvalidation.2.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.13\\microsoft.aspnetcore.authorization.7.0.13.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.13\\microsoft.aspnetcore.components.7.0.13.nupkg.sha512",

@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Entities;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 

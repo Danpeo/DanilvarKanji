@@ -1,7 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
-
-namespace DanilvarKanji.Shared.Models.Enums;
+namespace DanilvarKanji.Shared.Entities.Enums;
 
 public enum JlptLevel
 {

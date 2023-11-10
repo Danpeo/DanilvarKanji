@@ -1,4 +1,4 @@
-namespace DanilvarKanji.Shared.Models;
+namespace DanilvarKanji.Shared.Entities;
 
 public class Image
 {

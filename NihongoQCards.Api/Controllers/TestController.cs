@@ -1,5 +1,5 @@
 using DanilvarKanji.Data;
-using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DanilvarKanji.Controllers;

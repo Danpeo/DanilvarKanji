@@ -1,6 +1,6 @@
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities.Enums;
 
-namespace DanilvarKanji.Shared.Models;
+namespace DanilvarKanji.Shared.Entities;
 
 public class LearningProgress
 {

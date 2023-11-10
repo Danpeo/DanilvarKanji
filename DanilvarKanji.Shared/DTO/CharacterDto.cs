@@ -1,5 +1,5 @@
-using DanilvarKanji.Shared.Models;
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities;
+using DanilvarKanji.Shared.Entities.Enums;
 
 namespace DanilvarKanji.Shared.DTO;
 

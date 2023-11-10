@@ -1,7 +1,7 @@
-using DanilvarKanji.Shared.Models.Common;
+using DanilvarKanji.Shared.Entities.Common;
 using WanaKanaNet;
 
-namespace DanilvarKanji.Shared.Models;
+namespace DanilvarKanji.Shared.Entities;
 
 public class Onyomi : Reading
 {

@@ -3,9 +3,9 @@ using AutoMapper;
 using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
 using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Models;
-using DanilvarKanji.Shared.Models.Common;
-using DanilvarKanji.Shared.Models.Enums;
+using DanilvarKanji.Shared.Entities;
+using DanilvarKanji.Shared.Entities.Common;
+using DanilvarKanji.Shared.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 

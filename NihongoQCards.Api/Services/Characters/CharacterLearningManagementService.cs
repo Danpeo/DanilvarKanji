@@ -3,7 +3,7 @@ using AutoMapper;
 using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
 using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Models;
+using DanilvarKanji.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Services.Characters;

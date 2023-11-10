@@ -1,4 +1,4 @@
-namespace DanilvarKanji.Shared.Models.Common;
+namespace DanilvarKanji.Shared.Entities.Common;
 
 public class ModelBase
 {
