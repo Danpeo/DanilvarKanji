@@ -2,8 +2,9 @@ using System.Linq.Expressions;
 using AutoMapper;
 using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
-using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Entities;
+using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Services.Characters;

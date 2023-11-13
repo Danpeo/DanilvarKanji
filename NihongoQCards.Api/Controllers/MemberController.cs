@@ -1,5 +1,5 @@
 using DanilvarKanji.Services.Auth;
-using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Domain.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;

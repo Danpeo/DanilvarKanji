@@ -92,8 +92,8 @@
               "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj": {
                 "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj"
               },
-              "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
-                "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
+              "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj": {
+                "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj"
               }
             }
           }
@@ -169,14 +169,14 @@
         }
       }
     },
-    "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
+    "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj",
-        "projectName": "DanilvarKanji.Shared",
-        "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj",
+        "projectName": "DanilvarKanji.Domain",
+        "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj",
         "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\obj\\",
+        "outputPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -206,6 +206,10 @@
           "targetAlias": "net7.0",
           "dependencies": {
             "Danilvar.Entity": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Danilvar.ValueObject": {
               "target": "Package",
               "version": "[1.0.0, )"
             },

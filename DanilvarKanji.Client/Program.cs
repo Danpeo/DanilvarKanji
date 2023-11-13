@@ -6,7 +6,7 @@ using DanilvarKanji.Client.Extensions;
 using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Characters;
-using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Domain.DTO;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 

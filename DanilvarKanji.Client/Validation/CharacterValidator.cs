@@ -1,5 +1,5 @@
 using DanilvarKanji.Client.Localization.LocaleKeys;
-using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Domain.DTO;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 

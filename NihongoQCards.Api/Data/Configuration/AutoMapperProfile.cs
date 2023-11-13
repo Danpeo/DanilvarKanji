@@ -1,6 +1,6 @@
 using AutoMapper;
-using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Entities;
+using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Domain.Entities;
 
 namespace DanilvarKanji.Data.Configuration;
 

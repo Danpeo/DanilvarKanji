@@ -11,9 +11,14 @@
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "CloudinaryDotNet": "1.22.0",
+          "DanilvarKanji.Application": "1.0.0",
+          "DanilvarKanji.Domain": "1.0.0",
+          "DanilvarKanji.Infrastructure": "1.0.0",
+          "DanilvarKanji.Mappings": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "Lamar.Microsoft.DependencyInjection": "12.0.1",
+          "MediatR": "12.1.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "7.0.11",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
@@ -141,6 +146,14 @@
           }
         }
       },
+      "Danilvar.ValueObject/1.0.0": {
+        "runtime": {
+          "lib/net7.0/Danilvar.ValueObject.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "FastExpressionCompiler/3.3.4": {
         "runtime": {
           "lib/netstandard2.1/FastExpressionCompiler.dll": {
@@ -236,6 +249,26 @@
           "lib/net7.0/Lamar.Microsoft.DependencyInjection.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "MediatR/12.1.1": {
+        "dependencies": {
+          "MediatR.Contracts": "2.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/MediatR.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.1.1.0"
+          }
+        }
+      },
+      "MediatR.Contracts/2.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
@@ -1594,14 +1627,56 @@
           }
         }
       },
-      "DanilvarKanji.Shared/1.0.0": {
+      "DanilvarKanji.Application/1.0.0": {
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "DanilvarKanji.Infrastructure": "1.0.0",
+          "DanilvarKanji.Shared": "1.0.0",
+          "MediatR": "12.1.1"
+        },
+        "runtime": {
+          "DanilvarKanji.Application.dll": {}
+        }
+      },
+      "DanilvarKanji.Domain/1.0.0": {
         "dependencies": {
           "Danilvar.Entity": "1.0.0",
+          "Danilvar.ValueObject": "1.0.0",
           "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Microsoft.Extensions.Localization": "7.0.13",
           "Microsoft.OData.ModelBuilder": "1.0.9",
           "WanaKana-net": "1.0.0"
+        },
+        "runtime": {
+          "DanilvarKanji.Domain.dll": {}
+        }
+      },
+      "DanilvarKanji.Infrastructure/1.0.0": {
+        "dependencies": {
+          "DanilvarKanji.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
+        },
+        "runtime": {
+          "DanilvarKanji.Infrastructure.dll": {}
+        }
+      },
+      "DanilvarKanji.Mappings/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "DanilvarKanji.Application": "1.0.0",
+          "DanilvarKanji.Domain": "1.0.0",
+          "DanilvarKanji.Shared": "1.0.0"
+        },
+        "runtime": {
+          "DanilvarKanji.Mappings.dll": {}
+        }
+      },
+      "DanilvarKanji.Shared/1.0.0": {
+        "dependencies": {
+          "DanilvarKanji.Domain": "1.0.0",
+          "MediatR": "12.1.1"
         },
         "runtime": {
           "DanilvarKanji.Shared.dll": {}
@@ -1671,6 +1746,13 @@
       "path": "danilvar.entity/1.0.0",
       "hashPath": "danilvar.entity.1.0.0.nupkg.sha512"
     },
+    "Danilvar.ValueObject/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9XysJCiiNBTWYS8vVZnBGLGmhvMWc1SzIsErprm9e/tnkvxNyKkRLu88/LAEkbnR8b9mmAGfjLyRSLAbGBRe4Q==",
+      "path": "danilvar.valueobject/1.0.0",
+      "hashPath": "danilvar.valueobject.1.0.0.nupkg.sha512"
+    },
     "FastExpressionCompiler/3.3.4": {
       "type": "package",
       "serviceable": true,
@@ -1733,6 +1815,20 @@
       "sha512": "sha512-tMYCpxM1Tr1WjM5aJUeTKUyf/0qy0bTe6djANpqovoc4gl53ZM+NTUaZP7FKBGuyAdtC1zZSNzC4ggcqmqfgww==",
       "path": "lamar.microsoft.dependencyinjection/12.0.1",
       "hashPath": "lamar.microsoft.dependencyinjection.12.0.1.nupkg.sha512"
+    },
+    "MediatR/12.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1AbwzzeS6gn4NdcO6A9LfKS5TXXgAiUQM3J18dREHa7O7TrdCXJ5dNFeRBpzPZY7UWl5Kby+n9pWrPJe3SDiMA==",
+      "path": "mediatr/12.1.1",
+      "hashPath": "mediatr.12.1.1.nupkg.sha512"
+    },
+    "MediatR.Contracts/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
+      "path": "mediatr.contracts/2.0.1",
+      "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
       "type": "package",
@@ -2804,6 +2900,26 @@
       "sha512": "sha512-dKRJ8JwDQVBdFwHM0Tinyg2SnYEvwH62+kcdZtO+SLkf/poG22+v3k3Cf2qAOfxMpGN7IBf9FT+TD9DTWRPIyA==",
       "path": "wanakana-net/1.0.0",
       "hashPath": "wanakana-net.1.0.0.nupkg.sha512"
+    },
+    "DanilvarKanji.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DanilvarKanji.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DanilvarKanji.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DanilvarKanji.Mappings/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "DanilvarKanji.Shared/1.0.0": {
       "type": "project",

@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Domain.DTO;
 
 namespace DanilvarKanji.Services.Auth;
 

@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Entities.Enums;
+using DanilvarKanji.Domain.Enumerations;
 
 namespace DanilvarKanji.Client.Localization;
 

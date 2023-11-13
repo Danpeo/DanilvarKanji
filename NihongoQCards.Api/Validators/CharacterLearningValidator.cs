@@ -1,5 +1,5 @@
 using DanilvarKanji.Data.Configuration;
-using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Domain.DTO;
 using FluentValidation;
 using Microsoft.Extensions.Options;
 

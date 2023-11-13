@@ -2,9 +2,8 @@ using AutoMapper;
 using CloudinaryDotNet.Actions;
 using DanilvarKanji.Services.Auth;
 using DanilvarKanji.Services.Images;
-using DanilvarKanji.Services.Infrastructure;
-using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Entities;
+using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,17 +17,15 @@ public class AccountController : ControllerBase
     private readonly UserManager<AppUser> _userManager;
     private readonly ITokenService _tokenService;
     private readonly IImageService _imageService;
-    private readonly IUnitOfWork _uow;
 
     public AccountController(IMemberService memberService, IMapper mapper, UserManager<AppUser> userManager,
-        ITokenService tokenService, IImageService imageService, IUnitOfWork uow)
+        ITokenService tokenService, IImageService imageService)
     {
         _memberService = memberService;
         _mapper = mapper;
         _userManager = userManager;
         _tokenService = tokenService;
         _imageService = imageService;
-        _uow = uow;
     }
 
     [HttpPost("Register")]

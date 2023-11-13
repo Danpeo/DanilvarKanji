@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
-using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Entities.Enums;
+using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Domain.Enumerations;
 
 namespace DanilvarKanji.Client.Services.Characters;
 

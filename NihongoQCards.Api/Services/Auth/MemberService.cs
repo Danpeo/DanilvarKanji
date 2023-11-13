@@ -3,8 +3,9 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
-using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Entities;
+using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

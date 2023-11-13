@@ -2,8 +2,8 @@ using Danilvar.Components.Pagination;
 using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Characters;
-using DanilvarKanji.Shared.DTO;
-using DanilvarKanji.Shared.Entities.Enums;
+using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Domain.Enumerations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 

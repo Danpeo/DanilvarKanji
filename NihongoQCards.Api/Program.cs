@@ -1,7 +1,10 @@
-using System.Text.Json.Serialization;
+using DanilvarKanji.Application.Characters.Commands;
+using DanilvarKanji.Application.Characters.Handlers;
 using DanilvarKanji.Data;
 using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Extensions;
+using DanilvarKanji.Mappings;
+using DanilvarKanji.Infrastructure;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.OData;
@@ -22,6 +25,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+builder.Services.AddAutoMapper(typeof(CharacterMapperProfile));
 
 builder.Services.AddODataQueryFilter();
 
@@ -59,8 +63,13 @@ builder.Services.AddSwaggerGen(c =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")))*/
 ;
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSql")));
+/*builder.Services.AddDbContext<DanilvarKanji.Infrastructure.Data.ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSql")));*/
+
+builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterCommand>());
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterHandler>());
 
 // Add services to the container.
 

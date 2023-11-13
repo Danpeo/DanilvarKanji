@@ -1,5 +1,5 @@
 using DanilvarKanji.Client.Services.Characters;
-using DanilvarKanji.Shared.DTO;
+using DanilvarKanji.Domain.DTO;
 using Microsoft.AspNetCore.Components;
 
 namespace DanilvarKanji.Client.Pages.Characters.Manage;

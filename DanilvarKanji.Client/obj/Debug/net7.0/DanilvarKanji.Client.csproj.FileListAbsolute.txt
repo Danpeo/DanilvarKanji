@@ -643,8 +643,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\refint\DanilvarKanji.Client.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\DanilvarKanji.Client.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\ref\DanilvarKanji.Client.dll
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Shared.dll
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Shared.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -659,10 +657,8 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.Extensions.Identity.Stores.dll.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.EntityFrameworkCore.dll.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.EntityFrameworkCore.Relational.dll.gz
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Shared.dll.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.EntityFrameworkCore.Abstractions.dll.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Cryptography.Internal.dll.gz
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Shared.pdb.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.Extensions.Caching.Abstractions.dll.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.Extensions.Identity.Core.dll.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll.gz
@@ -677,8 +673,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\DanilvarKanji.Shared.dll
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\DanilvarKanji.Shared.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\JntCj4Rp.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\+xtsamfH.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\vKg+723U.gz
@@ -689,8 +683,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\z5BRWUHS.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\QwpTQLVz.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\3NuIkiT3.gz
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\fFowWB94.gz
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\K9FIdHAT.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Shared\DisplayLoading.razor.rz.scp.css
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Pages\Characters\Characters.razor.rz.scp.css
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\scopedcss\Pages\Characters\DisplayCharacters.razor.rz.scp.css
@@ -944,3 +936,19 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\b0pD6gQe.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\MVuNjs5n.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\+1CHHcAe.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.Entity.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Domain.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Domain.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Domain.pdb.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.Entity.dll.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\DanilvarKanji.Domain.dll.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\Danilvar.Entity.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\DanilvarKanji.Domain.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\DanilvarKanji.Domain.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\TE0rt2xh.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\WTvAiEkC.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\3lG68S9i.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.ValueObject.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.ValueObject.dll.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\Danilvar.ValueObject.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\build-gz\NBsZR7+i.gz
