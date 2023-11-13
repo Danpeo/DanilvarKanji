@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DanilvarKanji.Domain.DTO.CharacterDto" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAAEAAACAAAAAAAAAAAAAoAAAAAAhACAAAgCAA=</HashCode>
+      <FileName>DTO\CharacterDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.DTO.CharacterLearningDto" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAIAAAAAAAAAAAAYQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTO\CharacterLearningDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.DTO.LoginDto" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>DTO\LoginDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.DTO.MemberDto" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAQAAAAAAAQAAAIAAAQAAAAAACAA=</HashCode>
+      <FileName>DTO\MemberDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.DTO.RegisterDto" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAQAAAAAACAA=</HashCode>
+      <FileName>DTO\RegisterDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.DTO.UserDto" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAABCAA=</HashCode>
+      <FileName>DTO\UserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.AppUser">
+    <Position X="1" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAQAAAAAAAQAAAIAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\AppUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.CharacterLearning" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAIAAAAAAAAAAAIYAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\CharacterLearning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.Image" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAIAAAA=</HashCode>
+      <FileName>Entities\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.KanjiMeaning" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\KanjiMeaning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.Kunyomi" Collapsed="true">
+    <Position X="5.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Kunyomi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.LearningProgress" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\LearningProgress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.Onyomi" Collapsed="true">
+    <Position X="1.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Onyomi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.Reading" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQEAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Reading.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.StringDefinition" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\StringDefinition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.Word" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAEAAAAAAQAAAAAIAAAAACAAAAAAABAAAA=</HashCode>
+      <FileName>Entities\Word.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.WordMeaning" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WordMeaning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Primitives.PaginationParams" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Primitives\PaginationParams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.AspNetCore.Identity.IdentityUser">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Danilvar.Entity.Entity">
+    <Position X="6" Y="3.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DanilvarKanji.Domain.Entities.Character">
+    <Position X="4" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAEAAACAAAAAAAAAAAAAoAAAAAAhACAAAgCAA=</HashCode>
+      <FileName>Entities\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DanilvarKanji.Domain.Enumerations.CharacterType">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumerations\CharacterType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DanilvarKanji.Domain.Enumerations.Culture" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumerations\Culture.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DanilvarKanji.Domain.Enumerations.JlptLevel" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAQAAAAAAAIIAAAAAAEAAAA=</HashCode>
+      <FileName>Enumerations\JlptLevel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DanilvarKanji.Domain.Enumerations.LearningLevel" Collapsed="true">
+    <Position X="13.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAABAAAAAAAAgCAAAAAAQAAAA=</HashCode>
+      <FileName>Enumerations\LearningLevel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DanilvarKanji.Domain.Enumerations.LearningState" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAABABE=</HashCode>
+      <FileName>Enumerations\LearningState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DanilvarKanji.Domain.Enumerations.PartOfSpeach" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AYAAAAAAAAAACAAAACAAAABCAQAAABACACCAAAAIAAA=</HashCode>
+      <FileName>Enumerations\PartOfSpeach.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

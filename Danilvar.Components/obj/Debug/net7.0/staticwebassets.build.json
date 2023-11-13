@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "Hash": "w5mMxg0K9rue+sUJ/8QIesfI54Ha2QpiFANfZ0LjqLA=",
+  "Source": "Danilvar.Components",
+  "BasePath": "_content/Danilvar.Components",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Danilvar.Components\\wwwroot",
+      "Source": "Danilvar.Components",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "BasePath": "_content/Danilvar.Components",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Danilvar.Components.styles.css",
+      "SourceId": "Danilvar.Components",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/Danilvar.Components",
+      "RelativePath": "Danilvar.Components.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Danilvar.Components.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css",
+      "SourceId": "Danilvar.Components",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/Danilvar.Components",
+      "RelativePath": "Danilvar.Components.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\background.png",
+      "SourceId": "Danilvar.Components",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "BasePath": "_content/Danilvar.Components",
+      "RelativePath": "background.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\background.png"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",
+      "SourceId": "Danilvar.Components",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "BasePath": "_content/Danilvar.Components",
+      "RelativePath": "exampleJsInterop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\exampleJsInterop.js"
+    }
+  ]
+}
