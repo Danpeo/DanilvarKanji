@@ -36,5 +36,18 @@ public class CharacterMapperProfile : Profile
         CreateMap<ListCharactersRequest, ListCharactersQuery>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
+        
+        CreateMap<Character, UpdateCharacterCommand>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+        
+        CreateMap<UpdateCharacterCommand, Character>()
+            .ForMember(x => x.Id, opt => opt.Ignore())
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<UpdateCharacterCommand, UpdateCharacterRequest>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<UpdateCharacterRequest, UpdateCharacterCommand>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
     }
 }

@@ -24,7 +24,7 @@ public class KanjiMeaningController : ControllerBase
         if (!await _characterRepository.Exist(id))
             return NotFound("Character with this ID was not found");
 
-        CharacterDto character = await _characterRepository.GetAsync(id);
+        CharacterDto character = await _characterRepository.GetAsyncObsolete(id);
         
         return Ok(character);
     }

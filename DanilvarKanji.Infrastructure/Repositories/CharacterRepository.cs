@@ -34,19 +34,43 @@ public class CharacterRepository : ICharacterRepository
         await GetCharactersWithRelatedData(paginationParams)
             .ToListAsync();
 
-    public Task<CharacterDto> GetAsync(string id)
+    public Task<CharacterDto> GetAsyncObsolete(string id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> Exist(string id)
+    public async Task<Character?> GetAsync(string id) =>
+        await GetCharactersWithRelatedData()
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+    public Task<bool> Exist(string id) =>
+        _context.Characters.AnyAsync(x => x.Id == id);
+
+    public Task<bool> UpdateAsyncObsolete(string id, CharacterDto characterDto)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> UpdateAsync(string id, CharacterDto characterDto)
+    public async Task UpdateAsync(string id, Character character)
     {
-        throw new NotImplementedException();
+        Character? characterToUpdate = await _context.Characters
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (characterToUpdate is null)
+            return;
+        
+        characterToUpdate.Definition = character.Definition;
+        characterToUpdate.StrokeCount = character.StrokeCount;
+        characterToUpdate.JlptLevel = character.JlptLevel;
+        characterToUpdate.CharacterType = character.CharacterType;
+        characterToUpdate.ChildCharacterIds = character.ChildCharacterIds;
+        characterToUpdate.KanjiMeanings = character.KanjiMeanings;
+        characterToUpdate.Kunyomis = character.Kunyomis;
+        characterToUpdate.Onyomis = character.Onyomis;
+        characterToUpdate.Mnemonics = character.Mnemonics;
+        characterToUpdate.Words = character.Words;
+        
+        _context.Characters.Update(characterToUpdate);
     }
 
     public Task<bool> DeleteAsync(string id)
@@ -64,22 +88,68 @@ public class CharacterRepository : ICharacterRepository
         throw new NotImplementedException();
     }
 
-    public Task<bool> AnyExist() => 
+    public Task<bool> AnyExist() =>
         _context.Characters.AnyAsync();
 
-    public Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty, Culture culture)
+    public async Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty, Culture culture)
+    {
+        Character? character = await GetAsync(characterId);
+        if (character != null)
+            if (character.KanjiMeanings != null)
+                return character.KanjiMeanings
+                    .Where(x => x.Definitions != null)
+                    .OrderByDescending(x => x.Priority)
+                    .Take(takeQty)
+                    .SelectMany(x => x.Definitions)
+                    .Where(d => d.Culture == culture)
+                    .Select(x => x.Value)
+                    .ToList();
+
+        return Enumerable.Empty<string>();
+    }
+
+    public Task<IEnumerable<CharacterDto>> SearchAsyncObsolete(string searchTerm, PaginationParams? paginationParams)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<CharacterDto>> ListChildCharacters(string id)
+    public async Task<IEnumerable<Character>> SearchAsync(string searchTerm) =>
+        await _context.Characters
+            .Where(x =>
+                x.Onyomis != null && x.Kunyomis != null && x.KanjiMeanings != null && x.Definition != null &&
+                (EF.Functions.ILike(x.Definition, $"%{searchTerm}%") ||
+                 x.KanjiMeanings.Any(km =>
+                     km.Definitions != null &&
+                     km.Definitions.Any(d => EF.Functions.ILike(d.Value, $"%{searchTerm}%"))) ||
+                 x.Kunyomis.Any(k =>
+                     k.Romaji != null && (EF.Functions.ILike(k.JapaneseWriting, $"%{searchTerm}%") ||
+                                          EF.Functions.ILike(k.Romaji, $"%{searchTerm}%"))) ||
+                 x.Onyomis.Any(o =>
+                     o.Romaji != null && (EF.Functions.ILike(o.JapaneseWriting, $"%{searchTerm}%") ||
+                                          EF.Functions.ILike(o.Romaji, $"%{searchTerm}%")))))
+            .ToListAsync();
+
+    public Task<IEnumerable<CharacterDto>> ListChildCharactersObsolete(string id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<CharacterDto>> SearchAsync(string searchTerm, PaginationParams? paginationParams)
+    public async Task<IEnumerable<Character>> ListChildCharacters(string characterId)
     {
-        throw new NotImplementedException();
+        Character? character = await GetAsync(characterId);
+
+        List<Character> childCharacters = new();
+
+        if (character?.ChildCharacterIds != null)
+            foreach (string childCharacterId in character.ChildCharacterIds)
+            {
+                Character? child = await _context.Characters.FirstOrDefaultAsync(x => x.Id == childCharacterId);
+
+                if (child != null)
+                    childCharacters.Add(child);
+            }
+
+        return childCharacters;
     }
 
     private IQueryable<Character> GetCharactersWithRelatedData(PaginationParams? paginationParams = null)

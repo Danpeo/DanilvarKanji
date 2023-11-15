@@ -1,6 +1,5 @@
 using System.Reflection;
 using AutoMapper;
-using DanilvarKanji.Data;
 using DanilvarKanji.Services.Common;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Entities;
@@ -9,7 +8,6 @@ using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace DanilvarKanji.Services.Characters;
 
@@ -43,6 +41,26 @@ public class CharacterRepository : Service<ApplicationDbContext>, ICharacterRepo
         throw new NotImplementedException();
     }
 
+    public Task<Character?> GetAsync(string id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<Character>> SearchAsync(string searchTerm)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<Character>> ListChildCharacters(string characterId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateAsync(string id, Character character)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<IEnumerable<CharacterDto>> ListAsyncObsolete(PaginationParams? paginationParams)
     {
         List<Character> characters = await GetCharactersWithRelatedData(paginationParams)
@@ -51,7 +69,7 @@ public class CharacterRepository : Service<ApplicationDbContext>, ICharacterRepo
         return _mapper.Map<IEnumerable<CharacterDto>>(characters);
     }
 
-    public async Task<CharacterDto> GetAsync(string id)
+    public async Task<CharacterDto> GetAsyncObsolete(string id)
     {
         Character? character = await GetCharactersWithRelatedData()
             .FirstOrDefaultAsync(x => x.Id == id);
@@ -62,7 +80,7 @@ public class CharacterRepository : Service<ApplicationDbContext>, ICharacterRepo
     public async Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
         Culture culture)
     {
-        CharacterDto character = await GetAsync(characterId);
+        CharacterDto character = await GetAsyncObsolete(characterId);
         return character.KanjiMeanings
             .Where(x => x.Definitions != null)
             .OrderByDescending(x => x.Priority)
@@ -73,9 +91,9 @@ public class CharacterRepository : Service<ApplicationDbContext>, ICharacterRepo
             .ToList();
     }
 
-    public async Task<IEnumerable<CharacterDto>> ListChildCharacters(string id)
+    public async Task<IEnumerable<CharacterDto>> ListChildCharactersObsolete(string id)
     {
-        CharacterDto character = await GetAsync(id);
+        CharacterDto character = await GetAsyncObsolete(id);
 
         List<Character> childCharacters = new();
 
@@ -91,7 +109,7 @@ public class CharacterRepository : Service<ApplicationDbContext>, ICharacterRepo
         return _mapper.Map<IEnumerable<CharacterDto>>(childCharacters);
     }
 
-    public async Task<IEnumerable<CharacterDto>> SearchAsync(string searchTerm, PaginationParams paginationParams)
+    public async Task<IEnumerable<CharacterDto>> SearchAsyncObsolete(string searchTerm, PaginationParams paginationParams)
     {
         if (string.IsNullOrEmpty(searchTerm) || searchTerm.ToLower() == "any")
             return await ListAsyncObsolete(paginationParams);
@@ -151,7 +169,7 @@ public class CharacterRepository : Service<ApplicationDbContext>, ICharacterRepo
         return characterDto;
     }
 
-    public async Task<bool> UpdateAsync(string id, CharacterDto characterDto)
+    public async Task<bool> UpdateAsyncObsolete(string id, CharacterDto characterDto)
     {
         Character? character = Context.Characters.FirstOrDefault(x => x.Id == id);
 

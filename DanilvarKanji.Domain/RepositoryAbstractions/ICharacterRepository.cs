@@ -9,9 +9,9 @@ public interface ICharacterRepository
 {
     Task<bool> CreateAsyncObsolete(CharacterDto characterDto);
     Task<IEnumerable<CharacterDto>> ListAsyncObsolete(PaginationParams? paginationParams);
-    Task<CharacterDto> GetAsync(string id);
+    Task<CharacterDto> GetAsyncObsolete(string id);
     Task<bool> Exist(string id);
-    Task<bool> UpdateAsync(string id, CharacterDto characterDto);
+    Task<bool> UpdateAsyncObsolete(string id, CharacterDto characterDto);
     Task<bool> DeleteAsync(string id);
     Task<bool> ReplaceAsync(string id, CharacterDto characterDto);
     Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields);
@@ -20,8 +20,12 @@ public interface ICharacterRepository
     Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
         Culture culture);
 
-    Task<IEnumerable<CharacterDto>> ListChildCharacters(string id);
-    Task<IEnumerable<CharacterDto>> SearchAsync(string searchTerm, PaginationParams? paginationParams);
+    Task<IEnumerable<CharacterDto>> ListChildCharactersObsolete(string id);
+    Task<IEnumerable<CharacterDto>> SearchAsyncObsolete(string searchTerm, PaginationParams? paginationParams);
     void CreateAsync(Character character);
     Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams);
+    Task<Character?> GetAsync(string id);
+    Task<IEnumerable<Character>> SearchAsync(string searchTerm);
+    Task<IEnumerable<Character>> ListChildCharacters(string characterId);
+    Task UpdateAsync(string id, Character character);
 }

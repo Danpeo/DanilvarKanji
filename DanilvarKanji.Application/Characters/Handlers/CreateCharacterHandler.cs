@@ -24,23 +24,8 @@ public class CreateCharacterHandler : IRequestHandler<CreateCharacterCommand, Re
 
     public async Task<Result> Handle(CreateCharacterCommand request, CancellationToken cancellationToken)
     {
-        /*var character = new Character()
-        {
-            Definition = request.Definition,
-            JlptLevel = request.JlptLevel,
-            CharacterType = request.CharacterType,
-            Mnemonics = request.Mnemonics,
-            StrokeCount = request.StrokeCount,
-            KanjiMeanings = request.KanjiMeanings,
-            Kunyomis = request.Kunyomis,
-            Onyomis = request.Onyomis,
-            ChildCharacterIds = request.ChildCharacterIds,
-            Words = request.Words
-        };*/
-
         var character = _mapper.Map<Character>(request);
-
-
+        
         _characterRepository.CreateAsync(character);
         if (await _unitOfWork.CompleteAsync())
             return Result.Success();

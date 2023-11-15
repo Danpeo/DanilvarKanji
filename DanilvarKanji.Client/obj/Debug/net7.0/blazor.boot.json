@@ -220,16 +220,16 @@
       "netstandard.dll": "sha256-+zXQN9625IUa11YLU5hNoQ04oHjCwFIJAXc8vOEMniU=",
       "System.Private.CoreLib.dll": "sha256-oytzvvuRkpVGZxuLwt9SR8n1KJzGeYroKTHxk0oZvfI=",
       "Danilvar.Components.dll": "sha256-cAnSEcPkLXWb7Q0CxKRQQn3j3ktHRyScvLpomoQ4EyU=",
-      "DanilvarKanji.Domain.dll": "sha256-9ijCCEbJyvsq8SVDfyChV8NhKBuzNEOo2I5Fr56vrpk=",
-      "DanilvarKanji.Client.dll": "sha256-V5JDh8WDLTBFnFbAqhappInjtzQu\/QIowFSxO406oFs="
+      "DanilvarKanji.Domain.dll": "sha256-lW3Q0L42AHMbQC0zNtvhjZBq8isWOONmANaL\/RWSX6U=",
+      "DanilvarKanji.Client.dll": "sha256-U1qPld2sGr3zCOCrPkHoZZ3\/hho\/VVlQQceSHiWbvAQ="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "DanilvarKanji.Domain.pdb": "sha256-fySfsG3DZvk\/pACw4TzCYSrIJbXj3BrEO2eBwodeDPE=",
+      "DanilvarKanji.Domain.pdb": "sha256-zCAgQkadHGR375XKI0S3BCA3etnZfaVpkrvMgbQS5cc=",
       "Danilvar.Components.pdb": "sha256-acpE7\/Ei0RsC99ya3gGpRR3SxDuSFLsrrswaPptx+Uc=",
-      "DanilvarKanji.Client.pdb": "sha256-D\/9sk6x0vmHpgXGFp4BNWSoPbdFlXNQyqzwF9\/hB\/gc="
+      "DanilvarKanji.Client.pdb": "sha256-Z56dPT9avO84KSvSYW2M\/wUKMqSORxQllmCpCHfGKho="
     },
     "runtime": {
       "dotnet.7.0.13.jctoix4h6l.js": "sha256-eRbsSkKiWKWKcMiqy13LuLSBIpzmn52qw\/6SX+1jNQ0=",

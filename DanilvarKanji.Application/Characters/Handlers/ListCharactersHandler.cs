@@ -19,6 +19,6 @@ public class ListCharactersHandler : IRequestHandler<ListCharactersQuery, IEnume
         if (await _characterRepository.AnyExist())
             return await _characterRepository.ListAsync(request.PaginationParams);
 
-        return new List<Character>();
+        return Enumerable.Empty<Character>();
     }
 }

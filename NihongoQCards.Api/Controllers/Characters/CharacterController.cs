@@ -27,11 +27,11 @@ public class CharacterController : ApiController
     private readonly IMapper _mapper;
 
 
-    public CharacterController(ICharacterRepository characterRepository, IMediator mediator, IMapper mapper) : base(mediator)
+    public CharacterController(ICharacterRepository characterRepository, IMediator mediator, IMapper mapper) :
+        base(mediator)
     {
         _characterRepository = characterRepository ?? throw new ArgumentNullException(nameof(characterRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-
     }
 
     /*[HttpPost]
@@ -48,10 +48,10 @@ public class CharacterController : ApiController
     {
         var command = _mapper.Map<CreateCharacterCommand>(request);
         var character = _mapper.Map<Character>(command);
-        
+
         return await Result.Create(command, General.UnProcessableRequest)
             .Bind(c => Mediator.Send(c))
-            .Match(() => CreatedAtAction("Get", new {id = character.Id}, character), BadRequest);
+            .Match(() => CreatedAtAction("Get", new { id = character.Id }, character), BadRequest);
     }
 
 
@@ -60,7 +60,7 @@ public class CharacterController : ApiController
     {
         var query = _mapper.Map<ListCharactersQuery>(request);
 
-        var characters = await Mediator.Send(query);
+        IEnumerable<Character> characters = await Mediator.Send(query);
 
         return characters.Any() ? Ok(characters) : NotFound("Not characters found");
     }
@@ -69,82 +69,63 @@ public class CharacterController : ApiController
     public async Task<IActionResult> SearchAsync([FromQuery] PaginationParams paginationParams,
         string searchTerm = "any")
     {
-        if (await _characterRepository.AnyExist())
-        {
-            IEnumerable<CharacterDto> characters = await _characterRepository.SearchAsync(searchTerm, paginationParams);
-            return Ok(characters);
-        }
+        IEnumerable<Character> characters =
+            await Mediator.Send(new SearchCharactersQuery(searchTerm, paginationParams));
 
-        return NotFound("No characters");
+        return characters.Any() ? Ok(characters) : NotFound("Not characters found");
     }
 
     [EnableQuery, HttpGet("{id}:Child")]
     public async Task<IActionResult> ListChildCharacters(string id)
     {
-        if (!await _characterRepository.Exist(id))
-            return NotFound("Character with this ID was not found");
+        IEnumerable<Character> characters = await Mediator.Send(new ListChildCharactersQuery(id));
 
-        IEnumerable<CharacterDto> characters = await _characterRepository.ListChildCharacters(id);
-        return Ok(characters);
+        return characters.Any() ? Ok(characters) : NotFound("Not characters found");
     }
 
     [EnableQuery, HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {
-        if (!await _characterRepository.Exist(id))
-            return NotFound("Character with this ID was not found");
+        Character? character = await Mediator.Send(new GetCharacterQuery(id));
 
-        CharacterDto character = await _characterRepository.GetAsync(id);
+        if (character is not null)
+            return Ok(character);
 
-        return Ok(character);
+        return NotFound("Character with this ID was not found");
     }
 
     [EnableQuery, HttpGet("{id}:KanjiMeanings")]
-    public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(string id, int takeQty, Culture culture)
+    public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(string id, Culture culture = Culture.EnUS,
+        int takeQty = int.MaxValue)
     {
-        if (!await _characterRepository.Exist(id))
-            return NotFound("Character with this ID was not found");
-
-        CharacterDto character = await _characterRepository.GetAsync(id);
-
         IEnumerable<string> kanjiMeanings =
-            await _characterRepository.GetKanjiMeaningsByPriority(character.Id, takeQty, culture);
+            await Mediator.Send(new GetKanjiMeaningsByPriorityQuery(id, culture, takeQty));
 
         return Ok(kanjiMeanings);
     }
 
-    [HttpGet("{id}/Partial")]
-    public async Task<IActionResult> GetPartialAsync(string id, [FromQuery] IEnumerable<string> fields)
-    {
-        if (!await _characterRepository.Exist(id))
-            return NotFound("Character with this ID was not found");
-
-        CharacterDto? character = await _characterRepository.GetPartialAsync(id, fields);
-
-        if (character != null)
-        {
-            var nonNullFields = character.GetType()
-                .GetProperties()
-                .Where(prop => prop.GetValue(character) != null)
-                .ToDictionary(prop => prop.Name, prop => prop.GetValue(character));
-
-            return Ok(nonNullFields);
-        }
-
-        return NotFound("Partial data was not found");
-    }
-
-
     [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateAsync(string id, [FromBody] CharacterDto characterDto)
+    public async Task<IActionResult> UpdateAsync([FromBody] UpdateCharacterRequest request)
     {
-        if (await _characterRepository.UpdateAsync(id, characterDto))
+        var command = _mapper.Map<UpdateCharacterCommand>(request);
+        var character = _mapper.Map<Character>(command);
+
+        
+        return await Result.Create(command, General.UnProcessableRequest)
+            .Bind(c => Mediator.Send(c))
+            .Match<IActionResult>(() => CreatedAtAction("Get", new { id = character.Id }, character),
+                () => NotFound("The character was not found or an error occurred during the update."));
+
+
+        /*
+        if (await _characterRepository.UpdateAsyncObsolete(id, characterDto))
         {
-            CharacterDto updatedCharacter = await _characterRepository.GetAsync(id);
+            CharacterDto updatedCharacter = await _characterRepository.GetAsyncObsolete(id);
             return Ok(updatedCharacter);
         }
 
         return NotFound("The character was not found or an error occurred during the update.");
+    */
     }
 
     [HttpPut("{id}")]
@@ -152,7 +133,7 @@ public class CharacterController : ApiController
     {
         if (await _characterRepository.ReplaceAsync(id, characterDto))
         {
-            CharacterDto updatedCharacter = await _characterRepository.GetAsync(id);
+            CharacterDto updatedCharacter = await _characterRepository.GetAsyncObsolete(id);
             return Ok(updatedCharacter);
         }
 

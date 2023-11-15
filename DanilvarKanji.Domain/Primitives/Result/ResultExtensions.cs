@@ -72,9 +72,16 @@ public static class ResultExtensions
     /// </returns>
     public static async Task<T> Match<T>(this Task<Result> resultTask, Func<T> onSuccess, Func<Error, T> onFailure)
     {
-        Result result = await resultTask;
+        Result result = await resultTask.ConfigureAwait(false);
 
         return result.IsSuccess ? onSuccess() : onFailure(result.Error);
+    }
+    
+    public static async Task<T> Match<T>(this Task<Result> resultTask, Func<T> onSuccess, Func<T> onFailure)
+    {
+        Result result = await resultTask.ConfigureAwait(false);
+
+        return result.IsSuccess ? onSuccess() : onFailure();
     }
 
     /// <summary>
