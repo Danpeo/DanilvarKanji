@@ -1,11 +1,12 @@
 using DanilvarKanji.Client.Localization.LocaleKeys;
 using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Shared.Requests.Characters;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 
 namespace DanilvarKanji.Client.Validation;
 
-public class CharacterValidator : AbstractValidator<CharacterDto>
+public class CharacterValidator : AbstractValidator<CreateCharacterRequest>
 {
     public CharacterValidator(IStringLocalizer<App> localizer)
     {

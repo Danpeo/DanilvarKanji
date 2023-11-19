@@ -1,3 +1,4 @@
+using DanilvarKanji.Application;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Application.Characters.Handlers;
 using DanilvarKanji.Data;
@@ -5,8 +6,10 @@ using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Extensions;
 using DanilvarKanji.Mappings;
 using DanilvarKanji.Infrastructure;
+using DanilvarKanji.OptionsSetup;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
@@ -67,13 +70,15 @@ builder.Services.AddSwaggerGen(c =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSql")));*/
 
 builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddApplication();
+/*
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterCommand>());
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterHandler>());
+*/
 
 // Add services to the container.
 
-builder.Services.AddIdentityServices(builder.Configuration);
+//builder.Services.AddIdentityServices(builder.Configuration);
 
 
 /*builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -103,7 +108,13 @@ builder.Services.AddControllers()
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 
 var app = builder.Build();
 
@@ -124,6 +135,8 @@ app.UseCors(policy =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 

@@ -33,7 +33,7 @@
 {
     [Parameter, EditorRequired]
     public ICollection<Kunyomi> Kunyomis { get; set; } = default!;
-    private Kunyomi kunyomi = new Kunyomi(); // Замените MyModel на вашу модель
+    private Kunyomi _kunyomi = new(); // Замените MyModel на вашу модель
 
     private string _convertedText = string.Empty;
     

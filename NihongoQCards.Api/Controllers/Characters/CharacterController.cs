@@ -56,13 +56,11 @@ public class CharacterController : ApiController
 
 
     [EnableQuery, HttpGet]
-    public async Task<IActionResult> ListAsync([FromQuery] ListCharactersRequest request)
+    public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
-        var query = _mapper.Map<ListCharactersQuery>(request);
+        IEnumerable<Character> characters = await Mediator.Send(new ListCharactersQuery(paginationParams));
 
-        IEnumerable<Character> characters = await Mediator.Send(query);
-
-        return characters.Any() ? Ok(characters) : NotFound("Not characters found");
+        return characters.Any() ? Ok(characters) : NoContent();
     }
 
     [HttpGet("{searchTerm}:Search")]
@@ -72,7 +70,7 @@ public class CharacterController : ApiController
         IEnumerable<Character> characters =
             await Mediator.Send(new SearchCharactersQuery(searchTerm, paginationParams));
 
-        return characters.Any() ? Ok(characters) : NotFound("Not characters found");
+        return characters.Any() ? Ok(characters) : NoContent();
     }
 
     [EnableQuery, HttpGet("{id}:Child")]
@@ -80,7 +78,7 @@ public class CharacterController : ApiController
     {
         IEnumerable<Character> characters = await Mediator.Send(new ListChildCharactersQuery(id));
 
-        return characters.Any() ? Ok(characters) : NotFound("Not characters found");
+        return characters.Any() ? Ok(characters) : NoContent();
     }
 
     [EnableQuery, HttpGet("{id}")]
@@ -105,27 +103,18 @@ public class CharacterController : ApiController
     }
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateAsync([FromBody] UpdateCharacterRequest request)
+    public async Task<IActionResult> UpdateAsync(string id, [FromBody] UpdateCharacterRequest request)
     {
         var command = _mapper.Map<UpdateCharacterCommand>(request);
+        command.Id = id;
+        
         var character = _mapper.Map<Character>(command);
 
-        
         return await Result.Create(command, General.UnProcessableRequest)
             .Bind(c => Mediator.Send(c))
             .Match<IActionResult>(() => CreatedAtAction("Get", new { id = character.Id }, character),
                 () => NotFound("The character was not found or an error occurred during the update."));
 
-
-        /*
-        if (await _characterRepository.UpdateAsyncObsolete(id, characterDto))
-        {
-            CharacterDto updatedCharacter = await _characterRepository.GetAsyncObsolete(id);
-            return Ok(updatedCharacter);
-        }
-
-        return NotFound("The character was not found or an error occurred during the update.");
-    */
     }
 
     [HttpPut("{id}")]

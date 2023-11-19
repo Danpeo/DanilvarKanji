@@ -26,7 +26,7 @@ public class CreateCharacterHandler : IRequestHandler<CreateCharacterCommand, Re
     {
         var character = _mapper.Map<Character>(request);
         
-        _characterRepository.CreateAsync(character);
+        _characterRepository.Create(character);
         if (await _unitOfWork.CompleteAsync())
             return Result.Success();
 

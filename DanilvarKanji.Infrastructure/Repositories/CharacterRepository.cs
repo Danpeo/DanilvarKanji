@@ -17,12 +17,7 @@ public class CharacterRepository : ICharacterRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public Task<bool> CreateAsyncObsolete(CharacterDto characterDto)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void CreateAsync(Character character) =>
+    public void Create(Character character) =>
         _context.Characters.Add(character);
 
     public async Task<IEnumerable<CharacterDto>> ListAsyncObsolete(PaginationParams? paginationParams)

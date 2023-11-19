@@ -1,18 +1,6 @@
 @using DanilvarKanji.Domain.DTO
 @using DanilvarKanji.Client.Extensions
 
-@code {
-
-    private async Task OnPageChanged(int arg)
-    {
-        PageNumber = arg;
-
-        await GetDataOfCharacters();
-    }
-
-
-
-}
 
 <div class="input-group mb-2">
     <input @onkeydown="SearchForCharacterKey"
@@ -82,9 +70,12 @@ else
             </a>
         </div>
     }
-    <div class="mt-3 mb-3 justify-content-center d-flex">
-        <button type="button" class="round-button" @onclick="OnUpdateContentClick">
-            <i class="gg-arrow-down-o"></i>
-        </button>
-    </div>
+    if (string.IsNullOrEmpty(_searchTerm))
+    {
+        <div class="mt-3 mb-3 justify-content-center d-flex">
+            <button type="button" class="round-button" @onclick="OnUpdateContentClick">
+                <i class="text-center gg-arrow-down-o"></i>
+            </button>
+        </div>
+    }
 }

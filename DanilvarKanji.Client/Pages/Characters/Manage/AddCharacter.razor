@@ -1,7 +1,9 @@
 @page "/characters/add-character"
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Domain.DTO
+@using DanilvarKanji.Domain.Entities
 @using DanilvarKanji.Domain.Enumerations
+@using DanilvarKanji.Shared.Requests.Characters
 
 <PageTitle>Add Character - @AppDisplaySettings.AppTitle</PageTitle>
 
@@ -9,7 +11,8 @@
     Add Character
 </h1>
 
-<EditForm Model="_character" OnValidSubmit="HandleSubmit">
+
+<EditForm Model="_character" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
 
     <FormSection Title="Character Basic Details" HelpText="Character basic details common for all cultures">
@@ -42,9 +45,14 @@
         </FormFieldSet>
     </FormSection>
 
-    <FormSection Title="Character Definitions" HelpText="Add Character Definitions with different cultures">
+    <FormSection Title="Character Mnemonics" HelpText="Add Character Mnemonics with different cultures">
         <DynamicStringDefinition StringDefinitions="_character.Mnemonics" AddButtonText="Add Mnemonic"/>
         <ValidationMessage For="@(() => _character.Mnemonics)"/>
+    </FormSection>
+
+    <FormSection Title="Character Meanings" HelpText="Add Character Meanings with different cultures">
+        <AddKanjiMeanings Meanings="_character.KanjiMeanings"/>
+        <ValidationMessage For="@(() => _character.KanjiMeanings)"/>
     </FormSection>
 
     @if (_character.CharacterType == CharacterType.Kanji)
@@ -57,10 +65,20 @@
             <AddOnyomis Onyomis="_character.Onyomis"/>
         </FormSection>
     }
+
+    @if (_submitSuccessful)
+    {
+        <SuccessAlert Message="Your character has been added successfully!"/>
+    }
+    else if (_errorMessage is not null)
+    {
+        <ErrorAlert Message="@_errorMessage"/>
+    }
+
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">
-                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _character = new CharacterDto())">Reset</button>
+                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _character = new CreateCharacterRequest())">Reset</button>
                 <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
             </div>
         </div>

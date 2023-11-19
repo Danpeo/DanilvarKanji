@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "fZdiyspqGWC6u6FUrMBLEgBa99OCsX1NOVa8FoY3Q+572xtwpta78imBqc15PVlkSPH5/WBfX0HteFHeZtwW2w==",
-  "success": true,
+  "dgSpecHash": "zUgHsY7F53T7mh4bS7J87h1QxOQvlRri3qcjE+HCcZJNF6EuSYHH2MCzqUeMhWhUnch4v3XPvOEkw8OWEhExbQ==",
+  "success": false,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\NihongoQCards.Api\\DanilvarKanji.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
@@ -178,5 +178,15 @@
     "C:\\Users\\danil\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\wanakana-net\\1.0.0\\wanakana-net.1.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Обнаружено понижение версии пакета Microsoft.AspNetCore.Authentication.JwtBearer с 7.0.14 на 7.0.11. Чтобы выбрать другую версию, создайте ссылку на пакет напрямую из проекта. \r\n DanilvarKanji.Api -> DanilvarKanji.Application -> Microsoft.AspNetCore.Authentication.JwtBearer (>= 7.0.14) \r\n DanilvarKanji.Api -> Microsoft.AspNetCore.Authentication.JwtBearer (>= 7.0.11)",
+      "libraryId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

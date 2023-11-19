@@ -5,7 +5,7 @@ namespace DanilvarKanji.Shared.Requests.Characters;
 
 public class UpdateCharacterRequest
 {
-    public string Id { get; set; }
+    //public string Id { get; set; }
     public string? Definition { get; set; }
 
     public JlptLevel JlptLevel { get; set; }

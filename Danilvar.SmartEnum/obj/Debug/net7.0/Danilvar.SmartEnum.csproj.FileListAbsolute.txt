@@ -9,3 +9,4 @@ C:\Users\danil\source\repos\LearningJapanese\Danilvar.SmartEnum\obj\Debug\net7.0
 C:\Users\danil\source\repos\LearningJapanese\Danilvar.SmartEnum\obj\Debug\net7.0\refint\Danilvar.SmartEnum.dll
 C:\Users\danil\source\repos\LearningJapanese\Danilvar.SmartEnum\obj\Debug\net7.0\Danilvar.SmartEnum.pdb
 C:\Users\danil\source\repos\LearningJapanese\Danilvar.SmartEnum\obj\Debug\net7.0\ref\Danilvar.SmartEnum.dll
+C:\Users\danil\source\repos\LearningJapanese\Danilvar.SmartEnum\obj\Debug\net7.0\Danilvar.SmartEnum.sourcelink.json

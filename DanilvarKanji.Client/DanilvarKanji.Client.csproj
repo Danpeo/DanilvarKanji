@@ -23,10 +23,7 @@
     <ItemGroup>
         <ProjectReference Include="..\DanilvarKanji.Domain\DanilvarKanji.Domain.csproj" />
         <ProjectReference Include="..\Danilvar.Components\Danilvar.Components.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="wwwroot\img" />
+        <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

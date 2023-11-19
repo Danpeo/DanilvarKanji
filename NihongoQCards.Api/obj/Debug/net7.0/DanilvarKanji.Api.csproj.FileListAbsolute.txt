@@ -125,3 +125,4 @@ C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Mappings.pdb
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Infrastructure.dll
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Infrastructure.pdb
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\obj\Debug\net7.0\DanilvarKanji.Api.sourcelink.json

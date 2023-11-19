@@ -21,3 +21,4 @@ C:\Users\danil\source\repos\LearningJapanese\Danilvar.Components\obj\Debug\net7.
 C:\Users\danil\source\repos\LearningJapanese\Danilvar.Components\obj\Debug\net7.0\refint\Danilvar.Components.dll
 C:\Users\danil\source\repos\LearningJapanese\Danilvar.Components\obj\Debug\net7.0\Danilvar.Components.pdb
 C:\Users\danil\source\repos\LearningJapanese\Danilvar.Components\obj\Debug\net7.0\ref\Danilvar.Components.dll
+C:\Users\danil\source\repos\LearningJapanese\Danilvar.Components\obj\Debug\net7.0\Danilvar.Components.sourcelink.json

@@ -13,9 +13,6 @@ public static class ConfigureHostBuilderExtension
     {
         host.UseLamar((context, registry) =>
         {
-            /*
-            registry.For<ICharacterRepository>().Add<CharacterRepository>().Scoped();
-            */
             registry.For<ICharacterLearningManagementService>().Add<CharacterLearningManagementService>().Scoped();
             registry.For<IMemberService>().Add<MemberService>().Scoped();
             registry.For<ITokenService>().Add<TokenService>().Scoped();

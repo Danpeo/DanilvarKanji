@@ -1,6 +1,8 @@
+using System.Net;
 using System.Net.Http.Json;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Requests.Characters;
 
 namespace DanilvarKanji.Client.Services.Characters;
 
@@ -21,19 +23,17 @@ public class CharacterService : ICharacterService
 
             if (response.IsSuccessStatusCode)
             {
-                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                {
+                if (response.StatusCode == HttpStatusCode.NoContent)
                     return Enumerable.Empty<CharacterDto>();
-                }
 
                 return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterDto>>() ??
-                       Array.Empty<CharacterDto>();
+                       Enumerable.Empty<CharacterDto>();
             }
-
+            
             string message = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
         }
-        catch (Exception e)
+        catch (HttpRequestException e)
         {
             Console.WriteLine(e);
             throw;
@@ -57,9 +57,9 @@ public class CharacterService : ICharacterService
             }
 
             string message = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
         }
-        catch (Exception e)
+        catch (HttpRequestException e)
         {
             Console.WriteLine(e);
             throw;
@@ -84,9 +84,9 @@ public class CharacterService : ICharacterService
             }
 
             string message = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
         }
-        catch (Exception e)
+        catch (HttpRequestException e)
         {
             Console.WriteLine(e);
             throw;
@@ -98,13 +98,14 @@ public class CharacterService : ICharacterService
     {
         Dictionary<string, List<string>> allKanjiMeanings = new Dictionary<string, List<string>>();
 
-        foreach (CharacterDto characterItem in CharacterItems)
-        {
-            List<string>? kanjiMeanings = await GetCharacterKanjiMeanings(characterItem.Id, takeQty, culture);
+        if (CharacterItems != null)
+            foreach (CharacterDto? characterItem in CharacterItems)
+            {
+                List<string>? kanjiMeanings = await GetCharacterKanjiMeanings(characterItem.Id, takeQty, culture);
 
-            if (kanjiMeanings != null)
-                allKanjiMeanings![characterItem.Id] = kanjiMeanings;
-        }
+                if (kanjiMeanings != null)
+                    allKanjiMeanings![characterItem.Id] = kanjiMeanings;
+            }
 
         return allKanjiMeanings;
     }
@@ -132,9 +133,9 @@ public class CharacterService : ICharacterService
             }
 
             string message = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
         }
-        catch (Exception e)
+        catch (HttpRequestException e)
         {
             Console.WriteLine(e);
             throw;
@@ -152,27 +153,44 @@ public class CharacterService : ICharacterService
 
             if (response.IsSuccessStatusCode)
             {
-                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                if (response.StatusCode == HttpStatusCode.NoContent)
                 {
-                    return Enumerable.Empty<CharacterDto>();
+                    return new List<CharacterDto>();
                 }
 
                 return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterDto>>() ??
-                       Array.Empty<CharacterDto>();
+                       Enumerable.Empty<CharacterDto>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
         }
-        catch (Exception e)
+        catch (HttpRequestException e)
         {
             Console.WriteLine(e);
             throw;
         } 
     }
 
-    public async Task<HttpResponseMessage> AddCharacterAsync(CharacterDto character)
+    public async Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest character)
     {
-        return await _httpClient.PostAsJsonAsync("api/characters", character);
+        try
+        {
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Characters", character);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<CreateCharacterRequest>();
+            }
+            
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
 }

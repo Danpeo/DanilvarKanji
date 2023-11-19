@@ -37,10 +37,11 @@ public partial class DisplayCharacters
 
     private async Task UpdateCharacterItems()
     {
+        
         IEnumerable<CharacterDto?>? characters = await CharacterService.ListCharactersAsync(PageNumber, PageSize);
 
-        if (characters != null)
-            _characterItems?.AddRange(characters);
+        if (characters is not null)
+            _characterItems?.AddRange(characters!);
     }
 
     private async Task GetCurrentCulture() =>
@@ -62,4 +63,5 @@ public partial class DisplayCharacters
 
     private async Task SearchForCharacter() =>
         _characterItems = (List<CharacterDto>?)await CharacterService.SearchCharacters(_searchTerm);
+
 }

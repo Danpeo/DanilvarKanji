@@ -13,3 +13,4 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net7.0\refint\DanilvarKanji.Shared.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net7.0\DanilvarKanji.Shared.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net7.0\ref\DanilvarKanji.Shared.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net7.0\DanilvarKanji.Shared.sourcelink.json
