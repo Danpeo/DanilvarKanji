@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DanilvarKanji.Client.Tests.props" />
+</Project>
