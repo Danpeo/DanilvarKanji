@@ -3,7 +3,7 @@ using DanilvarKanji.Domain.Enumerations;
 
 namespace DanilvarKanji.Shared.Requests.Characters;
 
-public record CreateCharacterRequest
+public class CreateCharacterRequest
 {
     public string? Definition { get; set; }
 

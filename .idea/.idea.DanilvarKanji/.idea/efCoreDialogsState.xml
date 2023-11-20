@@ -4,7 +4,8 @@
     <option name="keyValueStorage">
       <map>
         <entry key="Common:buildConfiguration" value="Debug" />
-        <entry key="Common:f6a91818-a641-43f9-b462-eaa22e748ac6:dbContext" value="DanilvarKanji.Data.ApplicationDbContext" />
+        <entry key="Common:e09c5d86-dbac-4e4d-84de-462c7daf40ef:dbContext" value="DanilvarKanji.Infrastructure.Data.ApplicationDbContext" />
+        <entry key="Common:f6a91818-a641-43f9-b462-eaa22e748ac6:dbContext" value="DanilvarKanji.Infrastructure.Data.ApplicationDbContext" />
         <entry key="Common:noBuild" value="false" />
         <entry key="Common:outputFolder" value="Migrations" />
         <entry key="Common:useDefaultConnection" value="true" />

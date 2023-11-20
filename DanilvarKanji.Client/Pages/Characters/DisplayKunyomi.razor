@@ -12,6 +12,7 @@
     {
         string japaneseWriting = kunyomiList[i].JapaneseWriting;
 
+        // Given the input string (abc), the regular expression would capture abc
         var regex = new Regex(@"\(([^)]+)\)");
         MatchCollection matches = regex.Matches(japaneseWriting);
 

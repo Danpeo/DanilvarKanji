@@ -9,6 +9,7 @@ namespace DanilvarKanji.Extensions;
 
 public static class ConfigureHostBuilderExtension
 {
+    [Obsolete("Should be disposed in time!")]
     public static void AddLamarServices(this ConfigureHostBuilder host)
     {
         host.UseLamar((context, registry) =>

@@ -7,7 +7,6 @@ using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.Primitives.Result;
-using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Shared.Requests.Characters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -16,33 +15,17 @@ using Microsoft.AspNetCore.OData.Query;
 
 namespace DanilvarKanji.Controllers.Characters;
 
-//[Authorize]
-/*[ApiController]
-[Route("Api/[controller]s")]*/
 [AllowAnonymous]
 public class CharacterController : ApiController
 {
-    private readonly ICharacterRepository _characterRepository;
-
     private readonly IMapper _mapper;
-
-
-    public CharacterController(ICharacterRepository characterRepository, IMediator mediator, IMapper mapper) :
+    
+    public CharacterController(IMediator mediator, IMapper mapper) :
         base(mediator)
     {
-        _characterRepository = characterRepository ?? throw new ArgumentNullException(nameof(characterRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
-
-    /*[HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] CharacterDto characterDto)
-    {
-        if (await _characterRepository.CreateAsyncObsolete(characterDto))
-            return CreatedAtAction("Get", new { id = characterDto.Id }, characterDto);
-
-        return BadRequest("Error when creating a characater.");
-    }*/
-
+    
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterRequest? request)
     {
@@ -53,8 +36,7 @@ public class CharacterController : ApiController
             .Bind(c => Mediator.Send(c))
             .Match(() => CreatedAtAction("Get", new { id = character.Id }, character), BadRequest);
     }
-
-
+    
     [EnableQuery, HttpGet]
     public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
@@ -117,23 +99,11 @@ public class CharacterController : ApiController
 
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> ReplaceAsync(string id, [FromBody] CharacterDto characterDto)
-    {
-        if (await _characterRepository.ReplaceAsync(id, characterDto))
-        {
-            CharacterDto updatedCharacter = await _characterRepository.GetAsyncObsolete(id);
-            return Ok(updatedCharacter);
-        }
-
-        return NotFound("The character was not found or an error occurred during the replace.");
-    }
-
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(string id)
     {
-        if (await _characterRepository.DeleteAsync(id))
-            return Ok("The character was successfully deleted.");
+        /*if (await _characterRepository.DeleteAsync(id))
+            return Ok("The character was successfully deleted.");*/
 
         return NotFound("The character was not found or an error occurred during the delete.");
     }

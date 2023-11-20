@@ -20,7 +20,7 @@ public class Result
 
     public Error Error { get; }
 
-    public static Result Success() => new Result(true, Error.None);
+    public static Result Success() => new(true, Error.None);
 
     public static Result<TValue> Success<TValue>(TValue value) => new(value, true, Error.None);
 
@@ -29,7 +29,7 @@ public class Result
         => value is null ? Failure<TValue>(error) : Success(value);
 
 
-    public static Result Failure(Error error) => new Result(false, error);
+    public static Result Failure(Error error) => new(false, error);
 
     public static Result<TValue> Failure<TValue>(Error error) => new Result<TValue>(default!, false, error);
 

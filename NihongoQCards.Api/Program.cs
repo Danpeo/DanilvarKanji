@@ -1,17 +1,15 @@
 using DanilvarKanji.Application;
-using DanilvarKanji.Application.Characters.Commands;
-using DanilvarKanji.Application.Characters.Handlers;
-using DanilvarKanji.Data;
 using DanilvarKanji.Data.Configuration;
+using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Extensions;
 using DanilvarKanji.Mappings;
 using DanilvarKanji.Infrastructure;
+using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.OptionsSetup;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
@@ -19,6 +17,8 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.AddLamarServices();
+
+builder.Services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true)
     .AddFluentValidationClientsideAdapters();
@@ -28,7 +28,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-builder.Services.AddAutoMapper(typeof(CharacterMapperProfile));
 
 builder.Services.AddODataQueryFilter();
 
@@ -71,6 +70,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.AddMappings();
+
 /*
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterCommand>());
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterHandler>());
@@ -134,8 +135,8 @@ app.UseCors(policy =>
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
+app.UseAuthorization();
 app.UseAuthentication();
 
 app.MapControllers();

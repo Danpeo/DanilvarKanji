@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "zUgHsY7F53T7mh4bS7J87h1QxOQvlRri3qcjE+HCcZJNF6EuSYHH2MCzqUeMhWhUnch4v3XPvOEkw8OWEhExbQ==",
-  "success": false,
+  "dgSpecHash": "sTixFxzCqr6AiLzSDed4B5gag8TxsVGye/4IEO4CnppSw6Bgru+yX+gGmmi8j8PDIegfAumkti62Ikvnl7vryg==",
+  "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\NihongoQCards.Api\\DanilvarKanji.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
@@ -16,7 +16,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\fastexpressioncompiler\\3.3.4\\fastexpressioncompiler.3.3.4.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.0\\fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\jasperfx.codegeneration\\3.0.0\\jasperfx.codegeneration.3.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\jasperfx.core\\1.4.0\\jasperfx.core.1.4.0.nupkg.sha512",
@@ -24,7 +24,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\lamar.microsoft.dependencyinjection\\12.0.1\\lamar.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.11\\microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.14\\microsoft.aspnetcore.authentication.jwtbearer.7.0.14.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\7.0.11\\microsoft.aspnetcore.authentication.openidconnect.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.11\\microsoft.aspnetcore.cryptography.internal.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.11\\microsoft.aspnetcore.cryptography.keyderivation.7.0.11.nupkg.sha512",
@@ -178,15 +178,5 @@
     "C:\\Users\\danil\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\wanakana-net\\1.0.0\\wanakana-net.1.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Обнаружено понижение версии пакета Microsoft.AspNetCore.Authentication.JwtBearer с 7.0.14 на 7.0.11. Чтобы выбрать другую версию, создайте ссылку на пакет напрямую из проекта. \r\n DanilvarKanji.Api -> DanilvarKanji.Application -> Microsoft.AspNetCore.Authentication.JwtBearer (>= 7.0.14) \r\n DanilvarKanji.Api -> Microsoft.AspNetCore.Authentication.JwtBearer (>= 7.0.11)",
-      "libraryId": "Microsoft.AspNetCore.Authentication.JwtBearer",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

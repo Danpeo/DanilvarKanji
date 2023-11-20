@@ -1,13 +1,16 @@
 using AutoMapper;
 using CloudinaryDotNet.Actions;
-using DanilvarKanji.Services.Auth;
-using DanilvarKanji.Services.Images;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Services.Auth;
+using DanilvarKanji.Services.Images;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+namespace DanilvarKanji.Controllers;
+
+[Obsolete]
 [ApiController]
 [Route("api/[controller]")]
 public class AccountController : ControllerBase

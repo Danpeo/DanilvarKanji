@@ -20,11 +20,6 @@ public class CharacterRepository : ICharacterRepository
     public void Create(Character character) =>
         _context.Characters.Add(character);
 
-    public async Task<IEnumerable<CharacterDto>> ListAsyncObsolete(PaginationParams? paginationParams)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams) =>
         await GetCharactersWithRelatedData(paginationParams)
             .ToListAsync();
@@ -40,11 +35,6 @@ public class CharacterRepository : ICharacterRepository
 
     public Task<bool> Exist(string id) =>
         _context.Characters.AnyAsync(x => x.Id == id);
-
-    public Task<bool> UpdateAsyncObsolete(string id, CharacterDto characterDto)
-    {
-        throw new NotImplementedException();
-    }
 
     public async Task UpdateAsync(string id, Character character)
     {
@@ -78,11 +68,6 @@ public class CharacterRepository : ICharacterRepository
         throw new NotImplementedException();
     }
 
-    public Task<CharacterDto?> GetPartialAsync(string id, IEnumerable<string> fields)
-    {
-        throw new NotImplementedException();
-    }
-
     public Task<bool> AnyExist() =>
         _context.Characters.AnyAsync();
 
@@ -103,11 +88,6 @@ public class CharacterRepository : ICharacterRepository
         return Enumerable.Empty<string>();
     }
 
-    public Task<IEnumerable<CharacterDto>> SearchAsyncObsolete(string searchTerm, PaginationParams? paginationParams)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<IEnumerable<Character>> SearchAsync(string searchTerm) =>
         await _context.Characters
             .Where(x =>
@@ -123,11 +103,6 @@ public class CharacterRepository : ICharacterRepository
                      o.Romaji != null && (EF.Functions.ILike(o.JapaneseWriting, $"%{searchTerm}%") ||
                                           EF.Functions.ILike(o.Romaji, $"%{searchTerm}%")))))
             .ToListAsync();
-
-    public Task<IEnumerable<CharacterDto>> ListChildCharactersObsolete(string id)
-    {
-        throw new NotImplementedException();
-    }
 
     public async Task<IEnumerable<Character>> ListChildCharacters(string characterId)
     {

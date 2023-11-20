@@ -15,7 +15,7 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="MediatR" Version="12.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
@@ -44,10 +44,6 @@
     <ProjectReference Include="..\DanilvarKanji.Mappings\DanilvarKanji.Mappings.csproj" />
     <ProjectReference Include="..\DanilvarKanji.Infrastructure\DanilvarKanji.Infrastructure.csproj" />
     <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\Auth" />
   </ItemGroup>
 
 </Project>

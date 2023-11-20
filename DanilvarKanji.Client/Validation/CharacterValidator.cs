@@ -6,6 +6,7 @@ using Microsoft.Extensions.Localization;
 
 namespace DanilvarKanji.Client.Validation;
 
+// ReSharper disable once UnusedType.Global
 public class CharacterValidator : AbstractValidator<CreateCharacterRequest>
 {
     public CharacterValidator(IStringLocalizer<App> localizer)
