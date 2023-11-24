@@ -18,4 +18,14 @@ public static class User
     public static Error CannotChangePassword => new(
         "User.CannotChangePassword",
         "The password cannot be changed to the specified password.");
+
+    public static Error WrongCredentials => new(
+        "User.WrongCredentials",
+        "Login Creadentials are not valid."
+    );
+
+    public static Error EmailNotComfirmed => new(
+        "User.EmailNotComfirmed",
+        "Email for this user was not confirmed"
+    );
 }

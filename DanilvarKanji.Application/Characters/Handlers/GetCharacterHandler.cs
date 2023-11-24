@@ -5,6 +5,7 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Handlers;
 
+// ReSharper disable once UnusedType.Global
 public class GetCharacterHandler : IRequestHandler<GetCharacterQuery, Character?>
 {
     private readonly ICharacterRepository _characterRepository;

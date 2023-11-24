@@ -1,6 +1,6 @@
 using DanilvarKanji.Domain.Entities;
 
-namespace DanilvarKanji.Application.Auth;
+namespace DanilvarKanji.Infrastructure.Auth;
 
 public interface IJwtProvider
 {

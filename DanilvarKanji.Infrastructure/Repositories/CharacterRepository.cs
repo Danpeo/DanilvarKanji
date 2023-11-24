@@ -1,4 +1,3 @@
-using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Params;
@@ -23,11 +22,6 @@ public class CharacterRepository : ICharacterRepository
     public async Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams) =>
         await GetCharactersWithRelatedData(paginationParams)
             .ToListAsync();
-
-    public Task<CharacterDto> GetAsyncObsolete(string id)
-    {
-        throw new NotImplementedException();
-    }
 
     public async Task<Character?> GetAsync(string id) =>
         await GetCharactersWithRelatedData()
@@ -58,14 +52,10 @@ public class CharacterRepository : ICharacterRepository
         _context.Characters.Update(characterToUpdate);
     }
 
-    public Task<bool> DeleteAsync(string id)
+    public async Task DeleteAsync(string id)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> ReplaceAsync(string id, CharacterDto characterDto)
-    {
-        throw new NotImplementedException();
+        Character? character = await GetAsync(id);
+        _context.Characters.Remove(character!);
     }
 
     public Task<bool> AnyExist() =>

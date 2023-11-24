@@ -1,3 +1,4 @@
+using System.Text;
 using DanilvarKanji.Application;
 using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Domain.Entities;
@@ -10,6 +11,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
@@ -31,21 +33,21 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 builder.Services.AddODataQueryFilter();
 
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(options =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "DanilvarKanji API",
         Version = "v1"
     });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
         Description = "Please insert JWT with Bearer into field",
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey
     });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
@@ -61,21 +63,10 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")))*/
-;
-
-/*builder.Services.AddDbContext<DanilvarKanji.Infrastructure.Data.ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSql")));*/
-
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddMappings();
 
-/*
-builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterCommand>());
-builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<CreateCharacterHandler>());
-*/
 
 // Add services to the container.
 
@@ -86,9 +77,6 @@ builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<Create
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));*/
 
 var modelBuilder = new ODataConventionModelBuilder();
-/*modelBuilder.EntityType<AppUser>();
-modelBuilder.EntitySet<Character>("Characters");
-modelBuilder.EntitySet<StringDefinition>("Definitions");*/
 
 builder.Services.AddControllers()
     .AddOData(options => options
@@ -101,10 +89,7 @@ builder.Services.AddControllers()
         .AddRouteComponents("odata", modelBuilder.GetEdmModel()))
     .AddJsonOptions(options =>
     {
-        /*
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-        */
-        //options.JsonSerializerOptions.Converters.Add(new NumberToStringConverter());
+        
     });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -112,10 +97,26 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
+    });
 
 builder.Services.ConfigureOptions<JwtOptionsSetup>();
+
+builder.Services.AddAuthorization();
+
+/*
 builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+*/
 
 var app = builder.Build();
 
@@ -135,9 +136,9 @@ app.UseCors(policy =>
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 
 app.UseAuthorization();
-app.UseAuthentication();
 
 app.MapControllers();
 

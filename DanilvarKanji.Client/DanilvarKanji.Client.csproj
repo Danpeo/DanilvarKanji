@@ -15,6 +15,7 @@
         <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
         <PackageReference Include="FluentValidation" Version="11.8.0" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.14" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all" />
         <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13" />
         <PackageReference Include="WanaKana-net" Version="1.0.0" />
@@ -66,6 +67,9 @@
         </Compile>
         <Compile Update="Pages\Characters\Manage\AddCharacter.cs">
           <DependentUpon>AddCharacter.razor</DependentUpon>
+        </Compile>
+        <Compile Update="Pages\Auth\Register.cs">
+          <DependentUpon>Register.razor</DependentUpon>
         </Compile>
     </ItemGroup>
 

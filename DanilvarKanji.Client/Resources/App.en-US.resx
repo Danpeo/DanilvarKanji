@@ -45,4 +45,28 @@
     <data name="NothingAtAddress" xml:space="preserve">
         <value>Sorry, there's nothing at this address.</value>
     </data>
+    <data name="NotEmpty" xml:space="preserve">
+        <value>Please enter a value</value>
+    </data>
+    <data name="InvalidEmail" xml:space="preserve">
+        <value>Please enter valid email</value>
+    </data>
+    <data name="PasswordTooShort" xml:space="preserve">
+        <value>Password too short, it should be at least</value>
+    </data>
+    <data name="PasswordRequiresDigit" xml:space="preserve">
+        <value>Password must have at least one digit ('0'-'9').</value>
+    </data>
+    <data name="PasswordRequiresUpper" xml:space="preserve">
+        <value>Password must have at least one uppercase ('A'-'Z')</value>
+    </data>
+    <data name="PasswordRequiresLower" xml:space="preserve">
+        <value>Password must have at least one lowercase ('a'-'z')</value>
+    </data>
+    <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+        <value>Password must have at least one non alphanumeric character</value>
+    </data>
+    <data name="PasswordRepeatMismath" xml:space="preserve">
+        <value>Passwords should be equal</value>
+    </data>
 </root>

@@ -164,3 +164,14 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debu
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\DanilvarKanji.Domain.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\en-US\DanilvarKanji.Client.resources.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\ru-RU\DanilvarKanji.Client.resources.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\MediatR.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\MediatR.Contracts.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.OData.Edm.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.OData.ModelBuilder.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.Spatial.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Danilvar.Components.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Danilvar.Components.pdb

@@ -41,6 +41,10 @@
     background-color: var(--dark-color-secondary) !important;
 }
 
+.bg-light-pink {
+    background-color: var(--pink-color-light) !important;
+}
+
 .dark-grad-bg-img {
     background-image: linear-gradient(180deg, rgb(44 44 44) 0%, #1a1919 70%) !important;
 }

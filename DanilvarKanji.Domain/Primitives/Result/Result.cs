@@ -2,6 +2,13 @@ namespace DanilvarKanji.Domain.Primitives.Result;
 
 public class Result
 {
+    private List<Error> _errors = new();
+
+    public Result()
+    {
+        
+    }
+    
     protected Result(bool isSuccess, Error error)
     {
         if (isSuccess && !error.Equals(Error.None) ||
@@ -14,11 +21,12 @@ public class Result
         Error = error;
     }
 
-    public bool IsSuccess { get; }
+    public bool IsSuccess { get; set; }
 
     public bool IsFailure => !IsSuccess;
 
     public Error Error { get; }
+    public IEnumerable<Error> Errors => _errors;
 
     public static Result Success() => new(true, Error.None);
 
@@ -33,6 +41,34 @@ public class Result
 
     public static Result<TValue> Failure<TValue>(Error error) => new Result<TValue>(default!, false, error);
 
+    public static Result Failed(params Error[]? errors)
+    {
+        var result = new Result
+        {
+            IsSuccess = false
+        };
+        
+        if (errors != null)
+        {
+            result._errors.AddRange(errors);
+        }
+        return result;
+    }
+    
+    public static Result<TValue> Failed<TValue>(params Error[]? errors)
+    {
+        var result = new Result<TValue>
+        {
+            IsSuccess = false
+        };
+        
+        if (errors != null)
+        {
+            result._errors.AddRange(errors);
+        }
+        return result;
+    }
+    
     public static Result FirstFailureOrSuccess(params Result[] results)
     {
         foreach (Result result in results)

@@ -5,7 +5,7 @@ using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Infrastructure.Abstractions;
+using DanilvarKanji.Infrastructure.Data;
 using Moq;
 
 namespace DanilvarKanji.Application.Tests.Characters.Handlers;

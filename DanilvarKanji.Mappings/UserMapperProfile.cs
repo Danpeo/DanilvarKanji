@@ -21,5 +21,19 @@ public class UserMapperProfile : Profile
 
         CreateMap<RegisterUserRequest, RegisterUserCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+        
+        CreateMap<AppUser, LoginUserCommand>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<LoginUserCommand, AppUser>()
+            .ForMember(x => x.Id, opt => opt.Ignore())
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<LoginUserCommand, LoginUserRequest>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<LoginUserRequest, LoginUserCommand>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
     }
 }

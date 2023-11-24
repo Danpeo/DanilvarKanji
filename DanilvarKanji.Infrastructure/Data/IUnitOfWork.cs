@@ -1,4 +1,4 @@
-namespace DanilvarKanji.Infrastructure.Abstractions;
+namespace DanilvarKanji.Infrastructure.Data;
 
 public interface IUnitOfWork
 {

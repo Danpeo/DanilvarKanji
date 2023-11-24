@@ -109,7 +109,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.14": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.15.1"
@@ -767,6 +767,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "DanilvarKanji.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
         },
@@ -919,10 +920,10 @@
         "mediatr.contracts.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
-      "sha512": "xFLgrIjh9DsfSpSRmfb8PWswYSLxkdU/3y2d3yrSA9v+sajnqYP2BARKrxZlO/RlKKMboosAIYP2MajPJilv5w==",
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.14": {
+      "sha512": "640Jjm2NnpQYHew0I2RyP2PjBKfB1ItSDYHX1TD+ooJov+b+ELPuo/GgrJCNJr3ZI1YmplmsQv88d8JRojZ+fA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.11",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.14",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -930,7 +931,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.7.0.14.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
@@ -1944,7 +1945,7 @@
       "DanilvarKanji.Shared >= 1.0.0",
       "FluentValidation.DependencyInjectionExtensions >= 11.8.0",
       "MediatR >= 12.1.1",
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.11"
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.14"
     ]
   },
   "packageFolders": {
@@ -2007,7 +2008,7 @@
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
-            "version": "[7.0.11, )"
+            "version": "[7.0.14, )"
           }
         },
         "imports": [

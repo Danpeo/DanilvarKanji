@@ -4,9 +4,9 @@ using FluentValidation;
 namespace DanilvarKanji.Application.Characters.Validators;
 
 // ReSharper disable once UnusedType.Global
-public class CreateCharascterValidator : AbstractValidator<CreateCharacterCommand>
+public class CreateCharacterValidator : AbstractValidator<CreateCharacterCommand>
 {
-    public CreateCharascterValidator()
+    public CreateCharacterValidator()
     {
         RuleFor(x => x.Definition)
             .NotEmpty()

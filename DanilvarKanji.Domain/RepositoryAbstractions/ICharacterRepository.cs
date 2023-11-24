@@ -1,4 +1,3 @@
-using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Params;
@@ -7,9 +6,8 @@ namespace DanilvarKanji.Domain.RepositoryAbstractions;
 
 public interface ICharacterRepository
 {
-    Task<CharacterDto> GetAsyncObsolete(string id);
     Task<bool> Exist(string id);
-    Task<bool> DeleteAsync(string id);
+    Task DeleteAsync(string id);
     Task<bool> AnyExist();
     Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
         Culture culture);

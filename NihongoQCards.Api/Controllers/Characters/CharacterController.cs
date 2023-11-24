@@ -1,7 +1,6 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Application.Characters.Queries;
-using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;

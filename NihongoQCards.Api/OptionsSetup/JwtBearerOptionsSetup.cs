@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DanilvarKanji.OptionsSetup;
 
-public class JwtBearerOptionsSetup : IConfigureOptions<JwtBearerOptions>
+public class JwtBearerOptionsSetup : IConfigureNamedOptions<JwtBearerOptions>
 {
     private readonly JwtOptions _jwtOptions;
 
@@ -29,5 +29,10 @@ public class JwtBearerOptionsSetup : IConfigureOptions<JwtBearerOptions>
                 Encoding.UTF8.GetBytes(_jwtOptions.SecretKey)
             )
         };
+    }
+
+    public void Configure(string? name, JwtBearerOptions options)
+    {
+        throw new NotImplementedException();
     }
 }

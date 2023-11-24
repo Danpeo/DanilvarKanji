@@ -1,15 +1,14 @@
 using DanilvarKanji.Client.Localization.LocaleKeys;
-using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Shared.Requests.Characters;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 
-namespace DanilvarKanji.Client.Validation;
+namespace DanilvarKanji.Client.Pages.Characters.Manage.Validation;
 
 // ReSharper disable once UnusedType.Global
-public class CharacterValidator : AbstractValidator<CreateCharacterRequest>
+public class AddCharacterValidator : AbstractValidator<CreateCharacterRequest>
 {
-    public CharacterValidator(IStringLocalizer<App> localizer)
+    public AddCharacterValidator(IStringLocalizer<App> localizer)
     {
         RuleFor(x => x.Definition)
             .NotEmpty()

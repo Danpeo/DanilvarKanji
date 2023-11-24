@@ -45,4 +45,28 @@
     <data name="NothingAtAddress" xml:space="preserve">
         <value>Извините, на этом адресе ничего не найдено.</value>
     </data>
+    <data name="NotEmpty" xml:space="preserve">
+        <value>Пожалуйста введите значение</value>
+    </data>
+    <data name="InvalidEmail" xml:space="preserve">
+        <value>Пожалуйста введите валидную электронную почту</value>
+    </data>
+    <data name="PasswordTooShort" xml:space="preserve">
+        <value>Пароль слишком короткий, должно быть хотя бы</value>
+    </data>
+    <data name="PasswordRequiresDigit" xml:space="preserve">
+        <value>Пароль должен содержать хотя бы одну цифру</value>
+    </data>
+    <data name="PasswordRequiresUpper" xml:space="preserve">
+        <value>Пароль должен содержать хотя бы одну заглавую латинскую букву</value>
+    </data>
+    <data name="PasswordRequiresLower" xml:space="preserve">
+        <value>Пароль должен содержать хотя бы одну строчную латинскую букву</value>
+    </data>
+    <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+        <value>Пароль должен содержать хотя бы один специальный символ</value>
+    </data>
+    <data name="PasswordRepeatMismath" xml:space="preserve">
+        <value>Пароли должны совпадать</value>
+    </data>
 </root>

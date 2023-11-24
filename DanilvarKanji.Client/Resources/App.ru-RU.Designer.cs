@@ -60,6 +60,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пожалуйста введите валидную электронную почту.
+        /// </summary>
+        internal static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Язык.
         /// </summary>
         internal static string Language {
@@ -96,6 +105,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пожалуйста введите значение.
+        /// </summary>
+        internal static string NotEmpty {
+            get {
+                return ResourceManager.GetString("NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пожалуйста введите определение.
         /// </summary>
         internal static string NotEmptyCharDef {
@@ -128,6 +146,60 @@ namespace DanilvarKanji.Client.Resources {
         internal static string NothingAtAddress {
             get {
                 return ResourceManager.GetString("NothingAtAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароли должны совпадать.
+        /// </summary>
+        internal static string PasswordRepeatMismath {
+            get {
+                return ResourceManager.GetString("PasswordRepeatMismath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль должен содержать хотя бы одну цифру.
+        /// </summary>
+        internal static string PasswordRequiresDigit {
+            get {
+                return ResourceManager.GetString("PasswordRequiresDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль должен содержать хотя бы одну строчную латинскую букву.
+        /// </summary>
+        internal static string PasswordRequiresLower {
+            get {
+                return ResourceManager.GetString("PasswordRequiresLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль должен содержать хотя бы один специальный символ.
+        /// </summary>
+        internal static string PasswordRequiresNonAlphanumeric {
+            get {
+                return ResourceManager.GetString("PasswordRequiresNonAlphanumeric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль должен содержать хотя бы одну заглавую латинскую букву.
+        /// </summary>
+        internal static string PasswordRequiresUpper {
+            get {
+                return ResourceManager.GetString("PasswordRequiresUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль слишком короткий, должно быть хотя бы.
+        /// </summary>
+        internal static string PasswordTooShort {
+            get {
+                return ResourceManager.GetString("PasswordTooShort", resourceCulture);
             }
         }
         

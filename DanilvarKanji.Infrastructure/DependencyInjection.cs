@@ -1,5 +1,6 @@
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Infrastructure.Abstractions;
+using DanilvarKanji.Infrastructure.Auth;
+using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,9 @@ public static class DependencyInjection
     {
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("PostgresSql")));
-        
+
+        services.AddTransient<IDateTime, MachineDateTime>();
+        services.AddScoped<IJwtProvider, JwtProvier>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
         services.AddScoped<IUserRepository, UserRepository>();

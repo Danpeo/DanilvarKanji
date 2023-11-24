@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EEMCkF2rHDzgNFaJPiH8G2sHSXhxMDR9Tz34MtIw2HQA/wwaYIa1x7ZeK0rWUALlKUoduVlWJqLThfCSxkByVg==",
+  "dgSpecHash": "5d/nbp1WdbEA3mOagNh10eIdbuj+ayZ3dGdSRglVlcihPcJVkj0CdJjfqhHYBRbRghR7Xd9UCnW+ViyuLI/aLw==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Application\\DanilvarKanji.Application.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.0\\fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.11\\microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.14\\microsoft.aspnetcore.authentication.jwtbearer.7.0.14.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.11\\microsoft.aspnetcore.cryptography.internal.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.11\\microsoft.aspnetcore.cryptography.keyderivation.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.11.nupkg.sha512",

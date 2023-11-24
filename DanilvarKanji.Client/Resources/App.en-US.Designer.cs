@@ -60,6 +60,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter valid email.
+        /// </summary>
+        internal static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string Language {
@@ -96,6 +105,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a value.
+        /// </summary>
+        internal static string NotEmpty {
+            get {
+                return ResourceManager.GetString("NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a definition.
         /// </summary>
         internal static string NotEmptyCharDef {
@@ -128,6 +146,60 @@ namespace DanilvarKanji.Client.Resources {
         internal static string NothingAtAddress {
             get {
                 return ResourceManager.GetString("NothingAtAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords should be equal.
+        /// </summary>
+        internal static string PasswordRepeatMismath {
+            get {
+                return ResourceManager.GetString("PasswordRepeatMismath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must have at least one digit (&apos;0&apos;-&apos;9&apos;)..
+        /// </summary>
+        internal static string PasswordRequiresDigit {
+            get {
+                return ResourceManager.GetString("PasswordRequiresDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must have at least one lowercase (&apos;a&apos;-&apos;z&apos;).
+        /// </summary>
+        internal static string PasswordRequiresLower {
+            get {
+                return ResourceManager.GetString("PasswordRequiresLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must have at least one non alphanumeric character.
+        /// </summary>
+        internal static string PasswordRequiresNonAlphanumeric {
+            get {
+                return ResourceManager.GetString("PasswordRequiresNonAlphanumeric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must have at least one uppercase (&apos;A&apos;-&apos;Z&apos;).
+        /// </summary>
+        internal static string PasswordRequiresUpper {
+            get {
+                return ResourceManager.GetString("PasswordRequiresUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password too short, it should be at least.
+        /// </summary>
+        internal static string PasswordTooShort {
+            get {
+                return ResourceManager.GetString("PasswordTooShort", resourceCulture);
             }
         }
         

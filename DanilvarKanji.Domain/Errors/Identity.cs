@@ -6,13 +6,25 @@ public static class Identity
 {
     public static IdentityError EmailNotUnique => new()
     {
-        Code = "EmailNotUnique",
+        Code = "Identity.EmailNotUnique",
         Description = "Email is alread taken."
     };
 
     public static IdentityError PasswordsDontMatch => new()
     {
-        Code = "PasswordsDontMatch",
+        Code = "Identity.PasswordsDontMatch",
         Description = "Password inputs don't match."
+    };
+
+    public static IdentityError NotFound => new()
+    {
+        Code = "Identity.NotFound",
+        Description = "User not found."
+    };
+
+    public static IdentityError EmailAlreadyConfirmed => new()
+    {
+        Code = "Identity.EmailAlreadyConfirmed",
+        Description = "Email for specified user was already confirmed."
     };
 }

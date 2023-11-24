@@ -1,5 +1,3 @@
-using DanilvarKanji.Infrastructure.Abstractions;
-
 namespace DanilvarKanji.Infrastructure.Data;
 
 public class UnitOfWork : IUnitOfWork

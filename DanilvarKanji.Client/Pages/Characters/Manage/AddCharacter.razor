@@ -1,7 +1,5 @@
-@page "/characters/add-character"
+@page "/Characters/Add"
 @using DanilvarKanji.Client.Data
-@using DanilvarKanji.Domain.DTO
-@using DanilvarKanji.Domain.Entities
 @using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.Characters
 
@@ -10,7 +8,6 @@
 <h1 class="mt-5 mb-4 animated-blink main-font display-3">
     Add Character
 </h1>
-
 
 <EditForm Model="_character" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
