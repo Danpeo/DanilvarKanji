@@ -1,5 +1,7 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
@@ -10,9 +12,9 @@ public class CharacterService : ICharacterService
 {
     private readonly HttpClient _httpClient;
 
-    public CharacterService(HttpClient httpClient)
+    public CharacterService(IHttpClientFactory factory)
     {
-        _httpClient = httpClient;
+        _httpClient = factory.CreateClient("ServerApi");
     }
 
     public async Task<IEnumerable<CharacterDto?>?> ListCharactersAsync(int pageNumber = 0, int pageSize = 0)
@@ -172,11 +174,11 @@ public class CharacterService : ICharacterService
         } 
     }
 
-    public async Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest character)
+    public async Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest request)
     {
         try
         {
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Characters", character);
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Characters", request);
 
             if (response.IsSuccessStatusCode)
             {

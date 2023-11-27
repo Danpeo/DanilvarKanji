@@ -41,10 +41,11 @@ public class UserController : ApiController
     {
         var command = _mapper.Map<LoginUserCommand>(request);
 
-        Result<TokenResponse> result = await Mediator.Send(command);
+        Result<LoginResponse> result = await Mediator.Send(command);
 
         return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
     }
+    
 
     [Authorize]
     [HttpPatch("{userId}:ConfirmEmail")]

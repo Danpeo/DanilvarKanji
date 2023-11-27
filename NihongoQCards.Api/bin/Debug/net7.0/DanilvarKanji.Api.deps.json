@@ -33,7 +33,8 @@
           "Microsoft.Identity.Web": "1.16.0",
           "Newtonsoft.Json": "13.0.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "Swashbuckle.AspNetCore": "6.5.0",
+          "DanilvarKanji.Client": "1.0.0.0"
         },
         "runtime": {
           "DanilvarKanji.Api.dll": {}
@@ -1684,6 +1685,70 @@
         "runtime": {
           "DanilvarKanji.Shared.dll": {}
         }
+      },
+      "DanilvarKanji.Client/1.0.0.0": {
+        "runtime": {
+          "DanilvarKanji.Client.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "en-US/DanilvarKanji.Client.resources.dll": {
+            "locale": "en-US"
+          },
+          "ru-RU/DanilvarKanji.Client.resources.dll": {
+            "locale": "ru-RU"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.WebAssembly/7.0.11.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Components.WebAssembly.dll": {
+            "assemblyVersion": "7.0.11.0",
+            "fileVersion": "7.0.1123.42502"
+          }
+        }
+      },
+      "Blazored.LocalStorage/1.0.0.0": {
+        "runtime": {
+          "Blazored.LocalStorage.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Blazored.SessionStorage/1.0.0.0": {
+        "runtime": {
+          "Blazored.SessionStorage.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Blazored.FluentValidation/1.0.0.0": {
+        "runtime": {
+          "Blazored.FluentValidation.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication/7.0.14.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {
+            "assemblyVersion": "7.0.14.0",
+            "fileVersion": "7.0.1423.52316"
+          }
+        }
+      },
+      "Microsoft.JSInterop.WebAssembly/7.0.11.0": {
+        "runtime": {
+          "Microsoft.JSInterop.WebAssembly.dll": {
+            "assemblyVersion": "7.0.11.0",
+            "fileVersion": "7.0.1123.42502"
+          }
+        }
       }
     }
   },
@@ -2926,6 +2991,41 @@
     },
     "DanilvarKanji.Shared/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DanilvarKanji.Client/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Components.WebAssembly/7.0.11.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Blazored.LocalStorage/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Blazored.SessionStorage/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Blazored.FluentValidation/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Components.WebAssembly.Authentication/7.0.14.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.JSInterop.WebAssembly/7.0.11.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

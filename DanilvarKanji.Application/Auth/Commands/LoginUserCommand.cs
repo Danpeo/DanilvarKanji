@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Auth.Commands;
 
-public class LoginUserCommand : IRequest<Result<TokenResponse>>
+public class LoginUserCommand : IRequest<Result<LoginResponse>>
 {
     public string Email { get; set; }
 

@@ -15,5 +15,5 @@ public interface ICharacterService
 
     Task<IEnumerable<CharacterDto>> ListCharactersFilteredBy(string filter, string term);
     Task<IEnumerable<CharacterDto>> SearchCharacters(string searchTerm);
-    Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest character);
+    Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest request);
 }

@@ -44,6 +44,7 @@
     <ProjectReference Include="..\DanilvarKanji.Mappings\DanilvarKanji.Mappings.csproj" />
     <ProjectReference Include="..\DanilvarKanji.Infrastructure\DanilvarKanji.Infrastructure.csproj" />
     <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
+    <ProjectReference Include="..\DanilvarKanji.Client\DanilvarKanji.Client.csproj"/>
   </ItemGroup>
 
 </Project>

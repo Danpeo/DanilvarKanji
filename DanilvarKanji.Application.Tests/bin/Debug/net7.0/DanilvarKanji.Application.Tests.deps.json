@@ -110,14 +110,14 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.14": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.15.1"
         },
         "runtime": {
           "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "assemblyVersion": "7.0.11.0",
-            "fileVersion": "7.0.1123.42502"
+            "assemblyVersion": "7.0.14.0",
+            "fileVersion": "7.0.1423.52316"
           }
         }
       },
@@ -1437,7 +1437,7 @@
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation.DependencyInjectionExtensions": "11.8.0",
           "MediatR": "12.1.1",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11"
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14"
         },
         "runtime": {
           "DanilvarKanji.Application.dll": {}
@@ -1460,6 +1460,7 @@
       "DanilvarKanji.Infrastructure/1.0.0": {
         "dependencies": {
           "DanilvarKanji.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
         },
@@ -1554,12 +1555,12 @@
       "path": "mediatr.contracts/2.0.1",
       "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.14": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xFLgrIjh9DsfSpSRmfb8PWswYSLxkdU/3y2d3yrSA9v+sajnqYP2BARKrxZlO/RlKKMboosAIYP2MajPJilv5w==",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.11",
-      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512"
+      "sha512": "sha512-640Jjm2NnpQYHew0I2RyP2PjBKfB1ItSDYHX1TD+ooJov+b+ELPuo/GgrJCNJr3ZI1YmplmsQv88d8JRojZ+fA==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.14",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.7.0.14.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/7.0.11": {
       "type": "package",

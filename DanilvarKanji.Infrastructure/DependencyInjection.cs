@@ -17,7 +17,7 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("PostgresSql")));
 
         services.AddTransient<IDateTime, MachineDateTime>();
-        services.AddScoped<IJwtProvider, JwtProvier>();
+        services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
         services.AddScoped<IUserRepository, UserRepository>();

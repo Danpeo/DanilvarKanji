@@ -126,3 +126,15 @@ C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Infrastructure.dll
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Infrastructure.pdb
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\obj\Debug\net7.0\DanilvarKanji.Api.sourcelink.json
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Danilvar.Components.staticwebassets.runtime.json
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Client.staticwebassets.runtime.json
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Api.staticwebassets.runtime.json
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Client.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Components.WebAssembly.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Blazored.LocalStorage.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Blazored.SessionStorage.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Blazored.FluentValidation.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Microsoft.JSInterop.WebAssembly.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DanilvarKanji.Client.pdb
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\en-US\DanilvarKanji.Client.resources.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\ru-RU\DanilvarKanji.Client.resources.dll

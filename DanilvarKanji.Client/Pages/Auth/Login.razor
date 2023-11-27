@@ -1,0 +1,56 @@
+@page "/login"
+@using DanilvarKanji.Client.Services.Auth
+@using DanilvarKanji.Shared.Requests.Auth
+@using DanilvarKanji.Shared.Responses.Auth
+
+@inject IAuthService AuthenticationService;
+
+
+<fieldset disabled="@(response is not null)">
+    <EditForm Model="@request" OnValidSubmit="SubmitAsync">
+        <div>
+            <label for="username">Username:</label>
+            <InputText @bind-Value="@request.Email" id="username" name="username" required />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <InputText type="password" @bind-Value="@request.Password" id="password" name="password" required />
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </EditForm>
+</fieldset>
+
+@if(response is not null)
+{
+    <p>You are logged in until @response.Expiration.ToLongTimeString()</p>
+    <p>@response.JwtToken</p>
+}
+
+@if (errorMessage is not null)
+{
+    <p class="error">@errorMessage</p>
+}
+
+@code {
+    private LoginUserRequest request = new();
+    private LoginResponse response;
+    private string? errorMessage;
+
+    private async Task SubmitAsync()
+    {
+        try
+        {
+            response = await AuthenticationService.LoginAsync(request);
+
+            errorMessage = null;
+        }
+        catch (Exception ex)
+        {
+            response = null;
+
+            errorMessage = ex.Message;
+        }
+    }
+}

@@ -87,17 +87,19 @@ builder.Services.AddControllers()
         .Count()
         .SetMaxTop(null)
         .AddRouteComponents("odata", modelBuilder.GetEdmModel()))
-    .AddJsonOptions(options =>
-    {
-        
-    });
+    .AddJsonOptions(options => { });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
     .AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -128,10 +130,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(policy =>
-    policy.WithOrigins("http://localhost:7106", "https://localhost:7106", "http://localhost:7046",
-            "https://localhost:7046")
-        .AllowAnyMethod()
-        .WithHeaders(HeaderNames.ContentType)
+        policy.WithOrigins(/*"http://localhost:7106", "https://localhost:7106", "http://localhost:7046",
+                "https://localhost:7046"*/"*")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+    //.WithHeaders(HeaderNames.ContentType)
 );
 
 app.UseHttpsRedirection();

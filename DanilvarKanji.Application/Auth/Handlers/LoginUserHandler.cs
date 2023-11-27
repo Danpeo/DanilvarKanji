@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using DanilvarKanji.Application.Auth.Commands;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Errors;
@@ -9,33 +10,38 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DanilvarKanji.Application.Auth.Handlers;
 
-public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<TokenResponse>>
+// ReSharper disable once UnusedType.Global
+public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<LoginResponse>>
 {
     private readonly UserManager<AppUser> _userManager;
-    private readonly SignInManager<AppUser> _signInManager;
     private readonly IJwtProvider _jwtProvider;
 
-    public LoginUserHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtProvider jwtProvider)
+    public LoginUserHandler(UserManager<AppUser> userManager, IJwtProvider jwtProvider)
     {
         _userManager = userManager;
-        _signInManager = signInManager;
         _jwtProvider = jwtProvider;
     }
 
-    public async Task<Result<TokenResponse>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result<LoginResponse>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
         AppUser? user = await _userManager.FindByEmailAsync(request.Email);
 
         if (user == null)
-            return Result.Failure<TokenResponse>(User.NotFound);
-        
+            return Result.Failure<LoginResponse>(User.NotFound);
+
         bool result = await _userManager.CheckPasswordAsync(user, request.Password);
-        
+
         if (!result)
-            return Result.Failure<TokenResponse>(User.WrongCredentials);
+            return Result.Failure<LoginResponse>(User.WrongCredentials);
 
-        string token = _jwtProvider.Create(user);
+        JwtSecurityToken token = _jwtProvider.GenerateJwt(user);
+        string refreshToken = _jwtProvider.GenerateRefreshToken();
 
-        return Result.Success(new TokenResponse(token));
+        user.RefreshToken = refreshToken;
+        user.RefreshTokenExpiry = DateTime.UtcNow.AddMinutes(60);
+
+        await _userManager.UpdateAsync(user);
+
+        return Result.Success(new LoginResponse(_jwtProvider.GetTokenValue(token), refreshToken, token.ValidTo));
     }
 }

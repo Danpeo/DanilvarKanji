@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.OData.Query;
 
 namespace DanilvarKanji.Controllers.Characters;
 
-[AllowAnonymous]
 public class CharacterController : ApiController
 {
     private readonly IMapper _mapper;

@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Infrastructure.Common;
@@ -9,18 +10,18 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DanilvarKanji.Infrastructure.Auth;
 
-public class JwtProvier : IJwtProvider
+public class JwtProvider : IJwtProvider
 {
     private readonly JwtOptions _jwtOptions;
     private readonly IDateTime _dateTime;
 
-    public JwtProvier(IOptions<JwtOptions> jwtOptions, IDateTime dateTime)
+    public JwtProvider(IOptions<JwtOptions> jwtOptions, IDateTime dateTime)
     {
         _dateTime = dateTime;
         _jwtOptions = jwtOptions.Value;
     }
 
-    public string Create(AppUser user)
+    public JwtSecurityToken GenerateJwt(AppUser user)
     {
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey));
 
@@ -44,8 +45,28 @@ public class JwtProvier : IJwtProvider
             signingCredentials
         );
 
+        /*string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+        
+        return tokenValue;*/
+
+        return token;
+    }
+
+    public string GetTokenValue(JwtSecurityToken token)
+    {
         string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
         
         return tokenValue;
+    }
+    
+    public string GenerateRefreshToken()
+    {
+        byte[] randomNumber = new byte[64];
+
+        using var generator = RandomNumberGenerator.Create();
+
+        generator.GetBytes(randomNumber);
+
+        return Convert.ToBase64String(randomNumber);
     }
 }
