@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 namespace DanilvarKanji.Controllers;
 
-[Authorize]
 [Route("api/[controller]s")]
 public class ApiController : ODataController
 {

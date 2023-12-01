@@ -24,4 +24,13 @@
     <data name="WelcomeToApp" xml:space="preserve">
         <value>Добро пожаловать на</value>
     </data>
+    <data name="Hello" xml:space="preserve">
+        <value>Привет</value>
+    </data>
+    <data name="Login" xml:space="preserve">
+        <value>Войти</value>
+    </data>
+    <data name="Register" xml:space="preserve">
+        <value>Зарегестрироваться</value>
+    </data>
 </root>

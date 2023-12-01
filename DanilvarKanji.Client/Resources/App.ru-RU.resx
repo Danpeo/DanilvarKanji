@@ -69,4 +69,10 @@
     <data name="PasswordRepeatMismath" xml:space="preserve">
         <value>Пароли должны совпадать</value>
     </data>
+    <data name="Login" xml:space="preserve">
+        <value>Войти</value>
+    </data>
+    <data name="Register" xml:space="preserve">
+        <value>Зарегестрироваться</value>
+    </data>
 </root>

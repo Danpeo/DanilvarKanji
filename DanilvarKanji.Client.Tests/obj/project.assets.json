@@ -2936,7 +2936,6 @@
           "Blazored.LocalStorage": "4.4.0",
           "Blazored.SessionStorage": "2.4.0",
           "Danilvar.Components": "1.0.0",
-          "DanilvarKanji.Domain": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.11",
@@ -9048,7 +9047,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "DanilvarKanji.Client.Tests зависит от Microsoft.NET.Test.Sdk (>= 16.12.0), но Microsoft.NET.Test.Sdk 16.12.0 не найден. Использовано наилучшее приближенное соответствие Microsoft.NET.Test.Sdk 17.0.0.",
+      "message": "DanilvarKanji.Client.Tests depends on Microsoft.NET.Test.Sdk (>= 16.12.0) but Microsoft.NET.Test.Sdk 16.12.0 was not found. An approximate best match of Microsoft.NET.Test.Sdk 17.0.0 was resolved.",
       "libraryId": "Microsoft.NET.Test.Sdk",
       "targetGraphs": [
         "net7.0"

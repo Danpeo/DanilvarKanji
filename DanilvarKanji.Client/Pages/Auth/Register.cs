@@ -12,11 +12,11 @@ public partial class Register
     private bool _submitSuccessful;
     private string? _errorMessage;
     
-    private async Task HandleSubmit()
+    private async Task HandleSubmitAsync()
     {
-        RegisterUserRequest? character = await AuthService.RegisterUserAsync(_registerUserRequest);
+        RegisterUserRequest? request = await AuthService.RegisterUserAsync(_registerUserRequest);
 
-        if (character is not null)
+        if (request is not null)
         {
             _submitSuccessful = true;
         }

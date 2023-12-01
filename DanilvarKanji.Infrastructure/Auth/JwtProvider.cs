@@ -46,7 +46,7 @@ public class JwtProvider : IJwtProvider
         );
 
         /*string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
-        
+
         return tokenValue;*/
 
         return token;
@@ -55,10 +55,25 @@ public class JwtProvider : IJwtProvider
     public string GetTokenValue(JwtSecurityToken token)
     {
         string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
-        
+
         return tokenValue;
     }
-    
+
+    public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
+    {
+        string secret = _jwtOptions.SecretKey ?? throw new InvalidOperationException("Secret not configured");
+
+        var validation = new TokenValidationParameters
+        {
+            ValidIssuer = _jwtOptions.Issuer,
+            ValidAudience = _jwtOptions.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
+            ValidateLifetime = false
+        };
+
+        return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
+    }
+
     public string GenerateRefreshToken()
     {
         byte[] randomNumber = new byte[64];

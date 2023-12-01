@@ -1,9 +1,9 @@
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 
-namespace DanilvarKanji.Domain.DTO;
+namespace DanilvarKanji.Shared.Responses.Character;
 
-public class CharacterDto
+public class CharacterResponse
 {
     public string Id { get; set; }
     public string? Definition { get; set; }
@@ -21,7 +21,7 @@ public class CharacterDto
     
     public List<string>? ChildCharacterIds { get; set; }
    
-    public CharacterDto()
+    public CharacterResponse()
     {
         Id = Guid.NewGuid().ToString("N");
     }

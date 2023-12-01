@@ -2,25 +2,34 @@
 
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Client.Localization.LocaleKeys
+
 @inject IStringLocalizer<Index> Loc
 
 <PageTitle>@AppDisplaySettings.AppTitle - @Loc[nameof(IndexLocaleKeys.HomeTitle)]</PageTitle>
 <div class="text-center">
 
     <Authorized>
-        <p>AAAAAAAAAAAAAAAAAAAAAAAAH</p>
+        <h1 class="display-6 txt-white main-font ">
+            @Loc["Hello"],
+            <b class="animated-blink">
+                <GetUserName/>
+            </b>
+        </h1>
     </Authorized>
 
-    <Authorized>
-        <p>HALOOOOO</p>
-    </Authorized>
+    <NotAuthorized>
+        <h1 class="display-4 txt-white main-font ">
+            @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
+        </h1>
+        
+        <NavLink href="register" class="three-d-btn no-outline">@Loc["Register"]</NavLink>
+        <NavLink href="login" class="three-d-btn no-outline">@Loc["Login"]</NavLink>
+        
+    </NotAuthorized>
 
-    <h1 class="display-4 txt-white main-font ">
-        @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
-    </h1>
-
-    <ScrollSection ImageSource="https://th.bing.com/th/id/OIG.OXBS3CECFtEOQyxwy7Vm?pid=ImgGn" Title="Some Text" Text="HAHAHHA"/>
+    @*<ScrollSection ImageSource="https://th.bing.com/th/id/OIG.OXBS3CECFtEOQyxwy7Vm?pid=ImgGn" Title="Some Text" Text="HAHAHHA"/>
     <ScrollSection ImageSource="https://th.bing.com/th/id/OIG.KwaNSjUB_tPiHkOFwxsf?pid=ImgGn" Title="Some Text" Text="HAHAHHA" FromRight="false"/>
     <ScrollSection ImageSource="https://th.bing.com/th/id/OIG.ieffDyC8ODj4idx7X4xL?pid=ImgGn" Title="Some Text" Text="HAHAHHA"/>
+    *@
 
 </div>

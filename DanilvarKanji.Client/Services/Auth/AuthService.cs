@@ -11,6 +11,7 @@ public class AuthService : IAuthService
 {
     private readonly IHttpClientFactory _httpFactory;
     private readonly ISessionStorageService _sessionStorageService;
+    private const string _baseUrl = "Accounts";
     private const string JwtKey = nameof(JwtKey);
     private const string RefreshKey = nameof(RefreshKey);
     private bool _isLoggedIn;
@@ -23,7 +24,7 @@ public class AuthService : IAuthService
         _httpFactory = httpFactory;
         _sessionStorageService = sessionStorageService;
     }
-    
+
     public async ValueTask<string> GetJwtAsync()
     {
         if (string.IsNullOrEmpty(_jwtCache))
@@ -38,21 +39,21 @@ public class AuthService : IAuthService
 
         return _isLoggedIn;
     }
-    
+
     public async Task<RegisterUserRequest?> RegisterUserAsync(RegisterUserRequest request)
     {
         try
         {
             HttpResponseMessage response = await _httpFactory
                 .CreateClient("ServerApi")
-                .PostAsync("api/Users/Register",
+                .PostAsync($"api/{_baseUrl}/Register",
                     JsonContent.Create(request));
-            
+
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadFromJsonAsync<RegisterUserRequest>();
             }
-            
+
             string message = await response.Content.ReadAsStringAsync();
             throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
         }
@@ -62,13 +63,13 @@ public class AuthService : IAuthService
             throw;
         }
     }
-    
-    public async Task<LoginResponse> LoginAsync(LoginUserRequest request)
+
+    public async Task<LoginResponse?> LoginAsync(LoginUserRequest request)
     {
         HttpResponseMessage response = await _httpFactory
             .CreateClient("ServerApi")
-            .PostAsync("api/Users/Login",
-            JsonContent.Create(request));
+            .PostAsync($"api/{_baseUrl}/Login",
+                JsonContent.Create(request));
 
         if (!response.IsSuccessStatusCode)
             throw new UnauthorizedAccessException("Login failed.");
@@ -81,19 +82,69 @@ public class AuthService : IAuthService
         await _sessionStorageService.SetItemAsync(JwtKey, content.JwtToken);
         await _sessionStorageService.SetItemAsync(RefreshKey, content.RefreshToken);
         await _sessionStorageService.SetItemAsync("IsLoggedIn", true);
-        
+
         LoginChange?.Invoke(GetUsername(content.JwtToken));
 
         IsLoggedIn = true;
-        
+
         return content;
     }
+
+    public async Task<bool> RefreshAsync()
+    {
+        var request = new RefreshKeyRequest()
+        {
+            AccessToken = await _sessionStorageService.GetItemAsync<string>(JwtKey),
+            RefreshToken = await _sessionStorageService.GetItemAsync<string>(RefreshKey)
+        };
+
+        HttpResponseMessage response = await _httpFactory
+            .CreateClient("ServerApi")
+            .PostAsync($"api/{_baseUrl}/refresh",
+                JsonContent.Create(request));
+
+        if (!response.IsSuccessStatusCode)
+        {
+            await LogoutAsync();
+
+            return false;
+        }
+
+        var content = await response.Content.ReadFromJsonAsync<LoginResponse>();
+
+        if (content == null)
+            throw new InvalidDataException();
+
+        await _sessionStorageService.SetItemAsync(JwtKey, content.JwtToken);
+        await _sessionStorageService.SetItemAsync(RefreshKey, content.RefreshToken);
+
+        _jwtCache = content.JwtToken;
+
+        return true;
+    }
     
+    public async Task LogoutAsync()
+    {
+        HttpResponseMessage response = await _httpFactory
+            .CreateClient("ServerApi")
+            .DeleteAsync($"api/{_baseUrl}/Revoke");
+        
+        await _sessionStorageService.RemoveItemAsync(JwtKey);
+        await _sessionStorageService.RemoveItemAsync(RefreshKey);
+
+        _jwtCache = null;
+
+        await Console.Out.WriteLineAsync($"Revoke gave response {response.StatusCode}");
+
+        LoginChange?.Invoke(null);
+
+        await _sessionStorageService.RemoveItemAsync("IsLoggedIn");
+    }
+
     private static string GetUsername(string token)
     {
         var jwt = new JwtSecurityToken(token);
 
         return jwt.Claims.First(c => c.Type == ClaimTypes.Name).Value;
     }
-    
 }

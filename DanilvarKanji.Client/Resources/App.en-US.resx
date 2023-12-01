@@ -69,4 +69,10 @@
     <data name="PasswordRepeatMismath" xml:space="preserve">
         <value>Passwords should be equal</value>
     </data>
+    <data name="Login" xml:space="preserve">
+        <value>Log In</value>
+    </data>
+    <data name="Register" xml:space="preserve">
+        <value>Register</value>
+    </data>
 </root>

@@ -35,5 +35,16 @@ public class UserMapperProfile : Profile
         CreateMap<LoginUserRequest, LoginUserCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
+        CreateMap<RefreshKeyCommand, RefreshKeyRequest>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<RefreshKeyRequest, RefreshKeyCommand>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+        
+        CreateMap<RevokeCommand, RevokeRequest>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<RevokeRequest, RevokeCommand>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
     }
 }

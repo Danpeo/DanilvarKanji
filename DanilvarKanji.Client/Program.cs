@@ -10,6 +10,7 @@ using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Shared.Responses.Character;
 using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -30,8 +31,9 @@ builder.Services.AddHttpClient("ServerApi")
     .AddHttpMessageHandler<AuthHandler>();
 
 builder.Services.AddScoped<ICharacterService, CharacterService>();
-builder.Services.AddScoped<IBaseQueryService<CharacterDto>, BaseQueryService<CharacterDto>>();
+builder.Services.AddScoped<IBaseQueryService<CharacterResponse>, BaseQueryService<CharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddBlazoredSessionStorageAsSingleton();
 builder.Services.AddBlazoredLocalStorage();

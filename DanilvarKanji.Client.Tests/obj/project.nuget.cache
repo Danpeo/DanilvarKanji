@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SpqTsYM326+GJDJq45wFsCi2BA3yiQDyG581XBJksy5AMxdf8ljC0dIQXhgpJ0LyAEx+INmF1e0C5A/e601m6A==",
+  "dgSpecHash": "AA1rSQfw9UN6KBvrQgtq0yG65O6dMhlcb9YUpppCNalkaSogCnbKwzPtrVi3DZ0ata7gv9X3ZH5djC1vN3V0KQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client.Tests\\DanilvarKanji.Client.Tests.csproj",
   "expectedPackageFiles": [
@@ -170,7 +170,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "DanilvarKanji.Client.Tests зависит от Microsoft.NET.Test.Sdk (>= 16.12.0), но Microsoft.NET.Test.Sdk 16.12.0 не найден. Использовано наилучшее приближенное соответствие Microsoft.NET.Test.Sdk 17.0.0.",
+      "message": "DanilvarKanji.Client.Tests depends on Microsoft.NET.Test.Sdk (>= 16.12.0) but Microsoft.NET.Test.Sdk 16.12.0 was not found. An approximate best match of Microsoft.NET.Test.Sdk 17.0.0 was resolved.",
       "libraryId": "Microsoft.NET.Test.Sdk",
       "targetGraphs": [
         "net7.0"

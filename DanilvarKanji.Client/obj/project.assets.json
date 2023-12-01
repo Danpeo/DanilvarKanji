@@ -4406,7 +4406,6 @@
       "Blazored.LocalStorage >= 4.4.0",
       "Blazored.SessionStorage >= 2.4.0",
       "Danilvar.Components >= 1.0.0",
-      "DanilvarKanji.Domain >= 1.0.0",
       "DanilvarKanji.Shared >= 1.0.0",
       "FluentValidation >= 11.8.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.11",
@@ -4450,9 +4449,6 @@
           "projectReferences": {
             "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj": {
               "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj"
-            },
-            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj": {
-              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj"
             },
             "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
               "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"

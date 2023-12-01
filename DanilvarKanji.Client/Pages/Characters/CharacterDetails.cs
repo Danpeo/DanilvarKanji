@@ -2,6 +2,7 @@ using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Responses.Character;
 using Microsoft.AspNetCore.Components;
 
 namespace DanilvarKanji.Client.Pages.Characters;
@@ -10,14 +11,14 @@ public partial class CharacterDetails
 {
     [Inject] public ICharacterService CharacterService { get; set; } = default!;
     [Inject] public ILocalizationService? LocalizationService { get; set; }
-    [Parameter, EditorRequired] public CharacterDto? Character { get; set; }
+    [Parameter, EditorRequired] public CharacterResponse? Character { get; set; }
 
     [Parameter] public int TakeQty { get; set; } = 2;
 
     private Dictionary<string, List<string>> _kanjiMeanings = new();
     private Culture _culture = Culture.EnUS;
     private bool _isOpen;
-    private CharacterDto? _activeCharacter;
+    private CharacterResponse? _activeCharacter;
 
     protected override async Task OnInitializedAsync()
     {

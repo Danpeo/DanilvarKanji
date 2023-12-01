@@ -1,3 +1,5 @@
+@using DanilvarKanji.Client.Services.Auth
+
 <nav class="navbar navbar-expand-lg navbar-light">
     <div id="navbarNav">
         <ul class="navbar-nav">
@@ -6,6 +8,26 @@
                     <a class="btn btn-primary bg-light-pink txt-dark txt-dark" href="register">Register</a>
                 </li>
             </NotAuthorized>
+            <NotAuthorized>
+                <li class="nav-item active">
+                    <a class="btn btn-primary bg-light-pink txt-dark txt-dark" href="login">Log In</a>
+                </li>
+            </NotAuthorized>
+            <Authorized>
+                <li class="nav-item active">
+                    <a class="btn btn-primary bg-light-pink txt-dark txt-dark" @onclick="LogoutAsync">Log Out</a>
+                </li>
+            </Authorized>
         </ul>
     </div>
 </nav>
+
+@code {
+    
+    [Inject] public IAuthService AuthService { get; set; }
+    
+    private async Task LogoutAsync()
+    {
+        await AuthService.LogoutAsync();
+    }
+}

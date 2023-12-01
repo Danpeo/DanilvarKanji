@@ -5,6 +5,7 @@ using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
+using DanilvarKanji.Shared.Responses.Character;
 
 namespace DanilvarKanji.Client.Services.Characters;
 
@@ -17,7 +18,7 @@ public class CharacterService : ICharacterService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<IEnumerable<CharacterDto?>?> ListCharactersAsync(int pageNumber = 0, int pageSize = 0)
+    public async Task<IEnumerable<CharacterResponse?>?> ListCharactersAsync(int pageNumber = 0, int pageSize = 0)
     {
         try
         {
@@ -26,10 +27,10 @@ public class CharacterService : ICharacterService
             if (response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<CharacterDto>();
+                    return Enumerable.Empty<CharacterResponse>();
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterDto>>() ??
-                       Enumerable.Empty<CharacterDto>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponse>>() ??
+                       Enumerable.Empty<CharacterResponse>();
             }
             
             string message = await response.Content.ReadAsStringAsync();
@@ -42,7 +43,7 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<CharacterDto?> GetCharacterAsync(string? id)
+    public async Task<CharacterResponse?> GetCharacterAsync(string? id)
     {
         try
         {
@@ -55,7 +56,7 @@ public class CharacterService : ICharacterService
                     return default;
                 }
 
-                return await response.Content.ReadFromJsonAsync<CharacterDto>();
+                return await response.Content.ReadFromJsonAsync<CharacterResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -95,13 +96,13 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<CharacterDto?>? CharacterItems,
+    public async Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<CharacterResponse?>? CharacterItems,
         int takeQty, Culture culture)
     {
         Dictionary<string, List<string>> allKanjiMeanings = new Dictionary<string, List<string>>();
 
         if (CharacterItems != null)
-            foreach (CharacterDto? characterItem in CharacterItems)
+            foreach (CharacterResponse? characterItem in CharacterItems)
             {
                 List<string>? kanjiMeanings = await GetCharacterKanjiMeanings(characterItem.Id, takeQty, culture);
 
@@ -112,12 +113,12 @@ public class CharacterService : ICharacterService
         return allKanjiMeanings;
     }
 
-    public string GetCharacterMnemonicByCulture(CharacterDto character, Culture culture = Culture.EnUS) =>
+    public string GetCharacterMnemonicByCulture(CharacterResponse character, Culture culture = Culture.EnUS) =>
         character.Mnemonics
             .FirstOrDefault(x => x.Culture == culture)
             ?.Value;
 
-    public async Task<IEnumerable<CharacterDto>> ListCharactersFilteredBy(string filter, string term)
+    public async Task<IEnumerable<CharacterResponse>> ListCharactersFilteredBy(string filter, string term)
     {
         try
         {
@@ -127,11 +128,11 @@ public class CharacterService : ICharacterService
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    return Enumerable.Empty<CharacterDto>();
+                    return Enumerable.Empty<CharacterResponse>();
                 }
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterDto>>() ??
-                       Array.Empty<CharacterDto>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponse>>() ??
+                       Array.Empty<CharacterResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -144,7 +145,7 @@ public class CharacterService : ICharacterService
         } 
     }
 
-    public async Task<IEnumerable<CharacterDto>> SearchCharacters(string searchTerm)
+    public async Task<IEnumerable<CharacterResponse>> SearchCharacters(string searchTerm)
     {
         try
         {
@@ -157,11 +158,11 @@ public class CharacterService : ICharacterService
             {
                 if (response.StatusCode == HttpStatusCode.NoContent)
                 {
-                    return new List<CharacterDto>();
+                    return new List<CharacterResponse>();
                 }
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterDto>>() ??
-                       Enumerable.Empty<CharacterDto>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponse>>() ??
+                       Enumerable.Empty<CharacterResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();

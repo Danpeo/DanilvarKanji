@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <Folder Include="Auth\Queries" />
+      <Folder Include="Users\Commands\" />
     </ItemGroup>
 
 </Project>

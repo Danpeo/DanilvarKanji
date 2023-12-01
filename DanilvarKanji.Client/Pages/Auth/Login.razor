@@ -1,20 +1,60 @@
-@page "/login"
+@page "/Login"
+
 @using DanilvarKanji.Client.Services.Auth
 @using DanilvarKanji.Shared.Requests.Auth
 @using DanilvarKanji.Shared.Responses.Auth
+@using DanilvarKanji.Client.Data
 
 @inject IAuthService AuthenticationService;
 
+<PageTitle>Register - @AppDisplaySettings.AppTitle</PageTitle>
 
-<fieldset disabled="@(response is not null)">
-    <EditForm Model="@request" OnValidSubmit="SubmitAsync">
+<h3 class="mb-5 display-3 animated-blink main-font">Регистрация</h3>
+
+<EditForm Model="_loginRequest" OnValidSubmit="HandleSubmitAsync" OnInvalidSubmit="HandleInvalidSubmit">
+    <FluentValidationValidator/>
+
+    <FormSection Title="Authorize" HelpText="Log in to your account">
+        <FormFieldSet Label="Email" LabelFor="email" HelpText="">
+            <InputText @bind-Value="_loginRequest.Email" class="form-control bg-secondary txt-white jap-font no-border" id="email" placeholder="Email"/>
+            <ValidationMessage For="@(() => _loginRequest.Email)"/>
+        </FormFieldSet>
+
+        <FormFieldSet Label="Password" LabelFor="password">
+            <InputText @bind-Value="_loginRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border" id="password" placeholder="Password"/>
+            <ValidationMessage For="@(() => _loginRequest.Password)"/>
+        </FormFieldSet>
+    </FormSection>
+
+    @if (_submitSuccessful)
+    {
+        <SuccessAlert Message="Your account was registered successfully!"/>
+    }
+    else if (_errorMessage is not null)
+    {
+        <ErrorAlert Message="@_errorMessage"/>
+    }
+
+    <div class="mt-4 mb-5">
+        <div class="row">
+            <div class="offset-4 col-8 text-right">
+                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _loginRequest = new LoginUserRequest())">Reset</button>
+                <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Log In</button>
+            </div>
+        </div>
+    </div>
+
+</EditForm>
+
+@*<fieldset disabled="@(response is not null)">
+    <EditForm Model="@_loginRequest" OnValidSubmit="SubmitAsync">
         <div>
             <label for="username">Username:</label>
-            <InputText @bind-Value="@request.Email" id="username" name="username" required />
+            <InputText @bind-Value="@_loginRequest.Email" id="username" name="username" required/>
         </div>
         <div>
             <label for="password">Password:</label>
-            <InputText type="password" @bind-Value="@request.Password" id="password" name="password" required />
+            <InputText type="password" @bind-Value="@_loginRequest.Password" id="password" name="password" required/>
         </div>
         <div>
             <button type="submit">Login</button>
@@ -22,7 +62,7 @@
     </EditForm>
 </fieldset>
 
-@if(response is not null)
+@if (response is not null)
 {
     <p>You are logged in until @response.Expiration.ToLongTimeString()</p>
     <p>@response.JwtToken</p>
@@ -31,26 +71,32 @@
 @if (errorMessage is not null)
 {
     <p class="error">@errorMessage</p>
-}
+}*@
 
 @code {
-    private LoginUserRequest request = new();
-    private LoginResponse response;
-    private string? errorMessage;
 
-    private async Task SubmitAsync()
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    private LoginUserRequest _loginRequest = new();
+    private LoginResponse? _response;
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+
+    private async Task HandleSubmitAsync()
     {
-        try
-        {
-            response = await AuthenticationService.LoginAsync(request);
+        _response = await AuthenticationService.LoginAsync(_loginRequest);
 
-            errorMessage = null;
-        }
-        catch (Exception ex)
-        {
-            response = null;
+        _errorMessage = null;
 
-            errorMessage = ex.Message;
-        }
+        if (!string.IsNullOrEmpty(_response?.JwtToken))
+            _submitSuccessful = true;
     }
+
+    private void HandleInvalidSubmit()
+    {
+        _submitSuccessful = false;
+        _errorMessage = "There was a problem";
+    }
+
 }

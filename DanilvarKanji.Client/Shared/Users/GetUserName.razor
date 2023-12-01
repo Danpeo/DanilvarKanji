@@ -1,0 +1,18 @@
+@using DanilvarKanji.Client.Services.Auth
+@using DanilvarKanji.Shared.Responses.User
+
+<span>@_user?.UserName</span>
+
+@code {
+
+    [Inject]
+    public IUserService UserService { get; set; } = default!;
+
+    private GetUserResponse? _user;
+
+    protected override async void OnInitialized()
+    {
+        _user = await UserService.GetUserAsync();
+        StateHasChanged();
+    }
+}

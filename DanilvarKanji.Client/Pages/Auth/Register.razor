@@ -9,7 +9,7 @@
 <h3 class="mb-5 display-3 animated-blink main-font">Регистрация</h3>
 
 
-<EditForm Model="_registerUserRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+<EditForm Model="_registerUserRequest" OnValidSubmit="HandleSubmitAsync" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
 
     <FormSection Title="Register" HelpText="Register new account">
@@ -25,12 +25,12 @@
         </FormFieldSet>
 
         <FormFieldSet Label="Password" LabelFor="password">
-            <InputText @bind-Value="_registerUserRequest.Password" class="form-control bg-secondary txt-white jap-font no-border" id="password" placeholder="Password"/>
+            <InputText @bind-Value="_registerUserRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border" id="password" placeholder="Password"/>
             <ValidationMessage For="@(() => _registerUserRequest.Password)"/>
         </FormFieldSet>
 
         <FormFieldSet Label="Password again" LabelFor="passwordRepeat">
-            <InputText @bind-Value="_registerUserRequest.PasswordRepeat" class="form-control bg-secondary txt-white jap-font no-border" id="passwordRepeat" placeholder="Password again"/>
+            <InputText @bind-Value="_registerUserRequest.PasswordRepeat" type="password" class="form-control bg-secondary txt-white jap-font no-border" id="passwordRepeat" placeholder="Password again"/>
             <ValidationMessage For="@(() => _registerUserRequest.PasswordRepeat)"/>
         </FormFieldSet>
 

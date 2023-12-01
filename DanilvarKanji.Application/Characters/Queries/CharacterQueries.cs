@@ -16,3 +16,6 @@ public record SearchCharactersQuery
 
 public record GetKanjiMeaningsByPriorityQuery
     (string CharacterId, Culture Culture, int TakeQty = int.MaxValue) : IRequest<IEnumerable<string>>;
+
+public record ListLearnQueueQuery
+    (PaginationParams? PaginationParams, JlptLevel JlptLevel) : IRequest<IEnumerable<Character>>;

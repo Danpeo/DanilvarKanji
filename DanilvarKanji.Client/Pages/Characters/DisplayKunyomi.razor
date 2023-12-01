@@ -1,5 +1,6 @@
 @using System.Text.RegularExpressions
 @using DanilvarKanji.Domain.DTO
+@using DanilvarKanji.Shared.Responses.Character
 
 @{
     System.Diagnostics.Debug.Assert(Character.Kunyomis != null, "Character.Kunyomis != null");
@@ -49,7 +50,7 @@
 @code
 {
     [Parameter, EditorRequired]
-    public CharacterDto Character { get; set; } = default!;
+    public CharacterResponse Character { get; set; } = default!;
 
     [Parameter]
     public int MaxReadingsToDisplay { get; set; } = int.MaxValue;

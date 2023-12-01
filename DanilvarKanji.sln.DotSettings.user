@@ -11,7 +11,8 @@
 	
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=DanilvarKanji_002EClient_002FResources_002FShared_002FNavMenu/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=src_002FDanilvarKanji_002EClient_002FResources_002FApp/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=src_002FDanilvarKanji_002EClient_002FResources_002FApp/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=src_002FDanilvarKanji_002EClient_002FResources_002FPages_002FIndex/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	

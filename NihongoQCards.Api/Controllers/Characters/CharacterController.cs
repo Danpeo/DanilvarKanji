@@ -9,6 +9,7 @@ using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Shared.Requests.Characters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 
@@ -17,13 +18,13 @@ namespace DanilvarKanji.Controllers.Characters;
 public class CharacterController : ApiController
 {
     private readonly IMapper _mapper;
-    
+
     public CharacterController(IMediator mediator, IMapper mapper) :
         base(mediator)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterRequest? request)
     {
@@ -34,11 +35,27 @@ public class CharacterController : ApiController
             .Bind(c => Mediator.Send(c))
             .Match(() => CreatedAtAction("Get", new { id = character.Id }, character), BadRequest);
     }
-    
+
     [EnableQuery, HttpGet]
     public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
         IEnumerable<Character> characters = await Mediator.Send(new ListCharactersQuery(paginationParams));
+
+        return characters.Any() ? Ok(characters) : NoContent();
+    }
+
+    [Authorize]
+    [EnableQuery, HttpGet("LearnQueue")]
+    public async Task<IActionResult> ListLearnQueueAsync([FromServices] UserManager<AppUser> userManager,
+        [FromQuery] PaginationParams paginationParams)
+    {
+        AppUser? user = await userManager.GetUserAsync(User);
+
+        if (user is null)
+            return Unauthorized();
+        
+        IEnumerable<Character> characters =
+            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel));
 
         return characters.Any() ? Ok(characters) : NoContent();
     }
@@ -87,14 +104,13 @@ public class CharacterController : ApiController
     {
         var command = _mapper.Map<UpdateCharacterCommand>(request);
         command.Id = id;
-        
+
         var character = _mapper.Map<Character>(command);
 
         return await Result.Create(command, General.UnProcessableRequest)
             .Bind(c => Mediator.Send(c))
             .Match<IActionResult>(() => CreatedAtAction("Get", new { id = character.Id }, character),
                 () => NotFound("The character was not found or an error occurred during the update."));
-
     }
 
     [HttpDelete("{id}")]

@@ -23,6 +23,17 @@ public class CharacterRepository : ICharacterRepository
         await GetCharactersWithRelatedData(paginationParams)
             .ToListAsync();
 
+    public async Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams? paginationParams,
+        JlptLevel jlptLevel = JlptLevel.N5)
+    {
+        return await GetCharactersWithRelatedData(paginationParams)
+            .Where(x => x.JlptLevel >= jlptLevel)
+            .OrderBy(x => x.JlptLevel)
+            .ThenBy(x => x.CharacterType)
+            .ThenBy(x => x.Definition)
+            .ToListAsync();
+    }
+
     public async Task<Character?> GetAsync(string id) =>
         await GetCharactersWithRelatedData()
             .FirstOrDefaultAsync(x => x.Id == id);
