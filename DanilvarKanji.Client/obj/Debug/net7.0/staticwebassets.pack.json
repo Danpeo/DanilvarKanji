@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\css\\general.css"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\mid-three-d.css",
+      "PackagePath": "staticwebassets\\css\\mid-three-d.css"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },

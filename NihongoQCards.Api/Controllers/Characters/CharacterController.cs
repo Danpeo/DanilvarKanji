@@ -7,6 +7,7 @@ using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Shared.Requests.Characters;
+using DanilvarKanji.Shared.Responses.Character;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,11 +19,13 @@ namespace DanilvarKanji.Controllers.Characters;
 public class CharacterController : ApiController
 {
     private readonly IMapper _mapper;
+    private readonly UserManager<AppUser> _userManager;
 
-    public CharacterController(IMediator mediator, IMapper mapper) :
+    public CharacterController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
         base(mediator)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _userManager = userManager;
     }
 
     [HttpPost]
@@ -45,19 +48,34 @@ public class CharacterController : ApiController
     }
 
     [Authorize]
-    [EnableQuery, HttpGet("LearnQueue")]
-    public async Task<IActionResult> ListLearnQueueAsync([FromServices] UserManager<AppUser> userManager,
-        [FromQuery] PaginationParams paginationParams)
+    [HttpGet("LearnQueue")]
+    public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams)
     {
-        AppUser? user = await userManager.GetUserAsync(User);
+        AppUser? user = await _userManager.GetUserAsync(User);
 
         if (user is null)
             return Unauthorized();
-        
-        IEnumerable<Character> characters =
-            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel));
+
+        IEnumerable<GetCharacterBaseInfoResponse> characters =
+            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel, user));
 
         return characters.Any() ? Ok(characters) : NoContent();
+    }
+
+    [Authorize]
+    [HttpGet("GetNextInLearnQueue")]
+    public async Task<IActionResult> GetNextInLearnQueueAsync()
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+        if (user is null)
+            return Unauthorized();
+
+        GetCharacterBaseInfoResponse? character = await Mediator.Send(new GetNextInLearnQueueQuery(user));
+
+        if (character is not null)
+            return Ok(character);
+
+        return NotFound("Character was not fount");
     }
 
     [HttpGet("{searchTerm}:Search")]

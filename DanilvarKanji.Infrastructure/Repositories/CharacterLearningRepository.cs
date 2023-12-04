@@ -15,11 +15,16 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
-    
+
+    public void Create(CharacterLearning characterLearning) =>
+        _context.CharacterLearnings.Add(characterLearning);
+
     public async Task<IEnumerable<CharacterLearning>> ListLearnQueueAsync(PaginationParams? paginationParams,
+        AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5)
     {
         return await GetCharacterLearningsWithRelatedData(paginationParams)
+            .Where(x => x.AppUser == user)
             .Where(x => x.Character.JlptLevel >= jlptLevel)
             .Where(x => x.LearningState == LearningState.NotLearned)
             .OrderBy(x => x.Character.JlptLevel)
@@ -28,10 +33,16 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .ToListAsync();
     }
 
+    public Task<bool> AnyExist()
+        => _context.CharacterLearnings.AnyAsync();
+
+
     private IQueryable<CharacterLearning> GetCharacterLearningsWithRelatedData(
         PaginationParams? paginationParams = null)
     {
-        DbSet<CharacterLearning> characters = _context.CharacterLearnings;
+        var characters = _context.CharacterLearnings
+            .Include(x => x.Character)
+            .Include(x => x.LearningProgress);
 
         if (paginationParams != null && paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
         {

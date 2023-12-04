@@ -67,7 +67,7 @@ public class AccountController : ControllerBase
         return userDto;
     }
 
-    [HttpPost("Login")]
+    /*[HttpPost("Login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
         AppUser? user = await _userManager.Users
@@ -98,6 +98,7 @@ public class AccountController : ControllerBase
 
         return userDto;
     }
+    */
 
     [HttpPost("SetProfileImg")]
     public async Task<IActionResult> SetProfileImage(IFormFile file)

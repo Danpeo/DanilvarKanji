@@ -12,26 +12,32 @@ public class CharacterMapperProfile : Profile
 {
     public CharacterMapperProfile()
     {
-        CreateMap<Character, CharacterResponse>()
+        CreateMap<Character, GetCharacterBaseInfoResponse>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<CharacterResponse, Character>()
+        CreateMap<GetCharacterBaseInfoResponse, Character>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<Character, GetAllFromCharacterResponse>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<GetAllFromCharacterResponse, Character>()
             .ForMember(x => x.Id, opt => opt.Ignore())
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<Character, CreateCharacterCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<CreateCharacterCommand, Character>()
             .ForMember(x => x.Id, opt => opt.Ignore())
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<CreateCharacterCommand, CreateCharacterRequest>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<CreateCharacterRequest, CreateCharacterCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<Character, ListCharactersQuery>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
@@ -44,10 +50,10 @@ public class CharacterMapperProfile : Profile
 
         CreateMap<ListCharactersRequest, ListCharactersQuery>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<Character, UpdateCharacterCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<UpdateCharacterCommand, Character>()
             .ForMember(x => x.Id, opt => opt.Ignore())
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));

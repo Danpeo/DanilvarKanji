@@ -3,7 +3,7 @@ using DanilvarKanji.Domain.Enumerations;
 
 namespace DanilvarKanji.Shared.Responses.Character;
 
-public class CharacterResponse
+public class GetAllFromCharacterResponse
 {
     public string Id { get; set; }
     public string? Definition { get; set; }
@@ -21,7 +21,7 @@ public class CharacterResponse
     
     public List<string>? ChildCharacterIds { get; set; }
    
-    public CharacterResponse()
+    public GetAllFromCharacterResponse()
     {
         Id = Guid.NewGuid().ToString("N");
     }

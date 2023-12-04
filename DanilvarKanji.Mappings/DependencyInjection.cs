@@ -10,7 +10,8 @@ public static class DependencyInjection
         var mappers = new Profile[]
         {
             new CharacterMapperProfile(),
-            new UserMapperProfile()
+            new UserMapperProfile(),
+            new CharacterLearningProfile()
         };
         
 

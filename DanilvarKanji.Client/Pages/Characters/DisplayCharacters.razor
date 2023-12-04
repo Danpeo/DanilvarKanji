@@ -26,7 +26,7 @@ else if (!_characterItems.Any())
 }
 else
 {
-    @foreach (CharacterResponse character in _characterItems)
+    @foreach (GetAllFromCharacterResponse character in _characterItems)
     {
         <div class="col-md-3 mb-2">
             <a class="pointer-cursor" @onclick="@(async () => await OnSelected.InvokeAsync(character))">

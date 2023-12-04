@@ -11,14 +11,14 @@ public partial class CharacterDetails
 {
     [Inject] public ICharacterService CharacterService { get; set; } = default!;
     [Inject] public ILocalizationService? LocalizationService { get; set; }
-    [Parameter, EditorRequired] public CharacterResponse? Character { get; set; }
+    [Parameter, EditorRequired] public GetAllFromCharacterResponse? Character { get; set; }
 
     [Parameter] public int TakeQty { get; set; } = 2;
 
     private Dictionary<string, List<string>> _kanjiMeanings = new();
     private Culture _culture = Culture.EnUS;
     private bool _isOpen;
-    private CharacterResponse? _activeCharacter;
+    private GetAllFromCharacterResponse? _activeCharacter;
 
     protected override async Task OnInitializedAsync()
     {

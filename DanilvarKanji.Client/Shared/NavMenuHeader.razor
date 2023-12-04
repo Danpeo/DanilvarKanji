@@ -14,6 +14,15 @@
                 </li>
             </NotAuthorized>
             <Authorized>
+                <p class="mx-2 card-text txt-mid-pink main-font">
+                    <b>
+                        <GetUserName/>
+                    </b>
+                    <span class="txt-gray">
+                        <GetUserJlpt/>
+                    </span>
+                </p>
+
                 <li class="nav-item active">
                     <a class="btn btn-primary bg-light-pink txt-dark txt-dark" @onclick="LogoutAsync">Log Out</a>
                 </li>
@@ -23,11 +32,13 @@
 </nav>
 
 @code {
-    
-    [Inject] public IAuthService AuthService { get; set; }
-    
+
+    [Inject]
+    public required IAuthService AuthService { get; set; }
+
     private async Task LogoutAsync()
     {
         await AuthService.LogoutAsync();
     }
+
 }

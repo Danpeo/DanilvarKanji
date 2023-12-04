@@ -31,7 +31,7 @@ builder.Services.AddHttpClient("ServerApi")
     .AddHttpMessageHandler<AuthHandler>();
 
 builder.Services.AddScoped<ICharacterService, CharacterService>();
-builder.Services.AddScoped<IBaseQueryService<CharacterResponse>, BaseQueryService<CharacterResponse>>();
+builder.Services.AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 

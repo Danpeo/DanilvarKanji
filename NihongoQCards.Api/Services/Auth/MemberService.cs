@@ -1,4 +1,4 @@
-using System.Reflection;
+/*using System.Reflection;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using DanilvarKanji.Data;
@@ -22,14 +22,14 @@ public class MemberService : Service<ApplicationDbContext>, IMemberService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<MemberDto>> ListAsync()
+    /*public async Task<IEnumerable<MemberDto>> ListAsync()
     {
         List<AppUser> members = await Context.AppUsers
             .Include(x => x.CharacterLearnings)
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<MemberDto>>(members);
-    }
+    }#1#
 
     public async Task<MemberDto?> GetAsync(string email)
     {
@@ -69,4 +69,4 @@ public class MemberService : Service<ApplicationDbContext>, IMemberService
 
     public async Task<bool> AnyExist() =>
         await _userManager.Users.AnyAsync();
-}
+}*/

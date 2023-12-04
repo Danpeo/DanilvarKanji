@@ -3,11 +3,11 @@
 @using DanilvarKanji.Shared.Responses.Character
 
 @{
-    System.Diagnostics.Debug.Assert(Character.Kunyomis != null, "Character.Kunyomis != null");
+    System.Diagnostics.Debug.Assert(GetAllFromCharacter.Kunyomis != null, "Character.Kunyomis != null");
 }
 
 @{
-    var kunyomiList = Character.Kunyomis.ToList();
+    var kunyomiList = GetAllFromCharacter.Kunyomis.ToList();
 
     for (int i = 0; i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count); i++)
     {
@@ -50,7 +50,7 @@
 @code
 {
     [Parameter, EditorRequired]
-    public CharacterResponse Character { get; set; } = default!;
+    public GetAllFromCharacterResponse GetAllFromCharacter { get; set; } = default!;
 
     [Parameter]
     public int MaxReadingsToDisplay { get; set; } = int.MaxValue;

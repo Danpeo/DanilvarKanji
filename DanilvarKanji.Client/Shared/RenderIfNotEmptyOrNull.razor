@@ -1,0 +1,19 @@
+@typeparam TCollection
+@typeparam TData
+
+@if (Collection == null)
+{
+    <DisplayLoading></DisplayLoading>
+}
+else if (!(Collection as IEnumerable<TData> ?? Array.Empty<TData>()).Any())
+{
+    <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
+}
+else
+{
+    @ChildContent
+}
+@code {
+    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+    [Parameter, EditorRequired] public TCollection Collection { get; set; }
+}

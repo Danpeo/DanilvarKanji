@@ -19,20 +19,26 @@ public class CharacterRepository : ICharacterRepository
     public void Create(Character character) =>
         _context.Characters.Add(character);
 
-    public async Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams) =>
-        await GetCharactersWithRelatedData(paginationParams)
+    public async Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams)
+    {
+        List<Character> characters = await GetCharactersWithRelatedData()
             .ToListAsync();
 
+        return paginationParams != null ? Paginate(characters, paginationParams) : characters;
+    }
+
     public async Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams? paginationParams,
+        AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5)
     {
-        return await GetCharactersWithRelatedData(paginationParams)
-            .Where(x => x.JlptLevel >= jlptLevel)
-            .OrderBy(x => x.JlptLevel)
-            .ThenBy(x => x.CharacterType)
-            .ThenBy(x => x.Definition)
-            .ToListAsync();
+        var characters = await GetLearnQueueAsync(user, jlptLevel).ToListAsync();
+
+        return paginationParams is not null ? Paginate(characters, paginationParams) : characters;
     }
+
+    public async Task<Character?> GetNextInLearnQueueAsync(AppUser user) =>
+        await GetLearnQueueAsync(user, user.JlptLevel).
+            FirstOrDefaultAsync();
 
     public async Task<Character?> GetAsync(string id) =>
         await GetCharactersWithRelatedData()
@@ -48,7 +54,7 @@ public class CharacterRepository : ICharacterRepository
 
         if (characterToUpdate is null)
             return;
-        
+
         characterToUpdate.Definition = character.Definition;
         characterToUpdate.StrokeCount = character.StrokeCount;
         characterToUpdate.JlptLevel = character.JlptLevel;
@@ -59,7 +65,7 @@ public class CharacterRepository : ICharacterRepository
         characterToUpdate.Onyomis = character.Onyomis;
         characterToUpdate.Mnemonics = character.Mnemonics;
         characterToUpdate.Words = character.Words;
-        
+
         _context.Characters.Update(characterToUpdate);
     }
 
@@ -71,6 +77,9 @@ public class CharacterRepository : ICharacterRepository
 
     public Task<bool> AnyExist() =>
         _context.Characters.AnyAsync();
+
+    public async Task<bool> AnyInLearnQueue(AppUser user) 
+        => await GetLearnQueueAsync(user, user.JlptLevel).AnyAsync();
 
     public async Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty, Culture culture)
     {
@@ -123,7 +132,7 @@ public class CharacterRepository : ICharacterRepository
         return childCharacters;
     }
 
-    private IQueryable<Character> GetCharactersWithRelatedData(PaginationParams? paginationParams = null)
+    private IQueryable<Character> GetCharactersWithRelatedData()
     {
         var characters = _context.Characters
             .Include(x => x.Mnemonics)
@@ -134,7 +143,35 @@ public class CharacterRepository : ICharacterRepository
             .Include(x => x.Words)
             .ThenInclude(x => x.WordMeanings);
 
-        if (paginationParams != null && paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
+        /*if (paginationParams != null && paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
+        {
+            return characters
+                .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)
+                .Take(paginationParams.PageSize);
+        }*/
+
+        return characters;
+    }
+
+    private IOrderedQueryable<Character> GetLearnQueueAsync(AppUser user, JlptLevel jlptLevel)
+    {
+        DbSet<CharacterLearning> characterLearnings = _context.CharacterLearnings;
+
+        IOrderedQueryable<Character> characters = _context.Characters
+            .Where(character => character.JlptLevel >= jlptLevel
+                                && !characterLearnings.Any(cl => cl.Character.Id == character.Id
+                                                                 && cl.LearningState > LearningState.NotLearned
+                                                                 && cl.AppUser == user))
+            .OrderBy(x => x.JlptLevel)
+            .ThenBy(x => x.CharacterType)
+            .ThenBy(x => x.Definition);
+
+        return characters;
+    }
+
+    private IEnumerable<Character> Paginate(IEnumerable<Character> characters, PaginationParams paginationParams)
+    {
+        if (paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
         {
             return characters
                 .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)

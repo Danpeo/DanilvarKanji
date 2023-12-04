@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "74n+byZnTohKaGaqBfTsKPQjdCgoInTXwSWC7eMMydQ=",
+  "Hash": "5p5C68dII3OAJdk1ROReN74RxWhwn7Gm2hMIPlGvCxI=",
   "Source": "DanilvarKanji.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -9363,6 +9363,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\general.css"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\mid-three-d.css",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/mid-three-d.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\mid-three-d.css"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",

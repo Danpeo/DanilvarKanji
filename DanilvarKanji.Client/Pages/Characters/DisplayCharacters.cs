@@ -14,12 +14,12 @@ public partial class DisplayCharacters
 {
     [Inject] public ICharacterService CharacterService { get; set; } = default!;
     [Inject] public ILocalizationService? LocalizationService { get; set; }
-    [Parameter, EditorRequired] public EventCallback<CharacterResponse> OnSelected { get; set; }
+    [Parameter, EditorRequired] public EventCallback<GetAllFromCharacterResponse> OnSelected { get; set; }
     [Parameter] public int TakeQty { get; set; } = 2;
     [Parameter] public int PageNumber { get; set; } = 1;
     [Parameter] public int PageSize { get; set; } = 10;
     
-    private List<CharacterResponse>? _characterItems;
+    private List<GetAllFromCharacterResponse>? _characterItems;
     private Culture _culture = Culture.EnUS;
     private Dictionary<string, List<string>>? _kanjiMeanings = new();
     private string _searchTerm = string.Empty;
@@ -31,7 +31,7 @@ public partial class DisplayCharacters
     {
         await GetCurrentCulture();
 
-        _characterItems = (List<CharacterResponse>?)await CharacterService.ListCharactersAsync(PageNumber, PageSize);
+        _characterItems = (List<GetAllFromCharacterResponse>?)await CharacterService.ListCharactersAsync(PageNumber, PageSize);
 
         _kanjiMeanings = await CharacterService.SetKanjiMeanings(_characterItems, TakeQty, _culture);
     }
@@ -39,7 +39,7 @@ public partial class DisplayCharacters
     private async Task UpdateCharacterItems()
     {
         
-        IEnumerable<CharacterResponse?>? characters = await CharacterService.ListCharactersAsync(PageNumber, PageSize);
+        IEnumerable<GetAllFromCharacterResponse?>? characters = await CharacterService.ListCharactersAsync(PageNumber, PageSize);
 
         if (characters is not null)
             _characterItems?.AddRange(characters!);
@@ -63,6 +63,6 @@ public partial class DisplayCharacters
     }
 
     private async Task SearchForCharacter() =>
-        _characterItems = (List<CharacterResponse>?)await CharacterService.SearchCharacters(_searchTerm);
+        _characterItems = (List<GetAllFromCharacterResponse>?)await CharacterService.SearchCharacters(_searchTerm);
 
 }

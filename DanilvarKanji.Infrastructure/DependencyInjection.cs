@@ -20,6 +20,7 @@ public static class DependencyInjection
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
+        services.AddScoped<ICharacterLearningRepository, CharacterLearningRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
 
         return services;

@@ -1,159 +1,61 @@
-using DanilvarKanji.Services.Characters;
-using DanilvarKanji.Domain.DTO;
+using AutoMapper;
+using DanilvarKanji.Application.CharacterLearnings.Commands;
+using DanilvarKanji.Application.CharacterLearnings.Queries;
 using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Domain.Errors;
+using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Requests.CharacterLearnings;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Query;
 
 namespace DanilvarKanji.Controllers.Characters;
 
 [Authorize]
-[ApiController]
-[Route("Api/[controller]s")]
-public class CharacterLearningController : ControllerBase
+public class CharacterLearningController : ApiController
 {
-    private readonly ICharacterLearningService _characterLearningService;
-    private readonly ICharacterLearningManagementService _charLearnManageService;
+    private readonly IMapper _mapper;
     private readonly UserManager<AppUser> _userManager;
 
-    public CharacterLearningController(ICharacterLearningService characterLearningService,
-        UserManager<AppUser> userManager, ICharacterLearningManagementService charLearnManageService)
+    public CharacterLearningController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) : base(mediator)
     {
-        _characterLearningService = characterLearningService;
+        _mapper = mapper;
         _userManager = userManager;
-        _charLearnManageService = charLearnManageService;
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] CharacterLearningDto characterDto)
+    public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterLearningRequest? request)
     {
+        //var command = _mapper.Map<CreateCharacterLearningCommand>(request);
+
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        if (await _charLearnManageService.CreateAsync(characterDto, user))
-            /*
-            return CreatedAtAction("GetForUser", new { id = characterDto.Id }, characterDto);
-            */
-            return Ok();
-        return BadRequest("Error when creating a characater learning.");
+        if (user is null)
+            return Unauthorized();
+
+        var command = new CreateCharacterLearningCommand(user, request.CharacterId, request.LearningState);
+        
+        //var characterLearning = _mapper.Map<CharacterLearning>(command);
+
+        return await Result.Create(command, General.UnProcessableRequest)
+            .Bind(c => Mediator.Send(c))
+            .Match(Ok, BadRequest);
     }
 
-    [EnableQuery]
-    [HttpGet("All")]
-    public async Task<IActionResult> ListAsync()
+    [HttpGet("LearnQueue")]
+    public async Task<IActionResult> ListLearnQueueAsync([FromServices] UserManager<AppUser> userManager,
+        [FromQuery] PaginationParams paginationParams)
     {
-        if (await _charLearnManageService.AnyExist())
-        {
-            IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListAsync();
-            return Ok(characters);
-        }
+        AppUser? user = await userManager.GetUserAsync(User);
 
-        return NotFound("No character learning");
-    }
-    
-    [EnableQuery]
-    [HttpGet]
-    public async Task<IActionResult> ListForUserAsync()
-    {
-        AppUser? user = await _userManager.GetUserAsync(User);
+        if (user is null)
+            return Unauthorized();
 
-        if (await _charLearnManageService.AnyExist(user))
-        {
-            IEnumerable<CharacterLearningDto> characters = await _charLearnManageService.ListForUserAsync(user);
-            return Ok(characters);
-        }
+        IEnumerable<CharacterLearning> characters =
+            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel, user));
 
-        return NotFound("No character learning");
-    }
-
-    [EnableQuery]
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetForUserAsync(string id)
-    {
-        if (!await _charLearnManageService.Exist(id))
-            return NotFound("Character learning with this ID was not found");
-
-        AppUser? user = await _userManager.GetUserAsync(User);
-        CharacterLearningDto character = await _charLearnManageService.GetForUserAsync(id, user);
-
-        return Ok(character);
-    }
-
-    [EnableQuery]
-    [HttpGet("FromAll/{id}")]
-    public async Task<IActionResult> GetAsync(string id)
-    {
-        if (!await _charLearnManageService.Exist(id))
-            return NotFound("Character learning with this ID was not found");
-
-        CharacterLearningDto character = await _charLearnManageService.GetAsync(id);
-
-        return Ok(character);
-    }
-
-    [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateAsync(string id, [FromBody] CharacterLearningDto characterDto)
-    {
-        if (await _charLearnManageService.UpdateAsync(id, characterDto))
-        {
-            CharacterLearningDto characterLearningDto = await _charLearnManageService.GetAsync(id);
-            return Ok(characterLearningDto);
-        }
-
-        return NotFound("The character learning was not found or an error occurred during the update.");
-    }
-    
-    [HttpPut("{id}")]
-    public async Task<IActionResult> ReplaceAsync(string id, [FromBody] CharacterLearningDto characterDto)
-    {
-        if (await _charLearnManageService.ReplaceAsync(id, characterDto))
-        {
-            CharacterLearningDto updatedCharacter = await _charLearnManageService.GetAsync(id);
-            return Ok(updatedCharacter);
-        }
-
-        return NotFound("The character was not found or an error occurred during the replace.");
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAsync(string id)
-    {
-        if (await _charLearnManageService.DeleteAsync(id))
-            return Ok("The character learning was successfully deleted.");
-
-        return NotFound("The character learning was not found or an error occurred during the delete.");
-    }
-
-    [HttpDelete("FromAll/{id}")]
-    public async Task<IActionResult> DeleteForUserAsync(string id)
-    {
-        AppUser? user = await _userManager.GetUserAsync(User);
-
-        if (user != null && await _charLearnManageService.DeleteForUserAsync(id, user))
-            return Ok("The character learning was successfully deleted.");
-
-        return NotFound("The character learning was not found or an error occurred during the delete.");
-    }
-
-    [HttpPatch("Increase/{id}")]
-    public async Task<IActionResult> IncreaseLearningProgressAsync(string id, float value)
-    {
-        AppUser? user = await _userManager.GetUserAsync(User);
-
-        bool result = user != null &&
-                      await _characterLearningService.IncreaseLearningRateAsync(id, user, value);
-
-        return result ? Ok() : NotFound();
-    }
-
-    [HttpPatch("Decrease/{id}")]
-    public async Task<IActionResult> DecreaseLearningProgressAsync(string id, float value)
-    {
-        AppUser? user = await _userManager.GetUserAsync(User);
-
-        bool result = user != null &&
-                      await _characterLearningService.DecreaseLearningRateAsync(id, user, value);
-
-        return result ? Ok() : NotFound();
+        return characters.Any() ? Ok(characters) : NoContent();
     }
 }
