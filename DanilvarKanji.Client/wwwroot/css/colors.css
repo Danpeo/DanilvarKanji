@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+
 :root {
     --dark-color-main: #1f1f1f;
     --dark-color-secondary: #2e2e31;
@@ -122,4 +124,58 @@
 .round-button:hover {
     background-color: var(--pink-color-mid); /* Цвет фона при наведении */
     /* Дополнительные стили для состояния наведения, если необходимо */
+}
+
+
+.bg-arw-btn,
+.arw-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-arw-btn {
+    animation: pulse 1.2s ease infinite;
+    background: var(--pink-color-mid);
+}
+
+.arw-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 99;
+    border: none;
+    background: var(--pink-color-mid);
+    background-size: 18px;
+    cursor: pointer;
+    outline: none;
+}
+
+.arw-btn a {
+    position: absolute;
+    color: #FFF;
+    font-size: 17px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }

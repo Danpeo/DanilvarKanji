@@ -69,6 +69,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kanji.
+        /// </summary>
+        internal static string Kanji {
+            get {
+                return ResourceManager.GetString("Kanji", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string Language {
@@ -209,6 +218,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string PasswordTooShort {
             get {
                 return ResourceManager.GetString("PasswordTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radical.
+        /// </summary>
+        internal static string Radical {
+            get {
+                return ResourceManager.GetString("Radical", resourceCulture);
             }
         }
         

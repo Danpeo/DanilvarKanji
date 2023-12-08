@@ -1,0 +1,41 @@
+@page "/study-new/{CharacterId}"
+
+<ForbidIfNotAuthorized>
+    
+    @if (_show)
+    {
+        <h1>AAAAAAAAAAAAAGH!!!!!!!!</h1>
+    }
+    
+    @*
+    <DynamicContent ContentDictionary="_contentDictionary" OnContentEnd="OnContentEnd"/>
+    *@
+    <ContentSlider ContentDictionary="_contentDictionary" OnContentEnd="OnContentEnd"></ContentSlider>
+</ForbidIfNotAuthorized>
+
+@code {
+
+    [Parameter]
+    public required string CharacterId { get; set; }
+
+    private Dictionary<int, RenderFragment> _contentDictionary = new();
+    private bool _show;
+    
+    protected override void OnInitialized()
+    {
+        _contentDictionary = new Dictionary<int, RenderFragment>()
+        {
+            { 0, @<p>HAHAHHAH</p> },
+            {
+                1, @<DisplayCharacterBaseInfo CharacterId="@CharacterId"/>
+            },
+        };
+    }
+}
+@code {
+    private void OnContentEnd()
+    {
+        _show = true;
+        StateHasChanged();
+    }
+}

@@ -10,7 +10,7 @@ namespace DanilvarKanji.Client.Pages.Characters;
 public partial class CharacterDetails
 {
     [Inject] public ICharacterService CharacterService { get; set; } = default!;
-    [Inject] public ILocalizationService? LocalizationService { get; set; }
+    [Inject] public required ILocalizationService? LocalizationService { get; set; }
     [Parameter, EditorRequired] public GetAllFromCharacterResponse? Character { get; set; }
 
     [Parameter] public int TakeQty { get; set; } = 2;

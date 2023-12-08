@@ -3,11 +3,11 @@
 @using DanilvarKanji.Shared.Responses.Character
 
 @{
-    System.Diagnostics.Debug.Assert(GetAllFromCharacter.Onyomis != null, "Character.Onyomis != null");
+    System.Diagnostics.Debug.Assert(Character.Onyomis != null, "Character.Onyomis != null");
 }
 
 @{
-    var onymiList = GetAllFromCharacter.Onyomis.ToList();
+    var onymiList = Character.Onyomis.ToList();
 
     for (int i = 0; i < Math.Min(MaxReadingsToDisplay, onymiList.Count); i++)
     {
@@ -49,7 +49,7 @@
 @code
 {
     [Parameter, EditorRequired]
-    public GetAllFromCharacterResponse GetAllFromCharacter { get; set; } = default!;
+    public GetAllFromCharacterResponse Character { get; set; } = default!;
 
     [Parameter]
     public int MaxReadingsToDisplay { get; set; } = int.MaxValue;

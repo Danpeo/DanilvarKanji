@@ -8,10 +8,11 @@
                 <button class="btn btn-secondary" @onclick="Close">X</button>
             </div>
             <div class="drawer-content">
-                <div class="trail-details">
+                <div class="char-details">
                     <h1 class="txt-mid-pink display-1 text-center jap-font">
                         @_activeCharacter.Definition
                     </h1>
+                    <DisplayCharacterBaseInfo CharacterId="@_activeCharacter.Id"></DisplayCharacterBaseInfo>
                     <h3 class="txt-light-pink display-3 main-font">
                         <DisplayKanjiMeanings CharacterId="@_activeCharacter.Id" KanjiMeanings="_kanjiMeanings" DisplayStyle="display-4"/>
                     </h3>

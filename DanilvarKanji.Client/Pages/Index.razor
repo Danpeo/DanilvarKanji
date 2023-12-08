@@ -2,8 +2,14 @@
 
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Client.Localization.LocaleKeys
+@using System.Runtime.InteropServices
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Shared.Responses.Character
+@using Microsoft.AspNetCore.Authorization
 
 @inject IStringLocalizer<Index> Loc
+@inject NavigationManager NavManager
+
 
 <PageTitle>@AppDisplaySettings.AppTitle - @Loc[nameof(IndexLocaleKeys.HomeTitle)]</PageTitle>
 <div class="text-center">
@@ -39,7 +45,30 @@
         Your Study Queue
     </h2>
     <DisplayLearnQueue PageNumber="1" PageSize="10"/>
+
     <div class="ms-2">
-        <NavLink href="study" class="mid-three-d-btn no-outline">Study New</NavLink>
+        <button onclick="@(() => { if (character != null) {NavManager.NavigateTo($"/study-new/{character.Id}"); } })" 
+                class="mid-three-d-btn no-outline">Study New</button>
     </div>
+
 </Authorized>
+
+@code
+{
+    [Inject]
+    public required ICharacterService CharacterService { get; set; }
+
+    private GetCharacterBaseInfoResponse? character;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetCharacterNextInLearn();
+    }
+
+    private async Task GetCharacterNextInLearn()
+    {
+        character = await CharacterService.GetNextInLearnQueue();
+    }
+
+
+}

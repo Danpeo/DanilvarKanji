@@ -135,6 +135,7 @@ public class CharacterRepository : ICharacterRepository
     private IQueryable<Character> GetCharactersWithRelatedData()
     {
         var characters = _context.Characters
+            .AsSplitQuery()
             .Include(x => x.Mnemonics)
             .Include(x => x.KanjiMeanings)
             .ThenInclude(x => x.Definitions)

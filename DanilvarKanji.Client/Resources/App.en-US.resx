@@ -75,4 +75,10 @@
     <data name="Register" xml:space="preserve">
         <value>Register</value>
     </data>
+    <data name="Radical" xml:space="preserve">
+        <value>Radical</value>
+    </data>
+    <data name="Kanji" xml:space="preserve">
+        <value>Kanji</value>
+    </data>
 </root>

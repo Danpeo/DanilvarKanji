@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\danil\source\repos\LearningJapanese\Danilvar.Components
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/danil/source/repos/LearningJapanese/Danilvar.Components/Forms/ContentSlider.razor]
+build_metadata.AdditionalFiles.TargetPath = Rm9ybXNcQ29udGVudFNsaWRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/Danilvar.Components/Pagination/Paginator.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnaW5hdGlvblxQYWdpbmF0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

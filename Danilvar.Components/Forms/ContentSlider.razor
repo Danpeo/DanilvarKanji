@@ -1,0 +1,43 @@
+@ContentDictionary[_currentContent];
+
+<button class="@ButtonStyle" @onclick="NextContent">@NextBtnText</button>
+<button class="@ButtonStyle" @onclick="PrevContent">@PrevBtnText</button>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required Dictionary<int, RenderFragment> ContentDictionary { get; set; }
+
+    [Parameter]
+    public string ButtonStyle { get; set; } = "btn";
+
+    [Parameter]
+    public string NextBtnText { get; set; } = "Next";
+
+    [Parameter]
+    public string PrevBtnText { get; set; } = "Prev";
+    
+    [Parameter]
+    public Action? OnContentEnd { get; set; }
+
+
+    private int _currentContent;
+
+    private void NextContent()
+    {
+        _currentContent++;
+
+        if (_currentContent >= ContentDictionary.Count)
+        {
+            _currentContent = 0;
+            OnContentEnd?.Invoke();
+        }
+    }
+
+    private void PrevContent()
+    {
+        _currentContent--;
+        if (_currentContent <= 0)
+            _currentContent = 0;
+    }
+}

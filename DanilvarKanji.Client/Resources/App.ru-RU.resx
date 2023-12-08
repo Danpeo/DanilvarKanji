@@ -75,4 +75,10 @@
     <data name="Register" xml:space="preserve">
         <value>Зарегестрироваться</value>
     </data>
+    <data name="Radical" xml:space="preserve">
+        <value>Радикал</value>
+    </data>
+    <data name="Kanji" xml:space="preserve">
+        <value>Кандзи</value>
+    </data>
 </root>
