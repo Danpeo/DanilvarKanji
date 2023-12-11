@@ -28,11 +28,11 @@
 
     @if (_submitSuccessful)
     {
-        <SuccessAlert Message="Your account was registered successfully!"/>
+        <SuccessAlertAlt Message="Your account was registered successfully!"/>
     }
     else if (_errorMessage is not null)
     {
-        <ErrorAlert Message="@_errorMessage"/>
+        <ErrorAlertAlt Message="@_errorMessage"/>
     }
 
     <div class="mt-4 mb-5">

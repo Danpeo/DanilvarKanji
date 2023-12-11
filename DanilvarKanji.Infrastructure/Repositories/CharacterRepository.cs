@@ -1,3 +1,4 @@
+using System.Collections;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Params;
@@ -97,7 +98,7 @@ public class CharacterRepository : ICharacterRepository
 
         return Enumerable.Empty<string>();
     }
-
+    
     public async Task<IEnumerable<Character>> SearchAsync(string searchTerm) =>
         await _context.Characters
             .Where(x =>

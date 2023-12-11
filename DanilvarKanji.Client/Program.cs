@@ -30,7 +30,7 @@ builder.Services.AddHttpClient("ServerApi")
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ServerUrl"] ?? ""))
     .AddHttpMessageHandler<AuthHandler>();
 
-builder.Services.AddScoped<ICharacterService, CharacterService>();
+builder.Services.AddSingleton<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();

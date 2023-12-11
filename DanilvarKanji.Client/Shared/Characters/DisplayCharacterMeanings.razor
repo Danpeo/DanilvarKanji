@@ -1,0 +1,57 @@
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Client.Extensions
+@using DanilvarKanji.Client.Localization
+@using DanilvarKanji.Domain.Entities
+@using DanilvarKanji.Domain.Enumerations
+
+
+
+@if (_kanjiMeanings is not null)
+{
+    <CardWrapper HelpText="MEANINGS">
+        <p class="main-font">
+
+            @for (int i = 0; i < _kanjiMeanings.Count; i++)
+            {
+                string resultMeaning = $"{char.ToUpper(_kanjiMeanings[i][0])}{_kanjiMeanings[i][1..]}";
+
+                <span class="@(i == 0 ? "display-3 txt-mid-pink" : "display-6 txt-light-pink")">
+                    @resultMeaning
+
+                    @if (i < _kanjiMeanings.Count - 1)
+                    {
+                        <span>, </span>
+                    }
+                </span>
+            }
+        </p>
+    </CardWrapper>
+}
+else
+{
+    <DisplayLoading/>
+}
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required GetAllFromCharacterResponse Character { get; set; }
+
+    [Parameter, EditorRequired]
+    public Culture Culture { get; set; } = Culture.EnUS;
+
+    [Inject]
+    public required ICharacterService CharacterService { get; set; }
+
+    [Inject]
+    public required IStringLocalizer<App> Localizer { get; set; }
+
+    private List<string>? _kanjiMeanings = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _kanjiMeanings = await CharacterService.GetCharacterKanjiMeanings(Character.Id, int.MaxValue, Culture);
+    }
+
+}

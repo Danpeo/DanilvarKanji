@@ -1,0 +1,42 @@
+@using DanilvarKanji.Shared.Responses.Character
+
+<CardWrapper HelpText="KUNYOMI">
+    @if (Character.Kunyomis is not null && Character.Kunyomis.Any())
+    {
+        <ul style="list-style-type: none;">
+            @foreach (string reading in _kunReadings)
+            {
+                <li>
+                    <p class="main-font txt-mid-pink display-3">
+                        @reading
+                    </p>
+                </li>
+            }
+
+        </ul>
+    }
+    else
+    {
+        <p class="main-font txt-mid-pink display-6">
+            No Kunyomi Readings!
+        </p>
+    }
+</CardWrapper>
+
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required GetAllFromCharacterResponse Character { get; set; }
+
+    private List<string> _kunReadings = new();
+
+    protected override void OnInitialized()
+    {
+        if (Character.Kunyomis != null)
+            _kunReadings = Character.Kunyomis
+                .Select(x => x.JapaneseWriting)
+                .ToList();
+    }
+
+}

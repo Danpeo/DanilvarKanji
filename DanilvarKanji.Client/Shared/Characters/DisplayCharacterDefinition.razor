@@ -1,0 +1,31 @@
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Client.Extensions
+@using DanilvarKanji.Domain.Enumerations
+
+<h1 class="txt-mid-pink display-1 text-center jap-font">
+    @Character?.Definition
+</h1>
+<p class="card-text txt-gray jap-font text-center">
+    JLPT @Character?.JlptLevel.GetDisplayName(),
+    <span class="txt-light-pink">@GetCharacterTypeLocalizedName(Character?.CharacterType)</span>
+</p>
+
+@code {
+    [Parameter, EditorRequired]
+    public GetCharacterBaseInfoResponse? Character { get; set; }
+    
+    [Inject]
+    public required IStringLocalizer<App> Localizer { get; set; }
+    
+    private string GetCharacterTypeLocalizedName(CharacterType? characterType)
+    {
+        string localizedName = characterType switch
+        {
+            CharacterType.Radical => Localizer["Radical"],
+            CharacterType.Kanji => Localizer["Kanji"],
+            _ => ""
+            };
+
+        return localizedName;
+    }
+}

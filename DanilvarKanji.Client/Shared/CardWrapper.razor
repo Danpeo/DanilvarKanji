@@ -1,18 +1,18 @@
 <div class="card card-brand mb-4 shadow bg-main">
     <div class="card-body">
         <div class="row">
-            <div class="col-4">
+            <div class="@ColumnStyle">
                 <h4 class="txt-white main-font">@Title</h4>
                 <p class="txt-gray main-font">@HelpText</p>
                 @ChildContent
-
             </div>
-
         </div>
     </div>
 </div>
 
 @code {
+    [Parameter, EditorRequired]
+    public required RenderFragment ChildContent { get; set; }
 
     [Parameter]
     public string Title { get; set; } = default!;
@@ -20,7 +20,7 @@
     [Parameter]
     public string HelpText { get; set; } = default!;
 
-    [Parameter, EditorRequired]
-    public RenderFragment ChildContent { get; set; } = default!;
+    [Parameter]
+    public string ColumnStyle { get; set; } = string.Empty;
 
 }
