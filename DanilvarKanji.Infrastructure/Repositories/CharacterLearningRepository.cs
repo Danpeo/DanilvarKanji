@@ -10,20 +10,28 @@ namespace DanilvarKanji.Infrastructure.Repositories;
 public class CharacterLearningRepository : ICharacterLearningRepository
 {
     private readonly ApplicationDbContext _context;
+    private ICharacterLearningRepository _characterLearningRepositoryImplementation;
 
-    public CharacterLearningRepository(ApplicationDbContext context)
+    public CharacterLearningRepository(ApplicationDbContext context, ICharacterLearningRepository characterLearningRepositoryImplementation)
     {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
+        _context = context;
+        _characterLearningRepositoryImplementation = characterLearningRepositoryImplementation;
     }
 
     public void Create(CharacterLearning characterLearning) =>
         _context.CharacterLearnings.Add(characterLearning);
 
+    public async Task<CharacterLearning?> GetAsync(string id, AppUser user)
+    {
+        return await GetCharacterLearningsWithRelatedData()
+            .FirstOrDefaultAsync(x => x.Id == id && x.AppUser == user);
+    }
+
     public async Task<IEnumerable<CharacterLearning>> ListLearnQueueAsync(PaginationParams? paginationParams,
         AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5)
     {
-        return await GetCharacterLearningsWithRelatedData(paginationParams)
+        return await GetCharacterLearningsWithRelatedData()
             .Where(x => x.AppUser == user)
             .Where(x => x.Character.JlptLevel >= jlptLevel)
             .Where(x => x.LearningState == LearningState.NotLearned)
@@ -36,21 +44,15 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     public Task<bool> AnyExist()
         => _context.CharacterLearnings.AnyAsync();
 
+    public Task<bool> Exist(string requestId, AppUser user) =>
+        _context.CharacterLearnings.AnyAsync(x => x.Id == requestId && x.AppUser == user);
 
-    private IQueryable<CharacterLearning> GetCharacterLearningsWithRelatedData(
-        PaginationParams? paginationParams = null)
+    private IQueryable<CharacterLearning> GetCharacterLearningsWithRelatedData()
     {
         var characters = _context.CharacterLearnings
             .Include(x => x.Character)
             .Include(x => x.LearningProgress);
 
-        if (paginationParams != null && paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
-        {
-            return characters
-                .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)
-                .Take(paginationParams.PageSize);
-        }
-
-        return characters;
+        return characters.OrderByDescending(x => x.LearningState);
     }
 }

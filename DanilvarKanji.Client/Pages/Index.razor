@@ -8,8 +8,9 @@
 @inject IStringLocalizer<Index> Loc
 @inject NavigationManager NavManager
 
-
 <PageTitle>@AppDisplaySettings.AppTitle - @Loc[nameof(IndexLocaleKeys.HomeTitle)]</PageTitle>
+
+
 <div class="text-center">
 
     <Authorized>
@@ -26,8 +27,8 @@
             @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
         </h1>
 
-        <NavLink href="register" class="three-d-btn no-outline">@Loc["Register"]</NavLink>
-        <NavLink href="login" class="three-d-btn no-outline">@Loc["Login"]</NavLink>
+        <NavLink href="register" class="btn three-d-btn no-outline">@Loc["Register"]</NavLink>
+        <NavLink href="login" class="btn three-d-btn no-outline">@Loc["Login"]</NavLink>
 
     </NotAuthorized>
 
@@ -46,7 +47,7 @@
 
     <div class="ms-2">
         <button onclick="@(() => { if (character != null) {NavManager.NavigateTo($"/study-new/{character.Id}"); } })" 
-                class="mid-three-d-btn no-outline">Study New</button>
+                class="btn mid-three-d-btn no-outline">Study New</button>
     </div>
 
 </Authorized>
@@ -67,6 +68,5 @@
     {
         character = await CharacterService.GetNextInLearnQueue();
     }
-
-
+    
 }

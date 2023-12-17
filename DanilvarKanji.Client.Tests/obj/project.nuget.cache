@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AA1rSQfw9UN6KBvrQgtq0yG65O6dMhlcb9YUpppCNalkaSogCnbKwzPtrVi3DZ0ata7gv9X3ZH5djC1vN3V0KQ==",
+  "dgSpecHash": "Ls5oCNlDdkt+gJU7EjNTocCzUhp8rXRGn81kU+oDNep7qih36NDzAXivaaMhDF1kMDzv/Di4U4GFyqWDrp9R7w==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client.Tests\\DanilvarKanji.Client.Tests.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\anglesharp.diffing\\0.18.2\\anglesharp.diffing.0.18.2.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.fluentvalidation\\2.1.0\\blazored.fluentvalidation.2.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\blazored.modal\\7.1.0\\blazored.modal.7.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\bunit\\1.25.3\\bunit.1.25.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\bunit.core\\1.25.3\\bunit.core.1.25.3.nupkg.sha512",
@@ -170,7 +171,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "DanilvarKanji.Client.Tests depends on Microsoft.NET.Test.Sdk (>= 16.12.0) but Microsoft.NET.Test.Sdk 16.12.0 was not found. An approximate best match of Microsoft.NET.Test.Sdk 17.0.0 was resolved.",
+      "message": "DanilvarKanji.Client.Tests зависит от Microsoft.NET.Test.Sdk (>= 16.12.0), но Microsoft.NET.Test.Sdk 16.12.0 не найден. Использовано наилучшее приближенное соответствие Microsoft.NET.Test.Sdk 17.0.0.",
       "libraryId": "Microsoft.NET.Test.Sdk",
       "targetGraphs": [
         "net7.0"

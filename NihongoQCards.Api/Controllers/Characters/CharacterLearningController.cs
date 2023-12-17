@@ -19,7 +19,8 @@ public class CharacterLearningController : ApiController
     private readonly IMapper _mapper;
     private readonly UserManager<AppUser> _userManager;
 
-    public CharacterLearningController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) : base(mediator)
+    public CharacterLearningController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
+        base(mediator)
     {
         _mapper = mapper;
         _userManager = userManager;
@@ -36,19 +37,31 @@ public class CharacterLearningController : ApiController
             return Unauthorized();
 
         var command = new CreateCharacterLearningCommand(user, request.CharacterId, request.LearningState);
-        
-        //var characterLearning = _mapper.Map<CharacterLearning>(command);
+
 
         return await Result.Create(command, General.UnProcessableRequest)
             .Bind(c => Mediator.Send(c))
-            .Match(Ok, BadRequest);
+            .Match(() => CreatedAtAction("Get", new { id = request.CharacterId }),
+                BadRequest);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAsync(string id)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        if (user is null)
+            return Unauthorized();
+
+        CharacterLearning? learning = await Mediator.Send(new GetCharacterLearningQuery(id, user));
+
+        return learning is not null ? Ok(learning) : NotFound("Character Learning was not found");
     }
 
     [HttpGet("LearnQueue")]
-    public async Task<IActionResult> ListLearnQueueAsync([FromServices] UserManager<AppUser> userManager,
-        [FromQuery] PaginationParams paginationParams)
+    public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams)
     {
-        AppUser? user = await userManager.GetUserAsync(User);
+        AppUser? user = await _userManager.GetUserAsync(User);
 
         if (user is null)
             return Unauthorized();

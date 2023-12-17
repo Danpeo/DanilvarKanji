@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Blazored.Modal;
 using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -31,12 +32,14 @@ builder.Services.AddHttpClient("ServerApi")
     .AddHttpMessageHandler<AuthHandler>();
 
 builder.Services.AddSingleton<ICharacterService, CharacterService>();
+builder.Services.AddScoped<ICharacterLearningService, CharacterLearningService>();
 builder.Services.AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddBlazoredSessionStorageAsSingleton();
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredModal();
 
 /*builder.Services.AddOidcAuthentication(options =>
 {

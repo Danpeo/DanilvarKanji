@@ -72,7 +72,7 @@ public class AuthService : IAuthService
                 JsonContent.Create(request));
 
         if (!response.IsSuccessStatusCode)
-            throw new UnauthorizedAccessException("Login failed.");
+            throw new UnauthorizedAccessException("Wrong authorization credentials.");
 
         var content = await response.Content.ReadFromJsonAsync<LoginResponse>();
 

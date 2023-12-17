@@ -26,6 +26,10 @@ img {
     font-family: 'Didact Gothic', sans-serif;
 }
 
+.pixel-font {
+    font-family: 'Silkscreen', sans-serif;
+}
+
 .pointer-cursor {
     cursor: pointer;
 }
@@ -211,6 +215,21 @@ button.close {
     color: #f95668
 }
 
+.custom-modal {
+    display: flex;
+    flex-direction: column;
+    background-color: #1f1f1f;
+    border-radius: 4px;
+    color: var(--white-color);
+    font-family: 'Didact Gothic', sans-serif;
+    border: 1px solid #f87ba6;
+    padding: 1.5rem;
+    box-shadow: 0 2px 2px rgba(0,0,0,.25);
+    margin: 1.75rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 

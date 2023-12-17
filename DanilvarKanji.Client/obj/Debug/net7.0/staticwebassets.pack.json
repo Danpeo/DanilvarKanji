@@ -101,6 +101,10 @@
       "PackagePath": "staticwebassets\\img\\cats.png"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\cat.gif",
+      "PackagePath": "staticwebassets\\img\\loading\\cat.gif"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\hero.gif",
       "PackagePath": "staticwebassets\\img\\loading\\hero.gif"
     },

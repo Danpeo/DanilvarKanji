@@ -1,16 +1,16 @@
 ﻿@inject IStringLocalizer<App> Loc
 
-<CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(App).Assembly">
-        <Found Context="routeData">
-            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
-            <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
-        </Found>
-        <NotFound>
-            <PageTitle>@Loc["NotFound"]</PageTitle>
-            <LayoutView Layout="@typeof(MainLayout)">
-                <p role="alert">@Loc["NothingAtAddress"]</p>
-            </LayoutView>
-        </NotFound>
-    </Router>
-</CascadingAuthenticationState>
+<CascadingBlazoredModal Class="custom-modal">
+        <Router AppAssembly="@typeof(App).Assembly">
+            <Found Context="routeData">
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
+                <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+            </Found>
+            <NotFound>
+                <PageTitle>@Loc["NotFound"]</PageTitle>
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <p role="alert">@Loc["NothingAtAddress"]</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+</CascadingBlazoredModal>

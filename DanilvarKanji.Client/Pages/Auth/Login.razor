@@ -4,12 +4,14 @@
 @using DanilvarKanji.Shared.Requests.Auth
 @using DanilvarKanji.Shared.Responses.Auth
 @using DanilvarKanji.Client.Data
+@using Blazored.Modal.Services
 
 @inject IAuthService AuthenticationService;
+@inject NavigationManager NavManager;
 
 <PageTitle>Register - @AppDisplaySettings.AppTitle</PageTitle>
 
-<h3 class="mb-5 display-3 animated-blink main-font">Регистрация</h3>
+<h3 class="mb-5 display-3 animated-blink main-font">Log In</h3>
 
 <EditForm Model="_loginRequest" OnValidSubmit="HandleSubmitAsync" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
@@ -29,6 +31,7 @@
     @if (_submitSuccessful)
     {
         <SuccessAlertAlt Message="Your account was registered successfully!"/>
+        NavManager.NavigateTo("/", true);
     }
     else if (_errorMessage is not null)
     {
@@ -43,54 +46,40 @@
             </div>
         </div>
     </div>
-
+    
 </EditForm>
 
-@*<fieldset disabled="@(response is not null)">
-    <EditForm Model="@_loginRequest" OnValidSubmit="SubmitAsync">
-        <div>
-            <label for="username">Username:</label>
-            <InputText @bind-Value="@_loginRequest.Email" id="username" name="username" required/>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <InputText type="password" @bind-Value="@_loginRequest.Password" id="password" name="password" required/>
-        </div>
-        <div>
-            <button type="submit">Login</button>
-        </div>
-    </EditForm>
-</fieldset>
-
-@if (response is not null)
-{
-    <p>You are logged in until @response.Expiration.ToLongTimeString()</p>
-    <p>@response.JwtToken</p>
-}
-
-@if (errorMessage is not null)
-{
-    <p class="error">@errorMessage</p>
-}*@
 
 @code {
-
-    [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    [CascadingParameter]
+    public required IModalService ModalService { get; set; }
 
     private LoginUserRequest _loginRequest = new();
     private LoginResponse? _response;
     private bool _submitSuccessful;
     private string? _errorMessage;
 
+
     private async Task HandleSubmitAsync()
     {
-        _response = await AuthenticationService.LoginAsync(_loginRequest);
+        IModalReference loadingModal = ModalService.Show<LoadingModal>();
+        try
+        {
+            _response = await AuthenticationService.LoginAsync(_loginRequest);
+            
+            _errorMessage = null;
 
-        _errorMessage = null;
-
-        if (!string.IsNullOrEmpty(_response?.JwtToken))
-            _submitSuccessful = true;
+            if (!string.IsNullOrEmpty(_response?.JwtToken))
+                _submitSuccessful = true;
+            
+            loadingModal.Close();
+        }
+        catch (UnauthorizedAccessException e)
+        {
+            loadingModal.Close();
+            _submitSuccessful = false;
+            _errorMessage = e.Message;
+        }
     }
 
     private void HandleInvalidSubmit()

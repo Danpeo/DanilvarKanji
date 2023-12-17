@@ -1,8 +1,5 @@
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using DanilvarKanji.Client.Services.Auth;
-using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;

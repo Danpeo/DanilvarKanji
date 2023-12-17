@@ -1,0 +1,9 @@
+@page "/review/{CharacterId}"
+
+<h3>ReviewCharacter</h3>
+@CharacterId
+
+@code {
+    [Parameter, EditorRequired]
+    public required string CharacterId { get; set; }
+}

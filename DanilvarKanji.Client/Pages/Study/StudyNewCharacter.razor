@@ -1,14 +1,26 @@
 @page "/study-new/{CharacterId}"
+
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Client.Localization
+@using DanilvarKanji.Domain.Entities
 @using DanilvarKanji.Domain.Enumerations
+@using DanilvarKanji.Shared.Requests.CharacterLearnings
+@using Blazored.Modal.Services
+@using DanilvarKanji.Client.Shared.Modal
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
     {
         <DisplayCharacterDefinition Character="_character"/>
-        <ContentSlider ContentDictionary="_contentDictionary"></ContentSlider>
+        <ContentSlider OnContentEnd="OnContentEnd" 
+                       ContentDictionary="_contentDictionary"
+                       ButtonStyle="no-outline mid-three-d-btn"/>
+
+        if (_contentEnded)
+        {
+            <button @onclick="FinishLearning">Finish</button>
+        }
     }
     else
     {
@@ -17,29 +29,73 @@
 </ForbidIfNotAuthorized>
 
 @code {
-
+    [CascadingParameter]
+    public required IModalService ModalService { get; set; }
+    
     [Parameter, EditorRequired]
     public required string CharacterId { get; set; }
 
     [Inject]
     public required ICharacterService CharacterService { get; set; }
+    
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    public required ICharacterLearningService CharacterLearningService { get; set; }
 
     [Inject]
     public required ILocalizationService LocalizationService { get; set; }
 
-    private Dictionary<int, RenderFragment> _contentDictionary = new();
+    private bool _contentEnded;
+    private CreateCharacterLearningRequest _characterLearningRequest = new();
     private GetAllFromCharacterResponse? _character;
     private Culture _culture = Culture.EnUS;
+    private Dictionary<int, RenderFragment> _contentDictionary = new();
 
     protected override async Task OnInitializedAsync()
     {
         await GetCurrentCulture();
         _character = await CharacterService.GetCharacterAsync(CharacterId);
 
-        InitializeContent();
+        if (_character?.CharacterType is CharacterType.Kanji)
+            InitializeKanjiContent();
+        else
+            InitializeRadicalContent();
     }
 
-    private void InitializeContent()
+    private void OnContentEnd()
+    {
+        _contentEnded = true;
+        StateHasChanged();
+    }
+
+    private async Task FinishLearning()
+    {
+        if (_character != null)
+        {
+            _characterLearningRequest = new CreateCharacterLearningRequest(LearningState.Learning, _character.Id);
+            CharacterLearning? learnedCharacter = await CharacterLearningService.CreateCharacterLearningAsync(_characterLearningRequest);
+
+            var options = new ModalOptions
+            {
+                Position = ModalPosition.Middle,
+                Class = "custom-modal"
+            };
+            
+            var parameters = new ModalParameters()
+                .Add(nameof(ConfirmCancelBase.Message), "Hello, World!")
+                .Add(nameof(ConfirmCancelBase.OnConfirm), () =>
+                {
+                    NavigationManager.NavigateTo($"/review/{learnedCharacter?.Id}");
+                });
+            
+            ModalService.Show<ConfirmCancelBase>("Are you finished", parameters, options);
+
+        }
+    }
+
+    private void InitializeKanjiContent()
     {
         _contentDictionary = new Dictionary<int, RenderFragment>()
         {
@@ -61,6 +117,23 @@
             {
                 3, @<div class="fade-in-el">
                        <DisplayCharacterOnReadings Character="_character"/>
+                   </div>
+            }
+        };
+    }
+
+    private void InitializeRadicalContent()
+    {
+        _contentDictionary = new Dictionary<int, RenderFragment>()
+        {
+            {
+                0, @<div class="fade-in-el">
+                       <DisplayCharacterMeanings Character="@_character" Culture="_culture"/>
+                   </div>
+            },
+            {
+                1, @<div class="fade-in-el">
+                       <DisplayCharacterMnemonics Character="_character" Culture="_culture"/>
                    </div>
             }
         };

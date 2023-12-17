@@ -1,7 +1,7 @@
 @using DanilvarKanji.Shared.Responses.Character
 
 <CardWrapper HelpText="ONYOMI">
-    @if (Character.Onyomis is not null && Character.Onyomis.Any())
+    @if (Character.Onyomis != null && _onReadings.Any())
     {
         <ul style="list-style-type: none;">
             @foreach (string reading in _onReadings)

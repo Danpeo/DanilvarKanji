@@ -12,4 +12,6 @@ public interface ICharacterLearningRepository
 
     Task<bool> AnyExist();
     void Create(CharacterLearning characterLearning);
+    Task<CharacterLearning?> GetAsync(string id, AppUser user);
+    Task<bool> Exist(string requestId, AppUser user);
 }

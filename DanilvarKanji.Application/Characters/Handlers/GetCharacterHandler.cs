@@ -12,7 +12,7 @@ public class GetCharacterHandler : IRequestHandler<GetCharacterQuery, Character?
 
     public GetCharacterHandler(ICharacterRepository characterRepository)
     {
-        _characterRepository = characterRepository ?? throw new ArgumentNullException(nameof(characterRepository));
+        _characterRepository = characterRepository;
     }
 
     public async Task<Character?> Handle(GetCharacterQuery request, CancellationToken cancellationToken)

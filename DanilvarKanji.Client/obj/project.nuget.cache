@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "pqfhSa8W7y2kMfmGzgPtIu4wquf6ch8X7TZtlaGH9d4/CUkEv5rFnYphLwWQwHt9pYlvVXmDf0+0iOdnh8j6pg==",
+  "dgSpecHash": "jIx5bGeSNc/omCAzn8pzNewD9wSh31CcqkoIdqLrMiAGPaXIYBJkAxKYcXl2+JeyNO7VgqF2PhT9Zvj9iTBHXw==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\blazored.fluentvalidation\\2.1.0\\blazored.fluentvalidation.2.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\blazored.modal\\7.1.0\\blazored.modal.7.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",

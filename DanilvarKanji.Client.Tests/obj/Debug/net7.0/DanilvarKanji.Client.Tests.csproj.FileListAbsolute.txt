@@ -175,3 +175,10 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debu
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.Spatial.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Danilvar.Components.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Danilvar.Components.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Blazored.SessionStorage.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.Extensions.Http.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

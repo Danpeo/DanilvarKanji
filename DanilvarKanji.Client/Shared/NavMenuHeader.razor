@@ -1,4 +1,5 @@
 @using DanilvarKanji.Client.Services.Auth
+@using Blazored.Modal.Services
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <div id="navbarNav">
@@ -32,13 +33,20 @@
 </nav>
 
 @code {
-
+    [CascadingParameter]
+    public required IModalService ModalService { get; set; }
+    
     [Inject]
     public required IAuthService AuthService { get; set; }
-
+    
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+    
     private async Task LogoutAsync()
     {
+        ModalService.Show<LoadingModal>();
         await AuthService.LogoutAsync();
+        NavigationManager.NavigateTo("/", true);
     }
 
 }

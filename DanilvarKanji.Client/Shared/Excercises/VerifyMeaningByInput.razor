@@ -1,0 +1,7 @@
+@using DanilvarKanji.Shared.Responses.Character
+<h3>CheckMeaningInput</h3>
+
+@code {
+    [Parameter, EditorRequired]
+    public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
+}

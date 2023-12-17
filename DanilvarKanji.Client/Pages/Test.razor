@@ -1,5 +1,19 @@
 @page "/test"
 
+@code {
+
+    private void OnConfirmAction()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnDeclineAction()
+    {
+        throw new NotImplementedException();
+    }
+
+}
+
 <style>
     .three-d-button {
         background-color: #3498db;
@@ -139,11 +153,14 @@
 </style>
 
 
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> Primary</button>
 
-    
-    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-    <button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> Primary</button>
 
-   
+<ConfirmDeclineModal OnConfirmAction="OnConfirmAction" OnDeclineAction="OnDeclineAction" OnConfirmBtnTxt="t" OnDeclineBtnTxt="s" Message="sf"/>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+</button>
 

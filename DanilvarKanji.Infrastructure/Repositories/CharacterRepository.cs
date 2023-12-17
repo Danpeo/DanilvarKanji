@@ -3,6 +3,7 @@ using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,28 +26,25 @@ public class CharacterRepository : ICharacterRepository
         List<Character> characters = await GetCharactersWithRelatedData()
             .ToListAsync();
 
-        return paginationParams != null ? Paginate(characters, paginationParams) : characters;
+        return paginationParams != null ? Paginator.Paginate(characters, paginationParams) : characters;
     }
 
     public async Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams? paginationParams,
         AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5)
     {
-        var characters = await GetLearnQueueAsync(user, jlptLevel).ToListAsync();
+        var characters = await GetLearnQueue(user, jlptLevel).ToListAsync();
 
-        return paginationParams is not null ? Paginate(characters, paginationParams) : characters;
+        return paginationParams is not null ? Paginator.Paginate(characters, paginationParams) : characters;
     }
 
     public async Task<Character?> GetNextInLearnQueueAsync(AppUser user) =>
-        await GetLearnQueueAsync(user, user.JlptLevel).
+        await GetLearnQueue(user, user.JlptLevel).
             FirstOrDefaultAsync();
 
     public async Task<Character?> GetAsync(string id) =>
         await GetCharactersWithRelatedData()
             .FirstOrDefaultAsync(x => x.Id == id);
-
-    public Task<bool> Exist(string id) =>
-        _context.Characters.AnyAsync(x => x.Id == id);
 
     public async Task UpdateAsync(string id, Character character)
     {
@@ -76,11 +74,14 @@ public class CharacterRepository : ICharacterRepository
         _context.Characters.Remove(character!);
     }
 
+    public Task<bool> Exist(string id) =>
+        _context.Characters.AnyAsync(x => x.Id == id);
+
     public Task<bool> AnyExist() =>
         _context.Characters.AnyAsync();
 
     public async Task<bool> AnyInLearnQueue(AppUser user) 
-        => await GetLearnQueueAsync(user, user.JlptLevel).AnyAsync();
+        => await GetLearnQueue(user, user.JlptLevel).AnyAsync();
 
     public async Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty, Culture culture)
     {
@@ -144,18 +145,12 @@ public class CharacterRepository : ICharacterRepository
             .Include(x => x.Onyomis)
             .Include(x => x.Words)
             .ThenInclude(x => x.WordMeanings);
+        
 
-        /*if (paginationParams != null && paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
-        {
-            return characters
-                .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)
-                .Take(paginationParams.PageSize);
-        }*/
-
-        return characters;
+        return characters.OrderByDescending(x => x.Definition);
     }
 
-    private IOrderedQueryable<Character> GetLearnQueueAsync(AppUser user, JlptLevel jlptLevel)
+    private IOrderedQueryable<Character> GetLearnQueue(AppUser user, JlptLevel jlptLevel)
     {
         DbSet<CharacterLearning> characterLearnings = _context.CharacterLearnings;
 
@@ -167,18 +162,6 @@ public class CharacterRepository : ICharacterRepository
             .OrderBy(x => x.JlptLevel)
             .ThenBy(x => x.CharacterType)
             .ThenBy(x => x.Definition);
-
-        return characters;
-    }
-
-    private IEnumerable<Character> Paginate(IEnumerable<Character> characters, PaginationParams paginationParams)
-    {
-        if (paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
-        {
-            return characters
-                .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)
-                .Take(paginationParams.PageSize);
-        }
 
         return characters;
     }

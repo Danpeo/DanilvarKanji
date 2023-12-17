@@ -1,7 +1,16 @@
-@ContentDictionary[_currentContent];
+<div class="@ContentContainerStyles">
+    @ContentDictionary[_currentContent];
 
-<button class="@ButtonStyle" @onclick="NextContent">@NextBtnText</button>
-<button class="@ButtonStyle" @onclick="PrevContent">@PrevBtnText</button>
+    @if (_currentContent > 0)
+    {
+        <button class="btn mt-3 mb-4 @ButtonStyle" @onclick="PrevContent">@PrevBtnText</button>
+    }
+
+    @if (_currentContent < ContentDictionary.Count)
+    {
+        <button class="btn mt-3 mb-4 @ButtonStyle" @onclick="NextContent">@NextBtnText</button>
+    }
+</div>
 
 @code {
 
@@ -9,17 +18,19 @@
     public required Dictionary<int, RenderFragment> ContentDictionary { get; set; }
 
     [Parameter]
-    public string ButtonStyle { get; set; } = "btn";
+    public string? ButtonStyle { get; set; }
 
     [Parameter]
     public string NextBtnText { get; set; } = "Next";
 
     [Parameter]
     public string PrevBtnText { get; set; } = "Prev";
-    
+
     [Parameter]
     public Action? OnContentEnd { get; set; }
 
+    [Parameter]
+    public string ContentContainerStyles { get; set; } = "mb-4";
 
     private int _currentContent;
 
@@ -40,4 +51,5 @@
         if (_currentContent <= 0)
             _currentContent = 0;
     }
+
 }

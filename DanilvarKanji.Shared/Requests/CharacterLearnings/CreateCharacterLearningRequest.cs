@@ -6,5 +6,17 @@ public class CreateCharacterLearningRequest
 {
     public LearningState LearningState { get; set; }
     public int LearnedCount { get; set; } = 0;
-    public required string CharacterId { get; set; }
+    public string CharacterId { get; set; }
+
+    public CreateCharacterLearningRequest()
+    {
+        
+    }
+
+    public CreateCharacterLearningRequest(LearningState learningState, string characterId, int learnedCount = 0)
+    {
+        LearningState = learningState;
+        LearnedCount = learnedCount;
+        CharacterId = characterId;
+    }
 }

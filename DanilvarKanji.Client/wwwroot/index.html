@@ -8,25 +8,38 @@
     <base href="/"/>
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="DanilvarKanji.Client.styles.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Silkscreen&display=swap" rel="stylesheet">
+
     <link href="css/app.css" rel="stylesheet"/>
     <link href="css/colors.css" rel="stylesheet"/>
     <link href="css/general.css" rel="stylesheet"/>
     <link href="css/bigbtn.css" rel="stylesheet"/>
     <link href="css/mid-three-d.css" rel="stylesheet"/>
-    
+
     <link rel="icon" type="image/png" href="favicon.png"/>
     <link href="DanilvarKanji.Client.styles.css" rel="stylesheet"/>
 </head>
 
-<body>
-<div id="app" class="bg-secondary">
-    <div class="vh-100 d-flex align-items-center justify-content-center gap-3">
-        <!--
-                <div class="h5 spinner-border txt-bright-pink"></div>
-        -->
-        <img alt="loading" id="randomImage" width="128" height="128"/>
-        <div class="h2 txt-bright-pink jap-font">ローディング</div>
-        <img alt="loading" id="randomImage2" width="128" height="128"/>
+<body class="bg-secondary">
+<div id="app">
+    <!--    <div class="vh-100 d-flex align-items-center justify-content-center gap-3">
+            &lt;!&ndash;
+                    <div class="h5 spinner-border txt-bright-pink"></div>
+            &ndash;&gt;
+            &lt;!&ndash;<img alt="loading" id="randomImage" width="128" height="128"/>
+            <div class="h2 txt-bright-pink jap-font">ローディング</div>
+            <img alt="loading" id="randomImage2" width="128" height="128"/>&ndash;&gt;
+            <img alt="loading" id="cat" src="img/loading/cat.gif"/>
+            <div class="h2 txt-bright-pink text-center jap-font">ローディング</div>
+        </div>-->
+    <div class="text-center">
+        <img alt="loading" id="cat" src="img/loading/cat.gif"/>
+        <h1 class="display-4 pixel-font txt-bright-pink">danilvar</h1>
     </div>
 </div>
 
@@ -45,10 +58,11 @@
 
     // Get a list of image file names in the folder
     const imageFiles = [
-        'raven.gif',
+        /*'raven.gif',
         'rabbit.gif',
         'hero.gif',
-        'hero_emo.gif',
+        'hero_emo.gif',*/
+        'cat.gif'
         // Add more image file names as needed
     ];
 
