@@ -14,4 +14,10 @@ public interface ICharacterLearningRepository
     void Create(CharacterLearning characterLearning);
     Task<CharacterLearning?> GetAsync(string id, AppUser user);
     Task<bool> Exist(string requestId, AppUser user);
+
+    Task<IEnumerable<CharacterLearning>> ListReviewQueueAsync(PaginationParams? paginationParams,
+        AppUser user);
+
+    Task<bool> AnyToReview(AppUser appUser);
+    Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser);
 }

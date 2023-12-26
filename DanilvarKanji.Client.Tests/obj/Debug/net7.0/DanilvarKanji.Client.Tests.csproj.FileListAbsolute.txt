@@ -182,3 +182,4 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debu
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\Blazored.Modal.dll

@@ -1,6 +1,7 @@
 using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Infrastructure.Caching;
 using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Handlers;
@@ -9,7 +10,7 @@ public class GetKanjiMeaningsByPriorityHandler : IRequestHandler<GetKanjiMeaning
 {
     private readonly ICharacterRepository _characterRepository;
 
-    public GetKanjiMeaningsByPriorityHandler(ICharacterRepository characterRepository)
+    public GetKanjiMeaningsByPriorityHandler(ICharacterRepository characterRepository, ICacheService cacheService)
     {
         _characterRepository = characterRepository;
     }
@@ -18,6 +19,7 @@ public class GetKanjiMeaningsByPriorityHandler : IRequestHandler<GetKanjiMeaning
     {
         if (!await _characterRepository.Exist(request.CharacterId))
             return Enumerable.Empty<string>();
+
 
         Character? character = await _characterRepository.GetAsync(request.CharacterId);
         

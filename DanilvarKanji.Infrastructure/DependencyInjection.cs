@@ -1,5 +1,6 @@
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Auth;
+using DanilvarKanji.Infrastructure.Caching;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Infrastructure.Repositories;
@@ -22,6 +23,7 @@ public static class DependencyInjection
         services.AddScoped<ICharacterRepository, CharacterRepository>();
         services.AddScoped<ICharacterLearningRepository, CharacterLearningRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddSingleton<ICacheService, CacheService>();
 
         return services;
     }

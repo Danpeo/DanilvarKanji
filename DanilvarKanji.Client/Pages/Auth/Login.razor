@@ -62,7 +62,7 @@
 
     private async Task HandleSubmitAsync()
     {
-        IModalReference loadingModal = ModalService.Show<LoadingModal>();
+        IModalReference loadingModal = ModalService.Show<CubeLoadModal>();
         try
         {
             _response = await AuthenticationService.LoginAsync(_loginRequest);

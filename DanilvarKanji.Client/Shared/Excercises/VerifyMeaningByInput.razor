@@ -1,7 +1,74 @@
+@using DanilvarKanji.Client.Data
 @using DanilvarKanji.Shared.Responses.Character
-<h3>CheckMeaningInput</h3>
+
+<div class="text-center">
+    <p class="text-body">Enter any meaning for @CharacterForVerification.Definition</p>
+</div>
+
+<div class="">
+    <EditForm Model="_enteredMeaning" OnSubmit="Validate">
+        <InputText @bind-Value="_enteredMeaning"
+                   class="form-control-plaintext input-lg display-6 bg-main txt-mid-pink jap-font"
+                   id="meaningInput" placeholder="Meaning"/>
+
+        @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
+        {
+            <div class="mt-4">
+                <button class="btn btn-primary bg-light-pink" type="submit">confirm</button>
+            </div>
+        }
+    </EditForm>
+
+</div>
+
+
+@if (_attempts > StudyParams.AllowedInputMeaningAttempts)
+{
+    <button>okay</button>
+}
+@if (_isCorrect)
+{
+    <button>yay</button>
+}
 
 @code {
+
+    [Inject]
+    public required IJSRuntime JsRuntime { get; set; }
+
     [Parameter, EditorRequired]
     public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
+
+
+    private string _enteredMeaning = string.Empty;
+    private bool _isCorrect;
+    private int _attempts;
+
+    private async Task Validate()
+    {
+        bool isCorrectInput =
+            CharacterForVerification.KanjiMeanings != null
+            && CharacterForVerification
+                .KanjiMeanings
+                .Any(
+                    k => k.Definitions != null
+                         && k.Definitions.Any(d => d.Value == _enteredMeaning));
+
+        if (isCorrectInput)
+        {
+            _isCorrect = true;
+        }
+        else
+        {
+            _attempts++;
+            await JsRuntime.InvokeVoidAsync(
+                JsFuncs.AddClassesToElementForTime,
+                "meaningInput",
+                new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
+                500);
+        }
+
+        StateHasChanged();
+    }
+
 }

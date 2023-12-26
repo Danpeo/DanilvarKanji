@@ -1,0 +1,47 @@
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Shared.Responses.CharacterLearning
+
+@if (_learningItems == null)
+{
+    <DisplayLoading></DisplayLoading>
+}
+else if (!_learningItems.Any())
+{
+    <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
+}
+else
+{
+    <div class="row">
+        @foreach (GetCharacterLearningBaseInfoResponse? learning in _learningItems)
+        {
+            <div class="col-md-1">
+                <div class="card mb-1 bg-main">
+                    <div class="card-body">
+                        <h5 class="card-title jap-font txt-mid-pink text-center">@learning?.Character.Definition</h5>
+                        <p class="card-title txt-gray jap-font">@learning?.Character.JlptLevel</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+
+    [Inject]
+    public required ICharacterLearningService CharacterLearningService { get; set; }
+
+    [Parameter]
+    public int PageNumber { get; set; } = 1;
+
+    [Parameter]
+    public int PageSize { get; set; } = int.MaxValue;
+
+    private IEnumerable<GetCharacterLearningBaseInfoResponse?>? _learningItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _learningItems = await CharacterLearningService.ListReviewQueueAsync(PageNumber, PageSize);
+    }
+
+}

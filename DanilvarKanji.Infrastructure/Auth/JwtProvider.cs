@@ -5,6 +5,7 @@ using System.Text;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Options;
+using DanilvarKanji.Shared.Enums;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

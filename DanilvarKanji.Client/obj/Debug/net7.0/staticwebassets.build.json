@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tf0ucP6uFnHgfEe1C5wCQ4JFooOe3B7opbaBjaMyI/o=",
+  "Hash": "WXp6gm+q6CvVFPVaJFKptRnRCWc2RQeYAhFgOa2O8+A=",
   "Source": "DanilvarKanji.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -9743,6 +9743,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\loading\\cat.gif"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\cube-load.gif",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "img/loading/cube-load.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\loading\\cube-load.gif"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\loading\\hero_emo.gif",

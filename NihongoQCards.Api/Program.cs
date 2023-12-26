@@ -18,12 +18,14 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.AddLamarServices();
+//builder.Host.AddLamarServices();
 
 builder.Services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true)
     .AddFluentValidationClientsideAdapters();
+
+builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 

@@ -6,22 +6,25 @@
 }
 
 @code {
-    private bool _isAuthorized;
+    protected bool _isAuthorized;
 
-    [Inject] public IAuthService AuthService { get; set; }
-    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+    [Inject] public required IAuthService AuthService { get; set; }
+    [Parameter, EditorRequired] public required RenderFragment ChildContent { get; set; }
     
     
     protected override async Task OnInitializedAsync()
     {
-        _isAuthorized = await AuthService.IsAuthorized();
-        StateHasChanged();
-
+        await ValidateAsync();
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        _isAuthorized = await AuthService.IsAuthorized();
+        await ValidateAsync();
+    }
+
+    private async Task ValidateAsync()
+    {
+        _isAuthorized = await AuthService.HasAnyRoleAsync();
         
         StateHasChanged();
     }

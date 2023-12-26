@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Json;
 using System.Security.Claims;
 using Blazored.SessionStorage;
+using DanilvarKanji.Shared.Enums;
 using DanilvarKanji.Shared.Requests.Auth;
 using DanilvarKanji.Shared.Responses.Auth;
 
@@ -14,9 +15,8 @@ public class AuthService : IAuthService
     private const string _baseUrl = "Accounts";
     private const string JwtKey = nameof(JwtKey);
     private const string RefreshKey = nameof(RefreshKey);
-    private bool _isLoggedIn;
-    private string? _jwtCache;
-    public bool IsLoggedIn { get; private set; }
+    private string _role;
+    private string? _jwtCache = string.Empty;
     public event Action<string?>? LoginChange;
 
     public AuthService(IHttpClientFactory httpFactory, ISessionStorageService sessionStorageService)
@@ -32,12 +32,26 @@ public class AuthService : IAuthService
 
         return _jwtCache;
     }
-
-    public async ValueTask<bool> IsAuthorized()
+    
+    public async Task<bool> HasRoleAsync(string role)
     {
-        _isLoggedIn = await _sessionStorageService.GetItemAsync<bool>("IsLoggedIn");
+        _role = GetRole(await GetJwtAsync());
 
-        return _isLoggedIn;
+        return _role == role;
+    }
+
+    public async Task<bool> HasAnyOfSpecifiedRolesAsync(IEnumerable<string> roles)
+    {
+        _role = GetRole(await GetJwtAsync());
+
+        return roles.Any(role => role == _role);
+    }
+
+    public async Task<bool> HasAnyRoleAsync()
+    {
+        _role = GetRole(await GetJwtAsync());
+
+        return !string.IsNullOrEmpty(_role);
     }
 
     public async Task<RegisterUserRequest?> RegisterUserAsync(RegisterUserRequest request)
@@ -81,11 +95,10 @@ public class AuthService : IAuthService
 
         await _sessionStorageService.SetItemAsync(JwtKey, content.JwtToken);
         await _sessionStorageService.SetItemAsync(RefreshKey, content.RefreshToken);
-        await _sessionStorageService.SetItemAsync("IsLoggedIn", true);
 
         LoginChange?.Invoke(GetUsername(content.JwtToken));
 
-        IsLoggedIn = true;
+        await _sessionStorageService.SetItemAsync("Role", GetRole(content.JwtToken));
 
         return content;
     }
@@ -122,13 +135,13 @@ public class AuthService : IAuthService
 
         return true;
     }
-    
+
     public async Task LogoutAsync()
     {
         HttpResponseMessage response = await _httpFactory
             .CreateClient("ServerApi")
             .DeleteAsync($"api/{_baseUrl}/Revoke");
-        
+
         await _sessionStorageService.RemoveItemAsync(JwtKey);
         await _sessionStorageService.RemoveItemAsync(RefreshKey);
 
@@ -141,10 +154,22 @@ public class AuthService : IAuthService
         await _sessionStorageService.RemoveItemAsync("IsLoggedIn");
     }
 
-    private static string GetUsername(string token)
+    private string GetUsername(string token)
     {
         var jwt = new JwtSecurityToken(token);
 
         return jwt.Claims.First(c => c.Type == ClaimTypes.Name).Value;
+    }
+
+    private string GetRole(string token)
+    {
+        if (string.IsNullOrEmpty(token))
+            return string.Empty;
+        
+        var jwt = new JwtSecurityToken(token);
+
+        Claim? role = jwt.Claims.FirstOrDefault(c => c.Type == JwtClaim.UserRole.ToString());
+
+        return role != null ? role.Value : string.Empty;
     }
 }

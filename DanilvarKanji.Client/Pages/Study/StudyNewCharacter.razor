@@ -7,7 +7,6 @@
 @using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.CharacterLearnings
 @using Blazored.Modal.Services
-@using DanilvarKanji.Client.Shared.Modal
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -75,7 +74,7 @@
         if (_character != null)
         {
             _characterLearningRequest = new CreateCharacterLearningRequest(LearningState.Learning, _character.Id);
-            CharacterLearning? learnedCharacter = await CharacterLearningService.CreateCharacterLearningAsync(_characterLearningRequest);
+            CharacterLearning? characterLearning = await CharacterLearningService.CreateCharacterLearningAsync(_characterLearningRequest);
 
             var options = new ModalOptions
             {
@@ -87,7 +86,7 @@
                 .Add(nameof(ConfirmCancelBase.Message), "Hello, World!")
                 .Add(nameof(ConfirmCancelBase.OnConfirm), () =>
                 {
-                    NavigationManager.NavigateTo($"/review/{learnedCharacter?.Id}");
+                    NavigationManager.NavigateTo($"/review/{characterLearning?.Id}");
                 });
             
             ModalService.Show<ConfirmCancelBase>("Are you finished", parameters, options);

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JLHf9/R+8VfBGrNUHaF6/v6wOzCuGsDdzhS8w77C5fuO9XxZiKxbg6MyBwBt5FP9YGfqauAUbhrN2jCzIstARw==",
+  "dgSpecHash": "3PtPsO6pz9fQ5q+Hf2nFiJZH7nPgLJzl8aJd48RNNjzRQ2jQjt+HLSBpr7hvRpayynhUUzbvQgADJjiJaOZ5pQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Application.Tests\\DanilvarKanji.Application.Tests.csproj",
   "expectedPackageFiles": [
@@ -53,7 +53,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\moq\\4.20.69\\moq.4.20.69.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\nuget.frameworks\\6.5.0\\nuget.frameworks.6.5.0.nupkg.sha512",

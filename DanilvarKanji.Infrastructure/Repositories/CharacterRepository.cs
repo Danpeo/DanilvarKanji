@@ -39,8 +39,7 @@ public class CharacterRepository : ICharacterRepository
     }
 
     public async Task<Character?> GetNextInLearnQueueAsync(AppUser user) =>
-        await GetLearnQueue(user, user.JlptLevel).
-            FirstOrDefaultAsync();
+        await GetLearnQueue(user, user.JlptLevel).FirstOrDefaultAsync();
 
     public async Task<Character?> GetAsync(string id) =>
         await GetCharactersWithRelatedData()
@@ -80,7 +79,7 @@ public class CharacterRepository : ICharacterRepository
     public Task<bool> AnyExist() =>
         _context.Characters.AnyAsync();
 
-    public async Task<bool> AnyInLearnQueue(AppUser user) 
+    public async Task<bool> AnyInLearnQueue(AppUser user)
         => await GetLearnQueue(user, user.JlptLevel).AnyAsync();
 
     public async Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty, Culture culture)
@@ -99,7 +98,7 @@ public class CharacterRepository : ICharacterRepository
 
         return Enumerable.Empty<string>();
     }
-    
+
     public async Task<IEnumerable<Character>> SearchAsync(string searchTerm) =>
         await _context.Characters
             .Where(x =>
@@ -145,7 +144,7 @@ public class CharacterRepository : ICharacterRepository
             .Include(x => x.Onyomis)
             .Include(x => x.Words)
             .ThenInclude(x => x.WordMeanings);
-        
+
 
         return characters.OrderByDescending(x => x.Definition);
     }

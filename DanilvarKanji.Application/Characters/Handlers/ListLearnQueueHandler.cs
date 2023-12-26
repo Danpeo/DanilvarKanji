@@ -12,7 +12,7 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
 {
     private readonly ICharacterRepository _characterRepository;
     private readonly IMapper _mapper;
-    
+
     public ListLearnQueueHandler(ICharacterRepository characterRepository, IMapper mapper)
     {
         _characterRepository = characterRepository;
@@ -24,12 +24,13 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
     {
         if (await _characterRepository.AnyInLearnQueue(request.AppUser))
         {
-            var characters = await _characterRepository.ListLearnQueueAsync(request.PaginationParams, request.AppUser,
-                request.JlptLevel);
+            var characters = await _characterRepository
+                .ListLearnQueueAsync(request.PaginationParams, request.AppUser,
+                    request.JlptLevel);
 
             return _mapper.Map<IEnumerable<GetCharacterBaseInfoResponse>>(characters);
         }
-        
+
         return Enumerable.Empty<GetCharacterBaseInfoResponse>();
     }
 }

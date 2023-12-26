@@ -4,12 +4,12 @@
 @using DanilvarKanji.Client.Localization.LocaleKeys
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Shared.Responses.CharacterLearning
 
 @inject IStringLocalizer<Index> Loc
 @inject NavigationManager NavManager
 
 <PageTitle>@AppDisplaySettings.AppTitle - @Loc[nameof(IndexLocaleKeys.HomeTitle)]</PageTitle>
-
 
 <div class="text-center">
 
@@ -43,12 +43,28 @@
     <h2 class="display-6 txt-white main-font">
         Your Study Queue
     </h2>
+
+    <div class="ms-2 pb-4">
+        <button onclick="@(() => { if (_characterToLearn != null) {NavManager.NavigateTo($"/study-new/{_characterToLearn.Id}"); } })"
+                class="btn mid-three-d-btn no-outline mb-2">
+            Study New
+        </button>
+    </div>
+    
     <DisplayLearnQueue PageNumber="1" PageSize="10"/>
 
-    <div class="ms-2">
-        <button onclick="@(() => { if (character != null) {NavManager.NavigateTo($"/study-new/{character.Id}"); } })" 
-                class="btn mid-three-d-btn no-outline">Study New</button>
+    <h2 class="display-6 txt-white main-font">
+        Your Review Queue
+    </h2>
+
+    <div class="ms-2 pb-4">
+        <button onclick="@(() => { if (_characterToLearn != null) {NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
+                class="btn mid-three-d-btn no-outline mb-2">
+            Review
+        </button>
     </div>
+    
+    <DisplayReviewQueue/>
 
 </Authorized>
 
@@ -56,8 +72,12 @@
 {
     [Inject]
     public required ICharacterService CharacterService { get; set; }
+    
+    [Inject]
+    public required ICharacterLearningService CharacterLearningService { get; set; }
 
-    private GetCharacterBaseInfoResponse? character;
+    private GetCharacterBaseInfoResponse? _characterToLearn;
+    private GetCharacterLearningBaseInfoResponse? _learning;
 
     protected override async Task OnInitializedAsync()
     {
@@ -66,7 +86,8 @@
 
     private async Task GetCharacterNextInLearn()
     {
-        character = await CharacterService.GetNextInLearnQueue();
+        _characterToLearn = await CharacterService.GetNextInLearnQueue();
+        _learning = await CharacterLearningService.GetNextInReviewQueueAsync();
     }
-    
+
 }

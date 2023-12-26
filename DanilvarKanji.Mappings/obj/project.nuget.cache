@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GS6jrRc608jh5R/ekjuKZTQBC3BCpP/s5GrlCiOoJKD7eIHdOxBomtRB2OjHZsgv9gaxOkup8SsbSFS8VMdS+A==",
+  "dgSpecHash": "quciuBoKpmrTD9G+7KP1I//2npMxfLNHP3ieoZ/ujQNwhR0diqP31SB+XUhJDOlZWuvvKNQv0TRdjKhKrvY+hQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.odata.edm\\7.9.0\\microsoft.odata.edm.7.9.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.odata.modelbuilder\\1.0.9\\microsoft.odata.modelbuilder.1.0.9.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.spatial\\7.9.0\\microsoft.spatial.7.9.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.componentmodel.annotations\\4.6.0\\system.componentmodel.annotations.4.6.0.nupkg.sha512",

@@ -20,5 +20,6 @@ public class GetCharacterLearningHandler : IRequestHandler<GetCharacterLearningQ
         if (await _learningRepository.Exist(request.Id, request.AppUser))
             return await _learningRepository.GetAsync(request.Id, request.AppUser);
 
-        return null;    }
+        return null;
+    }
 }

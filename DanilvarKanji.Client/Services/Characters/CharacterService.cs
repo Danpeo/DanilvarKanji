@@ -102,18 +102,14 @@ public class CharacterService : ICharacterService
             if (response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.NoContent)
-                {
                     return default;
-                }
 
                 return await response.Content.ReadFromJsonAsync<GetCharacterBaseInfoResponse>();
             }
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
                 return default;
-            }
-            
+
             string message = await response.Content.ReadAsStringAsync();
             throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
         }

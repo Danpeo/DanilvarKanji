@@ -6,6 +6,7 @@ using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
+using DanilvarKanji.Shared.Responses.CharacterLearning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -45,7 +46,7 @@ public class CharacterLearningController : ApiController
                 BadRequest);
     }
 
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
@@ -70,5 +71,34 @@ public class CharacterLearningController : ApiController
             await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel, user));
 
         return characters.Any() ? Ok(characters) : NoContent();
+    }
+
+    [HttpGet("ReviewQueue")]
+    public async Task<IActionResult> ListReviewQueueAsync([FromQuery] PaginationParams paginationParams)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        if (user is null)
+            return Unauthorized();
+
+        var characters =
+            await Mediator.Send(new ListCharacterReviewQuery(paginationParams, user));
+
+        return characters.Any() ? Ok(characters) : NoContent();
+    }
+
+    [HttpGet("GetNextInReviewQueue")]
+    public async Task<IActionResult> GetNextInReviewQueueAsync()
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+        if (user is null)
+            return Unauthorized();
+
+        GetCharacterLearningBaseInfoResponse? learning = await Mediator.Send(new GetNextToReviewInQueueQuery(user));
+
+        if (learning is not null)
+            return Ok(learning);
+
+        return NotFound("Character learning was not fount");
     }
 }

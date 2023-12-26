@@ -1,0 +1,41 @@
+@using DanilvarKanji.Client.Services.Auth
+
+@if (_hasRole)
+{
+    @ChildContent
+}
+
+@code {
+
+    [Inject]
+    public required IAuthService AuthService { get; set; }
+
+    [Parameter, EditorRequired]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter, EditorRequired]
+    public required IEnumerable<string> Roles { get; set; }
+
+    private bool _hasRole;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ValidateAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ValidateAsync();
+    }
+
+
+    private async Task ValidateAsync()
+    {
+        bool isAuthorized = await AuthService.HasAnyRoleAsync();
+
+        _hasRole = isAuthorized && await AuthService.HasAnyOfSpecifiedRolesAsync(Roles);
+        StateHasChanged();
+    }
+
+}

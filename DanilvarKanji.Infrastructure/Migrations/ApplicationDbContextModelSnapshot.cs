@@ -31,6 +31,9 @@ namespace DanilvarKanji.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<string>("AppUserRoleId")
+                        .HasColumnType("text");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -95,6 +98,8 @@ namespace DanilvarKanji.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserRoleId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -144,6 +149,9 @@ namespace DanilvarKanji.Migrations
                     b.Property<string>("CharacterId")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("LastReviewDateTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("LearnedCount")
                         .HasColumnType("integer");
@@ -489,9 +497,15 @@ namespace DanilvarKanji.Migrations
 
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.AppUser", b =>
                 {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "AppUserRole")
+                        .WithMany()
+                        .HasForeignKey("AppUserRoleId");
+
                     b.HasOne("DanilvarKanji.Domain.Entities.Image", "ProfileImage")
                         .WithMany()
                         .HasForeignKey("ProfileImageId");
+
+                    b.Navigation("AppUserRole");
 
                     b.Navigation("ProfileImage");
                 });
@@ -499,7 +513,7 @@ namespace DanilvarKanji.Migrations
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.CharacterLearning", b =>
                 {
                     b.HasOne("DanilvarKanji.Domain.Entities.AppUser", "AppUser")
-                        .WithMany("CharacterLearnings")
+                        .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -627,11 +641,6 @@ namespace DanilvarKanji.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.AppUser", b =>
-                {
-                    b.Navigation("CharacterLearnings");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.Character", b =>

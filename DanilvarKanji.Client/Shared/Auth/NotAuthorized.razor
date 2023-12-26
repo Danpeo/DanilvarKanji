@@ -1,28 +1,8 @@
 @using DanilvarKanji.Client.Services.Auth
+@inherits Authorized
 
 @if (!_isAuthorized)
 {
     @ChildContent
 }
 
-@code {
-    private bool _isAuthorized;
-
-    [Inject] public IAuthService AuthService { get; set; }
-    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
-    
-    
-    protected override async Task OnInitializedAsync()
-    {
-        _isAuthorized = await AuthService.IsAuthorized();
-        StateHasChanged();
-
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        _isAuthorized = await AuthService.IsAuthorized();
-        
-        StateHasChanged();
-    }
-}

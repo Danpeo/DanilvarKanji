@@ -33,6 +33,36 @@
           }
         }
       },
+      "MediatR/12.1.1": {
+        "type": "package",
+        "dependencies": {
+          "MediatR.Contracts": "[2.0.1, 3.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/MediatR.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MediatR.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MediatR.Contracts/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.14": {
         "type": "package",
         "dependencies": {
@@ -537,6 +567,19 @@
           }
         }
       },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Npgsql/7.0.6": {
         "type": "package",
         "dependencies": {
@@ -685,6 +728,20 @@
         "runtime": {
           "bin/placeholder/DanilvarKanji.Domain.dll": {}
         }
+      },
+      "DanilvarKanji.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DanilvarKanji.Domain": "1.0.0",
+          "MediatR": "12.1.1"
+        },
+        "compile": {
+          "bin/placeholder/DanilvarKanji.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DanilvarKanji.Shared.dll": {}
+        }
       }
     }
   },
@@ -736,6 +793,36 @@
         "lib/netstandard2.0/FluentValidation.xml",
         "lib/netstandard2.1/FluentValidation.dll",
         "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
+    "MediatR/12.1.1": {
+      "sha512": "1AbwzzeS6gn4NdcO6A9LfKS5TXXgAiUQM3J18dREHa7O7TrdCXJ5dNFeRBpzPZY7UWl5Kby+n9pWrPJe3SDiMA==",
+      "type": "package",
+      "path": "mediatr/12.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gradient_128x128.png",
+        "lib/net6.0/MediatR.dll",
+        "lib/net6.0/MediatR.xml",
+        "lib/netstandard2.0/MediatR.dll",
+        "lib/netstandard2.0/MediatR.xml",
+        "mediatr.12.1.1.nupkg.sha512",
+        "mediatr.nuspec"
+      ]
+    },
+    "MediatR.Contracts/2.0.1": {
+      "sha512": "FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
+      "type": "package",
+      "path": "mediatr.contracts/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gradient_128x128.png",
+        "lib/netstandard2.0/MediatR.Contracts.dll",
+        "lib/netstandard2.0/MediatR.Contracts.xml",
+        "mediatr.contracts.2.0.1.nupkg.sha512",
+        "mediatr.contracts.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.14": {
@@ -1446,6 +1533,36 @@
         "microsoft.spatial.nuspec"
       ]
     },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Npgsql/7.0.6": {
       "sha512": "TAqvwRnm3NJ0QvN7cvu6geJkbI0XPzGVRElVY5hF4gsgA+BnE12x6GM1TLhdeq+7ZKvvo3BD8jXKnXmr3tvdEw==",
       "type": "package",
@@ -1743,13 +1860,20 @@
       "type": "project",
       "path": "../DanilvarKanji.Domain/DanilvarKanji.Domain.csproj",
       "msbuildProject": "../DanilvarKanji.Domain/DanilvarKanji.Domain.csproj"
+    },
+    "DanilvarKanji.Shared/1.0.0": {
+      "type": "project",
+      "path": "../DanilvarKanji.Shared/DanilvarKanji.Shared.csproj",
+      "msbuildProject": "../DanilvarKanji.Shared/DanilvarKanji.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "DanilvarKanji.Domain >= 1.0.0",
+      "DanilvarKanji.Shared >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.14",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.11",
+      "Newtonsoft.Json >= 13.0.3",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.11"
     ]
   },
@@ -1782,6 +1906,9 @@
           "projectReferences": {
             "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj": {
               "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj"
+            },
+            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
             }
           }
         }
@@ -1803,6 +1930,10 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.0.11, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           },
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",

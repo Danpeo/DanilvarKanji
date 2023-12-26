@@ -1,9 +1,57 @@
-@page "/review/{CharacterId}"
+@page "/review/{CharacterLearningId}"
 
-<h3>ReviewCharacter</h3>
-@CharacterId
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Domain.Enumerations
+@using DanilvarKanji.Shared.Responses.CharacterLearning
+@using DanilvarKanji.Client.Services.Characters
+
+<ForbidIfNotAuthorized>
+    @if (_character is not null)
+    {
+        <DisplayCharacterDefinition Character="_character"/>
+        <ContentSlider ContentDictionary="_contentDictionary"/>
+    }
+    else
+    {
+        <DisplayLoading/>
+    }
+</ForbidIfNotAuthorized>
+
 
 @code {
+
     [Parameter, EditorRequired]
-    public required string CharacterId { get; set; }
+    public required string CharacterLearningId { get; set; }
+
+    [Inject]
+    public required ICharacterLearningService CharacterLearningService { get; set; }
+
+    [Inject]
+    public required ICharacterService CharacterService { get; set; }
+
+    private GetAllFromCharacterLearningResponse? _learning;
+    private GetAllFromCharacterResponse? _character;
+    private Culture _culture = Culture.EnUS;
+    private Dictionary<int, RenderFragment> _contentDictionary = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _learning = await CharacterLearningService.GetLearnignAsync(CharacterLearningId);
+        _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
+
+        InitializeKanjiContent();
+    }
+
+    private void InitializeKanjiContent()
+    {
+        _contentDictionary = new Dictionary<int, RenderFragment>()
+        {
+            {
+                0, @<div class="fade-in-el">
+                       <VerifyMeaningByInput CharacterForVerification="_character"/>
+                   </div>
+            },
+        };
+    }
+
 }
