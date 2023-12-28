@@ -129,8 +129,8 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\js\\general.js",
-      "PackagePath": "staticwebassets\\js\\general.js"
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\js\\dom-functions.js",
+      "PackagePath": "staticwebassets\\js\\dom-functions.js"
     },
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\sample-data\\weather.json",

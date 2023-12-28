@@ -1,0 +1,22 @@
+<h2 class="display-6 txt-white main-font">
+    Your Review Queue
+</h2>
+
+<div class="ms-2 pb-4">
+    <button onclick="@(() => { NavManager.NavigateTo($"/review/{Learningid}"); })"
+            class="btn mid-three-d-btn no-outline mb-2">
+        Review
+    </button>
+</div>
+
+<DisplayReviewQueue/>
+
+@code{
+    
+    [Parameter, EditorRequired]
+    public required string Learningid { get; set; }
+    
+    [Inject]
+    public required NavigationManager NavManager { get; set; }
+
+}

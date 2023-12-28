@@ -1,8 +1,13 @@
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Shared.Responses.Character
+@using Danilvar.Components.JSWrapper
+@using DanilvarKanji.Client.JsWrapper
 
 <div class="text-center">
-    <p class="text-body">Enter any meaning for @CharacterForVerification.Definition</p>
+    <p class="text-body txt-white display-7 main-font">
+        Enter any meaning for
+        <span class="txt-mid-pink jap-font">@CharacterForVerification.Definition</span>
+    </p>
 </div>
 
 <div class="">
@@ -14,7 +19,7 @@
         @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
         {
             <div class="mt-4">
-                <button class="btn btn-primary bg-light-pink" type="submit">confirm</button>
+                <button @onclick="OnConfirmClick" class="btn btn-primary bg-light-pink" type="submit">confirm</button>
             </div>
         }
     </EditForm>
@@ -33,11 +38,15 @@
 
 @code {
 
+
     [Inject]
-    public required IJSRuntime JsRuntime { get; set; }
+    public required JsDom JsDom { get; set; }
 
     [Parameter, EditorRequired]
     public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
+
+    [Parameter]
+    public Action? OnCorrect { get; set; }
 
 
     private string _enteredMeaning = string.Empty;
@@ -61,9 +70,8 @@
         else
         {
             _attempts++;
-            await JsRuntime.InvokeVoidAsync(
-                JsFuncs.AddClassesToElementForTime,
-                "meaningInput",
+
+            await JsDom.AddClassesToElementForTime("meaningInput",
                 new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
                 500);
         }
@@ -71,4 +79,8 @@
         StateHasChanged();
     }
 
+    private void OnConfirmClick()
+    {
+        OnCorrect?.Invoke();
+    }
 }

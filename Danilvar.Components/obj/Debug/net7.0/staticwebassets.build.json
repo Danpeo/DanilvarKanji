@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aipg93Bywe3Xoed4oqQ1SP1+Vt4IgCXOgn2EVnqTdiI=",
+  "Hash": "htdGYAXqkk30bXZUSyZ8BEO8HO2RL/OaI3sJTGjxJ80=",
   "Source": "Danilvar.Components",
   "BasePath": "_content/Danilvar.Components",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\background.png"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\dom-functions.js",
+      "SourceId": "Danilvar.Components",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "BasePath": "_content/Danilvar.Components",
+      "RelativePath": "dom-functions.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dom-functions.js"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",

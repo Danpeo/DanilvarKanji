@@ -3,7 +3,7 @@ using DanilvarKanji.Domain.Enumerations;
 
 namespace DanilvarKanji.Domain.Entities.Exercises;
 
-public class Excercise : Entity
+public class Exercise : Entity
 {
     public Character Character { get; set; }
     public AppUser AppUser { get; set; }
@@ -11,7 +11,7 @@ public class Excercise : Entity
     public ExerciseType ExerciseType { get; set; } = ExerciseType.Point;
     public DateTime ExcerciseDateTime { get; set; }
 
-    public Excercise(Character character, AppUser appUser, bool isCorrect, DateTime excerciseDateTime)
+    public Exercise(Character character, AppUser appUser, bool isCorrect, DateTime excerciseDateTime)
     {
         Character = character;
         AppUser = appUser;

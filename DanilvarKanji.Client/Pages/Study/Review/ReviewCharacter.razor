@@ -9,7 +9,8 @@
     @if (_character is not null)
     {
         <DisplayCharacterDefinition Character="_character"/>
-        <ContentSlider ContentDictionary="_contentDictionary"/>
+        <p>@_character.Id</p>
+        @_exercises[_currentExcercise]
     }
     else
     {
@@ -29,29 +30,62 @@
     [Inject]
     public required ICharacterService CharacterService { get; set; }
 
+    private int _currentExcercise;
+    private bool _reviewFinished = false;
+
     private GetAllFromCharacterLearningResponse? _learning;
     private GetAllFromCharacterResponse? _character;
     private Culture _culture = Culture.EnUS;
-    private Dictionary<int, RenderFragment> _contentDictionary = new();
+    private Dictionary<int, RenderFragment> _exerciseDictionary = new();
+    private List<RenderFragment> _exercises = new();
 
     protected override async Task OnInitializedAsync()
     {
         _learning = await CharacterLearningService.GetLearnignAsync(CharacterLearningId);
         _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
 
+        InitExercises();
         InitializeKanjiContent();
+    }
+
+    private void InitExercises()
+    {
+        _exercises.Add(@<div class="fade-in-el">
+                           <VerifyMeaningByInput OnCorrect="OnCorrectExercise" CharacterForVerification="_character"/>
+                       </div>);
+
+        _exercises.Add(@<div class="fade-in-el">
+                           <VerifyMeaningByInput OnCorrect="OnCorrectExercise" CharacterForVerification="_character"/>
+                       </div>);
     }
 
     private void InitializeKanjiContent()
     {
-        _contentDictionary = new Dictionary<int, RenderFragment>()
+        _exerciseDictionary = new Dictionary<int, RenderFragment>()
         {
             {
                 0, @<div class="fade-in-el">
-                       <VerifyMeaningByInput CharacterForVerification="_character"/>
+                       <VerifyMeaningByInput OnCorrect="OnCorrectExercise" CharacterForVerification="_character"/>
                    </div>
             },
+            {
+                1, @<p>ahahahah</p>
+            }
         };
+    }
+
+    private void OnCorrectExercise()
+    {
+        if (_currentExcercise >= _exercises.Count - 1)
+        {
+            _reviewFinished = true;
+        }
+        else
+        {
+            _currentExcercise++;
+        }
+
+        StateHasChanged();
     }
 
 }

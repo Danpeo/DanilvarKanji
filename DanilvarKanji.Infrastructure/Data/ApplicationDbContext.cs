@@ -1,4 +1,5 @@
 using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Domain.Entities.Exercises;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<Word> Words { get; set; }
     public DbSet<Kunyomi> Kunyomis { get; set; }
     public DbSet<Onyomi> Onyomis { get; set; }
+    public DbSet<Exercise> Exercises { get; set; }
     public DbSet<StringDefinition> StringDefinitions { get; set; }
     public DbSet<TEST> Tests { get; set; }
 

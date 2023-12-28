@@ -1,0 +1,17 @@
+@page "/ReviewCharacters"
+@using DanilvarKanji.Client.State
+
+<ReviewCharactersSection Learningid="@_learningId" />
+
+@code {
+    [Inject]
+    public required AppState AppState { get; set; }
+    
+    private string _learningId = null!;
+
+    protected override void OnInitialized()
+    {
+        _learningId = AppState.ReviewCharState.NextToReview.Id;
+    }
+
+}

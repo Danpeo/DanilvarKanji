@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
+using DanilvarKanji.Client.State;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
@@ -9,9 +10,11 @@ namespace DanilvarKanji.Client.Services.Characters;
 public class CharacterLearningService : ICharacterLearningService
 {
     private readonly HttpClient _httpClient;
+    private readonly AppState _appState;
 
-    public CharacterLearningService(IHttpClientFactory factory)
+    public CharacterLearningService(IHttpClientFactory factory, AppState appState)
     {
+        _appState = appState;
         _httpClient = factory.CreateClient("ServerApi");
     }
 
@@ -99,7 +102,13 @@ public class CharacterLearningService : ICharacterLearningService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetCharacterLearningBaseInfoResponse>();
+
+                GetCharacterLearningBaseInfoResponse? characterLearning =
+                    await response.Content.ReadFromJsonAsync<GetCharacterLearningBaseInfoResponse>();
+                if (characterLearning != null)
+                    await _appState.ReviewCharState.UpdateNextToReview(characterLearning);
+                
+                return characterLearning;
             }
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)

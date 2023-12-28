@@ -1,15 +1,18 @@
 using Blazored.LocalStorage;
 using Blazored.Modal;
 using Blazored.SessionStorage;
+using Danilvar.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DanilvarKanji.Client;
 using DanilvarKanji.Client.Extensions;
 using DanilvarKanji.Client.Handlers;
+using DanilvarKanji.Client.JsWrapper;
 using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Client.Services.Characters;
+using DanilvarKanji.Client.State;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Shared.Responses.Character;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -36,6 +39,10 @@ builder.Services.AddScoped<ICharacterLearningService, CharacterLearningService>(
 builder.Services.AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddSingleton<JsDom>();
+builder.Services.AddScoped<AppState>();
+
+builder.Services.AddComponents();
 
 builder.Services.AddBlazoredSessionStorageAsSingleton();
 builder.Services.AddBlazoredLocalStorage();

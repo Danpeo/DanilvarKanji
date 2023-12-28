@@ -15,7 +15,7 @@ public class CharacterRepository : ICharacterRepository
 
     public CharacterRepository(ApplicationDbContext context)
     {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
+        _context = context;
     }
 
     public void Create(Character character) =>

@@ -58,13 +58,13 @@
     </h2>
 
     <div class="ms-2 pb-4">
-        <button onclick="@(() => { if (_characterToLearn != null) {NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
+        <button onclick="@(() => { if (_learning != null) {NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
                 class="btn mid-three-d-btn no-outline mb-2">
             Review
         </button>
     </div>
     
-    <DisplayReviewQueue/>
+    <DisplayReviewQueue PageNumber="1" PageSize="10"/>
 
 </Authorized>
 

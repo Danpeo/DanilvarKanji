@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\background.png"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\dom-functions.js",
+      "PackagePath": "staticwebassets\\dom-functions.js"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",
       "PackagePath": "staticwebassets\\exampleJsInterop.js"
     },
