@@ -7,12 +7,13 @@
 @using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.CharacterLearnings
 @using Blazored.Modal.Services
+@using DanilvarKanji.Shared.Responses.CharacterLearning
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
     {
         <DisplayCharacterDefinition Character="_character"/>
-        <ContentSlider OnContentEnd="OnContentEnd" 
+        <ContentSlider OnContentEnd="OnContentEnd"
                        ContentDictionary="_contentDictionary"
                        ButtonStyle="no-outline mid-three-d-btn"/>
 
@@ -28,15 +29,16 @@
 </ForbidIfNotAuthorized>
 
 @code {
+
     [CascadingParameter]
     public required IModalService ModalService { get; set; }
-    
+
     [Parameter, EditorRequired]
     public required string CharacterId { get; set; }
 
     [Inject]
     public required ICharacterService CharacterService { get; set; }
-    
+
     [Inject]
     public required NavigationManager NavigationManager { get; set; }
 
@@ -73,24 +75,20 @@
     {
         if (_character != null)
         {
-            _characterLearningRequest = new CreateCharacterLearningRequest(LearningState.Learning, _character.Id);
-            CharacterLearning? characterLearning = await CharacterLearningService.CreateCharacterLearningAsync(_characterLearningRequest);
+            _characterLearningRequest = new CreateCharacterLearningRequest(_character.Id, LearningState.Learning);
+            var characterLearning = await CharacterLearningService.CreateCharacterLearningAsync(_characterLearningRequest);
 
             var options = new ModalOptions
             {
                 Position = ModalPosition.Middle,
                 Class = "custom-modal"
             };
-            
+
             var parameters = new ModalParameters()
                 .Add(nameof(ConfirmCancelBase.Message), "Hello, World!")
-                .Add(nameof(ConfirmCancelBase.OnConfirm), () =>
-                {
-                    NavigationManager.NavigateTo($"/review/{characterLearning?.Id}");
-                });
-            
-            ModalService.Show<ConfirmCancelBase>("Are you finished", parameters, options);
+                .Add(nameof(ConfirmCancelBase.OnConfirm), () => { NavigationManager.NavigateTo($"/review/{characterLearning?.Id}"); });
 
+            ModalService.Show<ConfirmCancelBase>("Are you finished", parameters, options);
         }
     }
 

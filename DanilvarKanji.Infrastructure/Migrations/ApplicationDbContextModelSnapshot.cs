@@ -173,6 +173,40 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("CharacterLearnings");
                 });
 
+            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Exercises.Exercise", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CharacterId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ExcerciseDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("ExerciseType")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsCorrect")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("ReviewType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("Exercises");
+                });
+
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.Image", b =>
                 {
                     b.Property<string>("Id")
@@ -533,6 +567,25 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("Character");
 
                     b.Navigation("LearningProgress");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Exercises.Exercise", b =>
+                {
+                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DanilvarKanji.Domain.Entities.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Character");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.KanjiMeaning", b =>

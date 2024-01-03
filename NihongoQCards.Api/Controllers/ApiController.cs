@@ -1,14 +1,11 @@
 using DanilvarKanji.Domain.Primitives;
-using DanilvarKanji.Domain.Primitives.Result;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 namespace DanilvarKanji.Controllers;
 
 [Route("api/[controller]s")]
-public class ApiController : ODataController
+public class ApiController : Controller
 {
     protected ApiController(IMediator mediator) => Mediator = mediator;
 

@@ -28,7 +28,7 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterLearningRequest? request)
+    public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterLearningRequest request)
     {
         //var command = _mapper.Map<CreateCharacterLearningCommand>(request);
 

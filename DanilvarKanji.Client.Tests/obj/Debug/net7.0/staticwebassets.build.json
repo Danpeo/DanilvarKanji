@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BTLZ9tv8C1cfCThcAZJNw3EpuPGrbGZ3tuVT2OFuF3I=",
+  "Hash": "KRqV6WlXxhhRDSpdVUXkPK2AcudQTxn8L2aZlmIZXoQ=",
   "Source": "DanilvarKanji.Client.Tests",
   "BasePath": "_content/DanilvarKanji.Client.Tests",
   "Mode": "Default",
@@ -140,6 +140,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\background.png"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\dom-functions.js",
+      "SourceId": "Danilvar.Components",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "BasePath": "_content/Danilvar.Components",
+      "RelativePath": "dom-functions.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dom-functions.js"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",
@@ -9870,12 +9889,12 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\js\\general.js",
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\js\\dom-functions.js",
       "SourceId": "DanilvarKanji.Client",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "js/general.js",
+      "RelativePath": "js/dom-functions.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9886,7 +9905,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\general.js"
+      "OriginalItemSpec": "wwwroot\\js\\dom-functions.js"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\sample-data\\weather.json",

@@ -11,7 +11,8 @@ public static class DependencyInjection
         {
             new CharacterMapperProfile(),
             new UserMapperProfile(),
-            new CharacterLearningProfile()
+            new CharacterLearningProfile(),
+            new ExerciseProfile()
         };
         
 

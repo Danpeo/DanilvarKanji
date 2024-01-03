@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <Folder Include="Auth\Queries" />
+      <Folder Include="Exercises\Validators\" />
       <Folder Include="Users\Commands\" />
     </ItemGroup>
 

@@ -6,7 +6,7 @@ namespace DanilvarKanji.Client.Services.Characters;
 
 public interface ICharacterLearningService
 {
-    Task<CharacterLearning?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request);
+    Task<GetAllFromCharacterLearningResponse?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request);
 
     Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListReviewQueueAsync(int pageNumber = 0,
         int pageSize = 0);

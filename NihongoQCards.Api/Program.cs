@@ -33,7 +33,9 @@ builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
+/*
 builder.Services.AddODataQueryFilter();
+*/
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -81,14 +83,14 @@ builder.Services.AddMappings();
 var modelBuilder = new ODataConventionModelBuilder();
 
 builder.Services.AddControllers()
-    .AddOData(options => options
+    /*.AddOData(options => options
         .Select()
         .Filter()
         .OrderBy()
         .Expand()
         .Count()
         .SetMaxTop(null)
-        .AddRouteComponents("odata", modelBuilder.GetEdmModel()))
+        .AddRouteComponents("odata", modelBuilder.GetEdmModel()))*/
     .AddJsonOptions(options => { });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

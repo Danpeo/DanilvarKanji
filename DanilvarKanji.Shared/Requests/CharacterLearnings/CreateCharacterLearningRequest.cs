@@ -13,10 +13,10 @@ public class CreateCharacterLearningRequest
         
     }
 
-    public CreateCharacterLearningRequest(LearningState learningState, string characterId, int learnedCount = 0)
+    public CreateCharacterLearningRequest(string characterId, LearningState learningState, int learnedCount = 0)
     {
+        CharacterId = characterId;
         LearningState = learningState;
         LearnedCount = learnedCount;
-        CharacterId = characterId;
     }
 }

@@ -1,0 +1,89 @@
+@using DanilvarKanji.Client.Data
+@using DanilvarKanji.Shared.Responses.Character
+@using Danilvar.Components.JSWrapper
+@using DanilvarKanji.Client.JsWrapper
+
+
+<div class="">
+    <EditForm Model="_enteredValue" OnSubmit="Verify">
+        <InputText @bind-Value="_enteredValue"
+                   class="form-control-plaintext input-lg display-6 bg-main txt-mid-pink jap-font"
+                   id="meaningInput" placeholder="Meaning"/>
+
+        @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
+        {
+            <div class="mt-4">
+                <button class="btn btn-primary bg-light-pink" type="submit">confirm</button>
+            </div>
+        }
+    </EditForm>
+
+</div>
+
+
+@if (_attempts > StudyParams.AllowedInputMeaningAttempts)
+{
+    <button>okay</button>
+}
+@if (_isCorrect)
+{
+    <button>yay</button>
+}
+
+@code {
+
+
+    [Inject]
+    public required JsDom JsDom { get; set; }
+
+    [Parameter, EditorRequired]
+    public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
+    
+    [Parameter, EditorRequired]
+    public required Func<GetAllFromCharacterResponse, string, bool> VerifyCondition { get; set; }
+
+    [Parameter, EditorRequired]
+    public Action? OnConfirm { get; set; }
+
+    [Parameter, EditorRequired]
+    public Func<Task>? OnCorrect { get; set; }
+
+    /// <summary>
+    /// Invoked only once, then assigned NULL
+    /// </summary>
+    [Parameter, EditorRequired]
+    public Func<Task>? OnIncorrect { get; set; }
+
+    private string _enteredValue = string.Empty;
+    private bool _isCorrect;
+    private int _attempts;
+
+    private async Task Verify()
+    {
+        bool isCorrectInput = VerifyCondition(CharacterForVerification, _enteredValue);
+        
+        if (isCorrectInput)
+        {
+            _isCorrect = true;
+        }
+        else
+        {
+            _attempts++;
+
+            await JsDom.AddClassesToElementForTime("meaningInput",
+                new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
+                500);
+
+            OnIncorrect?.Invoke();
+            OnIncorrect = null;
+        }
+
+        StateHasChanged();
+    }
+
+    private void OnConfirmClick()
+    {
+        OnConfirm?.Invoke();
+    }
+
+}

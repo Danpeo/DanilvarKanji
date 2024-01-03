@@ -23,6 +23,7 @@ public static class DependencyInjection
         services.AddScoped<ICharacterRepository, CharacterRepository>();
         services.AddScoped<ICharacterLearningRepository, CharacterLearningRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IExerciseRepository, ExerciseRepository>();
         services.AddSingleton<ICacheService, CacheService>();
 
         return services;

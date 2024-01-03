@@ -12,7 +12,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Query;
 
 namespace DanilvarKanji.Controllers.Characters;
 
@@ -39,7 +38,7 @@ public class CharacterController : ApiController
             .Match(() => CreatedAtAction("Get", new { id = character.Id }, character), BadRequest);
     }
 
-    [EnableQuery, HttpGet]
+    [HttpGet]
     public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
         IEnumerable<Character> characters = await Mediator.Send(new ListCharactersQuery(paginationParams));
@@ -88,7 +87,7 @@ public class CharacterController : ApiController
         return characters.Any() ? Ok(characters) : NoContent();
     }
 
-    [EnableQuery, HttpGet("{id}:Child")]
+    [HttpGet("{id}:Child")]
     public async Task<IActionResult> ListChildCharacters(string id)
     {
         IEnumerable<Character> characters = await Mediator.Send(new ListChildCharactersQuery(id));
@@ -96,7 +95,7 @@ public class CharacterController : ApiController
         return characters.Any() ? Ok(characters) : NoContent();
     }
 
-    [EnableQuery, HttpGet("{id}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {
         Character? character = await Mediator.Send(new GetCharacterQuery(id));
@@ -107,7 +106,7 @@ public class CharacterController : ApiController
         return NotFound("Character with this ID was not found");
     }
 
-    [EnableQuery, HttpGet("{id}:KanjiMeanings")]
+    [HttpGet("{id}:KanjiMeanings")]
     public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(string id, Culture culture = Culture.EnUS,
         int takeQty = int.MaxValue)
     {

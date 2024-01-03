@@ -18,7 +18,7 @@ public class CharacterLearningService : ICharacterLearningService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<CharacterLearning?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request)
+    public async Task<GetAllFromCharacterLearningResponse?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request)
     {
         try
         {
@@ -26,7 +26,7 @@ public class CharacterLearningService : ICharacterLearningService
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadFromJsonAsync<CharacterLearning>();
+                return await response.Content.ReadFromJsonAsync<GetAllFromCharacterLearningResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();

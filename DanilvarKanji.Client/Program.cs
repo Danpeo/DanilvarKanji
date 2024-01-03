@@ -12,6 +12,7 @@ using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Client.Services.Characters;
+using DanilvarKanji.Client.Services.Review;
 using DanilvarKanji.Client.State;
 using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Shared.Responses.Character;
@@ -40,7 +41,9 @@ builder.Services.AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQ
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton<JsDom>();
+builder.Services.AddSingleton<JsGen>();
 builder.Services.AddScoped<AppState>();
+builder.Services.AddScoped<IExerciseService, ExerciseService>();
 
 builder.Services.AddComponents();
 

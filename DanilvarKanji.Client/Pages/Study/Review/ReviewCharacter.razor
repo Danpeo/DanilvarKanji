@@ -4,6 +4,11 @@
 @using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 @using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Client.Services.Review
+@using DanilvarKanji.Shared.Requests.Exercises
+@using DanilvarKanji.Client.JsWrapper
+@using DanilvarKanji.Client.State
+@using DanilvarKanji.Shared.Responses.Exercise
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -16,6 +21,9 @@
     {
         <DisplayLoading/>
     }
+
+
+
 </ForbidIfNotAuthorized>
 
 
@@ -25,10 +33,19 @@
     public required string CharacterLearningId { get; set; }
 
     [Inject]
+    public AppState AppState { get; set; }
+
+    [Inject]
+    public required JsGen JsGen { get; set; }
+
+    [Inject]
     public required ICharacterLearningService CharacterLearningService { get; set; }
 
     [Inject]
     public required ICharacterService CharacterService { get; set; }
+
+    [Inject]
+    public required IExerciseService ExerciseService { get; set; }
 
     private int _currentExcercise;
     private bool _reviewFinished = false;
@@ -36,8 +53,8 @@
     private GetAllFromCharacterLearningResponse? _learning;
     private GetAllFromCharacterResponse? _character;
     private Culture _culture = Culture.EnUS;
-    private Dictionary<int, RenderFragment> _exerciseDictionary = new();
     private List<RenderFragment> _exercises = new();
+    private ReviewSession _reviewSession;
 
     protected override async Task OnInitializedAsync()
     {
@@ -45,36 +62,49 @@
         _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
 
         InitExercises();
-        InitializeKanjiContent();
+
+        if (_currentExcercise == 0)
+            await AppState.ReviewSessionState.NewReviewSession();
+
+        _reviewSession = AppState.ReviewSessionState.ReviewSession;
     }
 
     private void InitExercises()
     {
         _exercises.Add(@<div class="fade-in-el">
-                           <VerifyMeaningByInput OnCorrect="OnCorrectExercise" CharacterForVerification="_character"/>
+                           <VerifyMeaningByInput
+                               OnConfirm="OnConfirmMeaning"
+                               OnCorrect="OnCorrectMeaning"
+                               OnIncorrect="OnIncorrectMeaning"
+                               CharacterForVerification="_character"/>
                        </div>);
 
         _exercises.Add(@<div class="fade-in-el">
-                           <VerifyMeaningByInput OnCorrect="OnCorrectExercise" CharacterForVerification="_character"/>
+                           <VerifyValueByInput OnConfirm="OnConfirmMeaning" CharacterForVerification="_character"/>
                        </div>);
     }
 
-    private void InitializeKanjiContent()
+
+    private async Task OnCorrectMeaning()
     {
-        _exerciseDictionary = new Dictionary<int, RenderFragment>()
-        {
-            {
-                0, @<div class="fade-in-el">
-                       <VerifyMeaningByInput OnCorrect="OnCorrectExercise" CharacterForVerification="_character"/>
-                   </div>
-            },
-            {
-                1, @<p>ahahahah</p>
-            }
-        };
+        await AddMeaningExerciseToReviewSession(isCorrect: true);
+
+        OnConfirmMeaning();
     }
 
-    private void OnCorrectExercise()
+    private async Task OnIncorrectMeaning()
+    {
+        await AddMeaningExerciseToReviewSession(isCorrect: false);
+    }
+
+    private void OnConfirmMeaning()
+    {
+        GoToNextExerciseOrFinish();
+
+        StateHasChanged();
+    }
+
+    private void GoToNextExerciseOrFinish()
     {
         if (_currentExcercise >= _exercises.Count - 1)
         {
@@ -84,8 +114,17 @@
         {
             _currentExcercise++;
         }
+    }
 
-        StateHasChanged();
+    private async Task AddMeaningExerciseToReviewSession(bool isCorrect)
+    {
+        _reviewSession.Exercises.Add(await ExerciseService
+            .CreateExerciseAsync(new CreateExerciseRequest(_character!.Id,
+                isCorrect: isCorrect,
+                ReviewType.Input,
+                ExerciseType.Meaning)));
+
+        await AppState.ReviewSessionState.UpdateReviewSession(_reviewSession);
     }
 
 }
