@@ -22,4 +22,6 @@ public interface ICharacterRepository
 
     Task<Character?> GetNextInLearnQueueAsync(AppUser user);
     Task<bool> AnyInLearnQueue(AppUser user);
+    Task<List<string>> GetRandomMeaningsInLearnQueueAsync(AppUser user, Culture culture, int qty);
+    string? GetRandomMeaningFromCharacter(string id, Culture culture);
 }

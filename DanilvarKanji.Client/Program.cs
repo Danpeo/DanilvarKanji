@@ -14,9 +14,7 @@ using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Client.Services.Review;
 using DanilvarKanji.Client.State;
-using DanilvarKanji.Domain.DTO;
 using DanilvarKanji.Shared.Responses.Character;
-using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 

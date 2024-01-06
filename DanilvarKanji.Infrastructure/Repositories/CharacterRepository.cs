@@ -1,4 +1,3 @@
-using System.Collections;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Params;
@@ -97,6 +96,54 @@ public class CharacterRepository : ICharacterRepository
                     .ToList();
 
         return Enumerable.Empty<string>();
+    }
+
+    public string? GetRandomMeaningFromCharacter(string id, Culture culture)
+    {
+        var random = new Random();
+
+        var kanjiMeanings = _context.Characters
+            .Include(character => character.KanjiMeanings)
+            .ThenInclude(kanjiMeaning => kanjiMeaning.Definitions)
+            .FirstOrDefault(x => x.Id == id)
+            ?.KanjiMeanings;
+        if (kanjiMeanings != null)
+        {
+            IEnumerable<string?> meanings = kanjiMeanings
+                .SelectMany(km => km.Definitions
+                    .Where(d => d.Culture == culture)
+                    .Select(km => km.Value)
+                );
+            
+            List<string?> randomMeanings = meanings
+                .OrderBy(_ => random.Next())
+                .Take(1)
+                .ToList();
+
+            return randomMeanings[0];
+        }
+
+        return default;
+    }
+
+    public async Task<List<string>> GetRandomMeaningsInLearnQueueAsync(AppUser user, Culture culture, int qty)
+    {
+        var random = new Random();
+
+        var definitions = await GetLearnQueue(user, user.JlptLevel)
+            .AsSplitQuery()
+            .SelectMany(c => c.KanjiMeanings)
+            .SelectMany(km => km.Definitions!
+                .Where(sd => sd.Culture == culture)
+                .Select(sd => sd.Value))
+            .ToListAsync();
+
+        List<string> shuffledDefinitions = definitions
+            .OrderBy(_ => random.Next())
+            .Take(qty)
+            .ToList();
+
+        return shuffledDefinitions;
     }
 
     public async Task<IEnumerable<Character>> SearchAsync(string searchTerm) =>

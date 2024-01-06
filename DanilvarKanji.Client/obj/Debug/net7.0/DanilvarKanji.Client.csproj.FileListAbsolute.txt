@@ -995,9 +995,9 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\2omti9p7ju.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\dglwcgk03c.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\uiu0lqjoi8.gz
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\en-US\DanilvarKanji.Client.resources.cs
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\ru-RU\DanilvarKanji.Client.resources.cs
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Blazored.Modal.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Blazored.Modal.dll.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\Blazored.Modal.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\8e83n162m8.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\en-US\DanilvarKanji.Client.resources.cs
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\ru-RU\DanilvarKanji.Client.resources.cs

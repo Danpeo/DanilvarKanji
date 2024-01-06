@@ -1,4 +1,5 @@
 using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 
@@ -13,4 +14,6 @@ public interface ICharacterLearningService
 
     Task<GetCharacterLearningBaseInfoResponse?> GetNextInReviewQueueAsync();
     Task<GetAllFromCharacterLearningResponse?> GetLearnignAsync(string? id);
+    Task<GetRandomMeaningsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId, Culture culture,
+        int qty = 4);
 }

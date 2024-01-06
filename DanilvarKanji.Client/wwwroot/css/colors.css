@@ -10,6 +10,7 @@
     --white-color: #e8e8e8;
     --gray-color: #4d4c4c;
     --red-color-dim: rgba(224, 71, 71, 0.35);
+    --green-color: #2df17e;
 }
 
 .txt-bright-pink {
@@ -50,6 +51,10 @@
 
 .bg-danger-dim {
     background-color: var(--red-color-dim) !important;
+}
+
+.bg-success {
+    background-color: var(--green-color) !important;
 }
 
 .dark-grad-bg-img {

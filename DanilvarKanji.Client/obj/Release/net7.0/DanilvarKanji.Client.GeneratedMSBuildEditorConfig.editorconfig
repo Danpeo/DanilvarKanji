@@ -34,6 +34,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZWdpc3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Auth/RegisterSuccess.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZWdpc3RlclN1Y2Nlc3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/DisplayKanjiMeanings.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xEaXNwbGF5S2FuamlNZWFuaW5ncy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -82,6 +86,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VhcmNoYWJsZVNlbGVjdG9yLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Sections/ReviewCharacters.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VjdGlvbnNcUmV2aWV3Q2hhcmFjdGVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Study/Review/ReviewCharacter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZHlcUmV2aWV3XFJldmlld0NoYXJhY3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Study/StudyNewCharacter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZHlcU3R1ZHlOZXdDaGFyYWN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Test.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,12 +106,76 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEF1dGhcQXV0aG9yaXplZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Auth/ForbidIfNotAuthorized.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEF1dGhcRm9yYmlkSWZOb3RBdXRob3JpemVkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Auth/HasAnyRole.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEF1dGhcSGFzQW55Um9sZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Auth/HasRole.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEF1dGhcSGFzUm9sZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Auth/NotAuthorized.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEF1dGhcTm90QXV0aG9yaXplZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/CardWrapper.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRXcmFwcGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCharacterDefinition.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3RlckRlZmluaXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCharacterKunReadings.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3Rlckt1blJlYWRpbmdzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCharacterMeanings.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3Rlck1lYW5pbmdzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCharacterMnemonics.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3Rlck1uZW1vbmljcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCharacterOnReadings.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3Rlck9uUmVhZGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayLearnQueue.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUxlYXJuUXVldWUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayReviewQueue.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheVJldmlld1F1ZXVlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/ReviewCharactersSection.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcUmV2aWV3Q2hhcmFjdGVyc1NlY3Rpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/CultureSelector.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1bHR1cmVTZWxlY3Rvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyMeaningByInput.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5TWVhbmluZ0J5SW5wdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyValueByInput.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5VmFsdWVCeUlucHV0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyValueByPointing.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5VmFsdWVCeVBvaW50aW5nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Forbidden.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZvcmJpZGRlbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Forms/DynamicStringDefinition.razor]
@@ -114,20 +194,52 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEluZGV4XFNjcm9sbFNlY3Rpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/ConfirmDeclineModal.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXENvbmZpcm1EZWNsaW5lTW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/ErrorAlert.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXEVycm9yQWxlcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/ErrorAlertAlt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXEVycm9yQWxlcnRBbHQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/SuccessAlert.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXFN1Y2Nlc3NBbGVydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/SuccessAlertAlt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXFN1Y2Nlc3NBbGVydEFsdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Modal/ConfirmCancelBase.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1vZGFsXENvbmZpcm1DYW5jZWxCYXNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Modal/CubeLoadModal.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1vZGFsXEN1YmVMb2FkTW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Modal/LoadingModal.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1vZGFsXExvYWRpbmdNb2RhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/NavMenuHeader.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnVIZWFkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/RenderIfNotEmptyOrNull.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlbmRlcklmTm90RW1wdHlPck51bGwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Users/GetUserJlpt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVzZXJzXEdldFVzZXJKbHB0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Users/GetUserName.razor]

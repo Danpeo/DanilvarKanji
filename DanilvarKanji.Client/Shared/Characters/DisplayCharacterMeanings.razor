@@ -39,7 +39,7 @@ else
     public required GetAllFromCharacterResponse Character { get; set; }
 
     [Parameter, EditorRequired]
-    public Culture Culture { get; set; } = Culture.EnUS;
+    public Culture Culture { get; set; }
 
     [Inject]
     public required ICharacterService CharacterService { get; set; }

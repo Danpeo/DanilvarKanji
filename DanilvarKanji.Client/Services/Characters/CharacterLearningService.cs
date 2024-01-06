@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using DanilvarKanji.Client.State;
 using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 
@@ -18,7 +19,8 @@ public class CharacterLearningService : ICharacterLearningService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<GetAllFromCharacterLearningResponse?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request)
+    public async Task<GetAllFromCharacterLearningResponse?> CreateCharacterLearningAsync(
+        CreateCharacterLearningRequest request)
     {
         try
         {
@@ -51,6 +53,32 @@ public class CharacterLearningService : ICharacterLearningService
                     return default;
 
                 return await response.Content.ReadFromJsonAsync<GetAllFromCharacterLearningResponse>();
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<GetRandomMeaningsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId,
+        Culture culture, int qty = 4)
+    {
+        try
+        {
+            string uri = $"api/CharacterLearnings/GetRandomMeaningsInReview?characterId={characterId}&culture={culture}&qty={qty}";
+            HttpResponseMessage response = await _httpClient.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                    return default;
+
+                return await response.Content.ReadFromJsonAsync<GetRandomMeaningsInReviewResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -102,12 +130,11 @@ public class CharacterLearningService : ICharacterLearningService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-
                 GetCharacterLearningBaseInfoResponse? characterLearning =
                     await response.Content.ReadFromJsonAsync<GetCharacterLearningBaseInfoResponse>();
                 if (characterLearning != null)
                     await _appState.ReviewCharState.UpdateNextToReview(characterLearning);
-                
+
                 return characterLearning;
             }
 

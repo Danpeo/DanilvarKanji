@@ -1,0 +1,44 @@
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Domain.Enumerations
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Client.JsWrapper
+@using DanilvarKanji.Shared.Responses.CharacterLearning
+
+
+@if (_meanings != null)
+{
+    foreach (string meaning in _meanings.RandomMeanings)
+    {
+        <button @onclick="() => CheckAnswer(meaning)">@meaning</button>
+    }
+}
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
+
+    [Parameter, EditorRequired]
+    public Culture Culture { get; set; }
+
+    [Parameter]
+    public int OptionCount { get; set; } = 4;
+
+    [Inject]
+    public required JsDom JsDom { get; set; }
+
+    [Inject]
+    public required ICharacterLearningService CharacterLearningService { get; set; }
+
+    private GetRandomMeaningsInReviewResponse? _meanings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _meanings = await CharacterLearningService.GetRandomMeaningsInReviewAsync(CharacterForVerification.Id, Culture, OptionCount);
+    }
+
+    private void CheckAnswer(string meaning)
+    {
+    }
+
+}

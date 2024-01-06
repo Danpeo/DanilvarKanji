@@ -57,31 +57,5 @@
 
 </body>
 
-<script>
-    // Define the folder path where your images are located
-    const folderPath = 'img/loading/';  // Change this to your specific folder path
 
-    // Get a list of image file names in the folder
-    const imageFiles = [
-        /*'raven.gif',
-        'rabbit.gif',
-        'hero.gif',
-        'hero_emo.gif',*/
-        'cat.gif'
-        // Add more image file names as needed
-    ];
-
-    // Function to set a random image for the specified img element
-    function setRandomImage(imgElement) {
-        // Get a random image file name
-        const randomFileName = imageFiles[Math.floor(Math.random() * imageFiles.length)];
-
-        // Set the source of the img element to the randomly selected image file
-        imgElement.src = folderPath + randomFileName;
-    }
-
-    // Set random images for the two img elements
-    setRandomImage(document.getElementById('randomImage'));
-    setRandomImage(document.getElementById('randomImage2'));
-</script>
 </html>

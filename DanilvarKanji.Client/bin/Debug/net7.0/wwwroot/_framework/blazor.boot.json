@@ -1,7 +1,7 @@
 {
   "entryAssembly": "DanilvarKanji.Client",
   "resources": {
-    "hash": "sha256-dikNlCeWWe/CH2k9lZbhQtUYrtS0JmHFDDCqKbtxNNo=",
+    "hash": "sha256-ww3x3MOg0pIt2+bqgTwW1kQEtW7cOJ+QCaQ5yW6jy90=",
     "runtime": {
       "dotnet.7.0.14.mprzzp6dgj.js": "sha256-YWGUknGRzP/fgO6YjvCJKPVQNZAPEd6ll+rHfQEIW+I=",
       "dotnet.timezones.blat": "sha256-t5xviiOQTfAsF0UDhmcyalKiaehUmf/sqJl97tmPM0M=",
@@ -233,23 +233,23 @@
       "mscorlib.dll": "sha256-YcsJInaT/kw3Vrm+SESegPxvT/Lr9RE6rE/KnxWIIc0=",
       "netstandard.dll": "sha256-TztlSRjADgiEABbiAMdWZpHrUVd8wnRtQRAvlwmRP/4=",
       "System.Private.CoreLib.dll": "sha256-BAhrZ8Zg3cJKQipxdzqQo+9jtPkOkRx1ou3oIhDohtk=",
-      "Danilvar.Components.dll": "sha256-fWMLbfFC9Mz0ctd1DKyge+1m+vwO75S/i8sBNPTTPJk=",
-      "DanilvarKanji.Domain.dll": "sha256-YZ1/wF35OglDUR34qQX94zTg7FEKtW7h8Kj4fzEl/10=",
-      "DanilvarKanji.Shared.dll": "sha256-WQ3B2YZ1Yo7PUL4EZlVme+kLZFSaI825O/PyCOrGjIE=",
-      "DanilvarKanji.Client.dll": "sha256-Js166JhUTjbJZtjnM1A+e+0q23+np1b4XEMwu5UWoxs="
+      "Danilvar.Components.dll": "sha256-9VBQVBKXXa6SsQtvMTM+pxsRMuCb19oY0tNkx/GkLyY=",
+      "DanilvarKanji.Domain.dll": "sha256-xpLPr/deFL85bi+7FJ2QC6UpAwFGVtbmmpMsYiuqvi0=",
+      "DanilvarKanji.Shared.dll": "sha256-zUtxWVo1tIYTN4qoDtTQb2kuFb0cQYUyGsC3E+bMeTU=",
+      "DanilvarKanji.Client.dll": "sha256-pOxDgA1ORBpk6I12rAX+vpKqG1X3HozHNuVzi7nJbHs="
     },
     "pdb": {
-      "Danilvar.Components.pdb": "sha256-NDcWu1LM59ABXqOysVxM67zzvmWZr4qdSHRhM4M50uQ=",
-      "DanilvarKanji.Shared.pdb": "sha256-Wt/asHTK8YrYCMorEi/KaXSJmEPyjgPGK3dHT2W2rwI=",
-      "DanilvarKanji.Domain.pdb": "sha256-JM/XGb8P8XS7CLVpjmHEyLK4k4/p6OWmGb5Gy3Cwtr0=",
-      "DanilvarKanji.Client.pdb": "sha256-g+LNZThzOnkkoEtPz+L0zA6o6VSq0KsZXCIkW2li5gA="
+      "Danilvar.Components.pdb": "sha256-/I3ZFlr2KLYS+M2sDKof1noaD6kcc4LppdxfylkXUqE=",
+      "DanilvarKanji.Shared.pdb": "sha256-pGTt5Q3RQXCsa2N8Y/wmrgEYqHNGWCAb1CJIXQqfPEQ=",
+      "DanilvarKanji.Domain.pdb": "sha256-3azcoWcniZHveQq4CXSFgG2pQeCpYzkTuaGzFGzfUug=",
+      "DanilvarKanji.Client.pdb": "sha256-2NMzlOk2DWRDEJholcvSta2wX3z/gfWDixeI3H5clQw="
     },
     "satelliteResources": {
       "en-US": {
-        "en-US/DanilvarKanji.Client.resources.dll": "sha256-6T0aZCQjnEz7VXPlOynmJRqkc8oeAj2Fl3GeZI2tviw="
+        "en-US/DanilvarKanji.Client.resources.dll": "sha256-DfJ+Ra1cCyERBdk1/CAsMUYTUbRVOfBkCus15CT9jto="
       },
       "ru-RU": {
-        "ru-RU/DanilvarKanji.Client.resources.dll": "sha256-RbftxfCzoNgh6fN/k0n9xFV94LoHBHMXetiLVDs3VAo="
+        "ru-RU/DanilvarKanji.Client.resources.dll": "sha256-XOEU6+KbLD4l/e+unQ/FDq8k+FcpO/BwcmW17hyAdQU="
       }
     },
     "runtimeAssets": {

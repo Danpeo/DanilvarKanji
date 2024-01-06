@@ -31,6 +31,10 @@ img {
     border: 3px solid #ff0015;
 }
 
+.success-border {
+    border: 3px solid #40da9d;
+}
+
 .shake {
     animation: shake 0.5s;
 }

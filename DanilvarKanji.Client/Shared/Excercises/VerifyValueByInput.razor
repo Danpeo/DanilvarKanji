@@ -31,14 +31,13 @@
 }
 
 @code {
-
-
+    
     [Inject]
     public required JsDom JsDom { get; set; }
 
     [Parameter, EditorRequired]
     public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
-    
+
     [Parameter, EditorRequired]
     public required Func<GetAllFromCharacterResponse, string, bool> VerifyCondition { get; set; }
 
@@ -61,10 +60,13 @@
     private async Task Verify()
     {
         bool isCorrectInput = VerifyCondition(CharacterForVerification, _enteredValue);
-        
+
         if (isCorrectInput)
         {
             _isCorrect = true;
+            
+            await JsDom.AddClassesToElementForTime("meaningInput",
+                new[] { "bg-success", "txt-dark" }, 250);
         }
         else
         {

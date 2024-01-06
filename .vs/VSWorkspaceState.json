@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\DanilvarKanji.Client"
+    "\\DanilvarKanji.Client",
+    "\\DanilvarKanji.Client\\Shared",
+    "\\DanilvarKanji.Client\\Shared\\Users"
   ],
-  "SelectedNode": "\\DanilvarKanji.sln",
+  "SelectedNode": "\\DanilvarKanji.Client\\Shared\\Users\\GetUserName.razor",
   "PreviewInSolutionExplorer": false
 }

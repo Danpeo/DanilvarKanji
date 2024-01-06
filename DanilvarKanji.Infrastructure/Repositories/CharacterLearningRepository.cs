@@ -47,6 +47,27 @@ public class CharacterLearningRepository : ICharacterLearningRepository
 
         return paginationParams is not null ? Paginator.Paginate(characters, paginationParams) : characters;
     }
+    
+    public async Task<List<string>> GetRandomMeaningsInReviewQueueAsync(string characterId, AppUser user, Culture culture, int qty)
+    {
+        var random = new Random();
+        
+        List<string> definitions = await GetReviewQueue(user)
+            .Where(x => x.Character.Id != characterId)
+            .AsSplitQuery()
+            .SelectMany(cl => cl.Character.KanjiMeanings!)
+            .SelectMany(km => (km.Definitions!)
+                .Where(sd => sd.Culture == culture)
+                .Select(sd => sd.Value))
+            .ToListAsync();
+
+        var shuffledDefinitions = definitions
+            .OrderBy(x => random.Next())
+            .Take(qty)
+            .ToList();
+
+        return shuffledDefinitions;
+    }
 
     public async Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser) =>
         await GetReviewQueue(appUser).FirstOrDefaultAsync();
@@ -75,6 +96,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         IOrderedQueryable<CharacterLearning> characters = _context.CharacterLearnings
             .AsSplitQuery()
             .Include(c => c.Character)
+            .ThenInclude(ch => ch.KanjiMeanings)
             .Include(c => c.LearningProgress)
             .Where(c => c.AppUser == appUser && c.LearningState == LearningState.Learning &&
                         c.LearningState != LearningState.Skipped)
