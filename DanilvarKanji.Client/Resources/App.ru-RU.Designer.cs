@@ -247,5 +247,14 @@ namespace DanilvarKanji.Client.Resources {
                 return ResourceManager.GetString("ValueTooLong", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Какое значение у .
+        /// </summary>
+        internal static string WhatIsMeaningFor {
+            get {
+                return ResourceManager.GetString("WhatIsMeaningFor", resourceCulture);
+            }
+        }
     }
 }

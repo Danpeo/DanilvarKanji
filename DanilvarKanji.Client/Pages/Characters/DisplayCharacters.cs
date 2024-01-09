@@ -20,7 +20,7 @@ public partial class DisplayCharacters
     [Parameter] public int PageSize { get; set; } = 10;
     
     private List<GetAllFromCharacterResponse>? _characterItems;
-    private Culture _culture = Culture.EnUS;
+    private Culture _culture;
     private Dictionary<string, List<string>>? _kanjiMeanings = new();
     private string _searchTerm = string.Empty;
     protected override async Task OnInitializedAsync() => 
@@ -45,7 +45,7 @@ public partial class DisplayCharacters
     }
 
     private async Task GetCurrentCulture() =>
-        _culture = await LocalizationService!.GetCurrentCulture();
+        _culture = await LocalizationService.GetCurrentCulture();
 
     private async Task SearchForCharacterKey(KeyboardEventArgs args)
     {

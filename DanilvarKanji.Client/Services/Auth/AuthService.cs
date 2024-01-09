@@ -1,7 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Json;
 using System.Security.Claims;
-using Blazored.SessionStorage;
+using Blazored.LocalStorage;
 using DanilvarKanji.Shared.Enums;
 using DanilvarKanji.Shared.Requests.Auth;
 using DanilvarKanji.Shared.Responses.Auth;
@@ -11,43 +11,43 @@ namespace DanilvarKanji.Client.Services.Auth;
 public class AuthService : IAuthService
 {
     private readonly IHttpClientFactory _httpFactory;
-    private readonly ISessionStorageService _sessionStorageService;
+    private readonly ILocalStorageService _localStorageService;
     private const string _baseUrl = "Accounts";
     private const string JwtKey = nameof(JwtKey);
     private const string RefreshKey = nameof(RefreshKey);
-    private string _role;
+    private string _role = string.Empty;
     private string? _jwtCache = string.Empty;
     public event Action<string?>? LoginChange;
 
-    public AuthService(IHttpClientFactory httpFactory, ISessionStorageService sessionStorageService)
+    public AuthService(IHttpClientFactory httpFactory, ILocalStorageService localStorageService)
     {
         _httpFactory = httpFactory;
-        _sessionStorageService = sessionStorageService;
+        _localStorageService = localStorageService;
     }
 
-    public async ValueTask<string> GetJwtAsync()
+    public async Task<string> GetJwtAsync()
     {
         if (string.IsNullOrEmpty(_jwtCache))
-            _jwtCache = await _sessionStorageService.GetItemAsync<string>(JwtKey);
+            _jwtCache = await _localStorageService.GetItemAsync<string>(JwtKey);
 
         return _jwtCache;
     }
     
-    public async Task<bool> HasRoleAsync(string role)
+    public async ValueTask<bool> HasRoleAsync(string role)
     {
         _role = GetRole(await GetJwtAsync());
 
         return _role == role;
     }
 
-    public async Task<bool> HasAnyOfSpecifiedRolesAsync(IEnumerable<string> roles)
+    public async ValueTask<bool> HasAnyOfSpecifiedRolesAsync(IEnumerable<string> roles)
     {
         _role = GetRole(await GetJwtAsync());
 
         return roles.Any(role => role == _role);
     }
 
-    public async Task<bool> HasAnyRoleAsync()
+    public async ValueTask<bool> HasAnyRoleAsync()
     {
         _role = GetRole(await GetJwtAsync());
 
@@ -93,12 +93,12 @@ public class AuthService : IAuthService
         if (content == null)
             throw new InvalidDataException();
 
-        await _sessionStorageService.SetItemAsync(JwtKey, content.JwtToken);
-        await _sessionStorageService.SetItemAsync(RefreshKey, content.RefreshToken);
+        await _localStorageService.SetItemAsync(JwtKey, content.JwtToken);
+        await _localStorageService.SetItemAsync(RefreshKey, content.RefreshToken);
 
         LoginChange?.Invoke(GetUsername(content.JwtToken));
 
-        await _sessionStorageService.SetItemAsync("Role", GetRole(content.JwtToken));
+        await _localStorageService.SetItemAsync("Role", GetRole(content.JwtToken));
 
         return content;
     }
@@ -107,8 +107,8 @@ public class AuthService : IAuthService
     {
         var request = new RefreshKeyRequest()
         {
-            AccessToken = await _sessionStorageService.GetItemAsync<string>(JwtKey),
-            RefreshToken = await _sessionStorageService.GetItemAsync<string>(RefreshKey)
+            AccessToken = await _localStorageService.GetItemAsync<string>(JwtKey),
+            RefreshToken = await _localStorageService.GetItemAsync<string>(RefreshKey)
         };
 
         HttpResponseMessage response = await _httpFactory
@@ -128,8 +128,8 @@ public class AuthService : IAuthService
         if (content == null)
             throw new InvalidDataException();
 
-        await _sessionStorageService.SetItemAsync(JwtKey, content.JwtToken);
-        await _sessionStorageService.SetItemAsync(RefreshKey, content.RefreshToken);
+        await _localStorageService.SetItemAsync(JwtKey, content.JwtToken);
+        await _localStorageService.SetItemAsync(RefreshKey, content.RefreshToken);
 
         _jwtCache = content.JwtToken;
 
@@ -142,8 +142,8 @@ public class AuthService : IAuthService
             .CreateClient("ServerApi")
             .DeleteAsync($"api/{_baseUrl}/Revoke");
 
-        await _sessionStorageService.RemoveItemAsync(JwtKey);
-        await _sessionStorageService.RemoveItemAsync(RefreshKey);
+        await _localStorageService.RemoveItemAsync(JwtKey);
+        await _localStorageService.RemoveItemAsync(RefreshKey);
 
         _jwtCache = null;
 
@@ -151,7 +151,7 @@ public class AuthService : IAuthService
 
         LoginChange?.Invoke(null);
 
-        await _sessionStorageService.RemoveItemAsync("IsLoggedIn");
+        await _localStorageService.RemoveItemAsync("IsLoggedIn");
     }
 
     private string GetUsername(string token)

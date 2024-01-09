@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aP1i+hp+scJf8CgFJb5fPS0DKrrCzXUD/XuuYj/8bBU=",
+  "Hash": "6FR2pW13iJ1/heD715Q0/oBo3GLcmh4UBN5W7aVxzr8=",
   "Source": "DanilvarKanji.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -9650,6 +9650,25 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\scroll.css",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scroll.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scroll.css"
+    },
+    {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\favicon.png",
       "SourceId": "DanilvarKanji.Client",
       "SourceType": "Discovered",
@@ -9686,6 +9705,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\icon-192.png"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\cat-full.png",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "img/cat-full.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\cat-full.png"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\cats.png",
@@ -9914,6 +9952,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\general.js"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\js\\index.bundle.js",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "js/index.bundle.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\index.bundle.js"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\sample-data\\weather.json",

@@ -116,7 +116,7 @@ public class CharacterController : ApiController
         return Ok(kanjiMeanings);
     }
 
-    [HttpPatch("{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(string id, [FromBody] UpdateCharacterRequest request)
     {
         var command = _mapper.Map<UpdateCharacterCommand>(request);

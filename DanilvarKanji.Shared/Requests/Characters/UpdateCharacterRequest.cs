@@ -19,4 +19,5 @@ public class UpdateCharacterRequest
     public ICollection<Word>? Words { get; set; }
 
     public List<string>? ChildCharacterIds { get; set; }
+    
 }

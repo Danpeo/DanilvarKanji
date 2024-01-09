@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
-public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaningsInReviewQuery, (IEnumerable<string>
+public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaningsInReviewQuery, (List<string>
     random, string correct)>
 {
     private readonly ICharacterLearningRepository _charLearningRepository;
@@ -19,7 +19,7 @@ public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaning
         _random = new Random();
     }
 
-    public async Task<(IEnumerable<string> random, string correct)> Handle(GetRandomMeaningsInReviewQuery request,
+    public async Task<(List<string> random, string correct)> Handle(GetRandomMeaningsInReviewQuery request,
         CancellationToken cancellationToken)
     {
         string? randomMeaningFromReviewedChar =
@@ -49,7 +49,7 @@ public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaning
         return (charLearningsFromReview, randomMeaningFromReviewedChar);
     }
 
-    private async Task<(IEnumerable<string> random, string correct)> GetFromReviewAndLearnQueueAsync(
+    private async Task<(List<string> random, string correct)> GetFromReviewAndLearnQueueAsync(
         GetRandomMeaningsInReviewQuery request, int characterQty,
         IEnumerable<string?> charLearningsFromReview, string? randomMeaningFromReviewedChar)
     {

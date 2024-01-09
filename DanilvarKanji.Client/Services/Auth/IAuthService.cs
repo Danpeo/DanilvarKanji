@@ -7,11 +7,11 @@ public interface IAuthService
 {
     Task<RegisterUserRequest?> RegisterUserAsync(RegisterUserRequest request);
     Task<LoginResponse?> LoginAsync(LoginUserRequest request);
-    ValueTask<string> GetJwtAsync();
+    Task<string> GetJwtAsync();
 
     Task<bool> RefreshAsync();
     Task LogoutAsync();
-    Task<bool> HasRoleAsync(string role);
-    Task<bool> HasAnyOfSpecifiedRolesAsync(IEnumerable<string> roles);
-    Task<bool> HasAnyRoleAsync();
+    ValueTask<bool> HasRoleAsync(string role);
+    ValueTask<bool> HasAnyOfSpecifiedRolesAsync(IEnumerable<string> roles);
+    ValueTask<bool> HasAnyRoleAsync();
 }

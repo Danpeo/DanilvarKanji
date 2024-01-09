@@ -146,8 +146,9 @@ public class CharacterRepository : ICharacterRepository
         return shuffledDefinitions;
     }
 
-    public async Task<IEnumerable<Character>> SearchAsync(string searchTerm) =>
-        await _context.Characters
+    public async Task<IEnumerable<Character>> SearchAsync(string searchTerm)
+    {
+        return await GetCharactersWithRelatedData()
             .Where(x =>
                 x.Onyomis != null && x.Kunyomis != null && x.KanjiMeanings != null && x.Definition != null &&
                 (EF.Functions.ILike(x.Definition, $"%{searchTerm}%") ||
@@ -155,12 +156,13 @@ public class CharacterRepository : ICharacterRepository
                      km.Definitions != null &&
                      km.Definitions.Any(d => EF.Functions.ILike(d.Value, $"%{searchTerm}%"))) ||
                  x.Kunyomis.Any(k =>
-                     k.Romaji != null && (EF.Functions.ILike(k.JapaneseWriting, $"%{searchTerm}%") ||
-                                          EF.Functions.ILike(k.Romaji, $"%{searchTerm}%"))) ||
+                     EF.Functions.ILike(k.JapaneseWriting, $"%{searchTerm}%") ||
+                     EF.Functions.ILike(k.Romaji, $"%{searchTerm}%")) ||
                  x.Onyomis.Any(o =>
                      o.Romaji != null && (EF.Functions.ILike(o.JapaneseWriting, $"%{searchTerm}%") ||
                                           EF.Functions.ILike(o.Romaji, $"%{searchTerm}%")))))
             .ToListAsync();
+    }
 
     public async Task<IEnumerable<Character>> ListChildCharacters(string characterId)
     {

@@ -2,15 +2,18 @@ using Microsoft.JSInterop;
 
 namespace DanilvarKanji.Client.JsWrapper;
 
-public class JsDom
+public class Dom
 {
     private readonly IJSRuntime _jsRuntime;
 
-    public JsDom(IJSRuntime jsRuntime)
+    public Dom(IJSRuntime jsRuntime)
     {
         _jsRuntime = jsRuntime;
     }
 
     public async Task AddClassesToElementForTime(string elementId, IEnumerable<string> cssClasses, int time) =>
         await _jsRuntime.InvokeVoidAsync("addClassesToElementForTime", elementId, cssClasses, time);
+
+    public async Task AddClassesToElement(string elementId, IEnumerable<string> cssClasses) => 
+        await _jsRuntime.InvokeVoidAsync("addClassesToElement", elementId, cssClasses);
 }

@@ -81,4 +81,7 @@
     <data name="Kanji" xml:space="preserve">
         <value>Кандзи</value>
     </data>
+    <data name="WhatIsMeaningFor" xml:space="preserve">
+        <value>Какое значение у </value>
+    </data>
 </root>

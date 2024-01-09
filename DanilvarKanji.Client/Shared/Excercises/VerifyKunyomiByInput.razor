@@ -1,0 +1,47 @@
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Client.JsWrapper
+
+<WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
+
+<VerifyValueByInput
+    CharacterForVerification="CharacterForVerification"
+    VerifyCondition="VerifyCondition"
+    OnIncorrect="OnIncorrect"
+    OnCorrect="OnCorrect"
+    OnConfirm="OnConfirm"
+    OnInput="OnInput"/>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
+
+    [Parameter, EditorRequired]
+    public Action? OnConfirm { get; set; }
+
+    [Parameter, EditorRequired]
+    public Func<Task>? OnCorrect { get; set; }
+
+    [Parameter, EditorRequired]
+    public Func<Task>? OnIncorrect { get; set; }
+
+    [Inject]
+    public required Js Js { get; set; }
+
+    private bool VerifyCondition(GetAllFromCharacterResponse character, string enteredValue)
+    {
+        return character.Kunyomis != null
+               && character
+                   .Kunyomis
+                   .Any(
+                       k => k.JapaneseWriting == enteredValue
+                   );
+    }
+
+
+    private async Task OnInput(string elementId)
+    {
+        await Js.Wanakana.ToHiragana(elementId);
+    }
+
+}

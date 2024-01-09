@@ -6,9 +6,8 @@
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Client.Services.Review
 @using DanilvarKanji.Shared.Requests.Exercises
-@using DanilvarKanji.Client.JsWrapper
+@using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.State
-@using DanilvarKanji.Shared.Responses.Exercise
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -16,6 +15,12 @@
         <DisplayCharacterDefinition Character="_character"/>
         <p>@_character.Id</p>
         @_exercises[_currentExcercise]
+
+        <div class="d-grid gap-4 mt-4">
+            <button class="btn btn-lg btn-danger" @onclick="async () => { await OnIncorrectMeaning(); GoToNextExerciseOrFinish(); }">
+                Skip
+            </button>
+        </div>
     }
     else
     {
@@ -33,10 +38,7 @@
     public required string CharacterLearningId { get; set; }
 
     [Inject]
-    public AppState AppState { get; set; }
-
-    [Inject]
-    public required JsGen JsGen { get; set; }
+    public required AppState AppState { get; set; }
 
     [Inject]
     public required ICharacterLearningService CharacterLearningService { get; set; }
@@ -47,17 +49,23 @@
     [Inject]
     public required IExerciseService ExerciseService { get; set; }
 
+    [Inject]
+    public required ILocalizationService LocalizationService { get; set; }
+
+    private const int AfterAnswerDelay = 250;
     private int _currentExcercise;
-    private bool _reviewFinished = false;
+    private bool _reviewFinished;
 
     private GetAllFromCharacterLearningResponse? _learning;
     private GetAllFromCharacterResponse? _character;
-    private Culture _culture = Culture.EnUS;
+    private Culture _culture;
     private List<RenderFragment> _exercises = new();
     private ReviewSession _reviewSession;
 
     protected override async Task OnInitializedAsync()
     {
+        _culture = await LocalizationService.GetCurrentCulture();
+
         _learning = await CharacterLearningService.GetLearnignAsync(CharacterLearningId);
         _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
 
@@ -72,6 +80,20 @@
     private void InitExercises()
     {
         _exercises.Add(@<div class="fade-in-el">
+                           <VerifyKunyomiByInput
+                               OnConfirm="OnConfirmMeaning"
+                               OnCorrect="OnCorrectMeaning"
+                               OnIncorrect="OnIncorrectMeaning"
+                               CharacterForVerification="_character"/>
+                       </div>);
+        _exercises.Add(@<div class="fade-in-el">
+                           <VerifyMeaningByPointing
+                               CharacterForVerification="_character"
+                               Culture="_culture"
+                               OnCorrect="OnCorrectMeaningPoint"
+                               OnIncorrect="OnIncorrectMeaning"/>
+                       </div>);
+        _exercises.Add(@<div class="fade-in-el">
                            <VerifyMeaningByInput
                                OnConfirm="OnConfirmMeaning"
                                OnCorrect="OnCorrectMeaning"
@@ -84,6 +106,11 @@
                        </div>);
     }
 
+    private async Task OnCorrectMeaningPoint()
+    {
+        await Task.Delay(AfterAnswerDelay);
+        await OnCorrectMeaning();
+    }
 
     private async Task OnCorrectMeaning()
     {

@@ -162,16 +162,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1bHR1cmVTZWxlY3Rvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyKunyomiByInput.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5S3VueW9taUJ5SW5wdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyMeaningByInput.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5TWVhbmluZ0J5SW5wdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyMeaningByPointing.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5TWVhbmluZ0J5UG9pbnRpbmcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyValueByInput.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5VmFsdWVCeUlucHV0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyValueByPointing.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5VmFsdWVCeVBvaW50aW5nLnJhem9y
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/WhatIsKunyomiOf.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcV2hhdElzS3VueW9taU9mLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/WhatIsMeaningOf.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcV2hhdElzTWVhbmluZ09mLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Forbidden.razor]

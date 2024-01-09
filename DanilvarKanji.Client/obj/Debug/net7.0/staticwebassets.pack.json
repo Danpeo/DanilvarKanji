@@ -81,6 +81,10 @@
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\css\\scroll.css",
+      "PackagePath": "staticwebassets\\css\\scroll.css"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
@@ -95,6 +99,10 @@
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\DVKanjiLogo_2.png",
       "PackagePath": "staticwebassets\\img\\DVKanjiLogo_2.png"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\cat-full.png",
+      "PackagePath": "staticwebassets\\img\\cat-full.png"
     },
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\cats.png",
@@ -135,6 +143,10 @@
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\js\\general.js",
       "PackagePath": "staticwebassets\\js\\general.js"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\js\\index.bundle.js",
+      "PackagePath": "staticwebassets\\js\\index.bundle.js"
     },
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\sample-data\\weather.json",

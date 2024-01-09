@@ -3,12 +3,11 @@
 @using Danilvar.Components.JSWrapper
 @using DanilvarKanji.Client.JsWrapper
 
-
 <div class="">
     <EditForm Model="_enteredValue" OnSubmit="Verify">
-        <InputText @bind-Value="_enteredValue"
+        <InputText @bind-Value="_enteredValue" @oninput="OnInputText"
                    class="form-control-plaintext input-lg display-6 bg-main txt-mid-pink jap-font"
-                   id="meaningInput" placeholder="Meaning"/>
+                   id="@ValueInputId" placeholder="Meaning"/>
 
         @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
         {
@@ -31,9 +30,9 @@
 }
 
 @code {
-    
+
     [Inject]
-    public required JsDom JsDom { get; set; }
+    public required Js Js { get; set; }
 
     [Parameter, EditorRequired]
     public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
@@ -47,6 +46,9 @@
     [Parameter, EditorRequired]
     public Func<Task>? OnCorrect { get; set; }
 
+    [Parameter]
+    public Func<string, Task>? OnInput { get; set; }
+
     /// <summary>
     /// Invoked only once, then assigned NULL
     /// </summary>
@@ -56,6 +58,7 @@
     private string _enteredValue = string.Empty;
     private bool _isCorrect;
     private int _attempts;
+    private const string ValueInputId = "valueInput";
 
     private async Task Verify()
     {
@@ -64,15 +67,15 @@
         if (isCorrectInput)
         {
             _isCorrect = true;
-            
-            await JsDom.AddClassesToElementForTime("meaningInput",
+
+            await Js.Dom.AddClassesToElementForTime(ValueInputId,
                 new[] { "bg-success", "txt-dark" }, 250);
         }
         else
         {
             _attempts++;
 
-            await JsDom.AddClassesToElementForTime("meaningInput",
+            await Js.Dom.AddClassesToElementForTime(ValueInputId,
                 new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
                 500);
 
@@ -86,6 +89,11 @@
     private void OnConfirmClick()
     {
         OnConfirm?.Invoke();
+    }
+
+    private void OnInputText()
+    {
+        OnInput?.Invoke(ValueInputId);
     }
 
 }

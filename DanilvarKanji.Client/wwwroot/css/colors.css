@@ -10,7 +10,9 @@
     --white-color: #e8e8e8;
     --gray-color: #4d4c4c;
     --red-color-dim: rgba(224, 71, 71, 0.35);
+    --red-color: #f13434;
     --green-color: #2df17e;
+    --green-color-2: #20cb98;
 }
 
 .txt-bright-pink {
@@ -23,6 +25,10 @@
 
 .txt-light-pink {
     color: var(--pink-color-light) !important;
+}
+
+.txt-green {
+    color: var(--green-color-2) !important;
 }
 
 .txt-white {
@@ -51,6 +57,10 @@
 
 .bg-danger-dim {
     background-color: var(--red-color-dim) !important;
+}
+
+.bg-danger {
+    background-color: var(--red-color) !important;
 }
 
 .bg-success {

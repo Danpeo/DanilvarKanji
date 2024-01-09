@@ -25,21 +25,21 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7106/") });
 
-builder.Services.AddSingleton<IAuthService, AuthService>();
 
-builder.Services.AddTransient<AuthHandler>();
 
 builder.Services.AddHttpClient("ServerApi")
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ServerUrl"] ?? ""))
     .AddHttpMessageHandler<AuthHandler>();
 
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddTransient<AuthHandler>();
 builder.Services.AddSingleton<ICharacterService, CharacterService>();
 builder.Services.AddScoped<ICharacterLearningService, CharacterLearningService>();
 builder.Services.AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddSingleton<JsDom>();
-builder.Services.AddSingleton<JsGen>();
+builder.Services.AddScoped<Js>();
+
 builder.Services.AddScoped<AppState>();
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 

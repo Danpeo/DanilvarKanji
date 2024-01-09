@@ -1,6 +1,14 @@
 @page "/test"
+@inject IJSRuntime Js;
+
+<EditForm Model="str">
+  <InputText @bind-Value="str" @oninput="Callback"/>
+  <input id="strHira" @bind="str" @oninput="Callback"/>
+</EditForm>
 
 @code {
+
+    string str = "";
 
     private void OnConfirmAction()
     {
@@ -10,6 +18,11 @@
     private void OnDeclineAction()
     {
         throw new NotImplementedException();
+    }
+
+    private async Task Callback()
+    {
+        await Js.InvokeVoidAsync("strToHiragana", "strHira");
     }
 
 }
@@ -163,4 +176,3 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     Launch demo modal
 </button>
-

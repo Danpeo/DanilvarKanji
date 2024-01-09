@@ -1001,3 +1001,5 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\8e83n162m8.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\en-US\DanilvarKanji.Client.resources.cs
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\ru-RU\DanilvarKanji.Client.resources.cs
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\JsWrapper\Npm\package-lock.json
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\JsWrapper\Npm\package.json

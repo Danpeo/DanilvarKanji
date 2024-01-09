@@ -1,21 +1,31 @@
 using Danilvar.Entity;
+using WanaKanaNet;
 
 namespace DanilvarKanji.Domain.Entities;
 
 public class Kunyomi : Entity
 {
-    public string? Romaji { get; set; }
+    private string _japaneseWriting = string.Empty;
+    public string Romaji { get; private set; }
 
-    public string JapaneseWriting { get; set; }
+    public string JapaneseWriting
+    {
+        get => _japaneseWriting;
+        set
+        {
+            _japaneseWriting = value;
+            _japaneseWriting = WanaKana.ToHiragana(_japaneseWriting);
+            Romaji = WanaKana.ToRomaji(_japaneseWriting);
+        }
+    }
 
     public Kunyomi()
     {
-        
+        Romaji = WanaKana.ToRomaji(_japaneseWriting!);
     }
-    
-    public Kunyomi(string? romaji, string japaneseWriting)
+
+    public Kunyomi(string japaneseWriting) : this()
     {
-        Romaji = romaji;
         JapaneseWriting = japaneseWriting;
     }
 }

@@ -2,11 +2,11 @@ using Microsoft.JSInterop;
 
 namespace DanilvarKanji.Client.JsWrapper;
 
-public class JsGen
+public class Gen
 {
     private readonly IJSRuntime _jsRuntime;
 
-    public JsGen(IJSRuntime jsRuntime)
+    public Gen(IJSRuntime jsRuntime)
     {
         _jsRuntime = jsRuntime;
     }

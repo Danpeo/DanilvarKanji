@@ -256,6 +256,7 @@ namespace DanilvarKanji.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Romaji")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
