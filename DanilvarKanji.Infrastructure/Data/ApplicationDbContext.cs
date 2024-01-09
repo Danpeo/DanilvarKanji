@@ -62,10 +62,5 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
             .HasMany(x => x.Definitions)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
-        
-        modelBuilder.Entity<Word>()
-            .HasMany(x => x.WordMeanings)
-            .WithOne()
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

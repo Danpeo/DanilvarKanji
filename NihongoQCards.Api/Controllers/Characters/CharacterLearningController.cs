@@ -77,6 +77,8 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpGet("GetNextInReviewQueue")]
+    [ProducesResponseType(typeof(GetCharacterLearningBaseInfoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetNextInReviewQueueAsync()
     {
         AppUser? user = await _userManager.GetUserAsync(User);
@@ -86,7 +88,7 @@ public class CharacterLearningController : ApiController
         if (learning is not null)
             return Ok(learning);
 
-        return NotFound("Character learning was not fount");
+        return NoContent();
     }
 
     [HttpGet("GetRandomMeaningsInReview")]

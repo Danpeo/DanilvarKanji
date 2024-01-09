@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Danilvar.Components")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e37612fb93c35b3500e14ad18b1390202dcb5ab1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Danilvar.Components")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Danilvar.Components")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

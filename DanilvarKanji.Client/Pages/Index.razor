@@ -5,6 +5,7 @@
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Shared.Responses.CharacterLearning
+@using System.Net
 
 @inject IStringLocalizer<Index> Loc
 @inject NavigationManager NavManager
@@ -40,30 +41,41 @@
 </div>
 
 <Authorized>
+    @if (!string.IsNullOrEmpty(_errorMessage))
+    {
+        <ErrorAlertAlt Message="@_errorMessage"/>
+    }
+
     <h2 class="display-6 txt-white main-font">
         Your Study Queue
     </h2>
 
-    <div class="ms-2 pb-4">
-        <button onclick="@(() => { if (_characterToLearn != null) {NavManager.NavigateTo($"/study-new/{_characterToLearn.Id}"); } })"
-                class="btn mid-three-d-btn no-outline mb-2">
-            Study New
-        </button>
-    </div>
-    
+    @if (_characterToLearn != null)
+    {
+        <div class="ms-2 pb-4">
+            <button onclick="@(() => { {NavManager.NavigateTo($"/study-new/{_characterToLearn.Id}"); } })"
+                    class="btn mid-three-d-btn no-outline mb-2">
+                Study New
+            </button>
+        </div>
+    }
+
     <DisplayLearnQueue PageNumber="1" PageSize="10"/>
 
     <h2 class="display-6 txt-white main-font">
         Your Review Queue
     </h2>
 
-    <div class="ms-2 pb-4">
-        <button onclick="@(() => { if (_learning != null) {NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
-                class="btn mid-three-d-btn no-outline mb-2">
-            Review
-        </button>
-    </div>
-    
+    @if (_learning != null)
+    {
+        <div class="ms-2 pb-4">
+            <button onclick="@(() => { {NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
+                    class="btn mid-three-d-btn no-outline mb-2">
+                Review
+            </button>
+        </div>
+    }
+
     <DisplayReviewQueue PageNumber="1" PageSize="10"/>
 
 </Authorized>
@@ -72,12 +84,13 @@
 {
     [Inject]
     public required ICharacterService CharacterService { get; set; }
-    
+
     [Inject]
     public required ICharacterLearningService CharacterLearningService { get; set; }
 
     private GetCharacterBaseInfoResponse? _characterToLearn;
     private GetCharacterLearningBaseInfoResponse? _learning;
+    private string _errorMessage = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -86,8 +99,18 @@
 
     private async Task GetCharacterNextInLearn()
     {
-        _characterToLearn = await CharacterService.GetNextInLearnQueue();
-        _learning = await CharacterLearningService.GetNextInReviewQueueAsync();
+        try
+        {
+            _characterToLearn = await CharacterService.GetNextInLearnQueue();
+            _learning = await CharacterLearningService.GetNextInReviewQueueAsync();
+        }
+        catch (HttpRequestException e)
+        {
+            if (e.StatusCode is HttpStatusCode.NotFound or HttpStatusCode.NoContent)
+                return;
+            
+            _errorMessage = e.Message;
+        }
     }
 
 }

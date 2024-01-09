@@ -1,12 +1,25 @@
 @page "/test"
+@using DanilvarKanji.Client.Services.KanjiApiDev
+@using DanilvarKanji.Client.Models.Responses
 @inject IJSRuntime Js;
+@inject IKanjiService KanjiService;
+
+<h1>@_kanji?.Kanji</h1>
+
 
 <EditForm Model="str">
-  <InputText @bind-Value="str" @oninput="Callback"/>
-  <input id="strHira" @bind="str" @oninput="Callback"/>
+    <InputText @bind-Value="str" @oninput="Callback"/>
+    <input id="strHira" @bind="str" @oninput="Callback"/>
 </EditForm>
 
 @code {
+
+  private GetKanjiResponse_KAD? _kanji;
+
+    protected override async Task OnInitializedAsync()
+    {
+      _kanji = await KanjiService.GetKanjiAsync("蛍");
+    }
 
     string str = "";
 

@@ -1,14 +1,31 @@
+using Danilvar.Entity;
 using WanaKanaNet;
 
 namespace DanilvarKanji.Domain.Entities;
 
-public class Onyomi : Reading
+public class Onyomi : Entity
 {
-    private string _onyomi = string.Empty;
+    private string _japaneseWriting = string.Empty;
+    public string Romaji { get; private set; }
 
-    public override string JapaneseWriting
+    public string JapaneseWriting
     {
-        get => _onyomi;
-        set => _onyomi = WanaKana.ToKatakana(value);
+        get => _japaneseWriting;
+        set
+        {
+            _japaneseWriting = value;
+            _japaneseWriting = WanaKana.ToKatakana(_japaneseWriting);
+            Romaji = WanaKana.ToRomaji(_japaneseWriting);
+        }
+    }
+
+    public Onyomi()
+    {
+        Romaji = WanaKana.ToRomaji(_japaneseWriting!);
+    }
+
+    public Onyomi(string japaneseWriting) : this()
+    {
+        JapaneseWriting = japaneseWriting;
     }
 }

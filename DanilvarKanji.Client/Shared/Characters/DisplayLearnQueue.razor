@@ -6,6 +6,10 @@
 {
     <DisplayLoading></DisplayLoading>
 }
+else if (!string.IsNullOrEmpty(_errMsg))
+{
+    <h3 class="txt-light-pink main-font text-center mt-1">@_errMsg</h3>
+}
 else if (!_characterItems.Any())
 {
     <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
@@ -31,7 +35,7 @@ else
 
     [Inject]
     public required ICharacterService CharacterService { get; set; }
-    
+
     [Parameter]
     public int PageNumber { get; set; } = 1;
 
@@ -39,9 +43,18 @@ else
     public int PageSize { get; set; } = int.MaxValue;
 
     private IEnumerable<GetCharacterBaseInfoResponse?>? _characterItems;
-
+    private string _errMsg = string.Empty;
+    
     protected override async Task OnInitializedAsync()
     {
-        _characterItems = await CharacterService.ListLearnQueueAsync(PageNumber, PageSize);
+        try
+        {
+            _characterItems = await CharacterService.ListLearnQueueAsync(PageNumber, PageSize);
+        }
+        catch (HttpRequestException e)
+        {
+            _errMsg = e.Message;
+        }
     }
+
 }

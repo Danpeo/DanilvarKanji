@@ -1,0 +1,59 @@
+@page "/Init-Add"
+@using DanilvarKanji.Client.Services.KanjiApiDev
+@using DanilvarKanji.Client.Models.Responses
+@using System.Net
+@using DanilvarKanji.Client.State
+
+<div class="text-center">
+    <p class="text-body txt-white display-4 main-font">
+        Enter character definition
+    </p>
+</div>
+
+<div class="">
+    <EditForm Model="_enteredCharacter" OnSubmit="OnSubmitAsync">
+        <InputText @bind-Value="_enteredCharacter"
+                   class="form-control-plaintext input-lg text-center display-6 bg-main txt-mid-pink jap-font"
+                   id="charInput" placeholder="Character Definition"/>
+
+        <div class="mt-4">
+            <button class="btn btn-primary bg-light-pink" type="submit">Confirm</button>
+        </div>
+    </EditForm>
+
+</div>
+
+@code {
+
+    [Inject]
+    public required IKanjiService KanjiService { get; set; }
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    public required AppState AppState { get; init; }
+
+    private string _enteredCharacter = string.Empty;
+    private GetKanjiResponse_KAD? _kanjiResponse;
+
+    private async Task OnSubmitAsync()
+    {
+        try
+        {
+            _kanjiResponse = await KanjiService.GetKanjiAsync(_enteredCharacter);
+
+            if (_kanjiResponse != null)
+                AppState.AddCharacterState.KanjiToAdd = _kanjiResponse;
+            
+            NavigationManager.NavigateTo("Characters/Add");
+        }
+        catch (HttpRequestException e)
+        {
+            if (e.StatusCode == HttpStatusCode.NotFound)
+            {
+            }
+        }
+    }
+
+}

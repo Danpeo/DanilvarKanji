@@ -23,11 +23,13 @@ public class CharacterController : ApiController
     public CharacterController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
         base(mediator)
     {
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _mapper = mapper;
         _userManager = userManager;
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(Character), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterRequest? request)
     {
         var command = _mapper.Map<CreateCharacterCommand>(request);
@@ -39,6 +41,8 @@ public class CharacterController : ApiController
     }
 
     [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<Character>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
         IEnumerable<Character> characters = await Mediator.Send(new ListCharactersQuery(paginationParams));
@@ -48,6 +52,8 @@ public class CharacterController : ApiController
 
     [Authorize]
     [HttpGet("LearnQueue")]
+    [ProducesResponseType(typeof(IEnumerable<GetCharacterBaseInfoResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
@@ -63,6 +69,8 @@ public class CharacterController : ApiController
 
     [Authorize]
     [HttpGet("GetNextInLearnQueue")]
+    [ProducesResponseType(typeof(GetCharacterBaseInfoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetNextInLearnQueueAsync()
     {
         AppUser? user = await _userManager.GetUserAsync(User);
@@ -74,10 +82,12 @@ public class CharacterController : ApiController
         if (character is not null)
             return Ok(character);
 
-        return NotFound("Character was not fount");
+        return NoContent();
     }
 
     [HttpGet("{searchTerm}:Search")]
+    [ProducesResponseType(typeof(IEnumerable<Character>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> SearchAsync([FromQuery] PaginationParams paginationParams,
         string searchTerm = "any")
     {
@@ -96,6 +106,8 @@ public class CharacterController : ApiController
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(typeof(Character), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetAsync(string id)
     {
         Character? character = await Mediator.Send(new GetCharacterQuery(id));
@@ -107,13 +119,15 @@ public class CharacterController : ApiController
     }
 
     [HttpGet("{id}:KanjiMeanings")]
+    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(string id, Culture culture = Culture.EnUS,
         int takeQty = int.MaxValue)
     {
         IEnumerable<string> kanjiMeanings =
             await Mediator.Send(new GetKanjiMeaningsByPriorityQuery(id, culture, takeQty));
 
-        return Ok(kanjiMeanings);
+        return kanjiMeanings.Any() ? Ok(kanjiMeanings) : NotFound();
     }
 
     [HttpPut("{id}")]
@@ -130,12 +144,24 @@ public class CharacterController : ApiController
                 () => NotFound("The character was not found or an error occurred during the update."));
     }
 
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(string id)
     {
-        /*if (await _characterRepository.DeleteAsync(id))
-            return Ok("The character was successfully deleted.");*/
+        Result result = await Mediator.Send(new DeleteCharacterCommand(id));
 
+        if (result.IsSuccess)
+            return Ok();
         return NotFound("The character was not found or an error occurred during the delete.");
+    }
+
+    [HttpDelete("All")]
+    public async Task<IActionResult> DeleteAllAsync()
+    {
+        Result result = await Mediator.Send(new DeleteAllCharactersCommand());
+
+        if (result.IsSuccess)
+            return Ok();
+        return NotFound("An error occurred during the delete.");
     }
 }

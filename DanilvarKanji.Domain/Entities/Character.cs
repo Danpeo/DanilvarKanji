@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using Danilvar.Entity;
 using DanilvarKanji.Domain.Enumerations;
 

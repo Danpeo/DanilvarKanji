@@ -1,5 +1,9 @@
+using DanilvarKanji.Client.Mappers;
+using DanilvarKanji.Client.Models.Responses;
 using DanilvarKanji.Client.Services.Characters;
-using DanilvarKanji.Domain.DTO;
+using DanilvarKanji.Client.State;
+using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
 using Microsoft.AspNetCore.Components;
 
@@ -9,13 +13,26 @@ public partial class AddCharacter
 {
     [Inject] public ICharacterService CharacterService { get; set; } = default!;
 
-    private CreateCharacterRequest _character = new();
+    [Inject] public required AppState AppState { get; set; }
+
+    private GetKanjiResponse_KAD? _KAD_Kanji { get; set; }
+    private CreateCharacterRequest _createCharacterRequest = new();
     private bool _submitSuccessful;
     private string? _errorMessage;
 
+    protected override void OnInitialized()
+    {
+        _KAD_Kanji = AppState.AddCharacterState.KanjiToAdd;
+
+        if (_KAD_Kanji is not null)
+        {
+            _createCharacterRequest = _KAD_Kanji.ToCreateCharacterRequest();
+        }
+    }
+
     private async Task HandleSubmit()
     {
-        CreateCharacterRequest? character = await CharacterService.AddCharacterAsync(_character);
+        CreateCharacterRequest? character = await CharacterService.AddCharacterAsync(_createCharacterRequest);
 
         if (character is not null)
         {

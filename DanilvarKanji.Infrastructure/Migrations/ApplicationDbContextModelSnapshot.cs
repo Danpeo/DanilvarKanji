@@ -295,6 +295,7 @@ namespace DanilvarKanji.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Romaji")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -322,6 +323,9 @@ namespace DanilvarKanji.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("WordId")
+                        .HasColumnType("text");
+
                     b.Property<string>("WordMeaningId")
                         .HasColumnType("text");
 
@@ -330,6 +334,8 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("CharacterId");
 
                     b.HasIndex("KanjiMeaningId");
+
+                    b.HasIndex("WordId");
 
                     b.HasIndex("WordMeaningId");
 
@@ -388,12 +394,7 @@ namespace DanilvarKanji.Migrations
                     b.Property<float?>("Priority")
                         .HasColumnType("real");
 
-                    b.Property<string>("WordId")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("WordId");
 
                     b.ToTable("WordMeanings");
                 });
@@ -625,6 +626,10 @@ namespace DanilvarKanji.Migrations
                         .HasForeignKey("KanjiMeaningId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("DanilvarKanji.Domain.Entities.Word", null)
+                        .WithMany("WordMeanings")
+                        .HasForeignKey("WordId");
+
                     b.HasOne("DanilvarKanji.Domain.Entities.WordMeaning", null)
                         .WithMany("Definitions")
                         .HasForeignKey("WordMeaningId");
@@ -635,14 +640,6 @@ namespace DanilvarKanji.Migrations
                     b.HasOne("DanilvarKanji.Domain.Entities.Character", null)
                         .WithMany("Words")
                         .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.WordMeaning", b =>
-                {
-                    b.HasOne("DanilvarKanji.Domain.Entities.Word", null)
-                        .WithMany("WordMeanings")
-                        .HasForeignKey("WordId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

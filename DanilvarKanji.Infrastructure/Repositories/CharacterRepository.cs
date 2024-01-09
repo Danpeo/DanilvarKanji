@@ -72,6 +72,15 @@ public class CharacterRepository : ICharacterRepository
         _context.Characters.Remove(character!);
     }
 
+    public void DeleteRange(IEnumerable<string> ids)
+    {
+        var characters = _context.Characters.Where(c => ids.Contains(c.Id));
+        _context.Characters.RemoveRange(characters);
+    }
+
+    public void DeleteAll() => 
+        _context.Characters.RemoveRange(_context.Characters);
+
     public Task<bool> Exist(string id) =>
         _context.Characters.AnyAsync(x => x.Id == id);
 

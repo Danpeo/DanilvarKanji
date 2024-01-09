@@ -12,6 +12,7 @@ using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Client.Services.Characters;
+using DanilvarKanji.Client.Services.KanjiApiDev;
 using DanilvarKanji.Client.Services.Review;
 using DanilvarKanji.Client.State;
 using DanilvarKanji.Shared.Responses.Character;
@@ -26,16 +27,21 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7106/") });
 
 
-
 builder.Services.AddHttpClient("ServerApi")
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ServerUrl"] ?? ""))
+    .AddHttpMessageHandler<AuthHandler>();
+
+builder.Services.AddHttpClient("KanjiApiDev")
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["KanjiApiDev"] ?? ""))
     .AddHttpMessageHandler<AuthHandler>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddTransient<AuthHandler>();
 builder.Services.AddSingleton<ICharacterService, CharacterService>();
+builder.Services.AddSingleton<IKanjiService, KanjiService_KAD>();
 builder.Services.AddScoped<ICharacterLearningService, CharacterLearningService>();
-builder.Services.AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
+builder.Services
+    .AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<Js>();
@@ -66,6 +72,5 @@ builder.Services.AddApiAuthorization();
 //await builder.Build().RunAsync();
 
 WebAssemblyHost host = builder.Build();
-await host.SetDefaultCulture(); 
+await host.SetDefaultCulture();
 await host.RunAsync();
-

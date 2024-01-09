@@ -53,8 +53,7 @@ public class CharacterService : ICharacterService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return Enumerable.Empty<GetCharacterBaseInfoResponse>();
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterBaseInfoResponse>>() ??
-                       Enumerable.Empty<GetCharacterBaseInfoResponse>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterBaseInfoResponse>>();
             }
 
             string message = await response.Content.ReadAsStringAsync();

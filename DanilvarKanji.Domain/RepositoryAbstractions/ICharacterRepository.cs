@@ -24,4 +24,6 @@ public interface ICharacterRepository
     Task<bool> AnyInLearnQueue(AppUser user);
     Task<List<string>> GetRandomMeaningsInLearnQueueAsync(AppUser user, Culture culture, int qty);
     string? GetRandomMeaningFromCharacter(string id, Culture culture);
+    void DeleteRange(IEnumerable<string> ids);
+    void DeleteAll();
 }

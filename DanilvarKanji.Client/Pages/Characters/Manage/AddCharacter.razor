@@ -3,24 +3,29 @@
 @using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.Characters
 
+@if (_KAD_Kanji is not null)
+{
+    @_KAD_Kanji.Kanji
+}
+
 <PageTitle>Add Character - @AppDisplaySettings.AppTitle</PageTitle>
 
 <h1 class="mt-5 mb-4 animated-blink main-font display-3">
     Add Character
 </h1>
 
-<EditForm Model="_character" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+<EditForm Model="_createCharacterRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
 
     <FormSection Title="Character Basic Details" HelpText="Character basic details common for all cultures">
 
         <FormFieldSet Label="Definition" LabelFor="characterDefinition" HelpText="">
-            <InputText @bind-Value="_character.Definition" class="form-control bg-secondary txt-white jap-font no-border" id="characterDefinition" placeholder="見"/>
-            <ValidationMessage For="@(() => _character.Definition)"/>
+            <InputText @bind-Value="_createCharacterRequest.Definition" class="form-control bg-secondary txt-white jap-font no-border" id="characterDefinition" placeholder="見"/>
+            <ValidationMessage For="@(() => _createCharacterRequest.Definition)"/>
         </FormFieldSet>
 
         <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
-            <InputSelect @bind-Value="_character.JlptLevel" class="form-control bg-secondary txt-white no-border" id="jlptLevel">
+            <InputSelect @bind-Value="_createCharacterRequest.JlptLevel" class="form-control bg-secondary txt-white no-border" id="jlptLevel">
                 <option value="@JlptLevel.N5">JLPT N5</option>
                 <option value="@JlptLevel.N4">JLPT N4</option>
                 <option value="@JlptLevel.N3">JLPT N3</option>
@@ -30,36 +35,36 @@
         </FormFieldSet>
 
         <FormFieldSet Label="Character Type" LabelFor="characterType" HelpText="">
-            <InputSelect @bind-Value="_character.CharacterType" class="form-control bg-secondary txt-white no-border" id="characterType">
+            <InputSelect @bind-Value="_createCharacterRequest.CharacterType" class="form-control bg-secondary txt-white no-border" id="characterType">
                 <option value="@CharacterType.Kanji">Kanji</option>
                 <option value="@CharacterType.Radical">Radical</option>
             </InputSelect>
         </FormFieldSet>
 
         <FormFieldSet Label="Stroke Count" LabelFor="strokeCount" HelpText="">
-            <InputNumber @bind-Value="_character.StrokeCount" class="form-control bg-secondary txt-white no-border" id="strokeCount" placeholder="Stroke Count"/>
-            <ValidationMessage For="@(() => _character.StrokeCount)"/>
+            <InputNumber @bind-Value="_createCharacterRequest.StrokeCount" class="form-control bg-secondary txt-white no-border" id="strokeCount" placeholder="Stroke Count"/>
+            <ValidationMessage For="@(() => _createCharacterRequest.StrokeCount)"/>
         </FormFieldSet>
     </FormSection>
 
     <FormSection Title="Character Mnemonics" HelpText="Add Character Mnemonics with different cultures">
-        <DynamicStringDefinition StringDefinitions="_character.Mnemonics" AddButtonText="Add Mnemonic"/>
-        <ValidationMessage For="@(() => _character.Mnemonics)"/>
+        <DynamicStringDefinition StringDefinitions="_createCharacterRequest.Mnemonics" AddButtonText="Add Mnemonic"/>
+        <ValidationMessage For="@(() => _createCharacterRequest.Mnemonics)"/>
     </FormSection>
 
     <FormSection Title="Character Meanings" HelpText="Add Character Meanings with different cultures">
-        <AddKanjiMeanings Meanings="_character.KanjiMeanings"/>
-        <ValidationMessage For="@(() => _character.KanjiMeanings)"/>
+        <AddKanjiMeanings Meanings="_createCharacterRequest.KanjiMeanings"/>
+        <ValidationMessage For="@(() => _createCharacterRequest.KanjiMeanings)"/>
     </FormSection>
 
-    @if (_character.CharacterType == CharacterType.Kanji)
+    @if (_createCharacterRequest.CharacterType == CharacterType.Kanji)
     {
         <FormSection Title="Kunyomi Readings" HelpText="Add kunyomi readings">
-            <AddKunyomis Kunyomis="_character.Kunyomis"/>
+            <AddKunyomis Kunyomis="_createCharacterRequest.Kunyomis"/>
         </FormSection>
 
         <FormSection Title="Onyomi Readings" HelpText="Add onyomi readings">
-            <AddOnyomis Onyomis="_character.Onyomis"/>
+            <AddOnyomis Onyomis="_createCharacterRequest.Onyomis"/>
         </FormSection>
     }
 
@@ -75,7 +80,7 @@
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">
-                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _character = new CreateCharacterRequest())">Reset</button>
+                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _createCharacterRequest = new CreateCharacterRequest())">Reset</button>
                 <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
             </div>
         </div>

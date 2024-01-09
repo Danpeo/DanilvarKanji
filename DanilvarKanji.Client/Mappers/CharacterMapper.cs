@@ -1,0 +1,35 @@
+using DanilvarKanji.Client.Models.Responses;
+using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Requests.Characters;
+
+namespace DanilvarKanji.Client.Mappers;
+
+public static class CharacterMapper
+{
+    public static CreateCharacterRequest ToCreateCharacterRequest(this GetKanjiResponse_KAD KAD_Kanji)
+    {
+        var createCharacterRequest = new CreateCharacterRequest
+        {
+            Definition = KAD_Kanji.Kanji,
+            CharacterType = CharacterType.Kanji,
+            StrokeCount = KAD_Kanji.Stroke_Count
+        };
+
+        createCharacterRequest.FromIntToJlpt(KAD_Kanji.Jlpt);
+
+        foreach (string kunReading in KAD_Kanji.Kun_Readings)
+            createCharacterRequest.Kunyomis.Add(new Kunyomi(kunReading));
+
+        foreach (string onReading in KAD_Kanji.On_Readings)
+            createCharacterRequest.Onyomis.Add(new Onyomi(onReading));
+
+        var stringDefinitions = KAD_Kanji.Meanings
+            .Select(meaning => new StringDefinition(meaning, Culture.EnUS))
+            .ToList();
+
+        createCharacterRequest.KanjiMeanings.Add(new KanjiMeaning(stringDefinitions));
+
+        return createCharacterRequest;
+    }
+}
