@@ -904,7 +904,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.0": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -2079,7 +2079,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.0": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -3730,10 +3730,10 @@
         "tools/net7.0/illink.runtimeconfig.json"
       ]
     },
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.0": {
-      "sha512": "zIP/2rXQN1Q7xkqxJmDU31BvoISdhM6tH0o206ShlTCWgcmMKuGapPYIDcDcUmIZjZGHrLKM4z/MsgfLGi0VUw==",
+    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.1": {
+      "sha512": "WE5sCiA6FbpmHBA7SeIApjBhBFfHQlWTqn5N5jCTncpSHFchjsc6hyXhPjS0PqIV8eiWayNmJpN+VmV1nHFVAw==",
       "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.0",
+      "path": "microsoft.net.sdk.webassembly.pack/8.0.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -3761,7 +3761,7 @@
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
-        "microsoft.net.sdk.webassembly.pack.8.0.0.nupkg.sha512",
+        "microsoft.net.sdk.webassembly.pack.8.0.1.nupkg.sha512",
         "microsoft.net.sdk.webassembly.pack.nuspec",
         "tools/net472/Microsoft.Bcl.AsyncInterfaces.dll",
         "tools/net472/Microsoft.Build.dll",
@@ -4477,7 +4477,7 @@
       "Microsoft.Extensions.Localization >= 7.0.13",
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.0",
+      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.1",
       "System.IdentityModel.Tokens.Jwt >= 6.24.0",
       "WanaKana-net >= 1.0.0"
     ]
@@ -4584,7 +4584,7 @@
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.0, )",
+            "version": "[8.0.1, )",
             "autoReferenced": true
           },
           "System.IdentityModel.Tokens.Jwt": {
@@ -4610,7 +4610,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[7.0.14, 7.0.14]"
+            "version": "[7.0.15, 7.0.15]"
           }
         ],
         "frameworkReferences": {
@@ -4618,7 +4618,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
@@ -4626,5 +4626,29 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "libraryId": "System.IdentityModel.Tokens.Jwt",
+      "targetGraphs": [
+        "net7.0",
+        "net7.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g9c-28fc-mcx2",
+      "libraryId": "System.IdentityModel.Tokens.Jwt",
+      "targetGraphs": [
+        "net7.0",
+        "net7.0/browser-wasm"
+      ]
+    }
+  ]
 }

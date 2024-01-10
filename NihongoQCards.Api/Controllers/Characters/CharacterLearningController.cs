@@ -1,4 +1,3 @@
-using AutoMapper;
 using DanilvarKanji.Application.CharacterLearnings.Commands;
 using DanilvarKanji.Application.CharacterLearnings.Queries;
 using DanilvarKanji.Domain.Entities;
@@ -18,13 +17,11 @@ namespace DanilvarKanji.Controllers.Characters;
 [Authorize]
 public class CharacterLearningController : ApiController
 {
-    private readonly IMapper _mapper;
     private readonly UserManager<AppUser> _userManager;
 
-    public CharacterLearningController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
+    public CharacterLearningController(IMediator mediator, UserManager<AppUser> userManager) :
         base(mediator)
     {
-        _mapper = mapper;
         _userManager = userManager;
     }
 
@@ -35,12 +32,11 @@ public class CharacterLearningController : ApiController
 
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        var command = new CreateCharacterLearningCommand(user!, request.CharacterId, request.LearningState);
-
-
+        var command = new CreateCharacterLearningCommand(user!, request.CharacterId, request.LearningState, request.Id);
+        
         return await Result.Create(command, General.UnProcessableRequest)
             .Bind(c => Mediator.Send(c))
-            .Match(() => CreatedAtAction("Get", new { id = request.CharacterId }),
+            .Match(() => CreatedAtAction("Get", new { id = command.Id }, command),
                 BadRequest);
     }
 

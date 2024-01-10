@@ -13,7 +13,7 @@ public interface ICharacterLearningService
         int pageSize = 0);
 
     Task<GetCharacterLearningBaseInfoResponse?> GetNextInReviewQueueAsync();
-    Task<GetAllFromCharacterLearningResponse?> GetLearnignAsync(string? id);
+    Task<GetAllFromCharacterLearningResponse?> GetLearningAsync(string? id);
     Task<GetRandomMeaningsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId, Culture culture,
         int qty = 4);
 }

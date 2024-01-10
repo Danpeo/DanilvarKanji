@@ -15,7 +15,8 @@ public class CharacterService : ICharacterService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<IEnumerable<GetAllFromCharacterResponse?>?> ListCharactersAsync(int pageNumber = 0, int pageSize = 0)
+    public async Task<IEnumerable<GetAllFromCharacterResponse?>?> ListCharactersAsync(int pageNumber = 0,
+        int pageSize = 0)
     {
         try
         {
@@ -41,7 +42,8 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<IEnumerable<GetCharacterBaseInfoResponse?>?> ListLearnQueueAsync(int pageNumber = 0, int pageSize = 0)
+    public async Task<IEnumerable<GetCharacterBaseInfoResponse?>?> ListLearnQueueAsync(int pageNumber = 0,
+        int pageSize = 0)
     {
         try
         {
@@ -118,7 +120,7 @@ public class CharacterService : ICharacterService
             throw;
         }
     }
-    
+
     public async Task<List<string>?> GetCharacterKanjiMeanings(string? id, int takeQty, Culture culture)
     {
         try
@@ -155,16 +157,24 @@ public class CharacterService : ICharacterService
         if (CharacterItems != null)
             foreach (GetAllFromCharacterResponse? characterItem in CharacterItems)
             {
-                List<string>? kanjiMeanings = await GetCharacterKanjiMeanings(characterItem.Id, takeQty, culture);
+                try
+                {
+                    List<string>? kanjiMeanings = await GetCharacterKanjiMeanings(characterItem.Id, takeQty, culture);
 
-                if (kanjiMeanings != null)
-                    allKanjiMeanings![characterItem.Id] = kanjiMeanings;
+                    if (kanjiMeanings != null)
+                        allKanjiMeanings![characterItem.Id] = kanjiMeanings;
+                }
+                catch (HttpRequestException e)
+                {
+                    return new Dictionary<string, List<string>>();
+                }
             }
 
         return allKanjiMeanings;
     }
 
-    public string GetCharacterMnemonicByCulture(GetAllFromCharacterResponse getAllFromCharacter, Culture culture = Culture.EnUS) =>
+    public string GetCharacterMnemonicByCulture(GetAllFromCharacterResponse getAllFromCharacter,
+        Culture culture = Culture.EnUS) =>
         getAllFromCharacter.Mnemonics
             .FirstOrDefault(x => x.Culture == culture)
             ?.Value;

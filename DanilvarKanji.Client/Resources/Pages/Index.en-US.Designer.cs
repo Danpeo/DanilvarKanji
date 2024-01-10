@@ -96,11 +96,47 @@ namespace DanilvarKanji.Client.Resources.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Review.
+        /// </summary>
+        internal static string ReviewNew {
+            get {
+                return ResourceManager.GetString("ReviewNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Study New.
+        /// </summary>
+        internal static string StudyNew {
+            get {
+                return ResourceManager.GetString("StudyNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to.
         /// </summary>
         internal static string WelcomeToApp {
             get {
                 return ResourceManager.GetString("WelcomeToApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Review Queue.
+        /// </summary>
+        internal static string YourReviewQueue {
+            get {
+                return ResourceManager.GetString("YourReviewQueue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Study Queue.
+        /// </summary>
+        internal static string YourStudyQueue {
+            get {
+                return ResourceManager.GetString("YourStudyQueue", resourceCulture);
             }
         }
     }

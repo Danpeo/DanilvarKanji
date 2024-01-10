@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col mb-3">
             <div class="form-group">
-                <InputText @bind-Value="@definition.Value" class="form-control bg-secondary txt-white no-border" id="value" placeholder="Value"/>
+                <InputText @bind-Value="@definition.Value" class="form-control bg-secondary txt-green-dim no-border" id="value" placeholder="Value"/>
                 <ValidationMessage For="() => definition.Value"/>
             </div>
         </div>
 
         <div class="col mb-3">
             <div class="form-group">
-                <InputSelect @bind-Value="@definition.Culture" class="form-control bg-secondary txt-white no-border" id="culture">
+                <InputSelect @bind-Value="@definition.Culture" class="form-control bg-secondary txt-green-dim no-border" id="culture">
                     <option value="@Culture.EnUS">English</option>
                     <option value="@Culture.RuRU">Russian</option>
                 </InputSelect>

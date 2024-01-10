@@ -51,7 +51,15 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _kanjiMeanings = await CharacterService.GetCharacterKanjiMeanings(Character.Id, int.MaxValue, Culture);
+        try
+        {
+            _kanjiMeanings = await CharacterService.GetCharacterKanjiMeanings(Character.Id, int.MaxValue, Culture);
+
+        }
+        catch (HttpRequestException e)
+        {
+        
+        }
     }
 
 }

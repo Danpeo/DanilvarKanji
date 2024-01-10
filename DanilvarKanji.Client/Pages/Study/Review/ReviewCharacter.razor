@@ -66,7 +66,7 @@
     {
         _culture = await LocalizationService.GetCurrentCulture();
 
-        _learning = await CharacterLearningService.GetLearnignAsync(CharacterLearningId);
+        _learning = await CharacterLearningService.GetLearningAsync(CharacterLearningId);
         _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
 
         InitExercises();

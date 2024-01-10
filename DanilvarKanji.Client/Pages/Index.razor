@@ -15,7 +15,7 @@
 <div class="text-center">
 
     <Authorized>
-        <h1 class="display-4 txt-white main-font ">
+        <h1 class="display-4 txt-green-dim main-font ">
             @Loc["Hello"],
             <b class="animated-blink">
                 <GetUserName/>
@@ -24,12 +24,12 @@
     </Authorized>
 
     <NotAuthorized>
-        <h1 class="display-4 txt-white main-font ">
+        <h1 class="display-4 txt-green-dim main-font ">
             @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
         </h1>
 
-        <NavLink href="register" class="btn three-d-btn no-outline">@Loc["Register"]</NavLink>
-        <NavLink href="login" class="btn three-d-btn no-outline">@Loc["Login"]</NavLink>
+        <NavLink href="register" class="btn btn-elg btn-primary">@Loc["Register"]</NavLink>
+        <NavLink href="login" class="btn btn-elg btn-primary">@Loc["Login"]</NavLink>
 
     </NotAuthorized>
 
@@ -46,8 +46,8 @@
         <ErrorAlertAlt Message="@_errorMessage"/>
     }
 
-    <h2 class="display-6 txt-white main-font">
-        Your Study Queue
+    <h2 class="display-6 txt-green-dim main-font">
+        @Loc["YourStudyQueue"]
     </h2>
 
     @if (_characterToLearn != null)
@@ -55,15 +55,15 @@
         <div class="ms-2 pb-4">
             <button onclick="@(() => { {NavManager.NavigateTo($"/study-new/{_characterToLearn.Id}"); } })"
                     class="btn mid-three-d-btn no-outline mb-2">
-                Study New
+                @Loc["StudyNew"]
             </button>
         </div>
     }
 
     <DisplayLearnQueue PageNumber="1" PageSize="10"/>
 
-    <h2 class="display-6 txt-white main-font">
-        Your Review Queue
+    <h2 class="display-6 txt-green-dim main-font">
+        @Loc["YourReviewQueue"]
     </h2>
 
     @if (_learning != null)
@@ -71,7 +71,7 @@
         <div class="ms-2 pb-4">
             <button onclick="@(() => { {NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
                     class="btn mid-three-d-btn no-outline mb-2">
-                Review
+                @Loc["ReviewNew"]
             </button>
         </div>
     }

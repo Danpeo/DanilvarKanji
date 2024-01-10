@@ -8,9 +8,9 @@ main[b-s586sxsw3p] {
     flex: 1;
 }
 
-.sidebar[b-s586sxsw3p] {
+/*.sidebar {
     background-image: linear-gradient(180deg, rgb(44 44 44) 0%, #1a1919 70%);
-}
+}*/
 
 .top-row[b-s586sxsw3p] {
     background-color: #f7f7f7;

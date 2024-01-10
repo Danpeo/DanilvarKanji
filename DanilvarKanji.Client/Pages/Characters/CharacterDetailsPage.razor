@@ -1,0 +1,7 @@
+@page "/Character/{CharacterId}"
+<h3>CharacterDetailsPage</h3>
+
+@code {
+    [Parameter, EditorRequired]
+    public required string CharacterId { get; set; }
+}

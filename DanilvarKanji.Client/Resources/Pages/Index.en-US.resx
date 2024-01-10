@@ -132,4 +132,16 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="YourStudyQueue" xml:space="preserve">
+    <value>Your Study Queue</value>
+  </data>
+  <data name="YourReviewQueue" xml:space="preserve">
+    <value>Your Review Queue</value>
+  </data>
+  <data name="StudyNew" xml:space="preserve">
+    <value>Study New</value>
+  </data>
+  <data name="ReviewNew" xml:space="preserve">
+    <value>Review</value>
+  </data>
 </root>

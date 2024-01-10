@@ -41,7 +41,7 @@ public class CharacterLearningService : ICharacterLearningService
         }
     }
 
-    public async Task<GetAllFromCharacterLearningResponse?> GetLearnignAsync(string? id)
+    public async Task<GetAllFromCharacterLearningResponse?> GetLearningAsync(string? id)
     {
         try
         {

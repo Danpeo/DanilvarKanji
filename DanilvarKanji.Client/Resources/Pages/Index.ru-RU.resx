@@ -33,4 +33,16 @@
     <data name="Register" xml:space="preserve">
         <value>Зарегестрироваться</value>
     </data>
+    <data name="YourStudyQueue" xml:space="preserve">
+        <value>Ваша очередь изучения</value>
+    </data>
+    <data name="YourReviewQueue" xml:space="preserve">
+        <value>Ваша очередь ревью</value>
+    </data>
+    <data name="ReviewNew" xml:space="preserve">
+        <value>Ревью</value>
+    </data>
+    <data name="StudyNew" xml:space="preserve">
+        <value>Изучать</value>
+    </data>
 </root>

@@ -1,0 +1,26 @@
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Client.Extensions
+
+<div class="col-md-1 pointer-cursor" @onclick="@(() => NavigationManager.NavigateTo($"/{NavigateTo}"))">
+    <div class="card mb-1 bg-secondary-2">
+        <div class="card-body">
+            <h5 class="card-title jap-font txt-mid-pink text-center">@CharacterBaseInfo.Definition</h5>
+            <p class="text-center">
+                @CharacterBaseInfo.GetCharTypeStr()-@CharacterBaseInfo.JlptLevel.GetDisplayName()
+            </p>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required GetCharacterBaseInfoResponse CharacterBaseInfo { get; set; }
+
+    [Parameter, EditorRequired]
+    public required string NavigateTo { get; set; }
+    
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+}

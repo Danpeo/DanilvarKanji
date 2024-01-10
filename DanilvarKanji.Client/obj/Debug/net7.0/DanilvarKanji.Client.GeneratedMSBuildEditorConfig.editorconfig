@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZWdpc3RlclN1Y2Nlc3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/CharacterDetailsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xDaGFyYWN0ZXJEZXRhaWxzUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Characters/DisplayKanjiMeanings.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcmFjdGVyc1xEaXNwbGF5S2FuamlNZWFuaW5ncy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -130,6 +134,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmRXcmFwcGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/CharacterMinimalCard.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcQ2hhcmFjdGVyTWluaW1hbENhcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCharacterDefinition.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3RlckRlZmluaXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -220,6 +228,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/ErrorAlertAlt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXEVycm9yQWxlcnRBbHQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/Message.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXE1lc3NhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/SuccessAlert.razor]

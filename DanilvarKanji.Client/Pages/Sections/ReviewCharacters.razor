@@ -1,13 +1,20 @@
 @page "/ReviewCharacters"
 @using DanilvarKanji.Client.State
 
-<ReviewCharactersSection Learningid="@_learningId" />
+@if (!string.IsNullOrEmpty(_learningId))
+{
+    <ReviewCharactersSection Learningid="@_learningId" />
+}
+else
+{
+    <Message Text="No characters to review :(" />
+}
 
 @code {
     [Inject]
     public required AppState AppState { get; set; }
     
-    private string _learningId = null!;
+    private string? _learningId;
 
     protected override void OnInitialized()
     {

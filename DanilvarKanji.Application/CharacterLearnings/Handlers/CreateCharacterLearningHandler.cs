@@ -1,4 +1,3 @@
-using AutoMapper;
 using DanilvarKanji.Application.CharacterLearnings.Commands;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Errors;
@@ -14,14 +13,12 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
 {
     private readonly ICharacterLearningRepository _characterLearningRepository;
     private readonly ICharacterRepository _characterRepository;
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateCharacterLearningHandler(ICharacterLearningRepository characterLearningRepository, IMapper mapper,
+    public CreateCharacterLearningHandler(ICharacterLearningRepository characterLearningRepository,
         IUnitOfWork unitOfWork, ICharacterRepository characterRepository)
     {
         _characterLearningRepository = characterLearningRepository;
-        _mapper = mapper;
         _unitOfWork = unitOfWork;
         _characterRepository = characterRepository;
     }
@@ -33,15 +30,16 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
         */
 
         Character? character = await _characterRepository.GetAsync(request.CharacterId);
-        
+
         var characterLearning = new CharacterLearning()
         {
+            Id = request.Id,
             AppUser = request.AppUser,
             Character = character ?? new Character(),
             LearningProgress = new LearningProgress(),
             LearningState = request.LearningState
         };
-        
+
         _characterLearningRepository.Create(characterLearning);
         if (await _unitOfWork.CompleteAsync())
             return Result.Success();

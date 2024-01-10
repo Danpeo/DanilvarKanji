@@ -2,17 +2,20 @@
 
 :root {
     --dark-color-main: #1f1f1f;
+    --dark-color-main-2: #221f22;
     --dark-color-secondary: #2e2e31;
-    --pink-color-bright: #ff0059;
-    --pink-color-mid: #ec3664;
-    --pink-color-light: #f87ba6;
-    --pink-color-pale: #f69eb9;
+    --dark-color-secondary-2: #2d2a2e;
+    --pink-color-bright: #ff4863;
+    --pink-color-mid: #f95668;
+    --pink-color-light: #ff6d82;
+    --pink-color-pale: #f68d9b;
     --white-color: #e8e8e8;
     --gray-color: #4d4c4c;
     --red-color-dim: rgba(224, 71, 71, 0.35);
     --red-color: #f13434;
     --green-color: #2df17e;
     --green-color-2: #20cb98;
+    --green-color-dim: #9de3aa;
 }
 
 .txt-bright-pink {
@@ -31,6 +34,10 @@
     color: var(--green-color-2) !important;
 }
 
+.txt-green-dim {
+    color: var(--green-color-dim) !important;
+}
+
 .txt-white {
     color: var(--white-color) !important;
 }
@@ -47,8 +54,16 @@
     background-color: var(--dark-color-main) !important;
 }
 
+.bg-main-2 {
+    background-color: var(--dark-color-main-2) !important;
+}
+
 .bg-secondary {
     background-color: var(--dark-color-secondary) !important;
+}
+
+.bg-secondary-2 {
+    background-color: var(--dark-color-secondary-2) !important;
 }
 
 .bg-light-pink {
@@ -117,6 +132,18 @@
 
 .animated-blink-bg {
     animation: blink-bg 3s linear infinite;
+}
+
+.btn-primary {
+    background-color: var(--pink-color-light);
+    border-color: var(--pink-color-mid);
+    color: var(--white-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--pink-color-bright);
+    border-color: var(--pink-color-bright);
+    color: var(--white-color);
 }
 
 .btn-outline-primary {

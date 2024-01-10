@@ -86,7 +86,10 @@
 
             var parameters = new ModalParameters()
                 .Add(nameof(ConfirmCancelBase.Message), "Hello, World!")
-                .Add(nameof(ConfirmCancelBase.OnConfirm), () => { NavigationManager.NavigateTo($"/review/{characterLearning?.Id}"); });
+                .Add(nameof(ConfirmCancelBase.OnConfirm), () =>
+                {
+                    NavigationManager.NavigateTo($"/review/{characterLearning?.Id}");
+                });
 
             ModalService.Show<ConfirmCancelBase>("Are you finished", parameters, options);
         }

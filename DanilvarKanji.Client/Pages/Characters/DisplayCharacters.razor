@@ -9,7 +9,7 @@
            @bind:event="oninput"
            type="search"
            placeholder="Search for a character..."
-           class="form-control bg-main no-border txt-light-pink main-font"/>
+           class="form-control bg-secondary-2 no-border txt-light-pink main-font"/>
 
     <div class="ms-2">
         <button @onclick="SearchForCharacter" class="btn btn-outline-primary" type="submit">Search</button>
@@ -18,11 +18,11 @@
 
 @if (_characterItems == null)
 {
-    <DisplayLoading></DisplayLoading>
+    <DisplayLoading/>
 }
 else if (!_characterItems.Any())
 {
-    <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
+    <Message Text="No characters found" />
 }
 else
 {
@@ -30,7 +30,7 @@ else
     {
         <div class="col-md-3 mb-2">
             <a class="pointer-cursor" @onclick="@(async () => await OnSelected.InvokeAsync(character))">
-                <div class="card bg-main">
+                <div class="card bg-secondary-2">
                     <div class="card-body">
                         <h1 class="card-title display-1 mb-3 jap-font txt-mid-pink text-center">
                             @if (character.Definition != null)
@@ -45,25 +45,25 @@ else
                         }
                         @if (character.Kunyomis is {Count: > 0})
                         {
-                            <p class="card-text txt-white main-font">
+                            <p class="card-text txt-green-dim main-font">
                                 <DisplayKunyomi Character="character" MaxReadingsToDisplay="3"/>
                             </p>
                         }
                         else
                         {
-                            <p class="card-text txt-white main-font">-----</p>
+                            <p class="card-text txt-green-dim main-font">-----</p>
                         }
                         @if (character.Onyomis is {Count: > 0 })
                         {
-                            <p class="card-text txt-white main-font">
+                            <p class="card-text txt-green-dim main-font">
                                 <DisplayOnyomi Character="character" MaxReadingsToDisplay="3"/>
                             </p>
                         }
                         else
                         {
-                            <p class="card-text txt-white main-font">-----</p>
+                            <p class="card-text txt-green-dim main-font">-----</p>
                         }
-                        <p class="card-text txt-gray jap-font">
+                        <p class="card-text txt-gray">
                             JLPT @character.JlptLevel.GetDisplayName()
                         </p>
                     </div>

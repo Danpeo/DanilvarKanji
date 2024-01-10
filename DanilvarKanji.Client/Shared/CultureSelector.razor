@@ -4,13 +4,12 @@
 @inject ILocalStorageService LocalStorage
 @inject IStringLocalizer<App> Loc
 
-<span class="custom-select txt-bright-pink">
-    <i class="fa fa-language txt-mid-pink"></i>
-    
-    <select class="styled-select bg-secondary txt-white" @onchange="NewCultureSelectedAsync">
+<i class="fa fa-language txt-mid-pink mx-1"></i>
+<div class="col-md-1">
+    <select class="form-select bg-secondary-2 txt-green-dim" @onchange="NewCultureSelectedAsync">
         @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
         {
-            @if (SelectedCulture != null && culture == SelectedCulture)
+            @if (_selectedCulture != null && culture == _selectedCulture)
             {
                 <option selected value="@culture.Culture">@culture.Name</option>
             }
@@ -20,19 +19,20 @@
             }
         }
     </select>
-</span>
+</div>
+
 
 @code
 {
-    CultureWithName SelectedCulture = null;
+    private CultureWithName? _selectedCulture;
 
     protected override async Task OnInitializedAsync()
     {
         string? culture = await LocalStorage.GetItemAsync<string>("culture");
         if (culture == "")
-            SelectedCulture = LocalizerSettings.NeutralCulture;
+            _selectedCulture = LocalizerSettings.NeutralCulture;
         else
-            SelectedCulture = (LocalizerSettings.SupportedCulturesWithName
+            _selectedCulture = (LocalizerSettings.SupportedCulturesWithName
                 .Where(x => x.Culture == culture))
                 .FirstOrDefault();
     }
