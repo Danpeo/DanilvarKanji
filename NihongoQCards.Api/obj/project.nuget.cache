@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tXUGcLf3fKi5sjdUjDyqZ2ib2njX9RluQe/znlxefxmEO6F1B/yvrD7gYZq8y0a+62rnAH21vJNSwh1fKn+ehw==",
+  "dgSpecHash": "ocTRSZ8U6z/4Zy3/Q/ugChNv8iQxsjHghmFvLqfmtBQj1TXN+tuPQxcE9j+K4HnLOhlXvSLnfNZ28GkRHZToEw==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\NihongoQCards.Api\\DanilvarKanji.Api.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\cloudinarydotnet\\1.22.0\\cloudinarydotnet.1.22.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\danilvar.random\\1.0.0\\danilvar.random.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fastexpressioncompiler\\3.3.4\\fastexpressioncompiler.3.3.4.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",

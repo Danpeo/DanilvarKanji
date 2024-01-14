@@ -3,6 +3,12 @@
 @using DanilvarKanji.Shared.Responses.Character
 
 
+<div class="d-flex">
+    <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/Characters/init-add"))" class="btn btn-primary mb-2">
+        Add New
+    </button>
+</div>
+
 <div class="input-group mb-2">
     <input @onkeydown="SearchForCharacterKey"
            @bind="_searchTerm"
@@ -22,13 +28,18 @@
 }
 else if (!_characterItems.Any())
 {
-    <Message Text="No characters found" />
+    <Message Text="No characters found"/>
 }
 else
 {
     @foreach (GetAllFromCharacterResponse character in _characterItems)
     {
         <div class="col-md-3 mb-2">
+            <HasAnyRole Roles="@(new[] { "Admin", "SuperAdmin" })">
+                <button @onclick=@(async () => { await DeleteCharacter(character); }) class="btn btn-danger">
+                    Delete
+                </button>
+            </HasAnyRole>
             <a class="pointer-cursor" @onclick="@(async () => await OnSelected.InvokeAsync(character))">
                 <div class="card bg-secondary-2">
                     <div class="card-body">
@@ -73,13 +84,16 @@ else
     }
     if (string.IsNullOrEmpty(_searchTerm))
     {
-        <div class="mt-3 mb-3 justify-content-center d-flex">
+        @*<div class="mt-3 mb-3 justify-content-center d-flex">
             <button type="button" class="mid-three-d-btn no-outline mb-4" @onclick="OnUpdateContentClick">
-                @*
+                $1$
                 <i class="text-center gg-arrow-down-o"></i>
-            *@
+            #1#
                 SHOW MORE
             </button>
+        </div>*@
+        <div class="d-grid gap-2 mb-4">
+            <BigButton OnClickAsync="OnUpdateContentClick" Text="Show More"/>
         </div>
     }
 }

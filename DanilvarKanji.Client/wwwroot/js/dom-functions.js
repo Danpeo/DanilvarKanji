@@ -38,3 +38,8 @@ function addClassesToElementForTime(elementId, cssClasses, time) {
         removeClassesFromElement(elementId, cssClasses);
     }, time);
 }
+
+function changeElementValue(elementId, value) {
+    const element = document.getElementById(elementId);
+    element.value = value;
+}

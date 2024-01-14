@@ -21,11 +21,14 @@ public class DeleteCharacterHandler : IRequestHandler<DeleteCharacterCommand, Re
 
     public async Task<Result> Handle(DeleteCharacterCommand request, CancellationToken cancellationToken)
     {
-        await _characterRepository.DeleteAsync(request.Id);
-        
-        if (await _unitOfWork.CompleteAsync())
-            return Result.Success();
+        if (await _characterRepository.Exist(request.Id))
+        {
+            await _characterRepository.DeleteAsync(request.Id);
 
-        return Result.Failure(General.UnProcessableRequest);
+            if (await _unitOfWork.CompleteAsync())
+                return Result.Success();
+        }
+
+        return Result.Failure(CharacterErr.NotFound);
     }
 }

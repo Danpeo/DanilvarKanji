@@ -3,15 +3,10 @@
 @using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.Characters
 
-@if (_KAD_Kanji is not null)
-{
-    @_KAD_Kanji.Kanji
-}
-
 <PageTitle>Add Character - @AppDisplaySettings.AppTitle</PageTitle>
 
 <h1 class="mt-5 mb-4 animated-blink main-font display-3">
-    Add Character
+    Add New Character
 </h1>
 
 <EditForm Model="_createCharacterRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
@@ -20,7 +15,8 @@
     <FormSection Title="Character Basic Details" HelpText="Character basic details common for all cultures">
 
         <FormFieldSet Label="Definition" LabelFor="characterDefinition" HelpText="">
-            <InputText @bind-Value="_createCharacterRequest.Definition" class="form-control bg-main txt-green-dim jap-font no-border" id="characterDefinition" placeholder="見"/>
+            <InputText @bind-Value="_createCharacterRequest.Definition" 
+                       class="form-control bg-main txt-green-dim jap-font no-border" id="characterDefinition" placeholder="見"/>
             <ValidationMessage For="@(() => _createCharacterRequest.Definition)"/>
         </FormFieldSet>
 

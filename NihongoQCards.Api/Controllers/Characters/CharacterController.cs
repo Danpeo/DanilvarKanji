@@ -5,6 +5,7 @@ using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Domain.Primitives;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;
@@ -12,6 +13,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OData.Edm;
+using EnumHelper = DanilvarKanji.Infrastructure.Common.EnumHelper;
 
 namespace DanilvarKanji.Controllers.Characters;
 
@@ -144,17 +147,25 @@ public class CharacterController : ApiController
                 () => NotFound("The character was not found or an error occurred during the update."));
     }
 
-
+    [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteAsync(string id)
     {
         Result result = await Mediator.Send(new DeleteCharacterCommand(id));
 
         if (result.IsSuccess)
             return Ok();
-        return NotFound("The character was not found or an error occurred during the delete.");
+        
+        return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
     }
 
+    [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpDelete("All")]
     public async Task<IActionResult> DeleteAllAsync()
     {
@@ -162,6 +173,7 @@ public class CharacterController : ApiController
 
         if (result.IsSuccess)
             return Ok();
-        return NotFound("An error occurred during the delete.");
+        
+        return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
     }
 }

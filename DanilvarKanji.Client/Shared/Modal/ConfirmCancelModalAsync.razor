@@ -2,7 +2,7 @@
 <div>
     <p>@Message</p>
 
-    <button @onclick="OnConfirm.Invoke" class="btn btn-primary bg-light-pink txt-dark">@ConfirmText</button>
+    <button @onclick="OnConfirmHandler" class="btn btn-primary bg-light-pink txt-dark">@ConfirmText</button>
     <button @onclick="Cancel" class="btn btn-secondary">@DenyText</button>
 </div>
 
@@ -11,18 +11,23 @@
     [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
     
     [Parameter, EditorRequired]
-    public required string Message { get; set; }
+    public EventCallback OnConfirm { get; set; }
 
     [Parameter, EditorRequired]
-    public required Action OnConfirm { get; set; }
-    
+    public required string Message { get; set; }
+
     [Parameter]
     public string ConfirmText { get; set; } = "Confirm";
 
     [Parameter]
     public string DenyText { get; set; } = "Deny";
-    
+
+    private async Task OnConfirmHandler()
+    {
+        await OnConfirm.InvokeAsync();
+    }
+
     async Task Close() =>  await BlazoredModal.CloseAsync(ModalResult.Ok(true));
     async Task Cancel() => await BlazoredModal.CancelAsync();
 
-} 
+}

@@ -1,12 +1,9 @@
-<h2 class="display-6 txt-white main-font">
+<h2 class="display-6">
     Your Review Queue
 </h2>
 
 <div class="ms-2 pb-4">
-    <button onclick="@(() => { NavManager.NavigateTo($"/review/{Learningid}"); })"
-            class="btn mid-three-d-btn no-outline mb-2">
-        Review
-    </button>
+    <BigButton Text="Review" OnClick="@(() => { NavManager.NavigateTo($"/review/{Learningid}"); })"/>
 </div>
 
 <DisplayReviewQueue/>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Aoe/0bftew0gLPQue0xbaLDpyiL4HWxwrp6rX5wAGHI=",
+  "Hash": "a1ZQa6c98NUWQqq7tb1Bh24BgflceNPTLwyxfCrmI/Y=",
   "Source": "DanilvarKanji.Api",
   "BasePath": "_content/DanilvarKanji.Api",
   "Mode": "Default",
@@ -349,6 +349,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\lib\\net7.0\\Danilvar.Entity.dll"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Danilvar.Random.dll",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Danilvar.Random.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\.nuget\\packages\\danilvar.random\\1.0.0\\lib\\net7.0\\Danilvar.Random.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Danilvar.ValueObject.dll",
@@ -6277,6 +6296,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Net.Http.dll"
+    },
+    {
+      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\compressed\\bek5d0qs3t.gz",
+      "SourceId": "DanilvarKanji.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Danilvar.Random.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Danilvar.Random.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Danilvar.Random.dll"
     },
     {
       "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\obj\\Debug\\net7.0\\compressed\\bervsu384b.gz",

@@ -8,5 +8,7 @@ public static class General
         "General.UnProcessableRequest",
         "The server could not process the request.");
 
-    public static Error ServerError => new Error("General.ServerError", "The server encountered an unrecoverable error.");
+
+    public static Error ServerError =>
+        new Error("General.ServerError", "The server encountered an unrecoverable error.");
 }

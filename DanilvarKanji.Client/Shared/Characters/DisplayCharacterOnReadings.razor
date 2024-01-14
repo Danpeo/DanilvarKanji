@@ -1,13 +1,13 @@
 @using DanilvarKanji.Shared.Responses.Character
 
-<CardWrapper HelpText="ONYOMI">
+<CardWrapper Title="Onyomi">
     @if (Character.Onyomis != null && _onReadings.Any())
     {
         <ul style="list-style-type: none;">
             @foreach (string reading in _onReadings)
             {
                 <li>
-                    <p class="main-font txt-mid-pink display-3">
+                    <p class="main-font txt-mid-pink fs-2">
                         @reading
                     </p>
                 </li>
@@ -17,7 +17,7 @@
     }
     else
     {
-        <p class="main-font txt-mid-pink display-6">
+        <p class="main-font txt-mid-pink fs-2">
             No Onyomi Readings!
         </p>
     }

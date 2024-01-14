@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "h74dIGTG+lYs3joeaz2x6FXsV7Tf5dB/VqFOjbVqnPovdwIHHzq41bPm6RHg229scsISyxxTj4q8jAXOcuXxWw==",
+  "dgSpecHash": "7xQdptAjlW58oIF2gmIoqOLSZAembvujH7ZQIyx8breyaymDdDCTAlHhJq9vPkbLZPcD2PH6bQyryUq3Dh7OtQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client.Tests\\DanilvarKanji.Client.Tests.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\bunit.web\\1.25.3\\bunit.web.1.25.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\danilvar.random\\1.0.0\\danilvar.random.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",

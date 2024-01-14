@@ -1,0 +1,37 @@
+@using Blazored.Modal.Services
+<div>
+    <p>@Message</p>
+
+    <button @onclick="Confirm" class="btn btn-primary bg-light-pink txt-dark">@ConfirmText</button>
+    <button @onclick="Cancel" class="btn btn-secondary">@DenyText</button>
+</div>
+
+@code {
+
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+    
+    [Parameter, EditorRequired]
+    public required string Message { get; set; }
+
+    [Parameter, EditorRequired]
+    public required Action OnConfirm { get; set; }
+    
+    [Parameter]
+    public string ConfirmText { get; set; } = "Confirm";
+
+    [Parameter]
+    public string DenyText { get; set; } = "Deny";
+
+    private async Task Confirm()
+    {
+        OnConfirm.Invoke();
+        await Close();
+    }
+    
+    public async Task Close() =>  
+        await BlazoredModal.CloseAsync(ModalResult.Ok(true));
+    
+    private async Task Cancel() => 
+        await BlazoredModal.CancelAsync();
+
+} 

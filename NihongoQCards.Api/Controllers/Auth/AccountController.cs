@@ -21,6 +21,8 @@ public class AccountController : ApiController
     }
 
     [HttpPost("Register")]
+    [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IdentityError), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterAsync([FromBody] RegisterUserRequest? request)
     {
         var command = _mapper.Map<RegisterUserCommand>(request);
@@ -28,7 +30,7 @@ public class AccountController : ApiController
         IdentityResult result = await Mediator.Send(command);
 
         if (result.Succeeded)
-            return Ok(command);
+            return Ok(result);
 
         foreach (IdentityError error in result.Errors)
             ModelState.AddModelError(error.Code, error.Description);
@@ -37,6 +39,8 @@ public class AccountController : ApiController
     }
 
     [HttpPost("Login")]
+    [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> LoginAsync([FromBody] LoginUserRequest? request)
     {
         var command = _mapper.Map<LoginUserCommand>(request);
@@ -47,6 +51,8 @@ public class AccountController : ApiController
     }
 
     [HttpPost("Refresh")]
+    [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RefreshAsync([FromBody] RefreshKeyRequest? request)
     {
         var command = _mapper.Map<RefreshKeyCommand>(request);
@@ -56,13 +62,25 @@ public class AccountController : ApiController
         return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
     }
 
+    [HttpPost("GeneratePassword")]
+    [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GeneratePasswordAsync([FromBody] GeneratePasswordRequest request)
+    {
+        string result = await Mediator.Send(new GeneratePasswordCommand(request.Length, request.RequireLowercase,
+            request.RequierUppercase, request.RequireNonAlphanumeric));
+
+        return Ok(result);
+    }
+
     [Authorize]
     [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> RevokeAsync([FromServices] UserManager<AppUser> _userManager)
     {
         string? username = HttpContext.User.Identity?.Name;
 
-        if (username is null) 
+        if (username is null)
             return Unauthorized();
 
         var user = await _userManager.FindByNameAsync(username);
@@ -73,10 +91,10 @@ public class AccountController : ApiController
         user.RefreshToken = null;
 
         await _userManager.UpdateAsync(user);
-        
+
         return Ok();
     }
-    
+
     [Authorize]
     [HttpPatch("{userId}:ConfirmEmail")]
     public async Task<IActionResult> ConfirmEmailAsync(string userId)
@@ -92,17 +110,5 @@ public class AccountController : ApiController
             ModelState.AddModelError(error.Code, error.Description);
 
         return BadRequest(ModelState);
-    }
-
-    [Authorize]
-    [HttpGet("IsAuthorized")]
-    public async Task<IActionResult> IsAuthorized()
-    {
-        if (User.Identity.IsAuthenticated)
-        {
-            return Ok();
-        }
-
-        return NotFound();
     }
 }

@@ -69,6 +69,15 @@
           "lib/net7.0/Danilvar.Entity.dll": {}
         }
       },
+      "Danilvar.Random/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Danilvar.Random.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Danilvar.Random.dll": {}
+        }
+      },
       "Danilvar.ValueObject/1.0.0": {
         "type": "package",
         "compile": {
@@ -1242,6 +1251,15 @@
         },
         "runtime": {
           "lib/net7.0/Danilvar.Entity.dll": {}
+        }
+      },
+      "Danilvar.Random/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Danilvar.Random.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Danilvar.Random.dll": {}
         }
       },
       "Danilvar.ValueObject/1.0.0": {
@@ -2446,6 +2464,19 @@
         "danilvar.entity.1.0.0.nupkg.sha512",
         "danilvar.entity.nuspec",
         "lib/net7.0/Danilvar.Entity.dll"
+      ]
+    },
+    "Danilvar.Random/1.0.0": {
+      "sha512": "4ngsrHBOXzllfI5TTBbQAlG+e0QVEDVlHIQFEM1nGX3rmZIKH9rXhBWcWtWo8lASCD3Dg4YsfMQsQxMuazzWmw==",
+      "type": "package",
+      "path": "danilvar.random/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "danilvar.random.1.0.0.nupkg.sha512",
+        "danilvar.random.nuspec",
+        "lib/net7.0/Danilvar.Random.dll"
       ]
     },
     "Danilvar.ValueObject/1.0.0": {
@@ -4468,6 +4499,7 @@
       "Blazored.Modal >= 7.1.0",
       "Blazored.SessionStorage >= 2.4.0",
       "Danilvar.Components >= 1.0.0",
+      "Danilvar.Random >= 1.0.0",
       "DanilvarKanji.Shared >= 1.0.0",
       "FluentValidation >= 11.8.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.11",
@@ -4543,6 +4575,10 @@
           "Blazored.SessionStorage": {
             "target": "Package",
             "version": "[2.4.0, )"
+          },
+          "Danilvar.Random": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "FluentValidation": {
             "target": "Package",
@@ -4626,29 +4662,5 @@
         "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
-      "libraryId": "System.IdentityModel.Tokens.Jwt",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g9c-28fc-mcx2",
-      "libraryId": "System.IdentityModel.Tokens.Jwt",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    }
-  ]
+  }
 }

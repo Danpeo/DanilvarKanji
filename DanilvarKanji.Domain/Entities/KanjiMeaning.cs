@@ -16,8 +16,9 @@ public class KanjiMeaning : Entity
         
     }
 
-    public KanjiMeaning(ICollection<StringDefinition> definitions)
+    public KanjiMeaning(float priority, ICollection<StringDefinition> definitions)
     {
+        Priority = priority;
         Definitions = definitions;
     }
 }

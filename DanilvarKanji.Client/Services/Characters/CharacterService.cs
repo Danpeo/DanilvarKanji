@@ -257,4 +257,24 @@ public class CharacterService : ICharacterService
             throw;
         }
     }
+    
+    public async Task DeleteCharacterAsync(string id)
+    {
+        try
+        {
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Characters/{id}");
+
+            if (response.IsSuccessStatusCode)
+                return;
+
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
 }

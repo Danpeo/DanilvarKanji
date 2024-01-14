@@ -180,6 +180,15 @@
           "lib/net7.0/Danilvar.Entity.dll": {}
         }
       },
+      "Danilvar.Random/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Danilvar.Random.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Danilvar.Random.dll": {}
+        }
+      },
       "Danilvar.ValueObject/1.0.0": {
         "type": "package",
         "compile": {
@@ -2958,6 +2967,7 @@
           "Blazored.Modal": "7.1.0",
           "Blazored.SessionStorage": "2.4.0",
           "Danilvar.Components": "1.0.0",
+          "Danilvar.Random": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.11",
@@ -3257,6 +3267,19 @@
         "danilvar.entity.1.0.0.nupkg.sha512",
         "danilvar.entity.nuspec",
         "lib/net7.0/Danilvar.Entity.dll"
+      ]
+    },
+    "Danilvar.Random/1.0.0": {
+      "sha512": "4ngsrHBOXzllfI5TTBbQAlG+e0QVEDVlHIQFEM1nGX3rmZIKH9rXhBWcWtWo8lASCD3Dg4YsfMQsQxMuazzWmw==",
+      "type": "package",
+      "path": "danilvar.random/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "danilvar.random.1.0.0.nupkg.sha512",
+        "danilvar.random.nuspec",
+        "lib/net7.0/Danilvar.Random.dll"
       ]
     },
     "Danilvar.ValueObject/1.0.0": {

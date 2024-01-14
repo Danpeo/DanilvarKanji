@@ -9,14 +9,14 @@
 
 @if (_kanjiMeanings is not null)
 {
-    <CardWrapper HelpText="MEANINGS">
+    <CardWrapper Title="Meanings">
         <p class="main-font">
 
             @for (int i = 0; i < _kanjiMeanings.Count; i++)
             {
                 string resultMeaning = $"{char.ToUpper(_kanjiMeanings[i][0])}{_kanjiMeanings[i][1..]}";
 
-                <span class="@(i == 0 ? "display-3 txt-mid-pink" : "display-6 txt-light-pink")">
+                <span class="@(i == 0 ? "fs-1 txt-mid-pink" : "fs-3 txt-green-dim")">
                     @resultMeaning
 
                     @if (i < _kanjiMeanings.Count - 1)

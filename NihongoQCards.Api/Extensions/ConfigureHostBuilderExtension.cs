@@ -1,6 +1,5 @@
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Services.Auth;
-using DanilvarKanji.Services.Characters;
 using DanilvarKanji.Services.Images;
 using Lamar;
 using Lamar.Microsoft.DependencyInjection;

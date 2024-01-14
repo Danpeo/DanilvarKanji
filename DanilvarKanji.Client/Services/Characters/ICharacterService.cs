@@ -19,4 +19,5 @@ public interface ICharacterService
     Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest request);
     Task<IEnumerable<GetCharacterBaseInfoResponse?>?> ListLearnQueueAsync(int pageNumber = 0, int pageSize = 0);
     Task<GetCharacterBaseInfoResponse?> GetNextInLearnQueue();
+    Task DeleteCharacterAsync(string id);
 }

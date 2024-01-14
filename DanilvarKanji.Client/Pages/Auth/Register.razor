@@ -16,18 +16,18 @@
 
     <FormSection Title="Register" HelpText="Register new account">
 
-        <FormFieldSet Label="User Name" LabelFor="userName" HelpText="">
-            <InputText @bind-Value="_registerUserRequest.UserName" class="form-control bg-secondary txt-white jap-font no-border" id="userName" placeholder="User Name"/>
+        <FormFieldSet Label="User Name" LabelFor="@UsernameElid" HelpText="">
+            <InputText @bind-Value="_registerUserRequest.UserName" class="form-control bg-secondary txt-white jap-font no-border" id="@UsernameElid" placeholder="User Name"/>
             <ValidationMessage For="@(() => _registerUserRequest.UserName)"/>
         </FormFieldSet>
 
-        <FormFieldSet Label="Email" LabelFor="email" HelpText="">
-            <InputText @bind-Value="_registerUserRequest.Email" class="form-control bg-secondary txt-white jap-font no-border" id="email" placeholder="Email"/>
+        <FormFieldSet Label="Email" LabelFor="@EmailElId" HelpText="">
+            <InputText @bind-Value="_registerUserRequest.Email" class="form-control bg-secondary txt-white jap-font no-border" id="@EmailElId" placeholder="Email"/>
             <ValidationMessage For="@(() => _registerUserRequest.Email)"/>
         </FormFieldSet>
 
-        <FormFieldSet Label="Password" LabelFor="password">
-            <InputText @bind-Value="_registerUserRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border" id="password" placeholder="Password"/>
+        <FormFieldSet Label="Password" LabelFor="@PasswordElId">
+            <InputText @bind-Value="_registerUserRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border" id="@PasswordElId" placeholder="Password"/>
             <ValidationMessage For="@(() => _registerUserRequest.Password)"/>
         </FormFieldSet>
 
@@ -37,7 +37,8 @@
         </FormFieldSet>
 
         <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
-            <InputSelect @bind-Value="_registerUserRequest.JlptLevel" class="form-control bg-secondary txt-white no-border" id="jlptLevel">
+            <InputSelect @bind-Value="_registerUserRequest.JlptLevel"
+                         class="form-control bg-secondary txt-white no-border" id="jlptLevel">
                 <option value="@JlptLevel.N5">JLPT N5</option>
                 <option value="@JlptLevel.N4">JLPT N4</option>
                 <option value="@JlptLevel.N3">JLPT N3</option>
@@ -61,8 +62,14 @@
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">
-                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _registerUserRequest = new RegisterUserRequest())">Reset</button>
-                <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Register</button>
+                <button class="btn btn-lg btn-outline-secondary" type="button" @onclick="GenerateCredentials">
+                    Generate Credentials
+                </button>
+                <button class="btn btn-lg btn-outline-secondary" type="button"
+                        @onclick="@(() => _registerUserRequest = new RegisterUserRequest())">
+                    Reset
+                </button>
+                <button class="btn btn-lg btn-primary" type="submit">Register</button>
             </div>
         </div>
     </div>

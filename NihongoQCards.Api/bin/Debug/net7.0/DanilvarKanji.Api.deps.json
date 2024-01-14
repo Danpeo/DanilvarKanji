@@ -195,6 +195,14 @@
           }
         }
       },
+      "Danilvar.Random/1.0.0": {
+        "runtime": {
+          "lib/net7.0/Danilvar.Random.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Danilvar.ValueObject/1.0.0": {
         "runtime": {
           "lib/net7.0/Danilvar.ValueObject.dll": {
@@ -1837,6 +1845,7 @@
           "Blazored.Modal": "7.1.0",
           "Blazored.SessionStorage": "2.4.0",
           "Danilvar.Components": "1.0.0",
+          "Danilvar.Random": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.11",
@@ -1996,6 +2005,13 @@
       "sha512": "sha512-6vQqZsz0Cx/9gmSBz2Ea9U/zZVjwXA6+xS49PAq68mDj+3PMGgtrjAhrhsqCOzJIj1tFCq1GYyYG37IWaNyKgw==",
       "path": "danilvar.entity/1.0.0",
       "hashPath": "danilvar.entity.1.0.0.nupkg.sha512"
+    },
+    "Danilvar.Random/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4ngsrHBOXzllfI5TTBbQAlG+e0QVEDVlHIQFEM1nGX3rmZIKH9rXhBWcWtWo8lASCD3Dg4YsfMQsQxMuazzWmw==",
+      "path": "danilvar.random/1.0.0",
+      "hashPath": "danilvar.random.1.0.0.nupkg.sha512"
     },
     "Danilvar.ValueObject/1.0.0": {
       "type": "package",

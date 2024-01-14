@@ -16,4 +16,7 @@ public class Dom
 
     public async Task AddClassesToElement(string elementId, IEnumerable<string> cssClasses) => 
         await _jsRuntime.InvokeVoidAsync("addClassesToElement", elementId, cssClasses);
+
+    public async Task ChangeElementValue(string elementId, string value) => 
+        await _jsRuntime.InvokeVoidAsync("changeElementValue", elementId, value);
 }

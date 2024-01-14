@@ -152,3 +152,4 @@ C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Blazored.Modal.dll
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\JsWrapper\Npm\package-lock.json
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\JsWrapper\Npm\package.json
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Danilvar.Random.dll

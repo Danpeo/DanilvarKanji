@@ -3,12 +3,12 @@
 
 @if (Character.Mnemonics is not null)
 {
-    <CardWrapper HelpText="MNEMONICS">
+    <CardWrapper Title="Mnemonics">
         <ul style="list-style-type: none;">
             @foreach (string mnemonic in _characterMnemonics)
             {
                 <li>
-                    <p class="main-font txt-mid-pink display-6">
+                    <p class="main-font txt-mid-pink fs-2">
                         @{
                             string resultMeaning = $"{char.ToUpper(mnemonic[0])}{mnemonic[1..]}";
                         }

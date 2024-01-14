@@ -1,14 +1,14 @@
 <div class="@ContentContainerStyles">
-    @ContentDictionary[_currentContent];
+    @ContentDictionary[_currentContent]
 
     @if (_currentContent > 0)
     {
-        <button class="btn mt-3 mb-4 @ButtonStyle" @onclick="PrevContent">@PrevBtnText</button>
+        <button class="btn mt-3 mb-2 @ButtonStyle" @onclick="PrevContent">@PrevBtnText</button>
     }
 
     @if (_currentContent < ContentDictionary.Count)
     {
-        <button class="btn mt-3 mb-4 @ButtonStyle" @onclick="NextContent">@NextBtnText</button>
+        <button class="btn mt-3 mb-2 @ButtonStyle" @onclick="NextContent">@NextBtnText</button>
     }
 </div>
 
