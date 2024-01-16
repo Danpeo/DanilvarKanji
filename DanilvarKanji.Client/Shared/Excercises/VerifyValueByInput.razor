@@ -58,7 +58,7 @@
     private string _enteredValue = string.Empty;
     private bool _isCorrect;
     private int _attempts;
-    private const string ValueInputId = "valueInput";
+        private const string ValueInputId = "valueInput";
 
     private async Task Verify()
     {
@@ -70,6 +70,12 @@
 
             await Js.Dom.AddClassesToElementForTime(ValueInputId,
                 new[] { "bg-success", "txt-dark" }, 250);
+
+            if (OnCorrect != null)
+            {
+                OnCorrect?.Invoke();
+                OnCorrect = null;
+            }
         }
         else
         {
@@ -79,8 +85,11 @@
                 new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
                 500);
 
-            OnIncorrect?.Invoke();
-            OnIncorrect = null;
+            if (OnIncorrect != null)
+            {
+                OnIncorrect?.Invoke();
+                OnIncorrect = null;
+            }
         }
 
         StateHasChanged();

@@ -52,7 +52,7 @@
     [Inject]
     public required ILocalizationService LocalizationService { get; set; }
 
-    private const int AfterAnswerDelay = 250;
+        private const int AfterAnswerDelay = 250;
     private int _currentExcercise;
     private bool _reviewFinished;
 
@@ -80,9 +80,32 @@
     private void InitExercises()
     {
         _exercises.Add(@<div class="fade-in-el">
+                           <VerifyOnyomiByPointing
+                               CharacterForVerification="_character"
+                               Culture="_culture"
+                               OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Onyomi))"
+                               OnIncorrect="OnIncorrectMeaning"/>
+                       </div>);
+        
+        _exercises.Add(@<div class="fade-in-el">
+                           <VerifyKunyomiByPointing
+                               CharacterForVerification="_character"
+                               Culture="_culture"
+                               OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Kunyomi))"
+                               OnIncorrect="OnIncorrectMeaning"/>
+                       </div>);
+        
+        _exercises.Add(@<div class="fade-in-el">
+                           <VerifyOnyomiByInput
+                               OnConfirm="OnConfirmMeaning"
+                               OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Onyomi))"
+                               OnIncorrect="OnIncorrectMeaning"
+                               CharacterForVerification="_character"/>
+                       </div>);
+        _exercises.Add(@<div class="fade-in-el">
                            <VerifyKunyomiByInput
                                OnConfirm="OnConfirmMeaning"
-                               OnCorrect="OnCorrectMeaning"
+                               OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Kunyomi))"
                                OnIncorrect="OnIncorrectMeaning"
                                CharacterForVerification="_character"/>
                        </div>);
@@ -90,13 +113,13 @@
                            <VerifyMeaningByPointing
                                CharacterForVerification="_character"
                                Culture="_culture"
-                               OnCorrect="OnCorrectMeaningPoint"
+                               OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Meaning))"
                                OnIncorrect="OnIncorrectMeaning"/>
                        </div>);
         _exercises.Add(@<div class="fade-in-el">
                            <VerifyMeaningByInput
                                OnConfirm="OnConfirmMeaning"
-                               OnCorrect="OnCorrectMeaning"
+                               OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Meaning))"
                                OnIncorrect="OnIncorrectMeaning"
                                CharacterForVerification="_character"/>
                        </div>);
@@ -106,22 +129,22 @@
                        </div>);
     }
 
-    private async Task OnCorrectMeaningPoint()
+    private async Task OnCorrectPointExercise(ExerciseType exerciseType)
     {
         await Task.Delay(AfterAnswerDelay);
-        await OnCorrectMeaning();
+        await OnCorrectExercise(ReviewType.Point, exerciseType);
     }
-
-    private async Task OnCorrectMeaning()
+    
+    private async Task OnCorrectExercise(ReviewType reviewType, ExerciseType exerciseType)
     {
-        await AddMeaningExerciseToReviewSession(isCorrect: true);
+        await AddMeaningExerciseToReviewSession(isCorrect: true, reviewType, exerciseType);
 
         OnConfirmMeaning();
     }
 
     private async Task OnIncorrectMeaning()
     {
-        await AddMeaningExerciseToReviewSession(isCorrect: false);
+        await AddMeaningExerciseToReviewSession(isCorrect: false, ReviewType.Input, ExerciseType.Meaning);
     }
 
     private void OnConfirmMeaning()
@@ -143,15 +166,15 @@
         }
     }
 
-    private async Task AddMeaningExerciseToReviewSession(bool isCorrect)
+    private async Task AddMeaningExerciseToReviewSession(bool isCorrect, ReviewType reviewType, ExerciseType exerciseType)
     {
         _reviewSession.Exercises.Add(await ExerciseService
             .CreateExerciseAsync(new CreateExerciseRequest(_character!.Id,
                 isCorrect: isCorrect,
-                ReviewType.Input,
-                ExerciseType.Meaning)));
+                reviewType,
+                exerciseType)));
 
         await AppState.ReviewSessionState.UpdateReviewSession(_reviewSession);
     }
-
+    
 }

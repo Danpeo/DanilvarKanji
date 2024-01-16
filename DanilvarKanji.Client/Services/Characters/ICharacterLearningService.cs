@@ -14,6 +14,12 @@ public interface ICharacterLearningService
 
     Task<GetCharacterLearningBaseInfoResponse?> GetNextInReviewQueueAsync();
     Task<GetAllFromCharacterLearningResponse?> GetLearningAsync(string? id);
-    Task<GetRandomMeaningsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId, Culture culture,
+    Task<GetRandomItemsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId, Culture culture,
+        int qty = 4);
+
+    Task<GetRandomItemsInReviewResponse?> GetRandomKunReadingsInReviewAsync(string characterId,
+        int qty = 4);
+
+    Task<GetRandomItemsInReviewResponse?> GetRandomOnReadingsInReviewAsync(string characterId,
         int qty = 4);
 }

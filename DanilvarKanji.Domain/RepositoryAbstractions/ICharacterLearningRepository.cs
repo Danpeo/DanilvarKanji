@@ -21,4 +21,6 @@ public interface ICharacterLearningRepository
     Task<bool> AnyToReview(AppUser appUser);
     Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser);
     Task<List<string>> GetRandomMeaningsInReviewQueueAsync(string characterId, AppUser user, Culture culture, int qty);
+    Task<List<string>> GetRandomKunyomisInReviewQueueAsync(string characterId, AppUser user, int qty);
+    Task<List<string>> GetRandomOnyomisInReviewQueueAsync(string characterId, AppUser user, int qty);
 }

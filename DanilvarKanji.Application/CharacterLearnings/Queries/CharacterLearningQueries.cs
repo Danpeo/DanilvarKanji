@@ -19,3 +19,9 @@ public record GetNextToReviewInQueueQuery(AppUser AppUser) : IRequest<GetCharact
 
 public record GetRandomMeaningsInReviewQuery
     (string CharacterId, AppUser AppUser, Culture Culture, int Qty) : IRequest<(List<string> random, string correct)>;
+
+public record GetRandomKunReadingsInReviewQuery
+    (string CharacterId, AppUser AppUser, int Qty) : IRequest<(List<string> random, string correct)>;
+
+public record GetRandomOnReadingsInReviewQuery
+    (string CharacterId, AppUser AppUser, int Qty) : IRequest<(List<string> random, string correct)>;

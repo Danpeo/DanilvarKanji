@@ -26,4 +26,8 @@ public interface ICharacterRepository
     string? GetRandomMeaningFromCharacter(string id, Culture culture);
     void DeleteRange(IEnumerable<string> ids);
     void DeleteAll();
+    string? GetRandomKunyomiFromCharacter(string id);
+    string? GetRandomOnyomiFromCharacter(string id);
+    Task<List<string>> GetRandomKunReadingsInLearnQueueAsync(AppUser user, int qty);
+    Task<List<string>> GetRandomOnReadingsInLearnQueueAsync(AppUser user, int qty);
 }

@@ -111,11 +111,12 @@ public class CharacterRepository : ICharacterRepository
     {
         var random = new Random();
 
-        var kanjiMeanings = _context.Characters
+        var kanjiMeanings =  _context.Characters
             .Include(character => character.KanjiMeanings)
             .ThenInclude(kanjiMeaning => kanjiMeaning.Definitions)
             .FirstOrDefault(x => x.Id == id)
             ?.KanjiMeanings;
+        
         if (kanjiMeanings != null)
         {
             IEnumerable<string?> meanings = kanjiMeanings
@@ -135,6 +136,52 @@ public class CharacterRepository : ICharacterRepository
         return default;
     }
 
+    public string? GetRandomKunyomiFromCharacter(string id)
+    {
+        var random = new Random();
+
+        var kunReadings = _context.Characters
+            .Include(character => character.Kunyomis)
+            .FirstOrDefault(x => x.Id == id)
+            ?.Kunyomis;
+
+        if (kunReadings != null)
+        {
+            List<string> randomKunyomi = kunReadings
+                .Select(k => k.JapaneseWriting)
+                .OrderBy(_ => random.Next())
+                .Take(1)
+                .ToList();
+
+            return randomKunyomi[0];
+        }
+
+        return default;
+    }
+    
+    public string? GetRandomOnyomiFromCharacter(string id)
+    {
+        var random = new Random();
+
+        var onReadings = _context.Characters
+            .Include(character => character.Onyomis)
+            .FirstOrDefault(x => x.Id == id)
+            ?.Onyomis;
+
+        if (onReadings != null)
+        {
+            List<string> randomOnyomi = onReadings
+                .Select(k => k.JapaneseWriting)
+                .OrderBy(_ => random.Next())
+                .Take(1)
+                .ToList();
+
+            return randomOnyomi[0];
+        }
+
+        return default;
+    }
+    
     public async Task<List<string>> GetRandomMeaningsInLearnQueueAsync(AppUser user, Culture culture, int qty)
     {
         var random = new Random();
@@ -155,6 +202,42 @@ public class CharacterRepository : ICharacterRepository
         return shuffledDefinitions;
     }
 
+    public async Task<List<string>> GetRandomKunReadingsInLearnQueueAsync(AppUser user, int qty)
+    {
+        var random = new Random();
+
+        var kuns = await GetLearnQueue(user, user.JlptLevel)
+            .AsSplitQuery()
+            .SelectMany(c => c.Kunyomis)
+            .Select(k => k.JapaneseWriting)
+            .ToListAsync();
+
+        List<string> shuffledKuns = kuns
+            .OrderBy(_ => random.Next())
+            .Take(qty)
+            .ToList();
+
+        return shuffledKuns;
+    }
+    
+    public async Task<List<string>> GetRandomOnReadingsInLearnQueueAsync(AppUser user, int qty)
+    {
+        var random = new Random();
+
+        var kuns = await GetLearnQueue(user, user.JlptLevel)
+            .AsSplitQuery()
+            .SelectMany(c => c.Onyomis)
+            .Select(k => k.JapaneseWriting)
+            .ToListAsync();
+
+        List<string> shuffledKuns = kuns
+            .OrderBy(_ => random.Next())
+            .Take(qty)
+            .ToList();
+
+        return shuffledKuns;
+    }
+    
     public async Task<IEnumerable<Character>> SearchAsync(string searchTerm)
     {
         return await GetCharactersWithRelatedData()

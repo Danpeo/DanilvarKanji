@@ -65,12 +65,13 @@ public class CharacterLearningService : ICharacterLearningService
         }
     }
 
-    public async Task<GetRandomMeaningsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId,
+    public async Task<GetRandomItemsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId,
         Culture culture, int qty = 4)
     {
         try
         {
-            string uri = $"api/CharacterLearnings/GetRandomMeaningsInReview?characterId={characterId}&culture={culture}&qty={qty}";
+            string uri =
+                $"api/CharacterLearnings/GetRandomMeaningsInReview?characterId={characterId}&culture={culture}&qty={qty}";
             HttpResponseMessage response = await _httpClient.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
@@ -78,7 +79,61 @@ public class CharacterLearningService : ICharacterLearningService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetRandomMeaningsInReviewResponse>();
+                return await response.Content.ReadFromJsonAsync<GetRandomItemsInReviewResponse>();
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<GetRandomItemsInReviewResponse?> GetRandomKunReadingsInReviewAsync(string characterId,
+        int qty = 4)
+    {
+        try
+        {
+            string uri =
+                $"api/CharacterLearnings/GetRandomKunReadingsInReview?characterId={characterId}&qty={qty}";
+            HttpResponseMessage response = await _httpClient.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                    return default;
+
+                return await response.Content.ReadFromJsonAsync<GetRandomItemsInReviewResponse>();
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<GetRandomItemsInReviewResponse?> GetRandomOnReadingsInReviewAsync(string characterId,
+        int qty = 4)
+    {
+        try
+        {
+            string uri =
+                $"api/CharacterLearnings/GetRandomOnReadingsInReview?characterId={characterId}&qty={qty}";
+            HttpResponseMessage response = await _httpClient.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                    return default;
+
+                return await response.Content.ReadFromJsonAsync<GetRandomItemsInReviewResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();

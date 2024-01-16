@@ -69,6 +69,44 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         return shuffledDefinitions;
     }
 
+    public async Task<List<string>> GetRandomKunyomisInReviewQueueAsync(string characterId, AppUser user, int qty)
+    {
+        var random = new Random();
+
+        var kuns = await GetReviewQueue(user)
+            .Where(x => x.Character.Id != characterId)
+            .AsSplitQuery()
+            .SelectMany(cl => cl.Character.Kunyomis!)
+            .Select(k => k.JapaneseWriting)
+            .ToListAsync();
+
+        var shuffledKuns = kuns
+            .OrderBy(_ => random.Next())
+            .Take(qty)
+            .ToList();
+
+        return shuffledKuns;
+    }
+    
+    public async Task<List<string>> GetRandomOnyomisInReviewQueueAsync(string characterId, AppUser user, int qty)
+    {
+        var random = new Random();
+
+        var ons = await GetReviewQueue(user)
+            .Where(x => x.Character.Id != characterId)
+            .AsSplitQuery()
+            .SelectMany(cl => cl.Character.Onyomis!)
+            .Select(k => k.JapaneseWriting)
+            .ToListAsync();
+
+        var shuffledOns = ons
+            .OrderBy(_ => random.Next())
+            .Take(qty)
+            .ToList();
+
+        return shuffledOns;
+    }
+    
     public async Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser) =>
         await GetReviewQueue(appUser).FirstOrDefaultAsync();
 

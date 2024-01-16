@@ -1,0 +1,60 @@
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Domain.Enumerations
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Client.JsWrapper
+
+
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
+
+    [Parameter, EditorRequired]
+    public Culture Culture { get; set; }
+
+    /// <summary>
+    /// Invoked only once, then assigned NULL
+    /// </summary>
+    [Parameter, EditorRequired]
+    public Func<Task>? OnCorrect { get; set; }
+    
+    /// <summary>
+    /// Invoked only once, then assigned NULL
+    /// </summary>
+    [Parameter, EditorRequired]
+    public Func<Task>? OnIncorrect { get; set; }
+    
+    [Parameter]
+    public int OptionCount { get; set; } = 4;
+
+    [Inject]
+    public required Js Js { get; set; }
+
+    [Inject]
+    public required ICharacterLearningService CharacterLearningService { get; set; }
+    
+    protected async Task OnIncorrectAnswer(string buttonId)
+    {
+        await Js.Dom.AddClassesToElementForTime(buttonId, new[] { "shake" }, 500);
+        await Js.Dom.AddClassesToElement(buttonId, new[] { "danger-border", "bg-danger", "txt-dark" });
+
+        if (OnIncorrect != null)
+        {
+            await OnIncorrect.Invoke();
+            OnIncorrect = null;
+        }
+    }
+
+    protected async Task OnCorrectAnswer(string buttonId)
+    {
+        await Js.Dom.AddClassesToElement(buttonId, new[] { "bg-success", "txt-dark" });
+
+        if (OnCorrect != null)
+        {
+            await OnCorrect.Invoke();
+            OnCorrect = null;
+            OnIncorrect = null;
+        }
+    }
+}

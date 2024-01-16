@@ -249,11 +249,29 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Какое кунное чтение у .
+        /// </summary>
+        internal static string WhatIsKunyomiFor {
+            get {
+                return ResourceManager.GetString("WhatIsKunyomiFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Какое значение у .
         /// </summary>
         internal static string WhatIsMeaningFor {
             get {
                 return ResourceManager.GetString("WhatIsMeaningFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Какое онное чтение у .
+        /// </summary>
+        internal static string WhatIsOnyomiFor {
+            get {
+                return ResourceManager.GetString("WhatIsOnyomiFor", resourceCulture);
             }
         }
     }

@@ -4,6 +4,7 @@ using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Domain.Primitives;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
@@ -33,7 +34,7 @@ public class CharacterLearningController : ApiController
         AppUser? user = await _userManager.GetUserAsync(User);
 
         var command = new CreateCharacterLearningCommand(user!, request.CharacterId, request.LearningState, request.Id);
-        
+
         return await Result.Create(command, General.UnProcessableRequest)
             .Bind(c => Mediator.Send(c))
             .Match(() => CreatedAtAction("Get", new { id = command.Id }, command),
@@ -88,16 +89,60 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpGet("GetRandomMeaningsInReview")]
+    [ProducesResponseType(typeof(GetRandomItemsInReviewResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetRandomMeaningsInReviewAsync(string characterId, Culture culture = Culture.EnUS,
         int qty = 4)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        var meanings = await Mediator
+        var (random, correct) = await Mediator
             .Send(new GetRandomMeaningsInReviewQuery(characterId, user!, culture, qty));
 
-        var response = new GetRandomMeaningsInReviewResponse(meanings.random, meanings.correct);
+        if (string.IsNullOrEmpty(correct))
+            return NotFound(CharLearning.NotFoundInReview);
         
-        return meanings.random.Any() ? Ok(response) : NoContent();
+        var response = new GetRandomItemsInReviewResponse(random, correct);
+
+        return random.Any() ? Ok(response) : NoContent();
+    }
+
+    [HttpGet("GetRandomKunReadingsInReview")]
+    [ProducesResponseType(typeof(GetRandomItemsInReviewResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetRandomKunReadingsInReviewAsync(string characterId, int qty = 4)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        var (random, correct) = await Mediator
+            .Send(new GetRandomKunReadingsInReviewQuery(characterId, user!, qty));
+
+        if (string.IsNullOrEmpty(correct))
+            return NotFound(CharLearning.NotFoundInReview);
+        
+        var response = new GetRandomItemsInReviewResponse(random, correct);
+
+        return random.Any() ? Ok(response) : NoContent();
+    }
+    
+    [HttpGet("GetRandomOnReadingsInReview")]
+    [ProducesResponseType(typeof(GetRandomItemsInReviewResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetRandomOnReadingsInReviewAsync(string characterId, int qty = 4)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        var (random, correct) = await Mediator
+            .Send(new GetRandomOnReadingsInReviewQuery(characterId, user!, qty));
+
+        if (string.IsNullOrEmpty(correct))
+            return NotFound(CharLearning.NotFoundInReview);
+        
+        var response = new GetRandomItemsInReviewResponse(random, correct);
+
+        return random.Any() ? Ok(response) : NoContent();
     }
 }

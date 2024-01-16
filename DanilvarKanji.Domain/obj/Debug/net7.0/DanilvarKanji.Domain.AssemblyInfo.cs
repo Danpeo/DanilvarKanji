@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DanilvarKanji.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+452c7c8e14a96af0e908e7058b39250330fbdd89")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88aa96d897da7957613b00a7b17b44220e402213")]
 [assembly: System.Reflection.AssemblyProductAttribute("DanilvarKanji.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DanilvarKanji.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

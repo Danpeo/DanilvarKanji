@@ -84,4 +84,10 @@
     <data name="WhatIsMeaningFor" xml:space="preserve">
         <value>Какое значение у </value>
     </data>
+    <data name="WhatIsKunyomiFor" xml:space="preserve">
+        <value>Какое кунное чтение у </value>
+    </data>
+    <data name="WhatIsOnyomiFor" xml:space="preserve">
+        <value>Какое онное чтение у </value>
+    </data>
 </root>

@@ -174,8 +174,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1bHR1cmVTZWxlY3Rvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyByPointingBase.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5QnlQb2ludGluZ0Jhc2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyKunyomiByInput.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5S3VueW9taUJ5SW5wdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyKunyomiByPointing.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5S3VueW9taUJ5UG9pbnRpbmcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyMeaningByInput.razor]
@@ -184,6 +192,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyMeaningByPointing.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5TWVhbmluZ0J5UG9pbnRpbmcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyOnyomiByInput.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5T255b21pQnlJbnB1dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyOnyomiByPointing.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5T255b21pQnlQb2ludGluZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyValueByInput.razor]
@@ -196,6 +212,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/WhatIsMeaningOf.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcV2hhdElzTWVhbmluZ09mLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/WhatIsOnyomiOf.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcV2hhdElzT255b21pT2YucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Forbidden.razor]
