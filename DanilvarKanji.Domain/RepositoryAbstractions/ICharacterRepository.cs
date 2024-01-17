@@ -6,9 +6,9 @@ namespace DanilvarKanji.Domain.RepositoryAbstractions;
 
 public interface ICharacterRepository
 {
-    Task<bool> Exist(string id);
+    ValueTask<bool> ExistAsync(string id);
     Task DeleteAsync(string id);
-    Task<bool> AnyExist();
+    ValueTask<bool> AnyExistAsync();
     Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
         Culture culture);
     void Create(Character character);
@@ -21,7 +21,7 @@ public interface ICharacterRepository
         JlptLevel jlptLevel = JlptLevel.N5);
 
     Task<Character?> GetNextInLearnQueueAsync(AppUser user);
-    Task<bool> AnyInLearnQueue(AppUser user);
+    ValueTask<bool> AnyInLearnQueueAsync(AppUser user);
     Task<List<string>> GetRandomMeaningsInLearnQueueAsync(AppUser user, Culture culture, int qty);
     string? GetRandomMeaningFromCharacter(string id, Culture culture);
     void DeleteRange(IEnumerable<string> ids);

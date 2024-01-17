@@ -16,7 +16,7 @@ public class SearchCharactersHandler : IRequestHandler<SearchCharactersQuery, IE
 
     public async Task<IEnumerable<Character>> Handle(SearchCharactersQuery request, CancellationToken cancellationToken)
     {
-        if (!await _characterRepository.AnyExist())
+        if (!await _characterRepository.AnyExistAsync())
             return Enumerable.Empty<Character>();
         
         if (string.IsNullOrEmpty(request.SearchTerm) || request.SearchTerm.ToLower() == "any")

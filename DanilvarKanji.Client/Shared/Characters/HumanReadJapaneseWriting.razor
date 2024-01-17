@@ -1,0 +1,39 @@
+@using System.Text.RegularExpressions
+@{
+    // Given the input string '。abc', the regular expression would capture abc
+    var regex = new Regex(@"\。([^)]+)");
+    MatchCollection matches = regex.Matches(JapaneseWriting);
+
+    if (matches.Count > 0)
+    {
+        int startIndex = 0;
+
+        foreach (Match match in matches)
+        {
+            int matchIndex = match.Index;
+            int matchLength = match.Length;
+
+            <span>@JapaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
+
+            <span class="@CapturedTextStyle">@match.Groups[1].Value</span>
+
+            startIndex = matchIndex + matchLength;
+        }
+
+        <span>@JapaneseWriting.Substring(startIndex)</span>
+    }
+    else
+    {
+        @JapaneseWriting
+    }
+}
+
+
+@code {
+    [Parameter, EditorRequired]
+    public required string JapaneseWriting { get; set; }
+
+    [Parameter]
+    public string CapturedTextStyle { get; set; } = "txt-white";
+
+}

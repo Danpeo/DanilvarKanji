@@ -13,8 +13,10 @@
     {
         string japaneseWriting = kunyomiList[i].JapaneseWriting;
 
-        // Given the input string (abc), the regular expression would capture abc
-        var regex = new Regex(@"\(([^)]+)\)");
+        <HumanReadJapaneseWriting JapaneseWriting="@japaneseWriting" />
+        
+        @*// Given the input string '。abc', the regular expression would capture abc
+        var regex = new Regex(@"\。([^)]+)");
         MatchCollection matches = regex.Matches(japaneseWriting);
 
         if (matches.Count > 0)
@@ -38,11 +40,11 @@
         else
         {
             @japaneseWriting
-        }
+        }*@
         
         if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
         {
-            <span>, </span>
+            <span>、</span>
         }
     }
 }

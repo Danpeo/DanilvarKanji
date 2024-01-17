@@ -1,0 +1,9 @@
+@page "/Review-Result/{}"
+@using DanilvarKanji.Client.State
+
+<h3>ReviewResult</h3>
+
+@code {
+    [Parameter, EditorRequired]
+    public required ReviewSession ReviewSession { get; set; }
+}

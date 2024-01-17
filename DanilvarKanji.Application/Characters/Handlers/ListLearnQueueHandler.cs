@@ -22,7 +22,7 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
     public async Task<IEnumerable<GetCharacterBaseInfoResponse>> Handle(ListLearnQueueQuery request,
         CancellationToken cancellationToken)
     {
-        if (await _characterRepository.AnyInLearnQueue(request.AppUser))
+        if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
         {
             var characters = await _characterRepository
                 .ListLearnQueueAsync(request.PaginationParams, request.AppUser,

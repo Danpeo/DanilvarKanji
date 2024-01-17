@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DanilvarKanji.Application.Characters.Commands;
 
-public record UpdateCharacterCommand : IRequest<Result>
+public record UpdateCharacterCommand : IRequest<Result<string>>
 {
     public string Id { get; set; }
     public string? Definition { get; set; }

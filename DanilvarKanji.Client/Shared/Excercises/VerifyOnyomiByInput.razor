@@ -1,5 +1,6 @@
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.JsWrapper
+@using DanilvarKanji.Client.Extensions
 
 <WhatIsOnyomiOf CharacterForVerification="CharacterForVerification"/>
 
@@ -34,7 +35,7 @@
                && character
                    .Onyomis
                    .Any(
-                       k => k.JapaneseWriting == enteredValue
+                       k => k.JapaneseWriting == enteredValue.IgnoreNonJapanese()
                    );
     }
 

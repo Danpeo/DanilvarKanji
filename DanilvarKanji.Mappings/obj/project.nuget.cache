@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Gi/KBBOpl4aj55yXloDO6rLdSaqEtRwhEDTXrJKxLMaQqrJeiOb75ggaudg5Q2KeCFOZ596RNMmoq267ZT7iJw==",
+  "dgSpecHash": "vp3cXp58xVtpAlgYBCSbUCXIidQmD9WK1DAMmEGNhmlyo2HmT/WcvlPTYffJE/fbsUPmTxhPHiwtgJcuWq7r/Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.0\\fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

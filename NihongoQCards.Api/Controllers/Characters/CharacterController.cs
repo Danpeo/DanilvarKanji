@@ -5,7 +5,6 @@ using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
-using DanilvarKanji.Domain.Primitives;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;
@@ -13,8 +12,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OData.Edm;
-using EnumHelper = DanilvarKanji.Infrastructure.Common.EnumHelper;
 
 namespace DanilvarKanji.Controllers.Characters;
 
@@ -22,6 +19,7 @@ public class CharacterController : ApiController
 {
     private readonly IMapper _mapper;
     private readonly UserManager<AppUser> _userManager;
+    
 
     public CharacterController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
         base(mediator)
@@ -36,11 +34,27 @@ public class CharacterController : ApiController
     public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterRequest? request)
     {
         var command = _mapper.Map<CreateCharacterCommand>(request);
-        var character = _mapper.Map<Character>(command);
+ 
+        var result = await Mediator.Send(command);
 
-        return await Result.Create(command, General.UnProcessableRequest)
-            .Bind(c => Mediator.Send(c))
-            .Match(() => CreatedAtAction("Get", new { id = character.Id }, character), BadRequest);
+        if (result.IsFailure)
+            return HandleFailure(result);
+
+        return CreatedAtAction("Get", new { id = result.Value }, command);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateAsync(string id, [FromBody] UpdateCharacterRequest request)
+    {
+        var command = _mapper.Map<UpdateCharacterCommand>(request);
+        command.Id = id;
+        
+        var result = await Mediator.Send(command);
+        
+        if (result.IsFailure)
+            return HandleFailure(result);
+
+        return Ok(command);
     }
 
     [HttpGet]
@@ -131,20 +145,6 @@ public class CharacterController : ApiController
             await Mediator.Send(new GetKanjiMeaningsByPriorityQuery(id, culture, takeQty));
 
         return kanjiMeanings.Any() ? Ok(kanjiMeanings) : NotFound();
-    }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(string id, [FromBody] UpdateCharacterRequest request)
-    {
-        var command = _mapper.Map<UpdateCharacterCommand>(request);
-        command.Id = id;
-
-        var character = _mapper.Map<Character>(command);
-
-        return await Result.Create(command, General.UnProcessableRequest)
-            .Bind(c => Mediator.Send(c))
-            .Match<IActionResult>(() => CreatedAtAction("Get", new { id = character.Id }, character),
-                () => NotFound("The character was not found or an error occurred during the update."));
     }
 
     [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]

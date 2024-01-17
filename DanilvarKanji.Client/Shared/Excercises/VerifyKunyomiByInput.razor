@@ -1,5 +1,8 @@
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.JsWrapper
+@using System.Text
+@using DanilvarKanji.Client.Extensions
+@using WanaKanaNet
 
 <WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
 
@@ -34,7 +37,7 @@
                && character
                    .Kunyomis
                    .Any(
-                       k => k.JapaneseWriting == enteredValue
+                       k => k.JapaneseWriting == enteredValue.IgnoreNonJapanese()
                    );
     }
 

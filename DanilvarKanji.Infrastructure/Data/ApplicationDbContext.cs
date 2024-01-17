@@ -17,6 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<Kunyomi> Kunyomis { get; set; }
     public DbSet<Onyomi> Onyomis { get; set; }
     public DbSet<Exercise> Exercises { get; set; }
+    public DbSet<ReviewSession> ReviewSessions { get; set; }
     public DbSet<StringDefinition> StringDefinitions { get; set; }
     public DbSet<TEST> Tests { get; set; }
 

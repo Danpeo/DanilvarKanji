@@ -4,8 +4,8 @@
 
 @if (_kunReadings != null)
 {
-    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification" />
-    
+    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
+
     <div class="d-grid gap-4">
         @for (var i = 0; i < _kunReadings.RandomItems.Count; i++)
         {
@@ -15,7 +15,7 @@
                     style="font-size: 1.75rem"
                     id="@buttonId"
                     @onclick="() => CheckAnswer(reading, buttonId)">
-                @reading
+                <HumanReadJapaneseWriting JapaneseWriting="@reading"/>
             </button>
         }
     </div>
@@ -31,7 +31,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _kunReadings = 
+        _kunReadings =
             await CharacterLearningService.GetRandomKunReadingsInReviewAsync(CharacterForVerification.Id, OptionCount);
     }
 

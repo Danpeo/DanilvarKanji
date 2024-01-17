@@ -64,6 +64,18 @@
           }
         }
       },
+      "FluentValidation.AspNetCore/11.3.0": {
+        "dependencies": {
+          "FluentValidation": "11.8.0",
+          "FluentValidation.DependencyInjectionExtensions": "11.8.0"
+        },
+        "runtime": {
+          "lib/net6.0/FluentValidation.AspNetCore.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.3.0.0"
+          }
+        }
+      },
       "FluentValidation.DependencyInjectionExtensions/11.8.0": {
         "dependencies": {
           "FluentValidation": "11.8.0",
@@ -430,6 +442,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "DanilvarKanji.Infrastructure": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
+          "FluentValidation.AspNetCore": "11.3.0",
           "FluentValidation.DependencyInjectionExtensions": "11.8.0",
           "MediatR": "12.1.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14"
@@ -516,6 +529,13 @@
       "sha512": "sha512-TiEaaYqSIAS+wXQv46LRm8Mca092XYNePD0n231Hqlkmm5FuToZoWnjI1ef/vJUxBzqR7/k2vaVQXxijNgVKRQ==",
       "path": "fluentvalidation/11.8.0",
       "hashPath": "fluentvalidation.11.8.0.nupkg.sha512"
+    },
+    "FluentValidation.AspNetCore/11.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jtFVgKnDFySyBlPS8bZbTKEEwJZnn11rXXJ2SQnjDhZ56rQqybBg9Joq4crRLz3y0QR8WoOq4iE4piV81w/Djg==",
+      "path": "fluentvalidation.aspnetcore/11.3.0",
+      "hashPath": "fluentvalidation.aspnetcore.11.3.0.nupkg.sha512"
     },
     "FluentValidation.DependencyInjectionExtensions/11.8.0": {
       "type": "package",

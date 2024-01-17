@@ -21,7 +21,7 @@ public class GetNextInLearnQueueHandler : IRequestHandler<GetNextInLearnQueueQue
 
     public async Task<GetCharacterBaseInfoResponse?> Handle(GetNextInLearnQueueQuery request, CancellationToken cancellationToken)
     {
-        if (await _characterRepository.AnyInLearnQueue(request.AppUser))
+        if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
         {
             Character? character = await _characterRepository.GetNextInLearnQueueAsync(request.AppUser);
             return _mapper.Map<GetCharacterBaseInfoResponse>(character);

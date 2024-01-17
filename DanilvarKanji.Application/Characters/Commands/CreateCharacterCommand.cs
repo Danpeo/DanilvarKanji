@@ -5,7 +5,7 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Commands;
 
-public record CreateCharacterCommand : IRequest<Result>
+public record CreateCharacterCommand : IRequest<Result<string>>
 {
     public string? Definition { get; set; }
 

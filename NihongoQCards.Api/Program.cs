@@ -1,5 +1,7 @@
 using System.Text;
 using DanilvarKanji.Application;
+using DanilvarKanji.Application.Behaviors;
+using DanilvarKanji.Application.Characters.Validators;
 using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Extensions;
@@ -9,6 +11,7 @@ using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.OptionsSetup;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
@@ -70,6 +73,10 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddMappings();
+builder.Services.AddValidatorsFromAssemblyContaining<Application>();
+
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBeh<,>));
+
 
 
 // Add services to the container.
@@ -83,14 +90,6 @@ builder.Services.AddMappings();
 var modelBuilder = new ODataConventionModelBuilder();
 
 builder.Services.AddControllers()
-    /*.AddOData(options => options
-        .Select()
-        .Filter()
-        .OrderBy()
-        .Expand()
-        .Count()
-        .SetMaxTop(null)
-        .AddRouteComponents("odata", modelBuilder.GetEdmModel()))*/
     .AddJsonOptions(options => { });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -134,7 +133,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(policy =>
-        policy.WithOrigins(/*"http://localhost:7106", "https://localhost:7106", "http://localhost:7046",
+        policy.WithOrigins( /*"http://localhost:7106", "https://localhost:7106", "http://localhost:7046",
                 "https://localhost:7046"*/"*")
             .AllowAnyMethod()
             .AllowAnyHeader()

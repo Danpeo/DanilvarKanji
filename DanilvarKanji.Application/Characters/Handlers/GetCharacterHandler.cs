@@ -17,7 +17,7 @@ public class GetCharacterHandler : IRequestHandler<GetCharacterQuery, Character?
 
     public async Task<Character?> Handle(GetCharacterQuery request, CancellationToken cancellationToken)
     {
-        if (await _characterRepository.Exist(request.Id))
+        if (await _characterRepository.ExistAsync(request.Id))
             return await _characterRepository.GetAsync(request.Id);
 
         return null;

@@ -1,14 +1,14 @@
 @using DanilvarKanji.Shared.Responses.Character
 
 <CardWrapper Title="Kunyomi">
-    @if (Character.Kunyomis != null  && _kunReadings.Any())
+    @if (Character.Kunyomis != null && _kunReadings.Any())
     {
         <ul style="list-style-type: none;">
             @foreach (string reading in _kunReadings)
             {
                 <li>
                     <p class="main-font txt-mid-pink fs-2">
-                        @reading
+                        <HumanReadJapaneseWriting JapaneseWriting="@reading" CapturedTextStyle="txt-green-dim"/>
                     </p>
                 </li>
             }

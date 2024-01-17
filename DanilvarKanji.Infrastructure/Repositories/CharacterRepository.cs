@@ -81,13 +81,13 @@ public class CharacterRepository : ICharacterRepository
     public void DeleteAll() => 
         _context.Characters.RemoveRange(_context.Characters);
 
-    public Task<bool> Exist(string id) =>
-        _context.Characters.AnyAsync(x => x.Id == id);
+    public async ValueTask<bool> ExistAsync(string id) => 
+        await _context.Characters.AnyAsync(x => x.Id == id);
 
-    public Task<bool> AnyExist() =>
-        _context.Characters.AnyAsync();
+    public async ValueTask<bool> AnyExistAsync() => 
+        await _context.Characters.AnyAsync();
 
-    public async Task<bool> AnyInLearnQueue(AppUser user)
+    public async ValueTask<bool> AnyInLearnQueueAsync(AppUser user)
         => await GetLearnQueue(user, user.JlptLevel).AnyAsync();
 
     public async Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty, Culture culture)

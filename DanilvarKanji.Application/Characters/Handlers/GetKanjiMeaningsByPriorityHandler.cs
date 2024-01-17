@@ -17,7 +17,7 @@ public class GetKanjiMeaningsByPriorityHandler : IRequestHandler<GetKanjiMeaning
 
     public async Task<IEnumerable<string>> Handle(GetKanjiMeaningsByPriorityQuery request, CancellationToken cancellationToken)
     {
-        if (!await _characterRepository.Exist(request.CharacterId))
+        if (!await _characterRepository.ExistAsync(request.CharacterId))
             return Enumerable.Empty<string>();
 
 

@@ -21,7 +21,7 @@ public class DeleteCharacterHandler : IRequestHandler<DeleteCharacterCommand, Re
 
     public async Task<Result> Handle(DeleteCharacterCommand request, CancellationToken cancellationToken)
     {
-        if (await _characterRepository.Exist(request.Id))
+        if (await _characterRepository.ExistAsync(request.Id))
         {
             await _characterRepository.DeleteAsync(request.Id);
 

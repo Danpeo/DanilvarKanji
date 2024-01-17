@@ -1,4 +1,3 @@
-using AutoMapper;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Errors;
@@ -9,20 +8,18 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Handlers;
 
-public class UpdateCharacterHandler : IRequestHandler<UpdateCharacterCommand, Result>
+public class UpdateCharacterHandler : IRequestHandler<UpdateCharacterCommand, Result<string>>
 {
     private readonly ICharacterRepository _characterRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
 
-    public UpdateCharacterHandler(ICharacterRepository characterRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    public UpdateCharacterHandler(ICharacterRepository characterRepository, IUnitOfWork unitOfWork)
     {
         _characterRepository = characterRepository;
         _unitOfWork = unitOfWork;
-        _mapper = mapper;
     }
 
-    public async Task<Result> Handle(UpdateCharacterCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(UpdateCharacterCommand request, CancellationToken cancellationToken)
     {
         var character = new Character()
         {
@@ -41,8 +38,8 @@ public class UpdateCharacterHandler : IRequestHandler<UpdateCharacterCommand, Re
         await _characterRepository.UpdateAsync(request.Id, character);
 
         if (await _unitOfWork.CompleteAsync())
-            return Result.Success();
+            return Result.Success(character.Id);
 
-        return Result.Failure(General.UnProcessableRequest);
+        return Result.Failure<string>(General.UnProcessableRequest);
     }
 }

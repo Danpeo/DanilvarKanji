@@ -21,12 +21,12 @@ public class Result
         Error = error;
     }
 
+
     public bool IsSuccess { get; set; }
 
     public bool IsFailure => !IsSuccess;
 
     public Error Error { get; }
-    public IEnumerable<Error> Errors => _errors;
 
     public static Result Success() => new(true, Error.None);
 
@@ -38,7 +38,7 @@ public class Result
 
 
     public static Result Failure(Error error) => new(false, error);
-
+    
     public static Result<TValue> Failure<TValue>(Error error) => new Result<TValue>(default!, false, error);
 
     public static Result Failed(params Error[]? errors)

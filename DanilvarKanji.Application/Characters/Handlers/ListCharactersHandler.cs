@@ -18,7 +18,7 @@ public class ListCharactersHandler : IRequestHandler<ListCharactersQuery, IEnume
     public async Task<IEnumerable<Character>> Handle(ListCharactersQuery request, CancellationToken cancellationToken)
     {
         
-        if (await _characterRepository.AnyExist())
+        if (await _characterRepository.AnyExistAsync())
             return await _characterRepository.ListAsync(request.PaginationParams);
 
         return Enumerable.Empty<Character>();

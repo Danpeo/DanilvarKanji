@@ -195,6 +195,9 @@ namespace DanilvarKanji.Migrations
                     b.Property<bool>("IsCorrect")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("ReviewSessionId")
+                        .HasColumnType("text");
+
                     b.Property<int>("ReviewType")
                         .HasColumnType("integer");
 
@@ -203,6 +206,8 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("AppUserId");
 
                     b.HasIndex("CharacterId");
+
+                    b.HasIndex("ReviewSessionId");
 
                     b.ToTable("Exercises");
                 });
@@ -303,6 +308,25 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("CharacterId");
 
                     b.ToTable("Onyomis");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Domain.Entities.ReviewSession", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ReviewDataTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("ReviewSessions");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.StringDefinition", b =>
@@ -585,6 +609,10 @@ namespace DanilvarKanji.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DanilvarKanji.Domain.Entities.ReviewSession", null)
+                        .WithMany("Exercises")
+                        .HasForeignKey("ReviewSessionId");
+
                     b.Navigation("AppUser");
 
                     b.Navigation("Character");
@@ -612,6 +640,17 @@ namespace DanilvarKanji.Migrations
                         .WithMany("Onyomis")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Domain.Entities.ReviewSession", b =>
+                {
+                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.StringDefinition", b =>
@@ -710,6 +749,11 @@ namespace DanilvarKanji.Migrations
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.KanjiMeaning", b =>
                 {
                     b.Navigation("Definitions");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Domain.Entities.ReviewSession", b =>
+                {
+                    b.Navigation("Exercises");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Domain.Entities.Word", b =>
