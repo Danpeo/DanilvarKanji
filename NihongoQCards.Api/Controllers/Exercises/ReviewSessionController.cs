@@ -1,4 +1,3 @@
-using DanilvarKanji.Application.Exercises.Commands;
 using DanilvarKanji.Application.Reviews.Commands;
 using DanilvarKanji.Application.Reviews.Queries;
 using DanilvarKanji.Domain.Entities;
@@ -12,11 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace DanilvarKanji.Controllers.Exercises;
 
 [Authorize]
-public class ReviewController : ApiController
+public class ReviewSessionController : ApiController
 {
     private readonly UserManager<AppUser> _userManager;
     
-    public ReviewController(IMediator mediator, UserManager<AppUser> userManager) : base(mediator)
+    public ReviewSessionController(IMediator mediator, UserManager<AppUser> userManager) : base(mediator)
     {
         _userManager = userManager;
     }

@@ -3,8 +3,9 @@
     "",
     "\\DanilvarKanji.Client",
     "\\DanilvarKanji.Client\\Shared",
-    "\\DanilvarKanji.Client\\Shared\\Users"
+    "\\DanilvarKanji.Client\\Shared\\Users",
+    "\\NihongoQCards.Api"
   ],
-  "SelectedNode": "\\DanilvarKanji.Client\\Shared\\Users\\GetUserName.razor",
+  "SelectedNode": "\\NihongoQCards.Api\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

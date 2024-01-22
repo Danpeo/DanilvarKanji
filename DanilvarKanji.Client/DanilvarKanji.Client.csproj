@@ -113,6 +113,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Models\Responses\JMdict\" />
       <Folder Include="Pages\Users\" />
     </ItemGroup>
 

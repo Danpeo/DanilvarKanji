@@ -8,6 +8,9 @@
 @using DanilvarKanji.Shared.Requests.Exercises
 @using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.State
+@using DanilvarKanji.Shared.Requests.Reviews
+@using DanilvarKanji.Shared.Responses.Exercise
+@using DanilvarKanji.Shared.Responses.Review
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -17,7 +20,7 @@
         @_exercises[_currentExcercise]
 
         <div class="d-grid gap-4 mt-4">
-            <button class="btn btn-lg btn-danger" @onclick="async () => { await OnIncorrectMeaning(); GoToNextExerciseOrFinish(); }">
+            <button class="btn btn-lg btn-danger" @onclick="async () => { await OnIncorrectMeaning(); await GoToNextExerciseOrFinish(); }">
                 Skip
             </button>
         </div>
@@ -52,6 +55,12 @@
     [Inject]
     public required ILocalizationService LocalizationService { get; set; }
 
+    [Inject]
+    public required IReviewService ReviewService { get; set; }
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
         private const int AfterAnswerDelay = 250;
     private int _currentExcercise;
     private bool _reviewFinished;
@@ -61,6 +70,8 @@
     private Culture _culture;
     private List<RenderFragment> _exercises = new();
     private ReviewSession _reviewSession;
+    private GetBaseReviewSessionResponse _reviewSessionResponse = new();
+    private CreateReviewSessionRequest _createReviewSessionRequest = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -86,7 +97,7 @@
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Onyomi))"
                                OnIncorrect="OnIncorrectMeaning"/>
                        </div>);
-        
+
         _exercises.Add(@<div class="fade-in-el">
                            <VerifyKunyomiByPointing
                                CharacterForVerification="_character"
@@ -94,7 +105,7 @@
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Kunyomi))"
                                OnIncorrect="OnIncorrectMeaning"/>
                        </div>);
-        
+
         _exercises.Add(@<div class="fade-in-el">
                            <VerifyOnyomiByInput
                                OnConfirm="OnConfirmMeaning"
@@ -134,7 +145,7 @@
         await Task.Delay(AfterAnswerDelay);
         await OnCorrectExercise(ReviewType.Point, exerciseType);
     }
-    
+
     private async Task OnCorrectExercise(ReviewType reviewType, ExerciseType exerciseType)
     {
         await AddMeaningExerciseToReviewSession(isCorrect: true, reviewType, exerciseType);
@@ -154,7 +165,7 @@
         StateHasChanged();
     }
 
-    private void GoToNextExerciseOrFinish()
+    private async Task GoToNextExerciseOrFinish()
     {
         if (_currentExcercise >= _exercises.Count - 1)
         {
@@ -164,17 +175,28 @@
         {
             _currentExcercise++;
         }
+
+        if (_reviewFinished)
+        {
+            GetBaseReviewSessionResponse? review = await ReviewService.CreateReviewSessionAsync(_createReviewSessionRequest);
+            NavigationManager.NavigateTo($"/review/Review-Result/{review?.Id}");
+        }
     }
 
     private async Task AddMeaningExerciseToReviewSession(bool isCorrect, ReviewType reviewType, ExerciseType exerciseType)
     {
-        _reviewSession.Exercises.Add(await ExerciseService
+        var exercise = await ExerciseService
             .CreateExerciseAsync(new CreateExerciseRequest(_character!.Id,
                 isCorrect: isCorrect,
                 reviewType,
-                exerciseType)));
+                exerciseType));
+
+        _createReviewSessionRequest.ExerciseIds.Add(exercise!.Id);
+
+
+        _reviewSession.Exercises.Add(exercise);
 
         await AppState.ReviewSessionState.UpdateReviewSession(_reviewSession);
     }
-    
+
 }

@@ -13,15 +13,12 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Host.AddLamarServices();
 
 builder.Services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -35,10 +32,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-
-/*
-builder.Services.AddODataQueryFilter();
-*/
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -133,11 +126,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(policy =>
-        policy.WithOrigins( /*"http://localhost:7106", "https://localhost:7106", "http://localhost:7046",
-                "https://localhost:7046"*/"*")
+        policy.WithOrigins("*")
             .AllowAnyMethod()
             .AllowAnyHeader()
-    //.WithHeaders(HeaderNames.ContentType)
 );
 
 app.UseHttpsRedirection();

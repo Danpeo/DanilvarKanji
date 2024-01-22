@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Danilvar.Components")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a663e0a0ecab8481fb1f24917d71702f4f82875")]
 [assembly: System.Reflection.AssemblyProductAttribute("Danilvar.Components")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Danilvar.Components")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

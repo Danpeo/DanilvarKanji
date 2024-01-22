@@ -1,9 +1,30 @@
-@page "/Review-Result/{}"
-@using DanilvarKanji.Client.State
+@page "/Review-Result/{ReviewSessionIdId}"
 
-<h3>ReviewResult</h3>
+@using DanilvarKanji.Shared.Responses.Review
+@using DanilvarKanji.Client.Services.Review
+
+@if (_reviewSession is null)
+{
+    <DisplayLoading/>
+}
+else
+{
+    <h3>@_reviewSession?.ReviewDataTime</h3>
+}
 
 @code {
+
     [Parameter, EditorRequired]
-    public required ReviewSession ReviewSession { get; set; }
+    public required string ReviewSessionId { get; set; }
+
+    [Inject]
+    public required IReviewService ReviewService { get; set; }
+
+    private GetBaseReviewSessionResponse? _reviewSession;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _reviewSession = await ReviewService.GetReviewSessionAsync(ReviewSessionId);
+    }
+
 }

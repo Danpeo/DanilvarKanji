@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DanilvarKanji.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f92d6fa1ed58383663163ee2db148e258bf56ebd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a663e0a0ecab8481fb1f24917d71702f4f82875")]
 [assembly: System.Reflection.AssemblyProductAttribute("DanilvarKanji.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DanilvarKanji.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

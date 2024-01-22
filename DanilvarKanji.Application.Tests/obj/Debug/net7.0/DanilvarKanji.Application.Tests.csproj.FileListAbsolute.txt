@@ -142,3 +142,4 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\DanilvarKanji.Application.Tests.genruntimeconfig.cache
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\ref\DanilvarKanji.Application.Tests.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin\Debug\net7.0\FluentValidation.AspNetCore.dll

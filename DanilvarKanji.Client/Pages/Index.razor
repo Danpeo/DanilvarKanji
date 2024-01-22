@@ -6,6 +6,8 @@
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 @using System.Net
+@using DanilvarKanji.Client.Models.Responses.JMdict
+@using DanilvarKanji.Client.Services.Dictionary
 
 @inject IStringLocalizer<Index> Loc
 @inject NavigationManager NavManager
@@ -77,11 +79,14 @@
     }
 
     <DisplayReviewQueue PageNumber="1" PageSize="10"/>
-
+    
 </Authorized>
 
 @code
 {
+    [Inject]
+    public IDictionaryService DictionaryService { get; set; }
+    
     [Inject]
     public required ICharacterService CharacterService { get; set; }
 
@@ -91,7 +96,7 @@
     private GetCharacterBaseInfoResponse? _characterToLearn;
     private GetCharacterLearningBaseInfoResponse? _learning;
     private string _errorMessage = string.Empty;
-
+    
     protected override async Task OnInitializedAsync()
     {
         await GetCharacterNextInLearn();

@@ -12,6 +12,7 @@ using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Client.Services.Characters;
+using DanilvarKanji.Client.Services.Dictionary;
 using DanilvarKanji.Client.Services.KanjiApiDev;
 using DanilvarKanji.Client.Services.Review;
 using DanilvarKanji.Client.State;
@@ -35,10 +36,16 @@ builder.Services.AddHttpClient("KanjiApiDev")
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["KanjiApiDev"] ?? ""))
     .AddHttpMessageHandler<AuthHandler>();
 
+builder.Services.AddHttpClient("JMdict")
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["JMdict"] ?? ""))
+    .AddHttpMessageHandler<AuthHandler>();
+
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddTransient<AuthHandler>();
 builder.Services.AddSingleton<ICharacterService, CharacterService>();
 builder.Services.AddSingleton<IKanjiService, KanjiService_KAD>();
+builder.Services.AddScoped<IDictionaryService, DictionaryService>();
 builder.Services.AddScoped<ICharacterLearningService, CharacterLearningService>();
 builder.Services
     .AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
@@ -48,6 +55,7 @@ builder.Services.AddScoped<Js>();
 
 builder.Services.AddScoped<AppState>();
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
 builder.Services.AddComponents();
 
