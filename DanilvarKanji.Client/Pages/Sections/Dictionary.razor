@@ -11,7 +11,7 @@
            @bind="_entry"
            @bind:event="oninput"
            type="search"
-           placeholder="Search for a character..."
+           placeholder="Enter word..."
            class="form-control bg-secondary-2 no-border txt-light-pink main-font"/>
 
     <div class="ms-2">
@@ -133,15 +133,8 @@ else if (_words != null)
             return;
         }
 
-        bool isKanji = false;
-        foreach (var c in _entry)
-        {
-            if (WanaKana.IsKanji(c))
-            {
-                isKanji = true;
-                break;
-            }
-        }
+        bool isKanji = _entry.Any(c => WanaKana.IsKanji(c));
+        
         if (isKanji)
             _words = await DictionaryService.ListWordsByKanjiAsync(_entry);
         else

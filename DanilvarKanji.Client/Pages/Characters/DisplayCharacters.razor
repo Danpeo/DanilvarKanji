@@ -36,7 +36,7 @@ else
     {
         <div class="col-md-3 mb-2">
             <HasAnyRole Roles="@(new[] { "Admin", "SuperAdmin" })">
-                <button @onclick=@(async () => { await DeleteCharacter(character); }) class="btn btn-danger">
+                <button @onclick=@(() => { DeleteCharacter(character); }) class="btn btn-danger">
                     Delete
                 </button>
             </HasAnyRole>

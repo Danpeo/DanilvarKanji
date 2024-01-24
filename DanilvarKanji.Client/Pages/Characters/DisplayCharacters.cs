@@ -42,7 +42,7 @@ public partial class DisplayCharacters
         _kanjiMeanings = await CharacterService.SetKanjiMeanings(_characterItems, TakeQty, _culture);
     }
 
-    private async Task DeleteCharacter(GetAllFromCharacterResponse character)
+    private void DeleteCharacter(GetAllFromCharacterResponse character)
     {
         var options = new ModalOptions
         {

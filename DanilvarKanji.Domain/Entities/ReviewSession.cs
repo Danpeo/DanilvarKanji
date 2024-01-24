@@ -13,10 +13,9 @@ public class ReviewSession : Entity
 
     public ReviewSession()
     {
-        
     }
     
-    public ReviewSession(ICollection<Exercise> exercises, AppUser appUser)
+    public ReviewSession(ICollection<Exercise> exercises, AppUser appUser) : this()
     {
         Exercises = exercises;
         AppUser = appUser;

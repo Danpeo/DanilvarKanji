@@ -1,3 +1,4 @@
+using AutoMapper;
 using DanilvarKanji.Application.Reviews.Commands;
 using DanilvarKanji.Application.Reviews.Queries;
 using DanilvarKanji.Domain.Entities;
@@ -14,10 +15,13 @@ namespace DanilvarKanji.Controllers.Exercises;
 public class ReviewSessionController : ApiController
 {
     private readonly UserManager<AppUser> _userManager;
-    
-    public ReviewSessionController(IMediator mediator, UserManager<AppUser> userManager) : base(mediator)
+    private readonly IMapper _mapper;
+
+    public ReviewSessionController(IMediator mediator, UserManager<AppUser> userManager, IMapper mapper) :
+        base(mediator)
     {
         _userManager = userManager;
+        _mapper = mapper;
     }
 
     [HttpPost]
@@ -26,15 +30,17 @@ public class ReviewSessionController : ApiController
     public async Task<IActionResult> CreateAsync([FromBody] CreateReviewSessionRequest request)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
-        
+
         var command = new CreateReviewSessionCommand(request.ExerciseIds, user!);
- 
+
         var result = await Mediator.Send(command);
 
         if (result.IsFailure)
             return HandleFailure(result);
 
-        return CreatedAtAction("Get", new { id = result.Value }, command);
+        return await GetAsync(result.Value);
+        
+//        return CreatedAtAction("Get", new { id = result.Value }, command);
     }
 
     [HttpGet("{id}")]

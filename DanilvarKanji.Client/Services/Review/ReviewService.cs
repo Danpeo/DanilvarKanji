@@ -1,7 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
 using DanilvarKanji.Shared.Requests.Reviews;
-using DanilvarKanji.Shared.Responses.CharacterLearning;
 using DanilvarKanji.Shared.Responses.Review;
 
 namespace DanilvarKanji.Client.Services.Review;
@@ -19,7 +18,8 @@ public class ReviewService : IReviewService
     {
         try
         {
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/ReviewSessions", request);
+            HttpResponseMessage response =
+                await _httpClient.PostAsJsonAsync($"api/ReviewSessions", request);
 
             if (response.IsSuccessStatusCode)
                 return await response.Content.ReadFromJsonAsync<GetBaseReviewSessionResponse>();

@@ -11,4 +11,6 @@ public class GetBaseExerciseInfoResponse
     public ReviewType ReviewType { get; set; }
     public ExerciseType ExerciseType { get; set; }
     public DateTime ExcerciseDateTime { get; set; }
+
+   
 }

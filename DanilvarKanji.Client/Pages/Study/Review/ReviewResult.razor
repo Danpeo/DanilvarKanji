@@ -1,15 +1,48 @@
-@page "/Review-Result/{ReviewSessionIdId}"
+@page "/Review/Result/{ReviewSessionId}/{CharacterId}"
 
 @using DanilvarKanji.Shared.Responses.Review
 @using DanilvarKanji.Client.Services.Review
+@using DanilvarKanji.Client.Extensions
+@using DanilvarKanji.Client.Localization
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Domain.Enumerations
+@using DanilvarKanji.Shared.Responses.Character
 
-@if (_reviewSession is null)
+@if (_reviewSession is null || _character is null)
 {
     <DisplayLoading/>
 }
 else
 {
-    <h3>@_reviewSession?.ReviewDataTime</h3>
+    <DisplayCharacterDefinition Character="_character"/>
+    <div class="text-center mt-2 mb-2">
+
+        <h3 class="fs-5">@_reviewSession?.ReviewDataTime.ToLocalTime()</h3>
+
+        @if (ReviewIsSuccess())
+        {
+            <h1 class="txt-green display-3">Success! </h1>
+            <p class="glow fs-3">╰ (´꒳`) ╯</p>
+        }
+        else
+        {
+            <h1 class="text-danger display-3">No! You Forgot! </h1>
+            <p class="glow fs-3">ヽ༼ ಠ益ಠ ༽ﾉ</p>
+        }
+
+
+        @for (int i = 0; i < _reviewSession.Exercises.Count; i++)
+        {
+            var exer = _reviewSession.Exercises[i];
+            <p class="fs-4 @(exer.IsCorrect ? "txt-green" : "text-danger")">
+                @(i + 1). @exer.FromExerciseTypeToText() - @(exer.IsCorrect ? "Correct" : "Wrong")
+            </p>
+        }
+
+        <DisplayCharacterMeanings Culture="_culture" Character="_character"/>
+        <DisplayCharacterKunReadings Character="_character"/>
+        <DisplayCharacterOnReadings Character="_character"/>
+    </div>
 }
 
 @code {
@@ -17,14 +50,31 @@ else
     [Parameter, EditorRequired]
     public required string ReviewSessionId { get; set; }
 
+    [Parameter, EditorRequired]
+    public required string CharacterId { get; set; }
+
+    [Inject]
+    public required ILocalizationService LocalizationService { get; set; }
+
     [Inject]
     public required IReviewService ReviewService { get; set; }
 
+    [Inject]
+    public required ICharacterService CharacterService { get; set; }
+
     private GetBaseReviewSessionResponse? _reviewSession;
+    private GetAllFromCharacterResponse? _character;
+    private Culture _culture;
 
     protected override async Task OnInitializedAsync()
     {
         _reviewSession = await ReviewService.GetReviewSessionAsync(ReviewSessionId);
+        _character = await CharacterService.GetCharacterAsync(CharacterId);
+        _culture = await LocalizationService.GetCurrentCulture();
     }
+
+    private bool ReviewIsSuccess() =>
+        _reviewSession!.Exercises
+            .TrueForAll(x => x.IsCorrect);
 
 }
