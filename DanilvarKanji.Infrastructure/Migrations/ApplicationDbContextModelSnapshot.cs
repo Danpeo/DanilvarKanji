@@ -153,6 +153,9 @@ namespace DanilvarKanji.Migrations
                     b.Property<DateTime>("LastReviewDateTime")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<bool>("LastReviewWasCorrect")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("LearnedCount")
                         .HasColumnType("integer");
 

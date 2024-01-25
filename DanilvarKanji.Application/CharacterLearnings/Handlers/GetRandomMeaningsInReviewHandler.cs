@@ -4,8 +4,7 @@ using MediatR;
 
 namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
-public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaningsInReviewQuery, (List<string>
-    random, string correct)>
+public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaningsInReviewQuery, RandomItemsInReview?>
 {
     private readonly ICharacterLearningRepository _charLearningRepository;
     private readonly ICharacterRepository _characterRepository;
@@ -19,15 +18,18 @@ public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaning
         _random = new Random();
     }
 
-    public async Task<(List<string> random, string correct)> Handle(GetRandomMeaningsInReviewQuery request,
+    public async Task<RandomItemsInReview?> Handle(GetRandomMeaningsInReviewQuery request,
         CancellationToken cancellationToken)
     {
         string? randomMeaningFromReviewedChar =
             _characterRepository.GetRandomMeaningFromCharacter(request.CharacterId, request.Culture);
 
-        int characterQty = randomMeaningFromReviewedChar != null ? request.Qty - 1 : request.Qty;
+        if (string.IsNullOrEmpty(randomMeaningFromReviewedChar))
+            return null;
 
-        List<string> charLearningsFromReview =
+        int characterQty = request.Qty - 1;
+
+        var charLearningsFromReview =
             await _charLearningRepository.GetRandomMeaningsInReviewQueueAsync(
                 request.CharacterId,
                 request.AppUser,
@@ -40,16 +42,13 @@ public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaning
                 randomMeaningFromReviewedChar);
         }
 
-        if (randomMeaningFromReviewedChar != null)
-        {
-            charLearningsFromReview.Add(randomMeaningFromReviewedChar);
-            charLearningsFromReview = charLearningsFromReview.OrderBy(_ => _random.Next()).ToList();
-        }
+        charLearningsFromReview.Add(randomMeaningFromReviewedChar);
+        charLearningsFromReview = charLearningsFromReview.OrderBy(_ => _random.Next()).ToList();
 
-        return (charLearningsFromReview, randomMeaningFromReviewedChar);
+        return new RandomItemsInReview(charLearningsFromReview, randomMeaningFromReviewedChar);
     }
 
-    private async Task<(List<string> random, string correct)> GetFromReviewAndLearnQueueAsync(
+    private async Task<RandomItemsInReview?> GetFromReviewAndLearnQueueAsync(
         GetRandomMeaningsInReviewQuery request, int characterQty,
         IEnumerable<string?> charLearningsFromReview, string? randomMeaningFromReviewedChar)
     {
@@ -70,6 +69,6 @@ public class GetRandomMeaningsInReviewHandler : IRequestHandler<GetRandomMeaning
             result = result.OrderBy(_ => _random.Next()).ToList();
         }
 
-        return (result, randomMeaningFromReviewedChar);
+        return new RandomItemsInReview(result, randomMeaningFromReviewedChar);
     }
 }

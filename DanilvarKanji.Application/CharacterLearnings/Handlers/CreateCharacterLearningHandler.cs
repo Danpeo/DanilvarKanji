@@ -1,15 +1,15 @@
 using DanilvarKanji.Application.CharacterLearnings.Commands;
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
+using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
 
 namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
 // ReSharper disable once UnusedType.Global
-public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLearningCommand, Result>
+public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLearningCommand, Result<string>>
 {
     private readonly ICharacterLearningRepository _characterLearningRepository;
     private readonly ICharacterRepository _characterRepository;
@@ -23,12 +23,8 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
         _characterRepository = characterRepository;
     }
 
-    public async Task<Result> Handle(CreateCharacterLearningCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CreateCharacterLearningCommand request, CancellationToken cancellationToken)
     {
-        /*
-        var character = _mapper.Map<CharacterLearning>(request);
-        */
-
         Character? character = await _characterRepository.GetAsync(request.CharacterId);
 
         var characterLearning = new CharacterLearning()
@@ -42,8 +38,8 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
 
         _characterLearningRepository.Create(characterLearning);
         if (await _unitOfWork.CompleteAsync())
-            return Result.Success();
+            return Result.Success(characterLearning.Id);
 
-        return Result.Failure(General.UnProcessableRequest);
+        return Result.Failure<string>(General.UnProcessableRequest);
     }
 }

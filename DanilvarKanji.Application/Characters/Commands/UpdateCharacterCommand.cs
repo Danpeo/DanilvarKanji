@@ -1,8 +1,7 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DanilvarKanji.Application.Characters.Commands;
 

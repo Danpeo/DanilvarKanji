@@ -1,5 +1,4 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 

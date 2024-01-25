@@ -1,14 +1,13 @@
 using System.Text;
 using DanilvarKanji.Application;
 using DanilvarKanji.Application.Behaviors;
-using DanilvarKanji.Application.Characters.Validators;
 using DanilvarKanji.Data.Configuration;
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Extensions;
 using DanilvarKanji.Mappings;
 using DanilvarKanji.Infrastructure;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.OptionsSetup;
+using DanilvarKanji.Shared.Domain.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;

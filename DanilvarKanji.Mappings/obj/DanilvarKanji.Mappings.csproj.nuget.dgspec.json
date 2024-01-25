@@ -111,7 +111,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
+                "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -347,11 +351,7 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {
-              "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj": {
-                "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -364,9 +364,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Danilvar.Entity": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.1.1, )"
+            },
+            "WanaKana-net": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [

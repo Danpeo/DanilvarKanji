@@ -1,5 +1,4 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Entities.Exercises;
+using DanilvarKanji.Shared.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

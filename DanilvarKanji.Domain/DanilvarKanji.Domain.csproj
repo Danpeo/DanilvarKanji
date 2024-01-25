@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Entities\Common" />
+      <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
     </ItemGroup>
     
 </Project>

@@ -5,45 +5,54 @@
 @using DanilvarKanji.Client.Extensions
 @using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.Services.Characters
-@using DanilvarKanji.Domain.Enumerations
+@using DanilvarKanji.Shared.Domain.Enumerations
 @using DanilvarKanji.Shared.Responses.Character
 
-@if (_reviewSession is null || _character is null)
-{
-    <DisplayLoading/>
-}
-else
-{
-    <DisplayCharacterDefinition Character="_character"/>
-    <div class="text-center mt-2 mb-2">
+<ForbidIfNotAuthorized>
+    @if (_reviewSession is null || _character is null)
+    {
+        <DisplayLoading/>
+    }
+    else
+    {
+        <DisplayCharacterDefinition Character="_character"/>
+        <div class="text-center mt-2 mb-2">
 
-        <h3 class="fs-5">@_reviewSession?.ReviewDataTime.ToLocalTime()</h3>
+            <h3 class="fs-5">@_reviewSession?.ReviewDataTime.ToLocalTime()</h3>
 
-        @if (ReviewIsSuccess())
-        {
-            <h1 class="txt-green display-3">Success! </h1>
-            <p class="glow fs-3">╰ (´꒳`) ╯</p>
-        }
-        else
-        {
-            <h1 class="text-danger display-3">No! You Forgot! </h1>
-            <p class="glow fs-3">ヽ༼ ಠ益ಠ ༽ﾉ</p>
-        }
+            @if (ReviewIsSuccess())
+            {
+                <h1 class="txt-green display-3">Success! </h1>
+                <p class="glow fs-3">╰ (´꒳`) ╯</p>
+            }
+            else
+            {
+                <h1 class="text-danger display-3">No! You Forgot! </h1>
+                <p class="glow fs-3">ヽ༼ ಠ益ಠ ༽ﾉ</p>
+            }
 
 
-        @for (int i = 0; i < _reviewSession.Exercises.Count; i++)
-        {
-            var exer = _reviewSession.Exercises[i];
-            <p class="fs-4 @(exer.IsCorrect ? "txt-green" : "text-danger")">
-                @(i + 1). @exer.FromExerciseTypeToText() - @(exer.IsCorrect ? "Correct" : "Wrong")
-            </p>
-        }
+            @for (int i = 0; i < _reviewSession?.Exercises.Count; i++)
+            {
+                var exer = _reviewSession.Exercises[i];
+                <p class="fs-4 @(exer.IsCorrect ? "txt-green" : "text-danger")">
+                    @(i + 1). @exer.FromExerciseTypeToText() - @(exer.IsCorrect ? "Correct" : "Wrong")
+                </p>
+            }
 
-        <DisplayCharacterMeanings Culture="_culture" Character="_character"/>
-        <DisplayCharacterKunReadings Character="_character"/>
-        <DisplayCharacterOnReadings Character="_character"/>
-    </div>
-}
+            <DisplayCharacterMeanings Culture="_culture" Character="_character"/>
+            <DisplayCharacterKunReadings Character="_character"/>
+            <DisplayCharacterOnReadings Character="_character"/>
+
+            <div class="d-grid gap-2 mb-4">
+                <NavLink href="/" class="btn btn-elg btn-primary">
+                    Confirm
+                </NavLink>
+            </div>
+        </div>
+    }
+</ForbidIfNotAuthorized>
+
 
 @code {
 

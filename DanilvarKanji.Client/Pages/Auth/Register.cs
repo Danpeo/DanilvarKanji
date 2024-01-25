@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 using Danilvar.Random;
 using DanilvarKanji.Client.JsWrapper;
 using DanilvarKanji.Client.Services.Auth;
-using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Auth;
 using Microsoft.AspNetCore.Components;
 

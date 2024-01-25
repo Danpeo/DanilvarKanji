@@ -1,11 +1,9 @@
 using DanilvarKanji.Application.CharacterLearnings.Commands;
 using DanilvarKanji.Application.CharacterLearnings.Queries;
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
-using DanilvarKanji.Domain.Primitives;
-using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 using MediatR;
@@ -27,18 +25,20 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(CharacterLearning), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterLearningRequest request)
     {
-        //var command = _mapper.Map<CreateCharacterLearningCommand>(request);
-
         AppUser? user = await _userManager.GetUserAsync(User);
 
         var command = new CreateCharacterLearningCommand(user!, request.CharacterId, request.LearningState, request.Id);
 
-        return await Result.Create(command, General.UnProcessableRequest)
-            .Bind(c => Mediator.Send(c))
-            .Match(() => CreatedAtAction("Get", new { id = command.Id }, command),
-                BadRequest);
+        var result = await Mediator.Send(command);
+        
+        if (result.IsFailure)
+            return HandleFailure(result);
+        
+        return CreatedAtAction("Get", new { id = result.Value }, command);
     }
 
     [HttpGet("{id}")]
@@ -97,15 +97,15 @@ public class CharacterLearningController : ApiController
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        var (random, correct) = await Mediator
+        var result = await Mediator
             .Send(new GetRandomMeaningsInReviewQuery(characterId, user!, culture, qty));
 
-        if (string.IsNullOrEmpty(correct))
+        if (string.IsNullOrEmpty(result?.CorrectMeaning) || result.RandomItems == null || !result.RandomItems.Any())
             return NotFound(CharLearning.NotFoundInReview);
         
-        var response = new GetRandomItemsInReviewResponse(random, correct);
+        var response = new GetRandomItemsInReviewResponse(result.RandomItems, result.CorrectMeaning);
 
-        return random.Any() ? Ok(response) : NoContent();
+        return result.RandomItems.Any() ? Ok(response) : NoContent();
     }
 
     [HttpGet("GetRandomKunReadingsInReview")]

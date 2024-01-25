@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
-using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;
 

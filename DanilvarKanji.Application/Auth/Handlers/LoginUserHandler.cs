@@ -1,9 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using DanilvarKanji.Application.Auth.Commands;
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Infrastructure.Auth;
+using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Responses.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

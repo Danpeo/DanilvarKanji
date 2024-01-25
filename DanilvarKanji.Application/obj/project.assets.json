@@ -782,6 +782,7 @@
         "dependencies": {
           "Danilvar.Entity": "1.0.0",
           "Danilvar.ValueObject": "1.0.0",
+          "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Microsoft.Extensions.Localization": "7.0.13",
@@ -817,8 +818,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "DanilvarKanji.Domain": "1.0.0",
-          "MediatR": "12.1.1"
+          "Danilvar.Entity": "1.0.0",
+          "MediatR": "12.1.1",
+          "WanaKana-net": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DanilvarKanji.Shared.dll": {}

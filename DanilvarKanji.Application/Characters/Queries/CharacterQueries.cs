@@ -1,6 +1,6 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Responses.Character;
 using MediatR;
 

@@ -1,11 +1,12 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
+
 using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using MediatR;
 
 namespace DanilvarKanji.Application.CharacterLearnings.Commands;
 
-public class CreateCharacterLearningCommand : IRequest<Result>
+public class CreateCharacterLearningCommand : IRequest<Result<string>>
 {
     public string Id { get; set; }
     public AppUser AppUser { get; set; }

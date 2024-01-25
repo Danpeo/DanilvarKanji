@@ -7,12 +7,12 @@
     <EditForm Model="_enteredValue" OnSubmit="Verify">
         <InputText @bind-Value="_enteredValue" @oninput="OnInputText"
                    class="form-control-plaintext input-lg display-6 bg-main txt-mid-pink jap-font"
-                   id="@ValueInputId" placeholder="Meaning"/>
+                   id="@ValueInputId" placeholder="@InputPlaceholder"/>
 
         @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
         {
-            <div class="mt-4">
-                <button class="btn btn-primary bg-light-pink" type="submit">confirm</button>
+            <div class="d-grid gap-2 mt-4 mb-4">
+                <button class="btn btn-lg btn-primary bg-light-pink" type="submit">Confirm</button>
             </div>
         }
     </EditForm>
@@ -46,6 +46,9 @@
     [Parameter, EditorRequired]
     public Func<Task>? OnCorrect { get; set; }
 
+    [Parameter]
+    public string InputPlaceholder { get; set; } = "Input";
+    
     [Parameter]
     public Func<string, Task>? OnInput { get; set; }
 

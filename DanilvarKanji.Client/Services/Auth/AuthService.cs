@@ -32,7 +32,7 @@ public class AuthService : IAuthService
 
         return _jwtCache;
     }
-    
+
     public async ValueTask<bool> HasRoleAsync(string role)
     {
         _role = GetRole(await GetJwtAsync());
@@ -49,9 +49,17 @@ public class AuthService : IAuthService
 
     public async ValueTask<bool> HasAnyRoleAsync()
     {
-        _role = GetRole(await GetJwtAsync());
+        try
+        {
+            _role = GetRole(await GetJwtAsync());
 
-        return !string.IsNullOrEmpty(_role);
+            return !string.IsNullOrEmpty(_role);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public async Task<RegisterUserRequest?> RegisterUserAsync(RegisterUserRequest request)
@@ -161,11 +169,11 @@ public class AuthService : IAuthService
         return jwt.Claims.First(c => c.Type == ClaimTypes.Name).Value;
     }
 
-    private string GetRole(string token)
+    private static string GetRole(string token)
     {
         if (string.IsNullOrEmpty(token))
             return string.Empty;
-        
+
         var jwt = new JwtSecurityToken(token);
 
         Claim? role = jwt.Claims.FirstOrDefault(c => c.Type == JwtClaim.UserRole.ToString());

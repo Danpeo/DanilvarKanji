@@ -2,8 +2,6 @@ using DanilvarKanji.Client.Mappers;
 using DanilvarKanji.Client.Models.Responses;
 using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Client.State;
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
 using Microsoft.AspNetCore.Components;
 

@@ -1,7 +1,7 @@
 using AutoMapper;
 using DanilvarKanji.Application.Auth.Commands;
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Requests.Auth;
 using DanilvarKanji.Shared.Responses.Auth;
 using MediatR;

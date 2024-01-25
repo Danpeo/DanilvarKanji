@@ -16,5 +16,5 @@
 *::-webkit-scrollbar-thumb {
   background-color: var(--pink-color-light);
   border-radius: 10px;
-  background: var(--dark-color-secondary-2);
+  border: 3px solid var(--dark-color-secondary-2);
 }

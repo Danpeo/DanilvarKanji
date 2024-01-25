@@ -1,4 +1,4 @@
-using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

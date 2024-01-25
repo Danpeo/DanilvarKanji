@@ -1,11 +1,11 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Application.Characters.Handlers;
-using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using Moq;
 
 namespace DanilvarKanji.Application.Tests.Characters.Handlers;

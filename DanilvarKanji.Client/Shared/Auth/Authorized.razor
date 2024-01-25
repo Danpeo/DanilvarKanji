@@ -1,17 +1,19 @@
 @using DanilvarKanji.Client.Services.Auth
 
-@if (_isAuthorized)
+@if (IsAuthorized)
 {
     @ChildContent
 }
 
 @code {
-    protected bool _isAuthorized;
+    protected bool IsAuthorized;
 
-    [Inject] public required IAuthService AuthService { get; set; }
-    [Parameter, EditorRequired] public required RenderFragment ChildContent { get; set; }
-    
-    
+    [Inject]
+    public required IAuthService AuthService { get; set; }
+
+    [Parameter, EditorRequired]
+    public required RenderFragment ChildContent { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         await ValidateAsync();
@@ -24,8 +26,15 @@
 
     private async Task ValidateAsync()
     {
-        _isAuthorized = await AuthService.HasAnyRoleAsync();
-        
-        StateHasChanged();
+        try
+        {
+            IsAuthorized = await AuthService.HasAnyRoleAsync();
+            StateHasChanged();
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
+
 }

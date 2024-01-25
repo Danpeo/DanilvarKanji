@@ -6,7 +6,6 @@
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 @using System.Net
-@using DanilvarKanji.Client.Models.Responses.JMdict
 @using DanilvarKanji.Client.Services.Dictionary
 
 @inject IStringLocalizer<Index> Loc
@@ -27,7 +26,9 @@
 
     <NotAuthorized>
         <h1 class="display-4 txt-green-dim main-font ">
-            @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
+            
+            @Loc[nameof(IndexLocaleKeys.WelcomeToApp)]  <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
+            V✪⋏✪V
         </h1>
 
         <NavLink href="register" class="btn btn-elg btn-primary">@Loc["Register"]</NavLink>
@@ -84,8 +85,6 @@
 
 @code
 {
-    [Inject]
-    public IDictionaryService DictionaryService { get; set; }
     
     [Inject]
     public required ICharacterService CharacterService { get; set; }

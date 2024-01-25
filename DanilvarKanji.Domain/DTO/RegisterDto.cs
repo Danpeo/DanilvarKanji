@@ -1,4 +1,5 @@
-using DanilvarKanji.Domain.Enumerations;
+
+using DanilvarKanji.Shared.Domain.Enumerations;
 
 namespace DanilvarKanji.Domain.DTO;
 

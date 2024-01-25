@@ -1,7 +1,7 @@
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
+using DanilvarKanji.Shared.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 

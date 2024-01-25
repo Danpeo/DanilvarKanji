@@ -1,15 +1,14 @@
 @page "/review/{CharacterLearningId}"
 
 @using DanilvarKanji.Shared.Responses.Character
-@using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Client.Services.Review
 @using DanilvarKanji.Shared.Requests.Exercises
 @using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.State
+@using DanilvarKanji.Shared.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.Reviews
-@using DanilvarKanji.Shared.Responses.Exercise
 @using DanilvarKanji.Shared.Responses.Review
 
 <ForbidIfNotAuthorized>
@@ -20,8 +19,9 @@
         @_exercises[_currentExcercise]
 
         <div class="d-grid gap-4 mt-4">
-            <button class="btn btn-lg btn-danger" @onclick="async () => { await OnIncorrectMeaning(); await GoToNextExerciseOrFinish(); }">
-                Skip
+            <button class="btn btn-lg btn-danger"
+                    @onclick="async () => { await OnIncorrectMeaning(); await GoToNextExerciseOrFinish(); }">
+                Forgot
             </button>
         </div>
     }
@@ -95,7 +95,7 @@
                                CharacterForVerification="_character"
                                Culture="_culture"
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Onyomi))"
-                               OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Point, ExerciseType.Onyomi))"/>
+                               OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Onyomi))"/>
                        </div>);
 
         _exercises.Add(@<div class="fade-in-el">
@@ -103,7 +103,7 @@
                                CharacterForVerification="_character"
                                Culture="_culture"
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Kunyomi))"
-                               OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Point, ExerciseType.Kunyomi))"/>
+                               OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Kunyomi))"/>
                        </div>);
 
         _exercises.Add(@<div class="fade-in-el">
@@ -125,7 +125,7 @@
                                CharacterForVerification="_character"
                                Culture="_culture"
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Meaning))"
-                               OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Point, ExerciseType.Meaning))"/>
+                               OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Meaning))"/>
                        </div>);
         _exercises.Add(@<div class="fade-in-el">
                            <VerifyMeaningByInput
@@ -154,6 +154,9 @@
         await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
         await OnConfirmExercise();
     }
+
+    private async Task OnIncorrectPointExercise(ReviewType reviewType, ExerciseType exerciseType) => 
+        await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
 
     private async Task OnIncorrectMeaning()
     {

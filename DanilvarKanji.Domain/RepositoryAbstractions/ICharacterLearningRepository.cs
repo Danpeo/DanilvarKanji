@@ -1,6 +1,7 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
+
 using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 
 namespace DanilvarKanji.Domain.RepositoryAbstractions;
 
@@ -23,4 +24,5 @@ public interface ICharacterLearningRepository
     Task<List<string>> GetRandomMeaningsInReviewQueueAsync(string characterId, AppUser user, Culture culture, int qty);
     Task<List<string>> GetRandomKunyomisInReviewQueueAsync(string characterId, AppUser user, int qty);
     Task<List<string>> GetRandomOnyomisInReviewQueueAsync(string characterId, AppUser user, int qty);
+    Task UpdateProgressAsync(string id, AppUser user, bool lastReviewWasCorrect);
 }

@@ -1,7 +1,6 @@
 using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services.Characters;
-using DanilvarKanji.Domain.DTO;
-using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Responses.Character;
 using Microsoft.AspNetCore.Components;
 

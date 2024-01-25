@@ -1,6 +1,6 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 using MediatR;
 
@@ -18,7 +18,7 @@ public record ListCharacterReviewQuery
 public record GetNextToReviewInQueueQuery(AppUser AppUser) : IRequest<GetCharacterLearningBaseInfoResponse?>;
 
 public record GetRandomMeaningsInReviewQuery
-    (string CharacterId, AppUser AppUser, Culture Culture, int Qty) : IRequest<(List<string> random, string correct)>;
+    (string CharacterId, AppUser AppUser, Culture Culture, int Qty) : IRequest<RandomItemsInReview?>;
 
 public record GetRandomKunReadingsInReviewQuery
     (string CharacterId, AppUser AppUser, int Qty) : IRequest<(List<string> random, string correct)>;

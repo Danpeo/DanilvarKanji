@@ -1,11 +1,11 @@
 ﻿@using DanilvarKanji.Client.Data
 @using DanilvarKanji.Client.Localization.LocaleKeys
+
 @inject IStringLocalizer<NavMenu> Loc
 @inject IStringLocalizer<App> Loc2
 @inject NavigationManager NavManager;
-@*<div class="top-row ps-3 navbar navbar-dark">
-    
-</div>*@
+
+
 <div class="container-fluid navbar navbar-dark">
     <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link main-font" href="dictionary">
-                <span class="jap-font pe-4">
+                <span class="jap-font pe-2">
                     <b>辞書</b>
                 </span>
                 Dictionary

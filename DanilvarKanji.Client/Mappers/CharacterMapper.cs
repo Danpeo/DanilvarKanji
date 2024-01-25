@@ -1,6 +1,6 @@
 using DanilvarKanji.Client.Models.Responses;
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
 
 namespace DanilvarKanji.Client.Mappers;

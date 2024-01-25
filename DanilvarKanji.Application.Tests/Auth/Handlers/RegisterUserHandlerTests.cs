@@ -1,10 +1,10 @@
 using AutoMapper;
 using DanilvarKanji.Application.Auth.Commands;
 using DanilvarKanji.Application.Auth.Handlers;
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 

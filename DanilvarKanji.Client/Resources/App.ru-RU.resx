@@ -90,4 +90,13 @@
     <data name="WhatIsOnyomiFor" xml:space="preserve">
         <value>Какое онное чтение у </value>
     </data>
+    <data name="GoToReview" xml:space="preserve">
+        <value>Перейти к ревью?</value>
+    </data>
+    <data name="StudyIsComplete" xml:space="preserve">
+        <value>Обучение окончено</value>
+    </data>
+    <data name="Fin" xml:space="preserve">
+        <value>Завершить</value>
+    </data>
 </root>

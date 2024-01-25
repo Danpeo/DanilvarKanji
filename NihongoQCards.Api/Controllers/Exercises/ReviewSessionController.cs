@@ -1,8 +1,8 @@
 using AutoMapper;
 using DanilvarKanji.Application.Reviews.Commands;
 using DanilvarKanji.Application.Reviews.Queries;
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Errors;
+using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Requests.Reviews;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

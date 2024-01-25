@@ -1,14 +1,14 @@
 @using DanilvarKanji.Client.Services.Characters
-@using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.JsWrapper
+@using DanilvarKanji.Shared.Domain.Enumerations
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 
 
 @if (_meanings != null)
 {
-    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification" />
-    
+    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
+
     <div class="d-grid gap-4">
         @for (var i = 0; i < _meanings.RandomItems.Count; i++)
         {
@@ -41,13 +41,13 @@ else
     /// </summary>
     [Parameter, EditorRequired]
     public Func<Task>? OnCorrect { get; set; }
-    
+
     /// <summary>
     /// Invoked only once, then assigned NULL
     /// </summary>
     [Parameter, EditorRequired]
     public Func<Task>? OnIncorrect { get; set; }
-    
+
     [Parameter]
     public int OptionCount { get; set; } = 4;
 
@@ -61,7 +61,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _meanings = 
+        _meanings =
             await CharacterLearningService.GetRandomMeaningsInReviewAsync(CharacterForVerification.Id, Culture, OptionCount);
     }
 

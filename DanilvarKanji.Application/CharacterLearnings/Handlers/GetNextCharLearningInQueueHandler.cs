@@ -1,7 +1,7 @@
 using AutoMapper;
 using DanilvarKanji.Application.CharacterLearnings.Queries;
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 using MediatR;
 

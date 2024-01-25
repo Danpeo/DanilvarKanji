@@ -1,6 +1,4 @@
-using DanilvarKanji.Application.Users.Queries;
-using DanilvarKanji.Client;
-using DanilvarKanji.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -1,11 +1,10 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Application.Characters.Queries;
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
-using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;
 using MediatR;

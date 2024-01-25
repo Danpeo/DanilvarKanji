@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using DanilvarKanji.Client.Pages.Characters;
 using DanilvarKanji.Domain.DTO;
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
 
 namespace DanilvarKanji.Client.Tests.Pages.Characters;
 

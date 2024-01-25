@@ -1,6 +1,6 @@
 using DanilvarKanji.Application.Reviews.Queries;
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
 
 namespace DanilvarKanji.Application.Reviews.Handlers;

@@ -1,5 +1,5 @@
-using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
 
 namespace DanilvarKanji.Application.Reviews.Commands;

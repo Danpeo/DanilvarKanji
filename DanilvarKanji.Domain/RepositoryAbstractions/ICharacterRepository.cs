@@ -1,6 +1,7 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
+
 using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 
 namespace DanilvarKanji.Domain.RepositoryAbstractions;
 

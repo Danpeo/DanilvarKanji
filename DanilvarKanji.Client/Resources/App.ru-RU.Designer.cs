@@ -60,6 +60,24 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Завершить.
+        /// </summary>
+        internal static string Fin {
+            get {
+                return ResourceManager.GetString("Fin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перейти к ревью?.
+        /// </summary>
+        internal static string GoToReview {
+            get {
+                return ResourceManager.GetString("GoToReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пожалуйста введите валидную электронную почту.
         /// </summary>
         internal static string InvalidEmail {
@@ -236,6 +254,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обучение окончено.
+        /// </summary>
+        internal static string StudyIsComplete {
+            get {
+                return ResourceManager.GetString("StudyIsComplete", resourceCulture);
             }
         }
         

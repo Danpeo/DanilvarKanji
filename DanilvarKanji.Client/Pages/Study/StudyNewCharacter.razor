@@ -3,9 +3,9 @@
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Client.Localization
-@using DanilvarKanji.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.CharacterLearnings
 @using Blazored.Modal.Services
+@using DanilvarKanji.Shared.Domain.Enumerations
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -18,7 +18,7 @@
         if (_contentEnded)
         {
             <div class="d-grid gap-2 mb-2">
-                <button class="btn btn-elg btn-primary" @onclick="FinishLearning">Finish</button>
+                <button class="btn btn-elg btn-primary" @onclick="FinishLearning">@Loc["Fin"]</button>
             </div>
         }
     }
@@ -48,6 +48,9 @@
     [Inject]
     public required ILocalizationService LocalizationService { get; set; }
 
+    [Inject]
+    public required IStringLocalizer<App> Loc { get; set; }
+    
     private bool _contentEnded;
     private CreateCharacterLearningRequest _characterLearningRequest = new();
     private GetAllFromCharacterResponse? _character;
@@ -85,11 +88,11 @@
             };
 
             var parameters = new ModalParameters()
-                .Add(nameof(ConfirmCancelModal.Message), "Hello, World!")
+                .Add(nameof(ConfirmCancelModal.Message), Loc["StudyIsComplete"].ToString())
                 .Add(nameof(ConfirmCancelModal.OnConfirm), () => 
                 { NavigationManager.NavigateTo($"/review/{characterLearning?.Id}"); });
 
-            ModalService.Show<ConfirmCancelModal>("Are you finished", parameters, options);
+            ModalService.Show<ConfirmCancelModal>(Loc["GoToReview"].ToString(), parameters, options);
         }
     }
 

@@ -11,3 +11,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Domain\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Domain\obj\Debug\net7.0\DanilvarKanji.Domain.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Domain\obj\Debug\net7.0\ref\DanilvarKanji.Domain.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Domain\obj\Debug\net7.0\DanilvarKanji.Domain.sourcelink.json
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Domain\bin\Debug\net7.0\DanilvarKanji.Shared.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Domain\bin\Debug\net7.0\DanilvarKanji.Shared.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Domain\obj\Debug\net7.0\DanilvarKanji.Domain.csproj.CopyComplete

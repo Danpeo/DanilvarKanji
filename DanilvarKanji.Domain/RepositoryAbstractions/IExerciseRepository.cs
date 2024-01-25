@@ -1,6 +1,6 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Entities.Exercises;
+
 using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Shared.Domain.Entities;
 
 namespace DanilvarKanji.Domain.RepositoryAbstractions;
 

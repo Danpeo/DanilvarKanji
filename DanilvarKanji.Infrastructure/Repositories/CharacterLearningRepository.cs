@@ -1,9 +1,10 @@
-using DanilvarKanji.Domain.Entities;
-using DanilvarKanji.Domain.Enumerations;
+
 using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Infrastructure.Repositories;
@@ -19,6 +20,25 @@ public class CharacterLearningRepository : ICharacterLearningRepository
 
     public void Create(CharacterLearning characterLearning) =>
         _context.CharacterLearnings.Add(characterLearning);
+
+    public async Task UpdateProgressAsync(string id, AppUser user, bool lastReviewWasCorrect)
+    {
+        var characterLearning = await _context.CharacterLearnings
+            .FirstOrDefaultAsync(x => x.Id == id && x.AppUser == user);
+
+        if (characterLearning is null)
+            return;
+
+        characterLearning.LastReviewDateTime = DateTime.UtcNow;
+        characterLearning.LastReviewWasCorrect = lastReviewWasCorrect;
+
+        if (lastReviewWasCorrect)
+        {
+            characterLearning.LearnedCount++;
+        }
+
+        _context.CharacterLearnings.Update(characterLearning);
+    }
 
     public async Task<CharacterLearning?> GetAsync(string id, AppUser user)
     {
@@ -47,11 +67,12 @@ public class CharacterLearningRepository : ICharacterLearningRepository
 
         return paginationParams is not null ? Paginator.Paginate(characters, paginationParams) : characters;
     }
-    
-    public async Task<List<string>> GetRandomMeaningsInReviewQueueAsync(string characterId, AppUser user, Culture culture, int qty)
+
+    public async Task<List<string>> GetRandomMeaningsInReviewQueueAsync(string characterId, AppUser user,
+        Culture culture, int qty)
     {
         var random = new Random();
-        
+
         List<string> definitions = await GetReviewQueue(user)
             .Where(x => x.Character.Id != characterId)
             .AsSplitQuery()
@@ -87,7 +108,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
 
         return shuffledKuns;
     }
-    
+
     public async Task<List<string>> GetRandomOnyomisInReviewQueueAsync(string characterId, AppUser user, int qty)
     {
         var random = new Random();
@@ -106,7 +127,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
 
         return shuffledOns;
     }
-    
+
     public async Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser) =>
         await GetReviewQueue(appUser).FirstOrDefaultAsync();
 

@@ -1,6 +1,6 @@
 using DanilvarKanji.Application.Exercises.Queries;
-using DanilvarKanji.Domain.Entities.Exercises;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
 
 namespace DanilvarKanji.Application.Exercises.Handlers;

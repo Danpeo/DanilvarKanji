@@ -6,12 +6,25 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
+    <!--<ItemGroup>
       <ProjectReference Include="..\DanilvarKanji.Domain\DanilvarKanji.Domain.csproj" />
+    </ItemGroup>-->
+
+    <ItemGroup>
+      <PackageReference Include="Danilvar.Entity" Version="1.0.0" />
+      <PackageReference Include="MediatR" Version="12.1.1" />
+      <PackageReference Include="WanaKana-net" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="12.1.1" />
+      <Folder Include="Domain\Entities\Common\" />
+      <Folder Include="Domain\Entities\Exercises\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Identity.Stores">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.15\Microsoft.Extensions.Identity.Stores.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
