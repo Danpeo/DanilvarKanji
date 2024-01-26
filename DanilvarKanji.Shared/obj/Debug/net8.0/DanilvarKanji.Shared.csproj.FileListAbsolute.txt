@@ -1,0 +1,16 @@
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\bin\Debug\net8.0\DanilvarKanji.Shared.deps.json
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\bin\Debug\net8.0\DanilvarKanji.Shared.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\bin\Debug\net8.0\DanilvarKanji.Shared.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\bin\Debug\net8.0\DanilvarKanji.Domain.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\bin\Debug\net8.0\DanilvarKanji.Domain.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.csproj.AssemblyReference.cache
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.AssemblyInfoInputs.cache
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.AssemblyInfo.cs
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.csproj.CoreCompileInputs.cache
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.sourcelink.json
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.csproj.CopyComplete
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\refint\DanilvarKanji.Shared.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\DanilvarKanji.Shared.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Shared\obj\Debug\net8.0\ref\DanilvarKanji.Shared.dll
