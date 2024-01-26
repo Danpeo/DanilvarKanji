@@ -1,4 +1,4 @@
-using DanilvarKanji.Domain.Params;
+using DanilvarKanji.Shared.Domain.Params;
 
 namespace DanilvarKanji.Shared.Requests.Characters;
 

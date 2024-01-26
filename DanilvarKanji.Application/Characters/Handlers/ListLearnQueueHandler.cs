@@ -1,6 +1,8 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Params;
 using DanilvarKanji.Shared.Responses.Character;
 using MediatR;
 
@@ -23,9 +25,20 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
     {
         if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
         {
-            var characters = await _characterRepository
-                .ListLearnQueueAsync(request.PaginationParams, request.AppUser,
+            IEnumerable<Character> characters;
+            if (request.listOnlyDayDosage)
+            {
+                var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
+
+                characters = await _characterRepository.ListLearnQueueAsync(paginationParams, request.AppUser,
                     request.JlptLevel);
+            }
+            else
+            {
+                characters = await _characterRepository
+                    .ListLearnQueueAsync(request.PaginationParams, request.AppUser,
+                        request.JlptLevel);
+            }
 
             return _mapper.Map<IEnumerable<GetCharacterBaseInfoResponse>>(characters);
         }

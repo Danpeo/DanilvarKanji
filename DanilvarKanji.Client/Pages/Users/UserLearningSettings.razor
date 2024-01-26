@@ -1,0 +1,74 @@
+@page "/Learning-Settings"
+
+@using DanilvarKanji.Client.Services.Auth
+@using DanilvarKanji.Shared.Domain.Enumerations
+@using DanilvarKanji.Shared.Domain.Params
+
+<ForbidIfNotAuthorized>
+    @if (_learningSettings is null)
+    {
+        <DisplayLoading/>
+    }
+    else
+    {
+        <EditForm Model="_learningSettings" OnSubmit="OnChangeSettings">
+            <FormSection Title="User Settings" HelpText="">
+                <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
+                    <InputSelect @bind-Value="_learningSettings.JlptLevel"
+                                 class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
+                        <option value="@JlptLevel.N5">JLPT N5</option>
+                        <option value="@JlptLevel.N4">JLPT N4</option>
+                        <option value="@JlptLevel.N3">JLPT N3</option>
+                        <option value="@JlptLevel.N2">JLPT N2</option>
+                        <option value="@JlptLevel.N1">JLPT N1</option>
+                    </InputSelect>
+                </FormFieldSet>
+
+                <FormFieldSet Label="Stroke Count" LabelFor="strokeCount" HelpText="">
+                    <InputNumber @bind-Value="_learningSettings.QtyOfCharsForLearningForDay"
+                                 class="form-control bg-main txt-green-dim no-border"
+                                 id="strokeCount" placeholder="Stroke Count"/>
+                    @*
+                    <ValidationMessage For="@(() => _createCharacterRequest.StrokeCount)"/>
+                *@
+                </FormFieldSet>
+
+                <div class="mt-4 mb-5">
+                    <div class="row">
+                        <div class="offset-4 col-8 text-right">
+                            <button class="btn btn-outline-secondary" type="button"
+                                    @onclick="@(() => _learningSettings = new LearningSettings())">
+                                Reset
+                            </button>
+                            <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </FormSection>
+        </EditForm>
+    }
+</ForbidIfNotAuthorized>
+
+@code {
+
+    [Inject]
+    public required IUserService UserService { get; set; }
+
+    private LearningSettings? _learningSettings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _learningSettings = await UserService.GetLearningSettingsAsync();
+    }
+
+    private async Task OnChangeSettings()
+    {
+        if (_learningSettings != null)
+        {
+            await UserService.UpdateLearningSettingsAsync(_learningSettings);
+        }
+    }
+
+}

@@ -28,8 +28,10 @@ public class AuthService : IAuthService
     public async Task<string> GetJwtAsync()
     {
         if (string.IsNullOrEmpty(_jwtCache))
+        {
             _jwtCache = await _localStorageService.GetItemAsync<string>(JwtKey);
-
+        }
+        
         return _jwtCache;
     }
 

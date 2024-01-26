@@ -41,7 +41,7 @@ builder.Services.AddHttpClient("JMdict")
     .AddHttpMessageHandler<AuthHandler>();
 
 
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddTransient<AuthHandler>();
 builder.Services.AddSingleton<ICharacterService, CharacterService>();
 builder.Services.AddSingleton<IKanjiService, KanjiService_KAD>();
@@ -60,24 +60,12 @@ builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddComponents();
 
 builder.Services.AddBlazoredSessionStorageAsSingleton();
-builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredLocalStorageAsSingleton();
 builder.Services.AddBlazoredModal();
 
-/*builder.Services.AddOidcAuthentication(options =>
-{
-    // Configure your authentication provider options here.
-    // For more information, see https://aka.ms/blazor-standalone-auth
-    builder.Configuration.Bind("ServerApi", options.ProviderOptions);
-});*/
 
 builder.Services.AddAuthorizationCore();
 
-/*
-builder.Services.AddApiAuthorization();
-*/
-
-
-//await builder.Build().RunAsync();
 
 WebAssemblyHost host = builder.Build();
 await host.SetDefaultCulture();

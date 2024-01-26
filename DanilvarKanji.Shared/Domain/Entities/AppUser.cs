@@ -12,6 +12,7 @@ public class AppUser : IdentityUser
     public DateTime LastStudied { get; set; } = DateTime.UtcNow;
     //public ICollection<CharacterLearning> CharacterLearnings { get; set; }
 
+    public int QtyOfCharsForLearningForDay { get; set; } = 5;
     public string? RefreshToken { get; set; }
     public DateTime RefreshTokenExpiry { get; set; }
 }

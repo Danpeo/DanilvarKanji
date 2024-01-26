@@ -1,5 +1,5 @@
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Params;
 using MediatR;
 
 namespace DanilvarKanji.Application.Exercises.Queries;

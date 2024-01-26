@@ -1,18 +1,21 @@
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Shared.Validation;
 using FluentValidation;
 
 namespace DanilvarKanji.Application.Characters.Validators;
 
 // ReSharper disable once UnusedType.Global
-public class CreateCharacterValidator : AbstractValidator<CreateCharacterCommand>
+public class CreateCharacterValidator : BaseCharacterValidator<CreateCharacterCommand>
 {
     public CreateCharacterValidator()
     {
         RuleFor(x => x.Definition)
             .NotEmpty()
-            .WithMessage("Definition should have a value.");
+            .WithMessage("Definition should have a value.")
+            .Must(StrIsJapanese)
+            .WithMessage("Definition should be in Japanese.");
 
         RuleFor(x => x.StrokeCount)
             .NotEmpty()
@@ -45,32 +48,5 @@ public class CreateCharacterValidator : AbstractValidator<CreateCharacterCommand
             .Must(HaveAtLeastOneCollection)
             .When(x => x.Kunyomis == null || x.Kunyomis.Count == 0)
             .WithMessage("Either Kunyomis or Onyomis must be provided.");
-    }
-
-    private static bool HaveAtLeastOneCollection<T>(ICollection<T>? collection)
-    {
-        return collection is { Count: > 0 };
-    }
-
-    private static bool HaveMeaningsInAllCultures(ICollection<KanjiMeaning>? kanjiMeanings)
-    {
-        if (kanjiMeanings == null || kanjiMeanings.Count < 2)
-            return false;
-
-        return kanjiMeanings
-                   .Any(meaning => meaning.Definitions!
-                       .Any(def => def.Culture == Culture.EnUS)) &&
-               kanjiMeanings
-                   .Any(meaning => meaning.Definitions!
-                       .Any(def => def.Culture == Culture.RuRU));
-    }
-
-    private static bool HaveStringDefinitionInAllCultures(ICollection<StringDefinition>? defs)
-    {
-        if (defs == null || defs.Count < 2)
-            return false;
-
-        return defs.Any(d => d.Culture == Culture.EnUS) &&
-               defs.Any(d => d.Culture == Culture.RuRU);
     }
 }

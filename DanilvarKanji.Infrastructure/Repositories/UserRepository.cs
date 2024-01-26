@@ -1,7 +1,7 @@
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Params;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -19,12 +19,37 @@ public class UserRepository : IUserRepository
     public void Create(AppUser? user) => 
         _context.AppUsers.Add(user);
 
+    public async Task UpdateUserLearningSettingsAsync(string email, LearningSettings learningSettings)
+    {
+        AppUser? user = await _context.AppUsers.FirstOrDefaultAsync(u => u!.Email == email);
+        if (user != null)
+        {
+            user.JlptLevel = learningSettings.JlptLevel;
+            user.QtyOfCharsForLearningForDay = learningSettings.QtyOfCharsForLearningForDay;
+        }
+    }
+    
     public async Task<AppUser?> GetByIdAsync(string id)
     {
         return await GetUsersWithRelatedData()
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
+    public async Task<LearningSettings?> GetUserLearningSettingsAsync(string email)
+    {
+        AppUser? user = await _context.AppUsers.FirstOrDefaultAsync(u => u!.Email == email);
+        if (user!= null)
+        {
+            return new LearningSettings
+            {
+                JlptLevel = user.JlptLevel,
+                QtyOfCharsForLearningForDay = user.QtyOfCharsForLearningForDay
+            };
+        }
+
+        return new LearningSettings();
+    }
+    
     public Task<AppUser> GetByEmailAsync(string email)
     {
         throw new NotImplementedException();
@@ -42,7 +67,7 @@ public class UserRepository : IUserRepository
         _context.AppUsers.AnyAsync();
 
     public async Task<bool> ExistByEmail(string email) => 
-        await _context.AppUsers.AnyAsync(x => x.Email == email);
+        await _context.AppUsers.AnyAsync(x => x!.Email == email);
     
     private IQueryable<AppUser?> GetUsersWithRelatedData(PaginationParams? paginationParams = null)
     {

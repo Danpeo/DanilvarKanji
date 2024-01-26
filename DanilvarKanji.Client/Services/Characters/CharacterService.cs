@@ -43,12 +43,13 @@ public class CharacterService : ICharacterService
     }
 
     public async Task<IEnumerable<GetCharacterBaseInfoResponse?>?> ListLearnQueueAsync(int pageNumber = 0,
-        int pageSize = 0)
+        int pageSize = 0, bool listOnlyDayDosage = false)
     {
         try
         {
-            HttpResponseMessage response =
-                await _httpClient.GetAsync($"api/Characters/LearnQueue?PageNumber={pageNumber}&PageSize={pageSize}");
+            var uri = $"api/Characters/LearnQueue?PageNumber={pageNumber}&PageSize={pageSize}&listOnlyDayDosage={listOnlyDayDosage}";
+            
+            HttpResponseMessage response = await _httpClient.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
             {
@@ -257,7 +258,7 @@ public class CharacterService : ICharacterService
             throw;
         }
     }
-    
+
     public async Task DeleteCharacterAsync(string id)
     {
         try
@@ -276,5 +277,4 @@ public class CharacterService : ICharacterService
             throw;
         }
     }
-
 }

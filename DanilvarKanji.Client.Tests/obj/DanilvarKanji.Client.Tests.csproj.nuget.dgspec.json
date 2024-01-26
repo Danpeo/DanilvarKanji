@@ -428,6 +428,10 @@
               "target": "Package",
               "version": "[1.0.0, )"
             },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.8.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.1.1, )"

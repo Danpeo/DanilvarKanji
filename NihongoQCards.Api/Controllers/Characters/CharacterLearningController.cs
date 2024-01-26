@@ -1,9 +1,9 @@
 using DanilvarKanji.Application.CharacterLearnings.Commands;
 using DanilvarKanji.Application.CharacterLearnings.Queries;
 using DanilvarKanji.Domain.Errors;
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Params;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 using MediatR;
@@ -34,10 +34,10 @@ public class CharacterLearningController : ApiController
         var command = new CreateCharacterLearningCommand(user!, request.CharacterId, request.LearningState, request.Id);
 
         var result = await Mediator.Send(command);
-        
+
         if (result.IsFailure)
             return HandleFailure(result);
-        
+
         return CreatedAtAction("Get", new { id = result.Value }, command);
     }
 
@@ -52,12 +52,15 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpGet("LearnQueue")]
-    public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams)
+    [ProducesResponseType(typeof(IEnumerable<CharacterLearning>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams,
+        bool listOnlyDayDosage = false)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
         IEnumerable<CharacterLearning> characters =
-            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user!.JlptLevel, user));
+            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user!.JlptLevel, user, listOnlyDayDosage));
 
         return characters.Any() ? Ok(characters) : NoContent();
     }
@@ -102,7 +105,7 @@ public class CharacterLearningController : ApiController
 
         if (string.IsNullOrEmpty(result?.CorrectMeaning) || result.RandomItems == null || !result.RandomItems.Any())
             return NotFound(CharLearning.NotFoundInReview);
-        
+
         var response = new GetRandomItemsInReviewResponse(result.RandomItems, result.CorrectMeaning);
 
         return result.RandomItems.Any() ? Ok(response) : NoContent();
@@ -121,12 +124,12 @@ public class CharacterLearningController : ApiController
 
         if (string.IsNullOrEmpty(correct))
             return NotFound(CharLearning.NotFoundInReview);
-        
+
         var response = new GetRandomItemsInReviewResponse(random, correct);
 
         return random.Any() ? Ok(response) : NoContent();
     }
-    
+
     [HttpGet("GetRandomOnReadingsInReview")]
     [ProducesResponseType(typeof(GetRandomItemsInReviewResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -140,7 +143,7 @@ public class CharacterLearningController : ApiController
 
         if (string.IsNullOrEmpty(correct))
             return NotFound(CharLearning.NotFoundInReview);
-        
+
         var response = new GetRandomItemsInReviewResponse(random, correct);
 
         return random.Any() ? Ok(response) : NoContent();

@@ -30,8 +30,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo

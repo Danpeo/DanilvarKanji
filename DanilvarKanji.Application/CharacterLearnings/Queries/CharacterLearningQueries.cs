@@ -1,6 +1,6 @@
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Params;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 using MediatR;
 
@@ -8,7 +8,7 @@ namespace DanilvarKanji.Application.CharacterLearnings.Queries;
 
 public record ListLearnQueueQuery
 (PaginationParams? PaginationParams, JlptLevel JlptLevel,
-    AppUser AppUser) : IRequest<IEnumerable<CharacterLearning>>;
+    AppUser AppUser, bool listOnlyDayDosage) : IRequest<IEnumerable<CharacterLearning>>;
 
 public record GetCharacterLearningQuery(string Id, AppUser AppUser) : IRequest<CharacterLearning?>;
 

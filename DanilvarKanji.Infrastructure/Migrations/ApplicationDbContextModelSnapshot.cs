@@ -23,7 +23,7 @@ namespace DanilvarKanji.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.AppUser", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -77,6 +77,9 @@ namespace DanilvarKanji.Migrations
                     b.Property<string>("ProfileImageId")
                         .HasColumnType("text");
 
+                    b.Property<int>("QtyOfCharsForLearningForDay")
+                        .HasColumnType("integer");
+
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text");
 
@@ -112,7 +115,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Character", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Character", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -137,7 +140,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.CharacterLearning", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.CharacterLearning", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -176,7 +179,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("CharacterLearnings");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Exercises.Exercise", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Exercise", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -215,7 +218,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Exercises");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Image", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Image", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -233,7 +236,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Image");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.KanjiMeaning", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.KanjiMeaning", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -251,7 +254,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("KanjiMeanings");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Kunyomi", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Kunyomi", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -274,7 +277,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Kunyomis");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.LearningProgress", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.LearningProgress", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -290,7 +293,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("LearningProgresses");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Onyomi", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Onyomi", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -313,7 +316,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Onyomis");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.ReviewSession", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.ReviewSession", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -332,7 +335,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("ReviewSessions");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.StringDefinition", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.StringDefinition", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -369,7 +372,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("StringDefinitions");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.TEST", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.TEST", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -384,7 +387,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Tests");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Word", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Word", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -413,7 +416,7 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("Words");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.WordMeaning", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.WordMeaning", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -558,13 +561,13 @@ namespace DanilvarKanji.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.AppUser", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.AppUser", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "AppUserRole")
                         .WithMany()
                         .HasForeignKey("AppUserRoleId");
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.Image", "ProfileImage")
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Image", "ProfileImage")
                         .WithMany()
                         .HasForeignKey("ProfileImageId");
 
@@ -573,21 +576,21 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("ProfileImage");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.CharacterLearning", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.CharacterLearning", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", "AppUser")
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.Character", "Character")
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", "Character")
                         .WithMany()
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.LearningProgress", "LearningProgress")
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.LearningProgress", "LearningProgress")
                         .WithMany()
                         .HasForeignKey("LearningProgressId");
 
@@ -598,21 +601,21 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("LearningProgress");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Exercises.Exercise", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Exercise", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", "AppUser")
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.Character", "Character")
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", "Character")
                         .WithMany()
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.ReviewSession", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.ReviewSession", null)
                         .WithMany("Exercises")
                         .HasForeignKey("ReviewSessionId");
 
@@ -621,33 +624,33 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("Character");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.KanjiMeaning", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.KanjiMeaning", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.Character", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", null)
                         .WithMany("KanjiMeanings")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Kunyomi", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Kunyomi", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.Character", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", null)
                         .WithMany("Kunyomis")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Onyomi", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Onyomi", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.Character", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", null)
                         .WithMany("Onyomis")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.ReviewSession", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.ReviewSession", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", "AppUser")
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -656,30 +659,30 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.StringDefinition", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.StringDefinition", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.Character", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", null)
                         .WithMany("Mnemonics")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.KanjiMeaning", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.KanjiMeaning", null)
                         .WithMany("Definitions")
                         .HasForeignKey("KanjiMeaningId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.Word", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Word", null)
                         .WithMany("WordMeanings")
                         .HasForeignKey("WordId");
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.WordMeaning", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.WordMeaning", null)
                         .WithMany("Definitions")
                         .HasForeignKey("WordMeaningId");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Word", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Word", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.Character", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", null)
                         .WithMany("Words")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -696,7 +699,7 @@ namespace DanilvarKanji.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -705,7 +708,7 @@ namespace DanilvarKanji.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -720,7 +723,7 @@ namespace DanilvarKanji.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -729,14 +732,14 @@ namespace DanilvarKanji.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("DanilvarKanji.Domain.Entities.AppUser", null)
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Character", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Character", b =>
                 {
                     b.Navigation("KanjiMeanings");
 
@@ -749,22 +752,22 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("Words");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.KanjiMeaning", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.KanjiMeaning", b =>
                 {
                     b.Navigation("Definitions");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.ReviewSession", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.ReviewSession", b =>
                 {
                     b.Navigation("Exercises");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.Word", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Word", b =>
                 {
                     b.Navigation("WordMeanings");
                 });
 
-            modelBuilder.Entity("DanilvarKanji.Domain.Entities.WordMeaning", b =>
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.WordMeaning", b =>
                 {
                     b.Navigation("Definitions");
                 });

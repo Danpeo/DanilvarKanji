@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using DanilvarKanji.Client.Pages.Characters;
-using DanilvarKanji.Domain.DTO;
 
 namespace DanilvarKanji.Client.Tests.Pages.Characters;
 

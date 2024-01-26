@@ -3395,6 +3395,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Danilvar.Entity": "1.0.0",
+          "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
           "WanaKana-net": "1.0.0"
         },

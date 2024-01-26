@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "VEiRyJBNv0KCUtCUuVpqh7xzFYQKslnA9rEBie/CmV9m+tn2nbq3oTmAms5Q8FhEK+bb/B0Ck5agecpQfB/lyQ==",
+  "dgSpecHash": "vRph0vh9disE5fDyvHHRp6DJ0AvZggf0gXWug0IGQuwLJLrEHENQU1ACDMfw6KdaWaRp1ojlKhc4Mm6jX7RBww==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",

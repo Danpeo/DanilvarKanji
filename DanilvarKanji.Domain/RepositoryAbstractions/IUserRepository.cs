@@ -1,5 +1,5 @@
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Params;
 
 namespace DanilvarKanji.Domain.RepositoryAbstractions;
 
@@ -12,4 +12,6 @@ public interface IUserRepository
     Task<bool> AnyExist();
     Task<bool> ExistByEmail(string email);
     void Create(AppUser? user);
+    Task UpdateUserLearningSettingsAsync(string email, LearningSettings learningSettings);
+    Task<LearningSettings?> GetUserLearningSettingsAsync(string email);
 }

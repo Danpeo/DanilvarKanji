@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <PackageReference Include="Danilvar.Entity" Version="1.0.0" />
+      <PackageReference Include="FluentValidation" Version="11.8.0" />
       <PackageReference Include="MediatR" Version="12.1.1" />
       <PackageReference Include="WanaKana-net" Version="1.0.0" />
     </ItemGroup>
@@ -19,6 +20,7 @@
     <ItemGroup>
       <Folder Include="Domain\Entities\Common\" />
       <Folder Include="Domain\Entities\Exercises\" />
+      <Folder Include="Requests\Users\" />
     </ItemGroup>
 
     <ItemGroup>

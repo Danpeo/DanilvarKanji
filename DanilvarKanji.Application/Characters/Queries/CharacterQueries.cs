@@ -1,6 +1,6 @@
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Params;
 using DanilvarKanji.Shared.Responses.Character;
 using MediatR;
 
@@ -19,7 +19,7 @@ public record GetKanjiMeaningsByPriorityQuery
     (string CharacterId, Culture Culture, int TakeQty = int.MaxValue) : IRequest<IEnumerable<string>>;
 
 public record ListLearnQueueQuery
-    (PaginationParams? PaginationParams, JlptLevel JlptLevel, AppUser AppUser) : IRequest<
+    (PaginationParams? PaginationParams, JlptLevel JlptLevel, AppUser AppUser, bool listOnlyDayDosage) : IRequest<
         IEnumerable<GetCharacterBaseInfoResponse>>;
 
 public record GetNextInLearnQueueQuery(AppUser AppUser) : IRequest<GetCharacterBaseInfoResponse?>;

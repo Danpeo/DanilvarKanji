@@ -1,10 +1,9 @@
-
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Params;
 using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Infrastructure.Repositories;
@@ -50,14 +49,16 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5)
     {
-        return await GetCharacterLearningsWithRelatedData()
-            .Where(x => x.AppUser == user)
-            .Where(x => x.Character.JlptLevel >= jlptLevel)
-            .Where(x => x.LearningState == LearningState.NotLearned)
-            .OrderBy(x => x.Character.JlptLevel)
-            .ThenBy(x => x.Character.CharacterType)
-            .ThenBy(x => x.Character.Definition)
-            .ToListAsync();
+        var charLearnings = await GetCharacterLearningsWithRelatedData()
+                .Where(x => x.AppUser == user)
+                .Where(x => x.Character.JlptLevel >= jlptLevel)
+                .Where(x => x.LearningState == LearningState.NotLearned)
+                .OrderBy(x => x.Character.JlptLevel)
+                .ThenBy(x => x.Character.CharacterType)
+                .ThenBy(x => x.Character.Definition)
+                .ToListAsync();
+        
+        return paginationParams != null ? Paginator.Paginate(charLearnings, paginationParams) : charLearnings;
     }
 
     public async Task<IEnumerable<CharacterLearning>> ListReviewQueueAsync(PaginationParams? paginationParams,

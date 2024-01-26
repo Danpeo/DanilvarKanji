@@ -1,10 +1,10 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Application.Characters.Queries;
-using DanilvarKanji.Domain.Params;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Shared.Domain.Params;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;
 using MediatR;
@@ -18,7 +18,7 @@ public class CharacterController : ApiController
 {
     private readonly IMapper _mapper;
     private readonly UserManager<AppUser> _userManager;
-    
+
 
     public CharacterController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
         base(mediator)
@@ -33,7 +33,7 @@ public class CharacterController : ApiController
     public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterRequest? request)
     {
         var command = _mapper.Map<CreateCharacterCommand>(request);
- 
+
         var result = await Mediator.Send(command);
 
         if (result.IsFailure)
@@ -47,9 +47,9 @@ public class CharacterController : ApiController
     {
         var command = _mapper.Map<UpdateCharacterCommand>(request);
         command.Id = id;
-        
+
         var result = await Mediator.Send(command);
-        
+
         if (result.IsFailure)
             return HandleFailure(result);
 
@@ -70,7 +70,8 @@ public class CharacterController : ApiController
     [HttpGet("LearnQueue")]
     [ProducesResponseType(typeof(IEnumerable<GetCharacterBaseInfoResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams)
+    public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams,
+        bool listOnlyDayDosage = false)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
@@ -78,7 +79,7 @@ public class CharacterController : ApiController
             return Unauthorized();
 
         IEnumerable<GetCharacterBaseInfoResponse> characters =
-            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel, user));
+            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel, user, listOnlyDayDosage));
 
         return characters.Any() ? Ok(characters) : NoContent();
     }
@@ -157,7 +158,7 @@ public class CharacterController : ApiController
 
         if (result.IsSuccess)
             return Ok();
-        
+
         return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
     }
 
@@ -172,7 +173,7 @@ public class CharacterController : ApiController
 
         if (result.IsSuccess)
             return Ok();
-        
+
         return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
     }
 }

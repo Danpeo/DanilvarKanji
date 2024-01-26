@@ -9,6 +9,7 @@
       "DanilvarKanji.Shared/1.0.0": {
         "dependencies": {
           "Danilvar.Entity": "1.0.0",
+          "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
           "WanaKana-net": "1.0.0",
           "Microsoft.Extensions.Identity.Stores": "7.0.0.0"
@@ -22,6 +23,14 @@
           "lib/net7.0/Danilvar.Entity.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "FluentValidation/11.8.0": {
+        "runtime": {
+          "lib/net7.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.8.0.0"
           }
         }
       },
@@ -147,6 +156,13 @@
       "sha512": "sha512-6vQqZsz0Cx/9gmSBz2Ea9U/zZVjwXA6+xS49PAq68mDj+3PMGgtrjAhrhsqCOzJIj1tFCq1GYyYG37IWaNyKgw==",
       "path": "danilvar.entity/1.0.0",
       "hashPath": "danilvar.entity.1.0.0.nupkg.sha512"
+    },
+    "FluentValidation/11.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TiEaaYqSIAS+wXQv46LRm8Mca092XYNePD0n231Hqlkmm5FuToZoWnjI1ef/vJUxBzqR7/k2vaVQXxijNgVKRQ==",
+      "path": "fluentvalidation/11.8.0",
+      "hashPath": "fluentvalidation.11.8.0.nupkg.sha512"
     },
     "MediatR/12.1.1": {
       "type": "package",
