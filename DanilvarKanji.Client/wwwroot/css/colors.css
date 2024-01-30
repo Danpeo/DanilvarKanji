@@ -5,6 +5,7 @@
     --dark-color-main-2: #221f22;
     --dark-color-secondary: #2e2e31;
     --dark-color-secondary-2: #2d2a2e;
+    --dark-color-secondary-3: #3d393d;
     --pink-color-bright: #ff4863;
     --pink-color-mid: #f95668;
     --pink-color-light: #ff6d82;
@@ -132,6 +133,23 @@
 
 .animated-blink-bg {
     animation: blink-bg 3s linear infinite;
+}
+
+.btn-dark {
+    background-color: var(--dark-color-secondary-2) ;
+    border-color: var(--dark-color-secondary) ;
+}
+
+.btn-dark:focus {
+    background-color: var(--dark-color-secondary-3);
+    border-color: var(--dark-color-secondary);
+    outline: none;
+}
+
+.btn-dark:hover {
+    background-color: var(--dark-color-secondary-3) ;
+    border-color: var(--dark-color-secondary) ;
+    outline: none;
 }
 
 .btn-primary {

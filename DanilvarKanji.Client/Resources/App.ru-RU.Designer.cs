@@ -276,6 +276,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Значение должно быть больше чем .
+        /// </summary>
+        internal static string ValueTooSmall {
+            get {
+                return ResourceManager.GetString("ValueTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Какое кунное чтение у .
         /// </summary>
         internal static string WhatIsKunyomiFor {

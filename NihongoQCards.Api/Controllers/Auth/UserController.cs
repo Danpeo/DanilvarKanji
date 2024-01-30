@@ -46,6 +46,8 @@ public class UserController : ApiController
     }
 
     [HttpPut("UpdateUserLearningSettings")]
+    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateUserLearningSettingsAsync([FromBody] LearningSettings learningSettings)
     {
         AppUser? user = await _userManager.GetUserAsync(User);

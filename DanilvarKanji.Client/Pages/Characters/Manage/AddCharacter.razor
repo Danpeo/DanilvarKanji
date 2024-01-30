@@ -67,11 +67,11 @@
 
     @if (_submitSuccessful)
     {
-        <SuccessAlert Message="Your character has been added successfully!"/>
+        <SuccessAlertAlt Message="Your character has been added successfully!"/>
     }
     else if (_errorMessage is not null)
     {
-        <ErrorAlert Message="@_errorMessage"/>
+        <ErrorAlertAlt Message="@_errorMessage"/>
     }
 
     <div class="mt-4 mb-5">

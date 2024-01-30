@@ -25,6 +25,9 @@
     [Parameter, EditorRequired]
     public Func<Task>? OnIncorrect { get; set; }
     
+    [Parameter, EditorRequired]
+    public required Func<Task> OnForgot {get; set;}
+
     [Parameter]
     public int OptionCount { get; set; } = 4;
 
@@ -46,7 +49,7 @@
         }
     }
 
-    protected async Task OnCorrectAnswer(string buttonId)
+    protected async Task OnCorrectAnswer(string? buttonId)
     {
         await Js.Dom.AddClassesToElement(buttonId, new[] { "bg-success", "txt-dark" });
 

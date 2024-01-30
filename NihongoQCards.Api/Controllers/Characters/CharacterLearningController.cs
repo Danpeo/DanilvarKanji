@@ -41,6 +41,23 @@ public class CharacterLearningController : ApiController
         return CreatedAtAction("Get", new { id = result.Value }, command);
     }
 
+    [HttpPatch("ToggleSkipState")]
+    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ToggleSkipStateAsync([FromBody] string id)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        var command = new ToggleSkipStateCommand(id, user!);
+
+        var result = await Mediator.Send(command);
+
+        if (result.IsSuccess)
+            return Ok(result.Value);
+
+        return HandleFailure(result);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(string id)
     {
@@ -63,6 +80,19 @@ public class CharacterLearningController : ApiController
             await Mediator.Send(new ListLearnQueueQuery(paginationParams, user!.JlptLevel, user, listOnlyDayDosage));
 
         return characters.Any() ? Ok(characters) : NoContent();
+    }
+
+    [HttpGet("Skipped")]
+    [ProducesResponseType(typeof(IEnumerable<CharacterLearning>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> ListSkippedAsync([FromQuery] PaginationParams paginationParams)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        IEnumerable<CharacterLearning> characters =
+            await Mediator.Send(new ListSkippedQuery(paginationParams, user!));
+
+        return characters.Any()? Ok(characters) : NoContent();
     }
 
     [HttpGet("ReviewQueue")]

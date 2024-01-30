@@ -21,4 +21,6 @@ public interface ICharacterLearningService
 
     Task<GetRandomItemsInReviewResponse?> GetRandomOnReadingsInReviewAsync(string characterId,
         int qty = 4);
+
+    Task ToggleSkipStateAsync(string? id);
 }

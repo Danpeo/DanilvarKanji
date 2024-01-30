@@ -12,7 +12,6 @@ public class UpdateUserLearningSettingsHandler : IRequestHandler<UpdateUserLearn
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-
     public UpdateUserLearningSettingsHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;

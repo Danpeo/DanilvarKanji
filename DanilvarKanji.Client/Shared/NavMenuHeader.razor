@@ -13,14 +13,21 @@
                 <HasAnyRole Roles="@(new[] { "Admin, SuperAdmin" })">
                     <p>Admin</p>
                 </HasAnyRole>
-                <p class="mx-2 card-text txt-mid-pink main-font">
-                    <b>
-                        <GetUserName/>
-                    </b>
-                    <span class="txt-gray">
+                <p class="mx-2 card-text txt-mid-pink fs-5">
+
+                    <GetUserName/>
+                    <span class="txt-green-dim fs-6">
                         <GetUserJlpt/>
                     </span>
                 </p>
+
+                <li class="nav-item active mx-1">
+                    <NavLink
+                        href="/User/Learning-Settings"
+                        class="btn btn-outline-primary ">
+                        Settings
+                    </NavLink>
+                </li>
 
                 <li class="nav-item active">
                     <button class="btn btn-primary bg-light-pink txt-dark" @onclick="LogoutAsync">Log Out</button>

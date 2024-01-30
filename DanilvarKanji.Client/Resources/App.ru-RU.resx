@@ -99,4 +99,7 @@
     <data name="Fin" xml:space="preserve">
         <value>Завершить</value>
     </data>
+    <data name="ValueTooSmall" xml:space="preserve">
+        <value>Значение должно быть больше чем </value>
+    </data>
 </root>

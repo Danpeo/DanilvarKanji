@@ -4,24 +4,27 @@
 @using DanilvarKanji.Shared.Domain.Enumerations
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 
+@inherits VerifyByPointingBase
 
 @if (_meanings != null)
 {
-    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
+    <BaseExercise OnForgot="OnForgot.Invoke">
+        <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
 
-    <div class="d-grid gap-4">
-        @for (var i = 0; i < _meanings.RandomItems.Count; i++)
-        {
-            string meaning = _meanings.RandomItems[i];
-            string buttonId = $"optionBtn_{i}";
-            <button class="btn btn-dark btn-lg"
-                    style="font-size: 1.75rem"
-                    id="@buttonId"
-                    @onclick="() => CheckAnswer(meaning, buttonId)">
-                @meaning
-            </button>
-        }
-    </div>
+        <div class="d-grid gap-4">
+            @for (var i = 0; i < _meanings.RandomItems.Count; i++)
+            {
+                string meaning = _meanings.RandomItems[i];
+                string buttonId = $"optionBtn_{i}";
+                <button class="btn btn-dark btn-lg"
+                        style="font-size: 1.75rem"
+                        id="@buttonId"
+                        @onclick="() => CheckAnswer(meaning, buttonId)">
+                    @meaning
+                </button>
+            }
+        </div>
+    </BaseExercise>
 }
 else
 {
@@ -29,33 +32,6 @@ else
 }
 
 @code {
-
-    [Parameter, EditorRequired]
-    public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
-
-    [Parameter, EditorRequired]
-    public Culture Culture { get; set; }
-
-    /// <summary>
-    /// Invoked only once, then assigned NULL
-    /// </summary>
-    [Parameter, EditorRequired]
-    public Func<Task>? OnCorrect { get; set; }
-
-    /// <summary>
-    /// Invoked only once, then assigned NULL
-    /// </summary>
-    [Parameter, EditorRequired]
-    public Func<Task>? OnIncorrect { get; set; }
-
-    [Parameter]
-    public int OptionCount { get; set; } = 4;
-
-    [Inject]
-    public required Js Js { get; set; }
-
-    [Inject]
-    public required ICharacterLearningService CharacterLearningService { get; set; }
 
     private GetRandomItemsInReviewResponse? _meanings;
 
@@ -65,7 +41,7 @@ else
             await CharacterLearningService.GetRandomMeaningsInReviewAsync(CharacterForVerification.Id, Culture, OptionCount);
     }
 
-    private async Task CheckAnswer(string meaning, string buttonId)
+    private async Task CheckAnswer(string meaning, string? buttonId)
     {
         if (meaning == _meanings?.CorrectMeaning)
         {

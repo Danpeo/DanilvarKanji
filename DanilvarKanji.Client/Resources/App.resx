@@ -53,4 +53,7 @@
     <data name="Fin" xml:space="preserve">
         <value />
     </data>
+    <data name="ValueTooSmall" xml:space="preserve">
+        <value />
+    </data>
 </root>

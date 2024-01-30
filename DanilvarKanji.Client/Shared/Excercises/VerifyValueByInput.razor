@@ -50,7 +50,7 @@
     public string InputPlaceholder { get; set; } = "Input";
     
     [Parameter]
-    public Func<string, Task>? OnInput { get; set; }
+    public Func<string?, Task>? OnInput { get; set; }
 
     /// <summary>
     /// Invoked only once, then assigned NULL
@@ -61,7 +61,7 @@
     private string _enteredValue = string.Empty;
     private bool _isCorrect;
     private int _attempts;
-        private const string ValueInputId = "valueInput";
+        private const string? ValueInputId = "valueInput";
 
     private async Task Verify()
     {

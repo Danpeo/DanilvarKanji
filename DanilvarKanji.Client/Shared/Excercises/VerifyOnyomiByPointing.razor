@@ -4,21 +4,23 @@
 
 @if (_onReadings != null)
 {
-    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification" />
-    
-    <div class="d-grid gap-4">
-        @for (var i = 0; i < _onReadings.RandomItems.Count; i++)
-        {
-            string reading = _onReadings.RandomItems[i];
-            string buttonId = $"optionBtn_{i}";
-            <button class="btn btn-dark btn-lg"
-                    style="font-size: 1.75rem"
-                    id="@buttonId"
-                    @onclick="() => CheckAnswer(reading, buttonId)">
-                <HumanReadJapaneseWriting JapaneseWriting="@reading"/>
-            </button>
-        }
-    </div>
+    <BaseExercise OnForgot="OnForgot.Invoke">
+        <WhatIsOnyomiOf CharacterForVerification="CharacterForVerification"/>
+
+        <div class="d-grid gap-4">
+            @for (var i = 0; i < _onReadings.RandomItems.Count; i++)
+            {
+                string reading = _onReadings.RandomItems[i];
+                string? buttonId = $"optionBtn_{i}";
+                <button class="btn btn-dark btn-lg"
+                        style="font-size: 1.75rem"
+                        id="@buttonId"
+                        @onclick="() => CheckAnswer(reading, buttonId)">
+                    <HumanReadJapaneseWriting JapaneseWriting="@reading"/>
+                </button>
+            }
+        </div>
+    </BaseExercise>
 }
 else
 {
@@ -31,11 +33,11 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _onReadings = 
+        _onReadings =
             await CharacterLearningService.GetRandomOnReadingsInReviewAsync(CharacterForVerification.Id, OptionCount);
     }
 
-    private async Task CheckAnswer(string reading, string buttonId)
+    private async Task CheckAnswer(string reading, string? buttonId)
     {
         if (reading == _onReadings?.CorrectMeaning)
         {

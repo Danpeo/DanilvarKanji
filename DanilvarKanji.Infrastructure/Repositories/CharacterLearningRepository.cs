@@ -20,6 +20,22 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     public void Create(CharacterLearning characterLearning) =>
         _context.CharacterLearnings.Add(characterLearning);
 
+    public async Task ToggleSkipStateAsync(string id, AppUser user)
+    {
+        var characterLearning = await _context.CharacterLearnings
+            .FirstOrDefaultAsync(x => x.Id == id && x.AppUser == user);
+
+        if (characterLearning is null)
+            return;
+
+        if (characterLearning.LearningState == LearningState.Skipped)
+            characterLearning.LearningState = LearningState.Learning;
+        else
+            characterLearning.LearningState = LearningState.Skipped;
+
+        _context.CharacterLearnings.Update(characterLearning);
+    }
+
     public async Task UpdateProgressAsync(string id, AppUser user, bool lastReviewWasCorrect)
     {
         var characterLearning = await _context.CharacterLearnings
@@ -50,14 +66,27 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         JlptLevel jlptLevel = JlptLevel.N5)
     {
         var charLearnings = await GetCharacterLearningsWithRelatedData()
-                .Where(x => x.AppUser == user)
-                .Where(x => x.Character.JlptLevel >= jlptLevel)
-                .Where(x => x.LearningState == LearningState.NotLearned)
-                .OrderBy(x => x.Character.JlptLevel)
-                .ThenBy(x => x.Character.CharacterType)
-                .ThenBy(x => x.Character.Definition)
-                .ToListAsync();
-        
+            .Where(x => x.AppUser == user)
+            .Where(x => x.Character.JlptLevel >= jlptLevel)
+            .Where(x => x.LearningState == LearningState.NotLearned)
+            .OrderBy(x => x.Character.JlptLevel)
+            .ThenBy(x => x.Character.CharacterType)
+            .ThenBy(x => x.Character.Definition)
+            .ToListAsync();
+
+        return paginationParams != null ? Paginator.Paginate(charLearnings, paginationParams) : charLearnings;
+    }
+
+    public async Task<IEnumerable<CharacterLearning>> ListSkippedAsync(PaginationParams? paginationParams, AppUser user)
+    {
+        var charLearnings = await GetCharacterLearningsWithRelatedData()
+            .Where(x => x.AppUser == user)
+            .Where(x => x.LearningState == LearningState.Skipped)
+            .OrderBy(x => x.Character.JlptLevel)
+            .ThenBy(x => x.Character.CharacterType)
+            .ThenBy(x => x.Character.Definition)
+            .ToListAsync();
+
         return paginationParams != null ? Paginator.Paginate(charLearnings, paginationParams) : charLearnings;
     }
 
@@ -132,14 +161,14 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     public async Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser) =>
         await GetReviewQueue(appUser).FirstOrDefaultAsync();
 
-    public Task<bool> AnyExist()
-        => _context.CharacterLearnings.AnyAsync();
+    public async ValueTask<bool> AnyExist() => 
+        await _context.CharacterLearnings.AnyAsync();
 
-    public Task<bool> AnyToReview(AppUser appUser)
-        => _context.CharacterLearnings.AnyAsync(x => x.AppUser == appUser);
+    public async ValueTask<bool> AnyToReview(AppUser appUser) =>
+        await _context.CharacterLearnings.AnyAsync(x => x.AppUser == appUser);
 
-    public Task<bool> Exist(string requestId, AppUser user) =>
-        _context.CharacterLearnings.AnyAsync(x => x.Id == requestId && x.AppUser == user);
+    public async ValueTask<bool> Exist(string requestId, AppUser user) => 
+        await _context.CharacterLearnings.AnyAsync(x => x.Id == requestId && x.AppUser == user);
 
     private IQueryable<CharacterLearning> GetCharacterLearningsWithRelatedData()
     {

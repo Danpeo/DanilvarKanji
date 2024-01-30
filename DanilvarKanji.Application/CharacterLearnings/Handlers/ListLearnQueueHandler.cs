@@ -24,7 +24,7 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
             if (request.listOnlyDayDosage)
             {
                 var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
-                
+
                 return await _characterLearningRepository.ListLearnQueueAsync(paginationParams, request.AppUser,
                     request.JlptLevel);
             }

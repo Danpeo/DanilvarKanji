@@ -1,4 +1,4 @@
-@page "/Learning-Settings"
+@page "/User/Learning-Settings"
 
 @using DanilvarKanji.Client.Services.Auth
 @using DanilvarKanji.Shared.Domain.Enumerations
@@ -12,7 +12,10 @@
     else
     {
         <EditForm Model="_learningSettings" OnSubmit="OnChangeSettings">
-            <FormSection Title="User Settings" HelpText="">
+
+            <FluentValidationValidator/>
+
+            <FormSection Title="Learning Settings" HelpText="">
                 <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
                     <InputSelect @bind-Value="_learningSettings.JlptLevel"
                                  class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
@@ -28,9 +31,9 @@
                     <InputNumber @bind-Value="_learningSettings.QtyOfCharsForLearningForDay"
                                  class="form-control bg-main txt-green-dim no-border"
                                  id="strokeCount" placeholder="Stroke Count"/>
-                    @*
-                    <ValidationMessage For="@(() => _createCharacterRequest.StrokeCount)"/>
-                *@
+
+                    <ValidationMessage For="@(() => _learningSettings.QtyOfCharsForLearningForDay)"/>
+
                 </FormFieldSet>
 
                 <div class="mt-4 mb-5">
@@ -45,6 +48,14 @@
                     </div>
                 </div>
 
+                @if (_successSubmit)
+                {
+                    <SuccessAlertAlt Message="Settings updated successfully!"/>
+                }
+                else if (_errorMessage is not null && !_successSubmit)
+                {
+                    <ErrorAlertAlt Message="@_errorMessage"/>
+                }
 
             </FormSection>
         </EditForm>
@@ -57,6 +68,8 @@
     public required IUserService UserService { get; set; }
 
     private LearningSettings? _learningSettings;
+    private string? _errorMessage;
+    private bool _successSubmit;
 
     protected override async Task OnInitializedAsync()
     {
@@ -65,9 +78,18 @@
 
     private async Task OnChangeSettings()
     {
-        if (_learningSettings != null)
+        try
         {
-            await UserService.UpdateLearningSettingsAsync(_learningSettings);
+            if (_learningSettings != null)
+            {
+                await UserService.UpdateLearningSettingsAsync(_learningSettings);
+                _successSubmit = true;
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
+            _successSubmit = false;
         }
     }
 

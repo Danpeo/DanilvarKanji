@@ -64,6 +64,17 @@ public class CharacterLearningService : ICharacterLearningService
         }
     }
 
+    public async Task ToggleSkipStateAsync(string? id)
+    {
+        var response = await _httpClient.PatchAsJsonAsync($"api/CharacterLearnings/ToggleSkipState", id);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+        }
+    }
+
     public async Task<GetRandomItemsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId,
         Culture culture, int qty = 4)
     {
@@ -148,29 +159,40 @@ public class CharacterLearningService : ICharacterLearningService
     public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListReviewQueueAsync(int pageNumber = 0,
         int pageSize = 0)
     {
-        try
+        HttpResponseMessage response =
+            await _httpClient.GetAsync(
+                $"api/CharacterLearnings/ReviewQueue?PageNumber={pageNumber}&PageSize={pageSize}");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response =
-                await _httpClient.GetAsync(
-                    $"api/CharacterLearnings/ReviewQueue?PageNumber={pageNumber}&PageSize={pageSize}");
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
-
-                return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterLearningBaseInfoResponse>>() ??
-                       Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterLearningBaseInfoResponse>>() ??
+                   Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
         }
-        catch (HttpRequestException e)
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+    }
+
+    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse>> ListSkippedAsync(int pageNumber = 0,
+        int pageSize = 0)
+    {
+        var response = await _httpClient.GetAsync(
+                $"api/CharacterLearnings/Skipped?PageNumber={pageNumber}&PageSize={pageSize}");
+
+        if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine(e);
-            throw;
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
+
+            return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterLearningBaseInfoResponse>>() ??
+                   Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
         }
+        
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
     public async Task<GetCharacterLearningBaseInfoResponse?> GetNextInReviewQueueAsync()

@@ -1,0 +1,15 @@
+@ChildContent
+
+<div class="d-grid gap-4 mt-2">
+    <button @onclick="OnForgot.Invoke" class="btn btn-danger">Forgot😰</button>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter, EditorRequired]
+    public required Func<Task> OnForgot { get; set; }
+
+}

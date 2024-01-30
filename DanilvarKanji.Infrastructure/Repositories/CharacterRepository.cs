@@ -34,7 +34,7 @@ public class CharacterRepository : ICharacterRepository
     {
         var characters = await GetLearnQueue(user, jlptLevel).ToListAsync();
 
-        return paginationParams is not null ? Paginator.Paginate(characters, paginationParams) : characters;
+        return paginationParams != null ? Paginator.Paginate(characters, paginationParams) : characters;
     }
 
     public async Task<Character?> GetNextInLearnQueueAsync(AppUser user) =>

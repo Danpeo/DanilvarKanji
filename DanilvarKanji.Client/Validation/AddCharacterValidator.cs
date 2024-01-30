@@ -20,7 +20,7 @@ public class AddCharacterValidator : BaseCharacterValidator<CreateCharacterReque
             .NotEmpty()
             .WithMessage(localizer[nameof(AppLocaleKeys.NotEmptyStrokeCount)])
             .GreaterThan(0)
-            .WithMessage($"{localizer[nameof(AppLocaleKeys.ValueTooLong)]}0");
+            .WithMessage($"{localizer["ValueTooSmall"]}0");
 
         RuleFor(x => x.Mnemonics)
             .NotEmpty()

@@ -4,16 +4,19 @@
 @using DanilvarKanji.Client.Extensions
 @using WanaKanaNet
 
-<WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
+<BaseExercise OnForgot="OnForgot.Invoke">
+    <WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
 
-<VerifyValueByInput
-    CharacterForVerification="CharacterForVerification"
-    VerifyCondition="VerifyCondition"
-    OnIncorrect="OnIncorrect"
-    OnCorrect="OnCorrect"
-    OnConfirm="OnConfirm"
-    InputPlaceholder="Kun reading"
-    OnInput="OnInput"/>
+    <VerifyValueByInput
+        CharacterForVerification="CharacterForVerification"
+        VerifyCondition="VerifyCondition"
+        OnIncorrect="OnIncorrect"
+        OnCorrect="OnCorrect"
+        OnConfirm="OnConfirm"
+        InputPlaceholder="Kun reading"
+        OnInput="OnInput"/>
+</BaseExercise>
+
 
 @code {
 
@@ -29,6 +32,9 @@
     [Parameter, EditorRequired]
     public Func<Task>? OnIncorrect { get; set; }
 
+    [Parameter, EditorRequired]
+    public required Func<Task> OnForgot {get; set;}
+    
     [Inject]
     public required Js Js { get; set; }
 

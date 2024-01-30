@@ -190,6 +190,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1bHR1cmVTZWxlY3Rvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/BaseExercise.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcQmFzZUV4ZXJjaXNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Excercises/VerifyByPointingBase.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV4Y2VyY2lzZXNcVmVyaWZ5QnlQb2ludGluZ0Jhc2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

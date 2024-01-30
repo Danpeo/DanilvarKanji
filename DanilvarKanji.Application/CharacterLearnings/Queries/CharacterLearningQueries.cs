@@ -15,6 +15,9 @@ public record GetCharacterLearningQuery(string Id, AppUser AppUser) : IRequest<C
 public record ListCharacterReviewQuery
     (PaginationParams? PaginationParams, AppUser AppUser) : IRequest<IEnumerable<GetCharacterLearningBaseInfoResponse>>;
 
+public record ListSkippedQuery
+    (PaginationParams? PaginationParams, AppUser AppUser) : IRequest<IEnumerable<CharacterLearning>>;
+
 public record GetNextToReviewInQueueQuery(AppUser AppUser) : IRequest<GetCharacterLearningBaseInfoResponse?>;
 
 public record GetRandomMeaningsInReviewQuery

@@ -10,6 +10,7 @@
 @using DanilvarKanji.Shared.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.Reviews
 @using DanilvarKanji.Shared.Responses.Review
+@using Blazored.Modal.Services
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -18,10 +19,10 @@
         <p>@_character.Id</p>
         @_exercises[_currentExcercise]
 
-        <div class="d-grid gap-4 mt-4">
-            <button class="btn btn-lg btn-danger"
-                    @onclick="async () => { await OnIncorrectMeaning(); await GoToNextExerciseOrFinish(); }">
-                Forgot
+        <div class="d-grid gap-4 mt-4 mb-4">
+            <button class="btn btn btn-outline-secondary"
+                    @onclick="SkipCharacterFromLearning">
+                Skip this character from learning
             </button>
         </div>
     }
@@ -39,6 +40,9 @@
 
     [Parameter, EditorRequired]
     public required string CharacterLearningId { get; set; }
+
+    [CascadingParameter]
+    public required IModalService ModalService { get; set; }
 
     [Inject]
     public required AppState AppState { get; set; }
@@ -95,6 +99,7 @@
                                CharacterForVerification="_character"
                                Culture="_culture"
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Onyomi))"
+                               OnForgot="@(() => OnForgotExercise(ReviewType.Point, ExerciseType.Onyomi))"
                                OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Onyomi))"/>
                        </div>);
 
@@ -103,6 +108,7 @@
                                CharacterForVerification="_character"
                                Culture="_culture"
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Kunyomi))"
+                               OnForgot="@(() => OnForgotExercise(ReviewType.Point, ExerciseType.Kunyomi))"
                                OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Kunyomi))"/>
                        </div>);
 
@@ -117,6 +123,7 @@
                            <VerifyKunyomiByInput
                                OnConfirm="@(async () => await OnConfirmExercise())"
                                OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Kunyomi))"
+                               OnForgot="@(() => OnForgotExercise(ReviewType.Input, ExerciseType.Kunyomi))"
                                OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Input, ExerciseType.Kunyomi))"
                                CharacterForVerification="_character"/>
                        </div>);
@@ -125,6 +132,7 @@
                                CharacterForVerification="_character"
                                Culture="_culture"
                                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Meaning))"
+                               OnForgot="@(() => OnForgotExercise(ReviewType.Point, ExerciseType.Meaning))"
                                OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Meaning))"/>
                        </div>);
         _exercises.Add(@<div class="fade-in-el">
@@ -155,12 +163,47 @@
         await OnConfirmExercise();
     }
 
-    private async Task OnIncorrectPointExercise(ReviewType reviewType, ExerciseType exerciseType) => 
+    private async Task OnForgotExercise(ReviewType reviewType, ExerciseType exerciseType)
+    {
+        await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+
+        await OnConfirmExercise();
+    }
+
+    private async Task OnIncorrectPointExercise(ReviewType reviewType, ExerciseType exerciseType) =>
         await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
 
     private async Task OnIncorrectMeaning()
     {
         await AddExerciseToReviewSession(isCorrect: false, ReviewType.Input, ExerciseType.Meaning);
+    }
+
+    private void SkipCharacterFromLearning()
+    {
+        try
+        {
+            var options = new ModalOptions
+            {
+                Position = ModalPosition.Middle,
+                Class = "custom-modal"
+            };
+
+            var parameters = new ModalParameters()
+                .Add(nameof(ConfirmCancelModal.Message), "AGH")
+                .Add(nameof(ConfirmCancelModal.OnConfirm), async () =>
+                {
+                    await CharacterLearningService.ToggleSkipStateAsync(_learning?.Id);
+
+                    NavigationManager.NavigateTo("/");
+                });
+
+            ModalService.Show<ConfirmCancelModal>("AHAHHAH", parameters, options);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     private async Task OnConfirmExercise()

@@ -11,10 +11,10 @@ public class Dom
         _jsRuntime = jsRuntime;
     }
 
-    public async Task AddClassesToElementForTime(string elementId, IEnumerable<string> cssClasses, int time) =>
+    public async Task AddClassesToElementForTime(string? elementId, IEnumerable<string> cssClasses, int time) =>
         await _jsRuntime.InvokeVoidAsync("addClassesToElementForTime", elementId, cssClasses, time);
 
-    public async Task AddClassesToElement(string elementId, IEnumerable<string> cssClasses) => 
+    public async Task AddClassesToElement(string? elementId, IEnumerable<string> cssClasses) => 
         await _jsRuntime.InvokeVoidAsync("addClassesToElement", elementId, cssClasses);
 
     public async Task ChangeElementValue(string elementId, string value) => 
