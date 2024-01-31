@@ -1,0 +1,13 @@
+@using DanilvarKanji.Shared.Domain.Enumerations
+@using DanilvarKanji.Client.Localization
+
+@code {
+    [Inject] public required ILocalizationService LocalizationService { get; set; }
+    
+    protected Culture Culture;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Culture = await LocalizationService.GetCurrentCulture();
+    }
+}

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DanilvarKanji.Mappings")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abcefe7c9143f46dec15e217b25bdd99f715bfcc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3c17e3199d937f34aa28a1737e437814d0b5c74")]
 [assembly: System.Reflection.AssemblyProductAttribute("DanilvarKanji.Mappings")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DanilvarKanji.Mappings")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,5 +1,9 @@
-@page "/ReviewCharacters"
+@page "/My-Learning"
+
 @using DanilvarKanji.Client.State
+
+<PageTitle>My Learning</PageTitle>
+
 
 @if (!string.IsNullOrEmpty(_learningId))
 {
@@ -9,6 +13,8 @@ else
 {
     <Message Text="No characters to review :(" />
 }
+
+<DislpaySkippedCharacters/>
 
 @code {
     [Inject]

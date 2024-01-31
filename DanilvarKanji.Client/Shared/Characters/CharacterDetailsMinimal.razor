@@ -1,0 +1,14 @@
+@using DanilvarKanji.Shared.Responses.Character
+@inherits NeedsCultureComponent
+
+<div class="char-details">
+    <DisplayCharacterDefinition Character="Character"/>
+    <DisplayCharacterMeanings Character="Character" Culture="Culture"/>
+    <DisplayCharacterMnemonics Character="Character" Culture="Culture"/>
+    <DisplayCharacterKunReadings Character="Character"/>
+    <DisplayCharacterOnReadings Character="Character"/>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public required GetAllFromCharacterResponse Character { get; set; }
+}

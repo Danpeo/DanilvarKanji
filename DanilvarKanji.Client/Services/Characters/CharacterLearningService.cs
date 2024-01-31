@@ -176,7 +176,7 @@ public class CharacterLearningService : ICharacterLearningService
         throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
-    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse>> ListSkippedAsync(int pageNumber = 0,
+    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse>?> ListSkippedAsync(int pageNumber = 0,
         int pageSize = 0)
     {
         var response = await _httpClient.GetAsync(
