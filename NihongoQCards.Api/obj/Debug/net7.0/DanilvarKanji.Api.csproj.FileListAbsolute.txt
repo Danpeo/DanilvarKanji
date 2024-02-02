@@ -153,3 +153,12 @@ C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\JsWrapper\Npm\package-lock.json
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\JsWrapper\Npm\package.json
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Danilvar.Random.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.AspNetCore.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.Extensions.Hosting.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.Extensions.Logging.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.Formatting.Compact.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.Settings.Configuration.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.Sinks.Console.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.Sinks.Debug.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Serilog.Sinks.File.dll

@@ -1,14 +1,16 @@
 @using DanilvarKanji.Shared.Responses.Character
-@inherits NeedsCultureComponent
+@using DanilvarKanji.Client.State
 
 <div class="char-details">
     <DisplayCharacterDefinition Character="Character"/>
-    <DisplayCharacterMeanings Character="Character" Culture="Culture"/>
-    <DisplayCharacterMnemonics Character="Character" Culture="Culture"/>
+    <DisplayCharacterMeanings Character="Character" Culture="AppState.CultureState.Culture"/>
+    <DisplayCharacterMnemonics Character="Character" Culture="AppState.CultureState.Culture"/>
     <DisplayCharacterKunReadings Character="Character"/>
     <DisplayCharacterOnReadings Character="Character"/>
 </div>
 
 @code {
     [Parameter, EditorRequired] public required GetAllFromCharacterResponse Character { get; set; }
+    
+    [Inject] public required AppState AppState { get; set; }
 }

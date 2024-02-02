@@ -48,8 +48,10 @@
     public required AppState AppState { get; set; }
 
     [Inject]
-    public required ICharacterLearningService CharacterLearningService { get; set; }
+    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
 
+    [Inject] public required CharacterLearningService CharacterLearningService { get; set; }
+    
     [Inject]
     public required ICharacterService CharacterService { get; set; }
 
@@ -81,7 +83,7 @@
     {
         _culture = await LocalizationService.GetCurrentCulture();
 
-        _learning = await CharacterLearningService.GetLearningAsync(CharacterLearningId);
+        _learning = await CharacterLearningHttpService.GetLearningAsync(CharacterLearningId);
         _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
 
         InitExercises();
@@ -180,7 +182,8 @@
 
     private void SkipCharacterFromLearning()
     {
-        try
+        CharacterLearningService.SkipCharacterFromLearning(_learning!.Id, naviteToAfterSkip: "/");
+        /*try
         {
             var options = new ModalOptions
             {
@@ -192,7 +195,7 @@
                 .Add(nameof(ConfirmCancelModal.Message), "AGH")
                 .Add(nameof(ConfirmCancelModal.OnConfirm), async () =>
                 {
-                    await CharacterLearningService.ToggleSkipStateAsync(_learning?.Id);
+                    await CharacterLearningHttpService.ToggleSkipStateAsync(_learning?.Id);
 
                     NavigationManager.NavigateTo("/");
                 });
@@ -203,7 +206,7 @@
         {
             Console.WriteLine(e);
             throw;
-        }
+        }*/
     }
 
     private async Task OnConfirmExercise()

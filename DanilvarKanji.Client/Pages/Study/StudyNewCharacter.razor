@@ -2,9 +2,9 @@
 
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.Services.Characters
-@using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Shared.Requests.CharacterLearnings
 @using Blazored.Modal.Services
+@using DanilvarKanji.Client.State
 @using DanilvarKanji.Shared.Domain.Enumerations
 
 <ForbidIfNotAuthorized>
@@ -36,6 +36,8 @@
     [Parameter, EditorRequired]
     public required string CharacterId { get; set; }
 
+    [Inject] public required AppState AppState { get; set; }
+    
     [Inject]
     public required ICharacterService CharacterService { get; set; }
 
@@ -43,10 +45,7 @@
     public required NavigationManager NavigationManager { get; set; }
 
     [Inject]
-    public required ICharacterLearningService CharacterLearningService { get; set; }
-
-    [Inject]
-    public required ILocalizationService LocalizationService { get; set; }
+    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
 
     [Inject]
     public required IStringLocalizer<App> Loc { get; set; }
@@ -54,12 +53,10 @@
     private bool _contentEnded;
     private CreateCharacterLearningRequest _characterLearningRequest = new();
     private GetAllFromCharacterResponse? _character;
-    private Culture _culture = Culture.EnUS;
     private Dictionary<int, RenderFragment> _contentDictionary = new();
 
     protected override async Task OnInitializedAsync()
     {
-        await GetCurrentCulture();
         _character = await CharacterService.GetCharacterAsync(CharacterId);
 
         if (_character?.CharacterType is CharacterType.Kanji)
@@ -79,7 +76,7 @@
         if (_character != null)
         {
             _characterLearningRequest = new CreateCharacterLearningRequest(_character.Id, LearningState.Learning);
-            var characterLearning = await CharacterLearningService.CreateCharacterLearningAsync(_characterLearningRequest);
+            var characterLearning = await CharacterLearningHttpService.CreateCharacterLearningAsync(_characterLearningRequest);
 
             var options = new ModalOptions
             {
@@ -102,12 +99,12 @@
         {
             {
                 0, @<div class="fade-in-el">
-                       <DisplayCharacterMeanings Character="@_character" Culture="_culture"/>
+                       <DisplayCharacterMeanings Character="@_character" Culture="AppState.CultureState.Culture"/>
                    </div>
             },
             {
                 1, @<div class="fade-in-el">
-                       <DisplayCharacterMnemonics Character="_character" Culture="_culture"/>
+                       <DisplayCharacterMnemonics Character="_character" Culture="AppState.CultureState.Culture"/>
                    </div>
             },
             {
@@ -129,18 +126,17 @@
         {
             {
                 0, @<div class="fade-in-el">
-                       <DisplayCharacterMeanings Character="@_character" Culture="_culture"/>
+                       <DisplayCharacterMeanings Character="@_character" Culture="AppState.CultureState.Culture"/>
                    </div>
             },
             {
                 1, @<div class="fade-in-el">
-                       <DisplayCharacterMnemonics Character="_character" Culture="_culture"/>
+                       <DisplayCharacterMnemonics Character="_character" Culture="AppState.CultureState.Culture"/>
                    </div>
             }
         };
     }
 
-    private async Task GetCurrentCulture() =>
-        _culture = await LocalizationService.GetCurrentCulture();
+   
 
 }

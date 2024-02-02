@@ -5,6 +5,7 @@ using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
@@ -14,19 +15,25 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
     private readonly ICharacterLearningRepository _characterLearningRepository;
     private readonly ICharacterRepository _characterRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ILogger<CreateCharacterLearningHandler> _logger;
 
     public CreateCharacterLearningHandler(ICharacterLearningRepository characterLearningRepository,
-        IUnitOfWork unitOfWork, ICharacterRepository characterRepository)
+        IUnitOfWork unitOfWork, ICharacterRepository characterRepository,
+        ILogger<CreateCharacterLearningHandler> logger)
     {
         _characterLearningRepository = characterLearningRepository;
         _unitOfWork = unitOfWork;
         _characterRepository = characterRepository;
+        _logger = logger;
     }
 
-    public async Task<Result<string>> Handle(CreateCharacterLearningCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CreateCharacterLearningCommand request,
+        CancellationToken cancellationToken)
     {
         Character? character = await _characterRepository.GetAsync(request.CharacterId);
-
+        
+        _logger.LogInformation("Getted character: {@character}", character);
+        
         var characterLearning = new CharacterLearning()
         {
             Id = request.Id,
@@ -38,8 +45,12 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
 
         _characterLearningRepository.Create(characterLearning);
         if (await _unitOfWork.CompleteAsync())
+        {
+            _logger.LogInformation("Created character learning: {@characterLearning}", characterLearning);
             return Result.Success(characterLearning.Id);
-
+        }
+        
+        _logger.LogError("Failed to create character learning: {@characterLearning}", characterLearning);
         return Result.Failure<string>(General.UnProcessableRequest);
     }
 }

@@ -34,7 +34,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         _onReadings =
-            await CharacterLearningService.GetRandomOnReadingsInReviewAsync(CharacterForVerification.Id, OptionCount);
+            await CharacterLearningHttpService.GetRandomOnReadingsInReviewAsync(CharacterForVerification.Id, OptionCount);
     }
 
     private async Task CheckAnswer(string reading, string? buttonId)

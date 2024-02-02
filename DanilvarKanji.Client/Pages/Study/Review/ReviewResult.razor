@@ -8,6 +8,8 @@
 @using DanilvarKanji.Shared.Domain.Enumerations
 @using DanilvarKanji.Shared.Responses.Character
 
+@inherits NeedsCultureComponent
+
 <ForbidIfNotAuthorized>
     @if (_reviewSession is null || _character is null)
     {
@@ -40,7 +42,7 @@
                 </p>
             }
 
-            <DisplayCharacterMeanings Culture="_culture" Character="_character"/>
+            <DisplayCharacterMeanings Culture="Culture" Character="_character"/>
             <DisplayCharacterKunReadings Character="_character"/>
             <DisplayCharacterOnReadings Character="_character"/>
 
@@ -63,9 +65,6 @@
     public required string CharacterId { get; set; }
 
     [Inject]
-    public required ILocalizationService LocalizationService { get; set; }
-
-    [Inject]
     public required IReviewService ReviewService { get; set; }
 
     [Inject]
@@ -73,13 +72,11 @@
 
     private GetBaseReviewSessionResponse? _reviewSession;
     private GetAllFromCharacterResponse? _character;
-    private Culture _culture;
 
     protected override async Task OnInitializedAsync()
     {
         _reviewSession = await ReviewService.GetReviewSessionAsync(ReviewSessionId);
         _character = await CharacterService.GetCharacterAsync(CharacterId);
-        _culture = await LocalizationService.GetCurrentCulture();
     }
 
     private bool ReviewIsSuccess() =>

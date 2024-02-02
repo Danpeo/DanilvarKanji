@@ -59,7 +59,7 @@ public class CharacterController : ApiController
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Character>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams = default)
+    public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
         IEnumerable<Character> characters = await Mediator.Send(new ListCharactersQuery(paginationParams));
 

@@ -34,7 +34,7 @@ else
 @code {
 
     [Inject]
-    public required ICharacterLearningService CharacterLearningService { get; set; }
+    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
 
     [Inject]
     public required NavigationManager NavigationManager { get; set; }
@@ -55,7 +55,7 @@ else
     {
         try
         {
-            _characterItems = await CharacterLearningService.ListSkippedAsync(PageNumber, PageSize);
+            _characterItems = await CharacterLearningHttpService.ListSkippedAsync(PageNumber, PageSize);
         }
         catch (HttpRequestException e)
         {

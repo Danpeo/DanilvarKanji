@@ -1,0 +1,44 @@
+@*@using Blazored.Modal.Services
+@using DanilvarKanji.Client.Services.Characters
+
+@code {
+    [Parameter, EditorRequired]
+    
+    
+    [CascadingParameter]
+    public required IModalService ModalService { get; set; }
+    
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+    
+    [Inject]
+    public required ICharacterLearningService CharacterLearningService { get; set; }
+    
+    public void SkipCharacterFromLearning()
+    {
+        try
+        {
+            var options = new ModalOptions
+            {
+                Position = ModalPosition.Middle,
+                Class = "custom-modal"
+            };
+
+            var parameters = new ModalParameters()
+                .Add(nameof(ConfirmCancelModal.Message), "AGH")
+                .Add(nameof(ConfirmCancelModal.OnConfirm), async () =>
+                {
+                    await CharacterLearningService.ToggleSkipStateAsync(_learning?.Id);
+
+                    NavigationManager.NavigateTo("/");
+                });
+
+            ModalService.Show<ConfirmCancelModal>("AHAHHAH", parameters, options);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+}*@

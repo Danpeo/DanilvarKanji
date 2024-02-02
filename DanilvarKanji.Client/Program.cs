@@ -46,7 +46,8 @@ builder.Services.AddTransient<AuthHandler>();
 builder.Services.AddSingleton<ICharacterService, CharacterService>();
 builder.Services.AddSingleton<IKanjiService, KanjiService_KAD>();
 builder.Services.AddScoped<IDictionaryService, DictionaryService>();
-builder.Services.AddScoped<ICharacterLearningService, CharacterLearningService>();
+builder.Services.AddScoped<ICharacterLearningHttpService, CharacterLearningHttpService>();
+builder.Services.AddScoped<CharacterLearningService>();
 builder.Services
     .AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();

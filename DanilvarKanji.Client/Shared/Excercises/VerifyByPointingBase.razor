@@ -35,7 +35,7 @@
     public required Js Js { get; set; }
 
     [Inject]
-    public required ICharacterLearningService CharacterLearningService { get; set; }
+    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
     
     protected async Task OnIncorrectAnswer(string buttonId)
     {

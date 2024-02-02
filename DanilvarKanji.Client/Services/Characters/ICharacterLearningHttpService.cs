@@ -4,7 +4,7 @@ using DanilvarKanji.Shared.Responses.CharacterLearning;
 
 namespace DanilvarKanji.Client.Services.Characters;
 
-public interface ICharacterLearningService
+public interface ICharacterLearningHttpService
 {
     Task<GetAllFromCharacterLearningResponse?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request);
 

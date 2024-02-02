@@ -1,5 +1,6 @@
 using Blazored.LocalStorage;
 using Blazored.SessionStorage;
+using DanilvarKanji.Client.Localization;
 
 namespace DanilvarKanji.Client.State;
 
@@ -10,9 +11,12 @@ public class AppState
     public ReviewSessionState ReviewSessionState { get; }
     public AddCharacterState AddCharacterState { get; set; }
     public DictionaryState DictionaryState { get; set; }
-    
-    public AppState(ILocalStorageService localStorageService, ISessionStorageService sessionStorageService)
+    public CultureState CultureState { get; set; }
+
+    public AppState(ILocalStorageService localStorageService, ISessionStorageService sessionStorageService,
+        ILocalizationService localizationService)
     {
+        CultureState = new CultureState(localizationService);
         ReviewCharState = new ReviewCharState(sessionStorageService);
         ReviewSessionState = new ReviewSessionState(sessionStorageService);
         AddCharacterState = new AddCharacterState(sessionStorageService);
@@ -27,6 +31,7 @@ public class AppState
             await ReviewSessionState.Init();
             await AddCharacterState.Init();
             await DictionaryState.Init();
+            await CultureState.Init();
             _isInitialized = true;
         }
     }

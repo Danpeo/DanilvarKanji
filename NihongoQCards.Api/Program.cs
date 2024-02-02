@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,7 +69,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<Application>();
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBeh<,>));
 
 
-
 // Add services to the container.
 
 //builder.Services.AddIdentityServices(builder.Configuration);
@@ -113,6 +113,11 @@ builder.Services.AddAuthorization();
 builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 */
 
+builder.Host.UseSerilog((context, config) =>
+{
+    config.ReadFrom.Configuration(context.Configuration);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -127,6 +132,8 @@ app.UseCors(policy =>
             .AllowAnyMethod()
             .AllowAnyHeader()
 );
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
