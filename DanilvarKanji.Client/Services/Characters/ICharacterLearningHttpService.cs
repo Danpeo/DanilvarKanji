@@ -24,6 +24,6 @@ public interface ICharacterLearningHttpService
 
     Task ToggleSkipStateAsync(string? id);
 
-    Task<IEnumerable<GetCharacterLearningBaseInfoResponse>?> ListSkippedAsync(int pageNumber = 0,
+    Task<List<GetCharacterLearningBaseInfoResponse>?> ListSkippedAsync(int pageNumber = 0,
         int pageSize = 0);
 }

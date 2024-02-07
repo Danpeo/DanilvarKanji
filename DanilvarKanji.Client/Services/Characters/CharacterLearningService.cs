@@ -7,6 +7,8 @@ namespace DanilvarKanji.Client.Services.Characters;
 
 public class CharacterLearningService
 {
+    public bool ToggledSkipState { get; set; }
+    
     private readonly IModalService _modalService;
     private readonly ICharacterLearningHttpService _learningHttpService;
     private readonly NavigationManager _navigationManager;
@@ -19,7 +21,7 @@ public class CharacterLearningService
         _modalService = modalService;
     }
 
-    public void SkipCharacterFromLearning(string learningIdToSkip, string naviteToAfterSkip = "")
+    public void ToggleCharLearningSkipState(string learningIdToSkip, string naviteToAfterSkip = "", bool forceReload = false)
     {
         try
         {
@@ -34,9 +36,11 @@ public class CharacterLearningService
                 .Add(nameof(ConfirmCancelModal.OnConfirm), () =>
                 {
                     _learningHttpService.ToggleSkipStateAsync(learningIdToSkip);
+                    ToggledSkipState = true;
 
                     if (!string.IsNullOrEmpty(naviteToAfterSkip))
-                        _navigationManager.NavigateTo(naviteToAfterSkip);
+                        _navigationManager.NavigateTo(naviteToAfterSkip, forceReload);
+                    
                 });
 
             _modalService.Show<ConfirmCancelModal>("AHAHHAH", parameters, options);

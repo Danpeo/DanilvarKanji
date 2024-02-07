@@ -1,7 +1,7 @@
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.Extensions
 
-<div class="col-md-1" @onclick="@(() => NavigationManager.NavigateTo($"/{NavigateTo}"))">
+<div class="col-md-1" @onclick="OnCardClick">
     <div class="card mb-1 bg-secondary-2">
         <div class="card-body shadow-box  pointer-cursor">
             <h5 class="card-title jap-font txt-mid-pink text-center">@CharacterBaseInfo.Definition</h5>
@@ -14,13 +14,20 @@
 
 @code {
 
-    [Parameter, EditorRequired]
-    public required GetCharacterBaseInfoResponse CharacterBaseInfo { get; set; }
+    [Parameter, EditorRequired] public required GetCharacterBaseInfoResponse CharacterBaseInfo { get; set; }
 
-    [Parameter, EditorRequired]
-    public required string NavigateTo { get; set; }
-    
-    [Inject]
-    public required NavigationManager NavigationManager { get; set; }
+    [Parameter] public Action? OnClick { get; set; }
+
+    [Parameter] public string? NavigateTo { get; set; }
+
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+
+    private void OnCardClick()
+    {
+        OnClick?.Invoke();
+
+        if (NavigateTo != null)
+            NavigationManager.NavigateTo($"/{NavigateTo}");
+    }
 
 }

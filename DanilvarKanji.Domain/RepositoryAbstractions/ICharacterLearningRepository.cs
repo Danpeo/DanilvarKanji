@@ -26,4 +26,11 @@ public interface ICharacterLearningRepository
     Task UpdateProgressAsync(string id, AppUser user, bool lastReviewWasCorrect);
     Task ToggleSkipStateAsync(string id, AppUser user);
     Task<IEnumerable<CharacterLearning>> ListSkippedAsync(PaginationParams? paginationParams, AppUser user);
+
+    Task UpdateProgressOnCharacterAsync(string characterId, AppUser user, DateTime reviewDateTime,
+        bool isCorrect);
+
+    float TestLearningSettings(string message);
+    Task<CharacterLearning?> GetByCharacterIdAsync(string id, AppUser user);
+    void UpdateCharacterLearning(CharacterLearning characterLearning);
 }

@@ -1,28 +1,30 @@
 @using DanilvarKanji.Shared.Responses.Character
 
-<WhatIsMeaningOf CharacterForVerification="CharacterForVerification" />
+<BaseExercise OnForgot="OnForgot.Invoke">
 
-<VerifyValueByInput
-    CharacterForVerification="CharacterForVerification"
-    VerifyCondition="VerifyCondition"
-    OnIncorrect="OnIncorrect"
-    OnCorrect="OnCorrect"
-    InputPlaceholder="Meaning of the character"
-    OnConfirm="OnConfirm"/>
+    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
+
+    <VerifyValueByInput
+        CharacterForVerification="CharacterForVerification"
+        VerifyCondition="VerifyCondition"
+        OnIncorrect="OnIncorrect"
+        OnCorrect="OnCorrect"
+        InputPlaceholder="Meaning of the character"
+        OnConfirm="OnConfirm"/>
+</BaseExercise>
+
 
 @code {
 
-    [Parameter, EditorRequired]
-    public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
-    
-    [Parameter, EditorRequired]
-    public Action? OnConfirm { get; set; }
+    [Parameter, EditorRequired] public required GetAllFromCharacterResponse CharacterForVerification { get; set; }
 
-    [Parameter, EditorRequired]
-    public Func<Task>? OnCorrect { get; set; }
-    
-    [Parameter, EditorRequired]
-    public Func<Task>? OnIncorrect { get; set; }
+    [Parameter, EditorRequired] public Action? OnConfirm { get; set; }
+
+    [Parameter, EditorRequired] public Func<Task>? OnCorrect { get; set; }
+
+    [Parameter, EditorRequired] public Func<Task>? OnIncorrect { get; set; }
+
+    [Parameter, EditorRequired] public required Func<Task> OnForgot { get; set; }
 
     private bool VerifyCondition(GetAllFromCharacterResponse character, string enteredValue)
     {

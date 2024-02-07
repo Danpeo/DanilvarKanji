@@ -29,7 +29,7 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
-builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddApplicationSettings(builder.Configuration);
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -77,7 +77,7 @@ builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipeli
 /*builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));*/
 
-var modelBuilder = new ODataConventionModelBuilder();
+builder.Services.AddCors();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => { });

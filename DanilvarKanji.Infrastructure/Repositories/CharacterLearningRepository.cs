@@ -4,17 +4,22 @@ using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Shared.Domain.Settings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace DanilvarKanji.Infrastructure.Repositories;
 
 public class CharacterLearningRepository : ICharacterLearningRepository
 {
     private readonly ApplicationDbContext _context;
+    private readonly CharacterLearningSettings _learningSettings;
 
-    public CharacterLearningRepository(ApplicationDbContext context)
+    public CharacterLearningRepository(ApplicationDbContext context,
+        IOptions<CharacterLearningSettings> learningSettings)
     {
         _context = context;
+        _learningSettings = learningSettings.Value;
     }
 
     public void Create(CharacterLearning characterLearning) =>
@@ -55,10 +60,45 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         _context.CharacterLearnings.Update(characterLearning);
     }
 
+    public async Task UpdateProgressOnCharacterAsync(string characterId, AppUser user, DateTime reviewDateTime,
+        bool isCorrect)
+    {
+        var characterLearning = await _context.CharacterLearnings
+            .Include(characterLearning => characterLearning.LearningProgress)
+            .FirstOrDefaultAsync(cl => cl.Character.Id == characterId && cl.AppUser == user);
+
+        if (characterLearning is null)
+            return;
+
+        characterLearning.LastReviewDateTime = reviewDateTime;
+        characterLearning.LastReviewWasCorrect = isCorrect;
+
+        if (characterLearning.LastReviewWasCorrect)
+        {
+            characterLearning.LearningProgress.Value += _learningSettings.PointAfterCorrectExercise;
+        }
+
+        _context.CharacterLearnings.Update(characterLearning);
+    }
+
+    public void UpdateCharacterLearning(CharacterLearning characterLearning) => 
+        _context.CharacterLearnings.Update(characterLearning);
+
+    public float TestLearningSettings(string message)
+    {
+        return _learningSettings.MaxLearningRate;
+    }
+
     public async Task<CharacterLearning?> GetAsync(string id, AppUser user)
     {
         return await GetCharacterLearningsWithRelatedData()
             .FirstOrDefaultAsync(x => x.Id == id && x.AppUser == user);
+    }
+
+    public async Task<CharacterLearning?> GetByCharacterIdAsync(string id, AppUser user)
+    {
+        return await GetCharacterLearningsWithRelatedData()
+          .FirstOrDefaultAsync(x => x.Character.Id == id && x.AppUser == user);
     }
 
     public async Task<IEnumerable<CharacterLearning>> ListLearnQueueAsync(PaginationParams? paginationParams,
@@ -161,13 +201,13 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     public async Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser) =>
         await GetReviewQueue(appUser).FirstOrDefaultAsync();
 
-    public async ValueTask<bool> AnyExist() => 
+    public async ValueTask<bool> AnyExist() =>
         await _context.CharacterLearnings.AnyAsync();
 
     public async ValueTask<bool> AnyToReview(AppUser appUser) =>
         await _context.CharacterLearnings.AnyAsync(x => x.AppUser == appUser);
 
-    public async ValueTask<bool> Exist(string requestId, AppUser user) => 
+    public async ValueTask<bool> Exist(string requestId, AppUser user) =>
         await _context.CharacterLearnings.AnyAsync(x => x.Id == requestId && x.AppUser == user);
 
     private IQueryable<CharacterLearning> GetCharacterLearningsWithRelatedData()
@@ -187,10 +227,15 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .Include(c => c.Character)
             .ThenInclude(ch => ch.KanjiMeanings)
             .Include(c => c.LearningProgress)
-            .Where(c => c.AppUser == appUser && c.LearningState == LearningState.Learning &&
-                        c.LearningState != LearningState.Skipped)
-            .OrderBy(c => c.LearningProgress)
-            .ThenBy(c => c.LastReviewDateTime);
+            .Where(c => c.AppUser == appUser &&
+                        c.LearningState == LearningState.Learning &&
+                        c.LearningState != LearningState.Skipped &&
+                        c.LearningProgress.Value < _learningSettings.MaxLearningRate)
+            .OrderBy(c => c.LearningState)
+            .ThenBy(c => c.LastReviewDateTime)
+            .ThenBy(c => c.LearningProgress.Value)
+            .ThenBy(c => c.LearnedCount)
+            .ThenBy(c => c.LastReviewWasCorrect);
 
         return characters;
     }

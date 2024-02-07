@@ -1,13 +1,12 @@
 using DanilvarKanji.Data.Configuration;
+using CharacterLearningSettings = DanilvarKanji.Shared.Domain.Settings.CharacterLearningSettings;
 
-namespace DanilvarKanji.Extensions;
+namespace DanilvarKanji.OptionsSetup;
 
-public static class ApplicationServiceExtension
+public static class ApplicationSettingsSetup
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services,
-        IConfiguration config)
+    public static IServiceCollection AddApplicationSettings(this IServiceCollection services, IConfiguration config)
     {
-        services.AddCors();
         services.Configure<CharacterLearningSettings>(config
             .GetSection("CharacterLearningSettings"));
         

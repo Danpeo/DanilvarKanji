@@ -2,7 +2,7 @@
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 
 <h2 class="display-6 txt-mid-pink">
-    Your Skipped Characters 
+    Your Skipped Characters
     <span class="fs-4 txt-green-dim">
         (@_characterItems?.Count() Items)
     </span>
@@ -25,7 +25,7 @@ else
     <div class="row">
         @foreach (GetCharacterLearningBaseInfoResponse? charLearning in _characterItems)
         {
-            <CharacterMinimalCard CharacterBaseInfo="charLearning.Character"
+            <CharacterMinimalCard CharacterBaseInfo="charLearning.Character" 
                                   NavigateTo="@(new string($"Character/{charLearning.Character.Id}"))"/>
         }
     </div>
@@ -33,22 +33,19 @@ else
 
 @code {
 
-    [Inject]
-    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
+    [Inject] public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
 
-    [Inject]
-    public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required CharacterLearningService CharacterLearningService { get; set; }
 
-    [Parameter]
-    public int PageNumber { get; set; } = 1;
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-    [Parameter]
-    public int PageSize { get; set; } = int.MaxValue;
+    [Parameter] public int PageNumber { get; set; } = 1;
 
-    [Parameter]
-    public bool ListOnlyDayDosage { get; set; }
+    [Parameter] public int PageSize { get; set; } = int.MaxValue;
 
-    private IEnumerable<GetCharacterLearningBaseInfoResponse>? _characterItems;
+    [Parameter] public bool ListOnlyDayDosage { get; set; }
+
+    private List<GetCharacterLearningBaseInfoResponse>? _characterItems;
     private string _errMsg = string.Empty;
 
     protected override async Task OnInitializedAsync()
