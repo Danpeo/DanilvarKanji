@@ -250,3 +250,7 @@
         opacity: 0;
     }
 }
+
+.l1-progress {
+    background-color: var(--red-color);
+}

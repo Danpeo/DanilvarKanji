@@ -7,12 +7,12 @@ using DanilvarKanji.Shared.Responses.CharacterLearning;
 
 namespace DanilvarKanji.Client.Services.Characters;
 
-public class CharacterLearningHttpService : ICharacterLearningHttpService
+public class CharacterLearningApiService : ICharacterLearningApiService
 {
     private readonly HttpClient _httpClient;
     private readonly AppState _appState;
 
-    public CharacterLearningHttpService(IHttpClientFactory factory, AppState appState)
+    public CharacterLearningApiService(IHttpClientFactory factory, AppState appState)
     {
         _appState = appState;
         _httpClient = factory.CreateClient("ServerApi");

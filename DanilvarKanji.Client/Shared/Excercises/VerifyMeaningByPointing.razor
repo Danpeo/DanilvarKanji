@@ -38,7 +38,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         _meanings =
-            await CharacterLearningHttpService.GetRandomMeaningsInReviewAsync(CharacterForVerification.Id, Culture, OptionCount);
+            await CharacterLearningApiService.GetRandomMeaningsInReviewAsync(CharacterForVerification.Id, Culture, OptionCount);
     }
 
     private async Task CheckAnswer(string meaning, string? buttonId)

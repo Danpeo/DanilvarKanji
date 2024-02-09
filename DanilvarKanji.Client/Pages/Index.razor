@@ -90,7 +90,7 @@
     public required ICharacterService CharacterService { get; set; }
 
     [Inject]
-    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
+    public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
     private GetCharacterBaseInfoResponse? _characterToLearn;
     private GetCharacterLearningBaseInfoResponse? _learning;
@@ -106,7 +106,7 @@
         try
         {
             _characterToLearn = await CharacterService.GetNextInLearnQueue();
-            _learning = await CharacterLearningHttpService.GetNextInReviewQueueAsync();
+            _learning = await CharacterLearningApiService.GetNextInReviewQueueAsync();
         }
         catch (HttpRequestException e)
         {

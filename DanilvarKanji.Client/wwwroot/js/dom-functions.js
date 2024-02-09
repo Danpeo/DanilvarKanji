@@ -43,3 +43,16 @@ function changeElementValue(elementId, value) {
     const element = document.getElementById(elementId);
     element.value = value;
 }
+
+function setElementStyles(elementId, styles) {
+    const element = document.getElementById(elementId);
+
+    if (!element)
+        return;
+    
+    for (let prop in styles) {
+        if (styles.hasOwnProperty(prop)) {
+            element.style[prop] = styles[prop];
+        }
+    }
+}

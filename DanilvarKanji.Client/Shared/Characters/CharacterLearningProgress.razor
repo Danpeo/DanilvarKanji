@@ -1,0 +1,67 @@
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Shared.Responses.CharacterLearning
+@using DanilvarKanji.Client.JsWrapper
+
+@if (_characterLearning != null)
+{
+    <p class="fs-6 text-center">@_characterLearning.LearningProgress.Value P</p>
+    <div class="progress bg-secondary-2" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progress-bar" style="width: 100%"></div>
+    </div>
+}
+else
+{
+    <DisplayLoading/>
+}
+
+@code {
+    [Parameter, EditorRequired] public required string CharacterLearningId { get; set; }
+
+    [Inject] public required ICharacterLearningApiService LearningApiService { get; set; }
+
+    [Inject] public required Js Js { get; set; }
+
+    private GetAllFromCharacterLearningResponse? _characterLearning;
+    private const int DelayAfterSetProgressMs = 100;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _characterLearning = await LearningApiService.GetLearningAsync(CharacterLearningId);
+
+        StateHasChanged();
+
+        if (_characterLearning != null)
+            await SetProgressBarStyle(_characterLearning.LearningProgress.Value);
+    }
+
+    private async Task SetProgressBarStyle(float progress)
+    {
+        var styles = new
+        {
+            width = $"{progress}%",
+        };
+
+        string cssClass = setBarCssFromProgress();
+
+        await Js.Dom.AddClassToElement("progress-bar", cssClass);
+
+        await Task.Delay(DelayAfterSetProgressMs);
+
+        await Js.Dom.SetElementStyles("progress-bar", styles);
+
+        return;
+
+        string setBarCssFromProgress()
+        {
+            return progress switch
+            {
+                > 80 => "l5-progress",
+                > 60 => "l4-progress",
+                > 40 => "l3-progress",
+                > 20 => "l2-progress",
+                _ => "l1-progress"
+            };
+        }
+    }
+
+}

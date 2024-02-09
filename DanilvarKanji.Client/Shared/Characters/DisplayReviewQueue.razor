@@ -28,7 +28,7 @@ else
 @code {
 
     [Inject]
-    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
+    public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
     [Parameter]
     public int PageNumber { get; set; } = 1;
@@ -43,7 +43,7 @@ else
     {
         try
         {
-            _learningItems = await CharacterLearningHttpService.ListReviewQueueAsync(PageNumber, PageSize);
+            _learningItems = await CharacterLearningApiService.ListReviewQueueAsync(PageNumber, PageSize);
         }
         catch (HttpRequestException e)
         {

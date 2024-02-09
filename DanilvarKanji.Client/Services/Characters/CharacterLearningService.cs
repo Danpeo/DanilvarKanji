@@ -10,13 +10,13 @@ public class CharacterLearningService
     public bool ToggledSkipState { get; set; }
     
     private readonly IModalService _modalService;
-    private readonly ICharacterLearningHttpService _learningHttpService;
+    private readonly ICharacterLearningApiService _learningApiService;
     private readonly NavigationManager _navigationManager;
 
-    public CharacterLearningService(ICharacterLearningHttpService learningHttpService,
+    public CharacterLearningService(ICharacterLearningApiService learningApiService,
         NavigationManager navigationManager, IModalService modalService)
     {
-        _learningHttpService = learningHttpService;
+        _learningApiService = learningApiService;
         _navigationManager = navigationManager;
         _modalService = modalService;
     }
@@ -35,7 +35,7 @@ public class CharacterLearningService
                 .Add(nameof(ConfirmCancelModal.Message), "AGH")
                 .Add(nameof(ConfirmCancelModal.OnConfirm), () =>
                 {
-                    _learningHttpService.ToggleSkipStateAsync(learningIdToSkip);
+                    _learningApiService.ToggleSkipStateAsync(learningIdToSkip);
                     ToggledSkipState = true;
 
                     if (!string.IsNullOrEmpty(naviteToAfterSkip))

@@ -33,7 +33,7 @@ else
 
 @code {
 
-    [Inject] public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
+    [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
     [Inject] public required CharacterLearningService CharacterLearningService { get; set; }
 
@@ -52,7 +52,7 @@ else
     {
         try
         {
-            _characterItems = await CharacterLearningHttpService.ListSkippedAsync(PageNumber, PageSize);
+            _characterItems = await CharacterLearningApiService.ListSkippedAsync(PageNumber, PageSize);
         }
         catch (HttpRequestException e)
         {

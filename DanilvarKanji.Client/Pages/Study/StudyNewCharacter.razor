@@ -45,7 +45,7 @@
     public required NavigationManager NavigationManager { get; set; }
 
     [Inject]
-    public required ICharacterLearningHttpService CharacterLearningHttpService { get; set; }
+    public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
     [Inject]
     public required IStringLocalizer<App> Loc { get; set; }
@@ -76,7 +76,7 @@
         if (_character != null)
         {
             _characterLearningRequest = new CreateCharacterLearningRequest(_character.Id, LearningState.Learning);
-            var characterLearning = await CharacterLearningHttpService.CreateCharacterLearningAsync(_characterLearningRequest);
+            var characterLearning = await CharacterLearningApiService.CreateCharacterLearningAsync(_characterLearningRequest);
 
             var options = new ModalOptions
             {
