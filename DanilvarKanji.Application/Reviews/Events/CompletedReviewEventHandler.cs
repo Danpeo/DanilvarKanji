@@ -1,3 +1,4 @@
+using Danilvar;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Shared.Domain.Entities;
@@ -46,14 +47,14 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
         _logger.LogInformation("Character Learning: {@characterLearning}", characterLearning);
 
         updateCharacterLearning();
-        
+
         _characterLearningRepository.UpdateCharacterLearning(characterLearning);
 
         await _unitOfWork.CompleteAsync();
 
         _logger.LogInformation("UPDATED Character Learning: {@characterLearning}", characterLearning);
         _logger.LogInformation("Completed Review: {@notification}", notification);
-        
+
         return;
 
         void updateCharacterLearning()
@@ -61,10 +62,15 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
             characterLearning.LastReviewWasCorrect = isCorrect;
             characterLearning.LastReviewDateTime = notification.ReviewDataTime;
 
-            if (!isCorrect) 
+            if (!isCorrect)
+            {
+                characterLearning.NextReviewDateTime =
+                    DateTime.UtcNow.AddMinutes(_learningSettings.ShiftExerciseDateAfterFailInMinutes);
                 return;
-            
+            }
+
             characterLearning.LearningProgress.Value += _learningSettings.PointAfterCorrectExercise;
+            updateNextReviewDate();
 
             if (characterLearning.LearningProgress.Value >= _learningSettings.MaxLearningRate)
             {
@@ -76,6 +82,43 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
                     characterLearning.LearningState = LearningState.CompletelyLearned;
             }
         }
-        
+
+        void updateNextReviewDate()
+        {
+            float learningProgress = characterLearning.LearningProgress.Value;
+            double learningPercent = MathUtils.calcPercentage
+            (
+                learningProgress,
+                _learningSettings.MaxLearningRate
+            );
+
+            float shift = _learningSettings.InitRepeatingShiftHrs;
+            float nextShiftMofifier = _learningSettings.NextShiftModifier;
+            
+            for (int percent = 10; percent <= 100; percent += 10)
+            {
+                if (learningPercent <= percent)
+                {
+                    characterLearning.NextReviewDateTime = DateTime.UtcNow.AddHours(shift);
+                    break;
+                }
+                shift *= nextShiftMofifier;
+            }
+
+            /*characterLearning.NextReviewDateTime = learningPercent switch
+            {
+                <= 10 => DateTime.UtcNow.AddHours(12),
+                <= 20 => DateTime.UtcNow.AddHours(18),
+                <= 30 => DateTime.UtcNow.AddHours(27),
+                <= 40 => DateTime.UtcNow.AddHours(40.5),
+                <= 50 => DateTime.UtcNow.AddHours(136.68),
+                <= 60 => DateTime.UtcNow.AddHours(205.03),
+                <= 70 => DateTime.UtcNow.AddHours(307.54),
+                <= 80 => DateTime.UtcNow.AddHours(461.32),
+                <= 90 => DateTime.UtcNow.AddHours(691.98),
+                <= 100 => DateTime.UtcNow.AddHours(1037),
+                _ => characterLearning.NextReviewDateTime
+            };*/
+        }
     }
 }

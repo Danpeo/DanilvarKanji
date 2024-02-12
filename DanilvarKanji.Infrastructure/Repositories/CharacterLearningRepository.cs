@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
@@ -81,7 +82,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         _context.CharacterLearnings.Update(characterLearning);
     }
 
-    public void UpdateCharacterLearning(CharacterLearning characterLearning) => 
+    public void UpdateCharacterLearning(CharacterLearning characterLearning) =>
         _context.CharacterLearnings.Update(characterLearning);
 
     public float TestLearningSettings(string message)
@@ -98,7 +99,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     public async Task<CharacterLearning?> GetByCharacterIdAsync(string id, AppUser user)
     {
         return await GetCharacterLearningsWithRelatedData()
-          .FirstOrDefaultAsync(x => x.Character.Id == id && x.AppUser == user);
+            .FirstOrDefaultAsync(x => x.Character.Id == id && x.AppUser == user);
     }
 
     public async Task<IEnumerable<CharacterLearning>> ListLearnQueueAsync(PaginationParams? paginationParams,
@@ -130,10 +131,24 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         return paginationParams != null ? Paginator.Paginate(charLearnings, paginationParams) : charLearnings;
     }
 
-    public async Task<IEnumerable<CharacterLearning>> ListReviewQueueAsync(PaginationParams? paginationParams,
-        AppUser user)
+    public async Task<IEnumerable<CharacterLearning>> ListCurrentReviewQueueAsync
+    (
+        PaginationParams? paginationParams,
+        AppUser user
+    )
     {
-        var characters = await GetReviewQueue(user).ToListAsync();
+        var characters = await GetCurrentReviewQueue(user).ToListAsync();
+
+        return paginationParams is not null ? Paginator.Paginate(characters, paginationParams) : characters;
+    }
+
+    public async Task<IEnumerable<CharacterLearning>> ListFutureReviewQueueAsync
+    (
+        PaginationParams? paginationParams,
+        AppUser user
+    )
+    {
+        var characters = await GetFutureReviewQueue(user).ToListAsync();
 
         return paginationParams is not null ? Paginator.Paginate(characters, paginationParams) : characters;
     }
@@ -143,17 +158,17 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     {
         var random = new Random();
 
-        List<string> definitions = await GetReviewQueue(user)
+        List<string> definitions = await GetFullReviewQueue(user)
             .Where(x => x.Character.Id != characterId)
             .AsSplitQuery()
             .SelectMany(cl => cl.Character.KanjiMeanings!)
-            .SelectMany(km => (km.Definitions!)
+            .SelectMany(km => km.Definitions!
                 .Where(sd => sd.Culture == culture)
                 .Select(sd => sd.Value))
             .ToListAsync();
 
         var shuffledDefinitions = definitions
-            .OrderBy(x => random.Next())
+            .OrderBy(_ => random.Next())
             .Take(qty)
             .ToList();
 
@@ -164,7 +179,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     {
         var random = new Random();
 
-        var kuns = await GetReviewQueue(user)
+        var kuns = await GetFullReviewQueue(user)
             .Where(x => x.Character.Id != characterId)
             .AsSplitQuery()
             .SelectMany(cl => cl.Character.Kunyomis!)
@@ -183,7 +198,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     {
         var random = new Random();
 
-        var ons = await GetReviewQueue(user)
+        var ons = await GetFullReviewQueue(user)
             .Where(x => x.Character.Id != characterId)
             .AsSplitQuery()
             .SelectMany(cl => cl.Character.Onyomis!)
@@ -199,7 +214,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     }
 
     public async Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser) =>
-        await GetReviewQueue(appUser).FirstOrDefaultAsync();
+        await GetCurrentReviewQueue(appUser).FirstOrDefaultAsync();
 
     public async ValueTask<bool> AnyExist() =>
         await _context.CharacterLearnings.AnyAsync();
@@ -220,17 +235,14 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         return characters.OrderByDescending(x => x.LearningState);
     }
 
-    private IOrderedQueryable<CharacterLearning> GetReviewQueue(AppUser appUser)
+    private IOrderedQueryable<CharacterLearning> GetReviewQueue(Expression<Func<CharacterLearning, bool>> condition)
     {
         IOrderedQueryable<CharacterLearning> characters = _context.CharacterLearnings
             .AsSplitQuery()
             .Include(c => c.Character)
             .ThenInclude(ch => ch.KanjiMeanings)
             .Include(c => c.LearningProgress)
-            .Where(c => c.AppUser == appUser &&
-                        c.LearningState == LearningState.Learning &&
-                        c.LearningState != LearningState.Skipped &&
-                        c.LearningProgress.Value < _learningSettings.MaxLearningRate)
+            .Where(condition)
             .OrderBy(c => c.LearningState)
             .ThenBy(c => c.LastReviewDateTime)
             .ThenBy(c => c.LearningProgress.Value)
@@ -238,5 +250,37 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .ThenBy(c => c.LastReviewWasCorrect);
 
         return characters;
+    }
+
+    private IOrderedQueryable<CharacterLearning> GetCurrentReviewQueue(AppUser appUser)
+    {
+        return GetReviewQueue(learning =>
+            learning.AppUser == appUser &&
+            learning.NextReviewDateTime <= DateTime.Today &&
+            learning.LearningState == LearningState.Learning &&
+            learning.LearningState != LearningState.Skipped &&
+            learning.LearningProgress.Value < _learningSettings.MaxLearningRate
+        );
+    }
+
+    private IOrderedQueryable<CharacterLearning> GetFutureReviewQueue(AppUser appUser)
+    {
+        return GetReviewQueue(learning =>
+            learning.AppUser == appUser &&
+            learning.NextReviewDateTime > DateTime.Today &&
+            learning.LearningState == LearningState.Learning &&
+            learning.LearningState != LearningState.Skipped &&
+            learning.LearningProgress.Value < _learningSettings.MaxLearningRate
+        );
+    }
+    
+    private IOrderedQueryable<CharacterLearning> GetFullReviewQueue(AppUser appUser)
+    {
+        return GetReviewQueue(learning =>
+            learning.AppUser == appUser &&
+            learning.LearningState == LearningState.Learning &&
+            learning.LearningState != LearningState.Skipped &&
+            learning.LearningProgress.Value < _learningSettings.MaxLearningRate
+        );
     }
 }

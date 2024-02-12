@@ -92,16 +92,31 @@ public class CharacterLearningController : ApiController
         IEnumerable<CharacterLearning> characters =
             await Mediator.Send(new ListSkippedQuery(paginationParams, user!));
 
-        return characters.Any()? Ok(characters) : NoContent();
+        return characters.Any() ? Ok(characters) : NoContent();
     }
 
     [HttpGet("ReviewQueue")]
+    [ProducesResponseType(typeof(IEnumerable<GetCharacterLearningBaseInfoResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> ListReviewQueueAsync([FromQuery] PaginationParams paginationParams)
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
         var characters =
-            await Mediator.Send(new ListCharacterReviewQuery(paginationParams, user!));
+            await Mediator.Send(new ListCurrentReviewQuery(paginationParams, user!));
+
+        return characters.Any() ? Ok(characters) : NoContent();
+    }
+
+    [HttpGet("FutureReviewQueue")]
+    [ProducesResponseType(typeof(IEnumerable<GetCharacterLearningBaseInfoResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> ListFutureReviewQueueAsync([FromQuery] PaginationParams paginationParams)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        var characters =
+            await Mediator.Send(new ListFutureReviewQuery(paginationParams, user!));
 
         return characters.Any() ? Ok(characters) : NoContent();
     }

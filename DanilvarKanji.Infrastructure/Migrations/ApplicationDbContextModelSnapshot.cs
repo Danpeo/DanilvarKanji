@@ -168,6 +168,9 @@ namespace DanilvarKanji.Migrations
                     b.Property<int>("LearningState")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("NextReviewDateTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");

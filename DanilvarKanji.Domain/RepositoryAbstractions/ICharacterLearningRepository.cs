@@ -15,7 +15,7 @@ public interface ICharacterLearningRepository
     Task<CharacterLearning?> GetAsync(string id, AppUser user);
     ValueTask<bool> Exist(string requestId, AppUser user);
 
-    Task<IEnumerable<CharacterLearning>> ListReviewQueueAsync(PaginationParams? paginationParams,
+    Task<IEnumerable<CharacterLearning>> ListCurrentReviewQueueAsync(PaginationParams? paginationParams,
         AppUser user);
 
     ValueTask<bool> AnyToReview(AppUser appUser);
@@ -33,4 +33,10 @@ public interface ICharacterLearningRepository
     float TestLearningSettings(string message);
     Task<CharacterLearning?> GetByCharacterIdAsync(string id, AppUser user);
     void UpdateCharacterLearning(CharacterLearning characterLearning);
+
+    Task<IEnumerable<CharacterLearning>> ListFutureReviewQueueAsync
+    (
+        PaginationParams? paginationParams,
+        AppUser user
+    );
 }

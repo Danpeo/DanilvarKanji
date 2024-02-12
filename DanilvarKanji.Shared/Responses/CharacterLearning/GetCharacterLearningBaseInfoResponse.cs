@@ -12,4 +12,5 @@ public class GetCharacterLearningBaseInfoResponse
     public LearningProgress LearningProgress { get; set; }
     public int LearnedCount { get; set; }
     public DateTime LastReviewDateTime { get; set; } = DateTime.Now;
+    public DateTime NextReviewDateTime { get; set; }
 }

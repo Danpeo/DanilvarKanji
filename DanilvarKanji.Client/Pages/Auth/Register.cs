@@ -1,9 +1,10 @@
 using System.Security.Cryptography;
-using Danilvar.Random;
 using DanilvarKanji.Client.JsWrapper;
 using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Requests.Auth;
+using DVar.RandCreds;
+using DVar.RandCreds.Options;
 using Microsoft.AspNetCore.Components;
 
 namespace DanilvarKanji.Client.Pages.Auth;
@@ -13,15 +14,15 @@ public partial class Register
     [Inject] public IAuthService AuthService { get; set; } = default!;
 
     [Inject] public required Js Js { get; set; }
-    
+
     private const string PasswordElId = "password";
     private const string UsernameElid = "userName";
     private const string EmailElId = "email";
-    
-    private RegisterUserRequest _registerUserRequest = new ();
+
+    private RegisterUserRequest _registerUserRequest = new();
     private bool _submitSuccessful;
     private string? _errorMessage;
-    
+
     private async Task HandleSubmitAsync()
     {
         RegisterUserRequest? request = await AuthService.RegisterUserAsync(_registerUserRequest);
@@ -31,7 +32,7 @@ public partial class Register
             _submitSuccessful = true;
         }
     }
-    
+
     private void HandleInvalidSubmit()
     {
         _submitSuccessful = false;
@@ -40,11 +41,32 @@ public partial class Register
 
     private async Task GenerateCredentials()
     {
-        await Js.Dom.ChangeElementValue(PasswordElId, RandomGenerator.Password());
-        _registerUserRequest.PasswordRepeat = _registerUserRequest.Password;
+        var passwordOptions = new PasswordOptions
+        (
+            length: 8,
+            lowercase: true,
+            uppercase: true,
+            nonAlpha: true
+        );
 
-        await Js.Dom.ChangeElementValue(UsernameElid, RandomGenerator.Username());
-        await Js.Dom.ChangeElementValue(EmailElId, RandomGenerator.Email());
+        var userNameOptions = new UsernameOptions
+        (
+            prefix: "naruto",
+            postfixLength: 6
+        );
+
+        var emailOptions = new EmailOptions
+        (
+            prefix: "naruto",
+            domains: new[] { "mail.ru", "gmail.com" },
+            randomCharLength: 6
+        );
+
+        await Js.Dom.ChangeElementValue(PasswordElId, RandGen.Password(passwordOptions));
+        _registerUserRequest.PasswordRepeat = _registerUserRequest.Password;
+        await Js.Dom.ChangeElementValue(UsernameElid, RandGen.Username(userNameOptions));
+        await Js.Dom.ChangeElementValue(EmailElId, RandGen.EmailDefault(emailOptions));
         _registerUserRequest.JlptLevel = (JlptLevel)RandomNumberGenerator.GetInt32(4);
     }
 }
+

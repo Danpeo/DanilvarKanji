@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Danilvar.MathUtils\Danilvar.MathUtils.fsproj" />
       <ProjectReference Include="..\DanilvarKanji.Infrastructure\DanilvarKanji.Infrastructure.csproj" />
       <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
     </ItemGroup>

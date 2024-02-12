@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "08tnnbqcKgkDYvWru9rQvgHEYPC6n5VWruBAea169oPJWYJf1ABwoZaGzcwKS3VcnEN9+1igJ7AYVwX0AAHkQA==",
+  "dgSpecHash": "6yNYTV2kqHz+qFNJlJ9jlNTos+eZ8dv0T1zBGtpNTcQWvLuUxrpdTE1pz/rFtLOsdCqK+t7izvjkhoRtDN9pSA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client.Tests\\DanilvarKanji.Client.Tests.csproj",
   "expectedPackageFiles": [
@@ -16,9 +16,10 @@
     "C:\\Users\\danil\\.nuget\\packages\\bunit.web\\1.25.3\\bunit.web.1.25.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\danilvar.random\\1.0.0\\danilvar.random.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.0.0\\dvar.randcreds.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.101\\fsharp.core.8.0.101.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.14\\microsoft.aspnetcore.authorization.7.0.14.nupkg.sha512",

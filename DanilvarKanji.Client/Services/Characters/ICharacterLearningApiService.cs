@@ -26,4 +26,10 @@ public interface ICharacterLearningApiService
 
     Task<List<GetCharacterLearningBaseInfoResponse>?> ListSkippedAsync(int pageNumber = 0,
         int pageSize = 0);
+
+    Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListFutureReviewQueueAsync
+    (
+        int pageNumber = 0,
+        int pageSize = 0
+    );
 }

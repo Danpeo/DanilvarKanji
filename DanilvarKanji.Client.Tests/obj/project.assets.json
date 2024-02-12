@@ -180,15 +180,6 @@
           "lib/net7.0/Danilvar.Entity.dll": {}
         }
       },
-      "Danilvar.Random/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net7.0/Danilvar.Random.dll": {}
-        },
-        "runtime": {
-          "lib/net7.0/Danilvar.Random.dll": {}
-        }
-      },
       "Danilvar.ValueObject/1.0.0": {
         "type": "package",
         "compile": {
@@ -196,6 +187,22 @@
         },
         "runtime": {
           "lib/net7.0/Danilvar.ValueObject.dll": {}
+        }
+      },
+      "DVar.RandCreds/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "7.0.403"
+        },
+        "compile": {
+          "lib/net7.0/DVar.RandCreds.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/DVar.RandCreds.dll": {
+            "related": ".xml"
+          }
         }
       },
       "FluentValidation/11.8.0": {
@@ -208,6 +215,60 @@
         "runtime": {
           "lib/net7.0/FluentValidation.dll": {
             "related": ".xml"
+          }
+        }
+      },
+      "FSharp.Core/8.0.101": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/FSharp.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/FSharp.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "resource": {
+          "lib/netstandard2.1/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.1/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.1/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.1/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.1/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.1/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.1/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.1/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.1/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.1/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.1/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.1/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
           }
         }
       },
@@ -2958,6 +3019,19 @@
           "bin/placeholder/Danilvar.Components.dll": {}
         }
       },
+      "Danilvar.MathUtils/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "FSharp.Core": "8.0.101"
+        },
+        "compile": {
+          "bin/placeholder/Danilvar.MathUtils.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Danilvar.MathUtils.dll": {}
+        }
+      },
       "DanilvarKanji.Client/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -2966,8 +3040,9 @@
           "Blazored.LocalStorage": "4.4.0",
           "Blazored.Modal": "7.1.0",
           "Blazored.SessionStorage": "2.4.0",
+          "DVar.RandCreds": "1.0.0",
           "Danilvar.Components": "1.0.0",
-          "Danilvar.Random": "1.0.0",
+          "Danilvar.MathUtils": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.11",
@@ -3272,19 +3347,6 @@
         "lib/net7.0/Danilvar.Entity.dll"
       ]
     },
-    "Danilvar.Random/1.0.0": {
-      "sha512": "4ngsrHBOXzllfI5TTBbQAlG+e0QVEDVlHIQFEM1nGX3rmZIKH9rXhBWcWtWo8lASCD3Dg4YsfMQsQxMuazzWmw==",
-      "type": "package",
-      "path": "danilvar.random/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "danilvar.random.1.0.0.nupkg.sha512",
-        "danilvar.random.nuspec",
-        "lib/net7.0/Danilvar.Random.dll"
-      ]
-    },
     "Danilvar.ValueObject/1.0.0": {
       "sha512": "9XysJCiiNBTWYS8vVZnBGLGmhvMWc1SzIsErprm9e/tnkvxNyKkRLu88/LAEkbnR8b9mmAGfjLyRSLAbGBRe4Q==",
       "type": "package",
@@ -3296,6 +3358,19 @@
         "danilvar.valueobject.1.0.0.nupkg.sha512",
         "danilvar.valueobject.nuspec",
         "lib/net7.0/Danilvar.ValueObject.dll"
+      ]
+    },
+    "DVar.RandCreds/1.0.0": {
+      "sha512": "uNiOrFklt1nIguP4HdlCfMLbKdvN8tyYHUhRu5WbnVLDGqgymO+ESRlL5RWAfsJB/BNoVUu1ybwB5Zk0+yzCwg==",
+      "type": "package",
+      "path": "dvar.randcreds/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dvar.randcreds.1.0.0.nupkg.sha512",
+        "dvar.randcreds.nuspec",
+        "lib/net7.0/DVar.RandCreds.dll",
+        "lib/net7.0/DVar.RandCreds.xml"
       ]
     },
     "FluentValidation/11.8.0": {
@@ -3319,6 +3394,48 @@
         "lib/netstandard2.0/FluentValidation.xml",
         "lib/netstandard2.1/FluentValidation.dll",
         "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
+    "FSharp.Core/8.0.101": {
+      "sha512": "sOLz3O4BOxnTKfd5OChdRmDUy4Id0GfoEClRG4nzIod8LY1LJZcNyygKAV0A78XOLh8yvhA5hsDYKZXGCR9blw==",
+      "type": "package",
+      "path": "fsharp.core/8.0.101",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "fsharp.core.8.0.101.nupkg.sha512",
+        "fsharp.core.nuspec",
+        "lib/netstandard2.0/FSharp.Core.dll",
+        "lib/netstandard2.0/FSharp.Core.xml",
+        "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/FSharp.Core.dll",
+        "lib/netstandard2.1/FSharp.Core.xml",
+        "lib/netstandard2.1/cs/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/de/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/es/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/fr/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/it/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/ja/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/ko/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/pl/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/pt-BR/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/ru/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/tr/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/zh-Hans/FSharp.Core.resources.dll",
+        "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll"
       ]
     },
     "MediatR/12.1.1": {
@@ -8990,6 +9107,11 @@
       "type": "project",
       "path": "../Danilvar.Components/Danilvar.Components.csproj",
       "msbuildProject": "../Danilvar.Components/Danilvar.Components.csproj"
+    },
+    "Danilvar.MathUtils/1.0.0": {
+      "type": "project",
+      "path": "../Danilvar.MathUtils/Danilvar.MathUtils.fsproj",
+      "msbuildProject": "../Danilvar.MathUtils/Danilvar.MathUtils.fsproj"
     },
     "DanilvarKanji.Client/1.0.0": {
       "type": "project",

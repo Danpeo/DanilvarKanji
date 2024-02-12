@@ -1,0 +1,58 @@
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Shared.Responses.CharacterLearning
+@using System.Globalization
+
+@if (_learningItems == null)
+{
+    <DisplayLoading/>
+}
+else if (!_learningItems.Any())
+{
+    <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
+}
+else if (!string.IsNullOrEmpty(_errMsg))
+{
+    <h3 class="txt-light-pink main-font text-center mt-1">@_errMsg</h3>
+}
+else
+{
+    <div class="row">
+        @foreach (GetCharacterLearningBaseInfoResponse? learning in _learningItems)
+        {
+            <CharacterMinimalCard
+                ColStyle="col-2"
+                CharacterBaseInfo="learning?.Character"
+                DateTimeText="Next Review:"
+                DateTime="@learning?.NextReviewDateTime.ToString(CultureInfo.CurrentCulture)"
+                NavigateTo="@(new string($"review/{learning?.Id}"))"/>
+        }
+    </div>
+}
+
+@code {
+
+    [Inject]
+    public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
+
+    [Parameter]
+    public int PageNumber { get; set; } = 1;
+
+    [Parameter]
+    public int PageSize { get; set; } = int.MaxValue;
+
+    private IEnumerable<GetCharacterLearningBaseInfoResponse?>? _learningItems;
+    private string _errMsg = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _learningItems = await CharacterLearningApiService.ListFutureReviewQueueAsync(PageNumber, PageSize);
+        }
+        catch (HttpRequestException e)
+        {
+            _errMsg = e.Message;
+        }
+    }
+
+}

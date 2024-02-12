@@ -156,24 +156,30 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         }
     }
 
-    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListReviewQueueAsync(int pageNumber = 0,
-        int pageSize = 0)
+    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListReviewQueueAsync
+    (
+        int pageNumber = 0,
+        int pageSize = 0
+    )
     {
         HttpResponseMessage response =
             await _httpClient.GetAsync(
                 $"api/CharacterLearnings/ReviewQueue?PageNumber={pageNumber}&PageSize={pageSize}");
 
-        if (response.IsSuccessStatusCode)
-        {
-            if (response.StatusCode == HttpStatusCode.NoContent)
-                return Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
+        return await TryGetResponseContent(response);
+    }
 
-            return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterLearningBaseInfoResponse>>() ??
-                   Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
-        }
+    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListFutureReviewQueueAsync
+    (
+        int pageNumber = 0,
+        int pageSize = 0
+    )
+    {
+        HttpResponseMessage response =
+            await _httpClient.GetAsync(
+                $"api/CharacterLearnings/FutureReviewQueue?PageNumber={pageNumber}&PageSize={pageSize}");
 
-        string message = await response.Content.ReadAsStringAsync();
-        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+        return await TryGetResponseContent(response);
     }
 
     public async Task<List<GetCharacterLearningBaseInfoResponse>?> ListSkippedAsync(int pageNumber = 0,
@@ -225,5 +231,21 @@ public class CharacterLearningApiService : ICharacterLearningApiService
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    private static async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> TryGetResponseContent
+        (HttpResponseMessage response)
+    {
+        if (response.IsSuccessStatusCode)
+        {
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
+
+            return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterLearningBaseInfoResponse>>() ??
+                   Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
+        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 }

@@ -14,6 +14,9 @@
     --gray-color: #4d4c4c;
     --red-color-dim: rgba(224, 71, 71, 0.35);
     --red-color: #f13434;
+    --orange-color: #f66b2e;
+    --yellow-color: #eaaf0c;
+    --lime-color: #86e833;
     --green-color: #2df17e;
     --green-color-2: #20cb98;
     --green-color-dim: #9de3aa;
@@ -253,4 +256,20 @@
 
 .l1-progress {
     background-color: var(--red-color);
+}
+
+.l2-progress {
+    background-color: var(--orange-color);
+}
+
+.l3-progress {
+    background-color: var(--yellow-color);
+}
+
+.l4-progress {
+    background-color: var(--lime-color);
+}
+
+.l5-progress {
+    background-color: var(--green-color-2);
 }
