@@ -96,7 +96,7 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpGet("ReviewQueue")]
-    [ProducesResponseType(typeof(IEnumerable<GetCharacterLearningBaseInfoResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<CharacterLearningResponseBase>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> ListReviewQueueAsync([FromQuery] PaginationParams paginationParams)
     {
@@ -109,7 +109,7 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpGet("FutureReviewQueue")]
-    [ProducesResponseType(typeof(IEnumerable<GetCharacterLearningBaseInfoResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<CharacterLearningResponseBase>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> ListFutureReviewQueueAsync([FromQuery] PaginationParams paginationParams)
     {
@@ -122,13 +122,13 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpGet("GetNextInReviewQueue")]
-    [ProducesResponseType(typeof(GetCharacterLearningBaseInfoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CharacterLearningResponseBase), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetNextInReviewQueueAsync()
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        GetCharacterLearningBaseInfoResponse? learning = await Mediator.Send(new GetNextToReviewInQueueQuery(user!));
+        CharacterLearningResponseBase? learning = await Mediator.Send(new GetNextToReviewInQueueQuery(user!));
 
         if (learning is not null)
             return Ok(learning);
@@ -137,7 +137,7 @@ public class CharacterLearningController : ApiController
     }
 
     [HttpGet("GetRandomMeaningsInReview")]
-    [ProducesResponseType(typeof(GetRandomItemsInReviewResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RandomItemsInReviewResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetRandomMeaningsInReviewAsync(string characterId, Culture culture = Culture.EnUS,
@@ -151,13 +151,13 @@ public class CharacterLearningController : ApiController
         if (string.IsNullOrEmpty(result?.CorrectMeaning) || result.RandomItems == null || !result.RandomItems.Any())
             return NotFound(CharLearning.NotFoundInReview);
 
-        var response = new GetRandomItemsInReviewResponse(result.RandomItems, result.CorrectMeaning);
+        var response = new RandomItemsInReviewResponse(result.RandomItems, result.CorrectMeaning);
 
         return result.RandomItems.Any() ? Ok(response) : NoContent();
     }
 
     [HttpGet("GetRandomKunReadingsInReview")]
-    [ProducesResponseType(typeof(GetRandomItemsInReviewResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RandomItemsInReviewResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetRandomKunReadingsInReviewAsync(string characterId, int qty = 4)
@@ -170,13 +170,13 @@ public class CharacterLearningController : ApiController
         if (string.IsNullOrEmpty(correct))
             return NotFound(CharLearning.NotFoundInReview);
 
-        var response = new GetRandomItemsInReviewResponse(random, correct);
+        var response = new RandomItemsInReviewResponse(random, correct);
 
         return random.Any() ? Ok(response) : NoContent();
     }
 
     [HttpGet("GetRandomOnReadingsInReview")]
-    [ProducesResponseType(typeof(GetRandomItemsInReviewResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RandomItemsInReviewResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetRandomOnReadingsInReviewAsync(string characterId, int qty = 4)
@@ -189,7 +189,7 @@ public class CharacterLearningController : ApiController
         if (string.IsNullOrEmpty(correct))
             return NotFound(CharLearning.NotFoundInReview);
 
-        var response = new GetRandomItemsInReviewResponse(random, correct);
+        var response = new RandomItemsInReviewResponse(random, correct);
 
         return random.Any() ? Ok(response) : NoContent();
     }

@@ -16,15 +16,15 @@ public record ListLearnQueueQuery(
 public record GetCharacterLearningQuery(string Id, AppUser AppUser) : IRequest<CharacterLearning?>;
 
 public record ListCurrentReviewQuery(PaginationParams? PaginationParams, AppUser AppUser)
-    : IRequest<IEnumerable<GetCharacterLearningBaseInfoResponse>>;
+    : IRequest<IEnumerable<CharacterLearningResponseBase>>;
 
 public record ListFutureReviewQuery(PaginationParams? PaginationParams, AppUser AppUser)
-    : IRequest<IEnumerable<GetCharacterLearningBaseInfoResponse>>;
+    : IRequest<IEnumerable<CharacterLearningResponseBase>>;
 
 public record ListSkippedQuery(PaginationParams? PaginationParams, AppUser AppUser)
     : IRequest<IEnumerable<CharacterLearning>>;
 
-public record GetNextToReviewInQueueQuery(AppUser AppUser) : IRequest<GetCharacterLearningBaseInfoResponse?>;
+public record GetNextToReviewInQueueQuery(AppUser AppUser) : IRequest<CharacterLearningResponseBase?>;
 
 public record GetRandomMeaningsInReviewQuery(string CharacterId, AppUser AppUser, Culture Culture, int Qty)
     : IRequest<RandomItemsInReview?>;

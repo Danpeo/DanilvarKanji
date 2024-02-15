@@ -19,7 +19,6 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true)

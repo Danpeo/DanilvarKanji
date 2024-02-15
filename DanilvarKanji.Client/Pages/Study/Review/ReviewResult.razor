@@ -70,8 +70,8 @@
     [Inject]
     public required ICharacterService CharacterService { get; set; }
 
-    private GetBaseReviewSessionResponse? _reviewSession;
-    private GetAllFromCharacterResponse? _character;
+    private ReviewSessionResponseBase? _reviewSession;
+    private CharacterResponseResponseFull? _character;
 
     protected override async Task OnInitializedAsync()
     {

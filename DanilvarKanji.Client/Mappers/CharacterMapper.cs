@@ -23,15 +23,15 @@ public static class CharacterMapper
 
         foreach (string onReading in KAD_Kanji.On_Readings)
             createCharacterRequest.Onyomis.Add(new Onyomi(onReading));
-        
+
         foreach (string meaning in KAD_Kanji.Meanings)
         {
             var strDefs = new List<StringDefinition> { new(meaning, Culture.EnUS), new(meaning, Culture.RuRU) };
             createCharacterRequest.KanjiMeanings.Add(new KanjiMeaning(100, strDefs));
         }
 
-        createCharacterRequest.Mnemonics?.Add(new StringDefinition("Kanji", Culture.EnUS));
-        createCharacterRequest.Mnemonics?.Add(new StringDefinition("Кандзи", Culture.RuRU));
+        createCharacterRequest.Mnemonics.Add(new StringDefinition("Kanji", Culture.EnUS));
+        createCharacterRequest.Mnemonics.Add(new StringDefinition("Кандзи", Culture.RuRU));
 
         return createCharacterRequest;
     }

@@ -18,7 +18,6 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<Exercise> Exercises { get; set; }
     public DbSet<ReviewSession> ReviewSessions { get; set; }
     public DbSet<StringDefinition> StringDefinitions { get; set; }
-    public DbSet<TEST> Tests { get; set; }
 
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {

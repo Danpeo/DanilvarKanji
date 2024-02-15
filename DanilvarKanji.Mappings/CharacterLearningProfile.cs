@@ -10,16 +10,16 @@ public class CharacterLearningProfile : Profile
 {
     public CharacterLearningProfile()
     {
-        CreateMap<CharacterLearning, GetCharacterLearningBaseInfoResponse>()
+        CreateMap<CharacterLearning, CharacterLearningResponseBase>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<GetCharacterLearningBaseInfoResponse, CharacterLearning>()
+        CreateMap<CharacterLearningResponseBase, CharacterLearning>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<CharacterLearning, GetAllFromCharacterLearningResponse>()
+        CreateMap<CharacterLearning, CharacterLearningResponseFull>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<GetAllFromCharacterLearningResponse, CharacterLearning>()
+        CreateMap<CharacterLearningResponseFull, CharacterLearning>()
             .ForMember(x => x.Id, opt => opt.Ignore())
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         

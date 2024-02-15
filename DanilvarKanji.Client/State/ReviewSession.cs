@@ -5,6 +5,6 @@ namespace DanilvarKanji.Client.State;
 
 public class ReviewSession
 {
-    public GetAllFromCharacterResponse Character { get; set; }
-    public List<GetAllFromExerciseResponse?> Exercises { get; set; } = new();
+    public CharacterResponseResponseFull Character { get; set; }
+    public List<ExerciseResponseFull?> Exercises { get; set; } = new();
 }

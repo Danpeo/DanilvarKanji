@@ -52,7 +52,7 @@
     
     private bool _contentEnded;
     private CreateCharacterLearningRequest _characterLearningRequest = new();
-    private GetAllFromCharacterResponse? _character;
+    private CharacterResponseResponseFull? _character;
     private Dictionary<int, RenderFragment> _contentDictionary = new();
 
     protected override async Task OnInitializedAsync()

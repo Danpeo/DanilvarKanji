@@ -8,7 +8,7 @@ using MediatR;
 namespace DanilvarKanji.Application.Characters.Handlers;
 
 // ReSharper disable once UnusedType.Global
-public class GetNextInLearnQueueHandler : IRequestHandler<GetNextInLearnQueueQuery, GetCharacterBaseInfoResponse?>
+public class GetNextInLearnQueueHandler : IRequestHandler<GetNextInLearnQueueQuery, CharacterResponseBase?>
 {
     private readonly ICharacterRepository _characterRepository;
     private readonly IMapper _mapper;
@@ -19,12 +19,12 @@ public class GetNextInLearnQueueHandler : IRequestHandler<GetNextInLearnQueueQue
         _mapper = mapper;
     }
 
-    public async Task<GetCharacterBaseInfoResponse?> Handle(GetNextInLearnQueueQuery request, CancellationToken cancellationToken)
+    public async Task<CharacterResponseBase?> Handle(GetNextInLearnQueueQuery request, CancellationToken cancellationToken)
     {
         if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
         {
             Character? character = await _characterRepository.GetNextInLearnQueueAsync(request.AppUser);
-            return _mapper.Map<GetCharacterBaseInfoResponse>(character);
+            return _mapper.Map<CharacterResponseBase>(character);
         }
 
         return null;

@@ -5,5 +5,5 @@ namespace DanilvarKanji.Client.Services.Review;
 
 public interface IExerciseService
 {
-    Task<GetAllFromExerciseResponse?> CreateExerciseAsync(CreateExerciseRequest request);
+    Task<ExerciseResponseFull?> CreateExerciseAsync(CreateExerciseRequest request);
 }

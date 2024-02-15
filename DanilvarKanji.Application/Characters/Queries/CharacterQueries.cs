@@ -20,6 +20,6 @@ public record GetKanjiMeaningsByPriorityQuery
 
 public record ListLearnQueueQuery
     (PaginationParams? PaginationParams, JlptLevel JlptLevel, AppUser AppUser, bool listOnlyDayDosage) : IRequest<
-        IEnumerable<GetCharacterBaseInfoResponse>>;
+        IEnumerable<CharacterResponseBase>>;
 
-public record GetNextInLearnQueueQuery(AppUser AppUser) : IRequest<GetCharacterBaseInfoResponse?>;
+public record GetNextInLearnQueueQuery(AppUser AppUser) : IRequest<CharacterResponseBase?>;

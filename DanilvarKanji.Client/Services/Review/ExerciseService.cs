@@ -13,14 +13,14 @@ public class ExerciseService : IExerciseService
         _httpClient = factory.CreateClient("ServerApi");
     }
     
-    public async Task<GetAllFromExerciseResponse?> CreateExerciseAsync(CreateExerciseRequest request)
+    public async Task<ExerciseResponseFull?> CreateExerciseAsync(CreateExerciseRequest request)
     {
         try
         {
             HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Exercises", request);
 
             if (response.IsSuccessStatusCode)
-                return await response.Content.ReadFromJsonAsync<GetAllFromExerciseResponse>();
+                return await response.Content.ReadFromJsonAsync<ExerciseResponseFull>();
 
             string message = await response.Content.ReadAsStringAsync();
             throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");

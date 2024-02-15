@@ -22,7 +22,7 @@ public static class EnumExtension
         return value.ToString();
     }
     
-    public static string FromExerciseTypeToText(this GetBaseExerciseInfoResponse e)
+    public static string FromExerciseTypeToText(this ExerciseResponseBase e)
     {
         return e.ExerciseType switch
         {

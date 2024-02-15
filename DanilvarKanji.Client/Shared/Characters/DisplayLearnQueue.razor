@@ -17,7 +17,7 @@ else if (!_characterItems.Any())
 else
 {
     <div class="row">
-        @foreach (GetCharacterBaseInfoResponse? character in _characterItems)
+        @foreach (CharacterResponseBase? character in _characterItems)
         {
             <CharacterMinimalCard CharacterBaseInfo="character" NavigateTo="@(new string($"study-new/{character?.Id}"))"/>
         }
@@ -41,7 +41,7 @@ else
     [Parameter]
     public bool ListOnlyDayDosage { get; set; }
 
-    private IEnumerable<GetCharacterBaseInfoResponse?>? _characterItems;
+    private IEnumerable<CharacterResponseBase?>? _characterItems;
     private string _errMsg = string.Empty;
 
     protected override async Task OnInitializedAsync()

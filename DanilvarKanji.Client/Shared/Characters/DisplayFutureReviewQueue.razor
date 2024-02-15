@@ -17,13 +17,13 @@ else if (!string.IsNullOrEmpty(_errMsg))
 else
 {
     <div class="row">
-        @foreach (GetCharacterLearningBaseInfoResponse? learning in _learningItems)
+        @foreach (CharacterLearningResponseBase? learning in _learningItems)
         {
             <CharacterMinimalCard
                 ColStyle="col-2"
-                CharacterBaseInfo="learning?.Character"
-                DateTimeText="Next Review:"
-                DateTime="@learning?.NextReviewDateTime.ToString(CultureInfo.CurrentCulture)"
+                CharacterBaseInfo="learning?.CharacterResponse"
+                SubText1="Next Review:"
+                SubText2="@learning?.NextReviewDateTime.ToString(CultureInfo.CurrentCulture)"
                 NavigateTo="@(new string($"review/{learning?.Id}"))"/>
         }
     </div>
@@ -40,7 +40,7 @@ else
     [Parameter]
     public int PageSize { get; set; } = int.MaxValue;
 
-    private IEnumerable<GetCharacterLearningBaseInfoResponse?>? _learningItems;
+    private IEnumerable<CharacterLearningResponseBase?>? _learningItems;
     private string _errMsg = "";
 
     protected override async Task OnInitializedAsync()

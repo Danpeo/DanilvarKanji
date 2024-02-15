@@ -302,6 +302,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXFN1Y2Nlc3NBbGVydEFsdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Messages/WarnAlert.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1lc3NhZ2VzXFdhcm5BbGVydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Modal/ConfirmCancelModal.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1vZGFsXENvbmZpcm1DYW5jZWxNb2RhbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

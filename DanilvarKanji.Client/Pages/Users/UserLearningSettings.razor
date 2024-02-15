@@ -27,10 +27,11 @@
                     </InputSelect>
                 </FormFieldSet>
 
-                <FormFieldSet Label="Stroke Count" LabelFor="strokeCount" HelpText="">
+                <FormFieldSet Label="Number of new characters you want to learn per day"
+                              LabelFor="QtyOfCharsForLearningForDay" HelpText="">
                     <InputNumber @bind-Value="_learningSettings.QtyOfCharsForLearningForDay"
                                  class="form-control bg-main txt-green-dim no-border"
-                                 id="strokeCount" placeholder="Stroke Count"/>
+                                 id="strokeCount" placeholder="Quantity"/>
 
                     <ValidationMessage For="@(() => _learningSettings.QtyOfCharsForLearningForDay)"/>
 
@@ -64,8 +65,7 @@
 
 @code {
 
-    [Inject]
-    public required IUserService UserService { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
 
     private LearningSettings? _learningSettings;
     private string? _errorMessage;

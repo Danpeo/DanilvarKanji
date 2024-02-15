@@ -1,5 +1,6 @@
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.CharacterLearning
+@using System.Globalization
 
 @if (_learningItems == null)
 {
@@ -16,10 +17,11 @@ else if (!string.IsNullOrEmpty(_errMsg))
 else
 {
     <div class="row">
-        @foreach (GetCharacterLearningBaseInfoResponse? learning in _learningItems)
+        @foreach (CharacterLearningResponseBase? learning in _learningItems)
         {
             <CharacterMinimalCard
-                CharacterBaseInfo="learning?.Character"
+                SubText1="@learning?.LearningProgress.Value.ToString(CultureInfo.CurrentCulture)"
+                CharacterBaseInfo="learning?.CharacterResponse"
                 NavigateTo="@(new string($"review/{learning?.Id}"))"/>
         }
     </div>
@@ -27,16 +29,13 @@ else
 
 @code {
 
-    [Inject]
-    public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
+    [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
-    [Parameter]
-    public int PageNumber { get; set; } = 1;
+    [Parameter] public int PageNumber { get; set; } = 1;
 
-    [Parameter]
-    public int PageSize { get; set; } = int.MaxValue;
+    [Parameter] public int PageSize { get; set; } = int.MaxValue;
 
-    private IEnumerable<GetCharacterLearningBaseInfoResponse?>? _learningItems;
+    private IEnumerable<CharacterLearningResponseBase?>? _learningItems;
     private string _errMsg = "";
 
     protected override async Task OnInitializedAsync()

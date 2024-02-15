@@ -10,7 +10,7 @@ public class ReviewCharState
     private bool _isInitialized;
     private readonly ISessionStorageService _sessionStorageService;
 
-    public GetCharacterLearningBaseInfoResponse NextToReview { get; private set; } = new();
+    public CharacterLearningResponseBase NextToReview { get; private set; } = new();
 
     public ReviewCharState(ISessionStorageService sessionStorageService)
     {
@@ -22,12 +22,12 @@ public class ReviewCharState
         if (!_isInitialized)
         {
             NextToReview =
-                await _sessionStorageService.GetItemAsync<GetCharacterLearningBaseInfoResponse>(NextInReviewKey);
+                await _sessionStorageService.GetItemAsync<CharacterLearningResponseBase>(NextInReviewKey);
             _isInitialized = true;
         }
     }
 
-    public async Task UpdateNextToReview(GetCharacterLearningBaseInfoResponse newToReview)
+    public async Task UpdateNextToReview(CharacterLearningResponseBase newToReview)
     {
         NextToReview = newToReview;
         await _sessionStorageService.SetItemAsync(NextInReviewKey, newToReview);

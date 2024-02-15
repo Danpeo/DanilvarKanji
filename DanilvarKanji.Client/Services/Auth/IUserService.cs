@@ -5,7 +5,7 @@ namespace DanilvarKanji.Client.Services.Auth;
 
 public interface IUserService
 {
-    Task<GetUserResponse?> GetUserAsync();
+    Task<UserResponseBase?> GetUserAsync();
 
     Task UpdateLearningSettingsAsync(LearningSettings settings);
 

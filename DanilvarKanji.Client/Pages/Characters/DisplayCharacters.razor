@@ -31,7 +31,7 @@ else if (!_characterItems.Any())
 }
 else
 {
-    @foreach (GetAllFromCharacterResponse character in _characterItems)
+    @foreach (CharacterResponseResponseFull character in _characterItems)
     {
         <div class="col-md-3 mb-2">
             <HasAnyRole Roles="@(new[] { "Admin", "SuperAdmin" })">

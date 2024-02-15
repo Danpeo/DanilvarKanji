@@ -12,11 +12,18 @@
 @using DanilvarKanji.Shared.Responses.Review
 @using Blazored.Modal.Services
 
+<PageTitle>Review</PageTitle>
+
 <ForbidIfNotAuthorized>
     @if (_character is not null)
     {
+        if (_isAdditional)
+        {
+            <WarnAlert Message="Additional review with no progression"/>
+        }
+
         <DisplayCharacterDefinition Character="_character"/>
-        <CharacterLearningProgress CharacterLearningId="@CharacterLearningId" />
+        <CharacterLearningProgress CharacterLearningId="@CharacterLearningId"/>
         <p>@_character.Id</p>
         @_exercises[_currentExcercise]
 
@@ -37,7 +44,6 @@
 
 
 @code {
-
     [Parameter, EditorRequired] public required string CharacterLearningId { get; set; }
 
     [CascadingParameter] public required IModalService ModalService { get; set; }
@@ -61,13 +67,14 @@
     private const int AfterAnswerDelay = 250;
     private int _currentExcercise;
     private bool _reviewFinished;
+    private bool _isAdditional;
 
-    private GetAllFromCharacterLearningResponse? _learning;
-    private GetAllFromCharacterResponse? _character;
+    private CharacterLearningResponseFull? _learning;
+    private CharacterResponseResponseFull? _character;
     private Culture _culture;
     private List<RenderFragment> _exercises = new();
     private ReviewSession _reviewSession;
-    private GetBaseReviewSessionResponse _reviewSessionResponse = new();
+    private ReviewSessionResponseBase _reviewSessionResponse = new();
     private CreateReviewSessionRequest _createReviewSessionRequest = new();
 
     protected override async Task OnInitializedAsync()
@@ -75,7 +82,8 @@
         _culture = await LocalizationService.GetCurrentCulture();
 
         _learning = await CharacterLearningApiService.GetLearningAsync(CharacterLearningId);
-        _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
+        _isAdditional = _learning?.NextReviewDateTime >= DateTime.Today;
+        _character = await CharacterService.GetCharacterAsync(_learning?.CharacterResponse.Id);
 
         InitExercises();
 
@@ -146,26 +154,32 @@
 
     private async Task OnCorrectExercise(ReviewType reviewType, ExerciseType exerciseType)
     {
-        await AddExerciseToReviewSession(isCorrect: true, reviewType, exerciseType);
+        if (!_isAdditional)
+            await AddExerciseToReviewSession(isCorrect: true, reviewType, exerciseType);
 
         await OnConfirmExercise();
     }
 
     private async Task OnIncorrectExercise(ReviewType reviewType, ExerciseType exerciseType)
     {
-        await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+        if (!_isAdditional)
+            await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
         await OnConfirmExercise();
     }
 
     private async Task OnForgotExercise(ReviewType reviewType, ExerciseType exerciseType)
     {
-        await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+        if (!_isAdditional)
+            await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
 
         await OnConfirmExercise();
     }
 
-    private async Task OnIncorrectPointExercise(ReviewType reviewType, ExerciseType exerciseType) =>
-        await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+    private async Task OnIncorrectPointExercise(ReviewType reviewType, ExerciseType exerciseType)
+    {
+        if (!_isAdditional)
+            await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+    }
 
     private async Task OnIncorrectMeaning()
     {
@@ -221,8 +235,15 @@
 
         if (_reviewFinished)
         {
-            var review = await ReviewService.CreateReviewSessionAsync(_createReviewSessionRequest);
-            NavigationManager.NavigateTo($"/Review/Result/{review?.Id}/{_character?.Id}");
+            if (!_isAdditional)
+            {
+                var review = await ReviewService.CreateReviewSessionAsync(_createReviewSessionRequest);
+                NavigationManager.NavigateTo($"/Review/Result/{review?.Id}/{_character?.Id}");
+            }
+            else
+            {
+                NavigationManager.NavigateTo($"/");
+            }
         }
     }
 

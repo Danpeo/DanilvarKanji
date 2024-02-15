@@ -6,24 +6,24 @@ namespace DanilvarKanji.Client.Services.Characters;
 
 public interface ICharacterService
 {
-    Task<IEnumerable<GetAllFromCharacterResponse?>?> ListCharactersAsync(int pageNumber, int pageSize);
-    Task<GetAllFromCharacterResponse?> GetCharacterAsync(string? id);
+    Task<IEnumerable<CharacterResponseResponseFull?>?> ListCharactersAsync(int pageNumber, int pageSize);
+    Task<CharacterResponseResponseFull?> GetCharacterAsync(string? id);
     Task<List<string>?> GetCharacterKanjiMeanings(string? id, int takeQty, Culture culture);
 
-    string GetCharacterMnemonicByCulture(GetAllFromCharacterResponse getAllFromCharacter,
+    string GetCharacterMnemonicByCulture(CharacterResponseResponseFull character,
         Culture culture = Culture.EnUS);
 
-    Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<GetAllFromCharacterResponse?>? CharacterItems,
+    Task<Dictionary<string, List<string>>> SetKanjiMeanings(IEnumerable<CharacterResponseResponseFull?>? CharacterItems,
         int takeQty,
         Culture culture);
 
-    Task<IEnumerable<GetAllFromCharacterResponse>> ListCharactersFilteredBy(string filter, string term);
-    Task<IEnumerable<GetAllFromCharacterResponse>> SearchCharacters(string searchTerm);
+    Task<IEnumerable<CharacterResponseResponseFull>> ListCharactersFilteredBy(string filter, string term);
+    Task<IEnumerable<CharacterResponseResponseFull>> SearchCharacters(string searchTerm);
     Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest request);
 
-    Task<IEnumerable<GetCharacterBaseInfoResponse?>?> ListLearnQueueAsync(int pageNumber = 0,
+    Task<IEnumerable<CharacterResponseBase?>?> ListLearnQueueAsync(int pageNumber = 0,
         int pageSize = 0, bool listOnlyDayDosage = false);
 
-    Task<GetCharacterBaseInfoResponse?> GetNextInLearnQueue();
+    Task<CharacterResponseBase?> GetNextInLearnQueue();
     Task DeleteCharacterAsync(string id);
 }

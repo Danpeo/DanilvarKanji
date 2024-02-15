@@ -14,7 +14,7 @@ public class UserService : IUserService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<GetUserResponse?> GetUserAsync()
+    public async Task<UserResponseBase?> GetUserAsync()
     {
         try
         {
@@ -25,7 +25,7 @@ public class UserService : IUserService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetUserResponse>();
+                return await response.Content.ReadFromJsonAsync<UserResponseBase>();
             }
 
             string message = await response.Content.ReadAsStringAsync();

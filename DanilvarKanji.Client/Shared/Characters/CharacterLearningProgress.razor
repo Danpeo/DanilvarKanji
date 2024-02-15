@@ -20,7 +20,7 @@ else
 
     [Inject] public required Js Js { get; set; }
 
-    private GetAllFromCharacterLearningResponse? _characterLearning;
+    private CharacterLearningResponseFull? _characterLearning;
     private const int DelayAfterSetProgressMs = 100;
 
     protected override async Task OnInitializedAsync()

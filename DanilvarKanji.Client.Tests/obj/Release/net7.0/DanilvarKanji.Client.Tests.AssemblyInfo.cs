@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DanilvarKanji.Client.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a663e0a0ecab8481fb1f24917d71702f4f82875")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+818d1dabe3ffdc88933375925630b669bff41d82")]
 [assembly: System.Reflection.AssemblyProductAttribute("DanilvarKanji.Client.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DanilvarKanji.Client.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

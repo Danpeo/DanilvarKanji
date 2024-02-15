@@ -9,7 +9,7 @@ using MediatR;
 namespace DanilvarKanji.Application.Characters.Handlers;
 
 // ReSharper disable once UnusedType.Global
-public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnumerable<GetCharacterBaseInfoResponse>>
+public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnumerable<CharacterResponseBase>>
 {
     private readonly ICharacterRepository _characterRepository;
     private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<GetCharacterBaseInfoResponse>> Handle(ListLearnQueueQuery request,
+    public async Task<IEnumerable<CharacterResponseBase>> Handle(ListLearnQueueQuery request,
         CancellationToken cancellationToken)
     {
         if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
@@ -40,9 +40,9 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
                         request.JlptLevel);
             }
 
-            return _mapper.Map<IEnumerable<GetCharacterBaseInfoResponse>>(characters);
+            return _mapper.Map<IEnumerable<CharacterResponseBase>>(characters);
         }
 
-        return Enumerable.Empty<GetCharacterBaseInfoResponse>();
+        return Enumerable.Empty<CharacterResponseBase>();
     }
 }

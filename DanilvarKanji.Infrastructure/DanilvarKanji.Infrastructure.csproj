@@ -18,8 +18,4 @@
       <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Abstractions" />
-    </ItemGroup>
-
 </Project>

@@ -6,28 +6,28 @@ namespace DanilvarKanji.Client.Services.Characters;
 
 public interface ICharacterLearningApiService
 {
-    Task<GetAllFromCharacterLearningResponse?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request);
+    Task<CharacterLearningResponseFull?> CreateCharacterLearningAsync(CreateCharacterLearningRequest request);
 
-    Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListReviewQueueAsync(int pageNumber = 0,
+    Task<IEnumerable<CharacterLearningResponseBase?>?> ListReviewQueueAsync(int pageNumber = 0,
         int pageSize = 0);
 
-    Task<GetCharacterLearningBaseInfoResponse?> GetNextInReviewQueueAsync();
-    Task<GetAllFromCharacterLearningResponse?> GetLearningAsync(string? id);
-    Task<GetRandomItemsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId, Culture culture,
+    Task<CharacterLearningResponseBase?> GetNextInReviewQueueAsync();
+    Task<CharacterLearningResponseFull?> GetLearningAsync(string? id);
+    Task<RandomItemsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId, Culture culture,
         int qty = 4);
 
-    Task<GetRandomItemsInReviewResponse?> GetRandomKunReadingsInReviewAsync(string characterId,
+    Task<RandomItemsInReviewResponse?> GetRandomKunReadingsInReviewAsync(string characterId,
         int qty = 4);
 
-    Task<GetRandomItemsInReviewResponse?> GetRandomOnReadingsInReviewAsync(string characterId,
+    Task<RandomItemsInReviewResponse?> GetRandomOnReadingsInReviewAsync(string characterId,
         int qty = 4);
 
     Task ToggleSkipStateAsync(string? id);
 
-    Task<List<GetCharacterLearningBaseInfoResponse>?> ListSkippedAsync(int pageNumber = 0,
+    Task<List<CharacterLearningResponseBase>?> ListSkippedAsync(int pageNumber = 0,
         int pageSize = 0);
 
-    Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListFutureReviewQueueAsync
+    Task<IEnumerable<CharacterLearningResponseBase?>?> ListFutureReviewQueueAsync
     (
         int pageNumber = 0,
         int pageSize = 0

@@ -12,7 +12,7 @@
 
 @code {
     [Parameter, EditorRequired]
-    public GetCharacterBaseInfoResponse? Character { get; set; }
+    public CharacterResponseBase? Character { get; set; }
     
     [Inject]
     public required IStringLocalizer<App> Localizer { get; set; }

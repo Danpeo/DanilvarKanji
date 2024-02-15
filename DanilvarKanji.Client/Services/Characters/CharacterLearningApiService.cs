@@ -18,7 +18,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<GetAllFromCharacterLearningResponse?> CreateCharacterLearningAsync(
+    public async Task<CharacterLearningResponseFull?> CreateCharacterLearningAsync(
         CreateCharacterLearningRequest request)
     {
         try
@@ -27,7 +27,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadFromJsonAsync<GetAllFromCharacterLearningResponse>();
+                return await response.Content.ReadFromJsonAsync<CharacterLearningResponseFull>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -40,7 +40,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         }
     }
 
-    public async Task<GetAllFromCharacterLearningResponse?> GetLearningAsync(string? id)
+    public async Task<CharacterLearningResponseFull?> GetLearningAsync(string? id)
     {
         try
         {
@@ -51,7 +51,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetAllFromCharacterLearningResponse>();
+                return await response.Content.ReadFromJsonAsync<CharacterLearningResponseFull>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -75,7 +75,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         }
     }
 
-    public async Task<GetRandomItemsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId,
+    public async Task<RandomItemsInReviewResponse?> GetRandomMeaningsInReviewAsync(string characterId,
         Culture culture, int qty = 4)
     {
         try
@@ -89,7 +89,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetRandomItemsInReviewResponse>();
+                return await response.Content.ReadFromJsonAsync<RandomItemsInReviewResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -102,7 +102,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         }
     }
 
-    public async Task<GetRandomItemsInReviewResponse?> GetRandomKunReadingsInReviewAsync(string characterId,
+    public async Task<RandomItemsInReviewResponse?> GetRandomKunReadingsInReviewAsync(string characterId,
         int qty = 4)
     {
         try
@@ -116,7 +116,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetRandomItemsInReviewResponse>();
+                return await response.Content.ReadFromJsonAsync<RandomItemsInReviewResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -129,7 +129,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         }
     }
 
-    public async Task<GetRandomItemsInReviewResponse?> GetRandomOnReadingsInReviewAsync(string characterId,
+    public async Task<RandomItemsInReviewResponse?> GetRandomOnReadingsInReviewAsync(string characterId,
         int qty = 4)
     {
         try
@@ -143,7 +143,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetRandomItemsInReviewResponse>();
+                return await response.Content.ReadFromJsonAsync<RandomItemsInReviewResponse>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -156,7 +156,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         }
     }
 
-    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListReviewQueueAsync
+    public async Task<IEnumerable<CharacterLearningResponseBase?>?> ListReviewQueueAsync
     (
         int pageNumber = 0,
         int pageSize = 0
@@ -169,7 +169,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         return await TryGetResponseContent(response);
     }
 
-    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> ListFutureReviewQueueAsync
+    public async Task<IEnumerable<CharacterLearningResponseBase?>?> ListFutureReviewQueueAsync
     (
         int pageNumber = 0,
         int pageSize = 0
@@ -182,7 +182,7 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         return await TryGetResponseContent(response);
     }
 
-    public async Task<List<GetCharacterLearningBaseInfoResponse>?> ListSkippedAsync(int pageNumber = 0,
+    public async Task<List<CharacterLearningResponseBase>?> ListSkippedAsync(int pageNumber = 0,
         int pageSize = 0)
     {
         var response = await _httpClient.GetAsync(
@@ -191,17 +191,17 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         if (response.IsSuccessStatusCode)
         {
             if (response.StatusCode == HttpStatusCode.NoContent)
-                return new List<GetCharacterLearningBaseInfoResponse>();
+                return new List<CharacterLearningResponseBase>();
 
-            return await response.Content.ReadFromJsonAsync<List<GetCharacterLearningBaseInfoResponse>>() ??
-                   new List<GetCharacterLearningBaseInfoResponse>();
+            return await response.Content.ReadFromJsonAsync<List<CharacterLearningResponseBase>>() ??
+                   new List<CharacterLearningResponseBase>();
         }
 
         string message = await response.Content.ReadAsStringAsync();
         throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
-    public async Task<GetCharacterLearningBaseInfoResponse?> GetNextInReviewQueueAsync()
+    public async Task<CharacterLearningResponseBase?> GetNextInReviewQueueAsync()
     {
         try
         {
@@ -212,8 +212,8 @@ public class CharacterLearningApiService : ICharacterLearningApiService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                GetCharacterLearningBaseInfoResponse? characterLearning =
-                    await response.Content.ReadFromJsonAsync<GetCharacterLearningBaseInfoResponse>();
+                CharacterLearningResponseBase? characterLearning =
+                    await response.Content.ReadFromJsonAsync<CharacterLearningResponseBase>();
                 if (characterLearning != null)
                     await _appState.ReviewCharState.UpdateNextToReview(characterLearning);
 
@@ -233,16 +233,16 @@ public class CharacterLearningApiService : ICharacterLearningApiService
         }
     }
 
-    private static async Task<IEnumerable<GetCharacterLearningBaseInfoResponse?>?> TryGetResponseContent
+    private static async Task<IEnumerable<CharacterLearningResponseBase?>?> TryGetResponseContent
         (HttpResponseMessage response)
     {
         if (response.IsSuccessStatusCode)
         {
             if (response.StatusCode == HttpStatusCode.NoContent)
-                return Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
+                return Enumerable.Empty<CharacterLearningResponseBase>();
 
-            return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterLearningBaseInfoResponse>>() ??
-                   Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
+            return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterLearningResponseBase>>() ??
+                   Enumerable.Empty<CharacterLearningResponseBase>();
         }
 
         string message = await response.Content.ReadAsStringAsync();

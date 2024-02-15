@@ -18,12 +18,12 @@ public partial class DisplayCharacters
     [Inject] public ICharacterService CharacterService { get; set; } = default!;
     [Inject] public required ILocalizationService LocalizationService { get; set; }
     [Inject] public required NavigationManager NavigationManager { get; set; }
-    [Parameter, EditorRequired] public EventCallback<GetAllFromCharacterResponse> OnSelected { get; set; }
+    [Parameter, EditorRequired] public EventCallback<CharacterResponseResponseFull> OnSelected { get; set; }
     [Parameter] public int TakeQty { get; set; } = 2;
     [Parameter] public int PageNumber { get; set; } = 1;
     [Parameter] public int PageSize { get; set; } = 10;
 
-    private List<GetAllFromCharacterResponse>? _characterItems;
+    private List<CharacterResponseResponseFull>? _characterItems;
     private Culture _culture;
     private Dictionary<string, List<string>>? _kanjiMeanings = new();
     private string _searchTerm = string.Empty;
@@ -36,12 +36,12 @@ public partial class DisplayCharacters
         await GetCurrentCulture();
 
         _characterItems =
-            (List<GetAllFromCharacterResponse>?)await CharacterService.ListCharactersAsync(PageNumber, PageSize);
+            (List<CharacterResponseResponseFull>?)await CharacterService.ListCharactersAsync(PageNumber, PageSize);
 
         _kanjiMeanings = await CharacterService.SetKanjiMeanings(_characterItems, TakeQty, _culture);
     }
 
-    private void DeleteCharacter(GetAllFromCharacterResponse character)
+    private void DeleteCharacter(CharacterResponseResponseFull character)
     {
         var options = new ModalOptions
         {
@@ -63,7 +63,7 @@ public partial class DisplayCharacters
 
     private async Task UpdateCharacterItems()
     {
-        IEnumerable<GetAllFromCharacterResponse?>? characters =
+        IEnumerable<CharacterResponseResponseFull?>? characters =
             await CharacterService.ListCharactersAsync(PageNumber, PageSize);
 
         if (characters is not null)
@@ -88,5 +88,5 @@ public partial class DisplayCharacters
     }
 
     private async Task SearchForCharacter() =>
-        _characterItems = (List<GetAllFromCharacterResponse>?)await CharacterService.SearchCharacters(_searchTerm);
+        _characterItems = (List<CharacterResponseResponseFull>?)await CharacterService.SearchCharacters(_searchTerm);
 }

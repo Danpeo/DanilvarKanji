@@ -14,7 +14,7 @@ public class ReviewService : IReviewService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<GetBaseReviewSessionResponse?> CreateReviewSessionAsync(CreateReviewSessionRequest request)
+    public async Task<ReviewSessionResponseBase?> CreateReviewSessionAsync(CreateReviewSessionRequest request)
     {
         try
         {
@@ -22,7 +22,7 @@ public class ReviewService : IReviewService
                 await _httpClient.PostAsJsonAsync($"api/ReviewSessions", request);
 
             if (response.IsSuccessStatusCode)
-                return await response.Content.ReadFromJsonAsync<GetBaseReviewSessionResponse>();
+                return await response.Content.ReadFromJsonAsync<ReviewSessionResponseBase>();
 
             string message = await response.Content.ReadAsStringAsync();
             throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
@@ -34,7 +34,7 @@ public class ReviewService : IReviewService
         }
     }
 
-    public async Task<GetBaseReviewSessionResponse?> GetReviewSessionAsync(string? id)
+    public async Task<ReviewSessionResponseBase?> GetReviewSessionAsync(string? id)
     {
         try
         {
@@ -45,7 +45,7 @@ public class ReviewService : IReviewService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetBaseReviewSessionResponse>();
+                return await response.Content.ReadFromJsonAsync<ReviewSessionResponseBase>();
             }
 
             string message = await response.Content.ReadAsStringAsync();

@@ -23,10 +23,10 @@ else if (!_characterItems.Any())
 else
 {
     <div class="row">
-        @foreach (GetCharacterLearningBaseInfoResponse? charLearning in _characterItems)
+        @foreach (CharacterLearningResponseBase? charLearning in _characterItems)
         {
-            <CharacterMinimalCard CharacterBaseInfo="charLearning.Character" 
-                                  NavigateTo="@(new string($"Character/{charLearning.Character.Id}"))"/>
+            <CharacterMinimalCard CharacterBaseInfo="charLearning.CharacterResponse" 
+                                  NavigateTo="@(new string($"Character/{charLearning.CharacterResponse.Id}"))"/>
         }
     </div>
 }
@@ -45,7 +45,7 @@ else
 
     [Parameter] public bool ListOnlyDayDosage { get; set; }
 
-    private List<GetCharacterLearningBaseInfoResponse>? _characterItems;
+    private List<CharacterLearningResponseBase>? _characterItems;
     private string _errMsg = string.Empty;
 
     protected override async Task OnInitializedAsync()

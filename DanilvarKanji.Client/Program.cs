@@ -49,7 +49,7 @@ builder.Services.AddScoped<IDictionaryService, DictionaryService>();
 builder.Services.AddScoped<ICharacterLearningApiService, CharacterLearningApiService>();
 builder.Services.AddScoped<CharacterLearningService>();
 builder.Services
-    .AddScoped<IBaseQueryService<GetAllFromCharacterResponse>, BaseQueryService<GetAllFromCharacterResponse>>();
+    .AddScoped<IBaseQueryService<CharacterResponseResponseFull>, BaseQueryService<CharacterResponseResponseFull>>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<Js>();

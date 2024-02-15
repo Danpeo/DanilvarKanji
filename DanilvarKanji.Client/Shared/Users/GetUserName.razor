@@ -8,7 +8,7 @@
     [Inject]
     public IUserService UserService { get; set; } = default!;
 
-    private GetUserResponse? _user;
+    private UserResponseBase? _user;
 
     protected override async void OnInitialized()
     {

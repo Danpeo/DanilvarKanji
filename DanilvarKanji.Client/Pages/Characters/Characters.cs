@@ -4,8 +4,8 @@ namespace DanilvarKanji.Client.Pages.Characters;
 
 public partial class Characters
 {
-    private GetAllFromCharacterResponse? _selectedCharacter;
+    private CharacterResponseResponseFull? _selectedCharacter;
     
-    private void HandleCharacterSelected(GetAllFromCharacterResponse getAllFromCharacter) 
-        => _selectedCharacter = getAllFromCharacter;
+    private void HandleCharacterSelected(CharacterResponseResponseFull character) 
+        => _selectedCharacter = character;
 }

@@ -68,7 +68,7 @@ public class CharacterController : ApiController
 
     [Authorize]
     [HttpGet("LearnQueue")]
-    [ProducesResponseType(typeof(IEnumerable<GetCharacterBaseInfoResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<CharacterResponseBase>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams,
         bool listOnlyDayDosage = false)
@@ -78,7 +78,7 @@ public class CharacterController : ApiController
         if (user is null)
             return Unauthorized();
 
-        IEnumerable<GetCharacterBaseInfoResponse> characters =
+        IEnumerable<CharacterResponseBase> characters =
             await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel, user, listOnlyDayDosage));
 
         return characters.Any() ? Ok(characters) : NoContent();
@@ -86,7 +86,7 @@ public class CharacterController : ApiController
 
     [Authorize]
     [HttpGet("GetNextInLearnQueue")]
-    [ProducesResponseType(typeof(GetCharacterBaseInfoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CharacterResponseBase), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetNextInLearnQueueAsync()
     {
@@ -94,7 +94,7 @@ public class CharacterController : ApiController
         if (user is null)
             return Unauthorized();
 
-        GetCharacterBaseInfoResponse? character = await Mediator.Send(new GetNextInLearnQueueQuery(user));
+        CharacterResponseBase? character = await Mediator.Send(new GetNextInLearnQueueQuery(user));
 
         if (character is not null)
             return Ok(character);

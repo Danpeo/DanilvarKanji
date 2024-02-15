@@ -15,7 +15,7 @@ public class CharacterService : ICharacterService
         _httpClient = factory.CreateClient("ServerApi");
     }
 
-    public async Task<IEnumerable<GetAllFromCharacterResponse?>?> ListCharactersAsync(int pageNumber = 0,
+    public async Task<IEnumerable<CharacterResponseResponseFull?>?> ListCharactersAsync(int pageNumber = 0,
         int pageSize = 0)
     {
         try
@@ -26,10 +26,10 @@ public class CharacterService : ICharacterService
             if (response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<GetAllFromCharacterResponse>();
+                    return Enumerable.Empty<CharacterResponseResponseFull>();
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<GetAllFromCharacterResponse>>() ??
-                       Enumerable.Empty<GetAllFromCharacterResponse>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseResponseFull>>() ??
+                       Enumerable.Empty<CharacterResponseResponseFull>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -42,7 +42,7 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<IEnumerable<GetCharacterBaseInfoResponse?>?> ListLearnQueueAsync(int pageNumber = 0,
+    public async Task<IEnumerable<CharacterResponseBase?>?> ListLearnQueueAsync(int pageNumber = 0,
         int pageSize = 0, bool listOnlyDayDosage = false)
     {
         try
@@ -54,9 +54,9 @@ public class CharacterService : ICharacterService
             if (response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<GetCharacterBaseInfoResponse>();
+                    return Enumerable.Empty<CharacterResponseBase>();
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<GetCharacterBaseInfoResponse>>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseBase>>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -69,7 +69,7 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<GetAllFromCharacterResponse?> GetCharacterAsync(string? id)
+    public async Task<CharacterResponseResponseFull?> GetCharacterAsync(string? id)
     {
         try
         {
@@ -82,7 +82,7 @@ public class CharacterService : ICharacterService
                     return default;
                 }
 
-                return await response.Content.ReadFromJsonAsync<GetAllFromCharacterResponse>();
+                return await response.Content.ReadFromJsonAsync<CharacterResponseResponseFull>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -95,7 +95,7 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<GetCharacterBaseInfoResponse?> GetNextInLearnQueue()
+    public async Task<CharacterResponseBase?> GetNextInLearnQueue()
     {
         try
         {
@@ -106,7 +106,7 @@ public class CharacterService : ICharacterService
                 if (response.StatusCode == HttpStatusCode.NoContent)
                     return default;
 
-                return await response.Content.ReadFromJsonAsync<GetCharacterBaseInfoResponse>();
+                return await response.Content.ReadFromJsonAsync<CharacterResponseBase>();
             }
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
@@ -150,13 +150,13 @@ public class CharacterService : ICharacterService
     }
 
     public async Task<Dictionary<string, List<string>>> SetKanjiMeanings(
-        IEnumerable<GetAllFromCharacterResponse?>? CharacterItems,
+        IEnumerable<CharacterResponseResponseFull?>? CharacterItems,
         int takeQty, Culture culture)
     {
         Dictionary<string, List<string>> allKanjiMeanings = new Dictionary<string, List<string>>();
 
         if (CharacterItems != null)
-            foreach (GetAllFromCharacterResponse? characterItem in CharacterItems)
+            foreach (CharacterResponseResponseFull? characterItem in CharacterItems)
             {
                 try
                 {
@@ -174,13 +174,13 @@ public class CharacterService : ICharacterService
         return allKanjiMeanings;
     }
 
-    public string GetCharacterMnemonicByCulture(GetAllFromCharacterResponse getAllFromCharacter,
+    public string GetCharacterMnemonicByCulture(CharacterResponseResponseFull character,
         Culture culture = Culture.EnUS) =>
-        getAllFromCharacter.Mnemonics
+        character.Mnemonics
             .FirstOrDefault(x => x.Culture == culture)
             ?.Value;
 
-    public async Task<IEnumerable<GetAllFromCharacterResponse>> ListCharactersFilteredBy(string filter, string term)
+    public async Task<IEnumerable<CharacterResponseResponseFull>> ListCharactersFilteredBy(string filter, string term)
     {
         try
         {
@@ -191,11 +191,11 @@ public class CharacterService : ICharacterService
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    return Enumerable.Empty<GetAllFromCharacterResponse>();
+                    return Enumerable.Empty<CharacterResponseResponseFull>();
                 }
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<GetAllFromCharacterResponse>>() ??
-                       Array.Empty<GetAllFromCharacterResponse>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseResponseFull>>() ??
+                       Array.Empty<CharacterResponseResponseFull>();
             }
 
             string message = await response.Content.ReadAsStringAsync();
@@ -208,7 +208,7 @@ public class CharacterService : ICharacterService
         }
     }
 
-    public async Task<IEnumerable<GetAllFromCharacterResponse>> SearchCharacters(string searchTerm)
+    public async Task<IEnumerable<CharacterResponseResponseFull>> SearchCharacters(string searchTerm)
     {
         try
         {
@@ -221,11 +221,11 @@ public class CharacterService : ICharacterService
             {
                 if (response.StatusCode == HttpStatusCode.NoContent)
                 {
-                    return new List<GetAllFromCharacterResponse>();
+                    return new List<CharacterResponseResponseFull>();
                 }
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<GetAllFromCharacterResponse>>() ??
-                       Enumerable.Empty<GetAllFromCharacterResponse>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseResponseFull>>() ??
+                       Enumerable.Empty<CharacterResponseResponseFull>();
             }
 
             string message = await response.Content.ReadAsStringAsync();

@@ -10,7 +10,7 @@ namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 public class ListFutureReviewQueueHandler :
     IRequestHandler<
         ListFutureReviewQuery,
-        IEnumerable<GetCharacterLearningBaseInfoResponse>>
+        IEnumerable<CharacterLearningResponseBase>>
 {
     private readonly ICharacterLearningRepository _characterLearningRepository;
     private readonly IMapper _mapper;
@@ -28,7 +28,7 @@ public class ListFutureReviewQueueHandler :
         _logger = logger;
     }
 
-    public async Task<IEnumerable<GetCharacterLearningBaseInfoResponse>> Handle(ListFutureReviewQuery request,
+    public async Task<IEnumerable<CharacterLearningResponseBase>> Handle(ListFutureReviewQuery request,
         CancellationToken cancellationToken)
     {
         if (await _characterLearningRepository.AnyToReview(request.AppUser))
@@ -38,10 +38,10 @@ public class ListFutureReviewQueueHandler :
                     request.AppUser);
 
             _logger.LogInformation("Character Learnings: {@cl}", charLearnings);
-            return _mapper.Map<IEnumerable<GetCharacterLearningBaseInfoResponse>>(charLearnings);
+            return _mapper.Map<IEnumerable<CharacterLearningResponseBase>>(charLearnings);
         }
 
         _logger.LogInformation("No character learnings");
-        return Enumerable.Empty<GetCharacterLearningBaseInfoResponse>();
+        return Enumerable.Empty<CharacterLearningResponseBase>();
     }
 }

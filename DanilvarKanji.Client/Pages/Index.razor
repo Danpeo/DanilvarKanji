@@ -89,8 +89,8 @@
 
     [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
-    private GetCharacterBaseInfoResponse? _characterToLearn;
-    private GetCharacterLearningBaseInfoResponse? _learning;
+    private CharacterResponseBase? _characterToLearn;
+    private CharacterLearningResponseBase? _learning;
     private string _errorMessage = string.Empty;
 
     protected override async Task OnInitializedAsync()
