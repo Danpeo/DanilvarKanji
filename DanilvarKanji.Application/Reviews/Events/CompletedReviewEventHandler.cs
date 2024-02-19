@@ -13,6 +13,7 @@ namespace DanilvarKanji.Application.Reviews.Events;
 public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewDomainEvent>
 {
     private readonly ICharacterLearningRepository _characterLearningRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<CompletedReviewEventHandler> _logger;
     private readonly CharacterLearningSettings _learningSettings;
@@ -21,11 +22,13 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
         ILogger<CompletedReviewEventHandler> logger,
         ICharacterLearningRepository characterLearningRepository,
         IUnitOfWork unitOfWork,
-        IOptions<CharacterLearningSettings> learningSettings)
+        IOptions<CharacterLearningSettings> learningSettings,
+        IUserRepository userRepository)
     {
         _logger = logger;
         _characterLearningRepository = characterLearningRepository;
         _unitOfWork = unitOfWork;
+        _userRepository = userRepository;
         _learningSettings = learningSettings.Value;
     }
 
@@ -35,7 +38,6 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
             return;
 
         string characterId = notification.Exercises.First().Character.Id;
-
         bool isCorrect = notification.Exercises.All(e => e.IsCorrect);
 
         CharacterLearning? characterLearning = await _characterLearningRepository
@@ -47,6 +49,7 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
         _logger.LogInformation("Character Learning: {@characterLearning}", characterLearning);
 
         updateCharacterLearning();
+        await updateUserXp();
 
         _characterLearningRepository.UpdateCharacterLearning(characterLearning);
 
@@ -104,21 +107,17 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
                 }
                 shift *= nextShiftMofifier;
             }
+        }
 
-            /*characterLearning.NextReviewDateTime = learningPercent switch
-            {
-                <= 10 => DateTime.UtcNow.AddHours(12),
-                <= 20 => DateTime.UtcNow.AddHours(18),
-                <= 30 => DateTime.UtcNow.AddHours(27),
-                <= 40 => DateTime.UtcNow.AddHours(40.5),
-                <= 50 => DateTime.UtcNow.AddHours(136.68),
-                <= 60 => DateTime.UtcNow.AddHours(205.03),
-                <= 70 => DateTime.UtcNow.AddHours(307.54),
-                <= 80 => DateTime.UtcNow.AddHours(461.32),
-                <= 90 => DateTime.UtcNow.AddHours(691.98),
-                <= 100 => DateTime.UtcNow.AddHours(1037),
-                _ => characterLearning.NextReviewDateTime
-            };*/
+        async Task updateUserXp()
+        {
+            int xp = notification.AppUser.XP;
+            if (isCorrect)
+                xp += _learningSettings.NormalXp;
+            else
+                xp += _learningSettings.MinXp;
+            
+            await _userRepository.UpdateUserXpAsync(xp, notification.AppUser.Email!);
         }
     }
 }

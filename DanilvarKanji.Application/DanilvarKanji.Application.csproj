@@ -23,6 +23,7 @@
     <ItemGroup>
       <Folder Include="Auth\Queries" />
       <Folder Include="Exercises\Validators\" />
+      <Folder Include="Users\Events\" />
     </ItemGroup>
 
 </Project>

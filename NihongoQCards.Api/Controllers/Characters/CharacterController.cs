@@ -18,8 +18,7 @@ public class CharacterController : ApiController
 {
     private readonly IMapper _mapper;
     private readonly UserManager<AppUser> _userManager;
-
-
+    
     public CharacterController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
         base(mediator)
     {

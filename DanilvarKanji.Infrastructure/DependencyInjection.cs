@@ -25,6 +25,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IExerciseRepository, ExerciseRepository>();
         services.AddScoped<IReviewRepository, ReviewRepository>();
+        services.AddScoped<IFlashcardRepository, FlashcardRepository>();
         services.AddSingleton<ICacheService, CacheService>();
 
         return services;

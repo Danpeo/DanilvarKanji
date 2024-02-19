@@ -47,8 +47,9 @@ public class CharacterService : ICharacterService
     {
         try
         {
-            var uri = $"api/Characters/LearnQueue?PageNumber={pageNumber}&PageSize={pageSize}&listOnlyDayDosage={listOnlyDayDosage}";
-            
+            var uri =
+                $"api/Characters/LearnQueue?PageNumber={pageNumber}&PageSize={pageSize}&listOnlyDayDosage={listOnlyDayDosage}";
+
             HttpResponseMessage response = await _httpClient.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
@@ -71,28 +72,18 @@ public class CharacterService : ICharacterService
 
     public async Task<CharacterResponseResponseFull?> GetCharacterAsync(string? id)
     {
-        try
+        HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters/{id}");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/Characters/{id}");
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return default;
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                {
-                    return default;
-                }
-
-                return await response.Content.ReadFromJsonAsync<CharacterResponseResponseFull>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<CharacterResponseResponseFull>();
         }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
     public async Task<CharacterResponseBase?> GetNextInLearnQueue()

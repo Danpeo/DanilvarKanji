@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanilvarKanji.Client.Tests"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Danilvar.MathUtils", "Danilvar.MathUtils\Danilvar.MathUtils.fsproj", "{1C6D90F2-0D80-4F17-AEDF-5547227C5B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanilvarKanji.Domain.Shared", "DanilvarKanji.Domain.Shared\DanilvarKanji.Domain.Shared.csproj", "{2E10CCB1-0105-4054-B4D7-79FBFC2E5A33}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,10 +79,6 @@ Global
 		{1C6D90F2-0D80-4F17-AEDF-5547227C5B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C6D90F2-0D80-4F17-AEDF-5547227C5B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C6D90F2-0D80-4F17-AEDF-5547227C5B45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E10CCB1-0105-4054-B4D7-79FBFC2E5A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E10CCB1-0105-4054-B4D7-79FBFC2E5A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E10CCB1-0105-4054-B4D7-79FBFC2E5A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E10CCB1-0105-4054-B4D7-79FBFC2E5A33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +98,5 @@ Global
 		{15D59C1F-F75F-45E8-8639-FB349D07A303} = {A11F1470-B261-4049-9B99-9D8F51071A94}
 		{A2561D36-9E89-412A-A17A-396A376FC2F5} = {A11F1470-B261-4049-9B99-9D8F51071A94}
 		{1C6D90F2-0D80-4F17-AEDF-5547227C5B45} = {4271BA5E-E4B0-43E3-8EC7-5871F567C9E2}
-		{2E10CCB1-0105-4054-B4D7-79FBFC2E5A33} = {4271BA5E-E4B0-43E3-8EC7-5871F567C9E2}
 	EndGlobalSection
 EndGlobal

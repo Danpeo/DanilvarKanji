@@ -10,4 +10,5 @@ public class UserResponseBase
     public JlptLevel JlptLevel { get; set; }
     public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
     public DateTime LastStudied { get; set; } = DateTime.UtcNow;
+    public int XP { get; set; }
 }

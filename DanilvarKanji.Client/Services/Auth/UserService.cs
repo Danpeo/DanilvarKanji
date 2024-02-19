@@ -16,26 +16,18 @@ public class UserService : IUserService
 
     public async Task<UserResponseBase?> GetUserAsync()
     {
-        try
+        HttpResponseMessage response = await _httpClient.GetAsync($"api/Users");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/Users");
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return default;
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return default;
-
-                return await response.Content.ReadFromJsonAsync<UserResponseBase>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<UserResponseBase>();
         }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
     public async Task<LearningSettings?> GetLearningSettingsAsync()
@@ -68,7 +60,7 @@ public class UserService : IUserService
         {
             HttpResponseMessage response =
                 await _httpClient.PutAsJsonAsync("api/users/UpdateUserLearningSettings", settings);
-            
+
             if (!response.IsSuccessStatusCode)
             {
                 string message = await response.Content.ReadAsStringAsync();

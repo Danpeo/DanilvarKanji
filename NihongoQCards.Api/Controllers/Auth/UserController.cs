@@ -22,7 +22,7 @@ public class UserController : ApiController
     [HttpGet]
     public async Task<IActionResult> GetAsync()
     {
-        AppUser? user = await _userManager.GetUserAsync(User);
+        AppUser? user = await GetCurrentUser(_userManager);
 
         if (user != null)
             return Ok(user);
@@ -35,7 +35,7 @@ public class UserController : ApiController
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetUserLearningSettingsAsync()
     {
-        AppUser? user = await _userManager.GetUserAsync(User);
+        AppUser? user = await GetCurrentUser(_userManager);
 
         LearningSettings? settings = await Mediator.Send(new GetUserLearningSettingsQuery(user!.Email!));
         
@@ -50,9 +50,24 @@ public class UserController : ApiController
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateUserLearningSettingsAsync([FromBody] LearningSettings learningSettings)
     {
-        AppUser? user = await _userManager.GetUserAsync(User);
+        AppUser? user = await GetCurrentUser(_userManager);
 
         var result = await Mediator.Send(new UpdateUserLearningSettingsCommand(user!.Email!, learningSettings));
+        
+        if (result.IsSuccess)
+            return Ok(result.Value);
+
+        return HandleFailure(result);
+    }
+
+    [HttpPut("UpdateUserXpAsync")]
+    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UpdateUserXpAsync([FromBody] int xp)
+    {
+        AppUser? user = await GetCurrentUser(_userManager);
+
+        var result = await Mediator.Send(new UpdateUserXpCommand(xp, user!.Email!));
         
         if (result.IsSuccess)
             return Ok(result.Value);

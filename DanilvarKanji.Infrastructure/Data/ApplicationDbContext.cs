@@ -1,4 +1,5 @@
 using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Entities.Flashcards;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<Exercise> Exercises { get; set; }
     public DbSet<ReviewSession> ReviewSessions { get; set; }
     public DbSet<StringDefinition> StringDefinitions { get; set; }
+    public DbSet<FlashcardCollection> FlashcardCollections { get; set; }
+    public DbSet<Flashcard> Flashcards { get; set; }
 
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {

@@ -83,7 +83,7 @@
 
         _learning = await CharacterLearningApiService.GetLearningAsync(CharacterLearningId);
         _isAdditional = _learning?.NextReviewDateTime >= DateTime.Today;
-        _character = await CharacterService.GetCharacterAsync(_learning?.CharacterResponse.Id);
+        _character = await CharacterService.GetCharacterAsync(_learning?.Character.Id);
 
         InitExercises();
 

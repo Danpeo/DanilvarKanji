@@ -26,7 +26,7 @@ else
         @foreach (CharacterLearningResponseBase? charLearning in _characterItems)
         {
             <CharacterMinimalCard CharacterBaseInfo="charLearning.CharacterResponse" 
-                                  NavigateTo="@(new string($"Character/{charLearning.CharacterResponse.Id}"))"/>
+                                  NavigateTo="@(new string($"Character/{charLearning.Character.Id}"))"/>
         }
     </div>
 }

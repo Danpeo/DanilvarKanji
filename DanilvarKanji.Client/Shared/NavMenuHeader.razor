@@ -1,12 +1,12 @@
 @using DanilvarKanji.Client.Services.Auth
 @using Blazored.Modal.Services
+@using DanilvarKanji.Shared.Responses.User
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <div id="navbarNav">
         <ul class="navbar-nav main-font">
             <NotAuthorized>
                 <NavLink class="btn btn-primary" href="register">Register</NavLink>
-
                 <NavLink class="btn btn-primary" href="login">Log In</NavLink>
             </NotAuthorized>
             <Authorized>
@@ -18,6 +18,9 @@
                     <GetUserName/>
                     <span class="txt-green-dim fs-6">
                         <GetUserJlpt/>
+                    </span>
+                    <span class="txt-yellow">
+                        @(new string($" {_user?.XP} XP"))
                     </span>
                 </p>
 
@@ -39,14 +42,20 @@
 
 @code {
 
-    [CascadingParameter]
-    public required IModalService ModalService { get; set; }
+    [CascadingParameter] public required IModalService ModalService { get; set; }
 
-    [Inject]
-    public required IAuthService AuthService { get; set; }
+    [Inject] public required IAuthService AuthService { get; set; }
 
-    [Inject]
-    public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
+
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+
+    private UserResponseBase? _user;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _user = await UserService.GetUserAsync();
+    }
 
     private async Task LogoutAsync()
     {

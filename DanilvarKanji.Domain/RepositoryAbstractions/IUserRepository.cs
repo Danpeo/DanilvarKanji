@@ -14,4 +14,5 @@ public interface IUserRepository
     void Create(AppUser? user);
     Task UpdateUserLearningSettingsAsync(string email, LearningSettings learningSettings);
     Task<LearningSettings?> GetUserLearningSettingsAsync(string email);
+    Task UpdateUserXpAsync(int xp, string email);
 }

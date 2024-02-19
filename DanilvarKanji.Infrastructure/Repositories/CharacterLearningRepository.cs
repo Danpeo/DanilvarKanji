@@ -216,7 +216,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     public async Task<CharacterLearning?> GetNextInReviewQueue(AppUser appUser) =>
         await GetCurrentReviewQueue(appUser).FirstOrDefaultAsync();
 
-    public async ValueTask<bool> AnyExist() =>
+    public async ValueTask<bool> AnyExistAsync() =>
         await _context.CharacterLearnings.AnyAsync();
 
     public async ValueTask<bool> AnyToReview(AppUser appUser) =>

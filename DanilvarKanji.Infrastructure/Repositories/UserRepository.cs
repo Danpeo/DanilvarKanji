@@ -49,6 +49,12 @@ public class UserRepository : IUserRepository
 
         return new LearningSettings();
     }
+
+    public async Task UpdateUserXpAsync(int xp, string email)
+    {
+        AppUser? user = await _context.AppUsers.FirstOrDefaultAsync(u => u!.Email == email);
+        if (user != null) user.XP = xp;
+    }
     
     public Task<AppUser> GetByEmailAsync(string email)
     {

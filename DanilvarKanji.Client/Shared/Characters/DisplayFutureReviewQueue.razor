@@ -21,7 +21,7 @@ else
         {
             <CharacterMinimalCard
                 ColStyle="col-2"
-                CharacterBaseInfo="learning?.CharacterResponse"
+                CharacterResponseBaseInfo="learning?.Character"
                 SubText1="Next Review:"
                 SubText2="@learning?.NextReviewDateTime.ToString(CultureInfo.CurrentCulture)"
                 NavigateTo="@(new string($"review/{learning?.Id}"))"/>

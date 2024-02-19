@@ -42,26 +42,18 @@ public class CharacterLearningApiService : ICharacterLearningApiService
 
     public async Task<CharacterLearningResponseFull?> GetLearningAsync(string? id)
     {
-        try
+        HttpResponseMessage response = await _httpClient.GetAsync($"api/CharacterLearnings/{id}");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/CharacterLearnings/{id}");
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return default;
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return default;
-
-                return await response.Content.ReadFromJsonAsync<CharacterLearningResponseFull>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<CharacterLearningResponseFull>();
         }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
     public async Task ToggleSkipStateAsync(string? id)

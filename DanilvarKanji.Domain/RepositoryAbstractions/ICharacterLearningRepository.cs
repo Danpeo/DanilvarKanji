@@ -10,7 +10,7 @@ public interface ICharacterLearningRepository
         AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5);
 
-    ValueTask<bool> AnyExist();
+    ValueTask<bool> AnyExistAsync();
     void Create(CharacterLearning characterLearning);
     Task<CharacterLearning?> GetAsync(string id, AppUser user);
     ValueTask<bool> Exist(string requestId, AppUser user);

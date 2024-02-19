@@ -13,6 +13,7 @@ public class AppUser : IdentityUser
     //public ICollection<CharacterLearning> CharacterLearnings { get; set; }
 
     public int QtyOfCharsForLearningForDay { get; set; } = 5;
+    public int XP { get; set; }
     public string? RefreshToken { get; set; }
     public DateTime RefreshTokenExpiry { get; set; }
 }

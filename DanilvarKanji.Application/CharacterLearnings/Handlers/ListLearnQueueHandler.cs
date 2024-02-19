@@ -19,9 +19,9 @@ public class ListLearnQueueHandler : IRequestHandler<ListLearnQueueQuery, IEnume
     public async Task<IEnumerable<CharacterLearning>> Handle(ListLearnQueueQuery request,
         CancellationToken cancellationToken)
     {
-        if (await _characterLearningRepository.AnyExist())
+        if (await _characterLearningRepository.AnyExistAsync())
         {
-            if (request.listOnlyDayDosage)
+            if (request.ListOnlyDayDosage)
             {
                 var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
 

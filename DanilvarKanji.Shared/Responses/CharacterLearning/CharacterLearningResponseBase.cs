@@ -7,7 +7,7 @@ namespace DanilvarKanji.Shared.Responses.CharacterLearning;
 public class CharacterLearningResponseBase
 {
     public string Id { get; set; }
-    public CharacterResponseBase CharacterResponse { get; set; }
+    public CharacterResponseBase Character { get; set; }
     public LearningState LearningState { get; set; }
     public LearningProgress LearningProgress { get; set; }
     public int LearnedCount { get; set; }

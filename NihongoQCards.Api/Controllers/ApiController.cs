@@ -1,6 +1,8 @@
 using DanilvarKanji.Domain.Primitives;
 using DanilvarKanji.Domain.Primitives.Result;
+using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DanilvarKanji.Controllers;
@@ -36,6 +38,9 @@ public class ApiController : Controller
     protected new IActionResult Ok(object value) => base.Ok(value);
 
     protected new IActionResult NotFound() => base.NotFound();
+
+    protected Task<AppUser?> GetCurrentUser(UserManager<AppUser> userManager) => 
+        userManager.GetUserAsync(User);
 
     private static ProblemDetails CreateProblemDetails(string title, int status, Error error, Error[]?
         errors = null)

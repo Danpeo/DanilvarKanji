@@ -34,6 +34,10 @@
     color: var(--pink-color-light) !important;
 }
 
+.txt-yellow {
+    color: var(--yellow-color) !important;
+}
+
 .txt-green {
     color: var(--green-color-2) !important;
 }

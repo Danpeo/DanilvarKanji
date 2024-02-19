@@ -99,6 +99,9 @@ namespace DanilvarKanji.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
+                    b.Property<int>("XP")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserRoleId");
@@ -219,6 +222,74 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("ReviewSessionId");
 
                     b.ToTable("Exercises");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.Flashcard", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Back")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("DoRemember")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("FlashcardCollectionId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FrontId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RememberedInARow")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlashcardCollectionId");
+
+                    b.HasIndex("FrontId");
+
+                    b.ToTable("Flashcards");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.FlashcardCollection", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("FlashcardCollections");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.Front", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Main")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sub")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Front");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Image", b =>
@@ -373,21 +444,6 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("WordMeaningId");
 
                     b.ToTable("StringDefinitions");
-                });
-
-            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.TEST", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Word", b =>
@@ -627,6 +683,30 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("Character");
                 });
 
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.Flashcard", b =>
+                {
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Flashcards.FlashcardCollection", null)
+                        .WithMany("Flashcards")
+                        .HasForeignKey("FlashcardCollectionId");
+
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Flashcards.Front", "Front")
+                        .WithMany()
+                        .HasForeignKey("FrontId");
+
+                    b.Navigation("Front");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.FlashcardCollection", b =>
+                {
+                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.KanjiMeaning", b =>
                 {
                     b.HasOne("DanilvarKanji.Shared.Domain.Entities.Character", null)
@@ -753,6 +833,11 @@ namespace DanilvarKanji.Migrations
                     b.Navigation("Onyomis");
 
                     b.Navigation("Words");
+                });
+
+            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.FlashcardCollection", b =>
+                {
+                    b.Navigation("Flashcards");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.KanjiMeaning", b =>

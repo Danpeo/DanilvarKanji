@@ -33,7 +33,8 @@ public class JwtProvider : IJwtProvider
             new(JwtRegisteredClaimNames.Sub, user.Id),
             new(JwtRegisteredClaimNames.Email, user.Email!),
             new(JwtRegisteredClaimNames.Name, user.UserName!),
-            new(JwtClaim.UserRole.ToString(), user.AppUserRole.ToString())
+            new(JwtClaim.UserRole.ToString(), user.AppUserRole.ToString()),
+            new(JwtClaim.XP.ToString(), user.XP.ToString())
         };
 
         DateTime tokenExpirationTime = _dateTime.UtcNow.AddMinutes(_jwtOptions.TokenExpirationInMinutes);

@@ -19,10 +19,13 @@ else
     <div class="row">
         @foreach (CharacterLearningResponseBase? learning in _learningItems)
         {
-            <CharacterMinimalCard
-                SubText1="@learning?.LearningProgress.Value.ToString(CultureInfo.CurrentCulture)"
-                CharacterBaseInfo="learning?.CharacterResponse"
-                NavigateTo="@(new string($"review/{learning?.Id}"))"/>
+            if (learning != null)
+            {
+                <CharacterMinimalCard
+                    SubText1="@learning.LearningProgress.Value.ToString(CultureInfo.CurrentCulture)"
+                    CharacterResponseBaseInfo="@learning.Character"
+                    NavigateTo="@(new string($"review/{learning.Id}"))"/>
+            }
         }
     </div>
 }
@@ -51,3 +54,4 @@ else
     }
 
 }
+

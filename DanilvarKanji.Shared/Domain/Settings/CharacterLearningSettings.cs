@@ -9,4 +9,6 @@ public class CharacterLearningSettings
     public int ShiftExerciseDateAfterFailInMinutes { get; init; } 
     public float InitRepeatingShiftHrs { get; init; }
     public float NextShiftModifier { get; init; }
+    public int MinXp { get; init; }
+    public int NormalXp { get; init; }
 }

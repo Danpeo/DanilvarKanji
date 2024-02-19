@@ -19,7 +19,7 @@ public class ListSkippedHandler : IRequestHandler<ListSkippedQuery, IEnumerable<
     public async Task<IEnumerable<CharacterLearning>> Handle(ListSkippedQuery request,
         CancellationToken cancellationToken)
     {
-        if (await _characterLearningRepository.AnyExist())
+        if (await _characterLearningRepository.AnyExistAsync())
         {
             return await _characterLearningRepository.ListSkippedAsync(request.PaginationParams, request.AppUser);
         }

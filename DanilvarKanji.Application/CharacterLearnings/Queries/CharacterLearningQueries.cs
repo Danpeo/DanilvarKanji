@@ -10,7 +10,7 @@ public record ListLearnQueueQuery(
     PaginationParams? PaginationParams,
     JlptLevel JlptLevel,
     AppUser AppUser,
-    bool listOnlyDayDosage
+    bool ListOnlyDayDosage
 ) : IRequest<IEnumerable<CharacterLearning>>;
 
 public record GetCharacterLearningQuery(string Id, AppUser AppUser) : IRequest<CharacterLearning?>;

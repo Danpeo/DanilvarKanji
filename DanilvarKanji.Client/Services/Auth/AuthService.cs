@@ -164,10 +164,9 @@ public class AuthService : IAuthService
         await _localStorageService.RemoveItemAsync("IsLoggedIn");
     }
 
-    private string GetUsername(string token)
+    private static string GetUsername(string token)
     {
         var jwt = new JwtSecurityToken(token);
-
         return jwt.Claims.First(c => c.Type == ClaimTypes.Name).Value;
     }
 
@@ -177,9 +176,7 @@ public class AuthService : IAuthService
             return string.Empty;
 
         var jwt = new JwtSecurityToken(token);
-
         Claim? role = jwt.Claims.FirstOrDefault(c => c.Type == JwtClaim.UserRole.ToString());
-
         return role != null ? role.Value : string.Empty;
     }
 }
