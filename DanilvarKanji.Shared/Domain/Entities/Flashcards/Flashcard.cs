@@ -14,7 +14,8 @@ public class Flashcard : Entity
 
     public Flashcard()
     {
-        
+        Front = new Front();
+        Back = "";
     }
     
     public Flashcard(Front front, string back)

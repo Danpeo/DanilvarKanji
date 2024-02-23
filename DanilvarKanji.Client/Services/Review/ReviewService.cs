@@ -16,22 +16,14 @@ public class ReviewService : IReviewService
 
     public async Task<ReviewSessionResponseBase?> CreateReviewSessionAsync(CreateReviewSessionRequest request)
     {
-        try
-        {
-            HttpResponseMessage response =
-                await _httpClient.PostAsJsonAsync($"api/ReviewSessions", request);
+        HttpResponseMessage response =
+            await _httpClient.PostAsJsonAsync($"api/ReviewSessions", request);
 
-            if (response.IsSuccessStatusCode)
-                return await response.Content.ReadFromJsonAsync<ReviewSessionResponseBase>();
+        if (response.IsSuccessStatusCode)
+            return await response.Content.ReadFromJsonAsync<ReviewSessionResponseBase>();
 
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
     }
 
     public async Task<ReviewSessionResponseBase?> GetReviewSessionAsync(string? id)

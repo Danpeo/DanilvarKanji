@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Danilvar.MathUtils")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37810ef42ebb5917f68f3e1ce1cb89f8d81f2ad8")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b4ce0cf4b61bc5c70d0ffef77eba749e69b28ab")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Danilvar.MathUtils")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Danilvar.MathUtils")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

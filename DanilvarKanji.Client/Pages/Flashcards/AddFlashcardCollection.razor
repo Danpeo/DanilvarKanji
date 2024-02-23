@@ -1,0 +1,113 @@
+@page "/Add"
+@using DanilvarKanji.Shared.Requests.Flashcards
+@using DanilvarKanji.Shared.Domain.Entities.Flashcards
+@using DVar.Extensions
+@using DanilvarKanji.Client.Services.Flashcards
+<PageTitle>Add New Collection - Flashcards</PageTitle>
+
+<h1 class="mt-5 mb-4 animated-blink main-font display-3">
+    Add New Flashcard Collection
+</h1>
+
+<EditForm Model="_createFCRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandeInvalidSubmit">
+
+    <FluentValidationValidator/>
+
+    <FormSection Title="Collection Name" HelpText="Enter collection name">
+        <InputText @bind-Value="_createFCRequest.Name"
+                   class="form-control bg-main txt-green-dim jap-font no-border"
+                   id="characterDefinition" placeholder="Naruto Collection"/>
+        <ValidationMessage For="@(() => _createFCRequest.Name)"/>
+
+    </FormSection>
+
+    <FormSection Title="Flashcards" HelpText="Add flashcards to collection">
+        @foreach (Flashcard flashcard in _createFCRequest.Flashcards)
+        {
+            <div class="col mb-3">
+                <div class="form-group">
+                    <InputText @bind-Value="@flashcard.Front.Main"
+                               class="form-control bg-secondary txt-white no-border"
+                               id="japWriting" placeholder="Main"/>
+                </div>
+            </div>
+
+            <div class="col mb-3">
+                <div class="form-group">
+                    <InputText @bind-Value="@flashcard.Front.Sub"
+                               class="form-control bg-secondary txt-white no-border"
+                               id="japWriting" placeholder="Sub"/>
+                </div>
+            </div>
+
+            <div class="col mb-3">
+                <div class="form-group">
+                    <InputText @bind-Value="@flashcard.Back"
+                               class="form-control bg-secondary txt-white no-border"
+                               id="japWriting" placeholder="Back"/>
+                </div>
+            </div>
+        }
+        <div class="d-inline-flex gap-1">
+            <button class="btn btn-outline-primary mx-1" type="button"
+                    @onclick="@(() => _createFCRequest.Flashcards.Add(new Flashcard()))">
+                Add Collection
+            </button>
+            <button class="btn btn-outline-warning mx-1" type="button"
+                    @onclick="@(() => _createFCRequest.Flashcards.RemoveLast())">
+                Remove Last
+            </button>
+        </div>
+        <ValidationMessage For="@(() => _createFCRequest.Flashcards)"/>
+
+    </FormSection>
+
+    @if (_submitSuccessful)
+    {
+        <SuccessAlertAlt Message="Collection created successfully!"/>
+    }
+    else if (_errorMessage is not null)
+    {
+        <ErrorAlertAlt Message="@_errorMessage"/>
+    }
+
+    <div class="mt-4 mb-5">
+        <div class="row">
+            <div class="offset-4 col-8 text-right">
+                <button class="btn btn-outline-secondary" type="button"
+                        @onclick="@(() => _createFCRequest = new CreateFlashcardCollectionRequest())">
+                    Reset
+                </button>
+                <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+    [Inject] public required IFlashcardApiService FlashcardService { get; set; }
+
+    private CreateFlashcardCollectionRequest _createFCRequest = new();
+    private string? _errorMessage;
+    private bool _submitSuccessful;
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            await FlashcardService.CreateFlashcardCollectionAsync(_createFCRequest);
+            _submitSuccessful = true;
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
+        }
+    }
+
+    private void HandeInvalidSubmit()
+    {
+        _submitSuccessful = false;
+    }
+
+}

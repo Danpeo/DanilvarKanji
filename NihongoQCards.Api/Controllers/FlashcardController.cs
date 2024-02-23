@@ -1,12 +1,17 @@
 using DanilvarKanji.Application.Flashcards.Commands;
+using DanilvarKanji.Application.Flashcards.Queries;
 using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Entities.Flashcards;
+using DanilvarKanji.Shared.Domain.Params;
 using DanilvarKanji.Shared.Requests.Flashcards;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DanilvarKanji.Controllers;
 
+[Authorize]
 public class FlashcardController : ApiController
 {
     private readonly UserManager<AppUser> _userManager;
@@ -16,7 +21,9 @@ public class FlashcardController : ApiController
         _userManager = userManager;
     }
 
-    [HttpPost("FlashcardCollection")]
+    [HttpPost("Collection")]
+    [ProducesResponseType(typeof(FlashcardCollection), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateCollectionAsync([FromBody] CreateFlashcardCollectionRequest request)
     {
         AppUser? user = await GetCurrentUser(_userManager);
@@ -35,5 +42,17 @@ public class FlashcardController : ApiController
 
         return Ok();
     }
-    
+
+    [HttpGet("Collections")]
+    [ProducesResponseType(typeof(IEnumerable<FlashcardCollection>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> ListAllCollectionsAsync([FromQuery] PaginationParams paginationParams)
+    {
+        AppUser? user = await GetCurrentUser(_userManager);
+        
+        var collections =
+            await Mediator.Send(new ListFlashcardCollectionsQuery(paginationParams, user!));
+        
+        return collections.Any() ? Ok(collections) : NoContent();
+    }
 }

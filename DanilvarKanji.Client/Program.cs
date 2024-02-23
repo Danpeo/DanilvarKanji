@@ -13,6 +13,7 @@ using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Auth;
 using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Client.Services.Dictionary;
+using DanilvarKanji.Client.Services.Flashcards;
 using DanilvarKanji.Client.Services.KanjiApiDev;
 using DanilvarKanji.Client.Services.Review;
 using DanilvarKanji.Client.State;
@@ -57,6 +58,7 @@ builder.Services.AddScoped<Js>();
 builder.Services.AddScoped<AppState>();
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IFlashcardApiService, FlashcardApiService>();
 
 builder.Services.AddComponents();
 

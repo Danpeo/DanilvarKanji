@@ -71,6 +71,22 @@
           "lib/net7.0/Danilvar.ValueObject.dll": {}
         }
       },
+      "DVar.RandCreds/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "7.0.403"
+        },
+        "compile": {
+          "lib/net7.0/DVar.RandCreds.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/DVar.RandCreds.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "FluentValidation/11.8.0": {
         "type": "package",
         "compile": {
@@ -2628,6 +2644,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "DVar.RandCreds": "1.0.0",
           "Danilvar.Entity": "1.0.0",
           "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
@@ -2775,6 +2792,19 @@
         "danilvar.valueobject.1.0.0.nupkg.sha512",
         "danilvar.valueobject.nuspec",
         "lib/net7.0/Danilvar.ValueObject.dll"
+      ]
+    },
+    "DVar.RandCreds/1.0.0": {
+      "sha512": "uNiOrFklt1nIguP4HdlCfMLbKdvN8tyYHUhRu5WbnVLDGqgymO+ESRlL5RWAfsJB/BNoVUu1ybwB5Zk0+yzCwg==",
+      "type": "package",
+      "path": "dvar.randcreds/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dvar.randcreds.1.0.0.nupkg.sha512",
+        "dvar.randcreds.nuspec",
+        "lib/net7.0/DVar.RandCreds.dll",
+        "lib/net7.0/DVar.RandCreds.xml"
       ]
     },
     "FluentValidation/11.8.0": {

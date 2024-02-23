@@ -2018,6 +2018,7 @@
           "Blazored.LocalStorage": "4.4.0",
           "Blazored.Modal": "7.1.0",
           "Blazored.SessionStorage": "2.4.0",
+          "DVar.Extensions": "1.0.0",
           "DVar.RandCreds": "1.0.0",
           "Danilvar.Components": "1.0.0",
           "Danilvar.MathUtils": "1.0.0",
@@ -2083,6 +2084,7 @@
       },
       "DanilvarKanji.Shared/1.0.0": {
         "dependencies": {
+          "DVar.RandCreds": "1.0.0",
           "Danilvar.Entity": "1.0.0",
           "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
@@ -2092,6 +2094,11 @@
         },
         "runtime": {
           "DanilvarKanji.Shared.dll": {}
+        }
+      },
+      "DVar.Extensions/1.0.0": {
+        "runtime": {
+          "DVar.Extensions.dll": {}
         }
       }
     }
@@ -3545,6 +3552,11 @@
       "sha512": ""
     },
     "DanilvarKanji.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DVar.Extensions/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

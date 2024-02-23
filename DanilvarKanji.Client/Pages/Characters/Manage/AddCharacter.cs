@@ -30,17 +30,23 @@ public partial class AddCharacter
 
     private async Task HandleSubmit()
     {
-        CreateCharacterRequest? character = await CharacterService.AddCharacterAsync(_createCharacterRequest);
-
-        if (character is not null)
+        try
         {
-            _submitSuccessful = true;
+            CreateCharacterRequest? character = await CharacterService.AddCharacterAsync(_createCharacterRequest);
+
+            if (character is not null)
+            {
+                _submitSuccessful = true;
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
         }
     }
 
     private void HandleInvalidSubmit()
     {
         _submitSuccessful = false;
-        _errorMessage = "There was a problem";
     }
 }

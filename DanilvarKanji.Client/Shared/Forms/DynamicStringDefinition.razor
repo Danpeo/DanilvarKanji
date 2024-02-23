@@ -30,7 +30,7 @@
 }
 
 
-<p class="d-inline-flex gap-1">
+<div class="d-inline-flex gap-1">
     <button class="btn btn-outline-primary mx-1" type="button"
             @onclick="@(() => StringDefinitions.Add(new StringDefinition()))">
         @AddButtonText
@@ -43,7 +43,7 @@
             @DeleteBtnText
         </button>
     }
-</p>
+</div>
 
 @code
 {

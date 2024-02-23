@@ -179,3 +179,5 @@ C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Danilvar.MathUtils.dll
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Danilvar.MathUtils.pdb
 C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\Danilvar.MathUtils.xml
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DVar.Extensions.dll
+C:\Users\danil\source\repos\LearningJapanese\NihongoQCards.Api\bin\Debug\net7.0\DVar.Extensions.pdb

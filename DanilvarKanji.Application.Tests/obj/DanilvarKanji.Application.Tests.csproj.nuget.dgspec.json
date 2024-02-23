@@ -440,6 +440,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "DVar.RandCreds": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Danilvar.Entity": {
               "target": "Package",
               "version": "[1.0.0, )"

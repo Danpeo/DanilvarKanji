@@ -231,23 +231,15 @@ public class CharacterService : ICharacterService
 
     public async Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest request)
     {
-        try
-        {
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Characters", request);
+        HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Characters", request);
 
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadFromJsonAsync<CreateCharacterRequest>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
-        }
-        catch (HttpRequestException e)
+        if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine(e);
-            throw;
+            return await response.Content.ReadFromJsonAsync<CreateCharacterRequest>();
         }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
     }
 
     public async Task DeleteCharacterAsync(string id)
