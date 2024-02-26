@@ -4,7 +4,9 @@ namespace DanilvarKanji.Shared.Domain.Entities.Flashcards;
 
 public class Flashcard : Entity
 {
-    public Front Front { get; set; }
+    public string Main { get; set; }
+
+    public string Sub { get; set; }
 
     public string Back { get; set; }
 
@@ -14,13 +16,15 @@ public class Flashcard : Entity
 
     public Flashcard()
     {
-        Front = new Front();
+        Main = "";
+        Sub = "";
         Back = "";
     }
-    
-    public Flashcard(Front front, string back)
+
+    public Flashcard(string back, string main, string sub)
     {
-        Front = front;
         Back = back;
+        Main = main;
+        Sub = sub;
     }
 }

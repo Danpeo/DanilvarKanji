@@ -160,3 +160,4 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin\Debug\net7.0\Danilvar.MathUtils.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin\Debug\net7.0\Danilvar.MathUtils.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin\Debug\net7.0\Danilvar.MathUtils.xml
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin\Debug\net7.0\DVar.RandCreds.dll

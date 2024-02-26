@@ -8,10 +8,10 @@ namespace DanilvarKanji.Client.Pages.Characters;
 
 public partial class CharacterDetails
 {
-    [Inject] public ICharacterService CharacterService { get; set; } = default!;
     [Parameter, EditorRequired] public CharacterResponseResponseFull? Character { get; set; }
-
     [Parameter] public int TakeQty { get; set; } = 2;
+    [Inject] public ICharacterService CharacterService { get; set; } = default!;
+
 
     private Dictionary<string, List<string>> _kanjiMeanings = new();
     private bool _isOpen;

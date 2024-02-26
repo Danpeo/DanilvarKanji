@@ -822,7 +822,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\tr\FSharp.Core.resources.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\zh-Hans\FSharp.Core.resources.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\zh-Hant\FSharp.Core.resources.dll
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\0n3c4q12lq.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.MathUtils.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.MathUtils.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.MathUtils.pdb.gz
@@ -1035,3 +1034,4 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\DVar.Extensions.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\dcwfk3cynb.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\0klsgdpoxs.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\e4x24azj8x.gz

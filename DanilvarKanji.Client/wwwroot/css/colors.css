@@ -22,6 +22,10 @@
     --green-color-dim: #9de3aa;
 }
 
+.table-dark {
+    background-color: var(--dark-color-main-2) !important;
+}
+
 .txt-bright-pink {
     color: var(--pink-color-bright) !important;
 }

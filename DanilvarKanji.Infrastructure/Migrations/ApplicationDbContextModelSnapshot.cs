@@ -239,17 +239,20 @@ namespace DanilvarKanji.Migrations
                     b.Property<string>("FlashcardCollectionId")
                         .HasColumnType("text");
 
-                    b.Property<string>("FrontId")
+                    b.Property<string>("Main")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("RememberedInARow")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Sub")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FlashcardCollectionId");
-
-                    b.HasIndex("FrontId");
 
                     b.ToTable("Flashcards");
                 });
@@ -272,24 +275,6 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("FlashcardCollections");
-                });
-
-            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.Front", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Main")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Sub")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Front");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Image", b =>
@@ -688,12 +673,6 @@ namespace DanilvarKanji.Migrations
                     b.HasOne("DanilvarKanji.Shared.Domain.Entities.Flashcards.FlashcardCollection", null)
                         .WithMany("Flashcards")
                         .HasForeignKey("FlashcardCollectionId");
-
-                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Flashcards.Front", "Front")
-                        .WithMany()
-                        .HasForeignKey("FrontId");
-
-                    b.Navigation("Front");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Flashcards.FlashcardCollection", b =>

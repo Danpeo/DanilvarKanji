@@ -1,0 +1,20 @@
+@page "/Flashcard-Review"
+@using DanilvarKanji.Client.Services.Flashcards
+@using DanilvarKanji.Shared.Responses.Flashcards
+<h3>FlashcardReview</h3>
+
+
+
+@code {
+    [Parameter, EditorRequired] public required string CollectionId { get; set; }
+    
+    [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
+
+    private FlashcardCollectionResponse? _flashcardCollection;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
+    }
+
+}

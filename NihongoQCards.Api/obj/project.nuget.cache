@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dPNve2fI/cI+pOb9V6RYBlYcV2nYiDtyjmE1XHG/fORlXqryrN3mnt9CqPUpDnxjQW3wocyNQjiYRjdj64tPug==",
+  "dgSpecHash": "aRMNbBznZapzeyRlfUoCan3/iUacGD0/SMdAQ1qF6EDX5670PuEabq33ygbypNFxpQ7bXC4E9muajjJulBoDZA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\NihongoQCards.Api\\DanilvarKanji.Api.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\cloudinarydotnet\\1.22.0\\cloudinarydotnet.1.22.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.0.0\\dvar.randcreds.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.1.0\\dvar.randcreds.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fastexpressioncompiler\\3.3.4\\fastexpressioncompiler.3.3.4.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",

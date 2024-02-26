@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "b7SFc9YYz6QPGJU7yBZfUarNJdahQVkqvSZ12KrhkOCfrHbDfABwUdztLEXcU2WKPVBqUHPbaFIb0lITTeWyPQ==",
+  "dgSpecHash": "U6o/KCLJ24EKk6oFkErnLZ+kiRlaXwleH84pgfLzfA6zGLg/upZ46+GP0Px6GdzbXUl7JMv7VU4MjIAk4lD2iw==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\blazored.modal\\7.1.0\\blazored.modal.7.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.0.0\\dvar.randcreds.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.1.0\\dvar.randcreds.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.101\\fsharp.core.8.0.101.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",

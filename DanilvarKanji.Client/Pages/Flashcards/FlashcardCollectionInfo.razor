@@ -1,0 +1,61 @@
+@page "/Collection/{CollectionId}"
+@using DanilvarKanji.Client.Services.Flashcards
+@using DanilvarKanji.Shared.Domain.Entities.Flashcards
+@using DanilvarKanji.Shared.Responses.Flashcards
+
+<ForbidIfNotAuthorized>
+    <FlashcardDetails Flashcard="_selectedFlashcard" FlashcardCollection="_flashcardCollection" />
+    @if (_flashcardCollection is not null)
+    {
+        <h1 class="txt-mid-pink display-3 text-center jap-font">
+            @_flashcardCollection.Name
+        </h1>
+        <table class="table bg-secondary-2 txt-green-dim">
+            <thead>
+            <tr class="txt-mid-pink">
+                <th scope="col">#</th>
+                <th scope="col">Front Main</th>
+                <th scope="col">Front Sub</th>
+                <th scope="col">Back</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            @for (var i = 0; i < _flashcardCollection.Flashcards.Count; i++)
+            {
+                Flashcard? flashcard = _flashcardCollection.Flashcards[i];
+                <tbody>
+                <tr>
+                    <th scope="row">@(i + 1)</th>
+                    <td>@flashcard.Main</td>
+                    <td>@flashcard.Sub</td>
+                    <td>@flashcard.Back</td>
+                    <td>
+                        <a class="btn btn-primary" @onclick="() => _selectedFlashcard = flashcard">
+                            View
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            }
+        </table>
+    }
+    else
+    {
+        <DisplayLoading/>
+    }
+</ForbidIfNotAuthorized>
+
+@code {
+    [Parameter, EditorRequired] public required string CollectionId { get; set; }
+
+    [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
+
+    private FlashcardCollectionResponse? _flashcardCollection;
+    private Flashcard? _selectedFlashcard;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
+    }
+
+}

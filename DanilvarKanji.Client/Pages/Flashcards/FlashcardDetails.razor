@@ -1,0 +1,104 @@
+@using DanilvarKanji.Shared.Domain.Entities.Flashcards
+@using DanilvarKanji.Client.Services.Flashcards
+@using DanilvarKanji.Shared.Requests.Flashcards
+@using DanilvarKanji.Shared.Responses.Flashcards
+@using DVar.Extensions
+<div class="drawer-wrapper @(_isOpen ? "slide" : "")">
+    <div class="drawer-mask"></div>
+    <div class="drawer bg-main-2">
+
+        @if (_activeFlashcard != null)
+        {
+            <div class="drawer-controls">
+                <button class="btn btn-secondary" @onclick="Close">X</button>
+            </div>
+            <EditForm Model="_editFlashcard" OnValidSubmit="SubmitEdit" OnInvalidSubmit="HandeInvalidSubmit">
+                <FluentValidationValidator/>
+
+                <FormSection Title="Flashcard" HelpText="Edit Flashcard">
+                    <FormFieldSet Label="Front Main" LabelFor="characterDefinition" HelpText="">
+
+                        <InputText @bind-Value="_editFlashcard.Main"
+                                   class="form-control bg-main txt-green-dim jap-font no-border"
+                                   id="collectionName" placeholder="Naruto"/>
+                        <ValidationMessage For="@(() => _editFlashcard.Main)"/>
+                    </FormFieldSet>
+                    <FormFieldSet Label="Front Sub" LabelFor="characterDefinition" HelpText="">
+
+                        <InputText @bind-Value="_editFlashcard.Sub"
+                                   class="form-control bg-main txt-green-dim jap-font no-border"
+                                   id="collectionName" placeholder="Naruto"/>
+                        <ValidationMessage For="@(() => _editFlashcard.Sub)"/>
+                    </FormFieldSet>
+                    <FormFieldSet Label="Back" LabelFor="characterDefinition" HelpText="">
+
+                        <InputText @bind-Value="_editFlashcard.Back"
+                                   class="form-control bg-main txt-green-dim jap-font no-border"
+                                   id="collectionName" placeholder="Naruto"/>
+                        <ValidationMessage For="@(() => _editFlashcard.Back)"/>
+                    </FormFieldSet>
+                </FormSection>
+
+                <div class="mt-4 mb-5">
+                    <div class="row">
+                        <div class="offset-4 col-8 text-right">
+                            <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Update</button>
+                        </div>
+                    </div>
+                </div>
+
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public Flashcard? Flashcard { get; set; }
+
+    [Parameter, EditorRequired] public required FlashcardCollectionResponse FlashcardCollection { get; set; }
+
+    [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
+
+    private bool _isOpen;
+    private Flashcard? _activeFlashcard;
+    private Flashcard _editFlashcard = new();
+
+    protected override void OnParametersSet()
+    {
+        if (Flashcard is not null)
+        {
+            _activeFlashcard = Flashcard;
+            _isOpen = true;
+            _editFlashcard = Flashcard;
+        }
+    }
+
+    private void Close()
+    {
+        _activeFlashcard = null;
+        _isOpen = false;
+    }
+
+    private async Task SubmitEdit()
+    {
+        int index = FlashcardCollection.Flashcards.FindIndex(f => f.Id == _editFlashcard.Id);
+
+// Если элемент найден, заменяем его на _editFlashcard
+        if (index != -1)
+        {
+            FlashcardCollection.Flashcards[index] = _editFlashcard;
+        }
+
+        await FlashcardApiService.UpdateFlashcardCollectionAsync(new UpdateFlashcardCollectionRequest(
+            FlashcardCollection.Name,
+            FlashcardCollection.Flashcards,
+            FlashcardCollection.Id
+        ));
+    }
+
+    private Task HandeInvalidSubmit()
+    {
+        throw new NotImplementedException();
+    }
+
+}

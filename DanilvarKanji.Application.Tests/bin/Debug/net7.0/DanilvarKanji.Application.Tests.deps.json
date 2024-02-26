@@ -70,6 +70,17 @@
           }
         }
       },
+      "DVar.RandCreds/1.0.0": {
+        "dependencies": {
+          "FSharp.Core": "8.0.101"
+        },
+        "runtime": {
+          "lib/net7.0/DVar.RandCreds.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "FluentValidation/11.8.0": {
         "runtime": {
           "lib/net7.0/FluentValidation.dll": {
@@ -1544,6 +1555,7 @@
       },
       "DanilvarKanji.Shared/1.0.0": {
         "dependencies": {
+          "DVar.RandCreds": "1.0.0",
           "Danilvar.Entity": "1.0.0",
           "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
@@ -1604,6 +1616,13 @@
       "sha512": "sha512-9XysJCiiNBTWYS8vVZnBGLGmhvMWc1SzIsErprm9e/tnkvxNyKkRLu88/LAEkbnR8b9mmAGfjLyRSLAbGBRe4Q==",
       "path": "danilvar.valueobject/1.0.0",
       "hashPath": "danilvar.valueobject.1.0.0.nupkg.sha512"
+    },
+    "DVar.RandCreds/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uNiOrFklt1nIguP4HdlCfMLbKdvN8tyYHUhRu5WbnVLDGqgymO+ESRlL5RWAfsJB/BNoVUu1ybwB5Zk0+yzCwg==",
+      "path": "dvar.randcreds/1.0.0",
+      "hashPath": "dvar.randcreds.1.0.0.nupkg.sha512"
     },
     "FluentValidation/11.8.0": {
       "type": "package",

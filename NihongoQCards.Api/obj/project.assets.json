@@ -208,7 +208,7 @@
           "lib/net7.0/Danilvar.ValueObject.dll": {}
         }
       },
-      "DVar.RandCreds/1.0.0": {
+      "DVar.RandCreds/1.1.0": {
         "type": "package",
         "dependencies": {
           "FSharp.Core": "7.0.403"
@@ -3556,7 +3556,7 @@
           "Blazored.Modal": "7.1.0",
           "Blazored.SessionStorage": "2.4.0",
           "DVar.Extensions": "1.0.0",
-          "DVar.RandCreds": "1.0.0",
+          "DVar.RandCreds": "1.1.0",
           "Danilvar.Components": "1.0.0",
           "Danilvar.MathUtils": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
@@ -3866,14 +3866,14 @@
         "lib/net7.0/Danilvar.ValueObject.dll"
       ]
     },
-    "DVar.RandCreds/1.0.0": {
-      "sha512": "uNiOrFklt1nIguP4HdlCfMLbKdvN8tyYHUhRu5WbnVLDGqgymO+ESRlL5RWAfsJB/BNoVUu1ybwB5Zk0+yzCwg==",
+    "DVar.RandCreds/1.1.0": {
+      "sha512": "oRfoSDmvU/6tUmUgjsELzaDsqnhWlOJE2zLT0T+bar5KUtBxHG/9XyMuhEYLkvPfNOj80UVXvo1EJfs9Etf7Zg==",
       "type": "package",
-      "path": "dvar.randcreds/1.0.0",
+      "path": "dvar.randcreds/1.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "dvar.randcreds.1.0.0.nupkg.sha512",
+        "dvar.randcreds.1.1.0.nupkg.sha512",
         "dvar.randcreds.nuspec",
         "lib/net7.0/DVar.RandCreds.dll",
         "lib/net7.0/DVar.RandCreds.xml"

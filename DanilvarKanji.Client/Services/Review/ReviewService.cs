@@ -28,25 +28,17 @@ public class ReviewService : IReviewService
 
     public async Task<ReviewSessionResponseBase?> GetReviewSessionAsync(string? id)
     {
-        try
+        HttpResponseMessage response = await _httpClient.GetAsync($"api/ReviewSessions/{id}");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/ReviewSessions/{id}");
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return default;
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return default;
-
-                return await response.Content.ReadFromJsonAsync<ReviewSessionResponseBase>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<ReviewSessionResponseBase>();
         }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 }

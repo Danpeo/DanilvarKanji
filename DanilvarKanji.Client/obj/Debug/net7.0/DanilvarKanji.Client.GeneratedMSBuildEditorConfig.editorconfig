@@ -90,8 +90,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmxhc2hjYXJkc1xBZGRGbGFzaGNhcmRDb2xsZWN0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Flashcards/Flashcards.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmxhc2hjYXJkc1xGbGFzaGNhcmRzLnJhem9y
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Flashcards/DisplayFlashcardCollections.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmxhc2hjYXJkc1xEaXNwbGF5Rmxhc2hjYXJkQ29sbGVjdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Flashcards/FlashcardCollectionInfo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmxhc2hjYXJkc1xGbGFzaGNhcmRDb2xsZWN0aW9uSW5mby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Flashcards/FlashcardDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmxhc2hjYXJkc1xGbGFzaGNhcmREZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Index.razor]

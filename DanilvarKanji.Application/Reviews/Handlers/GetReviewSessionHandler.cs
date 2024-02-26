@@ -19,6 +19,6 @@ public class GetReviewSessionHandler : IRequestHandler<GetReviewSessionQuery, Re
         if (await _reviewRepository.ExistAsync(request.Id, request.AppUser))
             return await _reviewRepository.GetAsync(request.Id, request.AppUser);
 
-        return null;
+        return default;
     }
 }

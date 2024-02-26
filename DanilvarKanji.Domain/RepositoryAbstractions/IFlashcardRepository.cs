@@ -13,4 +13,7 @@ public interface IFlashcardRepository
         AppUser user);
 
     ValueTask<bool> AnyCollectionsExistAsync(AppUser user);
+    Task<FlashcardCollection?> GetCollectionAsync(string id, AppUser user);
+    ValueTask<bool> ExistAsync(string id, AppUser user);
+    Task UpdateCollectionAsync(string id, AppUser appUser, FlashcardCollection newCollection);
 }

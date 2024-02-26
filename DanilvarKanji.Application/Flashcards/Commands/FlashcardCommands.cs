@@ -11,3 +11,8 @@ public record CreateFlashcardCollectionCommand(
     AppUser AppUser
 ) : IRequest<Result<string>>;
 
+public record UpdateFlashcardCollectionCommand(
+    string CollectionId,
+    AppUser AppUser,
+    string Name,
+    List<Flashcard> Flashcards) : IRequest<Result<string>>;

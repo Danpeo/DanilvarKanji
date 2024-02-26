@@ -18,28 +18,20 @@ public class CharacterService : ICharacterService
     public async Task<IEnumerable<CharacterResponseResponseFull?>?> ListCharactersAsync(int pageNumber = 0,
         int pageSize = 0)
     {
-        try
+        HttpResponseMessage response =
+            await _httpClient.GetAsync($"api/Characters?PageNumber={pageNumber}&PageSize={pageSize}");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response =
-                await _httpClient.GetAsync($"api/Characters?PageNumber={pageNumber}&PageSize={pageSize}");
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return Enumerable.Empty<CharacterResponseResponseFull>();
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<CharacterResponseResponseFull>();
-
-                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseResponseFull>>() ??
-                       Enumerable.Empty<CharacterResponseResponseFull>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseResponseFull>>() ??
+                   Enumerable.Empty<CharacterResponseResponseFull>();
         }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
     public async Task<IEnumerable<CharacterResponseBase?>?> ListLearnQueueAsync(int pageNumber = 0,
@@ -173,30 +165,22 @@ public class CharacterService : ICharacterService
 
     public async Task<IEnumerable<CharacterResponseResponseFull>> ListCharactersFilteredBy(string filter, string term)
     {
-        try
+        HttpResponseMessage response =
+            await _httpClient.GetAsync($"api/Characters?$filter={filter.ToLower()} eq '{term}'");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response =
-                await _httpClient.GetAsync($"api/Characters?$filter={filter.ToLower()} eq '{term}'");
-
-            if (response.IsSuccessStatusCode)
+            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
             {
-                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                {
-                    return Enumerable.Empty<CharacterResponseResponseFull>();
-                }
-
-                return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseResponseFull>>() ??
-                       Array.Empty<CharacterResponseResponseFull>();
+                return Enumerable.Empty<CharacterResponseResponseFull>();
             }
 
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<IEnumerable<CharacterResponseResponseFull>>() ??
+                   Array.Empty<CharacterResponseResponseFull>();
         }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
     public async Task<IEnumerable<CharacterResponseResponseFull>> SearchCharacters(string searchTerm)

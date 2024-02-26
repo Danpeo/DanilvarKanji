@@ -1,4 +1,3 @@
-using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Entities.Flashcards;
 using DVar.RandCreds;
 
