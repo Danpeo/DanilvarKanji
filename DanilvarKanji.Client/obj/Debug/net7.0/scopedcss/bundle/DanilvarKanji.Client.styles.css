@@ -92,44 +92,13 @@ main[b-s586sxsw3p] {
 }*/
 
 .top-row[b-s586sxsw3p] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
     align-items: center;
 }
 
-    .top-row[b-s586sxsw3p]  a, .top-row[b-s586sxsw3p]  .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-        text-decoration: none;
-    }
 
-    .top-row[b-s586sxsw3p]  a:hover, .top-row[b-s586sxsw3p]  .btn-link:hover {
-        text-decoration: underline;
-    }
-
-    .top-row[b-s586sxsw3p]  a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-@media (max-width: 640.98px) {
-    .top-row:not(.auth)[b-s586sxsw3p] {
-        display: none;
-    }
-
-    .top-row.auth[b-s586sxsw3p] {
-        justify-content: space-between;
-    }
-
-    .top-row[b-s586sxsw3p]  a, .top-row[b-s586sxsw3p]  .btn-link {
-        margin-left: 0;
-    }
-}
-
-@media (min-width: 641px) {
     .page[b-s586sxsw3p] {
         flex-direction: row;
     }
@@ -157,7 +126,6 @@ main[b-s586sxsw3p] {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
-}
 /* /Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-m80avslso6] {
     background-color: rgba(255, 255, 255, 0.1);

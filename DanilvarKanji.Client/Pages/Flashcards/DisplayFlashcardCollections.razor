@@ -1,6 +1,7 @@
 @page "/Flashcards"
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Client.Services.Flashcards
+@using DanilvarKanji.Shared.Requests.Flashcards
 @using DanilvarKanji.Shared.Responses.Flashcards
 
 <PageTitle>Flashcards - @AppDisplaySettings.AppTitle</PageTitle>
@@ -25,22 +26,36 @@ else
 {
     @foreach (FlashcardCollectionResponse collection in _flashcardCollections)
     {
-        <a class="pointer-cursor" @onclick="@(() => NavigationManager.NavigateTo($"Collection/{collection.Id}"))">
+        <div class="col-md-3 mb-2">
+            <div class="card bg-secondary-2">
+                <div class="card-body">
+                    <p>@collection.Id</p>
+                    <h1 class="card-title fs-3 mb-3 jap-font txt-mid-pink text-center">
+                        @collection.Name
+                    </h1>
+                    <p class="fs-6">
+                        @collection.Flashcards.Count flashcards,
 
-            <div class="col-md-3 mb-2">
-                <div class="card bg-secondary-2">
-                    <div class="card-body">
-                        <p>@collection.Id</p>
-                        <h1 class="card-title fs-3 mb-3 jap-font txt-mid-pink text-center">
-                            @collection.Name
-                        </h1>
-                        <p class="fs-6">
-                            @collection.Flashcards.Count flashcards
-                        </p>
-                    </div>
+                        <span>
+                            @collection.Flashcards.Where(f => f.DoRemember).ToList().Count
+                            memorized
+                        </span>
+                    </p>
+                    <button class="btn btn-outline-primary"
+                            @onclick="@(() => NavigationManager.NavigateTo($"Collection/{collection.Id}"))">
+                        View
+                    </button>
+                    <button class="btn btn-primary"
+                            @onclick="@(() => NavigationManager.NavigateTo($"Collection/Review/{collection.Id}"))">
+                        Review
+                    </button>
+                    <button class="btn btn-outline-warning"
+                            @onclick="@(() => ResetCollection(collection))">
+                        Reset
+                    </button>
                 </div>
             </div>
-        </a>
+        </div>
     }
 }
 
@@ -64,5 +79,25 @@ else
         }
     }
 
-}
+    private void ResetCollection(FlashcardCollectionResponse collection)
+    {
+        try
+        {
+            collection.Flashcards.ForEach(f =>
+            {
+                f.DoRemember = false;
+                f.RememberedInARow = 0;
+            });
 
+            FlashcardApiService.UpdateFlashcardCollectionAsync
+            (
+                new UpdateFlashcardCollectionRequest(collection.Name, collection.Flashcards, collection.Id)
+            );
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+}

@@ -94,6 +94,14 @@
     background-color: var(--green-color) !important;
 }
 
+.bg-green {
+    background-color: var(--green-color-2) !important;
+}
+
+.bg-orange {
+    background-color: var(--orange-color) !important;
+}
+
 .dark-grad-bg-img {
     background-image: linear-gradient(180deg, rgb(44 44 44) 0%, #1a1919 70%) !important;
 }
@@ -147,8 +155,8 @@
 }
 
 .btn-dark {
-    background-color: var(--dark-color-secondary-2) ;
-    border-color: var(--dark-color-secondary) ;
+    background-color: var(--dark-color-secondary-2);
+    border-color: var(--dark-color-secondary);
 }
 
 .btn-dark:focus {
@@ -158,13 +166,13 @@
 }
 
 .btn-dark:hover {
-    background-color: var(--dark-color-secondary-3) ;
-    border-color: var(--dark-color-secondary) ;
+    background-color: var(--dark-color-secondary-3);
+    border-color: var(--dark-color-secondary);
     outline: none;
 }
 
 .btn-primary {
-    background-color: var(--pink-color-light) !important;   
+    background-color: var(--pink-color-light) !important;
     border-color: var(--pink-color-mid) !important;
     color: var(--white-color) !important;
 }

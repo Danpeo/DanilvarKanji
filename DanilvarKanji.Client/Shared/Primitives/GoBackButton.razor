@@ -1,0 +1,11 @@
+@using DanilvarKanji.Client.JsWrapper
+
+<button class="btn btn-dark fs-5" @onclick="@(async () => await Js.Gen.HistoryBack())">
+    <b>
+        @(new string("\u25c0 BACK"))
+    </b>
+</button>
+
+@code {
+    [Inject] public required Js Js { get; set; }
+}

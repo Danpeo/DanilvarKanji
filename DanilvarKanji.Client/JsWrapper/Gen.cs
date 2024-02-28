@@ -11,6 +11,9 @@ public class Gen
         _jsRuntime = jsRuntime;
     }
 
-    public async Task ConsoleLog(string message) => 
+    public async Task ConsoleLog(string message) =>
         await _jsRuntime.InvokeVoidAsync("consoleLog", message);
+
+    public async Task HistoryBack() => await 
+        _jsRuntime.InvokeVoidAsync("history.back");
 }

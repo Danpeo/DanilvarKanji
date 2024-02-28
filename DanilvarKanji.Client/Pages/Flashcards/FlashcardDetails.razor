@@ -81,13 +81,8 @@
 
     private async Task SubmitEdit()
     {
-        int index = FlashcardCollection.Flashcards.FindIndex(f => f.Id == _editFlashcard.Id);
-
-// Если элемент найден, заменяем его на _editFlashcard
-        if (index != -1)
-        {
-            FlashcardCollection.Flashcards[index] = _editFlashcard;
-        }
+        FlashcardCollection.Flashcards
+            .ModifyElement(f => f.Id == _editFlashcard.Id, _editFlashcard);
 
         await FlashcardApiService.UpdateFlashcardCollectionAsync(new UpdateFlashcardCollectionRequest(
             FlashcardCollection.Name,

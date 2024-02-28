@@ -4,22 +4,20 @@
 @inject ILocalStorageService LocalStorage
 @inject IStringLocalizer<App> Loc
 
-<i class="fa fa-language txt-mid-pink mx-1"></i>
-<div class="col-md-1">
-    <select class="form-select bg-secondary-2 txt-green-dim" @onchange="NewCultureSelectedAsync">
-        @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
+<select class="form-select bg-secondary-2 txt-green-dim" @onchange="NewCultureSelectedAsync">
+
+    @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
+    {
+        @if (_selectedCulture != null && culture == _selectedCulture)
         {
-            @if (_selectedCulture != null && culture == _selectedCulture)
-            {
-                <option selected value="@culture.Culture">@culture.Name</option>
-            }
-            else
-            {
-                <option value="@culture.Culture">@culture.Name</option>
-            }
+            <option selected value="@culture.Culture">@culture.Name</option>
         }
-    </select>
-</div>
+        else
+        {
+            <option value="@culture.Culture">@culture.Name</option>
+        }
+    }
+</select>
 
 
 @code
@@ -33,7 +31,7 @@
             _selectedCulture = LocalizerSettings.NeutralCulture;
         else
             _selectedCulture = (LocalizerSettings.SupportedCulturesWithName
-                .Where(x => x.Culture == culture))
+                    .Where(x => x.Culture == culture))
                 .FirstOrDefault();
     }
 

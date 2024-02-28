@@ -3,8 +3,15 @@
 @using DanilvarKanji.Shared.Responses.User
 
 <nav class="navbar navbar-expand-lg navbar-light">
+
     <div id="navbarNav">
         <ul class="navbar-nav main-font">
+            <li class="nav-item active me-5">
+                <GoBackButton/>
+            </li>
+            <li class="nav-item active">
+                <CultureSelector/>
+            </li>
             <NotAuthorized>
                 <NavLink class="btn btn-primary" href="register">Register</NavLink>
                 <NavLink class="btn btn-primary" href="login">Log In</NavLink>

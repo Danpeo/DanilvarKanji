@@ -118,4 +118,8 @@
       <Folder Include="Models\Responses\JMdict\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Shared\Common\TimerComponent.razor" />
+    </ItemGroup>
+
 </Project>

@@ -12,10 +12,12 @@ public class AppState
     public AddCharacterState AddCharacterState { get; set; }
     public DictionaryState DictionaryState { get; set; }
     public CultureState CultureState { get; set; }
+    public FlashcardReviewState FlashcardReviewState { get; set; }
 
     public AppState(ILocalStorageService localStorageService, ISessionStorageService sessionStorageService,
         ILocalizationService localizationService)
     {
+        FlashcardReviewState = new FlashcardReviewState(sessionStorageService);
         CultureState = new CultureState(localizationService);
         ReviewCharState = new ReviewCharState(sessionStorageService);
         ReviewSessionState = new ReviewSessionState(sessionStorageService);
@@ -32,6 +34,7 @@ public class AppState
             await AddCharacterState.Init();
             await DictionaryState.Init();
             await CultureState.Init();
+            await FlashcardReviewState.Init();
             _isInitialized = true;
         }
     }
