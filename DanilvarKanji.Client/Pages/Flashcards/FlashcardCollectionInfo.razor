@@ -1,10 +1,12 @@
-@page "/Collection/{CollectionId}"
+@page "/Flashcards/Collection/{CollectionId}"
+
 @using DanilvarKanji.Client.Services.Flashcards
 @using DanilvarKanji.Shared.Domain.Entities.Flashcards
+@using DanilvarKanji.Shared.Requests.Flashcards
 @using DanilvarKanji.Shared.Responses.Flashcards
 
 <ForbidIfNotAuthorized>
-    <FlashcardDetails Flashcard="_selectedFlashcard" FlashcardCollection="_flashcardCollection" />
+    <FlashcardDetails Flashcard="_selectedFlashcard" FlashcardCollection="_flashcardCollection"/>
     @if (_flashcardCollection is not null)
     {
         <h1 class="txt-mid-pink display-3 text-center jap-font">
@@ -22,7 +24,7 @@
             </thead>
             @for (var i = 0; i < _flashcardCollection.Flashcards.Count; i++)
             {
-                Flashcard? flashcard = _flashcardCollection.Flashcards[i];
+                Flashcard flashcard = _flashcardCollection.Flashcards[i];
                 <tbody>
                 <tr>
                     <th scope="row">@(i + 1)</th>
@@ -30,8 +32,11 @@
                     <td>@flashcard.Sub</td>
                     <td>@flashcard.Back</td>
                     <td>
-                        <a class="btn btn-primary" @onclick="() => _selectedFlashcard = flashcard">
+                        <a class="btn btn-primary mx-2" @onclick="() => _selectedFlashcard = flashcard">
                             View
+                        </a>
+                        <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteFlashcard(flashcard.Id)">
+                            Delete
                         </a>
                     </td>
                 </tr>
@@ -55,7 +60,32 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
+        try
+        {
+            _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private async Task DeleteFlashcard(string id)
+    {
+        try
+        {
+            _flashcardCollection!.Flashcards.RemoveAll(f => f.Id == id);
+            await FlashcardApiService.UpdateFlashcardCollectionAsync
+            (
+                new UpdateFlashcardCollectionRequest(_flashcardCollection)
+            );
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
 }

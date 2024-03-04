@@ -31,6 +31,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Danilvar.MathUtils", "Danil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.Extensions", "DVar.Extensions\DVar.Extensions.csproj", "{9A598340-FE8C-425F-8824-222DCB720379}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVar.TextFromImage", "DVar.TextFromImage\DVar.TextFromImage.csproj", "{195B4134-A2FE-46C8-8049-675A8203D271}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{9A598340-FE8C-425F-8824-222DCB720379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A598340-FE8C-425F-8824-222DCB720379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A598340-FE8C-425F-8824-222DCB720379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{195B4134-A2FE-46C8-8049-675A8203D271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{195B4134-A2FE-46C8-8049-675A8203D271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{195B4134-A2FE-46C8-8049-675A8203D271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{195B4134-A2FE-46C8-8049-675A8203D271}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,5 +111,6 @@ Global
 		{A2561D36-9E89-412A-A17A-396A376FC2F5} = {A11F1470-B261-4049-9B99-9D8F51071A94}
 		{1C6D90F2-0D80-4F17-AEDF-5547227C5B45} = {4271BA5E-E4B0-43E3-8EC7-5871F567C9E2}
 		{9A598340-FE8C-425F-8824-222DCB720379} = {4271BA5E-E4B0-43E3-8EC7-5871F567C9E2}
+		{195B4134-A2FE-46C8-8049-675A8203D271} = {4271BA5E-E4B0-43E3-8EC7-5871F567C9E2}
 	EndGlobalSection
 EndGlobal

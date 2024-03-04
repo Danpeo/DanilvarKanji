@@ -89,6 +89,14 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\fonts\\DotGothic16-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\DotGothic16-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\fonts\\ReggaeOne-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\ReggaeOne-Regular.ttf"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
     },

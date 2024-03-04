@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6yteLEkJkxaDh2wwx3AFHh7WeS047MwP3JjRUP1k3AiiEUMhlTjr/p6VUaeBp2etfWKhPOmLEpPaUQRsShEFqg==",
+  "dgSpecHash": "eG6u4WPzBuz7ZDio7r8KqYMyPepdGWDPPRcNhx9QaKUcd0VfnEP1luXrz9b5Cu9Mo/pMpgO8d4hnWv/FiE+m2A==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client.Tests\\DanilvarKanji.Client.Tests.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.14\\microsoft.aspnetcore.components.webassembly.authentication.7.0.14.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.16\\microsoft.aspnetcore.cryptography.internal.7.0.16.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.16\\microsoft.aspnetcore.cryptography.keyderivation.7.0.16.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.http.features\\6.0.0-preview.4.21253.5\\microsoft.aspnetcore.http.features.6.0.0-preview.4.21253.5.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.14\\microsoft.aspnetcore.metadata.7.0.14.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.codecoverage\\17.0.0\\microsoft.codecoverage.17.0.0.nupkg.sha512",

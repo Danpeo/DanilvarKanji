@@ -37,12 +37,12 @@ public class AddCharacterValidator : CharacterValidatorBase<CreateCharacterReque
             .Must(HaveMeaningsInAllCultures);
 
         RuleFor(x => x.Kunyomis)
-            .Must(HaveAtLeastOneCollection)
+            .Must(HaveCollectionWithAtLeastOneElement)
             .When(x => x.Onyomis.Count == 0)
             .WithMessage(localizer["NotEmpty"]);
 
         RuleFor(x => x.Onyomis)
-            .Must(HaveAtLeastOneCollection)
+            .Must(HaveCollectionWithAtLeastOneElement)
             .When(x => x.Kunyomis.Count == 0)
             .WithMessage(localizer["NotEmpty"]);
     }

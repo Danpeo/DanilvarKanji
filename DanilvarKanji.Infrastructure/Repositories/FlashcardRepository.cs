@@ -61,6 +61,12 @@ public class FlashcardRepository : IFlashcardRepository
             .Where(fc => fc.Id == id && fc.AppUser == user)
             .FirstOrDefaultAsync();
 
+    public async Task DeleteAsync(string id, AppUser appUser)
+    {
+        var collection = await GetCollectionAsync(id, appUser);
+        _context.FlashcardCollections.Remove(collection!);
+    }
+    
     public async ValueTask<bool> AnyCollectionsExistAsync(AppUser user) =>
         await _context.FlashcardCollections.AnyAsync(fc => fc.AppUser == user);
 

@@ -65,6 +65,17 @@ public static class Http
         throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
+    public static async Task DeleteAsync(string requestUri, HttpClient http)
+    {
+        HttpResponseMessage response = await http.DeleteAsync(requestUri);
+
+        if (response.IsSuccessStatusCode)
+            return;
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
+    }
+
     private static async Task<T?> ProcessListAsync<T>(string requestUri, HttpClient http)
     {
         HttpResponseMessage response = await http.GetAsync(requestUri);

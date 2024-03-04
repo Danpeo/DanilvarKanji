@@ -32,17 +32,11 @@ public class FlashcardApiService : IFlashcardApiService
     {
         string requestUri = $"api/Flashcards/Collection/{id}";
         return await Http.GetAsync<FlashcardCollectionResponse>(requestUri, _httpClient);
-        /*HttpResponseMessage response = await _httpClient.GetAsync(requestUri);
+    }
 
-        if (response.IsSuccessStatusCode)
-        {
-            if (response.StatusCode == HttpStatusCode.NoContent)
-                return default;
-
-            return await response.Content.ReadFromJsonAsync<FlashcardCollection>();
-        }
-
-        string message = await response.Content.ReadAsStringAsync();
-        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");*/
+    public async Task DeleteCollectionAsync(string id)
+    {
+        string requestUri = $"api/Flashcards/Collection/{id}";
+        await Http.DeleteAsync(requestUri, _httpClient);
     }
 }

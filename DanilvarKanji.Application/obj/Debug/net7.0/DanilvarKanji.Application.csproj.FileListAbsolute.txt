@@ -21,3 +21,9 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\obj\Debug
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\Danilvar.MathUtils.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\Danilvar.MathUtils.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\Danilvar.MathUtils.xml
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\x86\leptonica-1.82.0.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\x86\tesseract50.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\x64\leptonica-1.82.0.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\x64\tesseract50.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\DVar.TextFromImage.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application\bin\Debug\net7.0\DVar.TextFromImage.pdb

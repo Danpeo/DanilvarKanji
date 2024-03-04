@@ -1,19 +1,24 @@
 ﻿@page "/counter"
+@using DVar.Extensions
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
 <p role="status">Current count: @currentCount</p>
+<p role="status">Current idk: @idk</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
     private int currentCount = 0;
+    private int idk;
 
     private void IncrementCount()
     {
         currentCount++;
+
+        Lazy.DoubleFor(10, 10, ()=> idk++);
     }
 
 }

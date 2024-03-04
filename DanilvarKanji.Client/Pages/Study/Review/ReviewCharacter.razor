@@ -22,7 +22,7 @@
             <WarnAlert Message="Additional review with no progression"/>
         }
 
-        <DisplayCharacterDefinition Character="_character"/>
+        <DisplayCharacterDefinition RandomFont="@(true)" Character="_character"/>
         <CharacterLearningProgress CharacterLearningId="@CharacterLearningId"/>
         <p>@_character.Id</p>
         @_exercises[_currentExcercise]

@@ -7,9 +7,9 @@ using FluentValidation;
 namespace DanilvarKanji.Application.Characters.Validators;
 
 // ReSharper disable once UnusedType.Global
-public class Create : CharacterValidatorBase<CreateCharacterCommand>
+public class CreateCharacterValidator : CharacterValidatorBase<CreateCharacterCommand>
 {
-    public Create()
+    public CreateCharacterValidator()
     {
         RuleFor(x => x.Definition)
             .NotEmpty()
@@ -40,12 +40,12 @@ public class Create : CharacterValidatorBase<CreateCharacterCommand>
             .WithMessage("KanjiMeanings must have values in both cultures.");
 
         RuleFor(x => x.Kunyomis)
-            .Must(HaveAtLeastOneCollection)
+            .Must(HaveCollectionWithAtLeastOneElement)
             .When(x => x.Onyomis == null || x.Onyomis.Count == 0)
             .WithMessage("Either Kunyomis or Onyomis must be provided.");
 
         RuleFor(x => x.Onyomis)
-            .Must(HaveAtLeastOneCollection)
+            .Must(HaveCollectionWithAtLeastOneElement)
             .When(x => x.Kunyomis == null || x.Kunyomis.Count == 0)
             .WithMessage("Either Kunyomis or Onyomis must be provided.");
     }

@@ -41,18 +41,25 @@ else
                             memorized
                         </span>
                     </p>
+                    <LongElement>
+                        <button class="btn btn-lg btn-primary mb-2"
+                                @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/Review/{collection.Id}"))">
+                            Review
+                        </button>
+                    </LongElement>
                     <button class="btn btn-outline-primary"
-                            @onclick="@(() => NavigationManager.NavigateTo($"Collection/{collection.Id}"))">
+                            @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/{collection.Id}"))">
                         View
-                    </button>
-                    <button class="btn btn-primary"
-                            @onclick="@(() => NavigationManager.NavigateTo($"Collection/Review/{collection.Id}"))">
-                        Review
                     </button>
                     <button class="btn btn-outline-warning"
                             @onclick="@(() => ResetCollection(collection))">
                         Reset
                     </button>
+                    <button class="btn btn-outline-danger"
+                            @onclick="@(() => DeleteCollection(collection.Id))">
+                        Delete
+                    </button>
+
                 </div>
             </div>
         </div>
@@ -100,4 +107,19 @@ else
             throw;
         }
     }
+
+    private void DeleteCollection(string collectionId)
+    {
+        try
+        {
+            _flashcardCollections!.RemoveAll(f => f.Id == collectionId);
+            FlashcardApiService.DeleteCollectionAsync(collectionId);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
 }

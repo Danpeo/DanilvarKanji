@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ksD7XmZRfqK1euTEZpANPT6rTyq/E2VQi+f5hycUmMLqBGsmtyK5MXB3AWpunyMSYgnQifFnj4zmCLFkOvt+RA==",
+  "dgSpecHash": "zn/Y+Mo1jOb7nZJhlZj8HARZCA21+cA7K5adfMQxUErUHICfzhkGevG2EbTdGYaldQT6j/1hX64mtuF5jZFUyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.16\\microsoft.aspnetcore.cryptography.internal.7.0.16.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.16\\microsoft.aspnetcore.cryptography.keyderivation.7.0.16.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.http.features\\6.0.0-preview.4.21253.5\\microsoft.aspnetcore.http.features.6.0.0-preview.4.21253.5.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.11\\microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.11\\microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
@@ -35,6 +36,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.odata.modelbuilder\\1.0.9\\microsoft.odata.modelbuilder.1.0.9.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.spatial\\7.9.0\\microsoft.spatial.7.9.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.componentmodel.annotations\\4.6.0\\system.componentmodel.annotations.4.6.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\system.io.pipelines\\6.0.0-preview.4.21253.7\\system.io.pipelines.6.0.0-preview.4.21253.7.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.text.encodings.web\\4.6.0\\system.text.encodings.web.4.6.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.text.json\\4.6.0\\system.text.json.4.6.0.nupkg.sha512",

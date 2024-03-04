@@ -16,3 +16,5 @@ public record UpdateFlashcardCollectionCommand(
     AppUser AppUser,
     string Name,
     List<Flashcard> Flashcards) : IRequest<Result<string>>;
+    
+public record DeleteCollectionCommand(string CollectionId, AppUser AppUser) : IRequest<Result<string>>;

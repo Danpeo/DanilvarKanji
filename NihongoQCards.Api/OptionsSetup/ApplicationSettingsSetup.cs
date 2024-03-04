@@ -1,5 +1,6 @@
 using DanilvarKanji.Data.Configuration;
-using CharacterLearningSettings = DanilvarKanji.Shared.Domain.Settings.CharacterLearningSettings;
+using DanilvarKanji.Domain.Settings;
+using DanilvarKanji.Shared.Domain.Settings;
 
 namespace DanilvarKanji.OptionsSetup;
 
@@ -13,7 +14,9 @@ public static class ApplicationSettingsSetup
         services.Configure<CloudinarySettings>(config
             .GetSection("CloudinarySettings"));
 
-
+        services.Configure<TesseractSettings>(config
+            .GetSection("TesseractSettings"));
+        
         return services;
     }
 }

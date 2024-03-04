@@ -1,13 +1,12 @@
-@page "/Collection/Review/{CollectionId}"
+@page "/Flashcards/Collection/Review/{CollectionId}"
 
 @using DanilvarKanji.Client.Services.Flashcards
 @using DanilvarKanji.Shared.Domain.Entities.Flashcards
 @using DanilvarKanji.Shared.Requests.Flashcards
 @using DanilvarKanji.Shared.Responses.Flashcards
 @using DVar.Extensions
-@using DanilvarKanji.Client.JsWrapper
 @using DanilvarKanji.Client.State
-@using Danilvar.Components.Common
+@using DanilvarKanji.Client.JsWrapper
 
 @if (_flashcardsToReview is not null)
 {
@@ -21,8 +20,8 @@
                 <b>FORGOT</b>
             </button>
         </div>
-        <div class="col-8">
-            <a class="pointer-cursor" @onclick="() => _showFront = !_showFront">
+        <div id="flashcard" class="col-8">
+            <a class="pointer-cursor" @onclick="FlipCardAsync">
                 <div class="card bg-success txt-dark @(_showFront ? "bg-green" : "bg-orange") text-bg-primary mb-3">
                     <div class="card-header fs-4">
                         <b>
@@ -95,11 +94,11 @@ else
 
     [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
 
-    [Inject] public required Js Js { get; set; }
-
     [Inject] public required AppState AppState { get; set; }
 
     [Inject] public required NavigationManager NavManager { get; set; }
+    
+    [Inject] public required Js Js { get; set; }
     
     private FlashcardCollectionResponse? _flashcardCollection;
     private List<Flashcard>? _flashcardsToReview;
@@ -133,6 +132,15 @@ else
         return base.OnAfterRenderAsync(firstRender);
     }
 
+    private async Task FlipCardAsync()
+    {
+        await AnimateFlashcard();
+        _showFront = !_showFront;
+    }
+
+    private async Task AnimateFlashcard() => 
+        await Js.Dom.AddClassesToElementForTime("flashcard", new[] { "fade-in-el" }, 500);
+
     private async Task FinishReview()
     {
         try
@@ -156,7 +164,7 @@ else
                     )
             );
 
-            NavManager.NavigateTo("Collection/Review/Complete");
+            NavManager.NavigateTo("Flashcards/Collection/Review/Complete");
         }
         catch (HttpRequestException e)
         {
@@ -196,6 +204,7 @@ else
         }
         else
         {
+            await AnimateFlashcard();
             _currentFlashcard++;
         }
 

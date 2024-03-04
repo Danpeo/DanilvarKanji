@@ -2,7 +2,7 @@
 @using DanilvarKanji.Client.Extensions
 @using DanilvarKanji.Shared.Domain.Enumerations
 
-<h1 class="txt-mid-pink display-1 text-center jap-font">
+<h1 class="txt-mid-pink display-1 text-center @(RandomFont ? GetRandomFont() : "jap-font")">
     @Character?.Definition
 </h1>
 <p class="card-text txt-gray jap-font text-center">
@@ -11,12 +11,12 @@
 </p>
 
 @code {
-    [Parameter, EditorRequired]
-    public CharacterResponseBase? Character { get; set; }
-    
-    [Inject]
-    public required IStringLocalizer<App> Localizer { get; set; }
-    
+    [Parameter, EditorRequired] public CharacterResponseBase? Character { get; set; }
+
+    [Parameter] public bool RandomFont { get; set; }
+
+    [Inject] public required IStringLocalizer<App> Localizer { get; set; }
+
     private string GetCharacterTypeLocalizedName(CharacterType? characterType)
     {
         string localizedName = characterType switch
@@ -24,8 +24,22 @@
             CharacterType.Radical => Localizer["Radical"],
             CharacterType.Kanji => Localizer["Kanji"],
             _ => ""
-            };
+        };
 
         return localizedName;
     }
+
+    private string GetRandomFont()
+    {
+        var r = new Random();
+        string[] fonts =
+        {
+            new("jap-font"),
+            new("dotgothic16-regular"),
+            new("reggae-one-regular"),
+        };
+
+        return fonts[r.Next(fonts.Length)];
+    }
+
 }

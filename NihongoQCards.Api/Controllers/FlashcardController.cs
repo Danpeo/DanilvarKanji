@@ -24,6 +24,7 @@ public class FlashcardController : ApiController
 
     [HttpPost("Collection")]
     [ProducesResponseType(typeof(FlashcardCollection), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateCollectionAsync([FromBody] CreateFlashcardCollectionRequest request)
     {
@@ -46,6 +47,7 @@ public class FlashcardController : ApiController
 
     [HttpPut("Collection")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateCollectionAsync([FromBody] UpdateFlashcardCollectionRequest request)
     {
@@ -69,6 +71,7 @@ public class FlashcardController : ApiController
 
     [HttpGet("Collections")]
     [ProducesResponseType(typeof(IEnumerable<FlashcardCollection>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> ListAllCollectionsAsync([FromQuery] PaginationParams paginationParams)
     {
@@ -82,6 +85,7 @@ public class FlashcardController : ApiController
 
     [HttpGet("Collection/{id}")]
     [ProducesResponseType(typeof(FlashcardCollection), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetCollectionAsync(string id)
     {
@@ -89,5 +93,18 @@ public class FlashcardController : ApiController
         FlashcardCollection? collection = await Mediator.Send(new GetFlashcardCollectionQuery(id, user!));
 
         return collection != null ? Ok(collection) : NotFound(General.NotFound("Flashcard Collection"));
+    }
+
+    [HttpDelete("Collection/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteCollectionAsync(string id)
+    {
+        AppUser? user = await GetCurrentUser(_userManager);
+
+        var result = await Mediator.Send(new DeleteCollectionCommand(id, user!));
+        
+        return result.IsSuccess ? Ok(result.Value) : HandleFailure(result);
     }
 }

@@ -15,6 +15,7 @@
       <PackageReference Include="DVar.RandCreds" Version="1.0.0" />
       <PackageReference Include="FluentValidation" Version="11.8.0" />
       <PackageReference Include="MediatR" Version="12.1.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="6.0.0-preview.4.21253.5" />
       <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.16" />
       <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.11" />
       <PackageReference Include="WanaKana-net" Version="1.0.0" />
