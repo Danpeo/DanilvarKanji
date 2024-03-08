@@ -13,8 +13,6 @@
           "CloudinaryDotNet": "1.22.0",
           "DanilvarKanji.Application": "1.0.0",
           "DanilvarKanji.Client": "1.0.0",
-          "DanilvarKanji.Domain": "1.0.0",
-          "DanilvarKanji.Infrastructure": "1.0.0",
           "DanilvarKanji.Mappings": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
@@ -206,7 +204,7 @@
       },
       "DVar.RandCreds/1.1.0": {
         "dependencies": {
-          "FSharp.Core": "8.0.101"
+          "FSharp.Core": "8.0.200"
         },
         "runtime": {
           "lib/net7.0/DVar.RandCreds.dll": {
@@ -255,11 +253,11 @@
           }
         }
       },
-      "FSharp.Core/8.0.101": {
+      "FSharp.Core/8.0.200": {
         "runtime": {
           "lib/netstandard2.1/FSharp.Core.dll": {
             "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.1.123.56302"
+            "fileVersion": "8.2.24.6203"
           }
         },
         "resources": {
@@ -329,6 +327,65 @@
           "lib/net7.0/JasperFx.Core.dll": {
             "assemblyVersion": "1.4.0.0",
             "fileVersion": "1.4.0.0"
+          }
+        }
+      },
+      "KristofferStrube.Blazor.FileAPI/0.3.0": {
+        "dependencies": {
+          "KristofferStrube.Blazor.Streams": "0.3.0",
+          "Microsoft.AspNetCore.Components.Web": "7.0.14"
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileAPI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "KristofferStrube.Blazor.FileSystem/0.3.1": {
+        "dependencies": {
+          "KristofferStrube.Blazor.FileAPI": "0.3.0",
+          "Microsoft.AspNetCore.Components.Web": "7.0.14"
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystem.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "KristofferStrube.Blazor.FileSystemAccess/3.2.2": {
+        "dependencies": {
+          "KristofferStrube.Blazor.FileSystem": "0.3.1",
+          "Microsoft.AspNetCore.Components.Web": "7.0.14"
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystemAccess.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "KristofferStrube.Blazor.Streams/0.3.0": {
+        "dependencies": {
+          "KristofferStrube.Blazor.WebIDL": "0.1.0-alpha.1",
+          "Microsoft.AspNetCore.Components.Web": "7.0.14"
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.Streams.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "KristofferStrube.Blazor.WebIDL/0.1.0-alpha.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.14"
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.WebIDL.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -2004,7 +2061,7 @@
       },
       "Danilvar.MathUtils/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "8.0.101"
+          "FSharp.Core": "8.0.200"
         },
         "runtime": {
           "Danilvar.MathUtils.dll": {}
@@ -2016,7 +2073,6 @@
           "DVar.TextFromImage": "1.0.0",
           "Danilvar.MathUtils": "1.0.0",
           "DanilvarKanji.Infrastructure": "1.0.0",
-          "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "FluentValidation.DependencyInjectionExtensions": "11.8.0",
           "MediatR": "12.1.1",
@@ -2038,6 +2094,7 @@
           "Danilvar.MathUtils": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
+          "KristofferStrube.Blazor.FileSystemAccess": "3.2.2",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.11",
           "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "7.0.14",
           "Microsoft.Extensions.Http": "7.0.0",
@@ -2075,7 +2132,6 @@
       "DanilvarKanji.Infrastructure/1.0.0": {
         "dependencies": {
           "DanilvarKanji.Domain": "1.0.0",
-          "DanilvarKanji.Shared": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Newtonsoft.Json": "13.0.3",
@@ -2258,12 +2314,12 @@
       "path": "fluentvalidation.dependencyinjectionextensions/11.8.0",
       "hashPath": "fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512"
     },
-    "FSharp.Core/8.0.101": {
+    "FSharp.Core/8.0.200": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sOLz3O4BOxnTKfd5OChdRmDUy4Id0GfoEClRG4nzIod8LY1LJZcNyygKAV0A78XOLh8yvhA5hsDYKZXGCR9blw==",
-      "path": "fsharp.core/8.0.101",
-      "hashPath": "fsharp.core.8.0.101.nupkg.sha512"
+      "sha512": "sha512-qnxoF3Fu0HzfOeYdrwmQOsLP1v+OtOMSIYkNVUwf6nGqWzL03Hh4r6VFCvCb54jlsgtt3WADVYkKkrgdeY5kiQ==",
+      "path": "fsharp.core/8.0.200",
+      "hashPath": "fsharp.core.8.0.200.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -2285,6 +2341,41 @@
       "sha512": "sha512-eggelShwKQIIjW87+gzZffbT0cKpa09mLOE03Oolbwj+E62pcygn/j0BTsdwUQxr885P+qKTaqDaVmtKldGE0w==",
       "path": "jasperfx.core/1.4.0",
       "hashPath": "jasperfx.core.1.4.0.nupkg.sha512"
+    },
+    "KristofferStrube.Blazor.FileAPI/0.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-omHdUvigFjEP+nDvtwASIJ1GuJKVng7z7hDWlXlZlsWfxJ4fC9+aqOzzJROy5SAzwgIXhx6JXLbKopGMVT321g==",
+      "path": "kristofferstrube.blazor.fileapi/0.3.0",
+      "hashPath": "kristofferstrube.blazor.fileapi.0.3.0.nupkg.sha512"
+    },
+    "KristofferStrube.Blazor.FileSystem/0.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dEQkBDDEOsBc8BGqDnZJ2XoKlwdeOpctmLIMgxwERLIAmDKk9bjwFMR2xS5gUh6ccqyp3GoRKPRYrOTieDX4TA==",
+      "path": "kristofferstrube.blazor.filesystem/0.3.1",
+      "hashPath": "kristofferstrube.blazor.filesystem.0.3.1.nupkg.sha512"
+    },
+    "KristofferStrube.Blazor.FileSystemAccess/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-owZeGnzlPNBU2ITVuVFMqXbSxw70nJSe0fF27JOiE00WTSDgW+CoJ0Mi/62+acXzibamNtS1vrTFu9KJnUTUAQ==",
+      "path": "kristofferstrube.blazor.filesystemaccess/3.2.2",
+      "hashPath": "kristofferstrube.blazor.filesystemaccess.3.2.2.nupkg.sha512"
+    },
+    "KristofferStrube.Blazor.Streams/0.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2qofmH/n0oFiZQ693/nTyAN6wF7NdX1PM12/qmV+2UQPijlxUqpYqmn1uensng3+U406hUfGmcdZEeNJalsR/A==",
+      "path": "kristofferstrube.blazor.streams/0.3.0",
+      "hashPath": "kristofferstrube.blazor.streams.0.3.0.nupkg.sha512"
+    },
+    "KristofferStrube.Blazor.WebIDL/0.1.0-alpha.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7Fm42iLu+I4Kb0zbRMok2XcR/+CDwkco0O8VdPUgBk+NwY9jCujgmChXrs7AjfoThxTlsEVr4k+pm0C7bP6TLA==",
+      "path": "kristofferstrube.blazor.webidl/0.1.0-alpha.1",
+      "hashPath": "kristofferstrube.blazor.webidl.0.1.0-alpha.1.nupkg.sha512"
     },
     "Lamar/12.0.1": {
       "type": "package",

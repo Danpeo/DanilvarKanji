@@ -12,7 +12,6 @@
           "DVar.TextFromImage": "1.0.0",
           "Danilvar.MathUtils": "1.0.0",
           "DanilvarKanji.Infrastructure": "1.0.0",
-          "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "FluentValidation.DependencyInjectionExtensions": "11.8.0",
           "MediatR": "12.1.1",
@@ -63,7 +62,7 @@
       },
       "DVar.RandCreds/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "8.0.101"
+          "FSharp.Core": "8.0.200"
         },
         "runtime": {
           "lib/net7.0/DVar.RandCreds.dll": {
@@ -104,11 +103,11 @@
           }
         }
       },
-      "FSharp.Core/8.0.101": {
+      "FSharp.Core/8.0.200": {
         "runtime": {
           "lib/netstandard2.1/FSharp.Core.dll": {
             "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.1.123.56302"
+            "fileVersion": "8.2.24.6203"
           }
         },
         "resources": {
@@ -523,7 +522,7 @@
       },
       "Danilvar.MathUtils/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "8.0.101"
+          "FSharp.Core": "8.0.200"
         },
         "runtime": {
           "Danilvar.MathUtils.dll": {}
@@ -547,7 +546,6 @@
       "DanilvarKanji.Infrastructure/1.0.0": {
         "dependencies": {
           "DanilvarKanji.Domain": "1.0.0",
-          "DanilvarKanji.Shared": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Newtonsoft.Json": "13.0.3",
@@ -644,12 +642,12 @@
       "path": "fluentvalidation.dependencyinjectionextensions/11.8.0",
       "hashPath": "fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512"
     },
-    "FSharp.Core/8.0.101": {
+    "FSharp.Core/8.0.200": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sOLz3O4BOxnTKfd5OChdRmDUy4Id0GfoEClRG4nzIod8LY1LJZcNyygKAV0A78XOLh8yvhA5hsDYKZXGCR9blw==",
-      "path": "fsharp.core/8.0.101",
-      "hashPath": "fsharp.core.8.0.101.nupkg.sha512"
+      "sha512": "sha512-qnxoF3Fu0HzfOeYdrwmQOsLP1v+OtOMSIYkNVUwf6nGqWzL03Hh4r6VFCvCb54jlsgtt3WADVYkKkrgdeY5kiQ==",
+      "path": "fsharp.core/8.0.200",
+      "hashPath": "fsharp.core.8.0.200.nupkg.sha512"
     },
     "MediatR/12.1.1": {
       "type": "package",

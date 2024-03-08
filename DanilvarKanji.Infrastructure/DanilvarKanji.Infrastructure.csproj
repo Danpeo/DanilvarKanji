@@ -15,7 +15,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DanilvarKanji.Domain\DanilvarKanji.Domain.csproj" />
+<!--
       <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
+-->
     </ItemGroup>
 
 </Project>

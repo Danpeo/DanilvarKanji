@@ -9,7 +9,6 @@
       "DanilvarKanji.Infrastructure/1.0.0": {
         "dependencies": {
           "DanilvarKanji.Domain": "1.0.0",
-          "DanilvarKanji.Shared": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
           "Newtonsoft.Json": "13.0.3",

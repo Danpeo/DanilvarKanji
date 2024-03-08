@@ -1,0 +1,191 @@
+@page "/Extract-Text"
+@inject IFileSystemAccessServiceInProcess FileSystemAccessService
+@inject IJSRuntime jSRuntime
+
+@using DanilvarKanji.Client.Services.OCR
+@using DanilvarKanji.Shared.Requests.OCR
+@using KristofferStrube.Blazor.FileAPI
+@using KristofferStrube.Blazor.FileSystem
+@using KristofferStrube.Blazor.FileSystemAccess
+
+<PageTitle>Extract Japanese Text From Image</PageTitle>
+
+@if (_errorMessage is not null)
+{
+    <ErrorAlertAlt Message="@_errorMessage"/>
+}
+<LongElement>
+    <button @onclick="OpenFilePicker" class="btn btn-lg btn-outline-primary display-3 mb-2">OPEN IMAGE</button>
+</LongElement>
+@if (_fileHandle != null)
+{
+    <InputSelect @bind-Value="_langMode" class="form-control bg-secondary-2 txt-green-dim no-border mt-2 mb-2" id="langMode">
+        <option value="@LangMode.JapHorizontal">Horizontal</option>
+        <option value="@LangMode.JapVertical">Vertical</option>
+        <option value="@LangMode.JapHorizontalAlt">Horizontal Alternative</option>
+        <option value="@LangMode.JapVerticalAlt">Vertical Alternative</option>
+    </InputSelect>
+    <div class="row">
+        <div class="form-group col">
+            <label for="canvasSize">Canvas Size:</label>
+            <input id="canvasSize" type="number" @oninput="WriteCanvasSize" class="form-control txt-green-dim  bg-secondary-2" value=@_canvasSize/>
+        </div>
+
+    </div>
+    <LongElement>
+        <button @onclick="ExtractTextFromImage" class="btn btn-lg btn-primary mt-2 mb-2">Extract Text From @_fileHandle.Name</button>
+    </LongElement>
+}
+<br/>
+<div class="text-center">
+    <canvas @ref="_canvasReference" width="@_canvasSize" height="@_canvasSize"></canvas>
+</div>
+@if (!string.IsNullOrEmpty(_extractedText))
+{
+    <p class="txt-mid-pink fs-5 jap-font">@_extractedText</p>
+}
+else if (_isExtracting)
+{
+    <DisplayLoading/>
+}
+
+@code {
+
+    [Inject] public required IOCRService OcrService { get; set; }
+
+    private FileSystemFileHandleInProcess? _fileHandle;
+    private File? _file;
+
+    private ElementReference _canvasReference { get; set; }
+    private LangMode _langMode;
+
+    private IJSObjectReference? _jSCanvas;
+    private IJSObjectReference? _jS2dContext;
+    private IJSObjectReference? _jSImageBitmap;
+
+    private bool _isExtracting;
+    private double _canvasSize = 600;
+    private double _imageDrawHeight;
+    private double _imageDrawWidth;
+
+    private string? _errorMessage;
+    private string _extractedText = string.Empty;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Get Canvas
+        _jSCanvas = await jSRuntime.InvokeAsync<IJSObjectReference>("jSReference", _canvasReference);
+        _jS2dContext = await _jSCanvas.InvokeAsync<IJSObjectReference>("getContext", "2d");
+    }
+
+    private async Task OpenFilePicker()
+    {
+        try
+        {
+            var options = new OpenFilePickerOptionsStartInWellKnownDirectory()
+            {
+                Types = new FilePickerAcceptType[]
+                {
+                    new()
+                    {
+                        Description = "Images",
+                        Accept = new Dictionary<string, string[]>
+                        {
+                            {
+                                "image/*", new[] { ".png", ".jpeg", ".jpg" }
+                            }
+                        }
+                    }
+                },
+                Multiple = false,
+                StartIn = WellKnownDirectory.Downloads
+            };
+            var fileHandles = await FileSystemAccessService.ShowOpenFilePickerAsync(options);
+            _fileHandle = fileHandles.Single();
+        }
+        catch (JSException ex)
+        {
+            Console.WriteLine(ex);
+        }
+        finally
+        {
+            if (_fileHandle != null)
+            {
+                _file = await _fileHandle.GetFileAsync();
+                var jSBlob = _file.JSReference;
+                // Get Image
+                _jSImageBitmap = await jSRuntime.InvokeAsync<IJSObjectReference>("createImageBitmap", jSBlob);
+                // Draw Image
+                await DrawImage();
+                _extractedText = string.Empty;
+            }
+        }
+    }
+
+    private async Task DrawImage()
+    {
+        if (_jS2dContext == null) return;
+        double imageWidth = await jSRuntime.InvokeAsync<double>("getAttribute", _jSImageBitmap, "width");
+        double imageHeight = await jSRuntime.InvokeAsync<double>("getAttribute", _jSImageBitmap, "height");
+        _imageDrawWidth = (imageWidth > imageHeight ? 1 : imageWidth / imageHeight) * _canvasSize;
+        _imageDrawHeight = (imageWidth < imageHeight ? 1 : imageHeight / imageWidth) * _canvasSize;
+        await jSRuntime.InvokeVoidAsync("setAttribute", _jSCanvas, "width", _imageDrawWidth);
+        await jSRuntime.InvokeVoidAsync("setAttribute", _jSCanvas, "height", _imageDrawHeight);
+        await _jS2dContext.InvokeVoidAsync("drawImage", _jSImageBitmap, 0, 0, _imageDrawWidth, _imageDrawHeight);
+    }
+
+    private async Task WriteText()
+    {
+        if (_jS2dContext == null) return;
+        await DrawImage();
+        // Set Draw style
+        await jSRuntime.InvokeVoidAsync("setAttribute", _jS2dContext, "font", "bold 48px impact");
+        await jSRuntime.InvokeVoidAsync("setAttribute", _jS2dContext, "textAlign", "center");
+        await jSRuntime.InvokeVoidAsync("setAttribute", _jS2dContext, "fillStyle", "white");
+        await jSRuntime.InvokeVoidAsync("setAttribute", _jS2dContext, "strokeStyle", "black");
+        await jSRuntime.InvokeVoidAsync("setAttribute", _jS2dContext, "lineWidth", "1");
+    }
+
+    private async Task WriteCanvasSize(ChangeEventArgs eventArgs)
+    {
+        if (eventArgs.Value is string size && double.TryParse(size, out _canvasSize))
+        {
+            await WriteText();
+        }
+    }
+
+    private async Task ExtractTextFromImage()
+    {
+        try
+        {
+            if (await extract())
+                return;
+        }
+        catch (ArgumentException e)
+        {/*
+            _errorMessage = e.ParamName;            
+            if (await extract())
+                return;*/
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
+        }
+
+        return;
+
+        async Task<bool> extract()
+        {
+            _extractedText = string.Empty;
+            if (_fileHandle is null) return false;
+            _isExtracting = true;
+            FileInProcess file = await _fileHandle.GetFileAsync();
+            await file.ArrayBufferAsync();
+            _extractedText = await OcrService.ExtractTextAsync(await file.ArrayBufferAsync(), await file.GetNameAsync(), _langMode);
+            _isExtracting = false;
+            return true;
+        }
+    }
+
+}

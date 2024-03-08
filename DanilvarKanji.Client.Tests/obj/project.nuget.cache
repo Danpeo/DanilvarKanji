@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eG6u4WPzBuz7ZDio7r8KqYMyPepdGWDPPRcNhx9QaKUcd0VfnEP1luXrz9b5Cu9Mo/pMpgO8d4hnWv/FiE+m2A==",
+  "dgSpecHash": "gelOKtX65n/9Rh1AVnti4IDRn3Hw0LGZ2FOCbNkB4ypABkZYspGoMpplTdP7q2NgM7DV/RON1VzU+dOWNIQ0+w==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client.Tests\\DanilvarKanji.Client.Tests.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,12 @@
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.1.0\\dvar.randcreds.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.101\\fsharp.core.8.0.101.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.200\\fsharp.core.8.0.200.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.fileapi\\0.3.0\\kristofferstrube.blazor.fileapi.0.3.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.filesystem\\0.3.1\\kristofferstrube.blazor.filesystem.0.3.1.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.filesystemaccess\\3.2.2\\kristofferstrube.blazor.filesystemaccess.3.2.2.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.streams\\0.3.0\\kristofferstrube.blazor.streams.0.3.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.webidl\\0.1.0-alpha.1\\kristofferstrube.blazor.webidl.0.1.0-alpha.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.14\\microsoft.aspnetcore.authorization.7.0.14.nupkg.sha512",

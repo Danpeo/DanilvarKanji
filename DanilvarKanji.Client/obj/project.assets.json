@@ -98,7 +98,7 @@
           }
         }
       },
-      "FSharp.Core/8.0.101": {
+      "FSharp.Core/8.0.200": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -150,6 +150,116 @@
           "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll": {
             "locale": "zh-Hant"
           }
+        }
+      },
+      "KristofferStrube.Blazor.FileAPI/0.3.0": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.Streams": "0.3.0",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.FileAPI.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileAPI.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.FileAPI.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.FileAPI.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.FileSystem/0.3.1": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.FileAPI": "0.3.0",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystem.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystem.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.FileSystem.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.FileSystem.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.FileSystemAccess/3.2.2": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.FileSystem": "0.3.1",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystemAccess.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystemAccess.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.FileSystemAccess.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.FileSystemAccess.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.Streams/0.3.0": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.WebIDL": "0.1.0-alpha.1",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.Streams.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.Streams.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.Streams.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.Streams.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.WebIDL/0.1.0-alpha.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.WebIDL.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.WebIDL.dll": {}
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.WebIDL.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.WebIDL.props": {}
         }
       },
       "MediatR/12.1.1": {
@@ -1047,7 +1157,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "FSharp.Core": "8.0.101"
+          "FSharp.Core": "8.0.200"
         },
         "compile": {
           "bin/placeholder/Danilvar.MathUtils.dll": {}
@@ -1184,7 +1294,7 @@
           }
         }
       },
-      "FSharp.Core/8.0.101": {
+      "FSharp.Core/8.0.200": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -1236,6 +1346,116 @@
           "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll": {
             "locale": "zh-Hant"
           }
+        }
+      },
+      "KristofferStrube.Blazor.FileAPI/0.3.0": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.Streams": "0.3.0",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.FileAPI.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileAPI.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.FileAPI.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.FileAPI.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.FileSystem/0.3.1": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.FileAPI": "0.3.0",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystem.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystem.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.FileSystem.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.FileSystem.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.FileSystemAccess/3.2.2": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.FileSystem": "0.3.1",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystemAccess.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.FileSystemAccess.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.FileSystemAccess.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.FileSystemAccess.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.Streams/0.3.0": {
+        "type": "package",
+        "dependencies": {
+          "KristofferStrube.Blazor.WebIDL": "0.1.0-alpha.1",
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.Streams.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.Streams.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.Streams.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.Streams.props": {}
+        }
+      },
+      "KristofferStrube.Blazor.WebIDL/0.1.0-alpha.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/KristofferStrube.Blazor.WebIDL.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/KristofferStrube.Blazor.WebIDL.dll": {}
+        },
+        "build": {
+          "buildTransitive/KristofferStrube.Blazor.WebIDL.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/KristofferStrube.Blazor.WebIDL.props": {}
         }
       },
       "MediatR/12.1.1": {
@@ -2154,7 +2374,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "FSharp.Core": "8.0.101"
+          "FSharp.Core": "8.0.200"
         },
         "compile": {
           "bin/placeholder/Danilvar.MathUtils.dll": {}
@@ -2306,15 +2526,15 @@
         "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
-    "FSharp.Core/8.0.101": {
-      "sha512": "sOLz3O4BOxnTKfd5OChdRmDUy4Id0GfoEClRG4nzIod8LY1LJZcNyygKAV0A78XOLh8yvhA5hsDYKZXGCR9blw==",
+    "FSharp.Core/8.0.200": {
+      "sha512": "qnxoF3Fu0HzfOeYdrwmQOsLP1v+OtOMSIYkNVUwf6nGqWzL03Hh4r6VFCvCb54jlsgtt3WADVYkKkrgdeY5kiQ==",
       "type": "package",
-      "path": "fsharp.core/8.0.101",
+      "path": "fsharp.core/8.0.200",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.8.0.101.nupkg.sha512",
+        "fsharp.core.8.0.200.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -2346,6 +2566,105 @@
         "lib/netstandard2.1/tr/FSharp.Core.resources.dll",
         "lib/netstandard2.1/zh-Hans/FSharp.Core.resources.dll",
         "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll"
+      ]
+    },
+    "KristofferStrube.Blazor.FileAPI/0.3.0": {
+      "sha512": "omHdUvigFjEP+nDvtwASIJ1GuJKVng7z7hDWlXlZlsWfxJ4fC9+aqOzzJROy5SAzwgIXhx6JXLbKopGMVT321g==",
+      "type": "package",
+      "path": "kristofferstrube.blazor.fileapi/0.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/KristofferStrube.Blazor.FileAPI.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/KristofferStrube.Blazor.FileAPI.props",
+        "buildTransitive/KristofferStrube.Blazor.FileAPI.props",
+        "icon.png",
+        "kristofferstrube.blazor.fileapi.0.3.0.nupkg.sha512",
+        "kristofferstrube.blazor.fileapi.nuspec",
+        "lib/net7.0/KristofferStrube.Blazor.FileAPI.dll",
+        "lib/net7.0/KristofferStrube.Blazor.FileAPI.xml",
+        "staticwebassets/KristofferStrube.Blazor.FileAPI.js"
+      ]
+    },
+    "KristofferStrube.Blazor.FileSystem/0.3.1": {
+      "sha512": "dEQkBDDEOsBc8BGqDnZJ2XoKlwdeOpctmLIMgxwERLIAmDKk9bjwFMR2xS5gUh6ccqyp3GoRKPRYrOTieDX4TA==",
+      "type": "package",
+      "path": "kristofferstrube.blazor.filesystem/0.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/KristofferStrube.Blazor.FileSystem.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/KristofferStrube.Blazor.FileSystem.props",
+        "buildTransitive/KristofferStrube.Blazor.FileSystem.props",
+        "icon.png",
+        "kristofferstrube.blazor.filesystem.0.3.1.nupkg.sha512",
+        "kristofferstrube.blazor.filesystem.nuspec",
+        "lib/net7.0/KristofferStrube.Blazor.FileSystem.dll",
+        "lib/net7.0/KristofferStrube.Blazor.FileSystem.xml",
+        "staticwebassets/KristofferStrube.Blazor.FileSystem.js"
+      ]
+    },
+    "KristofferStrube.Blazor.FileSystemAccess/3.2.2": {
+      "sha512": "owZeGnzlPNBU2ITVuVFMqXbSxw70nJSe0fF27JOiE00WTSDgW+CoJ0Mi/62+acXzibamNtS1vrTFu9KJnUTUAQ==",
+      "type": "package",
+      "path": "kristofferstrube.blazor.filesystemaccess/3.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/KristofferStrube.Blazor.FileSystemAccess.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/KristofferStrube.Blazor.FileSystemAccess.props",
+        "buildTransitive/KristofferStrube.Blazor.FileSystemAccess.props",
+        "icon.png",
+        "kristofferstrube.blazor.filesystemaccess.3.2.2.nupkg.sha512",
+        "kristofferstrube.blazor.filesystemaccess.nuspec",
+        "lib/net7.0/KristofferStrube.Blazor.FileSystemAccess.dll",
+        "lib/net7.0/KristofferStrube.Blazor.FileSystemAccess.xml",
+        "staticwebassets/KristofferStrube.Blazor.FileSystemAccess.js"
+      ]
+    },
+    "KristofferStrube.Blazor.Streams/0.3.0": {
+      "sha512": "2qofmH/n0oFiZQ693/nTyAN6wF7NdX1PM12/qmV+2UQPijlxUqpYqmn1uensng3+U406hUfGmcdZEeNJalsR/A==",
+      "type": "package",
+      "path": "kristofferstrube.blazor.streams/0.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/KristofferStrube.Blazor.Streams.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/KristofferStrube.Blazor.Streams.props",
+        "buildTransitive/KristofferStrube.Blazor.Streams.props",
+        "icon.png",
+        "kristofferstrube.blazor.streams.0.3.0.nupkg.sha512",
+        "kristofferstrube.blazor.streams.nuspec",
+        "lib/net7.0/KristofferStrube.Blazor.Streams.dll",
+        "lib/net7.0/KristofferStrube.Blazor.Streams.xml",
+        "staticwebassets/KristofferStrube.Blazor.Streams.js"
+      ]
+    },
+    "KristofferStrube.Blazor.WebIDL/0.1.0-alpha.1": {
+      "sha512": "7Fm42iLu+I4Kb0zbRMok2XcR/+CDwkco0O8VdPUgBk+NwY9jCujgmChXrs7AjfoThxTlsEVr4k+pm0C7bP6TLA==",
+      "type": "package",
+      "path": "kristofferstrube.blazor.webidl/0.1.0-alpha.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/KristofferStrube.Blazor.WebIDL.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/KristofferStrube.Blazor.WebIDL.props",
+        "buildTransitive/KristofferStrube.Blazor.WebIDL.props",
+        "icon.png",
+        "kristofferstrube.blazor.webidl.0.1.0-alpha.1.nupkg.sha512",
+        "kristofferstrube.blazor.webidl.nuspec",
+        "lib/net7.0/KristofferStrube.Blazor.WebIDL.dll",
+        "staticwebassets/KristofferStrube.Blazor.WebIDL.js"
       ]
     },
     "MediatR/12.1.1": {
@@ -4098,6 +4417,7 @@
       "Danilvar.MathUtils >= 1.0.0",
       "DanilvarKanji.Shared >= 1.0.0",
       "FluentValidation >= 11.8.0",
+      "KristofferStrube.Blazor.FileSystemAccess >= 3.2.2",
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.11",
       "Microsoft.AspNetCore.Components.WebAssembly.Authentication >= 7.0.14",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.11",
@@ -4186,6 +4506,10 @@
             "target": "Package",
             "version": "[11.8.0, )"
           },
+          "KristofferStrube.Blazor.FileSystemAccess": {
+            "target": "Package",
+            "version": "[3.2.2, )"
+          },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",
             "version": "[7.0.11, )"
@@ -4256,7 +4580,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

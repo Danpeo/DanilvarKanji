@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "QbBGQOmPBxpNomqGOvdWpCA/4fLC2r+eVGE2OuX+L0q3rpFX1GrDfC+vaIv5GiRBanY8gNIXsJcc0ZsRzRQklw==",
+  "dgSpecHash": "9jL1caxs82YJAm2+RAabiKrtv4CjtoySXYgN7r/PdLb4Vtrwe7ao4PEftkJKTUFfvW5AiNIk6GhOhoBZjmuOFA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.MathUtils\\Danilvar.MathUtils.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.101\\fsharp.core.8.0.101.nupkg.sha512"
+    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.200\\fsharp.core.8.0.200.nupkg.sha512"
   ],
   "logs": []
 }

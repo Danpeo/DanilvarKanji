@@ -8,7 +8,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\bin\De
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\bin\Debug\net7.0\DanilvarKanji.Infrastructure.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\bin\Debug\net7.0\DanilvarKanji.Domain.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\bin\Debug\net7.0\DanilvarKanji.Domain.pdb
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\obj\Debug\net7.0\DanilvarKanji.Infrastructure.csproj.CopyComplete
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\obj\Debug\net7.0\DanilvarKanji.Infrastructure.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\obj\Debug\net7.0\refint\DanilvarKanji.Infrastructure.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\obj\Debug\net7.0\DanilvarKanji.Infrastructure.pdb
@@ -16,3 +15,4 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\obj\De
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\obj\Debug\net7.0\DanilvarKanji.Infrastructure.sourcelink.json
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\bin\Debug\net7.0\DanilvarKanji.Shared.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\bin\Debug\net7.0\DanilvarKanji.Shared.pdb
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Infrastructure\obj\Debug\net7.0\Danilvar.B42DCF3D.Up2Date

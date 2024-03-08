@@ -15,9 +15,11 @@ using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Client.Services.Dictionary;
 using DanilvarKanji.Client.Services.Flashcards;
 using DanilvarKanji.Client.Services.KanjiApiDev;
+using DanilvarKanji.Client.Services.OCR;
 using DanilvarKanji.Client.Services.Review;
 using DanilvarKanji.Client.State;
 using DanilvarKanji.Shared.Responses.Character;
+using KristofferStrube.Blazor.FileSystemAccess;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -59,13 +61,20 @@ builder.Services.AddScoped<AppState>();
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IFlashcardApiService, FlashcardApiService>();
+builder.Services.AddSingleton<IOCRService, OCRService>();
 
 builder.Services.AddComponents();
 
 builder.Services.AddBlazoredSessionStorageAsSingleton();
 builder.Services.AddBlazoredLocalStorageAsSingleton();
 builder.Services.AddBlazoredModal();
-
+builder.Services.AddFileSystemAccessService();
+builder.Services.AddFileSystemAccessServiceInProcess(options =>
+{
+    // The file at this path in this example is manually copied to wwwroot folder
+    // options.BasePath = "content/";
+    // options.ScriptPath = $"custom-path/{FileSystemAccessOptions.DefaultNamespace}.js";
+});
 
 builder.Services.AddAuthorizationCore();
 
