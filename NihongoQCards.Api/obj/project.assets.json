@@ -224,6 +224,18 @@
           }
         }
       },
+      "DVar.TextFromImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Tesseract": "5.2.0"
+        },
+        "compile": {
+          "lib/net7.0/DVar.TextFromImage.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/DVar.TextFromImage.dll": {}
+        }
+      },
       "FastExpressionCompiler/3.3.4": {
         "type": "package",
         "compile": {
@@ -3797,19 +3809,6 @@
         "runtime": {
           "bin/placeholder/DVar.Extensions.dll": {}
         }
-      },
-      "DVar.TextFromImage/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Tesseract": "5.2.0"
-        },
-        "compile": {
-          "bin/placeholder/DVar.TextFromImage.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DVar.TextFromImage.dll": {}
-        }
       }
     }
   },
@@ -4030,6 +4029,18 @@
         "dvar.randcreds.nuspec",
         "lib/net7.0/DVar.RandCreds.dll",
         "lib/net7.0/DVar.RandCreds.xml"
+      ]
+    },
+    "DVar.TextFromImage/1.0.0": {
+      "sha512": "RWQ4vX5/mekNmConN4odQxO7/GKa/z7bQjoYwwUbYRXLanIMjZrgtL3rDhgkl3GKOCvR8bp/KoBFQLESnnkhCg==",
+      "type": "package",
+      "path": "dvar.textfromimage/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dvar.textfromimage.1.0.0.nupkg.sha512",
+        "dvar.textfromimage.nuspec",
+        "lib/net7.0/DVar.TextFromImage.dll"
       ]
     },
     "FastExpressionCompiler/3.3.4": {
@@ -9873,11 +9884,6 @@
       "type": "project",
       "path": "../DVar.Extensions/DVar.Extensions.csproj",
       "msbuildProject": "../DVar.Extensions/DVar.Extensions.csproj"
-    },
-    "DVar.TextFromImage/1.0.0": {
-      "type": "project",
-      "path": "../DVar.TextFromImage/DVar.TextFromImage.csproj",
-      "msbuildProject": "../DVar.TextFromImage/DVar.TextFromImage.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10074,7 +10080,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

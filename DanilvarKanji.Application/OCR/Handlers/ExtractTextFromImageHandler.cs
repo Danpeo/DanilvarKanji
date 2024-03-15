@@ -1,9 +1,7 @@
 using DanilvarKanji.Application.OCR.Commands;
-using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Primitives;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.Settings;
-using DanilvarKanji.Shared.Domain.Settings;
 using DVar.TextFromImage;
 using MediatR;
 using Microsoft.Extensions.Options;

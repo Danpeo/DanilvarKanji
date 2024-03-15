@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DanilvarKanji.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+022393374919855e5677d88abf991a338b320856")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9673cf55037b3cf449b26d9faefd6c6f905df657")]
 [assembly: System.Reflection.AssemblyProductAttribute("DanilvarKanji.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DanilvarKanji.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

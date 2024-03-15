@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lkTukPy2WoAWIbHjs/VeLOBiGy9i9vtdHSLkakxouXO4SXVM2tjIHhwu1m3H5sKK+NU7HPYXjwIpL6f49ks+bw==",
+  "dgSpecHash": "+G/ywmHWZdXub4dZ3fHqxna0MqtKJwYefCJ3e9pdSLfAmvKLmuGVCsw5yrmu2q4eyU/fXBEum/c5zxk7WBIvHA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
   "expectedPackageFiles": [
@@ -61,7 +61,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.11\\microsoft.jsinterop.webassembly.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.2\\microsoft.net.sdk.webassembly.pack.8.0.2.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.3\\microsoft.net.sdk.webassembly.pack.8.0.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\runtime.any.system.runtime\\4.3.0\\runtime.any.system.runtime.4.3.0.nupkg.sha512",
@@ -75,7 +75,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\wanakana-net\\1.0.0\\wanakana-net.1.0.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.16\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.16.nupkg.sha512"
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.17\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.17.nupkg.sha512"
   ],
   "logs": [
     {

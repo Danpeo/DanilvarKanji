@@ -8,17 +8,17 @@
     ".NETCoreApp,Version=v7.0": {
       "Danilvar.MathUtils/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "8.0.101"
+          "FSharp.Core": "8.0.200"
         },
         "runtime": {
           "Danilvar.MathUtils.dll": {}
         }
       },
-      "FSharp.Core/8.0.101": {
+      "FSharp.Core/8.0.200": {
         "runtime": {
           "lib/netstandard2.1/FSharp.Core.dll": {
             "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.1.123.56302"
+            "fileVersion": "8.2.24.6203"
           }
         },
         "resources": {
@@ -71,12 +71,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FSharp.Core/8.0.101": {
+    "FSharp.Core/8.0.200": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sOLz3O4BOxnTKfd5OChdRmDUy4Id0GfoEClRG4nzIod8LY1LJZcNyygKAV0A78XOLh8yvhA5hsDYKZXGCR9blw==",
-      "path": "fsharp.core/8.0.101",
-      "hashPath": "fsharp.core.8.0.101.nupkg.sha512"
+      "sha512": "sha512-qnxoF3Fu0HzfOeYdrwmQOsLP1v+OtOMSIYkNVUwf6nGqWzL03Hh4r6VFCvCb54jlsgtt3WADVYkKkrgdeY5kiQ==",
+      "path": "fsharp.core/8.0.200",
+      "hashPath": "fsharp.core.8.0.200.nupkg.sha512"
     }
   }
 }

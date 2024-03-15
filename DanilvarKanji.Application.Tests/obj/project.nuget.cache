@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TBzvy5rreBS+9TA0kaeEVO1iwhpxoaU+hBwPhmk9VAW/eZszqE5j5khb+17xy0hISivWqc+yAUwS+00HBXghRg==",
+  "dgSpecHash": "U5F1DJR3q+sItpmqxtRLdzYnjZb/yqqmQGozuXweSIhJ4FK34Gem1NTvaAyHU5ZXJ5Onm+N4P66T0wFZpFdaeA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Application.Tests\\DanilvarKanji.Application.Tests.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.0.0\\dvar.randcreds.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\dvar.textfromimage\\1.0.0\\dvar.textfromimage.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.0\\fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512",
