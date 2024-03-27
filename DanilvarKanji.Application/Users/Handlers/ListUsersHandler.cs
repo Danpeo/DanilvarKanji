@@ -10,8 +10,7 @@ public class ListUsersHandler : IRequestHandler<ListUsersQuery, IEnumerable<AppU
 {
     private readonly IUserRepository _userRepository;
     private readonly ILogger<ListUsersHandler> _logger;
-
-
+    
     public ListUsersHandler(IUserRepository userRepository, ILogger<ListUsersHandler> logger)
     {
         _userRepository = userRepository;

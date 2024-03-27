@@ -30,6 +30,12 @@ public class UserRepository : IUserRepository
         }
     }
 
+    public async Task DeleteAsync(string email)
+    {
+        AppUser? appUser = await GetByEmailAsync(email);
+        _context.AppUsers.Remove(appUser!);
+    }
+
     public async Task<AppUser?> GetByIdAsync(string id)
     {
         return await _context.AppUsers
@@ -57,12 +63,13 @@ public class UserRepository : IUserRepository
         if (user != null) user.XP = xp;
     }
 
-    public async ValueTask<bool> AnyExistAsync() => 
+    public async ValueTask<bool> AnyExistAsync() =>
         await _context.Characters.AnyAsync();
 
-    public Task<AppUser> GetByEmailAsync(string email)
+    public async Task<AppUser?> GetByEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        return await _context.AppUsers
+            .FirstOrDefaultAsync(x => x.Email == email);
     }
 
     public async Task<IEnumerable<AppUser>> ListAsync(PaginationParams? paginationParams)

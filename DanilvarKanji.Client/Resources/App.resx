@@ -164,4 +164,7 @@
     <data name="CollectionName" xml:space="preserve">
         <value />
     </data>
+    <data name="Users" xml:space="preserve">
+        <value />
+    </data>
 </root>

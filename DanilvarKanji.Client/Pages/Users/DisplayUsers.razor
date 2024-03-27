@@ -1,0 +1,88 @@
+@page "/Users"
+@using DanilvarKanji.Client.Data
+@using DanilvarKanji.Client.Services.Auth
+@using DanilvarKanji.Shared.Domain.Entities
+
+@inject IStringLocalizer<App> Loc;
+
+<PageTitle>@Loc["Users"] - @AppDisplaySettings.AppTitle</PageTitle>
+
+<h3 class="mb-5 display-3 txt-bright-pink main-font">@Loc["Users"]</h3>
+
+
+@if (_appUsers is null)
+{
+    <DisplayLoading/>
+}
+else if (!_appUsers.Any())
+{
+    <Message Text="No users found"/>
+}
+else
+{
+    <table class="table bg-secondary-2 txt-green-dim">
+        <thead>
+        <tr class="txt-mid-pink">
+            <th scope="col">#</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Registration Date</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        @for (var i = 0; i < _appUsers.Count; i++)
+        {
+            var appUser = _appUsers[i];
+            <tbody>
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td>@appUser.UserName</td>
+                <td>@appUser.Email</td>
+                <td>@appUser.RegistrationDate</td>
+                <td>@appUser.AppUserRole</td>
+                <td>
+
+                    <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteUserAsync(appUser.Email!)">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        }
+    </table>
+}
+
+@code {
+    [Inject] public IUserService UserService { get; set; }
+
+    private List<AppUser>? _appUsers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _appUsers = (List<AppUser>?)await UserService.ListUsersAsync();
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private async Task DeleteUserAsync(string email)
+    {
+        try
+        {
+            await UserService.DeleteUserAsync(email);
+            _appUsers!.RemoveAll(u => u.Email == email);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+}

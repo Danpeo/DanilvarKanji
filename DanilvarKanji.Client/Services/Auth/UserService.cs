@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
+using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Params;
 using DanilvarKanji.Shared.Responses.User;
 
@@ -32,45 +33,42 @@ public class UserService : IUserService
 
     public async Task<LearningSettings?> GetLearningSettingsAsync()
     {
-        try
+        HttpResponseMessage response = await _httpClient.GetAsync($"api/Users/LearningSettings");
+
+        if (response.IsSuccessStatusCode)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/Users/LearningSettings");
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return default;
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return default;
-
-                return await response.Content.ReadFromJsonAsync<LearningSettings>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+            return await response.Content.ReadFromJsonAsync<LearningSettings>();
         }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
+    public async Task<IEnumerable<AppUser>?> ListUsersAsync(int pageNumber = 0,
+        int pageSize = 0)
+    {
+        string requestUri = $"api/Users/All?PageNumber={pageNumber}&PageSize={pageSize}";
+        return await Http.ListAsync<AppUser>(requestUri, _httpClient);
+    }
+    
+    public async Task DeleteUserAsync(string email)
+    {
+        string requestUri = $"api/Users/{email}";
+        await Http.DeleteAsync(requestUri, _httpClient);
+    }
+    
     public async Task UpdateLearningSettingsAsync(LearningSettings settings)
     {
-        try
-        {
-            HttpResponseMessage response =
-                await _httpClient.PutAsJsonAsync("api/users/UpdateUserLearningSettings", settings);
+        HttpResponseMessage response =
+            await _httpClient.PutAsJsonAsync("api/users/UpdateUserLearningSettings", settings);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                string message = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
-            }
-        }
-        catch (HttpRequestException e)
+        if (!response.IsSuccessStatusCode)
         {
-            Console.WriteLine(e);
-            throw;
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
         }
     }
 }

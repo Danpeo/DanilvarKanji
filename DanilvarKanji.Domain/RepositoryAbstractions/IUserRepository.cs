@@ -6,7 +6,7 @@ namespace DanilvarKanji.Domain.RepositoryAbstractions;
 public interface IUserRepository
 {
     Task<AppUser?> GetByIdAsync(string id);
-    Task<AppUser> GetByEmailAsync(string email);
+    Task<AppUser?> GetByEmailAsync(string email);
     Task<IEnumerable<AppUser>> ListAsync(PaginationParams? paginationParams);
     Task<bool> ExistById(string email);
     Task<bool> AnyExist();
@@ -16,4 +16,5 @@ public interface IUserRepository
     Task<LearningSettings?> GetUserLearningSettingsAsync(string email);
     Task UpdateUserXpAsync(int xp, string email);
     ValueTask<bool> AnyExistAsync();
+    Task DeleteAsync(string email);
 }

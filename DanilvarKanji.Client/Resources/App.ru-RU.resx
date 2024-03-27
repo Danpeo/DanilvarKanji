@@ -210,4 +210,7 @@
     <data name="CollectionName" xml:space="preserve">
         <value>Название коллекции</value>
     </data>
+    <data name="Users" xml:space="preserve">
+        <value>Пользователи</value>
+    </data>
 </root>

@@ -31,17 +31,31 @@ public class UserController : ApiController
         return Unauthorized();
     }
     
+    /*
     [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
+    */
     [HttpGet("All")]
     [ProducesResponseType(typeof(IEnumerable<AppUser>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
         IEnumerable<AppUser> users = await Mediator.Send(new ListUsersQuery(paginationParams));
-
         return users.Any() ? Ok(users) : NoContent();
     }
 
+    /*
+    [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
+    */
+    [HttpDelete("{email}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteAsync(string email)
+    {
+        var result = await Mediator.Send(new DeleteUserCommand(email));
+        return result.IsSuccess ? Ok(result.Value) : HandleFailure(result);
+    }
+    
     [HttpGet("LearningSettings")]
     [ProducesResponseType(typeof(LearningSettings), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
