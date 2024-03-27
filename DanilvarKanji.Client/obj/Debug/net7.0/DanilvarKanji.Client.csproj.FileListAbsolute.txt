@@ -1057,3 +1057,5 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\refint\DanilvarKanji.Client.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\DanilvarKanji.Client.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\ref\DanilvarKanji.Client.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\en-US\DanilvarKanji.Client.resources.cs
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\ru-RU\DanilvarKanji.Client.resources.cs

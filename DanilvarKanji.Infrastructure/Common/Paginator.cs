@@ -4,7 +4,7 @@ namespace DanilvarKanji.Infrastructure.Common;
 
 public static class Paginator
 {
-    public static IEnumerable<T> Paginate<T>(IEnumerable<T> items, PaginationParams paginationParams)
+    public static IEnumerable<T> Paginate<T>(IEnumerable<T> items, PaginationParams? paginationParams)
     {
         if (paginationParams.PageNumber != 0 && paginationParams.PageSize != 0)
         {

@@ -56,4 +56,112 @@
     <data name="ValueTooSmall" xml:space="preserve">
         <value />
     </data>
+    <data name="Settings" xml:space="preserve">
+        <value />
+    </data>
+    <data name="LogOut" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Admin" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Dictionary" xml:space="preserve">
+        <value />
+    </data>
+    <data name="ExtractText" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AddNewChar" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Flashcards" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MyLearning" xml:space="preserve">
+        <value />
+    </data>
+    <data name="BackButton" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Authorization" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value />
+    </data>
+    <data name="LogInToYourAccount" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AccountRegistered" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Registration" xml:space="preserve">
+        <value />
+    </data>
+    <data name="RegisterNewAccount" xml:space="preserve">
+        <value />
+    </data>
+    <data name="UserName" xml:space="preserve">
+        <value />
+    </data>
+    <data name="LoggenIn" xml:space="preserve">
+        <value />
+    </data>
+    <data name="GenCreds" xml:space="preserve">
+        <value />
+    </data>
+    <data name="PasswordRepeat" xml:space="preserve">
+        <value />
+    </data>
+    <data name="ExtractTextTitle" xml:space="preserve">
+        <value />
+    </data>
+    <data name="OpenImage" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Horizontal" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Vertical" xml:space="preserve">
+        <value />
+    </data>
+    <data name="CanvasSize" xml:space="preserve">
+        <value />
+    </data>
+    <data name="ExtractTextFrom" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AddNewCollection" xml:space="preserve">
+        <value />
+    </data>
+    <data name="ToView" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Review" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Memorized" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Create" xml:space="preserve">
+        <value />
+    </data>
+    <data name="RemoveLast" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Add" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Collection" xml:space="preserve">
+        <value />
+    </data>
+    <data name="CollectionName" xml:space="preserve">
+        <value />
+    </data>
 </root>

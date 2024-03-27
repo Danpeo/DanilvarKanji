@@ -7,7 +7,7 @@ namespace DanilvarKanji.Infrastructure.Data;
 
 public class ApplicationDbContext : IdentityDbContext<AppUser>
 {
-    public DbSet<AppUser?> AppUsers { get; set; }
+    public DbSet<AppUser> AppUsers { get; set; }
     public DbSet<Character> Characters { get; set; }
     public DbSet<CharacterLearning> CharacterLearnings { get; set; }
     public DbSet<LearningProgress> LearningProgresses { get; set; }

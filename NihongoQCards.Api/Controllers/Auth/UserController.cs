@@ -1,6 +1,7 @@
 using DanilvarKanji.Application.Users.Commands;
 using DanilvarKanji.Application.Users.Queries;
 using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Domain.Params;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -28,6 +29,17 @@ public class UserController : ApiController
             return Ok(user);
 
         return Unauthorized();
+    }
+    
+    [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
+    [HttpGet("All")]
+    [ProducesResponseType(typeof(IEnumerable<AppUser>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
+    {
+        IEnumerable<AppUser> users = await Mediator.Send(new ListUsersQuery(paginationParams));
+
+        return users.Any() ? Ok(users) : NoContent();
     }
 
     [HttpGet("LearningSettings")]

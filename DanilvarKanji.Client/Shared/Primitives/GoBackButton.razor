@@ -2,10 +2,12 @@
 
 <button class="btn btn-dark fs-5" @onclick="@(async () => await Js.Gen.HistoryBack())">
     <b>
-        @(new string("\u25c0 BACK"))
+        @(new string($"\u25c0 {Loc["BackButton"]}"))
     </b>
 </button>
 
 @code {
     [Inject] public required Js Js { get; set; }
+    
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
 }

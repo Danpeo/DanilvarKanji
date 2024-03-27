@@ -904,7 +904,7 @@
           }
         },
         "build": {
-          "build/_._": {}
+          "build/Tesseract.targets": {}
         }
       },
       "WanaKana-net/1.0.0": {
@@ -2379,7 +2379,8 @@
       "FluentValidation.AspNetCore >= 11.3.0",
       "FluentValidation.DependencyInjectionExtensions >= 11.8.0",
       "MediatR >= 12.1.1",
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.14"
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.14",
+      "Tesseract >= 5.2.0"
     ]
   },
   "packageFolders": {
@@ -2451,6 +2452,10 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[7.0.14, )"
+          },
+          "Tesseract": {
+            "target": "Package",
+            "version": "[5.2.0, )"
           }
         },
         "imports": [

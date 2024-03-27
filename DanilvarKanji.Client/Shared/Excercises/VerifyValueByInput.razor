@@ -31,26 +31,19 @@
 
 @code {
 
-    [Inject]
-    public required Js Js { get; set; }
+    [Inject] public required Js Js { get; set; }
 
-    [Parameter, EditorRequired]
-    public required CharacterResponseResponseFull CharacterForVerification { get; set; }
+    [Parameter, EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
 
-    [Parameter, EditorRequired]
-    public required Func<CharacterResponseResponseFull, string, bool> VerifyCondition { get; set; }
+    [Parameter, EditorRequired] public required Func<CharacterResponseResponseFull, string, bool> VerifyCondition { get; set; }
 
-    [Parameter, EditorRequired]
-    public Action? OnConfirm { get; set; }
+    [Parameter, EditorRequired] public Action? OnConfirm { get; set; }
 
-    [Parameter, EditorRequired]
-    public Func<Task>? OnCorrect { get; set; }
+    [Parameter, EditorRequired] public Func<Task>? OnCorrect { get; set; }
 
-    [Parameter]
-    public string InputPlaceholder { get; set; } = "Input";
-    
-    [Parameter]
-    public Func<string?, Task>? OnInput { get; set; }
+    [Parameter] public string InputPlaceholder { get; set; } = "Input";
+
+    [Parameter] public Func<string?, Task>? OnInput { get; set; }
 
     /// <summary>
     /// Invoked only once, then assigned NULL
@@ -61,7 +54,7 @@
     private string _enteredValue = string.Empty;
     private bool _isCorrect;
     private int _attempts;
-        private const string? ValueInputId = "valueInput";
+    private const string? ValueInputId = "valueInput";
 
     private async Task Verify()
     {

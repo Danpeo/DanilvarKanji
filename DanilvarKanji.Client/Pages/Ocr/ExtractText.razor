@@ -1,6 +1,4 @@
 @page "/Extract-Text"
-@inject IFileSystemAccessServiceInProcess FileSystemAccessService
-@inject IJSRuntime jSRuntime
 
 @using DanilvarKanji.Client.Services.OCR
 @using DanilvarKanji.Shared.Requests.OCR
@@ -8,32 +6,36 @@
 @using KristofferStrube.Blazor.FileSystem
 @using KristofferStrube.Blazor.FileSystemAccess
 
-<PageTitle>Extract Japanese Text From Image</PageTitle>
+@inject IFileSystemAccessServiceInProcess FileSystemAccessService
+@inject IJSRuntime jSRuntime
+@inject IStringLocalizer<App> Loc;
+
+<PageTitle>@Loc["ExtractTextTitle"]</PageTitle>
 
 @if (_errorMessage is not null)
 {
     <ErrorAlertAlt Message="@_errorMessage"/>
 }
 <LongElement>
-    <button @onclick="OpenFilePicker" class="btn btn-lg btn-outline-primary display-3 mb-2">OPEN IMAGE</button>
+    <button @onclick="OpenFilePicker" class="btn btn-lg btn-outline-primary display-3 mb-2">@Loc["OpenImage"]</button>
 </LongElement>
 @if (_fileHandle != null)
 {
     <InputSelect @bind-Value="_langMode" class="form-control bg-secondary-2 txt-green-dim no-border mt-2 mb-2" id="langMode">
-        <option value="@LangMode.JapHorizontal">Horizontal</option>
-        <option value="@LangMode.JapVertical">Vertical</option>
-        <option value="@LangMode.JapHorizontalAlt">Horizontal Alternative</option>
-        <option value="@LangMode.JapVerticalAlt">Vertical Alternative</option>
+        <option value="@LangMode.JapHorizontal">@Loc["Horizontal"]</option>
+        <option value="@LangMode.JapVertical">@Loc["Vertical"]</option>
+        <option value="@LangMode.JapHorizontalAlt">@Loc["Horizontal"] Alt.</option>
+        <option value="@LangMode.JapVerticalAlt">@Loc["Vertical"] Alt.</option>
     </InputSelect>
     <div class="row">
         <div class="form-group col">
-            <label for="canvasSize">Canvas Size:</label>
+            <label for="canvasSize">@Loc["CanvasSize"]:</label>
             <input id="canvasSize" type="number" @oninput="WriteCanvasSize" class="form-control txt-green-dim  bg-secondary-2" value=@_canvasSize/>
         </div>
 
     </div>
     <LongElement>
-        <button @onclick="ExtractTextFromImage" class="btn btn-lg btn-primary mt-2 mb-2">Extract Text From @_fileHandle.Name</button>
+        <button @onclick="ExtractTextFromImage" class="btn btn-lg btn-primary mt-2 mb-2">@Loc["ExtractTextFrom"] @_fileHandle.Name</button>
     </LongElement>
 }
 <br/>

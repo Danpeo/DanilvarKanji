@@ -8,6 +8,6 @@ public static class LocalizerSettings
         new()
         {
             new CultureWithName("English", "en-US"),
-            new CultureWithName("русский", "ru-RU")
+            new CultureWithName("Русский", "ru-RU")
         };
 }

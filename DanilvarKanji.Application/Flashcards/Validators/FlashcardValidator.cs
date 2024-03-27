@@ -19,7 +19,7 @@ public class FlashcardValidator : ValidatorBase<Flashcard>
             .WithMessage("Back should have a value");
 
         RuleFor(f => f.RememberedInARow)
-            .GreaterThan(0)
-            .WithMessage("RememberedInARow should be greater than 0.");
+            .GreaterThan(-1)
+            .WithMessage("RememberedInARow should be greater than -1.");
     }
 }

@@ -4,13 +4,15 @@
 @using DanilvarKanji.Shared.Requests.Flashcards
 @using DanilvarKanji.Shared.Responses.Flashcards
 
-<PageTitle>Flashcards - @AppDisplaySettings.AppTitle</PageTitle>
+@inject IStringLocalizer<App> Loc;
 
-<h3 class="mb-5 display-3 txt-bright-pink main-font">Flashcards</h3>
+<PageTitle>@Loc["Flashcards"] - @AppDisplaySettings.AppTitle</PageTitle>
+
+<h3 class="mb-5 display-3 txt-bright-pink main-font">@Loc["Flashcards"]</h3>
 
 <div class="d-flex">
     <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/Add"))" class="btn btn-primary mb-2">
-        Add New Collection
+        @Loc["AddNewCollection"]
     </button>
 </div>
 
@@ -29,35 +31,34 @@ else
         <div class="col-md-3 mb-2">
             <div class="card bg-secondary-2">
                 <div class="card-body">
-                    <p>@collection.Id</p>
                     <h1 class="card-title fs-3 mb-3 jap-font txt-mid-pink text-center">
                         @collection.Name
                     </h1>
                     <p class="fs-6">
-                        @collection.Flashcards.Count flashcards,
+                        @collection.Flashcards.Count @Loc["Flashcards"].Value.ToLower(),
 
                         <span>
                             @collection.Flashcards.Where(f => f.DoRemember).ToList().Count
-                            memorized
+                            @Loc["Memorized"].Value.ToLower()
                         </span>
                     </p>
                     <LongElement>
                         <button class="btn btn-lg btn-primary mb-2"
                                 @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/Review/{collection.Id}"))">
-                            Review
+                            @Loc["Review"]
                         </button>
                     </LongElement>
                     <button class="btn btn-outline-primary"
                             @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/{collection.Id}"))">
-                        View
+                        @Loc["ToView"]
                     </button>
                     <button class="btn btn-outline-warning"
                             @onclick="@(() => ResetCollection(collection))">
-                        Reset
+                        @Loc["Reset"]
                     </button>
                     <button class="btn btn-outline-danger"
                             @onclick="@(() => DeleteCollection(collection.Id))">
-                        Delete
+                        @Loc["Delete"]
                     </button>
 
                 </div>

@@ -102,4 +102,112 @@
     <data name="ValueTooSmall" xml:space="preserve">
         <value>The value must be greater than </value>
     </data>
+    <data name="Settings" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="LogOut" xml:space="preserve">
+        <value>Log Out</value>
+    </data>
+    <data name="Admin" xml:space="preserve">
+        <value>Admin</value>
+    </data>
+    <data name="Dictionary" xml:space="preserve">
+        <value>Dictionary</value>
+    </data>
+    <data name="ExtractText" xml:space="preserve">
+        <value>Text Extractor</value>
+    </data>
+    <data name="AddNewChar" xml:space="preserve">
+        <value>Add New Character</value>
+    </data>
+    <data name="Flashcards" xml:space="preserve">
+        <value>Flashcards</value>
+    </data>
+    <data name="MyLearning" xml:space="preserve">
+        <value>My Learning</value>
+    </data>
+    <data name="BackButton" xml:space="preserve">
+        <value>BACK</value>
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value>Reset</value>
+    </data>
+    <data name="Authorization" xml:space="preserve">
+        <value>Authorization</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="LogInToYourAccount" xml:space="preserve">
+        <value>Log in to your account</value>
+    </data>
+    <data name="AccountRegistered" xml:space="preserve">
+        <value>Your account has been successfully registered!</value>
+    </data>
+    <data name="Registration" xml:space="preserve">
+        <value>Registration</value>
+    </data>
+    <data name="RegisterNewAccount" xml:space="preserve">
+        <value>Register New Account</value>
+    </data>
+    <data name="UserName" xml:space="preserve">
+        <value>User Name</value>
+    </data>
+    <data name="LoggenIn" xml:space="preserve">
+        <value>You have successfully logged into your account!</value>
+    </data>
+    <data name="GenCreds" xml:space="preserve">
+        <value>Generate Credentials</value>
+    </data>
+    <data name="PasswordRepeat" xml:space="preserve">
+        <value>Repeat the password</value>
+    </data>
+    <data name="ExtractTextTitle" xml:space="preserve">
+        <value>Extract Japanese Text From Image</value>
+    </data>
+    <data name="OpenImage" xml:space="preserve">
+        <value>OPEN IMAGE</value>
+    </data>
+    <data name="Horizontal" xml:space="preserve">
+        <value>Horizontal</value>
+    </data>
+    <data name="Vertical" xml:space="preserve">
+        <value>Vertical</value>
+    </data>
+    <data name="CanvasSize" xml:space="preserve">
+        <value>Canvas Size</value>
+    </data>
+    <data name="ExtractTextFrom" xml:space="preserve">
+        <value>Extract Text From</value>
+    </data>
+    <data name="AddNewCollection" xml:space="preserve">
+        <value>Add New Collection</value>
+    </data>
+    <data name="ToView" xml:space="preserve">
+        <value>View</value>
+    </data>
+    <data name="Review" xml:space="preserve">
+        <value>Review</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+    <data name="Memorized" xml:space="preserve">
+        <value>Memorized</value>
+    </data>
+    <data name="Create" xml:space="preserve">
+        <value>Create</value>
+    </data>
+    <data name="RemoveLast" xml:space="preserve">
+        <value>Remove Last</value>
+    </data>
+    <data name="Add" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="Collection" xml:space="preserve">
+        <value>Collection</value>
+    </data>
+    <data name="CollectionName" xml:space="preserve">
+        <value>Collection Name</value>
+    </data>
 </root>

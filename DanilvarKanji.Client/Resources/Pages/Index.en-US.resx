@@ -144,4 +144,7 @@
   <data name="ReviewNew" xml:space="preserve">
     <value>Review</value>
   </data>
+  <data name="YourFutureQueue" xml:space="preserve">
+    <value>Your Reviews In Future</value>
+  </data>
 </root>

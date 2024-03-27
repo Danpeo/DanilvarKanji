@@ -5,34 +5,40 @@
 @using DanilvarKanji.Shared.Requests.Auth
 
 @inject NavigationManager NavManager;
+@inject IStringLocalizer<App> Loc;
 
-<PageTitle>Register - @AppDisplaySettings.AppTitle</PageTitle>
+<PageTitle>@Loc["Registration"] - @AppDisplaySettings.AppTitle</PageTitle>
 
-<h3 class="mb-5 display-3 animated-blink main-font">Регистрация</h3>
+<h3 class="mb-5 display-3 animated-blink main-font">@Loc["Registration"]</h3>
 
 
 <EditForm Model="_registerUserRequest" OnValidSubmit="HandleSubmitAsync" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
 
-    <FormSection Title="Register" HelpText="Register new account">
+    <FormSection Title="@(new string($"{Loc["Registration"]}"))" HelpText="@(new string($"{Loc["RegisterNewAccount"]}"))">
 
-        <FormFieldSet Label="User Name" LabelFor="@UsernameElid" HelpText="">
-            <InputText @bind-Value="_registerUserRequest.UserName" class="form-control bg-secondary txt-white jap-font no-border" id="@UsernameElid" placeholder="User Name"/>
+        <FormFieldSet Label="@(new string($"{Loc["UserName"]}"))" LabelFor="@UsernameElid" HelpText="">
+            <InputText @bind-Value="_registerUserRequest.UserName" class="form-control bg-secondary txt-white jap-font no-border"
+                       id="@UsernameElid" placeholder="@(new string($"{Loc["UserName"]}"))"/>
             <ValidationMessage For="@(() => _registerUserRequest.UserName)"/>
         </FormFieldSet>
 
         <FormFieldSet Label="Email" LabelFor="@EmailElId" HelpText="">
-            <InputText @bind-Value="_registerUserRequest.Email" class="form-control bg-secondary txt-white jap-font no-border" id="@EmailElId" placeholder="Email"/>
+            <InputText @bind-Value="_registerUserRequest.Email" class="form-control bg-secondary txt-white jap-font no-border"
+                       id="@EmailElId" placeholder="Email"/>
             <ValidationMessage For="@(() => _registerUserRequest.Email)"/>
         </FormFieldSet>
 
-        <FormFieldSet Label="Password" LabelFor="@PasswordElId">
-            <InputText @bind-Value="_registerUserRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border" id="@PasswordElId" placeholder="Password"/>
+        <FormFieldSet Label="@(new string($"{Loc["Password"]}"))" LabelFor="@PasswordElId">
+            <InputText @bind-Value="_registerUserRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border"
+                       id="@PasswordElId" placeholder="@(new string($"{Loc["Password"]}"))"/>
             <ValidationMessage For="@(() => _registerUserRequest.Password)"/>
         </FormFieldSet>
 
-        <FormFieldSet Label="Password again" LabelFor="passwordRepeat">
-            <InputText @bind-Value="_registerUserRequest.PasswordRepeat" type="password" class="form-control bg-secondary txt-white jap-font no-border" id="passwordRepeat" placeholder="Password again"/>
+        <FormFieldSet Label="@(new string($"{Loc["PasswordRepeat"]}"))" LabelFor="passwordRepeat">
+            <InputText @bind-Value="_registerUserRequest.PasswordRepeat" type="password"
+                       class="form-control bg-secondary txt-white jap-font no-border" id="passwordRepeat"
+                       placeholder="@(new string($"{Loc["PasswordRepeat"]}"))"/>
             <ValidationMessage For="@(() => _registerUserRequest.PasswordRepeat)"/>
         </FormFieldSet>
 
@@ -51,7 +57,7 @@
 
     @if (_submitSuccessful)
     {
-        <SuccessAlertAlt Message="Your account was registered successfully!"/>
+        <SuccessAlertAlt Message="@(new string($"{Loc["AccountRegistered"]}"))"/>
         NavManager.NavigateTo("/register-success");
     }
     else if (_errorMessage is not null)
@@ -63,13 +69,13 @@
         <div class="row">
             <div class="offset-4 col-8 text-right">
                 <button class="btn btn-lg btn-outline-secondary" type="button" @onclick="GenerateCredentials">
-                    Generate Credentials
+                    @Loc["GenCreds"]
                 </button>
                 <button class="btn btn-lg btn-outline-secondary" type="button"
                         @onclick="@(() => _registerUserRequest = new RegisterUserRequest())">
-                    Reset
+                    @Loc["Reset"]
                 </button>
-                <button class="btn btn-lg btn-primary" type="submit">Register</button>
+                <button class="btn btn-lg btn-primary" type="submit">@Loc["Register"]</button>
             </div>
         </div>
     </div>

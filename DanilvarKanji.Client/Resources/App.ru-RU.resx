@@ -102,4 +102,112 @@
     <data name="ValueTooSmall" xml:space="preserve">
         <value>Значение должно быть больше чем </value>
     </data>
+    <data name="LogOut" xml:space="preserve">
+        <value>Выйти</value>
+    </data>
+    <data name="Admin" xml:space="preserve">
+        <value>Админ</value>
+    </data>
+    <data name="Dictionary" xml:space="preserve">
+        <value>Словарь</value>
+    </data>
+    <data name="ExtractText" xml:space="preserve">
+        <value>Извлекатель текста</value>
+    </data>
+    <data name="AddNewChar" xml:space="preserve">
+        <value>Добавить новый иероглиф</value>
+    </data>
+    <data name="Flashcards" xml:space="preserve">
+        <value>Флэш-карты</value>
+    </data>
+    <data name="Settings" xml:space="preserve">
+        <value>Настройки</value>
+    </data>
+    <data name="MyLearning" xml:space="preserve">
+        <value>Мое изучение</value>
+    </data>
+    <data name="BackButton" xml:space="preserve">
+        <value>НАЗАД</value>
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value>Сбросить</value>
+    </data>
+    <data name="Authorization" xml:space="preserve">
+        <value>Авторизация</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Пароль</value>
+    </data>
+    <data name="LogInToYourAccount" xml:space="preserve">
+        <value>Войти в свой аккаунт</value>
+    </data>
+    <data name="AccountRegistered" xml:space="preserve">
+        <value>Ваша учетная запись успешно зарегистрирована!</value>
+    </data>
+    <data name="Registration" xml:space="preserve">
+        <value>Регистрация</value>
+    </data>
+    <data name="RegisterNewAccount" xml:space="preserve">
+        <value>Зарегестрировать новый аккаунт</value>
+    </data>
+    <data name="UserName" xml:space="preserve">
+        <value>Имя пользователя</value>
+    </data>
+    <data name="LoggenIn" xml:space="preserve">
+        <value>Вы успешно вошли в аккаунт!</value>
+    </data>
+    <data name="GenCreds" xml:space="preserve">
+        <value>Сгенерировать учетные данные</value>
+    </data>
+    <data name="PasswordRepeat" xml:space="preserve">
+        <value>Повтор пароля</value>
+    </data>
+    <data name="ExtractTextTitle" xml:space="preserve">
+        <value>Извлечеть японский текст из изображения</value>
+    </data>
+    <data name="OpenImage" xml:space="preserve">
+        <value>ОТКРЫТЬ ИЗОБРАЖЕНИЕ</value>
+    </data>
+    <data name="Horizontal" xml:space="preserve">
+        <value>Горизонтальный</value>
+    </data>
+    <data name="Vertical" xml:space="preserve">
+        <value>Вертикальный</value>
+    </data>
+    <data name="CanvasSize" xml:space="preserve">
+        <value>Размер холста</value>
+    </data>
+    <data name="ExtractTextFrom" xml:space="preserve">
+        <value>Извлечь текст из</value>
+    </data>
+    <data name="AddNewCollection" xml:space="preserve">
+        <value>Добавить новую коллекцию</value>
+    </data>
+    <data name="ToView" xml:space="preserve">
+        <value>Просмотреть</value>
+    </data>
+    <data name="Review" xml:space="preserve">
+        <value>Ревью</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Удалить</value>
+    </data>
+    <data name="Memorized" xml:space="preserve">
+        <value>Выучено</value>
+    </data>
+    <data name="Create" xml:space="preserve">
+        <value>Создать</value>
+    </data>
+    <data name="RemoveLast" xml:space="preserve">
+        <value>Удалить последний</value>
+    </data>
+    <data name="Add" xml:space="preserve">
+        <value>Добавить</value>
+    </data>
+    <data name="Collection" xml:space="preserve">
+        <value>Коллекция</value>
+    </data>
+    <data name="CollectionName" xml:space="preserve">
+        <value>Название коллекции</value>
+    </data>
 </root>

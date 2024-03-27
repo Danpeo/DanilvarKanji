@@ -2645,7 +2645,8 @@
           "FluentValidation.AspNetCore": "11.3.0",
           "FluentValidation.DependencyInjectionExtensions": "11.8.0",
           "MediatR": "12.1.1",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14"
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.14",
+          "Tesseract": "5.2.0"
         },
         "compile": {
           "bin/placeholder/DanilvarKanji.Application.dll": {}

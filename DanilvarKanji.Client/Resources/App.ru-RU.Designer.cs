@@ -60,6 +60,150 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ваша учетная запись успешно зарегистрирована!.
+        /// </summary>
+        internal static string AccountRegistered {
+            get {
+                return ResourceManager.GetString("AccountRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавить.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавить новый иероглиф.
+        /// </summary>
+        internal static string AddNewChar {
+            get {
+                return ResourceManager.GetString("AddNewChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавить новую коллекцию.
+        /// </summary>
+        internal static string AddNewCollection {
+            get {
+                return ResourceManager.GetString("AddNewCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Админ.
+        /// </summary>
+        internal static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Авторизация.
+        /// </summary>
+        internal static string Authorization {
+            get {
+                return ResourceManager.GetString("Authorization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to НАЗАД.
+        /// </summary>
+        internal static string BackButton {
+            get {
+                return ResourceManager.GetString("BackButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Размер холста.
+        /// </summary>
+        internal static string CanvasSize {
+            get {
+                return ResourceManager.GetString("CanvasSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Коллекция.
+        /// </summary>
+        internal static string Collection {
+            get {
+                return ResourceManager.GetString("Collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Название коллекции.
+        /// </summary>
+        internal static string CollectionName {
+            get {
+                return ResourceManager.GetString("CollectionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать.
+        /// </summary>
+        internal static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Словарь.
+        /// </summary>
+        internal static string Dictionary {
+            get {
+                return ResourceManager.GetString("Dictionary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Извлекатель текста.
+        /// </summary>
+        internal static string ExtractText {
+            get {
+                return ResourceManager.GetString("ExtractText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Извлечь текст из.
+        /// </summary>
+        internal static string ExtractTextFrom {
+            get {
+                return ResourceManager.GetString("ExtractTextFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Извлечеть японский текст из изображения.
+        /// </summary>
+        internal static string ExtractTextTitle {
+            get {
+                return ResourceManager.GetString("ExtractTextTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Завершить.
         /// </summary>
         internal static string Fin {
@@ -69,11 +213,38 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Флэш-карты.
+        /// </summary>
+        internal static string Flashcards {
+            get {
+                return ResourceManager.GetString("Flashcards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сгенерировать учетные данные.
+        /// </summary>
+        internal static string GenCreds {
+            get {
+                return ResourceManager.GetString("GenCreds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Перейти к ревью?.
         /// </summary>
         internal static string GoToReview {
             get {
                 return ResourceManager.GetString("GoToReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Горизонтальный.
+        /// </summary>
+        internal static string Horizontal {
+            get {
+                return ResourceManager.GetString("Horizontal", resourceCulture);
             }
         }
         
@@ -105,11 +276,56 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вы успешно вошли в аккаунт!.
+        /// </summary>
+        internal static string LoggenIn {
+            get {
+                return ResourceManager.GetString("LoggenIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Войти.
         /// </summary>
         internal static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Войти в свой аккаунт.
+        /// </summary>
+        internal static string LogInToYourAccount {
+            get {
+                return ResourceManager.GetString("LogInToYourAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выйти.
+        /// </summary>
+        internal static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выучено.
+        /// </summary>
+        internal static string Memorized {
+            get {
+                return ResourceManager.GetString("Memorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мое изучение.
+        /// </summary>
+        internal static string MyLearning {
+            get {
+                return ResourceManager.GetString("MyLearning", resourceCulture);
             }
         }
         
@@ -186,6 +402,33 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ОТКРЫТЬ ИЗОБРАЖЕНИЕ.
+        /// </summary>
+        internal static string OpenImage {
+            get {
+                return ResourceManager.GetString("OpenImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль.
+        /// </summary>
+        internal static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повтор пароля.
+        /// </summary>
+        internal static string PasswordRepeat {
+            get {
+                return ResourceManager.GetString("PasswordRepeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пароли должны совпадать.
         /// </summary>
         internal static string PasswordRepeatMismath {
@@ -258,11 +501,83 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Зарегестрировать новый аккаунт.
+        /// </summary>
+        internal static string RegisterNewAccount {
+            get {
+                return ResourceManager.GetString("RegisterNewAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация.
+        /// </summary>
+        internal static string Registration {
+            get {
+                return ResourceManager.GetString("Registration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить последний.
+        /// </summary>
+        internal static string RemoveLast {
+            get {
+                return ResourceManager.GetString("RemoveLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сбросить.
+        /// </summary>
+        internal static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ревью.
+        /// </summary>
+        internal static string Review {
+            get {
+                return ResourceManager.GetString("Review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настройки.
+        /// </summary>
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Обучение окончено.
         /// </summary>
         internal static string StudyIsComplete {
             get {
                 return ResourceManager.GetString("StudyIsComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Просмотреть.
+        /// </summary>
+        internal static string ToView {
+            get {
+                return ResourceManager.GetString("ToView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имя пользователя.
+        /// </summary>
+        internal static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         
@@ -281,6 +596,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string ValueTooSmall {
             get {
                 return ResourceManager.GetString("ValueTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вертикальный.
+        /// </summary>
+        internal static string Vertical {
+            get {
+                return ResourceManager.GetString("Vertical", resourceCulture);
             }
         }
         

@@ -47,7 +47,7 @@ public class CreateReviewSessionHandler : IRequestHandler<CreateReviewSessionCom
 
         if (await _unitOfWork.CompleteAsync())
         {
-            log(LogType.Info);
+            log(LogLevel.Information);
 
             await _publisher.Publish(
                 new CompletedReviewDomainEvent(reviewSession.Exercises, reviewSession.AppUser,
@@ -55,20 +55,20 @@ public class CreateReviewSessionHandler : IRequestHandler<CreateReviewSessionCom
             return Result.Success(reviewSession.Id);
         }
 
-        log(LogType.Error);
+        log(LogLevel.Error);
 
         return Result.Failure<string>(General.UnProcessableRequest);
 
-        void log(LogType type)
+        void log(LogLevel logLevel)
         {
-            if (type == LogType.Error)
+            if (logLevel == LogLevel.Error)
             {
                 _logger.LogError("Failed to create Review Session: {@exercises}, {@appUser}, {@dt}",
                     exercises,
                     request.AppUser,
                     reviewSession!.ReviewDataTime);
             }
-            else if (type == LogType.Info)
+            else if (logLevel == LogLevel.Information)
             {
                 _logger.LogInformation("Created Review Session: {@exercises}, {@appUser}, {@dt}",
                     exercises,

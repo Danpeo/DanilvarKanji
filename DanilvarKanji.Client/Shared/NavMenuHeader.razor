@@ -13,12 +13,17 @@
                 <CultureSelector/>
             </li>
             <NotAuthorized>
-                <NavLink class="btn btn-primary" href="register">Register</NavLink>
-                <NavLink class="btn btn-primary" href="login">Log In</NavLink>
+                <li class="nav-item active mx-1">
+                    <NavLink class="btn btn-primary" href="register">@Loc["Register"]</NavLink>
+                </li>
+                <li class="nav-item active">
+                    <NavLink class="btn btn-primary" href="login">@Loc["Login"]</NavLink>
+                </li>
+
             </NotAuthorized>
             <Authorized>
                 <HasAnyRole Roles="@(new[] { "Admin, SuperAdmin" })">
-                    <p>Admin</p>
+                    <p>@Loc["Admin"]</p>
                 </HasAnyRole>
                 <p class="mx-2 card-text txt-mid-pink fs-5">
 
@@ -26,21 +31,21 @@
                     <span class="txt-green-dim fs-6">
                         <GetUserJlpt/>
                     </span>
-                    <span class="txt-yellow">
+                    @*<span class="txt-yellow">
                         @(new string($" {_user?.XP} XP"))
-                    </span>
+                    </span>*@
                 </p>
 
                 <li class="nav-item active mx-1">
                     <NavLink
                         href="/User/Learning-Settings"
                         class="btn btn-outline-primary ">
-                        Settings
+                        @Loc["Settings"]
                     </NavLink>
                 </li>
 
                 <li class="nav-item active">
-                    <button class="btn btn-primary bg-light-pink txt-dark" @onclick="LogoutAsync">Log Out</button>
+                    <button class="btn btn-primary bg-light-pink txt-dark" @onclick="LogoutAsync">@Loc["LogOut"]</button>
                 </li>
             </Authorized>
         </ul>
@@ -53,16 +58,22 @@
 
     [Inject] public required IAuthService AuthService { get; set; }
 
+    /*
     [Inject] public required IUserService UserService { get; set; }
+    */
 
     [Inject] public required NavigationManager NavigationManager { get; set; }
 
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
+
+    /*
     private UserResponseBase? _user;
 
     protected override async Task OnInitializedAsync()
     {
         _user = await UserService.GetUserAsync();
     }
+    */
 
     private async Task LogoutAsync()
     {

@@ -123,6 +123,15 @@ namespace DanilvarKanji.Client.Resources.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Reviews In Future.
+        /// </summary>
+        internal static string YourFutureQueue {
+            get {
+                return ResourceManager.GetString("YourFutureQueue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your Review Queue.
         /// </summary>
         internal static string YourReviewQueue {

@@ -45,4 +45,7 @@
     <data name="StudyNew" xml:space="preserve">
         <value>Изучать</value>
     </data>
+    <data name="YourFutureQueue" xml:space="preserve">
+        <value>Очередь ревью на будущее</value>
+    </data>
 </root>

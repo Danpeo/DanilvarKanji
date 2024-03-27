@@ -6,7 +6,6 @@
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 @using System.Net
-@using DanilvarKanji.Client.Services.Dictionary
 
 @inject IStringLocalizer<Index> Loc
 @inject NavigationManager NavManager
@@ -26,9 +25,7 @@
 
     <NotAuthorized>
         <h1 class="display-4 txt-green-dim main-font ">
-
             @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
-            V✪⋏✪V
         </h1>
 
         <NavLink href="register" class="btn btn-elg btn-primary mx-1">@Loc["Register"]</NavLink>
@@ -76,7 +73,7 @@
     <DisplayReviewQueue/>
 
     <h2 class="display-6 txt-green-dim main-font">
-       Your Reviews In Future
+        @Loc["YourFutureQueue"]
     </h2>
     <DisplayFutureReviewQueue/>
     

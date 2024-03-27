@@ -136,14 +136,14 @@
                 OnForgot="@(() => OnForgotExercise(ReviewType.Point, ExerciseType.Meaning))"
                 OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Meaning))"/>
         </div>);
-        @*_exercises.Add(@<div class="fade-in-el">
+        _exercises.Add(@<div class="fade-in-el">
             <VerifyMeaningByInput
                 OnConfirm="@(async () => await OnConfirmExercise())"
                 OnForgot="@(() => OnForgotExercise(ReviewType.Input, ExerciseType.Meaning))"
                 OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Meaning))"
                 OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Input, ExerciseType.Meaning))"
                 CharacterForVerification="_character"/>
-        </div>);*@
+        </div>);
     }
 
     private async Task OnCorrectPointExercise(ExerciseType exerciseType)

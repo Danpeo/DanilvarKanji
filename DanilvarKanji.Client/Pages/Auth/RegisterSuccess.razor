@@ -1,10 +1,13 @@
 @page "/register-success"
 
+@inject IStringLocalizer<App> Loc;
+
+
 <div class="text-center">
     <h1 class="display-3 main-font txt-bright-pink">
-        Your account was successfully registered!
+        @Loc["AccountRegistered"]
     </h1>
-    <NavLink href="login" class="btn btn-lg btn-primary">Log In</NavLink>
+    <NavLink href="login" class="btn btn-lg btn-primary">@Loc["Login"]</NavLink>
 </div>
 
 @code {
