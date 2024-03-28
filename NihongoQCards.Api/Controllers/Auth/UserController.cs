@@ -3,6 +3,7 @@ using DanilvarKanji.Application.Users.Queries;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Shared.Requests.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -100,4 +101,19 @@ public class UserController : ApiController
 
         return HandleFailure(result);
     }
+    
+    [HttpPut("UpdateUser")]
+    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UpdateUserAsync(string email, [FromBody] UpdateUserRequest request)
+    {
+        var result = await Mediator.Send(new UpdateUserCommand(email, request.NewUserName, request.NewUserRole));
+        
+        if (result.IsSuccess)
+            return Ok(result.Value);
+
+        return HandleFailure(result);
+    }
+    
+    
 }

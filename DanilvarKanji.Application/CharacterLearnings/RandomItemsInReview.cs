@@ -1,3 +1,5 @@
+namespace DanilvarKanji.Application.CharacterLearnings;
+
 public class RandomItemsInReview
 {
     public List<string>? RandomItems { get; set; }

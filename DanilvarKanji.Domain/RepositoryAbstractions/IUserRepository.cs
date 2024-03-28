@@ -1,5 +1,6 @@
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Params;
+using Microsoft.AspNetCore.Identity;
 
 namespace DanilvarKanji.Domain.RepositoryAbstractions;
 
@@ -17,4 +18,5 @@ public interface IUserRepository
     Task UpdateUserXpAsync(int xp, string email);
     ValueTask<bool> AnyExistAsync();
     Task DeleteAsync(string email);
+    Task UpdateUserAsync(string email, string newUserName, string newUserRole);
 }

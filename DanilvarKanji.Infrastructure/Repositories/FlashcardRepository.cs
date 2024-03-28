@@ -52,7 +52,6 @@ public class FlashcardRepository : IFlashcardRepository
             collection.Flashcards = newCollection.Flashcards;
             _context.FlashcardCollections.Update(collection);
         }
-        
     }
 
     public async Task<FlashcardCollection?> GetCollectionAsync(string id, AppUser user) =>

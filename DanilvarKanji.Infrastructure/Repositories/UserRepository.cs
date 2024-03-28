@@ -3,6 +3,7 @@ using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Params;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -22,11 +23,23 @@ public class UserRepository : IUserRepository
 
     public async Task UpdateUserLearningSettingsAsync(string email, LearningSettings learningSettings)
     {
-        AppUser? user = await _context.AppUsers.FirstOrDefaultAsync(u => u!.Email == email);
+        AppUser? user = await GetUserByEmail(email);
         if (user != null)
         {
             user.JlptLevel = learningSettings.JlptLevel;
             user.QtyOfCharsForLearningForDay = learningSettings.QtyOfCharsForLearningForDay;
+        }
+    }
+
+    public async Task UpdateUserAsync(string email, string newUserName, string newUserRole)
+    {
+        AppUser? user = await GetUserByEmail(email);
+
+        if (user is not null)
+        {
+            user.UserName = newUserName;
+            user.AppUserRole = new IdentityRole(newUserRole);
+            _context.AppUsers.Update(user);
         }
     }
 
@@ -88,4 +101,7 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> ExistByEmail(string email) =>
         await _context.AppUsers.AnyAsync(x => x!.Email == email);
+
+    private async Task<AppUser?> GetUserByEmail(string email) =>
+        await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == email);
 }
