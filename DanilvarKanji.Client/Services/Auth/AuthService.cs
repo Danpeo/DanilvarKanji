@@ -176,7 +176,10 @@ public class AuthService : IAuthService
             return string.Empty;
 
         var jwt = new JwtSecurityToken(token);
+        var role = jwt.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+        /*
         Claim? role = jwt.Claims.FirstOrDefault(c => c.Type == JwtClaim.UserRole.ToString());
+        */
         return role != null ? role.Value : string.Empty;
     }
 }

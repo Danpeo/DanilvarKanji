@@ -38,7 +38,7 @@ public class UserRepository : IUserRepository
         if (user is not null)
         {
             user.UserName = newUserName;
-            user.AppUserRole = new IdentityRole(newUserRole);
+            user.Role = newUserRole;
             _context.AppUsers.Update(user);
         }
     }

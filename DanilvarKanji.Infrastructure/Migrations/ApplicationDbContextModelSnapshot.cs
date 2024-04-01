@@ -31,9 +31,6 @@ namespace DanilvarKanji.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<string>("AppUserRoleId")
-                        .HasColumnType("text");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -74,9 +71,6 @@ namespace DanilvarKanji.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("ProfileImageId")
-                        .HasColumnType("text");
-
                     b.Property<int>("QtyOfCharsForLearningForDay")
                         .HasColumnType("integer");
 
@@ -88,6 +82,10 @@ namespace DanilvarKanji.Migrations
 
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
@@ -104,16 +102,12 @@ namespace DanilvarKanji.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserRoleId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
-
-                    b.HasIndex("ProfileImageId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -275,24 +269,6 @@ namespace DanilvarKanji.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("FlashcardCollections");
-                });
-
-            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.Image", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PublicId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Image");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.KanjiMeaning", b =>
@@ -603,21 +579,6 @@ namespace DanilvarKanji.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.AppUser", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "AppUserRole")
-                        .WithMany()
-                        .HasForeignKey("AppUserRoleId");
-
-                    b.HasOne("DanilvarKanji.Shared.Domain.Entities.Image", "ProfileImage")
-                        .WithMany()
-                        .HasForeignKey("ProfileImageId");
-
-                    b.Navigation("AppUserRole");
-
-                    b.Navigation("ProfileImage");
                 });
 
             modelBuilder.Entity("DanilvarKanji.Shared.Domain.Entities.CharacterLearning", b =>

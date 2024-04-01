@@ -2,6 +2,8 @@
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Client.Services.Auth
 @using DanilvarKanji.Shared.Domain.Entities
+@using DanilvarKanji.Shared.Domain.Enumerations
+@using DanilvarKanji.Shared.Requests.Users
 
 @inject IStringLocalizer<App> Loc;
 
@@ -20,6 +22,11 @@ else if (!_appUsers.Any())
 }
 else
 {
+    @*<LongElement>
+        <a class="btn btn-lg btn-primary mx-2" @onclick="async () => await UpdateAllUsers()">
+            @Loc["UpdateAll"]
+        </a>
+    </LongElement>*@
     <table class="table bg-secondary-2 txt-green-dim">
         <thead>
         <tr class="txt-mid-pink">
@@ -40,11 +47,19 @@ else
                 <td>@appUser.UserName</td>
                 <td>@appUser.Email</td>
                 <td>@appUser.RegistrationDate</td>
-                <td>@appUser.AppUserRole</td>
                 <td>
-
+                    <InputSelect @bind-Value="appUser.Role" class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
+                        <option value="@UserRole.User">Plain User</option>
+                        <option value="@UserRole.Admin">Admin</option>
+                        <option value="@UserRole.SuperAdmin">Super Admin</option>
+                    </InputSelect>
+                </td>
+                <td>
+                    <a class="btn btn-primary mx-2" @onclick="async () => await UpdateUserAsync(appUser.Email!, new UpdateUserRequest(appUser.UserName!, appUser.Role))">
+                        @Loc["Update"]
+                    </a>
                     <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteUserAsync(appUser.Email!)">
-                        Delete
+                        @Loc["Delete"]
                     </a>
                 </td>
             </tr>
@@ -54,7 +69,7 @@ else
 }
 
 @code {
-    [Inject] public IUserService UserService { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
 
     private List<AppUser>? _appUsers;
 
@@ -63,6 +78,35 @@ else
         try
         {
             _appUsers = (List<AppUser>?)await UserService.ListUsersAsync();
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private async Task UpdateUserAsync(string email, UpdateUserRequest request)
+    {
+        try
+        {
+            await UserService.UpdateUserAsync(email, request);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private async Task UpdateAllUsers()
+    {
+        try
+        {
+            foreach (AppUser appUser in _appUsers!)
+            {
+                await UserService.UpdateUserAsync(appUser.Email!, new UpdateUserRequest(appUser.UserName!, appUser.Role));
+            }
         }
         catch (HttpRequestException e)
         {

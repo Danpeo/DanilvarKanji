@@ -1,7 +1,7 @@
 using DanilvarKanji.Infrastructure.Options;
 using Microsoft.Extensions.Options;
 
-namespace DanilvarKanji.OptionsSetup;
+namespace DanilvarKanji.Setup;
 
 public class JwtOptionsSetup : IConfigureOptions<JwtOptions>
 {

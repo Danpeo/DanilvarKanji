@@ -31,7 +31,7 @@ public class UserController : ApiController
 
         return Unauthorized();
     }
-    
+
     /*
     [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
     */
@@ -56,7 +56,7 @@ public class UserController : ApiController
         var result = await Mediator.Send(new DeleteUserCommand(email));
         return result.IsSuccess ? Ok(result.Value) : HandleFailure(result);
     }
-    
+
     [HttpGet("LearningSettings")]
     [ProducesResponseType(typeof(LearningSettings), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -65,7 +65,7 @@ public class UserController : ApiController
         AppUser? user = await GetCurrentUser(_userManager);
 
         LearningSettings? settings = await Mediator.Send(new GetUserLearningSettingsQuery(user!.Email!));
-        
+
         if (settings is not null)
             return Ok(settings);
 
@@ -80,7 +80,7 @@ public class UserController : ApiController
         AppUser? user = await GetCurrentUser(_userManager);
 
         var result = await Mediator.Send(new UpdateUserLearningSettingsCommand(user!.Email!, learningSettings));
-        
+
         if (result.IsSuccess)
             return Ok(result.Value);
 
@@ -95,25 +95,23 @@ public class UserController : ApiController
         AppUser? user = await GetCurrentUser(_userManager);
 
         var result = await Mediator.Send(new UpdateUserXpCommand(xp, user!.Email!));
-        
+
         if (result.IsSuccess)
             return Ok(result.Value);
 
         return HandleFailure(result);
     }
-    
+
     [HttpPut("UpdateUser")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateUserAsync(string email, [FromBody] UpdateUserRequest request)
     {
         var result = await Mediator.Send(new UpdateUserCommand(email, request.NewUserName, request.NewUserRole));
-        
+
         if (result.IsSuccess)
             return Ok(result.Value);
 
         return HandleFailure(result);
     }
-    
-    
 }

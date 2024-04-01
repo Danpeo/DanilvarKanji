@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Text;
 using DanilvarKanji.Application;
 using DanilvarKanji.Application.Behaviors;
@@ -6,12 +7,13 @@ using DanilvarKanji.Extensions;
 using DanilvarKanji.Mappings;
 using DanilvarKanji.Infrastructure;
 using DanilvarKanji.Infrastructure.Data;
-using DanilvarKanji.OptionsSetup;
+using DanilvarKanji.Setup;
 using DanilvarKanji.Shared.Domain.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
@@ -19,7 +21,9 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentityCore<AppUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true)
     .AddFluentValidationClientsideAdapters();
@@ -105,8 +109,6 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.ConfigureOptions<JwtOptionsSetup>();
-
-builder.Services.AddAuthorization();
 
 /*
 builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();

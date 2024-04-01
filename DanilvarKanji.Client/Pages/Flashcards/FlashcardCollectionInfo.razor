@@ -5,6 +5,8 @@
 @using DanilvarKanji.Shared.Requests.Flashcards
 @using DanilvarKanji.Shared.Responses.Flashcards
 
+@inject IStringLocalizer<App> Loc;
+
 <ForbidIfNotAuthorized>
     <FlashcardDetails Flashcard="_selectedFlashcard" FlashcardCollection="_flashcardCollection"/>
     @if (_flashcardCollection is not null)
@@ -33,10 +35,10 @@
                     <td>@flashcard.Back</td>
                     <td>
                         <a class="btn btn-primary mx-2" @onclick="() => _selectedFlashcard = flashcard">
-                            View
+                            @Loc["View"]
                         </a>
                         <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteFlashcard(flashcard.Id)">
-                            Delete
+                            @Loc["Delete"]
                         </a>
                     </td>
                 </tr>

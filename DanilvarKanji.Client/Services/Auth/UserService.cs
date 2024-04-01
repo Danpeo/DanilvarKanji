@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using DanilvarKanji.Shared.Domain.Entities;
 using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Shared.Requests.Users;
 using DanilvarKanji.Shared.Responses.User;
 
 namespace DanilvarKanji.Client.Services.Auth;
@@ -53,13 +54,13 @@ public class UserService : IUserService
         string requestUri = $"api/Users/All?PageNumber={pageNumber}&PageSize={pageSize}";
         return await Http.ListAsync<AppUser>(requestUri, _httpClient);
     }
-    
+
     public async Task DeleteUserAsync(string email)
     {
         string requestUri = $"api/Users/{email}";
         await Http.DeleteAsync(requestUri, _httpClient);
     }
-    
+
     public async Task UpdateLearningSettingsAsync(LearningSettings settings)
     {
         HttpResponseMessage response =
@@ -71,4 +72,7 @@ public class UserService : IUserService
             throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
         }
     }
+
+    public async Task UpdateUserAsync(string userEmail, UpdateUserRequest request) =>
+        await Http.PutAsync(request, $"api/Users/UpdateUser?email={userEmail}", _httpClient);
 }

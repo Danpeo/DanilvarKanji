@@ -2,7 +2,7 @@ using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Domain.Settings;
 using DanilvarKanji.Shared.Domain.Settings;
 
-namespace DanilvarKanji.OptionsSetup;
+namespace DanilvarKanji.Setup;
 
 public static class ApplicationSettingsSetup
 {

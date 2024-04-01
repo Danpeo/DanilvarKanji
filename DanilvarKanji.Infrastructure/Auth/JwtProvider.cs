@@ -33,7 +33,10 @@ public class JwtProvider : IJwtProvider
             new(JwtRegisteredClaimNames.Sub, user.Id),
             new(JwtRegisteredClaimNames.Email, user.Email!),
             new(JwtRegisteredClaimNames.Name, user.UserName!),
-            new(JwtClaim.UserRole.ToString(), user.AppUserRole.ToString()),
+            /*
+            new(JwtClaim.UserRole.ToString(), user.Role),
+            */
+            new(ClaimTypes.Role, user.Role),
             new(JwtClaim.XP.ToString(), user.XP.ToString())
         };
 

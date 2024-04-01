@@ -27,26 +27,26 @@
                        placeholder="@(new string($"{Loc["Password"]}"))"/>
             <ValidationMessage For="@(() => _loginRequest.Password)"/>
         </FormFieldSet>
-    </FormSection>
 
-    @if (_submitSuccessful)
-    {
-        <SuccessAlertAlt Message="@(new string($"{Loc["LoggedIn"]}"))"/>
-        NavManager.NavigateTo("/", true);
-    }
-    else if (_errorMessage is not null)
-    {
-        <ErrorAlertAlt Message="@_errorMessage"/>
-    }
+        @if (_submitSuccessful)
+        {
+            <SuccessAlertAlt Message="@(new string($"{Loc["LoggedIn"]}"))"/>
+            NavManager.NavigateTo("/", true);
+        }
+        else if (_errorMessage is not null)
+        {
+            <ErrorAlertAlt Message="@_errorMessage"/>
+        }
 
-    <div class="mt-4 mb-5">
-        <div class="row">
-            <div class="offset-4 col-8 text-right">
-                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _loginRequest = new LoginUserRequest())">@Loc["Reset"]</button>
-                <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">@Loc["Login"]</button>
+        <div class="mt-4 mb-2">
+            <div class="row">
+                <div class="offset-4 col-8 text-right">
+                    <button class="btn btn-outline-secondary" type="button" @onclick="@(() => _loginRequest = new LoginUserRequest())">@Loc["Reset"]</button>
+                    <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">@Loc["Login"]</button>
+                </div>
             </div>
         </div>
-    </div>
+    </FormSection>
 
 </EditForm>
 
@@ -68,7 +68,6 @@
         try
         {
             _response = await AuthenticationService.LoginAsync(_loginRequest);
-
             _errorMessage = null;
 
             if (!string.IsNullOrEmpty(_response?.JwtToken))
