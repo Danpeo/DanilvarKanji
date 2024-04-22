@@ -167,4 +167,55 @@
     <data name="Users" xml:space="preserve">
         <value />
     </data>
+    <data name="EnterCharacterDefinition" xml:space="preserve">
+        <value />
+    </data>
+    <data name="ForExample" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Definition" xml:space="preserve">
+        <value />
+    </data>
+    <data name="CharacterBasicDetails" xml:space="preserve">
+        <value />
+    </data>
+    <data name="CharacterBasicDetailsText" xml:space="preserve">
+        <value />
+    </data>
+    <data name="StrokeCount" xml:space="preserve">
+        <value />
+    </data>
+    <data name="CharacterType" xml:space="preserve">
+        <value />
+    </data>
+    <data name="NewToJapanese1" xml:space="preserve">
+        <value />
+    </data>
+    <data name="NewToJapanese2" xml:space="preserve">
+        <value />
+    </data>
+    <data name="NihongoQuest" xml:space="preserve">
+        <value />
+    </data>
+    <data name="DoYouRemember" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Forgot" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Remember" xml:space="preserve">
+        <value />
+    </data>
+    <data name="IRememberItPerfectly" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Front" xml:space="preserve">
+        <value />
+    </data>
+    <data name="FlashcardBack" xml:space="preserve">
+        <value />
+    </data>
+    <data name="TimesInARow" xml:space="preserve">
+        <value />
+    </data>
 </root>

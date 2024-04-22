@@ -4,21 +4,23 @@
 @using System.Net
 @using DanilvarKanji.Client.State
 
+@inject IStringLocalizer<App> Loc;
+
 <div class="text-center">
     <p class="text-body txt-green-dim fs-1 main-font">
-        Enter character definition
+        @(Loc["EnterCharacterDefinition"])
     </p>
-    <p class="fs-3"><i>For example: <span class="txt-mid-pink">蛍</span></i></p>
+    <p class="fs-3"><i>@(Loc["ForExample"]): <span class="txt-mid-pink">蛍</span></i></p>
 </div>
 
 <div class="">
     <EditForm Model="_enteredCharacter" OnSubmit="OnSubmitAsync">
         <InputText @bind-Value="_enteredCharacter"
                    class="form-control-plaintext input-lg text-center display-6 bg-main txt-mid-pink jap-font"
-                   id="charInput" placeholder="Character Definition"/>
+                   id="charInput" placeholder=@(Loc["Definition"])/>
 
         <div class="mt-4 d-grid gap-2">
-            <button class="btn btn-elg btn-primary" type="submit">Confirm</button>
+            <button class="btn btn-elg btn-primary" type="submit">@Loc["Add"]</button>
         </div>
     </EditForm>
 

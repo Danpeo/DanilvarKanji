@@ -24,11 +24,11 @@ public static class EnumExtension
     
     public static string FromExerciseTypeToText(this ExerciseResponseBase e)
     {
-        return e.ExerciseType switch
+        return e.ExerciseSubject switch
         {
-            ExerciseType.Meaning => "Meaning",
-            ExerciseType.Kunyomi => "Kunyomi",
-            ExerciseType.Onyomi => "Onyomi",
+            ExerciseSubject.Meaning => "Meaning",
+            ExerciseSubject.Kunyomi => "Kunyomi",
+            ExerciseSubject.Onyomi => "Onyomi",
             _ => "None"
         };
     }

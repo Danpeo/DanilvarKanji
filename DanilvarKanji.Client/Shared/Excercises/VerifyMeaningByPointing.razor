@@ -45,7 +45,7 @@ else
     {
         if (meaning == _meanings?.CorrectMeaning)
         {
-            await Js.Dom.AddClassesToElement(buttonId, new[] { "bg-success", "txt-dark" });
+            await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "bg-success", "txt-dark" });
 
             if (OnCorrect != null)
             {
@@ -56,8 +56,8 @@ else
         }
         else
         {
-            await Js.Dom.AddClassesToElementForTime(buttonId, new[] { "shake" }, 500);
-            await Js.Dom.AddClassesToElement(buttonId, new[] { "danger-border", "bg-danger", "txt-dark" });
+            await Js.Dom.AddClassesToElementForTimeAsync(buttonId, new[] { "shake" }, 500);
+            await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "danger-border", "bg-danger", "txt-dark" });
 
             if (OnIncorrect != null)
             {

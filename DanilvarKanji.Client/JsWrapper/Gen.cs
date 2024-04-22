@@ -11,9 +11,11 @@ public class Gen
         _jsRuntime = jsRuntime;
     }
 
-    public async Task ConsoleLog(string message) =>
+    public async Task ConsoleLogAsync(string message) =>
         await _jsRuntime.InvokeVoidAsync("consoleLog", message);
 
-    public async Task HistoryBack() => await 
+    public async Task HistoryBackAsync() => await
         _jsRuntime.InvokeVoidAsync("history.back");
+
+    public async Task<string> ReadFileAsync(string path) => await _jsRuntime.InvokeAsync<string>("readFileFrom", path);
 }

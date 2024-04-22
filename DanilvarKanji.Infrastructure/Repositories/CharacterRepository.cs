@@ -56,12 +56,16 @@ public class CharacterRepository : ICharacterRepository
         characterToUpdate.StrokeCount = character.StrokeCount;
         characterToUpdate.JlptLevel = character.JlptLevel;
         characterToUpdate.CharacterType = character.CharacterType;
+        /*
         characterToUpdate.ChildCharacterIds = character.ChildCharacterIds;
+        */
         characterToUpdate.KanjiMeanings = character.KanjiMeanings;
         characterToUpdate.Kunyomis = character.Kunyomis;
         characterToUpdate.Onyomis = character.Onyomis;
         characterToUpdate.Mnemonics = character.Mnemonics;
+        /*
         characterToUpdate.Words = character.Words;
+        */
 
         _context.Characters.Update(characterToUpdate);
     }
@@ -256,7 +260,7 @@ public class CharacterRepository : ICharacterRepository
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Character>> ListChildCharacters(string characterId)
+    /*public async Task<IEnumerable<Character>> ListChildCharacters(string characterId)
     {
         Character? character = await GetAsync(characterId);
 
@@ -272,7 +276,7 @@ public class CharacterRepository : ICharacterRepository
             }
 
         return childCharacters;
-    }
+    }*/
 
     private IQueryable<Character> GetCharactersWithRelatedData()
     {
@@ -283,8 +287,8 @@ public class CharacterRepository : ICharacterRepository
             .ThenInclude(x => x.Definitions)
             .Include(x => x.Kunyomis)
             .Include(x => x.Onyomis)
-            .Include(x => x.Words)
-            .ThenInclude(x => x.WordMeanings);
+            /*.Include(x => x.Words)
+            .ThenInclude(x => x.WordMeanings)*/;
 
 
         return characters.OrderByDescending(x => x.Definition);

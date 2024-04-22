@@ -1,4 +1,4 @@
-using DanilvarKanji.Application.Characters.Queries;
+/*using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
@@ -21,4 +21,4 @@ public class ListChildCharactersHandler : IRequestHandler<ListChildCharactersQue
 
         return await _characterRepository.ListChildCharacters(request.CharacterId);
     }
-}
+}*/

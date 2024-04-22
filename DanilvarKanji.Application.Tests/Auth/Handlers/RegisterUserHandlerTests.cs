@@ -32,10 +32,10 @@ public class RegisterUserHandlerTests
     {
         //Arrange
         var command =
-            new RegisterUserCommand("PubesEater", "pubeseater@mail.com", "123456_Qq", "123456_Qq", JlptLevel.N5);
-        
+            new RegisterUserCommand("PubesEater", JlptLevel.N5, "pubeseater@mail.com", "123456_Qq", "123456_Qq");
+
         _userRepoMock.Setup(x => x.ExistByEmail(It.IsAny<string>())).ReturnsAsync(true);
-        
+
         var handler = new RegisterUserHandler(_userRepoMock.Object, _mapperMock.Object, _userManagerMock.Object);
 
         //Act
@@ -50,7 +50,7 @@ public class RegisterUserHandlerTests
     {
         //Arrange
         var command =
-            new RegisterUserCommand("PubesEater", "pubeseater@mail.com", "123456_Qq", "123456_QQQ", JlptLevel.N5);
+            new RegisterUserCommand("PubesEater", JlptLevel.N5, "pubeseater@mail.com", "123456_Qq", "123456_QQQ");
         var handler = new RegisterUserHandler(_userRepoMock.Object, _mapperMock.Object, _userManagerMock.Object);
 
         //Act
@@ -65,7 +65,7 @@ public class RegisterUserHandlerTests
     {
         //Arrange
         var command =
-            new RegisterUserCommand("PubesEater", "pubeseater@mail.com", "123456_Qq", "123456_Qq", JlptLevel.N5);
+            new RegisterUserCommand("PubesEater", JlptLevel.N5,"pubeseater@mail.com", "123456_Qq", "123456_Qq");
         var handler = new RegisterUserHandler(_userRepoMock.Object, _mapperMock.Object, _userManagerMock.Object);
 
         //Act

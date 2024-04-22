@@ -72,12 +72,25 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
                 return;
             }
 
+            /*
             characterLearning.LearningProgress.Value += _learningSettings.PointAfterCorrectExercise;
+            */
+            characterLearning.LearningLevelValue += _learningSettings.PointAfterCorrectExercise;
             updateNextReviewDate();
 
-            if (characterLearning.LearningProgress.Value >= _learningSettings.MaxLearningRate)
+            /*if (characterLearning.LearningProgress.Value >= _learningSettings.MaxLearningRate)
             {
                 characterLearning.LearningProgress.Value = _learningSettings.MaxLearningRate;
+                characterLearning.LearningState = LearningState.LearnedForSomeTime;
+                characterLearning.LearnedCount += 1;
+
+                if (characterLearning.LearnedCount >= _learningSettings.CompletelyLearnedAfter)
+                    characterLearning.LearningState = LearningState.CompletelyLearned;
+            }*/
+
+            if (characterLearning.LearningLevelValue >= _learningSettings.MaxLearningRate)
+            {
+                characterLearning.LearningLevelValue = _learningSettings.MaxLearningRate;
                 characterLearning.LearningState = LearningState.LearnedForSomeTime;
                 characterLearning.LearnedCount += 1;
 
@@ -88,7 +101,11 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
 
         void updateNextReviewDate()
         {
+            /*
             float learningProgress = characterLearning.LearningProgress.Value;
+            */
+            float learningProgress = characterLearning.LearningLevelValue;
+
             double learningPercent = MathUtils.calcPercentage
             (
                 learningProgress,

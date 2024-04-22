@@ -3,18 +3,20 @@
 @using DanilvarKanji.Shared.Domain.Enumerations
 @using DanilvarKanji.Shared.Requests.Characters
 
-<PageTitle>Add Character - @AppDisplaySettings.AppTitle</PageTitle>
+@inject IStringLocalizer<App> Loc;
+
+<PageTitle>@Loc["AddNewChar"] - @AppDisplaySettings.AppTitle</PageTitle>
 
 <h1 class="mt-5 mb-4 animated-blink main-font display-3">
-    Add New Character
+    @Loc["AddNewChar"]
 </h1>
 
 <EditForm Model="_createCharacterRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
 
-    <FormSection Title="Character Basic Details" HelpText="Character basic details common for all cultures">
+    <FormSection Title=@(Loc["CharacterBasicDetails"]) HelpText=@(Loc["CharacterBasicDetailsText"])>
 
-        <FormFieldSet Label="Definition" LabelFor="characterDefinition" HelpText="">
+        <FormFieldSet Label="@Loc["Definition"]" LabelFor="characterDefinition" HelpText="">
             <InputText @bind-Value="_createCharacterRequest.Definition" 
                        class="form-control bg-main txt-green-dim jap-font no-border"
                        id="characterDefinition" placeholder="見"/>
@@ -31,14 +33,14 @@
             </InputSelect>
         </FormFieldSet>
 
-        <FormFieldSet Label="Character Type" LabelFor="characterType" HelpText="">
+        <FormFieldSet Label="@Loc["CharacterType"]" LabelFor="characterType" HelpText="">
             <InputSelect @bind-Value="_createCharacterRequest.CharacterType" class="form-control bg-main txt-green-dim no-border" id="characterType">
-                <option value="@CharacterType.Kanji">Kanji</option>
-                <option value="@CharacterType.Radical">Radical</option>
+                <option value="@CharacterType.Kanji">@Loc["Kanji"]</option>
+                <option value="@CharacterType.Radical">@Loc["Radical"]</option>
             </InputSelect>
         </FormFieldSet>
 
-        <FormFieldSet Label="Stroke Count" LabelFor="strokeCount" HelpText="">
+        <FormFieldSet Label="@Loc["StrokeCount"]" LabelFor="strokeCount" HelpText="">
             <InputNumber @bind-Value="_createCharacterRequest.StrokeCount" class="form-control bg-main txt-green-dim no-border" id="strokeCount" placeholder="Stroke Count"/>
             <ValidationMessage For="@(() => _createCharacterRequest.StrokeCount)"/>
         </FormFieldSet>

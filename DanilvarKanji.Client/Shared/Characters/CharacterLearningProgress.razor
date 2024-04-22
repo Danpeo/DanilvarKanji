@@ -30,7 +30,7 @@ else
         StateHasChanged();
 
         if (_characterLearning != null)
-            await SetProgressBarStyle(_characterLearning.LearningProgress.Value);
+            await SetProgressBarStyle(_characterLearning.LearningLevelValue);
     }
 
     private async Task SetProgressBarStyle(float progress)
@@ -42,11 +42,11 @@ else
 
         string cssClass = setBarCssFromProgress();
 
-        await Js.Dom.AddClassToElement("progress-bar", cssClass);
+        await Js.Dom.AddClassToElementAsync("progress-bar", cssClass);
 
         await Task.Delay(DelayAfterSetProgressMs);
 
-        await Js.Dom.SetElementStyles("progress-bar", styles);
+        await Js.Dom.SetElementStylesAsync("progress-bar", styles);
 
         return;
 

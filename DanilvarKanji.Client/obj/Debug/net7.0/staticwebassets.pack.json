@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\css\\scroll.css"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\data\\nihongo-quest-images.json",
+      "PackagePath": "staticwebassets\\data\\nihongo-quest-images.json"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
@@ -103,6 +107,10 @@
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\DVKanjiLogo.png",
       "PackagePath": "staticwebassets\\img\\DVKanjiLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\DVKanjiLogo_2 copy.png",
+      "PackagePath": "staticwebassets\\img\\DVKanjiLogo_2 copy.png"
     },
     {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\img\\DVKanjiLogo_2.png",

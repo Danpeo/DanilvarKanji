@@ -1,6 +1,6 @@
 namespace DanilvarKanji.Shared.Domain.Enumerations;
 
-public enum ReviewType
+public enum ExerciseType
 {
     Point,
     Input

@@ -22,7 +22,7 @@ else
             if (learning != null)
             {
                 <CharacterMinimalCard
-                    SubText1="@learning.LearningProgress.Value.ToString(CultureInfo.CurrentCulture)"
+                    SubText1="@learning.LearningLevelValue.ToString(CultureInfo.CurrentCulture)"
                     CharacterResponseBaseInfo="@learning.Character"
                     NavigateTo="@(new string($"review/{learning.Id}"))"/>
             }

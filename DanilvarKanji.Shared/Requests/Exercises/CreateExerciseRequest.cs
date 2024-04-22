@@ -6,14 +6,14 @@ public class CreateExerciseRequest
 {
     public string CharacterId { get; set; }
     public bool IsCorrect { get; set; }
-    public ReviewType ReviewType { get; set; } = ReviewType.Point;
-    public ExerciseType ExerciseType { get; set; }
+    public ExerciseType ExerciseType { get; set; } = ExerciseType.Point;
+    public ExerciseSubject ExerciseSubject { get; set; }
 
-    public CreateExerciseRequest(string characterId, bool isCorrect, ReviewType reviewType, ExerciseType exerciseType)
+    public CreateExerciseRequest(string characterId, bool isCorrect, ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         CharacterId = characterId;
         IsCorrect = isCorrect;
-        ReviewType = reviewType;
         ExerciseType = exerciseType;
+        ExerciseSubject = exerciseSubject;
     }
 }

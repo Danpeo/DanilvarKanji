@@ -32,8 +32,8 @@ public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Resu
             Character = character ?? new Character(),
             AppUser = request.AppUser,
             ExcerciseDateTime = DateTime.UtcNow,
-            ReviewType = request.ReviewType,
             ExerciseType = request.ExerciseType,
+            ExerciseSubject = request.ExerciseSubject,
             IsCorrect = request.IsCorrect
         };
         

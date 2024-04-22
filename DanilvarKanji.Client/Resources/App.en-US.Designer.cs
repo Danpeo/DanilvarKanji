@@ -132,6 +132,33 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Character Basic Details.
+        /// </summary>
+        internal static string CharacterBasicDetails {
+            get {
+                return ResourceManager.GetString("CharacterBasicDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Character information common for all lanugages.
+        /// </summary>
+        internal static string CharacterBasicDetailsText {
+            get {
+                return ResourceManager.GetString("CharacterBasicDetailsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Character Type.
+        /// </summary>
+        internal static string CharacterType {
+            get {
+                return ResourceManager.GetString("CharacterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collection.
         /// </summary>
         internal static string Collection {
@@ -159,6 +186,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Definition.
+        /// </summary>
+        internal static string Definition {
+            get {
+                return ResourceManager.GetString("Definition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {
@@ -173,6 +209,24 @@ namespace DanilvarKanji.Client.Resources {
         internal static string Dictionary {
             get {
                 return ResourceManager.GetString("Dictionary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do You remember this?.
+        /// </summary>
+        internal static string DoYouRemember {
+            get {
+                return ResourceManager.GetString("DoYouRemember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter character definition.
+        /// </summary>
+        internal static string EnterCharacterDefinition {
+            get {
+                return ResourceManager.GetString("EnterCharacterDefinition", resourceCulture);
             }
         }
         
@@ -213,11 +267,47 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        internal static string FlashcardBack {
+            get {
+                return ResourceManager.GetString("FlashcardBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flashcards.
         /// </summary>
         internal static string Flashcards {
             get {
                 return ResourceManager.GetString("Flashcards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For example.
+        /// </summary>
+        internal static string ForExample {
+            get {
+                return ResourceManager.GetString("ForExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FORGOT.
+        /// </summary>
+        internal static string Forgot {
+            get {
+                return ResourceManager.GetString("Forgot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Front.
+        /// </summary>
+        internal static string Front {
+            get {
+                return ResourceManager.GetString("Front", resourceCulture);
             }
         }
         
@@ -254,6 +344,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string InvalidEmail {
             get {
                 return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I REMEMBER IT PERFECTLY.
+        /// </summary>
+        internal static string IRememberItPerfectly {
+            get {
+                return ResourceManager.GetString("IRememberItPerfectly", resourceCulture);
             }
         }
         
@@ -335,6 +434,33 @@ namespace DanilvarKanji.Client.Resources {
         internal static string Naruto {
             get {
                 return ResourceManager.GetString("Naruto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New to learning Japanese? Try.
+        /// </summary>
+        internal static string NewToJapanese1 {
+            get {
+                return ResourceManager.GetString("NewToJapanese1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an engaging adventure to master the basics of Japanese!.
+        /// </summary>
+        internal static string NewToJapanese2 {
+            get {
+                return ResourceManager.GetString("NewToJapanese2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NIHONGO QUEST,.
+        /// </summary>
+        internal static string NihongoQuest {
+            get {
+                return ResourceManager.GetString("NihongoQuest", resourceCulture);
             }
         }
         
@@ -519,6 +645,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to REMEMBER.
+        /// </summary>
+        internal static string Remember {
+            get {
+                return ResourceManager.GetString("Remember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Last.
         /// </summary>
         internal static string RemoveLast {
@@ -555,11 +690,29 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stroke Number.
+        /// </summary>
+        internal static string StrokeCount {
+            get {
+                return ResourceManager.GetString("StrokeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Study is complete.
         /// </summary>
         internal static string StudyIsComplete {
             get {
                 return ResourceManager.GetString("StudyIsComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to times in a row.
+        /// </summary>
+        internal static string TimesInARow {
+            get {
+                return ResourceManager.GetString("TimesInARow", resourceCulture);
             }
         }
         

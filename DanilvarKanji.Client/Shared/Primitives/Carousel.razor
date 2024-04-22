@@ -1,0 +1,57 @@
+@using DanilvarKanji.Client.Models
+@using DanilvarKanji.Client.JsWrapper
+
+@foreach (var img in Images)
+{
+    <img style="display: none" src="@img.Link" alt="@img.Label">
+}
+
+<div class="d-flex justify-content-center">
+    <div id="carouselExampleIndicators" class="carousel slide w-75">
+        <div class="carousel-inner" id="carousel-item">
+            <div class="carousel-item active">
+                <img src="@Images[_currentImageIndex].Link" class="d-block w-100 rounded-3" alt="@Images[_currentImageIndex].Label">
+            </div>
+        </div>
+        <button @onclick="PrevImage" class="carousel-control-prev" type="button">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button @onclick="NextImage" class="carousel-control-next" type="button">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public required ImageData[] Images { get; set; }
+    [Inject] public required Js Js { get; set; }
+
+    private int _currentImageIndex;
+
+    private async Task NextImage()
+    {
+        if (_currentImageIndex + 1 < Images.Length)
+            _currentImageIndex++;
+        else
+            _currentImageIndex = 0;
+        await AnimateCarousel();
+    }
+
+    private async Task PrevImage()
+    {
+        if (_currentImageIndex - 1 >= 0)
+            _currentImageIndex--;
+        else
+            _currentImageIndex = Images.Length - 1;
+        await AnimateCarousel();
+    }
+
+    private async Task AnimateCarousel()
+    {
+        await Js.Dom.RemoveClassFromElementAsync("carousel-item", "dvar-slide");
+        await Js.Dom.AddClassToElementForTimeAsync("carousel-item", "dvar-slide", 500);
+    }
+
+}

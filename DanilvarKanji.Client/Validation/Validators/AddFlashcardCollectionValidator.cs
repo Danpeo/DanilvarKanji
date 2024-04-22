@@ -3,7 +3,7 @@ using DanilvarKanji.Shared.Validation;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 
-namespace DanilvarKanji.Client.Validation;
+namespace DanilvarKanji.Client.Validation.Validators;
 
 public class AddFlashcardCollectionValidator : ValidatorBase<CreateFlashcardCollectionRequest>
 {

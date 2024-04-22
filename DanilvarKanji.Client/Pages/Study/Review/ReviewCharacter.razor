@@ -99,91 +99,91 @@
             <VerifyOnyomiByPointing
                 CharacterForVerification="_character"
                 Culture="_culture"
-                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Onyomi))"
-                OnForgot="@(() => OnForgotExercise(ReviewType.Point, ExerciseType.Onyomi))"
-                OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Onyomi))"/>
+                OnCorrect="@(() => OnCorrectPointExercise(ExerciseSubject.Onyomi))"
+                OnForgot="@(() => OnForgotExercise(ExerciseType.Point, ExerciseSubject.Onyomi))"
+                OnIncorrect="@(() => OnIncorrectPointExercise(ExerciseType.Point, ExerciseSubject.Onyomi))"/>
         </div>);
 
         _exercises.Add(@<div class="fade-in-el">
             <VerifyKunyomiByPointing
                 CharacterForVerification="_character"
                 Culture="_culture"
-                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Kunyomi))"
-                OnForgot="@(() => OnForgotExercise(ReviewType.Point, ExerciseType.Kunyomi))"
-                OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Kunyomi))"/>
+                OnCorrect="@(() => OnCorrectPointExercise(ExerciseSubject.Kunyomi))"
+                OnForgot="@(() => OnForgotExercise(ExerciseType.Point, ExerciseSubject.Kunyomi))"
+                OnIncorrect="@(() => OnIncorrectPointExercise(ExerciseType.Point, ExerciseSubject.Kunyomi))"/>
         </div>);
 
         _exercises.Add(@<div class="fade-in-el">
             <VerifyOnyomiByInput
                 OnConfirm="@(async () => await OnConfirmExercise())"
-                OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Onyomi))"
-                OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Input, ExerciseType.Onyomi))"
+                OnCorrect="@(() => OnCorrectExercise(ExerciseType.Input, ExerciseSubject.Onyomi))"
+                OnIncorrect="@(() => OnIncorrectExercise(ExerciseType.Input, ExerciseSubject.Onyomi))"
                 CharacterForVerification="_character"/>
         </div>);
         _exercises.Add(@<div class="fade-in-el">
             <VerifyKunyomiByInput
                 OnConfirm="@(async () => await OnConfirmExercise())"
-                OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Kunyomi))"
-                OnForgot="@(() => OnForgotExercise(ReviewType.Input, ExerciseType.Kunyomi))"
-                OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Input, ExerciseType.Kunyomi))"
+                OnCorrect="@(() => OnCorrectExercise(ExerciseType.Input, ExerciseSubject.Kunyomi))"
+                OnForgot="@(() => OnForgotExercise(ExerciseType.Input, ExerciseSubject.Kunyomi))"
+                OnIncorrect="@(() => OnIncorrectExercise(ExerciseType.Input, ExerciseSubject.Kunyomi))"
                 CharacterForVerification="_character"/>
         </div>);
         _exercises.Add(@<div class="fade-in-el">
             <VerifyMeaningByPointing
                 CharacterForVerification="_character"
                 Culture="_culture"
-                OnCorrect="@(() => OnCorrectPointExercise(ExerciseType.Meaning))"
-                OnForgot="@(() => OnForgotExercise(ReviewType.Point, ExerciseType.Meaning))"
-                OnIncorrect="@(() => OnIncorrectPointExercise(ReviewType.Point, ExerciseType.Meaning))"/>
+                OnCorrect="@(() => OnCorrectPointExercise(ExerciseSubject.Meaning))"
+                OnForgot="@(() => OnForgotExercise(ExerciseType.Point, ExerciseSubject.Meaning))"
+                OnIncorrect="@(() => OnIncorrectPointExercise(ExerciseType.Point, ExerciseSubject.Meaning))"/>
         </div>);
         _exercises.Add(@<div class="fade-in-el">
             <VerifyMeaningByInput
                 OnConfirm="@(async () => await OnConfirmExercise())"
-                OnForgot="@(() => OnForgotExercise(ReviewType.Input, ExerciseType.Meaning))"
-                OnCorrect="@(() => OnCorrectExercise(ReviewType.Input, ExerciseType.Meaning))"
-                OnIncorrect="@(() => OnIncorrectExercise(ReviewType.Input, ExerciseType.Meaning))"
+                OnForgot="@(() => OnForgotExercise(ExerciseType.Input, ExerciseSubject.Meaning))"
+                OnCorrect="@(() => OnCorrectExercise(ExerciseType.Input, ExerciseSubject.Meaning))"
+                OnIncorrect="@(() => OnIncorrectExercise(ExerciseType.Input, ExerciseSubject.Meaning))"
                 CharacterForVerification="_character"/>
         </div>);
     }
 
-    private async Task OnCorrectPointExercise(ExerciseType exerciseType)
+    private async Task OnCorrectPointExercise(ExerciseSubject exerciseSubject)
     {
         await Task.Delay(AfterAnswerDelay);
-        await OnCorrectExercise(ReviewType.Point, exerciseType);
+        await OnCorrectExercise(ExerciseType.Point, exerciseSubject);
     }
 
-    private async Task OnCorrectExercise(ReviewType reviewType, ExerciseType exerciseType)
+    private async Task OnCorrectExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: true, reviewType, exerciseType);
+            await AddExerciseToReviewSession(isCorrect: true, exerciseType, exerciseSubject);
 
         await OnConfirmExercise();
     }
 
-    private async Task OnIncorrectExercise(ReviewType reviewType, ExerciseType exerciseType)
+    private async Task OnIncorrectExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+            await AddExerciseToReviewSession(isCorrect: false, exerciseType, exerciseSubject);
         await OnConfirmExercise();
     }
 
-    private async Task OnForgotExercise(ReviewType reviewType, ExerciseType exerciseType)
+    private async Task OnForgotExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+            await AddExerciseToReviewSession(isCorrect: false, exerciseType, exerciseSubject);
 
         await OnConfirmExercise();
     }
 
-    private async Task OnIncorrectPointExercise(ReviewType reviewType, ExerciseType exerciseType)
+    private async Task OnIncorrectPointExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: false, reviewType, exerciseType);
+            await AddExerciseToReviewSession(isCorrect: false, exerciseType, exerciseSubject);
     }
 
     private async Task OnIncorrectMeaning()
     {
-        await AddExerciseToReviewSession(isCorrect: false, ReviewType.Input, ExerciseType.Meaning);
+        await AddExerciseToReviewSession(isCorrect: false, ExerciseType.Input, ExerciseSubject.Meaning);
     }
 
     private void SkipCharacterFromLearning()
@@ -247,13 +247,13 @@
         }
     }
 
-    private async Task AddExerciseToReviewSession(bool isCorrect, ReviewType reviewType, ExerciseType exerciseType)
+    private async Task AddExerciseToReviewSession(bool isCorrect, ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         var exercise = await ExerciseService
             .CreateExerciseAsync(new CreateExerciseRequest(_character!.Id,
                 isCorrect: isCorrect,
-                reviewType,
-                exerciseType));
+                exerciseType,
+                exerciseSubject));
 
         _createReviewSessionRequest.ExerciseIds.Add(exercise!.Id);
 

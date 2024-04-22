@@ -1,6 +1,6 @@
 namespace DanilvarKanji.Shared.Domain.Params;
 
-public class PaginationParams
+/*public class PaginationParams
 {
     public int PageNumber { get; } = 1;
     public int PageSize { get; } = int.MaxValue;
@@ -14,4 +14,6 @@ public class PaginationParams
         PageNumber = pageNumber;
         PageSize = pageSize;
     }
-}
+}*/
+
+public record PaginationParams(int PageNumber, int PageSize);

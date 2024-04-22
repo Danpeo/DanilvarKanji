@@ -1,7 +1,11 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Security.Claims;
+using System.Text.Json;
 using Blazored.LocalStorage;
+using DanilvarKanji.Client.Validation;
+using DanilvarKanji.Client.Validation.Errors;
 using DanilvarKanji.Shared.Enums;
 using DanilvarKanji.Shared.Requests.Auth;
 using DanilvarKanji.Shared.Responses.Auth;
@@ -31,7 +35,7 @@ public class AuthService : IAuthService
         {
             _jwtCache = await _localStorageService.GetItemAsync<string>(JwtKey);
         }
-        
+
         return _jwtCache;
     }
 
@@ -66,26 +70,20 @@ public class AuthService : IAuthService
 
     public async Task<RegisterUserRequest?> RegisterUserAsync(RegisterUserRequest request)
     {
-        try
-        {
-            HttpResponseMessage response = await _httpFactory
-                .CreateClient("ServerApi")
-                .PostAsync($"api/{_baseUrl}/Register",
-                    JsonContent.Create(request));
+        HttpResponseMessage response = await _httpFactory
+            .CreateClient("ServerApi")
+            .PostAsync($"api/{_baseUrl}/Register",
+                JsonContent.Create(request));
 
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadFromJsonAsync<RegisterUserRequest>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
-        }
-        catch (HttpRequestException e)
+        if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine(e);
-            throw;
+            return await response.Content.ReadFromJsonAsync<RegisterUserRequest>();
         }
+    
+        string message = await response.Content.ReadAsStringAsync();
+        var error = JsonSerializer.Deserialize<RegisterError>(message);
+
+        return ErrorHandler.HandleLists<RegisterUserRequest>(error);
     }
 
     public async Task<LoginResponse?> LoginAsync(LoginUserRequest request)

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+G/ywmHWZdXub4dZ3fHqxna0MqtKJwYefCJ3e9pdSLfAmvKLmuGVCsw5yrmu2q4eyU/fXBEum/c5zxk7WBIvHA==",
+  "dgSpecHash": "vx89KQ0p2SulpwJN02r3zNa9AiJtBVA/6Jds7ZFjBwWd4+Wz4MbrSxodeMzKmZRCEJAaaPJHnu0pFDrtVb1i3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.http.features\\6.0.0-preview.4.21253.5\\microsoft.aspnetcore.http.features.6.0.0-preview.4.21253.5.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.14\\microsoft.aspnetcore.metadata.7.0.14.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.11\\microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
@@ -61,7 +62,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.11\\microsoft.jsinterop.webassembly.7.0.11.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.3\\microsoft.net.sdk.webassembly.pack.8.0.3.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.4\\microsoft.net.sdk.webassembly.pack.8.0.4.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\runtime.any.system.runtime\\4.3.0\\runtime.any.system.runtime.4.3.0.nupkg.sha512",
@@ -75,7 +76,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\wanakana-net\\1.0.0\\wanakana-net.1.0.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.17\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.17.nupkg.sha512"
+    "C:\\Users\\danil\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.18\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.18.nupkg.sha512"
   ],
   "logs": [
     {
@@ -83,17 +84,6 @@
       "level": "Warning",
       "warningLevel": 1,
       "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
-      "libraryId": "System.IdentityModel.Tokens.Jwt",
-      "targetGraphs": [
-        "net7.0",
-        "net7.0/browser-wasm"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g9c-28fc-mcx2",
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         "net7.0",

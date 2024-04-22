@@ -65,7 +65,9 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         bool isCorrect)
     {
         var characterLearning = await _context.CharacterLearnings
+            /*
             .Include(characterLearning => characterLearning.LearningProgress)
+            */
             .FirstOrDefaultAsync(cl => cl.Character.Id == characterId && cl.AppUser == user);
 
         if (characterLearning is null)
@@ -76,7 +78,11 @@ public class CharacterLearningRepository : ICharacterLearningRepository
 
         if (characterLearning.LastReviewWasCorrect)
         {
+            /*
             characterLearning.LearningProgress.Value += _learningSettings.PointAfterCorrectExercise;
+        */
+            characterLearning.LearningLevelValue += _learningSettings.PointAfterCorrectExercise;
+
         }
 
         _context.CharacterLearnings.Update(characterLearning);
@@ -229,8 +235,10 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     {
         var characters = _context.CharacterLearnings
             .AsSplitQuery()
-            .Include(x => x.Character)
+            .Include(x => x.Character);
+            /*
             .Include(x => x.LearningProgress);
+            */
 
         return characters.OrderByDescending(x => x.LearningState);
     }
@@ -241,11 +249,16 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .AsSplitQuery()
             .Include(c => c.Character)
             .ThenInclude(ch => ch.KanjiMeanings)
+            /*
             .Include(c => c.LearningProgress)
+            */
             .Where(condition)
             .OrderBy(c => c.LearningState)
             .ThenBy(c => c.LastReviewDateTime)
+            /*
             .ThenBy(c => c.LearningProgress.Value)
+            */
+            .ThenBy(c => c.LearningLevelValue)
             .ThenBy(c => c.LearnedCount)
             .ThenBy(c => c.LastReviewWasCorrect);
 
@@ -259,7 +272,10 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             learning.NextReviewDateTime <= DateTime.Today &&
             learning.LearningState == LearningState.Learning &&
             learning.LearningState != LearningState.Skipped &&
+            /*
             learning.LearningProgress.Value < _learningSettings.MaxLearningRate
+            */
+            learning.LearningLevelValue < _learningSettings.MaxLearningRate
         );
     }
 
@@ -270,7 +286,10 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             learning.NextReviewDateTime > DateTime.Today &&
             learning.LearningState == LearningState.Learning &&
             learning.LearningState != LearningState.Skipped &&
+            /*
             learning.LearningProgress.Value < _learningSettings.MaxLearningRate
+            */
+            learning.LearningLevelValue < _learningSettings.MaxLearningRate
         );
     }
     
@@ -280,7 +299,10 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             learning.AppUser == appUser &&
             learning.LearningState == LearningState.Learning &&
             learning.LearningState != LearningState.Skipped &&
+            /*
             learning.LearningProgress.Value < _learningSettings.MaxLearningRate
+            */
+            learning.LearningLevelValue < _learningSettings.MaxLearningRate
         );
     }
 }

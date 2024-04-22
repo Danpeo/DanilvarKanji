@@ -9,7 +9,8 @@ public class CharacterLearning : Entity
     public AppUser AppUser { get; set; }
     public Character Character { get; set; }
     public LearningState LearningState { get; set; }
-    public LearningProgress LearningProgress { get; set; }
+    public LearningLevel LearningLevel { get; set; }
+    public float LearningLevelValue { get; set; }
     public int LearnedCount { get; set; }
     public DateTime LastReviewDateTime { get; set; } = DateTime.UtcNow;
     public DateTime NextReviewDateTime { get; set; } = DateTime.UtcNow;

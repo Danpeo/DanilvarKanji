@@ -10,14 +10,14 @@
 
 @if (_flashcardsToReview is not null)
 {
-    <h3 class="mb-5 display-5 txt-bright-pink main-font text-center">Do You Remember This?</h3>
+    <h3 class="mb-5 display-5 txt-bright-pink main-font text-center">@Loc["DoYouRemember"]</h3>
 
     <TimerComponent @ref="_timer" TimerOut="EventCallback.Empty"/>
     <div class="row">
         <div class="col d-grid gap-2">
             <button class="btn btn-lg btn-outline-danger fs-3"
                     @onclick="Forgot">
-                <b>FORGOT</b>
+                <b>@Loc["Forgot"]</b>
             </button>
         </div>
         <div id="flashcard" class="col-8">
@@ -25,7 +25,7 @@
                 <div class="card bg-success txt-dark @(_showFront ? "bg-green" : "bg-orange") text-bg-primary mb-3">
                     <div class="card-header fs-4">
                         <b>
-                            @(_showFront ? "FRONT" : "BACK")
+                            @(_showFront ? Loc["Front"].Value.ToUpper() : Loc["FlashcardBack"].Value.ToUpper())
                         </b>
 
                     </div>
@@ -50,11 +50,11 @@
                         <p class="fs-5">
                             @(_currentFlashcard + 1)/@(_flashcardsToReview.Count)
                             <span class="fs-5">
-                                Memorized
+                                @Loc["Memorised"]
                                 <b>
                                     @_flashcardsToReview[_currentFlashcard].RememberedInARow
                                 </b>
-                                times in a row
+                                @Loc["TimesInARow"]
                             </span>
                         </p>
 
@@ -66,20 +66,20 @@
         <div class="col d-grid gap-2">
             <button class="btn btn-lg btn-outline-success fs-3"
                     @onclick="Remember">
-                <b>REMEMBER</b>
+                <b>@Loc["Remember"]</b>
             </button>
         </div>
     </div>
     <LongElement>
         <button class="btn btn-lg btn-outline-warning mt-2 fs-3"
                 @onclick="RememberPerfectly">
-            <b>I REMEMBER IT PERFECTLY</b>
+            <b>@Loc["IRememberItPerfectly"]</b>
         </button>
     </LongElement>
     <LongElement>
         <button class="btn btn btn-outline-primary mt-2 fs-3"
                 @onclick="FinishReview">
-            <b>FINISH REVIEW</b>
+            <b>@Loc["Fin"].Value.ToUpper()</b>
         </button>
     </LongElement>
 }
@@ -99,6 +99,8 @@ else
     [Inject] public required NavigationManager NavManager { get; set; }
     
     [Inject] public required Js Js { get; set; }
+    
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
     
     private FlashcardCollectionResponse? _flashcardCollection;
     private List<Flashcard>? _flashcardsToReview;
@@ -138,8 +140,11 @@ else
         _showFront = !_showFront;
     }
 
-    private async Task AnimateFlashcard() => 
-        await Js.Dom.AddClassesToElementForTime("flashcard", new[] { "fade-in-el" }, 500);
+    private async Task AnimateFlashcard()
+    {
+        await Js.Dom.RemoveClassFromElementAsync("flashcard", "card-flip");
+        await Js.Dom.AddClassesToElementForTimeAsync("flashcard", new[] { "card-flip" }, 500);
+    }
 
     private async Task FinishReview()
     {

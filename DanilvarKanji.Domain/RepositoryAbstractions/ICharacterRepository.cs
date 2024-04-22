@@ -15,7 +15,9 @@ public interface ICharacterRepository
     Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams);
     Task<Character?> GetAsync(string id);
     Task<IEnumerable<Character>> SearchAsync(string searchTerm);
+    /*
     Task<IEnumerable<Character>> ListChildCharacters(string characterId);
+    */
     Task UpdateAsync(string id, Character character);
     Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams? paginationParams, AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5);

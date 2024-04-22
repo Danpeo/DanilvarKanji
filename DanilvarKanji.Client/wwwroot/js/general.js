@@ -28,3 +28,8 @@ function toBlob(canvas, blobCallback) {
         quality = 1);
     return blobWrapper;
 }
+
+function readFileFrom(path) {
+    const response = fetch(path);
+    return response.text();
+}

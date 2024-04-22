@@ -134,6 +134,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VjdGlvbnNcTXlMZWFybmluZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Sections/NihongoQuestPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VjdGlvbnNcTmlob25nb1F1ZXN0UGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Pages/Study/Review/ReviewCharacter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZHlcUmV2aWV3XFJldmlld0NoYXJhY3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -366,8 +370,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5lZWRzQ3VsdHVyZUNvbXBvbmVudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/NihongoQuest.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5paG9uZ29RdWVzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Primitives/BigButton.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFByaW1pdGl2ZXNcQmlnQnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Primitives/Carousel.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFByaW1pdGl2ZXNcQ2Fyb3VzZWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Primitives/CrossButton.razor]

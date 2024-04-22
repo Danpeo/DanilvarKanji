@@ -13,6 +13,7 @@
           "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
           "Microsoft.AspNetCore.Http.Features": "6.0.0-preview.4.21253.5",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
           "Microsoft.Extensions.Identity.Core": "7.0.16",
           "Microsoft.Extensions.Identity.Stores": "7.0.11",
           "WanaKana-net": "1.0.0"
@@ -145,6 +146,14 @@
           "lib/net6.0/Microsoft.AspNetCore.Http.Features.dll": {
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.21.25305"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.11": {
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "assemblyVersion": "7.0.11.0",
+            "fileVersion": "7.0.1123.40906"
           }
         }
       },
@@ -332,6 +341,13 @@
       "sha512": "sha512-R3MUGcafdytxU9Bv5PWy46MPlHtPLgjCX9ay+Y7VPyvaxtpCijz6tMBUPletOUeAcmyYpwBgWU1FwdyuZn0n8w==",
       "path": "microsoft.aspnetcore.http.features/6.0.0-preview.4.21253.5",
       "hashPath": "microsoft.aspnetcore.http.features.6.0.0-preview.4.21253.5.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IoOnhycZ0/VtLowf0HgB0cujxwksokzkS3/5108AHOcbntHUTqwxtCjG4E4FCly/45G+mxb+4PxBdFZhA49lwQ==",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.11",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
       "type": "package",

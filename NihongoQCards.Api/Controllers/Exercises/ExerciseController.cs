@@ -32,8 +32,8 @@ public class ExerciseController : ApiController
         var command = new CreateExerciseCommand(request.CharacterId,
             user,
             request.IsCorrect,
-            request.ReviewType,
-            request.ExerciseType);
+            request.ExerciseType,
+            request.ExerciseSubject);
 
         Result result = await Mediator.Send(command);
 

@@ -26,9 +26,12 @@ public class CharacterController : ApiController
         _userManager = userManager;
     }
 
+    [Authorize (Roles = $"{UserRole.Admin},{UserRole.SuperAdmin}")]
     [HttpPost]
     [ProducesResponseType(typeof(Character), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status403Forbidden)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterRequest? request)
     {
         var command = _mapper.Map<CreateCharacterCommand>(request);

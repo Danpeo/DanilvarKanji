@@ -351,6 +351,7 @@ button.close {
     opacity: 0.5;
     visibility: visible;
 }
+
 .drawer-wrapper.slide .drawer {
     transform: translateX(0);
 }
@@ -385,5 +386,38 @@ button.close {
     padding-top: 20px;
 }
 
+.dvar-slide {
+    opacity: 0;
+    transform-style: preserve-3d;
+    animation: flipInX 0.5s forwards;
+}
+
+.card-flip {
+    opacity: 0;
+    transform-style: preserve-3d;
+    animation: flipInY 0.5s forwards;
+}
+
+@keyframes flipInX {
+    from {
+        transform: rotateY(0deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(-360deg);
+        opacity: 1;
+    }
+}
+
+@keyframes flipInY {
+    from {
+        transform: rotateX(0deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateX(-360deg);
+        opacity: 1;
+    }
+}
 
 

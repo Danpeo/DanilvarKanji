@@ -14,8 +14,4 @@ public class Character : Entity
     public ICollection<KanjiMeaning>? KanjiMeanings { get; set; }
     public ICollection<Kunyomi>? Kunyomis { get; set; }
     public ICollection<Onyomi>? Onyomis { get; set; }
-    public ICollection<Word>? Words { get; set; }
-
-    public List<string>? ChildCharacterIds { get; set; }
-    
 }

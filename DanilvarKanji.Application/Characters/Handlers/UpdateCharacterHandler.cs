@@ -27,12 +27,16 @@ public class UpdateCharacterHandler : IRequestHandler<UpdateCharacterCommand, Re
             StrokeCount = request.StrokeCount,
             JlptLevel = request.JlptLevel,
             CharacterType = request.CharacterType,
+            /*
             ChildCharacterIds = request.ChildCharacterIds,
+            */
             KanjiMeanings = request.KanjiMeanings,
             Kunyomis = request.Kunyomis,
             Onyomis = request.Onyomis,
             Mnemonics = request.Mnemonics,
+            /*
             Words = request.Words
+        */
         };
 
         await _characterRepository.UpdateAsync(request.Id, character);

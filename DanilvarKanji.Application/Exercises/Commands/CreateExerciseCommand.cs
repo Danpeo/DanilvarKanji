@@ -14,17 +14,17 @@ public class CreateExerciseCommand : IRequest<Result>
 
     public bool IsCorrect { get; set; }
 
-    public ReviewType ReviewType { get; set; } = ReviewType.Point;
-    public ExerciseType ExerciseType { get; set; }
+    public ExerciseType ExerciseType { get; set; } = ExerciseType.Point;
+    public ExerciseSubject ExerciseSubject { get; set; }
 
 
-    public CreateExerciseCommand(string characterId, AppUser appUser, bool isCorrect, ReviewType reviewType, ExerciseType exerciseType)
+    public CreateExerciseCommand(string characterId, AppUser appUser, bool isCorrect, ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         Id = Guid.NewGuid().ToString("N");
         CharacterId = characterId;
         AppUser = appUser;
         IsCorrect = isCorrect;
-        ReviewType = reviewType;
         ExerciseType = exerciseType;
+        ExerciseSubject = exerciseSubject;
     }
 }

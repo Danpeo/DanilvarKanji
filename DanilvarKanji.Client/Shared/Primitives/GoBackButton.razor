@@ -1,6 +1,6 @@
 @using DanilvarKanji.Client.JsWrapper
 
-<button class="btn btn-dark fs-5" @onclick="@(async () => await Js.Gen.HistoryBack())">
+<button class="btn btn-dark fs-5" @onclick="@(async () => await Js.Gen.HistoryBackAsync())">
     <b>
         @(new string($"\u25c0 {Loc["BackButton"]}"))
     </b>

@@ -2,7 +2,7 @@ using DanilvarKanji.Shared.Domain.Entities;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 
-namespace DanilvarKanji.Client.Validation;
+namespace DanilvarKanji.Client.Validation.Validators;
 
 public class StringDefinitionValidator : AbstractValidator<StringDefinition>
 {

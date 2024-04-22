@@ -213,4 +213,55 @@
     <data name="Users" xml:space="preserve">
         <value>Users</value>
     </data>
+    <data name="EnterCharacterDefinition" xml:space="preserve">
+        <value>Enter character definition</value>
+    </data>
+    <data name="ForExample" xml:space="preserve">
+        <value>For example</value>
+    </data>
+    <data name="Definition" xml:space="preserve">
+        <value>Definition</value>
+    </data>
+    <data name="CharacterBasicDetails" xml:space="preserve">
+        <value>Character Basic Details</value>
+    </data>
+    <data name="CharacterBasicDetailsText" xml:space="preserve">
+        <value>Character information common for all lanugages</value>
+    </data>
+    <data name="StrokeCount" xml:space="preserve">
+        <value>Stroke Number</value>
+    </data>
+    <data name="CharacterType" xml:space="preserve">
+        <value>Character Type</value>
+    </data>
+    <data name="NewToJapanese1" xml:space="preserve">
+        <value>New to learning Japanese? Try</value>
+    </data>
+    <data name="NewToJapanese2" xml:space="preserve">
+        <value>an engaging adventure to master the basics of Japanese!</value>
+    </data>
+    <data name="NihongoQuest" xml:space="preserve">
+        <value>NIHONGO QUEST,</value>
+    </data>
+    <data name="DoYouRemember" xml:space="preserve">
+        <value>Do You remember this?</value>
+    </data>
+    <data name="Forgot" xml:space="preserve">
+        <value>FORGOT</value>
+    </data>
+    <data name="Remember" xml:space="preserve">
+        <value>REMEMBER</value>
+    </data>
+    <data name="IRememberItPerfectly" xml:space="preserve">
+        <value>I REMEMBER IT PERFECTLY</value>
+    </data>
+    <data name="Front" xml:space="preserve">
+        <value>Front</value>
+    </data>
+    <data name="FlashcardBack" xml:space="preserve">
+        <value>Back</value>
+    </data>
+    <data name="TimesInARow" xml:space="preserve">
+        <value>times in a row</value>
+    </data>
 </root>

@@ -213,4 +213,55 @@
     <data name="Users" xml:space="preserve">
         <value>Пользователи</value>
     </data>
+    <data name="EnterCharacterDefinition" xml:space="preserve">
+        <value>Введите определение иероглифа</value>
+    </data>
+    <data name="ForExample" xml:space="preserve">
+        <value>К примеру</value>
+    </data>
+    <data name="Definition" xml:space="preserve">
+        <value>Определение</value>
+    </data>
+    <data name="CharacterBasicDetails" xml:space="preserve">
+        <value>Основная информация иероглифа</value>
+    </data>
+    <data name="CharacterBasicDetailsText" xml:space="preserve">
+        <value>Информация об иероглифа, общая для всех языков</value>
+    </data>
+    <data name="StrokeCount" xml:space="preserve">
+        <value>Количество штрихов</value>
+    </data>
+    <data name="CharacterType" xml:space="preserve">
+        <value>Тип иероглифа</value>
+    </data>
+    <data name="NewToJapanese1" xml:space="preserve">
+        <value>Только начали изучать японский? Попробуйте игру</value>
+    </data>
+    <data name="NewToJapanese2" xml:space="preserve">
+        <value> - это увлекательное приключение для освоения основ японского!</value>
+    </data>
+    <data name="NihongoQuest" xml:space="preserve">
+        <value>NIHONGO КВЕСТ</value>
+    </data>
+    <data name="DoYouRemember" xml:space="preserve">
+        <value>Вы помните это?</value>
+    </data>
+    <data name="Forgot" xml:space="preserve">
+        <value>НЕ ПОМНЮ</value>
+    </data>
+    <data name="Remember" xml:space="preserve">
+        <value>ПОМНЮ</value>
+    </data>
+    <data name="IRememberItPerfectly" xml:space="preserve">
+        <value>Я ПОМНЮ ЭТО В ИДЕАЛЕ</value>
+    </data>
+    <data name="Front" xml:space="preserve">
+        <value>Фронт</value>
+    </data>
+    <data name="FlashcardBack" xml:space="preserve">
+        <value>Бэк</value>
+    </data>
+    <data name="TimesInARow" xml:space="preserve">
+        <value>раз подряд</value>
+    </data>
 </root>

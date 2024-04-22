@@ -25,18 +25,26 @@ public partial class Register
 
     private async Task HandleSubmitAsync()
     {
-        RegisterUserRequest? request = await AuthService.RegisterUserAsync(_registerUserRequest);
-
-        if (request is not null)
+        try
         {
-            _submitSuccessful = true;
+            RegisterUserRequest? request = await AuthService.RegisterUserAsync(_registerUserRequest);
+            if (request is not null)
+            {
+                _submitSuccessful = true;
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
         }
     }
 
     private void HandleInvalidSubmit()
     {
         _submitSuccessful = false;
+        /*
         _errorMessage = "There was a problem";
+    */
     }
 
     private async Task GenerateCredentials()
@@ -62,11 +70,10 @@ public partial class Register
             randomCharLength: 6
         );
 
-        await Js.Dom.ChangeElementValue(PasswordElId, RandGen.Password(passwordOptions));
+        await Js.Dom.ChangeElementValueAsync(PasswordElId, RandGen.Password(passwordOptions));
         _registerUserRequest.PasswordRepeat = _registerUserRequest.Password;
-        await Js.Dom.ChangeElementValue(UsernameElid, RandGen.Username(userNameOptions));
-        await Js.Dom.ChangeElementValue(EmailElId, RandGen.EmailDefault(emailOptions));
+        await Js.Dom.ChangeElementValueAsync(UsernameElid, RandGen.Username(userNameOptions));
+        await Js.Dom.ChangeElementValueAsync(EmailElId, RandGen.EmailDefault(emailOptions));
         _registerUserRequest.JlptLevel = (JlptLevel)RandomNumberGenerator.GetInt32(4);
     }
 }
-

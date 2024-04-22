@@ -64,7 +64,7 @@
         {
             _isCorrect = true;
 
-            await Js.Dom.AddClassesToElementForTime(ValueInputId,
+            await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
                 new[] { "bg-success", "txt-dark" }, 250);
 
             if (OnCorrect != null)
@@ -77,7 +77,7 @@
         {
             _attempts++;
 
-            await Js.Dom.AddClassesToElementForTime(ValueInputId,
+            await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
                 new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
                 500);
 

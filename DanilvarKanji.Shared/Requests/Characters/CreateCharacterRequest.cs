@@ -21,9 +21,13 @@ public class CreateCharacterRequest
 
     public List<Onyomi> Onyomis { get; set; } = new();
 
+    /*
     public ICollection<Word>? Words { get; set; } = new List<Word>();
+    */
 
+    /*
     public List<string>? ChildCharacterIds { get; set; } = new();
+    */
 
     public JlptLevel FromIntToJlpt(int jlpt)
     {
