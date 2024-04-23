@@ -1,6 +1,6 @@
 using DanilvarKanji.Data.Configuration;
 using DanilvarKanji.Domain.Settings;
-using DanilvarKanji.Shared.Domain.Settings;
+using DanilvarKanji.Domain.Shared.Params;
 
 namespace DanilvarKanji.Setup;
 

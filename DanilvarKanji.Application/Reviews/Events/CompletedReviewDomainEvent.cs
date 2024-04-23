@@ -1,5 +1,5 @@
 using DanilvarKanji.Domain.Events;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 
 namespace DanilvarKanji.Application.Reviews.Events;
 

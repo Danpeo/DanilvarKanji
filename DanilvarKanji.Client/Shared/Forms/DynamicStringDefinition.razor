@@ -1,5 +1,5 @@
-@using DanilvarKanji.Shared.Domain.Entities
-@using DanilvarKanji.Shared.Domain.Enumerations
+@using DanilvarKanji.Domain.Shared.Entities
+@using DanilvarKanji.Domain.Shared.Enumerations
 
 @foreach (StringDefinition definition in StringDefinitions)
 {
@@ -47,20 +47,15 @@
 
 @code
 {
-    [Parameter, EditorRequired]
-    public ICollection<StringDefinition> StringDefinitions { get; set; } = default!;
+    [Parameter, EditorRequired] public ICollection<StringDefinition> StringDefinitions { get; set; } = default!;
 
-    [Parameter]
-    public EventCallback OnDeleteClick { get; set; }
+    [Parameter] public EventCallback OnDeleteClick { get; set; }
 
-    [Parameter]
-    public string AddButtonText { get; set; } = "+";
+    [Parameter] public string AddButtonText { get; set; } = "+";
 
-    [Parameter]
-    public bool UseDeleteBtn { get; set; }
+    [Parameter] public bool UseDeleteBtn { get; set; }
 
-    [Parameter]
-    public string DeleteBtnText { get; set; } = "Delete Definition";
+    [Parameter] public string DeleteBtnText { get; set; } = "Delete Definition";
 
     private async Task OnDeleteClickHandler()
     {

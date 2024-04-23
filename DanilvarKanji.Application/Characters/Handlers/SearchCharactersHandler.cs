@@ -1,6 +1,6 @@
 using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Handlers;
@@ -18,7 +18,7 @@ public class SearchCharactersHandler : IRequestHandler<SearchCharactersQuery, IE
     {
         if (!await _characterRepository.AnyExistAsync())
             return Enumerable.Empty<Character>();
-        
+
         if (string.IsNullOrEmpty(request.SearchTerm) || request.SearchTerm.ToLower() == "any")
             return await _characterRepository.ListAsync(request.PaginationParams);
 

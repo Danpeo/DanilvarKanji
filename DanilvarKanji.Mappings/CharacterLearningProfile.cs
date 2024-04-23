@@ -1,6 +1,6 @@
 using AutoMapper;
 using DanilvarKanji.Application.CharacterLearnings.Commands;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 

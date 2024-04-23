@@ -1,7 +1,6 @@
-
 using DanilvarKanji.Domain.Primitives.Result;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using MediatR;
 
 namespace DanilvarKanji.Application.CharacterLearnings.Commands;
@@ -13,7 +12,7 @@ public class CreateCharacterLearningCommand : IRequest<Result<string>>
     public LearningState LearningState { get; set; }
     public int LearnedCount { get; set; }
     public string CharacterId { get; set; }
-    
+
 
     public CreateCharacterLearningCommand(AppUser appUser, string characterId, LearningState learningState, string id)
     {

@@ -2,8 +2,7 @@
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Client.Extensions
 @using DanilvarKanji.Client.Localization
-@using DanilvarKanji.Shared.Domain.Enumerations
-
+@using DanilvarKanji.Domain.Shared.Enumerations
 
 
 @if (_kanjiMeanings is not null)
@@ -34,17 +33,13 @@ else
 
 @code {
 
-    [Parameter, EditorRequired]
-    public required CharacterResponseResponseFull Character { get; set; }
+    [Parameter, EditorRequired] public required CharacterResponseResponseFull Character { get; set; }
 
-    [Parameter, EditorRequired]
-    public Culture Culture { get; set; }
+    [Parameter, EditorRequired] public Culture Culture { get; set; }
 
-    [Inject]
-    public required ICharacterService CharacterService { get; set; }
+    [Inject] public required ICharacterService CharacterService { get; set; }
 
-    [Inject]
-    public required IStringLocalizer<App> Localizer { get; set; }
+    [Inject] public required IStringLocalizer<App> Localizer { get; set; }
 
     private List<string>? _kanjiMeanings = new();
 
@@ -53,11 +48,9 @@ else
         try
         {
             _kanjiMeanings = await CharacterService.GetCharacterKanjiMeanings(Character.Id, int.MaxValue, Culture);
-
         }
         catch (HttpRequestException e)
         {
-        
         }
     }
 

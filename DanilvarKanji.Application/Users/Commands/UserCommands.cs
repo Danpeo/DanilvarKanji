@@ -1,8 +1,6 @@
 using DanilvarKanji.Domain.Primitives.Result;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Params;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 
 namespace DanilvarKanji.Application.Users.Commands;
 

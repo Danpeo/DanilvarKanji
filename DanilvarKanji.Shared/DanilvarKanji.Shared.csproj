@@ -28,4 +28,8 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DanilvarKanji.Domain.Shared\DanilvarKanji.Domain.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

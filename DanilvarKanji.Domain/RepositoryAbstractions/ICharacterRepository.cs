@@ -1,6 +1,6 @@
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
+using DanilvarKanji.Domain.Shared.Params;
 
 namespace DanilvarKanji.Domain.RepositoryAbstractions;
 
@@ -9,16 +9,21 @@ public interface ICharacterRepository
     ValueTask<bool> ExistAsync(string id);
     Task DeleteAsync(string id);
     ValueTask<bool> AnyExistAsync();
+
     Task<IEnumerable<string>> GetKanjiMeaningsByPriority(string characterId, int takeQty,
         Culture culture);
+
     void Create(Character character);
     Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams);
     Task<Character?> GetAsync(string id);
+
     Task<IEnumerable<Character>> SearchAsync(string searchTerm);
+
     /*
     Task<IEnumerable<Character>> ListChildCharacters(string characterId);
     */
     Task UpdateAsync(string id, Character character);
+
     Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams? paginationParams, AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5);
 

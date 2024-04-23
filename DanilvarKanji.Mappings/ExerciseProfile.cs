@@ -1,6 +1,6 @@
 using AutoMapper;
 using DanilvarKanji.Application.Exercises.Commands;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Shared.Requests.Exercises;
 
 namespace DanilvarKanji.Mappings;

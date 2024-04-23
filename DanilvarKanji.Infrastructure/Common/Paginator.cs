@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Params;
 
 namespace DanilvarKanji.Infrastructure.Common;
 

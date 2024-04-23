@@ -1,5 +1,5 @@
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using WanaKanaNet;
 
 namespace DanilvarKanji.Shared.Validation;
@@ -28,6 +28,6 @@ public class CharacterValidatorBase<T> : ValidatorBase<T>
                defs.Any(d => d.Culture == Culture.RuRU);
     }
 
-    protected static bool StrIsJapanese(string? def) => 
+    protected static bool StrIsJapanese(string? def) =>
         def != null && WanaKana.IsJapanese(def);
 }

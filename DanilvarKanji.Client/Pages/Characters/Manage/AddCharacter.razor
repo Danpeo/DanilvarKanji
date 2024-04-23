@@ -1,6 +1,7 @@
 @page "/Characters/Add"
 @using DanilvarKanji.Client.Data
-@using DanilvarKanji.Shared.Domain.Enumerations
+@using DanilvarKanji.Domain.Shared.Entities
+@using DanilvarKanji.Domain.Shared.Enumerations
 @using DanilvarKanji.Shared.Requests.Characters
 
 @inject IStringLocalizer<App> Loc;
@@ -25,7 +26,7 @@
 
         <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
             <InputSelect @bind-Value="_createCharacterRequest.JlptLevel" class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
-                <option value="@JlptLevel.N5">JLPT N5</option>
+                <option>JLPT N5</option>
                 <option value="@JlptLevel.N4">JLPT N4</option>
                 <option value="@JlptLevel.N3">JLPT N3</option>
                 <option value="@JlptLevel.N2">JLPT N2</option>

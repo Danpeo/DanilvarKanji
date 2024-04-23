@@ -69,6 +69,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        internal static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string Add {
@@ -609,6 +618,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plain User.
+        /// </summary>
+        internal static string PlainUser {
+            get {
+                return ResourceManager.GetString("PlainUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Radical.
         /// </summary>
         internal static string Radical {
@@ -641,6 +659,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string Registration {
             get {
                 return ResourceManager.GetString("Registration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Date.
+        /// </summary>
+        internal static string RegistrationDate {
+            get {
+                return ResourceManager.GetString("RegistrationDate", resourceCulture);
             }
         }
         
@@ -681,6 +708,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        internal static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string Settings {
@@ -704,6 +740,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string StudyIsComplete {
             get {
                 return ResourceManager.GetString("StudyIsComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super Admin.
+        /// </summary>
+        internal static string SuperAdmin {
+            get {
+                return ResourceManager.GetString("SuperAdmin", resourceCulture);
             }
         }
         

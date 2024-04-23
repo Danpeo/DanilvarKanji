@@ -25,6 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DanilvarKanji.Application\DanilvarKanji.Application.csproj" />
+      <ProjectReference Include="..\DanilvarKanji.Domain.Shared\DanilvarKanji.Domain.Shared.csproj" />
     </ItemGroup>
 
 </Project>

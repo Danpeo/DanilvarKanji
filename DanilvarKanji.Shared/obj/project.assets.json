@@ -368,6 +368,21 @@
         "runtime": {
           "lib/netstandard2.0/WanaKanaNet.dll": {}
         }
+      },
+      "DanilvarKanji.Domain.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Danilvar.Entity": "1.0.0",
+          "Microsoft.Extensions.Identity.Stores": "7.0.11",
+          "WanaKana-net": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DanilvarKanji.Domain.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DanilvarKanji.Domain.Shared.dll": {}
+        }
       }
     }
   },
@@ -878,12 +893,18 @@
         "wanakana-net.nuspec",
         "wanikani.png"
       ]
+    },
+    "DanilvarKanji.Domain.Shared/1.0.0": {
+      "type": "project",
+      "path": "../DanilvarKanji.Domain.Shared/DanilvarKanji.Domain.Shared.csproj",
+      "msbuildProject": "../DanilvarKanji.Domain.Shared/DanilvarKanji.Domain.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "DVar.RandCreds >= 1.0.0",
       "Danilvar.Entity >= 1.0.0",
+      "DanilvarKanji.Domain.Shared >= 1.0.0",
       "FluentValidation >= 11.8.0",
       "MediatR >= 12.1.1",
       "Microsoft.AspNetCore.Http.Features >= 6.0.0-preview.4.21253.5",
@@ -919,7 +940,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain.Shared\\DanilvarKanji.Domain.Shared.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain.Shared\\DanilvarKanji.Domain.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

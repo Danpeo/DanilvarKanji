@@ -1,5 +1,4 @@
-
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 
 namespace DanilvarKanji.Domain.RepositoryAbstractions;
 

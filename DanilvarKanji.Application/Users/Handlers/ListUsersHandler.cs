@@ -1,6 +1,6 @@
 using DanilvarKanji.Application.Users.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

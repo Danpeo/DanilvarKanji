@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Shared.Requests.Users;
 using DanilvarKanji.Shared.Responses.User;
 

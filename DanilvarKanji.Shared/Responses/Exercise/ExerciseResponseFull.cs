@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Shared.Responses.Character;
 
 namespace DanilvarKanji.Shared.Responses.Exercise;

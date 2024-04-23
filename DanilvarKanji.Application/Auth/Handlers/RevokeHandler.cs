@@ -1,5 +1,5 @@
 using DanilvarKanji.Application.Auth.Commands;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -19,7 +19,7 @@ public class RevokeHandler : IRequestHandler<RevokeCommand, IdentityResult>
     {
         /*var username = HttpContext.User.Identity?.Name;
 
-        
+
         var user = await _userManager.FindByEmailAsync(request.Email);
 
         if (user is null)
@@ -28,7 +28,7 @@ public class RevokeHandler : IRequestHandler<RevokeCommand, IdentityResult>
         user.RefreshToken = null;
 
         await _userManager.UpdateAsync(user);*/
-        
+
         return IdentityResult.Success;
     }
 }

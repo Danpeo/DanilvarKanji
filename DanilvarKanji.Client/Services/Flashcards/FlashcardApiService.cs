@@ -1,6 +1,3 @@
-using System.Net;
-using System.Net.Http.Json;
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
 using DanilvarKanji.Shared.Requests.Flashcards;
 using DanilvarKanji.Shared.Responses.Flashcards;
 

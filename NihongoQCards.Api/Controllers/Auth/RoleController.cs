@@ -1,5 +1,5 @@
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +64,7 @@ public class RoleController : Controller
     {
         return Ok(_roleManager.Roles.ToString());
     }
-    
+
     [HttpPost("AssignRoleToUser")]
     public async Task<IActionResult> AssignRoleToUser(string roleName, string userEmail)
     {
@@ -96,5 +96,4 @@ public class RoleController : Controller
 
         return BadRequest("Role or user not found");
     }
-
 }

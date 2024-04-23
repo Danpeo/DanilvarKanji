@@ -1,8 +1,8 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Shared.Responses.Character;
 using MediatR;
 

@@ -1,6 +1,6 @@
 using DanilvarKanji.Application.Users.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Params;
 using MediatR;
 
 namespace DanilvarKanji.Application.Users.Handlers;

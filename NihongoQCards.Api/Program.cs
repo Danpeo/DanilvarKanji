@@ -1,21 +1,17 @@
-using System.Security.Claims;
 using System.Text;
 using DanilvarKanji.Application;
 using DanilvarKanji.Application.Behaviors;
-using DanilvarKanji.Data.Configuration;
-using DanilvarKanji.Extensions;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Mappings;
 using DanilvarKanji.Infrastructure;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Setup;
-using DanilvarKanji.Shared.Domain.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using Serilog;
 

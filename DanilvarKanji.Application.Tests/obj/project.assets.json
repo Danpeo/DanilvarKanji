@@ -2675,6 +2675,21 @@
           "bin/placeholder/DanilvarKanji.Domain.dll": {}
         }
       },
+      "DanilvarKanji.Domain.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Danilvar.Entity": "1.0.0",
+          "Microsoft.Extensions.Identity.Stores": "7.0.11",
+          "WanaKana-net": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DanilvarKanji.Domain.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DanilvarKanji.Domain.Shared.dll": {}
+        }
+      },
       "DanilvarKanji.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -2698,6 +2713,7 @@
         "dependencies": {
           "DVar.RandCreds": "1.0.0",
           "Danilvar.Entity": "1.0.0",
+          "DanilvarKanji.Domain.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
           "Microsoft.AspNetCore.Http.Features": "6.0.0-preview.4.21253.5",
@@ -7865,6 +7881,11 @@
       "path": "../DanilvarKanji.Domain/DanilvarKanji.Domain.csproj",
       "msbuildProject": "../DanilvarKanji.Domain/DanilvarKanji.Domain.csproj"
     },
+    "DanilvarKanji.Domain.Shared/1.0.0": {
+      "type": "project",
+      "path": "../DanilvarKanji.Domain.Shared/DanilvarKanji.Domain.Shared.csproj",
+      "msbuildProject": "../DanilvarKanji.Domain.Shared/DanilvarKanji.Domain.Shared.csproj"
+    },
     "DanilvarKanji.Infrastructure/1.0.0": {
       "type": "project",
       "path": "../DanilvarKanji.Infrastructure/DanilvarKanji.Infrastructure.csproj",
@@ -7879,6 +7900,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "DanilvarKanji.Application >= 1.0.0",
+      "DanilvarKanji.Domain.Shared >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.7.1",
       "Moq >= 4.20.69",
       "coverlet.collector >= 3.2.0",
@@ -7915,6 +7937,9 @@
           "projectReferences": {
             "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Application\\DanilvarKanji.Application.csproj": {
               "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Application\\DanilvarKanji.Application.csproj"
+            },
+            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain.Shared\\DanilvarKanji.Domain.Shared.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain.Shared\\DanilvarKanji.Domain.Shared.csproj"
             }
           }
         }

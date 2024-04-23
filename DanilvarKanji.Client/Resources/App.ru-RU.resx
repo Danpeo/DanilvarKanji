@@ -106,7 +106,7 @@
         <value>Выйти</value>
     </data>
     <data name="Admin" xml:space="preserve">
-        <value>Админ</value>
+        <value>Админинстратор</value>
     </data>
     <data name="Dictionary" xml:space="preserve">
         <value>Словарь</value>
@@ -263,5 +263,20 @@
     </data>
     <data name="TimesInARow" xml:space="preserve">
         <value>раз подряд</value>
+    </data>
+    <data name="RegistrationDate" xml:space="preserve">
+        <value>Дата регистрации</value>
+    </data>
+    <data name="Role" xml:space="preserve">
+        <value>Роль</value>
+    </data>
+    <data name="Action" xml:space="preserve">
+        <value>Действие</value>
+    </data>
+    <data name="PlainUser" xml:space="preserve">
+        <value>Простой пользователь</value>
+    </data>
+    <data name="SuperAdmin" xml:space="preserve">
+        <value>Супер-администратор</value>
     </data>
 </root>

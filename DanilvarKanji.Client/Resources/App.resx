@@ -218,4 +218,19 @@
     <data name="TimesInARow" xml:space="preserve">
         <value />
     </data>
+    <data name="RegistrationDate" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Role" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Action" xml:space="preserve">
+        <value />
+    </data>
+    <data name="PlainUser" xml:space="preserve">
+        <value />
+    </data>
+    <data name="SuperAdmin" xml:space="preserve">
+        <value />
+    </data>
 </root>

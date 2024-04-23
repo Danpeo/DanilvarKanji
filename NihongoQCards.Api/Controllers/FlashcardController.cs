@@ -1,9 +1,9 @@
 using DanilvarKanji.Application.Flashcards.Commands;
 using DanilvarKanji.Application.Flashcards.Queries;
 using DanilvarKanji.Domain.Errors;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Shared.Requests.Flashcards;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

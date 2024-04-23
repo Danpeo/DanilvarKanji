@@ -1,7 +1,7 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Application.Characters.Queries;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;
 

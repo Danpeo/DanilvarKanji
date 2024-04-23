@@ -1,6 +1,6 @@
 using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +22,7 @@ public class ListCharactersHandler : IRequestHandler<ListCharactersQuery, IEnume
     {
         _logger.LogInformation("Processing List Characters Query: {@request}, {@dt}"
             , request, DateTime.UtcNow);
-        
+
         if (await _characterRepository.AnyExistAsync())
         {
             return await _characterRepository.ListAsync(request.PaginationParams);

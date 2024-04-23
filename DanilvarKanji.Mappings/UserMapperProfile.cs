@@ -1,6 +1,6 @@
 using AutoMapper;
 using DanilvarKanji.Application.Auth.Commands;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Shared.Requests.Auth;
 
 namespace DanilvarKanji.Mappings;
@@ -21,7 +21,7 @@ public class UserMapperProfile : Profile
 
         CreateMap<RegisterUserRequest, RegisterUserCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<AppUser, LoginUserCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
@@ -40,7 +40,7 @@ public class UserMapperProfile : Profile
 
         CreateMap<RefreshKeyRequest, RefreshKeyCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-        
+
         CreateMap<RevokeCommand, RevokeRequest>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 

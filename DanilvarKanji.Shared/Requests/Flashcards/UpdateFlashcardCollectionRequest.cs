@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
 using DanilvarKanji.Shared.Responses.Flashcards;
 using DVar.RandCreds;
 
@@ -24,7 +24,7 @@ public class UpdateFlashcardCollectionRequest
         Flashcards = collection.Flashcards;
         CollectionToUpdateId = collection.Id;
     }
-    
+
     public UpdateFlashcardCollectionRequest(string name, List<Flashcard> flashcards, string collectionToUpdateId)
     {
         Name = name;

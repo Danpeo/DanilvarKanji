@@ -3,8 +3,8 @@ using DanilvarKanji.Application.Auth.Commands;
 using DanilvarKanji.Application.Auth.Handlers;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 

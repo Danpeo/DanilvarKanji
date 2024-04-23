@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using DanilvarKanji.Client.JsWrapper;
 using DanilvarKanji.Client.Services.Auth;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Shared.Requests.Auth;
 using DVar.RandCreds;
 using DVar.RandCreds.Options;

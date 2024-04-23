@@ -1,9 +1,9 @@
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
-using DanilvarKanji.Shared.Domain.Params;
 using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Infrastructure.Repositories;

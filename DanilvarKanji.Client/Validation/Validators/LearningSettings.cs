@@ -4,7 +4,7 @@ using Microsoft.Extensions.Localization;
 
 namespace DanilvarKanji.Client.Validation.Validators;
 
-public class LearningSettings : ValidatorBase<DanilvarKanji.Shared.Domain.Params.LearningSettings>
+public class LearningSettings : ValidatorBase<Domain.Shared.Params.LearningSettings>
 {
     public LearningSettings(IStringLocalizer<App> loc)
     {

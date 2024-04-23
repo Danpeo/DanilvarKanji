@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Shared.Responses.Exercise;
 
 namespace DanilvarKanji.Client.Extensions;

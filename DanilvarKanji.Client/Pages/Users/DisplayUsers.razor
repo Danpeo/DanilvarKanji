@@ -1,8 +1,8 @@
 @page "/Users"
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Client.Services.Auth
-@using DanilvarKanji.Shared.Domain.Entities
-@using DanilvarKanji.Shared.Domain.Enumerations
+@using DanilvarKanji.Domain.Shared.Entities
+@using DanilvarKanji.Domain.Shared.Enumerations
 @using DanilvarKanji.Shared.Requests.Users
 
 @inject IStringLocalizer<App> Loc;
@@ -31,11 +31,11 @@ else
         <thead>
         <tr class="txt-mid-pink">
             <th scope="col">#</th>
-            <th scope="col">User Name</th>
+            <th scope="col">@Loc["UserName"]</th>
             <th scope="col">Email</th>
-            <th scope="col">Registration Date</th>
-            <th scope="col">Role</th>
-            <th scope="col">Action</th>
+            <th scope="col">@Loc["RegistrationDate"]</th>
+            <th scope="col">@Loc["Role"]</th>
+            <th scope="col">@Loc["Action"]</th>
         </tr>
         </thead>
         @for (var i = 0; i < _appUsers.Count; i++)
@@ -49,9 +49,9 @@ else
                 <td>@appUser.RegistrationDate</td>
                 <td>
                     <InputSelect @bind-Value="appUser.Role" class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
-                        <option value="@UserRole.User">Plain User</option>
-                        <option value="@UserRole.Admin">Admin</option>
-                        <option value="@UserRole.SuperAdmin">Super Admin</option>
+                        <option value="@UserRole.User">@Loc["PlainUser"]</option>
+                        <option value="@UserRole.Admin">@Loc["Admin"]</option>
+                        <option value="@UserRole.SuperAdmin">@Loc["SuperAdmin"]</option>
                     </InputSelect>
                 </td>
                 <td>

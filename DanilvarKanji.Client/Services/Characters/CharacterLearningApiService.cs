@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 using DanilvarKanji.Client.State;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 

@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
 
 namespace DanilvarKanji.Shared.Responses.Flashcards;
 

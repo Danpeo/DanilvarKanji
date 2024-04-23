@@ -5,7 +5,7 @@ using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Client.Services;
 using DanilvarKanji.Client.Services.Characters;
 using DanilvarKanji.Client.Shared.Modal;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Shared.Responses.Character;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;

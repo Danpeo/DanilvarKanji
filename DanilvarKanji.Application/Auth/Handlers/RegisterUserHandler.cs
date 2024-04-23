@@ -2,7 +2,7 @@ using AutoMapper;
 using DanilvarKanji.Application.Auth.Commands;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

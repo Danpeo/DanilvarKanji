@@ -1,7 +1,7 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Shared.Responses.Character;
 using MediatR;
 
@@ -12,14 +12,15 @@ public class GetNextInLearnQueueHandler : IRequestHandler<GetNextInLearnQueueQue
 {
     private readonly ICharacterRepository _characterRepository;
     private readonly IMapper _mapper;
-    
+
     public GetNextInLearnQueueHandler(ICharacterRepository characterRepository, IMapper mapper)
     {
         _characterRepository = characterRepository;
         _mapper = mapper;
     }
 
-    public async Task<CharacterResponseBase?> Handle(GetNextInLearnQueueQuery request, CancellationToken cancellationToken)
+    public async Task<CharacterResponseBase?> Handle(GetNextInLearnQueueQuery request,
+        CancellationToken cancellationToken)
     {
         if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
         {

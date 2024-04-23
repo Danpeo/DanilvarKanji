@@ -1,5 +1,5 @@
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +9,6 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
 {
     public DbSet<AppUser> AppUsers { get; set; }
     public DbSet<Character> Characters { get; set; }
-    public DbSet<Test> Tests { get; set; }
     public DbSet<CharacterLearning> CharacterLearnings { get; set; }
     /*
     public DbSet<LearningProgress> LearningProgresses { get; set; }

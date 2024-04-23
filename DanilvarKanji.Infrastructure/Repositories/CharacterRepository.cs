@@ -1,9 +1,9 @@
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
-using DanilvarKanji.Shared.Domain.Params;
 using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Infrastructure.Repositories;

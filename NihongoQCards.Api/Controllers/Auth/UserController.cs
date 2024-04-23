@@ -1,8 +1,7 @@
 using DanilvarKanji.Application.Users.Commands;
 using DanilvarKanji.Application.Users.Queries;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Shared.Requests.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

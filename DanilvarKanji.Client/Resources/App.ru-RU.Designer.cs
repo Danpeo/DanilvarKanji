@@ -69,6 +69,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Действие.
+        /// </summary>
+        internal static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавить.
         /// </summary>
         internal static string Add {
@@ -96,7 +105,7 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Админ.
+        ///   Looks up a localized string similar to Админинстратор.
         /// </summary>
         internal static string Admin {
             get {
@@ -609,6 +618,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Простой пользователь.
+        /// </summary>
+        internal static string PlainUser {
+            get {
+                return ResourceManager.GetString("PlainUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Радикал.
         /// </summary>
         internal static string Radical {
@@ -641,6 +659,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string Registration {
             get {
                 return ResourceManager.GetString("Registration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата регистрации.
+        /// </summary>
+        internal static string RegistrationDate {
+            get {
+                return ResourceManager.GetString("RegistrationDate", resourceCulture);
             }
         }
         
@@ -681,6 +708,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Роль.
+        /// </summary>
+        internal static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         internal static string Settings {
@@ -704,6 +740,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string StudyIsComplete {
             get {
                 return ResourceManager.GetString("StudyIsComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Супер-администратор.
+        /// </summary>
+        internal static string SuperAdmin {
+            get {
+                return ResourceManager.GetString("SuperAdmin", resourceCulture);
             }
         }
         

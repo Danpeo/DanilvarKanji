@@ -1,6 +1,6 @@
 using System.ComponentModel;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 
 namespace DanilvarKanji.Shared.Requests.Characters;
 
@@ -65,12 +65,12 @@ public class CreateCharacterRequest
             },
             Priority = 100
         });
-        
+
         Kunyomis.Add(new Kunyomi
         {
             JapaneseWriting = "く。る",
         });
-        
+
         Onyomis.Add(new Onyomi
         {
             JapaneseWriting = "ラ"

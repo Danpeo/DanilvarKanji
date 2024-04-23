@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 
 namespace DanilvarKanji.Shared.Requests.Exercises;
 
@@ -9,7 +9,8 @@ public class CreateExerciseRequest
     public ExerciseType ExerciseType { get; set; } = ExerciseType.Point;
     public ExerciseSubject ExerciseSubject { get; set; }
 
-    public CreateExerciseRequest(string characterId, bool isCorrect, ExerciseType exerciseType, ExerciseSubject exerciseSubject)
+    public CreateExerciseRequest(string characterId, bool isCorrect, ExerciseType exerciseType,
+        ExerciseSubject exerciseSubject)
     {
         CharacterId = characterId;
         IsCorrect = isCorrect;

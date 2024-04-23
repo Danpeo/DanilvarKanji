@@ -264,4 +264,19 @@
     <data name="TimesInARow" xml:space="preserve">
         <value>times in a row</value>
     </data>
+    <data name="RegistrationDate" xml:space="preserve">
+        <value>Registration Date</value>
+    </data>
+    <data name="Role" xml:space="preserve">
+        <value>Role</value>
+    </data>
+    <data name="Action" xml:space="preserve">
+        <value>Action</value>
+    </data>
+    <data name="PlainUser" xml:space="preserve">
+        <value>Plain User</value>
+    </data>
+    <data name="SuperAdmin" xml:space="preserve">
+        <value>Super Admin</value>
+    </data>
 </root>

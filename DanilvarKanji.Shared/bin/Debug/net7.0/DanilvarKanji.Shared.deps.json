@@ -10,6 +10,7 @@
         "dependencies": {
           "DVar.RandCreds": "1.0.0",
           "Danilvar.Entity": "1.0.0",
+          "DanilvarKanji.Domain.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
           "Microsoft.AspNetCore.Http.Features": "6.0.0-preview.4.21253.5",
@@ -270,6 +271,16 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "DanilvarKanji.Domain.Shared/1.0.0": {
+        "dependencies": {
+          "Danilvar.Entity": "1.0.0",
+          "Microsoft.Extensions.Identity.Stores": "7.0.11",
+          "WanaKana-net": "1.0.0"
+        },
+        "runtime": {
+          "DanilvarKanji.Domain.Shared.dll": {}
+        }
       }
     }
   },
@@ -425,6 +436,11 @@
       "sha512": "sha512-dKRJ8JwDQVBdFwHM0Tinyg2SnYEvwH62+kcdZtO+SLkf/poG22+v3k3Cf2qAOfxMpGN7IBf9FT+TD9DTWRPIyA==",
       "path": "wanakana-net/1.0.0",
       "hashPath": "wanakana-net.1.0.0.nupkg.sha512"
+    },
+    "DanilvarKanji.Domain.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

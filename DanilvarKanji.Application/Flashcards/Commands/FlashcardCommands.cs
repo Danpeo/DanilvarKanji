@@ -1,6 +1,6 @@
 using DanilvarKanji.Domain.Primitives.Result;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
 using MediatR;
 
 namespace DanilvarKanji.Application.Flashcards.Commands;

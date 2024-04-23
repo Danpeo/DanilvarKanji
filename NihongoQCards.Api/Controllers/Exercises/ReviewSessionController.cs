@@ -2,7 +2,7 @@ using AutoMapper;
 using DanilvarKanji.Application.Reviews.Commands;
 using DanilvarKanji.Application.Reviews.Queries;
 using DanilvarKanji.Domain.Errors;
-using DanilvarKanji.Shared.Domain.Entities;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Shared.Requests.Reviews;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -39,7 +39,7 @@ public class ReviewSessionController : ApiController
             return HandleFailure(result);
 
         return await GetAsync(result.Value);
-        
+
 //        return CreatedAtAction("Get", new { id = result.Value }, command);
     }
 

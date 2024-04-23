@@ -1,9 +1,9 @@
 using Danilvar;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Infrastructure.Data;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
-using DanilvarKanji.Shared.Domain.Settings;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -114,7 +114,7 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
 
             float shift = _learningSettings.InitRepeatingShiftHrs;
             float nextShiftMofifier = _learningSettings.NextShiftModifier;
-            
+
             for (int percent = 10; percent <= 100; percent += 10)
             {
                 if (learningPercent <= percent)
@@ -122,6 +122,7 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
                     characterLearning.NextReviewDateTime = DateTime.UtcNow.AddHours(shift);
                     break;
                 }
+
                 shift *= nextShiftMofifier;
             }
         }
@@ -133,7 +134,7 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
                 xp += _learningSettings.NormalXp;
             else
                 xp += _learningSettings.MinXp;
-            
+
             await _userRepository.UpdateUserXpAsync(xp, notification.AppUser.Email!);
         }
     }

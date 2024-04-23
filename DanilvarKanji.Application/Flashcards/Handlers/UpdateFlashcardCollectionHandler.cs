@@ -2,8 +2,8 @@ using DanilvarKanji.Application.Flashcards.Commands;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
 using DanilvarKanji.Infrastructure.Data;
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

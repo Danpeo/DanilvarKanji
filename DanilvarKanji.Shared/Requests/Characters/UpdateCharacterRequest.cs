@@ -1,5 +1,5 @@
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 
 namespace DanilvarKanji.Shared.Requests.Characters;
 
@@ -19,5 +19,4 @@ public class UpdateCharacterRequest
     public ICollection<Word>? Words { get; set; }
 
     public List<string>? ChildCharacterIds { get; set; }
-    
 }

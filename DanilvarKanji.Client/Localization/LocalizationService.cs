@@ -1,17 +1,17 @@
 using Blazored.LocalStorage;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 
 namespace DanilvarKanji.Client.Localization;
 
 public class LocalizationService : ILocalizationService
 {
     private readonly ILocalStorageService _localStorageService;
-    
+
     public LocalizationService(ILocalStorageService localStorageService)
     {
         _localStorageService = localStorageService;
     }
-    
+
     public async Task<Culture> GetCurrentCulture()
     {
         Culture culture = await _localStorageService.GetItemAsync<string>("culture") switch

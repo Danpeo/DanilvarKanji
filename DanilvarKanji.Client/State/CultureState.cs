@@ -1,5 +1,5 @@
 using DanilvarKanji.Client.Localization;
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 
 namespace DanilvarKanji.Client.State;
 

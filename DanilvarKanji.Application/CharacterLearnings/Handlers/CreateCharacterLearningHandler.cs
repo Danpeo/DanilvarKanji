@@ -2,8 +2,8 @@ using DanilvarKanji.Application.CharacterLearnings.Commands;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.RepositoryAbstractions;
+using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Infrastructure.Data;
-using DanilvarKanji.Shared.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -31,9 +31,9 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
         CancellationToken cancellationToken)
     {
         Character? character = await _characterRepository.GetAsync(request.CharacterId);
-        
+
         _logger.LogInformation("Getted character: {@character}", character);
-        
+
         var characterLearning = new CharacterLearning()
         {
             Id = request.Id,
@@ -51,7 +51,7 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
             _logger.LogInformation("Created character learning: {@characterLearning}", characterLearning);
             return Result.Success(characterLearning.Id);
         }
-        
+
         _logger.LogError("Failed to create character learning: {@characterLearning}", characterLearning);
         return Result.Failure<string>(General.UnProcessableRequest);
     }

@@ -1,9 +1,9 @@
 using DanilvarKanji.Application.CharacterLearnings.Commands;
 using DanilvarKanji.Application.CharacterLearnings.Queries;
 using DanilvarKanji.Domain.Errors;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
-using DanilvarKanji.Shared.Domain.Params;
+using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
+using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Shared.Requests.CharacterLearnings;
 using DanilvarKanji.Shared.Responses.CharacterLearning;
 using MediatR;

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DanilvarKanji.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5216f72bf81b499e865397494b36a69a6f670d70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab76b9e888cba3561be1ba4841f0e139bcd28d0f")]
 [assembly: System.Reflection.AssemblyProductAttribute("DanilvarKanji.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DanilvarKanji.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

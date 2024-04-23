@@ -1,4 +1,4 @@
-using DanilvarKanji.Shared.Domain.Enumerations;
+using DanilvarKanji.Domain.Shared.Enumerations;
 
 namespace DanilvarKanji.Shared.Requests.Auth;
 
@@ -11,6 +11,6 @@ public class RegisterUserRequest
     public string Email { get; set; }
 
     public string Password { get; set; }
-    
+
     public string PasswordRepeat { get; set; }
 }

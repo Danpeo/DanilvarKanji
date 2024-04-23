@@ -1,6 +1,4 @@
 using DanilvarKanji.Application.Characters.Commands;
-using DanilvarKanji.Shared.Domain.Entities;
-using DanilvarKanji.Shared.Domain.Enumerations;
 using DanilvarKanji.Shared.Validation;
 using FluentValidation;
 

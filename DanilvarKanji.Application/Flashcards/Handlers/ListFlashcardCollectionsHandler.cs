@@ -1,8 +1,7 @@
 using DanilvarKanji.Application.Flashcards.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
-using DanilvarKanji.Shared.Domain.Entities.Flashcards;
+using DanilvarKanji.Domain.Shared.Entities.Flashcards;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace DanilvarKanji.Application.Flashcards.Handlers;
 
