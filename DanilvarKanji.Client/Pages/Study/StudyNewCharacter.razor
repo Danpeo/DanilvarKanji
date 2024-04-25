@@ -17,8 +17,8 @@
 
         if (_contentEnded)
         {
-            <div class="d-grid gap-2 mb-2">
-                <button class="btn btn-elg btn-primary" @onclick="FinishLearning">@Loc["Fin"]</button>
+            <div class="d-grid gap-2 mb-2 mt-2">
+                <button class="btn btn-elg btn-secondary-alt" @onclick="FinishLearning">@Loc["Fin"]</button>
             </div>
         }
     }
@@ -98,22 +98,22 @@
         _contentDictionary = new Dictionary<int, RenderFragment>()
         {
             {
-                0, @<div class="fade-in-el">
+                0, @<div class="dvar-slide">
                        <DisplayCharacterMeanings Character="@_character" Culture="AppState.CultureState.Culture"/>
                    </div>
             },
             {
-                1, @<div class="fade-in-el">
+                1, @<div class="dvar-slide">
                        <DisplayCharacterMnemonics Character="_character" Culture="AppState.CultureState.Culture"/>
                    </div>
             },
             {
-                2, @<div class="fade-in-el">
+                2, @<div class="dvar-slide">
                        <DisplayCharacterKunReadings Character="_character"/>
                    </div>
             },
             {
-                3, @<div class="fade-in-el">
+                3, @<div class="dvar-slide">
                        <DisplayCharacterOnReadings Character="_character"/>
                    </div>
             }

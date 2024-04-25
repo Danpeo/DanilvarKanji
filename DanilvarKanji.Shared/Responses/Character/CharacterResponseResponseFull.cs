@@ -1,4 +1,5 @@
 using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.ValueObjects;
 
 namespace DanilvarKanji.Shared.Responses.Character;
 

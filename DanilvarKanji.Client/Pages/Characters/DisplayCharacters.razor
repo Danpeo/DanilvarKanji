@@ -1,10 +1,11 @@
 @using DanilvarKanji.Client.Extensions
 @using DanilvarKanji.Shared.Responses.Character
 
+@inject IStringLocalizer<App> Loc;
 
 <div class="d-flex">
-    <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/init-add"))" class="btn btn-primary mb-2">
-        Add New
+    <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/init-add"))" class="btn btn-secondary-alt mb-2">
+        @Loc["Add"]
     </button>
 </div>
 
@@ -13,11 +14,13 @@
            @bind="_searchTerm"
            @bind:event="oninput"
            type="search"
-           placeholder="Search for a character..."
+           placeholder="@Loc["CharacterSearchPlaceholder"]"
            class="form-control bg-secondary-2 no-border txt-light-pink main-font"/>
 
     <div class="ms-2">
-        <button @onclick="SearchForCharacter" class="btn btn-outline-primary" type="submit">Search</button>
+        <button @onclick="SearchForCharacter" class="btn btn-outline-primary" type="submit">
+            @Loc["Search"]
+        </button>
     </div>
 </div>
 
@@ -53,7 +56,7 @@ else
                         {
                             <DisplayKanjiMeanings KanjiMeanings="_kanjiMeanings" CharacterId="@character.Id"/>
                         }
-                        @if (character.Kunyomis is {Count: > 0})
+                        @if (character.Kunyomis is { Count: > 0 })
                         {
                             <p class="card-text txt-green-dim main-font">
                                 <DisplayKunyomi Character="character" MaxReadingsToDisplay="3"/>
@@ -63,7 +66,7 @@ else
                         {
                             <p class="card-text txt-green-dim main-font">-----</p>
                         }
-                        @if (character.Onyomis is {Count: > 0 })
+                        @if (character.Onyomis is { Count: > 0 })
                         {
                             <p class="card-text txt-green-dim main-font">
                                 <DisplayOnyomi Character="character" MaxReadingsToDisplay="3"/>
@@ -81,6 +84,7 @@ else
             </a>
         </div>
     }
+
     if (string.IsNullOrEmpty(_searchTerm))
     {
         <div class="d-grid gap-2 mt-4 mb-4">

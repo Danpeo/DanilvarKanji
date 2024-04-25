@@ -22,6 +22,16 @@
     --green-color-dim: #9de3aa;
 }
 
+.light-theme {
+    --dark-color-main-2: #f3f0ff;
+    --dark-color-secondary-2: #e4dcf7;
+    --pink-color-bright: #ab74cb;
+    --green-color-dim: #63bae8;
+    --pink-color-mid: #6c54ae;
+    --pink-color-light: #6c54ae;
+    --pink-color-pale: #6c54ae;
+}
+
 .table-dark {
     background-color: var(--dark-color-main-2) !important;
 }
@@ -188,6 +198,25 @@
     background-color: var(--pink-color-bright) !important;
     border-color: var(--pink-color-bright) !important;
     color: var(--white-color) !important;
+}
+
+.btn-secondary-alt {
+    background-color: var(--green-color-dim) !important;
+    border-color: var(--green-color-dim) !important;
+    color: var(--dark-color-main-2) !important;
+}
+
+.btn-secondary-alt:focus {
+    background-color: var(--green-color-dim);
+    border-color: var(--green-color-dim);
+    color: var(--dark-color-main-2);
+    outline: none;
+}
+
+.btn-secondary-alt:hover {
+    background-color: var(--green-color-dim) !important;
+    border-color: var(--green-color-dim) !important;
+    color: var(--dark-color-main-2) !important;
 }
 
 .btn-outline-primary {

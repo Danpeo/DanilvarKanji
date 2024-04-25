@@ -1,10 +1,10 @@
+using Danilvar.Entity;
 using DanilvarKanji.Domain.Shared.Enumerations;
 
 namespace DanilvarKanji.Domain.Shared.Entities;
 
-public class Exercise
+public class Exercise : Entity
 {
-    public string Id { get; set; }
     public Character Character { get; set; }
     public AppUser AppUser { get; set; }
     public bool IsCorrect { get; set; }

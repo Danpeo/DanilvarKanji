@@ -11,7 +11,7 @@
 <h3 class="mb-5 display-3 txt-bright-pink main-font">@Loc["Flashcards"]</h3>
 
 <div class="d-flex">
-    <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/Add"))" class="btn btn-primary mb-2">
+    <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/Add"))" class="btn btn-secondary-alt mb-2">
         @Loc["AddNewCollection"]
     </button>
 </div>
@@ -60,7 +60,9 @@ else
                             @onclick="@(() => DeleteCollection(collection.Id))">
                         @Loc["Delete"]
                     </button>
-
+                    <p class="fs-6">
+                        @collection.ModifiedDateTime.ToLocalTime();
+                    </p>
                 </div>
             </div>
         </div>

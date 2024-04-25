@@ -8,6 +8,8 @@
 
     <ItemGroup>
       <PackageReference Include="Danilvar.Entity" Version="1.0.0" />
+      <PackageReference Include="Danilvar.ValueObject" Version="1.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.11" />
       <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.11" />
       <PackageReference Include="WanaKana-net" Version="1.0.0" />
     </ItemGroup>

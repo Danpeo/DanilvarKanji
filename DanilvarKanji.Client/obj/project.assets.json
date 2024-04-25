@@ -69,6 +69,15 @@
           "lib/net7.0/Danilvar.Entity.dll": {}
         }
       },
+      "Danilvar.ValueObject/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Danilvar.ValueObject.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Danilvar.ValueObject.dll": {}
+        }
+      },
       "DVar.RandCreds/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -1184,6 +1193,8 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Danilvar.Entity": "1.0.0",
+          "Danilvar.ValueObject": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
           "Microsoft.Extensions.Identity.Stores": "7.0.11",
           "WanaKana-net": "1.0.0"
         },
@@ -1293,6 +1304,15 @@
         },
         "runtime": {
           "lib/net7.0/Danilvar.Entity.dll": {}
+        }
+      },
+      "Danilvar.ValueObject/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Danilvar.ValueObject.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Danilvar.ValueObject.dll": {}
         }
       },
       "DVar.RandCreds/1.1.0": {
@@ -2431,6 +2451,8 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Danilvar.Entity": "1.0.0",
+          "Danilvar.ValueObject": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
           "Microsoft.Extensions.Identity.Stores": "7.0.11",
           "WanaKana-net": "1.0.0"
         },
@@ -2548,6 +2570,19 @@
         "danilvar.entity.1.0.0.nupkg.sha512",
         "danilvar.entity.nuspec",
         "lib/net7.0/Danilvar.Entity.dll"
+      ]
+    },
+    "Danilvar.ValueObject/1.0.0": {
+      "sha512": "9XysJCiiNBTWYS8vVZnBGLGmhvMWc1SzIsErprm9e/tnkvxNyKkRLu88/LAEkbnR8b9mmAGfjLyRSLAbGBRe4Q==",
+      "type": "package",
+      "path": "danilvar.valueobject/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "danilvar.valueobject.1.0.0.nupkg.sha512",
+        "danilvar.valueobject.nuspec",
+        "lib/net7.0/Danilvar.ValueObject.dll"
       ]
     },
     "DVar.RandCreds/1.1.0": {

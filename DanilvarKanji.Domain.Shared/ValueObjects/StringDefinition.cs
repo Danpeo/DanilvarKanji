@@ -1,9 +1,11 @@
-using Danilvar.Entity;
+using Danilvar.ValueObject;
 using DanilvarKanji.Domain.Shared.Enumerations;
+using Microsoft.EntityFrameworkCore;
 
-namespace DanilvarKanji.Domain.Shared.Entities;
+namespace DanilvarKanji.Domain.Shared.ValueObjects;
 
-public class StringDefinition : Entity
+[Owned]
+public class StringDefinition : ValueObject
 {
     public string Value { get; set; } = string.Empty;
     public Culture Culture { get; set; }
@@ -17,5 +19,11 @@ public class StringDefinition : Entity
     {
         Value = value;
         Culture = culture;
+    }
+
+    public override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
+        yield return Culture;
     }
 }

@@ -9,7 +9,7 @@ using MediatR;
 namespace DanilvarKanji.Application.Exercises.Handlers;
 
 // ReSharper disable once UnusedType.Global
-public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Result>
+public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Result<string>>
 {
     private readonly IExerciseRepository _exerciseRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -22,13 +22,12 @@ public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Resu
         _characterRepository = characterRepository;
     }
 
-    public async Task<Result> Handle(CreateExerciseCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CreateExerciseCommand request, CancellationToken cancellationToken)
     {
         Character? character = await _characterRepository.GetAsync(request.CharacterId);
 
         var exercise = new Exercise
         {
-            Id = request.Id,
             Character = character ?? new Character(),
             AppUser = request.AppUser,
             ExcerciseDateTime = DateTime.UtcNow,
@@ -39,8 +38,8 @@ public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Resu
         
         _exerciseRepository.Create(exercise);
         if (await _unitOfWork.CompleteAsync())
-            return Result.Success();
+            return Result.Success(exercise.Id);
 
-        return Result.Failure(General.UnProcessableRequest);
+        return Result.Failure<string>(General.UnProcessableRequest);
     }
 }

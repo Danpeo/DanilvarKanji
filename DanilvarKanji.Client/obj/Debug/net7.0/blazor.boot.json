@@ -1,7 +1,7 @@
 {
   "entryAssembly": "DanilvarKanji.Client",
   "resources": {
-    "hash": "sha256-te2p6uVp4gsgpue0KdGcITHyp0FFPSy69jjkVITEJks=",
+    "hash": "sha256-q84RJZ5K9DmhhD1QdS/ylQFWZR4tFJ6l8MANg+nOqqA=",
     "runtime": {
       "dotnet.7.0.18.h7iwk078dh.js": "sha256-lsqy0PQ8nf1/0sSlLGe3Kfwi8V0Q1QzVy5+AqtJ3cfU=",
       "dotnet.timezones.blat": "sha256-aPcvvHoFVwCzeRxTOvMTcrI2l2HKJO0sjSN7IF10LUQ=",
@@ -14,6 +14,7 @@
       "Blazored.Modal.dll": "sha256-Sr30UiM7JErBe8hojY6HAgaOOgfQE5zHijI0uVypmkM=",
       "Blazored.SessionStorage.dll": "sha256-zB1Pp8w/ys0ZXs5YTb/t+cNAnJQcBDXxTtF3gtgpXT8=",
       "Danilvar.Entity.dll": "sha256-onm7O9muADhPga+SKU1DK0b/cJHf1r4eNKmPQeErAJg=",
+      "Danilvar.ValueObject.dll": "sha256-El4Il77FTLHLsOaM4SKM8WLRCK+WAxlHYBrf1r/4+jc=",
       "DVar.RandCreds.dll": "sha256-5ODGxVCXfaENTrXuIt2ib8tB+Y+icss8Ipe0sLkPDVQ=",
       "FluentValidation.dll": "sha256-v/82bFHarJ21YNg26d6u2S35cW14zYvJiL/ZLtG7Nx4=",
       "FSharp.Core.dll": "sha256-zydEQC0lds/GDFpL2kRAoC2xdn2ugiWRE0eGhg6afMM=",
@@ -233,20 +234,20 @@
       "mscorlib.dll": "sha256-0HcXGniS+WAs4hupbRUCnwMELwoYJxH9EvPE3IR0EqQ=",
       "netstandard.dll": "sha256-NXaYbCfP6xdQO3fJkzooXzSY4o1/iQDrumjom6Lm57g=",
       "System.Private.CoreLib.dll": "sha256-liKvB0yZJmhm3WN18TOgTvS9tWwMZzi0mlqZNDk8Pkg=",
-      "Danilvar.Components.dll": "sha256-jQ4z5Q3QPCWvKtbc9PM3KGCE1ly61zWVddIeGEl6o0I=",
-      "Danilvar.MathUtils.dll": "sha256-9vbr6jfpWWmy8y878I3OVfbth1DvBmo/8YBxyBqOzo0=",
-      "DanilvarKanji.Domain.Shared.dll": "sha256-QlbRqC/byrnpiLw8hkaQF0bx+7Q5uw6OGOG3gtSP05M=",
-      "DanilvarKanji.Shared.dll": "sha256-u4JZAlgz1Xi+QwrsfhJ7ii6NuYfJk4/tUzDf7ojcN0A=",
-      "DVar.Extensions.dll": "sha256-MlhVxXHOlY2bzmQ/T+yhiVMkWUzJGb4SbEIS9rDB9do=",
-      "DanilvarKanji.Client.dll": "sha256-ZQayNbZxYjz8zDfAfS1Z6XTS1wS+bsBprlJkSYq7uW4="
+      "Danilvar.Components.dll": "sha256-LaUoFO/T/RQ7XxplsfsC7XRlHoru5gNZQXnnQToKRnc=",
+      "Danilvar.MathUtils.dll": "sha256-bnn8jzsx//46yitIgj/JNGSuxSVcV8PPxk+LBc0mOFA=",
+      "DanilvarKanji.Domain.Shared.dll": "sha256-498yYt+z9urgHRs/2bCi/tWoBVVm/ifP8tjw1mSNfjs=",
+      "DanilvarKanji.Shared.dll": "sha256-SMe5sAX6J7CeEDqkkFN2vClojPnHrpkdaaHDKcTr0wE=",
+      "DVar.Extensions.dll": "sha256-iihkvIt2rckzui1x9z2n1snk7fiAxPTcHVfVW0zJzUU=",
+      "DanilvarKanji.Client.dll": "sha256-4U6HC6yvJ1W2EwaH291ufk4CS76OBIUmMaw6Ei6WF+I="
     },
     "pdb": {
-      "Danilvar.Components.pdb": "sha256-fXBgLjK5fJPb4j68zHWETCs3j7wSpEF6RqCWKfXZt5k=",
-      "Danilvar.MathUtils.pdb": "sha256-wEyB2YuO8vLnlvADXOUeHBRc0DtDEe0p69iksP4ZinQ=",
-      "DanilvarKanji.Shared.pdb": "sha256-8+icw63I+K/CKW4bwfvQ4KvAWNZeoGkjuyGYW1tnh2c=",
-      "DVar.Extensions.pdb": "sha256-SQIvgFh2zIC+CXtLgVxGdN0Idwe2swduE2+/M1CZB8U=",
-      "DanilvarKanji.Domain.Shared.pdb": "sha256-yPr18FIh304TPHJMm+Oq/EvxoHzL7kintwHE4byCEt8=",
-      "DanilvarKanji.Client.pdb": "sha256-0YmnsGR/I3suJRRNuhxtnMnA56Y/b5lpXw90zxZinhI="
+      "Danilvar.Components.pdb": "sha256-HfcwkJ/b5Eogpy4c2Ju79zBeEaOUUCTO8OPJGD5MELM=",
+      "Danilvar.MathUtils.pdb": "sha256-r1ZouyqHsJcf0b+Y1nJTWqsj9RTBPYetSqjLCrRiJq4=",
+      "DanilvarKanji.Shared.pdb": "sha256-Ywclwnf/UcW19JoluSTUe+8Bxk4NeTnxKDS2bwcZhHU=",
+      "DVar.Extensions.pdb": "sha256-vSfRjG2gPucmDbTdOX7g95Z9OtSqHO1a9X/71POn+gQ=",
+      "DanilvarKanji.Domain.Shared.pdb": "sha256-886F7Tjy0O5tceC9l1MpzupboREIRhMCS1SP4ZoU8M0=",
+      "DanilvarKanji.Client.pdb": "sha256-ucmcMLsQ2s377kPsUBlibcpLt1LS8UaB8BTVshyf0Mk="
     },
     "satelliteResources": {
       "cs": {
@@ -289,10 +290,10 @@
         "zh-Hant/FSharp.Core.resources.dll": "sha256-7Ma98XbvtahkcNhM+doeptQSb7niLDtDRXzGmX2PMps="
       },
       "en-US": {
-        "en-US/DanilvarKanji.Client.resources.dll": "sha256-WAPIjnjcgukO2G5SEr1gOcWDtxmJSetHBYKxumMLvys="
+        "en-US/DanilvarKanji.Client.resources.dll": "sha256-qcKuYdzXWcJXuyRNSykwbpchdZ9ITK9x05cOAeSmHe4="
       },
       "ru-RU": {
-        "ru-RU/DanilvarKanji.Client.resources.dll": "sha256-BD0xjOx+9Ia8HlpkLFkRo+a9qP7NcWNmjQttiGIzCvs="
+        "ru-RU/DanilvarKanji.Client.resources.dll": "sha256-9McQq6L8Fwq11d2MKjMhJYBRqnJWTLy8Vz0sM/9Sw8A="
       }
     },
     "runtimeAssets": {

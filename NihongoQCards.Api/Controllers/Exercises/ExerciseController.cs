@@ -35,8 +35,9 @@ public class ExerciseController : ApiController
             request.ExerciseType,
             request.ExerciseSubject);
 
-        Result result = await Mediator.Send(command);
+        var result = await Mediator.Send(command);
 
+        command.Id = result.Value;
         if (result.IsSuccess)
             return CreatedAtAction("Get", new { id = command.Id }, command);
 

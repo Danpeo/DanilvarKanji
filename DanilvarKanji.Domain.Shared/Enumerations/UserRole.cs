@@ -6,7 +6,7 @@ public static class UserRole
     public const string Admin = "Admin";
     public const string SuperAdmin = "SuperAdmin";
 
-    public static string[] Roles =
+    public static readonly string[] Roles =
     {
         User, Admin, SuperAdmin
     };

@@ -36,12 +36,8 @@ public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLea
 
         var characterLearning = new CharacterLearning()
         {
-            Id = request.Id,
             AppUser = request.AppUser,
             Character = character ?? new Character(),
-            /*
-            LearningProgress = new LearningProgress(),
-            */
             LearningState = request.LearningState
         };
 

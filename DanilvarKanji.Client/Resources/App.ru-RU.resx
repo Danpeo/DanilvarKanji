@@ -279,4 +279,19 @@
     <data name="SuperAdmin" xml:space="preserve">
         <value>Супер-администратор</value>
     </data>
+    <data name="JapaneseWriting" xml:space="preserve">
+        <value>Японское написание</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>Обновить</value>
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value>Поиск</value>
+    </data>
+    <data name="DictionaryPlaceholder" xml:space="preserve">
+        <value>Введите слово по переводу, кане или кандзи...</value>
+    </data>
+    <data name="CharacterSearchPlaceholder" xml:space="preserve">
+        <value>Поиск иероглифа по значению, чтению и определению...</value>
+    </data>
 </root>

@@ -211,3 +211,5 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\obj\Debu
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\obj\Debug\net7.0\DanilvarKanji.Client.Tests.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\obj\Debug\net7.0\DanilvarKanji.Client.Tests.genruntimeconfig.cache
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\obj\Debug\net7.0\ref\DanilvarKanji.Client.Tests.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\DanilvarKanji.Domain.Shared.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client.Tests\bin\Debug\net7.0\DanilvarKanji.Domain.Shared.pdb

@@ -5,9 +5,9 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Exercises.Commands;
 
-public class CreateExerciseCommand : IRequest<Result>
+public class CreateExerciseCommand : IRequest<Result<string>>
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = "";
     public string CharacterId { get; set; }
 
     public AppUser AppUser { get; set; }
@@ -20,7 +20,6 @@ public class CreateExerciseCommand : IRequest<Result>
 
     public CreateExerciseCommand(string characterId, AppUser appUser, bool isCorrect, ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
-        Id = Guid.NewGuid().ToString("N");
         CharacterId = characterId;
         AppUser = appUser;
         IsCorrect = isCorrect;

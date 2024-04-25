@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Enumerations;
+using DanilvarKanji.Domain.Shared.ValueObjects;
 
 namespace DanilvarKanji.Shared.Requests.Characters;
 
@@ -8,7 +9,7 @@ public class CreateCharacterRequest
 {
     [DefaultValue("来")] public string Definition { get; set; } = "来";
 
-    public JlptLevel JlptLevel { get; set; }
+    public JlptLevel JlptLevel { get; set; } = JlptLevel.N5;
     public CharacterType CharacterType { get; set; } = CharacterType.Kanji;
 
     public ICollection<StringDefinition> Mnemonics { get; set; } = new List<StringDefinition>();

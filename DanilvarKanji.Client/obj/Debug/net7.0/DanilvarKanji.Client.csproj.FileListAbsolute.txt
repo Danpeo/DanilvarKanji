@@ -1071,3 +1071,7 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\DanilvarKanji.Domain.Shared.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\7e6qnyuzm5.gz
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\nr0catua2u.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.ValueObject.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\wwwroot\_framework\Danilvar.ValueObject.dll.gz
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\bin\Debug\net7.0\Danilvar.ValueObject.dll
+C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Client\obj\Debug\net7.0\compressed\jk3rslym2a.gz

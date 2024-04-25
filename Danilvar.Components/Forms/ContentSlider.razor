@@ -1,4 +1,4 @@
-<div class="@ContentContainerStyles">
+@*<div class="@ContentContainerStyles">
     @ContentDictionary[_currentContent]
 
     @if (_currentContent > 0)
@@ -10,27 +10,75 @@
     {
         <button class="btn mt-3 mb-2 @ButtonStyle" @onclick="NextContent">@NextBtnText</button>
     }
+</div>*@
+@*<div class="col d-grid gap-2">
+    <button class="btn btn-lg btn-outline-danger fs-3"
+            @onclick="PrevContent">
+        <b>Prev</b>
+    </button>
 </div>
+<div class="d-flex justify-content-center">
+    <div id="carouselExampleIndicators" class="carousel slide w-75">
+        <div class="carousel-inner" id="carousel-item">
+            <div class="carousel-item active">
+                @ContentDictionary[_currentContent]
+            </div>
+        </div>
+
+    </div>
+
+</div>*@
+@*
+<button @onclick="PrevContent" class="carousel-control-prev" type="button">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+<button @onclick="NextContent" class="carousel-control-next" type="button">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button>
+*@
+
+<div class="row">
+    @if (_currentContent > 0)
+    {
+        <div class="col d-grid gap-2">
+            <button class="btn btn-lg btn-dark fs-3"
+                    @onclick="PrevContent">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    }
+    <div id="flashcard" class="col-8">
+        <div class="pointer-cursor" @onclick="NextContent">
+            @ContentDictionary[_currentContent]
+        </div>
+    </div>
+    @if (_currentContent < ContentDictionary.Count)
+    {
+        <div class="col d-grid gap-2">
+            <button class="btn btn-lg btn-dark fs-3"
+                    @onclick="NextContent">
+                <span class="carousel-control-next-icon txt-dark" aria-hidden="true"></span>
+            </button>
+        </div>
+    }
+</div>
+
 
 @code {
 
-    [Parameter, EditorRequired]
-    public required Dictionary<int, RenderFragment> ContentDictionary { get; set; }
+    [Parameter, EditorRequired] public required Dictionary<int, RenderFragment> ContentDictionary { get; set; }
 
-    [Parameter]
-    public string? ButtonStyle { get; set; }
+    [Parameter] public string? ButtonStyle { get; set; }
 
-    [Parameter]
-    public string NextBtnText { get; set; } = "Next";
+    [Parameter] public string NextBtnText { get; set; } = "Next";
 
-    [Parameter]
-    public string PrevBtnText { get; set; } = "Prev";
+    [Parameter] public string PrevBtnText { get; set; } = "Prev";
 
-    [Parameter]
-    public Action? OnContentEnd { get; set; }
+    [Parameter] public Action? OnContentEnd { get; set; }
 
-    [Parameter]
-    public string ContentContainerStyles { get; set; } = "mb-4";
+    [Parameter] public string ContentContainerStyles { get; set; } = "mb-4";
 
     private int _currentContent;
 
@@ -51,4 +99,5 @@
         if (_currentContent <= 0)
             _currentContent = 0;
     }
+
 }

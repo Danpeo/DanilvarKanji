@@ -31,13 +31,14 @@ public class CharacterLearningController : ApiController
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        var command = new CreateCharacterLearningCommand(user!, request.CharacterId, request.LearningState, request.Id);
+        var command = new CreateCharacterLearningCommand(user!, request.CharacterId, request.LearningState);
 
         var result = await Mediator.Send(command);
 
         if (result.IsFailure)
             return HandleFailure(result);
 
+        command.Id = result.Value;
         return CreatedAtAction("Get", new { id = result.Value }, command);
     }
 

@@ -56,3 +56,11 @@ function setElementStyles(elementId, styles) {
         }
     }
 }
+
+function applyLightTheme() {
+    document.body.classList.add('light-theme');
+}
+
+function removeLightTheme() {
+    document.body.classList.remove('light-theme');
+}

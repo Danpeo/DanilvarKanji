@@ -12,7 +12,7 @@
         @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
         {
             <div class="d-grid gap-2 mt-4 mb-4">
-                <button class="btn btn-lg btn-primary bg-light-pink" type="submit">Confirm</button>
+                <button class="btn btn-lg btn-primary bg-light-pink" type="submit">@Loc["Confirm"]</button>
             </div>
         }
     </EditForm>
@@ -33,6 +33,8 @@
 
     [Inject] public required Js Js { get; set; }
 
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
+
     [Parameter, EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
 
     [Parameter, EditorRequired] public required Func<CharacterResponseResponseFull, string, bool> VerifyCondition { get; set; }
@@ -44,6 +46,8 @@
     [Parameter] public string InputPlaceholder { get; set; } = "Input";
 
     [Parameter] public Func<string?, Task>? OnInput { get; set; }
+
+    [Parameter] public int OnInputDelayMs { get; set; } = 500;
 
     /// <summary>
     /// Invoked only once, then assigned NULL
@@ -59,13 +63,16 @@
     private async Task Verify()
     {
         bool isCorrectInput = VerifyCondition(CharacterForVerification, _enteredValue);
+        const int delayAnimationTime = 500;
 
         if (isCorrectInput)
         {
             _isCorrect = true;
 
             await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
-                new[] { "bg-success", "txt-dark" }, 250);
+                new[] { "bg-success", "txt-dark" }, delayAnimationTime);
+
+            await Task.Delay(delayAnimationTime);
 
             if (OnCorrect != null)
             {
@@ -79,8 +86,10 @@
 
             await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
                 new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
-                500);
+                delayAnimationTime);
 
+            await Task.Delay(delayAnimationTime);
+            
             if (OnIncorrect != null)
             {
                 OnIncorrect?.Invoke();
@@ -96,8 +105,9 @@
         OnConfirm?.Invoke();
     }
 
-    private void OnInputText()
+    private async Task OnInputText()
     {
+        await Task.Delay(OnInputDelayMs);
         OnInput?.Invoke(ValueInputId);
     }
 

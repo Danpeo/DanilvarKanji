@@ -279,4 +279,19 @@
     <data name="SuperAdmin" xml:space="preserve">
         <value>Super Admin</value>
     </data>
+    <data name="JapaneseWriting" xml:space="preserve">
+        <value>Japanese Writing</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>Update</value>
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value>Search</value>
+    </data>
+    <data name="DictionaryPlaceholder" xml:space="preserve">
+        <value>Enter word by translation, kana or kanji...</value>
+    </data>
+    <data name="CharacterSearchPlaceholder" xml:space="preserve">
+        <value>Search characters by meaning, reading and definition...</value>
+    </data>
 </root>

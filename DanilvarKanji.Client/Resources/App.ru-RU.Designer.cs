@@ -159,6 +159,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Поиск иероглифа по значению, чтению и определению....
+        /// </summary>
+        internal static string CharacterSearchPlaceholder {
+            get {
+                return ResourceManager.GetString("CharacterSearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тип иероглифа.
         /// </summary>
         internal static string CharacterType {
@@ -218,6 +227,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string Dictionary {
             get {
                 return ResourceManager.GetString("Dictionary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите слово по переводу, кане или кандзи....
+        /// </summary>
+        internal static string DictionaryPlaceholder {
+            get {
+                return ResourceManager.GetString("DictionaryPlaceholder", resourceCulture);
             }
         }
         
@@ -362,6 +380,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string IRememberItPerfectly {
             get {
                 return ResourceManager.GetString("IRememberItPerfectly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Японское написание.
+        /// </summary>
+        internal static string JapaneseWriting {
+            get {
+                return ResourceManager.GetString("JapaneseWriting", resourceCulture);
             }
         }
         
@@ -717,6 +744,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Поиск.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         internal static string Settings {
@@ -767,6 +803,15 @@ namespace DanilvarKanji.Client.Resources {
         internal static string ToView {
             get {
                 return ResourceManager.GetString("ToView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обновить.
+        /// </summary>
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

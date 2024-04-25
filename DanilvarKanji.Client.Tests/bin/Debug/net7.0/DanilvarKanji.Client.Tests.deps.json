@@ -1964,13 +1964,27 @@
           "DanilvarKanji.Domain.dll": {}
         }
       },
+      "DanilvarKanji.Domain.Shared/1.0.0": {
+        "dependencies": {
+          "Danilvar.Entity": "1.0.0",
+          "Danilvar.ValueObject": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
+          "Microsoft.Extensions.Identity.Stores": "7.0.11",
+          "WanaKana-net": "1.0.0"
+        },
+        "runtime": {
+          "DanilvarKanji.Domain.Shared.dll": {}
+        }
+      },
       "DanilvarKanji.Shared/1.0.0": {
         "dependencies": {
           "DVar.RandCreds": "1.1.0",
           "Danilvar.Entity": "1.0.0",
+          "DanilvarKanji.Domain.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "MediatR": "12.1.1",
           "Microsoft.AspNetCore.Http.Features": "6.0.0-preview.4.21253.5",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
           "Microsoft.Extensions.Identity.Core": "7.0.16",
           "Microsoft.Extensions.Identity.Stores": "7.0.11",
           "WanaKana-net": "1.0.0"
@@ -3191,6 +3205,11 @@
       "sha512": ""
     },
     "DanilvarKanji.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DanilvarKanji.Domain.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

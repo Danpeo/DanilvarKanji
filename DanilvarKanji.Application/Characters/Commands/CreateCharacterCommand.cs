@@ -1,6 +1,7 @@
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Enumerations;
+using DanilvarKanji.Domain.Shared.ValueObjects;
 using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Commands;

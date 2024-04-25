@@ -31,6 +31,14 @@
           }
         }
       },
+      "Danilvar.ValueObject/1.0.0": {
+        "runtime": {
+          "lib/net7.0/Danilvar.ValueObject.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "DVar.RandCreds/1.0.0": {
         "dependencies": {
           "FSharp.Core": "7.0.403"
@@ -275,6 +283,8 @@
       "DanilvarKanji.Domain.Shared/1.0.0": {
         "dependencies": {
           "Danilvar.Entity": "1.0.0",
+          "Danilvar.ValueObject": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.11",
           "Microsoft.Extensions.Identity.Stores": "7.0.11",
           "WanaKana-net": "1.0.0"
         },
@@ -296,6 +306,13 @@
       "sha512": "sha512-6vQqZsz0Cx/9gmSBz2Ea9U/zZVjwXA6+xS49PAq68mDj+3PMGgtrjAhrhsqCOzJIj1tFCq1GYyYG37IWaNyKgw==",
       "path": "danilvar.entity/1.0.0",
       "hashPath": "danilvar.entity.1.0.0.nupkg.sha512"
+    },
+    "Danilvar.ValueObject/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9XysJCiiNBTWYS8vVZnBGLGmhvMWc1SzIsErprm9e/tnkvxNyKkRLu88/LAEkbnR8b9mmAGfjLyRSLAbGBRe4Q==",
+      "path": "danilvar.valueobject/1.0.0",
+      "hashPath": "danilvar.valueobject.1.0.0.nupkg.sha512"
     },
     "DVar.RandCreds/1.0.0": {
       "type": "package",

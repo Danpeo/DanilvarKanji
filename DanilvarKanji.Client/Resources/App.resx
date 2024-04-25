@@ -233,4 +233,19 @@
     <data name="SuperAdmin" xml:space="preserve">
         <value />
     </data>
+    <data name="JapaneseWriting" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Search" xml:space="preserve">
+        <value />
+    </data>
+    <data name="DictionaryPlaceholder" xml:space="preserve">
+        <value />
+    </data>
+    <data name="CharacterSearchPlaceholder" xml:space="preserve">
+        <value />
+    </data>
 </root>

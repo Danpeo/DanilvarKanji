@@ -50,6 +50,7 @@ public class FlashcardRepository : IFlashcardRepository
         {
             collection.Name = newCollection.Name;
             collection.Flashcards = newCollection.Flashcards;
+            collection.ModifiedDateTime = DateTime.UtcNow;
             _context.FlashcardCollections.Update(collection);
         }
     }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Pgv+5C60Ruh/w7MfaZ5QhgTpSu7ICes99ROGJWsiGlhNsWpdyK+xONpSlIG/WCMp3JHnGmSpfHbj0fsIE3gktA==",
+  "dgSpecHash": "nOMotBwzxF7q7uggO8W5fvBgmKN9+D5OALst8pL1SL1VN176QBzG5eYZfSriRVURJ2WQgR36CA/9M4dpz9am4g==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.0.0\\dvar.randcreds.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\7.0.403\\fsharp.core.7.0.403.nupkg.sha512",

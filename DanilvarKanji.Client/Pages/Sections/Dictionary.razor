@@ -4,19 +4,23 @@
 @using DanilvarKanji.Client.State
 @using WanaKanaNet
 
-<PageTitle>Dictionary</PageTitle>
+<PageTitle>@Loc["Dictionary"]</PageTitle>
+
+<h3 class="mb-5 display-3 txt-bright-pink main-font">@Loc["Dictionary"]</h3>
+
+<p class="fs-3 text-center">@Loc["DictionaryPlaceholder"]</p>
 
 <div class="input-group mb-4">
     <input @onkeydown="SearchForWordsOnKey"
            @bind="_entry"
            @bind:event="oninput"
            type="search"
-           placeholder="Enter word..."
+           placeholder="@Loc["DictionaryPlaceholder"]"
            class="form-control bg-secondary-2 no-border txt-light-pink main-font"/>
 
     <div class="ms-2">
         <button @onclick="SearchForWords" class="btn btn-outline-primary" type="submit">
-            Search
+            @Loc["Search"]
         </button>
     </div>
 </div>
@@ -100,6 +104,8 @@ else if (_words != null)
 
     [Inject]
     public required AppState AppState { get; set; }
+
+    [Inject] public IStringLocalizer<App> Loc { get; set; } = null!;
 
     private IEnumerable<Word?>? _words = new List<Word?>();
     private string _entry = string.Empty;

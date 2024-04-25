@@ -9,6 +9,7 @@ public class FlashcardCollectionResponse
     public string Name { get; set; }
 
     public List<Flashcard> Flashcards { get; set; }
+    public DateTime ModifiedDateTime { get; set; }
 
     public FlashcardCollectionResponse(string id, string name, List<Flashcard> flashcards)
     {
