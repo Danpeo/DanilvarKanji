@@ -1,0 +1,18 @@
+[
+  {
+    "themeName": "Default",
+    "cssName": "default-theme"
+  },
+  {
+    "themeName": "Violet",
+    "cssName": "purple-theme"
+  },
+  {
+    "themeName": "Pink Orange",
+    "cssName": "pink-orange-theme"
+  },
+  {
+    "themeName": "Dark Green",
+    "cssName": "extra-dark-theme"
+  }
+]

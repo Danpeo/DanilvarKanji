@@ -2,7 +2,7 @@ using Blazored.SessionStorage;
 
 namespace DanilvarKanji.Client.State;
 
-public class FlashcardReviewState : StateBase
+public class FlashcardReviewState : StateBase<FlashcardReview>
 {
     private const string Key = "FlashcardReview";
     private readonly ISessionStorageService _sessionStorageService;

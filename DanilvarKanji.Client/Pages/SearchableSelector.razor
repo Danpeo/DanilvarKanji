@@ -1,8 +1,9 @@
 @page "/sel"
 @using DanilvarKanji.Client.JsWrapper
-
+@using DanilvarKanji.Client.State
 
 @inject Js JSRuntime
+@inject AppState AppState;
 
 <button @onclick="ToggleTheme">Toggle Theme</button>
 
@@ -14,11 +15,14 @@
         isDarkTheme = !isDarkTheme;
         if (isDarkTheme)
         {
-            await JSRuntime.Dom.ApplyLightThemeAsync();
+            await JSRuntime.Dom.ApplyThemeAsync("purple-theme");
+            await AppState.ThemeState.UpdateAsync("purple-theme");
         }
         else
         {
-            await JSRuntime.Dom.RemoveLightThemeAsync();
+            await JSRuntime.Dom.RemoveThemeAsync("purple-theme");
+            await AppState.ThemeState.UpdateAsync("");
+
         }
     }
 }

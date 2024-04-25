@@ -49,7 +49,7 @@ function setElementStyles(elementId, styles) {
 
     if (!element)
         return;
-    
+
     for (let prop in styles) {
         if (styles.hasOwnProperty(prop)) {
             element.style[prop] = styles[prop];
@@ -57,10 +57,19 @@ function setElementStyles(elementId, styles) {
     }
 }
 
-function applyLightTheme() {
-    document.body.classList.add('light-theme');
+function applyTheme(theme) {
+    document.body.classList.add(theme);
 }
 
-function removeLightTheme() {
-    document.body.classList.remove('light-theme');
+function removeTheme(theme) {
+    document.body.classList.remove(theme);
+}
+
+function removeAllThemes() {
+    const bodyClasses = document.body.classList;
+    for (let cssClass of bodyClasses) {
+        if (cssClass.includes('theme')) {
+            removeTheme(cssClass)
+        }
+    }
 }

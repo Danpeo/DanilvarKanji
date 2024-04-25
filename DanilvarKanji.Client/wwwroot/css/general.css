@@ -163,7 +163,7 @@ img {
 }
 
 .card-brand {
-    border-top: 4px solid var(--pink-color-bright);
+    border-top: 4px solid var(--accent-color-bright);
 }
 
 .big-input {
@@ -320,9 +320,9 @@ button.close {
 .custom-modal {
     display: flex;
     flex-direction: column;
-    background-color: var(--dark-color-secondary-2);
+    background-color: var(--color-secondary-2);
     border-radius: 4px;
-    color: var(--green-color-dim);
+    color: var(--accent-color-secondary);
     font-family: 'Didact Gothic', sans-serif;
     border: 1px solid var(--pink-color-mid);
     padding: 1.5rem;

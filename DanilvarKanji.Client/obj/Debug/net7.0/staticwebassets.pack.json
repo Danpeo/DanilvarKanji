@@ -89,6 +89,10 @@
       "PackagePath": "staticwebassets\\data\\nihongo-quest-images.json"
     },
     {
+      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\data\\theme-data.json",
+      "PackagePath": "staticwebassets\\data\\theme-data.json"
+    },
+    {
       "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },

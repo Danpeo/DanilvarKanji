@@ -12,7 +12,7 @@
             {
                 string reading = _onReadings.RandomItems[i];
                 string? buttonId = $"optionBtn_{i}";
-                <button class="btn btn-dark btn-lg"
+                <button class="btn btn-dark txt-white btn-lg"
                         style="font-size: 1.75rem"
                         id="@buttonId"
                         @onclick="() => CheckAnswer(reading, buttonId)">

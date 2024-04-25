@@ -9,10 +9,11 @@ public class AppState
     private bool _isInitialized;
     public ReviewCharState ReviewCharState { get; }
     public ReviewSessionState ReviewSessionState { get; }
-    public AddCharacterState AddCharacterState { get; set; }
-    public DictionaryState DictionaryState { get; set; }
-    public CultureState CultureState { get; set; }
-    public FlashcardReviewState FlashcardReviewState { get; set; }
+    public AddCharacterState AddCharacterState { get; }
+    public DictionaryState DictionaryState { get; }
+    public CultureState CultureState { get; }
+    public FlashcardReviewState FlashcardReviewState { get; }
+    public ThemeState ThemeState { get; }
 
     public AppState(ILocalStorageService localStorageService, ISessionStorageService sessionStorageService,
         ILocalizationService localizationService)
@@ -23,6 +24,7 @@ public class AppState
         ReviewSessionState = new ReviewSessionState(sessionStorageService);
         AddCharacterState = new AddCharacterState(sessionStorageService);
         DictionaryState = new DictionaryState(localStorageService);
+        ThemeState = new ThemeState(localStorageService);
     }
 
     public async Task Init()
@@ -35,6 +37,7 @@ public class AppState
             await DictionaryState.Init();
             await CultureState.Init();
             await FlashcardReviewState.Init();
+            await ThemeState.Init();
             _isInitialized = true;
         }
     }

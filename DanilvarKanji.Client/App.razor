@@ -1,6 +1,9 @@
 ﻿@using DanilvarKanji.Client.State
+@using DanilvarKanji.Client.JsWrapper
 @inject IStringLocalizer<App> Loc
 @inject AppState AppState;
+@inject Js Js;
+
 
 <CascadingBlazoredModal Class="custom-modal">
     <Router AppAssembly="@typeof(App).Assembly">
@@ -24,6 +27,10 @@
         if (firstRender)
         {
             await AppState.Init();
+
+            string currentTheme = AppState.ThemeState.CurrentTheme;
+            if (!string.IsNullOrEmpty(currentTheme))
+                await Js.Dom.ApplyThemeAsync(currentTheme);
         }
     }
 }

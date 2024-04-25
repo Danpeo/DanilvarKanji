@@ -32,6 +32,7 @@ public class Dom
     public async Task SetElementStylesAsync(string elementId, object styles) =>
         await _jsRuntime.InvokeVoidAsync("setElementStyles", elementId, styles);
 
-    public async Task ApplyLightThemeAsync() => await _jsRuntime.InvokeVoidAsync("applyLightTheme");
-    public async Task RemoveLightThemeAsync() => await _jsRuntime.InvokeVoidAsync("removeLightTheme");
+    public async Task ApplyThemeAsync(string css) => await _jsRuntime.InvokeVoidAsync("applyTheme", css);
+    public async Task RemoveThemeAsync(string css) => await _jsRuntime.InvokeVoidAsync("removeTheme", css);
+    public async Task RemoveAllThemesAsync() => await _jsRuntime.InvokeVoidAsync("removeAllThemes");
 }

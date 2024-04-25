@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
 
 :root {
-    --dark-color-main: #1f1f1f;
-    --dark-color-main-2: #221f22;
-    --dark-color-secondary: #2e2e31;
-    --dark-color-secondary-2: #2d2a2e;
-    --dark-color-secondary-3: #3d393d;
-    --pink-color-bright: #ff4863;
+    --color-main: #1f1f1f;
+    --color-main-2: #221f22;
+    --color-secondary: #2e2e31;
+    --color-secondary-2: #2d2a2e;
+    --color-secondary-3: #3d393d;
+    --accent-color-bright: #ff4863;
     --pink-color-mid: #f95668;
     --pink-color-light: #ff6d82;
     --pink-color-pale: #f68d9b;
-    --white-color: #e8e8e8;
+    --contrast-color: #e8e8e8;
     --gray-color: #4d4c4c;
     --red-color-dim: rgba(224, 71, 71, 0.35);
     --red-color: #f13434;
@@ -19,25 +19,57 @@
     --lime-color: #86e833;
     --green-color: #2df17e;
     --green-color-2: #20cb98;
-    --green-color-dim: #9de3aa;
+    --accent-color-secondary: #9de3aa;
 }
 
-.light-theme {
-    --dark-color-main-2: #f3f0ff;
-    --dark-color-secondary-2: #e4dcf7;
-    --pink-color-bright: #ab74cb;
-    --green-color-dim: #63bae8;
+.purple-theme {
+    --color-main: #f3f0ff;
+    --color-main-2: #f3f0ff;
+    --color-secondary: #f3f0ff;
+    --color-secondary-2: #e4dcf7;
+    --color-secondary-3: #cabde5;
+    --accent-color-bright: #ab74cb;
+    --accent-color-secondary: #af5c94;
     --pink-color-mid: #6c54ae;
     --pink-color-light: #6c54ae;
     --pink-color-pale: #6c54ae;
+    --contrast-color: #221f22;
+}
+
+.pink-orange-theme {
+    --color-main: #ffdbe5;
+    --color-main-2: #ffdbe5;
+    --color-secondary: #ffe6ee;
+    --color-secondary-2: #ffe6ee;
+    --color-secondary-3: #e3c1ca;
+    --accent-color-bright: #cb402d;
+    --accent-color-secondary: #7aba9a;
+    --pink-color-mid: #c7665f;
+    --pink-color-light: #c7665f;
+    --pink-color-pale: #c7665f;
+    --contrast-color: #221f22;
+}
+
+.extra-dark-theme {
+    --color-main: #121014;
+    --color-main-2: #121014;
+    --color-secondary: #141216;
+    --color-secondary-2: #141216;
+    --color-secondary-3: #1d1b1f;
+    --accent-color-bright: #38a095;
+    --accent-color-secondary: #7b76f2;
+    --pink-color-mid: #38a095;
+    --pink-color-light: #38a095;
+    --pink-color-pale: #38a095;
+    --contrast-color: #e8e8e8;
 }
 
 .table-dark {
-    background-color: var(--dark-color-main-2) !important;
+    background-color: var(--color-main-2) !important;
 }
 
 .txt-bright-pink {
-    color: var(--pink-color-bright) !important;
+    color: var(--accent-color-bright) !important;
 }
 
 .txt-mid-pink {
@@ -57,11 +89,11 @@
 }
 
 .txt-green-dim {
-    color: var(--green-color-dim) !important;
+    color: var(--accent-color-secondary) !important;
 }
 
 .txt-white {
-    color: var(--white-color) !important;
+    color: var(--contrast-color) !important;
 }
 
 .txt-gray {
@@ -69,23 +101,23 @@
 }
 
 .txt-dark {
-    color: var(--dark-color-main) !important;
+    color: var(--color-main) !important;
 }
 
 .bg-main {
-    background-color: var(--dark-color-main) !important;
+    background-color: var(--color-main) !important;
 }
 
 .bg-main-2 {
-    background-color: var(--dark-color-main-2) !important;
+    background-color: var(--color-main-2) !important;
 }
 
 .bg-secondary {
-    background-color: var(--dark-color-secondary) !important;
+    background-color: var(--color-secondary) !important;
 }
 
 .bg-secondary-2 {
-    background-color: var(--dark-color-secondary-2) !important;
+    background-color: var(--color-secondary-2) !important;
 }
 
 .bg-light-pink {
@@ -122,7 +154,7 @@
 
 @keyframes blink {
     0% {
-        color: var(--pink-color-bright)
+        color: var(--accent-color-bright)
     }
     25% {
         color: var(--pink-color-light)
@@ -134,7 +166,7 @@
         color: var(--pink-color-light)
     }
     100% {
-        color: var(--pink-color-bright)
+        color: var(--accent-color-bright)
     }
 }
 
@@ -144,7 +176,7 @@
 
 @keyframes blink-bg {
     0% {
-        background-color: var(--pink-color-bright)
+        background-color: var(--accent-color-bright)
     }
     25% {
         background-color: var(--pink-color-light)
@@ -156,7 +188,7 @@
         background-color: var(--pink-color-light)
     }
     100% {
-        background-color: var(--pink-color-bright)
+        background-color: var(--accent-color-bright)
     }
 }
 
@@ -165,58 +197,58 @@
 }
 
 .btn-dark {
-    background-color: var(--dark-color-secondary-2);
-    border-color: var(--dark-color-secondary);
+    background-color: var(--color-secondary-2);
+    border-color: var(--color-secondary);
 }
 
 .btn-dark:focus {
-    background-color: var(--dark-color-secondary-3);
-    border-color: var(--dark-color-secondary);
+    background-color: var(--color-secondary-3);
+    border-color: var(--color-secondary);
     outline: none;
 }
 
 .btn-dark:hover {
-    background-color: var(--dark-color-secondary-3);
-    border-color: var(--dark-color-secondary);
+    background-color: var(--color-secondary-3);
+    border-color: var(--color-secondary);
     outline: none;
 }
 
 .btn-primary {
     background-color: var(--pink-color-light) !important;
     border-color: var(--pink-color-mid) !important;
-    color: var(--white-color) !important;
+    color: var(--contrast-color) !important;
 }
 
 .btn-primary:focus {
-    background-color: var(--pink-color-bright);
-    border-color: var(--pink-color-bright);
-    color: var(--white-color);
+    background-color: var(--accent-color-bright);
+    border-color: var(--accent-color-bright);
+    color: var(--contrast-color);
     outline: none;
 }
 
 .btn-primary:hover {
-    background-color: var(--pink-color-bright) !important;
-    border-color: var(--pink-color-bright) !important;
-    color: var(--white-color) !important;
+    background-color: var(--accent-color-bright) !important;
+    border-color: var(--accent-color-bright) !important;
+    color: var(--contrast-color) !important;
 }
 
 .btn-secondary-alt {
-    background-color: var(--green-color-dim) !important;
-    border-color: var(--green-color-dim) !important;
-    color: var(--dark-color-main-2) !important;
+    background-color: var(--accent-color-secondary) !important;
+    border-color: var(--accent-color-secondary) !important;
+    color: var(--color-main-2) !important;
 }
 
 .btn-secondary-alt:focus {
-    background-color: var(--green-color-dim);
-    border-color: var(--green-color-dim);
-    color: var(--dark-color-main-2);
+    background-color: var(--accent-color-secondary);
+    border-color: var(--accent-color-secondary);
+    color: var(--color-main-2);
     outline: none;
 }
 
 .btn-secondary-alt:hover {
-    background-color: var(--green-color-dim) !important;
-    border-color: var(--green-color-dim) !important;
-    color: var(--dark-color-main-2) !important;
+    background-color: var(--accent-color-secondary) !important;
+    border-color: var(--accent-color-secondary) !important;
+    color: var(--color-main-2) !important;
 }
 
 .btn-outline-primary {
@@ -234,7 +266,7 @@
     height: 50px;
     border-radius: 50%; /* Задайте радиус, равный половине ширины (или высоты), чтобы сделать кнопку круглой */
     background-color: var(--pink-color-light); /* Цвет фона кнопки */
-    color: var(--dark-color-main); /* Цвет текста кнопки */
+    color: var(--color-main); /* Цвет текста кнопки */
     text-align: center;
     line-height: 50px; /* Выравнивание текста по центру вертикально */
     text-decoration: none; /* Убрать подчеркивание при наведении */
