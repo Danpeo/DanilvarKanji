@@ -14,6 +14,7 @@ public class AppState
     public CultureState CultureState { get; }
     public FlashcardReviewState FlashcardReviewState { get; }
     public ThemeState ThemeState { get; }
+    public ToggleSideNavState ToggleSideNavState { get; }
 
     public AppState(ILocalStorageService localStorageService, ISessionStorageService sessionStorageService,
         ILocalizationService localizationService)
@@ -25,6 +26,7 @@ public class AppState
         AddCharacterState = new AddCharacterState(sessionStorageService);
         DictionaryState = new DictionaryState(localStorageService);
         ThemeState = new ThemeState(localStorageService);
+        ToggleSideNavState = new ToggleSideNavState(sessionStorageService);
     }
 
     public async Task Init()
@@ -36,8 +38,9 @@ public class AppState
             await AddCharacterState.Init();
             await DictionaryState.Init();
             await CultureState.Init();
-            await FlashcardReviewState.Init();
-            await ThemeState.Init();
+            await FlashcardReviewState.InitAsync();
+            await ThemeState.InitAsync();
+            await ToggleSideNavState.InitAsync();
             _isInitialized = true;
         }
     }

@@ -39,7 +39,7 @@ else
         <div class="col-md-3 mb-2">
             <HasAnyRole Roles="@(new[] { "Admin", "SuperAdmin" })">
                 <button @onclick=@(() => { DeleteCharacter(character); }) class="btn btn-danger">
-                    Delete
+                    @Loc["Delete"]
                 </button>
             </HasAnyRole>
             <a class="pointer-cursor" @onclick="@(async () => await OnSelected.InvokeAsync(character))">

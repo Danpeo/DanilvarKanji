@@ -61,6 +61,13 @@ function applyTheme(theme) {
     document.body.classList.add(theme);
 }
 
+function applyThemeOnLoad() {
+    let theme = localStorage.getItem("Theme");
+    if (theme) {
+        applyTheme(theme)
+    }
+}
+
 function removeTheme(theme) {
     document.body.classList.remove(theme);
 }

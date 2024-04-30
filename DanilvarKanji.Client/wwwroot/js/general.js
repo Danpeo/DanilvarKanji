@@ -33,3 +33,13 @@ function readFileFrom(path) {
     const response = fetch(path);
     return response.text();
 }
+
+function registerHotkey(modifierKey, key) {
+    window.addEventListener('keydown', (e) => {
+        if (e.key === key && e.ctrlKey) {
+            e.preventDefault()
+            console.log("AHAHAHAHHA")
+            Dotnet.invokeMethodAsync('DanilvarKanji.Client', 'OnHotkeyPressed');
+        }
+    });
+}

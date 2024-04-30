@@ -1,9 +1,12 @@
 ﻿@using DanilvarKanji.Client.State
 @using DanilvarKanji.Client.JsWrapper
+@using DanilvarKanji.Client.Services
+
 @inject IStringLocalizer<App> Loc
 @inject AppState AppState;
 @inject Js Js;
-
+@inject HotkeyService HotkeyService;
+@inject NavigationManager NavigationManager;
 
 <CascadingBlazoredModal Class="custom-modal">
     <Router AppAssembly="@typeof(App).Assembly">
@@ -22,6 +25,11 @@
 
 @code
 {
+    protected override async Task OnInitializedAsync()
+    {
+        await HotkeyService.RegisterHotkeyAsync("e", "r", () => NavigationManager.NavigateTo("/counter"));
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

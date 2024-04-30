@@ -63,6 +63,7 @@ builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IFlashcardApiService, FlashcardApiService>();
 builder.Services.AddSingleton<IOCRService, OCRService>();
+builder.Services.AddSingleton<HotkeyService>();
 
 builder.Services.AddComponents();
 

@@ -1,5 +1,7 @@
 ﻿@using DanilvarKanji.Client.Data
+@using DanilvarKanji.Client.JsWrapper
 @using DanilvarKanji.Client.Localization.LocaleKeys
+@using DanilvarKanji.Client.State
 
 @inject IStringLocalizer<NavMenu> Loc
 @inject IStringLocalizer<App> Loc2
@@ -11,7 +13,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
-<div class="@NavMenuCssClass nav-scrollable mt-3" @onclick="ToggleNavMenu">
+<div id="sideNav" class="@NavMenuCssClass nav-scrollable mt-3" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <a class="navbar-brand" href="/">
             <img alt="DVKanji" src="img/DVKanjiLogo_2%20copy.png" class="rounded img-fluid" width="128" height="128"/>
@@ -94,13 +96,12 @@
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private bool _collapseNavMenu;
+    
+    private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
-        collapseNavMenu = !collapseNavMenu;
+        _collapseNavMenu = !_collapseNavMenu;
     }
-
 }

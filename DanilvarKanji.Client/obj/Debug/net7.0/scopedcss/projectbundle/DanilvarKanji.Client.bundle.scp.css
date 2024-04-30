@@ -101,7 +101,6 @@ main[b-s586sxsw3p] {
     }
 
     .sidebar[b-s586sxsw3p] {
-        width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
@@ -176,19 +175,21 @@ main[b-s586sxsw3p] {
     color: var(--accent-color-secondary);
 }
 
+/*
 @media (min-width: 641px) {
-    .navbar-toggler[b-m80avslso6] {
+    .navbar-toggler {
         display: none;
     }
 
-    .collapse[b-m80avslso6] {
-        /* Never collapse the sidebar for wide screens */
+   !* .collapse {
+        !* Never collapse the sidebar for wide screens *!
         display: block;
-    }
+    }*!
     
-    .nav-scrollable[b-m80avslso6] {
-        /* Allow sidebar to scroll for tall menus */
+    .nav-scrollable {
+        !* Allow sidebar to scroll for tall menus *!
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
     }
 }
+*/

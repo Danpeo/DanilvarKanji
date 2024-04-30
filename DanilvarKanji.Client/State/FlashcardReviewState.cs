@@ -13,7 +13,7 @@ public class FlashcardReviewState : StateBase<FlashcardReview>
         _sessionStorageService = sessionStorageService;
     }
 
-    public override async Task Init()
+    public override async Task InitAsync()
     {
         if (!IsInitialized)
         {
