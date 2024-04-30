@@ -1,3 +1,4 @@
+using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Entities.Flashcards;
 using DanilvarKanji.Domain.Shared.ValueObjects;
@@ -35,6 +36,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     */
     public DbSet<FlashcardCollection> FlashcardCollections { get; set; }
     public DbSet<Flashcard> Flashcards { get; set; }
+    public DbSet<EmailCode> EmailCodes { get; set; }
 
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {

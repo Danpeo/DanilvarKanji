@@ -2,6 +2,7 @@ using AutoMapper;
 using DanilvarKanji.Application.Auth.Commands;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Shared.Requests.Auth;
 using DanilvarKanji.Shared.Responses.Auth;
 using MediatR;
@@ -95,11 +96,27 @@ public class AccountController : ApiController
         return Ok();
     }
 
-    [Authorize]
-    [HttpPatch("{userId}:ConfirmEmail")]
-    public async Task<IActionResult> ConfirmEmailAsync(string userId)
+    [HttpPatch("ConfirmEmail/{userEmail}/{confirmationCode}")]
+    public async Task<IActionResult> ConfirmEmailAsync(string userEmail, string confirmationCode)
     {
-        var command = new ConfirmEmailCommand(userId);
+        var command = new ConfirmEmailCommand(userEmail, confirmationCode);
+
+        IdentityResult result = await Mediator.Send(command);
+
+        if (result.Succeeded)
+            return Ok(command);
+
+        foreach (IdentityError error in result.Errors)
+            ModelState.AddModelError(error.Code, error.Description);
+
+        return BadRequest(ModelState);
+    }
+    
+    [Authorize(Roles = UserRole.SuperAdmin)]
+    [HttpPatch("ConfirmEmailForced/{userEmail}")]
+    public async Task<IActionResult> ConfirmEmailForced(string userEmail, string confirmationCode)
+    {
+        var command = new ConfirmEmailCommand(userEmail, confirmationCode);
 
         IdentityResult result = await Mediator.Send(command);
 

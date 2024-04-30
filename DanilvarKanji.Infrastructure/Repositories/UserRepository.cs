@@ -1,3 +1,4 @@
+using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Params;
@@ -13,11 +14,23 @@ public class UserRepository : IUserRepository
 
     public UserRepository(ApplicationDbContext context)
     {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
+        _context = context;
     }
 
     public void Create(AppUser? user) =>
         _context.AppUsers.Add(user);
+
+    public void CreateEmailCode(EmailCode emailCode) =>
+        _context.EmailCodes.Add(emailCode);
+
+    public async Task<string?> GetRegistrationConfirmationCodeAsync(string email)
+    {
+        EmailCode? emailCode = await GetEmailCodeAsync(email);
+        return emailCode?.GeneratedCode;
+    }
+
+    public async Task DeleteEmailCodeAsync(string email) => 
+        _context.EmailCodes.Remove((await GetEmailCodeAsync(email))!);
 
     public async Task UpdateUserLearningSettingsAsync(string email, LearningSettings learningSettings)
     {
@@ -89,6 +102,12 @@ public class UserRepository : IUserRepository
             .ToListAsync();
 
         return paginationParams != null ? Paginator.Paginate(users, paginationParams) : users;
+    }
+
+    private async Task<EmailCode?> GetEmailCodeAsync(string email)
+    {
+        EmailCode? emailCode = await _context.EmailCodes.FirstOrDefaultAsync(e => e.Email == email);
+        return emailCode;
     }
 
     public async Task<bool> ExistById(string id) =>

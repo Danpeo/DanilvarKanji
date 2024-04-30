@@ -27,4 +27,10 @@ public static class Identity
         Code = "Identity.EmailAlreadyConfirmed",
         Description = "Email for specified user was already confirmed."
     };
+
+    public static IdentityError ConfirmationCodeIsNotValid => new()
+    {
+        Code = "Identity.ConfirmationCodeIsNotValid",
+        Description = "Confirmation code is not valid."
+    };
 }

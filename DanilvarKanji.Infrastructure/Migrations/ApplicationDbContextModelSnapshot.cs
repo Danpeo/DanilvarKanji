@@ -22,6 +22,24 @@ namespace DanilvarKanji.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("DanilvarKanji.Domain.Entities.EmailCode", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GeneratedCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailCodes");
+                });
+
             modelBuilder.Entity("DanilvarKanji.Domain.Shared.Entities.AppUser", b =>
                 {
                     b.Property<string>("Id")

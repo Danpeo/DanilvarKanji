@@ -3,6 +3,7 @@ using DanilvarKanji.Infrastructure.Auth;
 using DanilvarKanji.Infrastructure.Caching;
 using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
+using DanilvarKanji.Infrastructure.Emails;
 using DanilvarKanji.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("PostgresSql")));
 
         services.AddTransient<IDateTime, MachineDateTime>();
+        services.AddTransient<IEmailService, EmailService>();
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
@@ -27,6 +29,9 @@ public static class DependencyInjection
         services.AddScoped<IReviewRepository, ReviewRepository>();
         services.AddScoped<IFlashcardRepository, FlashcardRepository>();
         services.AddSingleton<ICacheService, CacheService>();
+        
+        services.Configure<EmailSettings>(configuration
+            .GetSection("EmailSettings"));
 
         return services;
     }

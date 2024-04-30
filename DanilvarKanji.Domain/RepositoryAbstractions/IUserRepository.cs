@@ -1,4 +1,5 @@
 
+using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Params;
 
@@ -19,4 +20,7 @@ public interface IUserRepository
     ValueTask<bool> AnyExistAsync();
     Task DeleteAsync(string email);
     Task UpdateUserAsync(string email, string newUserName, string newUserRole);
+    void CreateEmailCode(EmailCode emailCode);
+    Task<string?> GetRegistrationConfirmationCodeAsync(string email);
+    Task DeleteEmailCodeAsync(string email);
 }
