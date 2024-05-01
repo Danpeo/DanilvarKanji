@@ -294,4 +294,7 @@
     <data name="CharacterSearchPlaceholder" xml:space="preserve">
         <value>Search characters by meaning, reading and definition...</value>
     </data>
+    <data name="ConfirmEmail" xml:space="preserve">
+        <value>Confirm Email</value>
+    </data>
 </root>

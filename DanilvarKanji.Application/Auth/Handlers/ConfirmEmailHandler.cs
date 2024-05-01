@@ -25,13 +25,13 @@ public class ConfirmEmailHandler : IRequestHandler<ConfirmEmailCommand, Identity
     public async Task<IdentityResult> Handle(ConfirmEmailCommand request, CancellationToken cancellationToken)
     {
         AppUser? user = await _userManager.FindByEmailAsync(request.UserEmail);
-        
+
         if (user == null)
             return IdentityResult.Failed(Identity.NotFound);
 
         if (user.EmailConfirmed)
             return IdentityResult.Failed(Identity.EmailAlreadyConfirmed);
-        
+
         string? expectedCode = await _userRepository.GetRegistrationConfirmationCodeAsync(request.UserEmail);
 
         if (expectedCode != null)
@@ -43,11 +43,12 @@ public class ConfirmEmailHandler : IRequestHandler<ConfirmEmailCommand, Identity
                 await _userRepository.DeleteEmailCodeAsync(request.UserEmail);
                 await _unitOfWork.CompleteAsync();
             }
+            else
+            {
+                return IdentityResult.Failed(Identity.ConfirmationCodeIsNotValid);
+            }
         }
-        else
-        {
-            return IdentityResult.Failed(Identity.ConfirmationCodeIsNotValid);
-        }
+
 
         IdentityResult result = await _userManager.UpdateAsync(user);
 

@@ -79,11 +79,18 @@ public class AuthService : IAuthService
         {
             return await response.Content.ReadFromJsonAsync<RegisterUserRequest>();
         }
-    
+
         string message = await response.Content.ReadAsStringAsync();
         var error = JsonSerializer.Deserialize<RegisterError>(message);
 
         return ErrorHandler.HandleLists<RegisterUserRequest>(error);
+    }
+
+    public async Task ConfirmRegistrationAsync(ConfirmRegistrationRequest request)
+    {
+        var http = _httpFactory.CreateClient("ServerApi");
+        
+        await Http.PatchAsync(request, "api/Accounts/ConfirmEmail", http);
     }
 
     public async Task<LoginResponse?> LoginAsync(LoginUserRequest request)

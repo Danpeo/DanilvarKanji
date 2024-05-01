@@ -1,0 +1,52 @@
+@page "/EmailConfirmation"
+@using DanilvarKanji.Shared.Requests.Auth
+@using DanilvarKanji.Client.Services.Auth
+
+@inject IStringLocalizer<App> Loc;
+
+
+<div class="text-center">
+    <h1 class="display-3 main-font txt-bright-pink">
+        @Loc["AccountRegistered"]
+    </h1>
+    <NavLink href="login" class="btn btn-lg btn-primary">@Loc["Login"]</NavLink>
+    <EditForm Model="_confirmRegistrationRequest" OnSubmit="ConfirmRegistrationAsync">
+        <FluentValidationValidator/>
+
+        <FormSection Title="Confirmation" HelpText="">
+            <FormFieldSet Label="Email" LabelFor="Email" HelpText="">
+                <InputText @bind-Value="_confirmRegistrationRequest.Email" class="form-control bg-main txt-green-dim no-border"
+                           id="email" placeholder="Email">
+                    <ValidationMessage For="@(() => _confirmRegistrationRequest.Email)"/>
+                </InputText>
+            </FormFieldSet>
+            <FormFieldSet Label="ConfirmationCode" LabelFor="ConfirmationCode" HelpText="">
+                <InputText @bind-Value="_confirmRegistrationRequest.ConfirmationCode" class="form-control bg-main txt-green-dim no-border"
+                           id="confirmationCode" placeholder="Confirmation Code">
+
+                    <ValidationMessage For="@(() => _confirmRegistrationRequest.ConfirmationCode)"/>
+
+                </InputText>
+            </FormFieldSet>
+
+            <FormSubmitButtonContainer OnReset="@(() => _confirmRegistrationRequest = new ConfirmRegistrationRequest())">
+
+            </FormSubmitButtonContainer>
+
+        </FormSection>
+    </EditForm>
+
+</div>
+
+@code {
+
+    [Inject] public IAuthService AuthService { get; set; } = null!;
+
+    private ConfirmRegistrationRequest _confirmRegistrationRequest = new();
+    
+    private async Task ConfirmRegistrationAsync(EditContext obj)
+    {
+        await AuthService.ConfirmRegistrationAsync(_confirmRegistrationRequest);
+    }
+
+}

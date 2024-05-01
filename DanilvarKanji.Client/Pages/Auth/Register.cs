@@ -67,7 +67,7 @@ public partial class Register
         (
             prefix: "naruto",
             domains: new[] { "mail.ru", "gmail.com" },
-            randomCharLength: 6
+            randomCharLength: 4
         );
 
         await Js.Dom.ChangeElementValueAsync(PasswordElId, RandGen.Password(passwordOptions));

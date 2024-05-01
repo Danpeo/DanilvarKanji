@@ -29,6 +29,9 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<LoginRe
         if (user == null)
             return Result.Failure<LoginResponse>(User.NotFound);
 
+        if (!user.EmailConfirmed)
+            return Result.Failure<LoginResponse>(User.EmailNotComfirmed);
+
         bool result = await _userManager.CheckPasswordAsync(user, request.Password);
 
         if (!result)

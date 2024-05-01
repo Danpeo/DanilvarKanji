@@ -58,7 +58,7 @@
     @if (_submitSuccessful)
     {
         <SuccessAlertAlt Message="@(new string($"{Loc["AccountRegistered"]}"))"/>
-        NavManager.NavigateTo("/register-success");
+        NavManager.NavigateTo($"/EmailConfirmation");
     }
     else if (_errorMessage is not null)
     {

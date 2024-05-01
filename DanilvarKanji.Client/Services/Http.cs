@@ -43,6 +43,18 @@ public static class Http
         }
     }
 
+    public static async Task PatchAsync<TRequest>(TRequest request, string requestUri, HttpClient http)
+    {
+        HttpResponseMessage response =
+            await http.PatchAsJsonAsync(requestUri, request);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            string message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
+        }
+    }
+
     public static async Task<IEnumerable<TResponse>?> EnumerateAsync<TResponse>(string requestUri, HttpClient http) =>
         await ProcessListAsync<IEnumerable<TResponse>>(requestUri, http);
 

@@ -96,10 +96,10 @@ public class AccountController : ApiController
         return Ok();
     }
 
-    [HttpPatch("ConfirmEmail/{userEmail}/{confirmationCode}")]
-    public async Task<IActionResult> ConfirmEmailAsync(string userEmail, string confirmationCode)
+    [HttpPatch("ConfirmEmail")]
+    public async Task<IActionResult> ConfirmEmailAsync([FromBody] ConfirmRegistrationRequest request)
     {
-        var command = new ConfirmEmailCommand(userEmail, confirmationCode);
+        var command = new ConfirmEmailCommand(request.Email, request.ConfirmationCode);
 
         IdentityResult result = await Mediator.Send(command);
 
@@ -114,9 +114,9 @@ public class AccountController : ApiController
     
     [Authorize(Roles = UserRole.SuperAdmin)]
     [HttpPatch("ConfirmEmailForced/{userEmail}")]
-    public async Task<IActionResult> ConfirmEmailForced(string userEmail, string confirmationCode)
+    public async Task<IActionResult> ConfirmEmailForced(string userEmail)
     {
-        var command = new ConfirmEmailCommand(userEmail, confirmationCode);
+        var command = new ConfirmEmailForcedCommand(userEmail);
 
         IdentityResult result = await Mediator.Send(command);
 

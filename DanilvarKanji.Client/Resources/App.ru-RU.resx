@@ -294,4 +294,7 @@
     <data name="CharacterSearchPlaceholder" xml:space="preserve">
         <value>Поиск иероглифа по значению, чтению и определению...</value>
     </data>
+    <data name="ConfirmEmail" xml:space="preserve">
+        <value>Подтвердить Email</value>
+    </data>
 </root>

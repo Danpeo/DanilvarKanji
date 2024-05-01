@@ -14,4 +14,5 @@ public interface IAuthService
     ValueTask<bool> HasRoleAsync(string role);
     ValueTask<bool> HasAnyOfSpecifiedRolesAsync(IEnumerable<string> roles);
     ValueTask<bool> HasAnyRoleAsync();
+    Task ConfirmRegistrationAsync(ConfirmRegistrationRequest request);
 }
