@@ -1,7 +1,5 @@
 @page "/Characters/Add"
 @using DanilvarKanji.Client.Data
-@using DanilvarKanji.Domain.Shared.Enumerations
-@using DanilvarKanji.Domain.Shared.ValueObjects
 @using DanilvarKanji.Shared.Requests.Characters
 
 @inject IStringLocalizer<App> Loc;
@@ -12,7 +10,7 @@
     @Loc["AddNewChar"]
 </h1>
 
-<EditForm Model="_createCharacterRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+@*<EditForm Model="_createCharacterRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
     <FluentValidationValidator/>
 
     <FormSection Title=@(Loc["CharacterBasicDetails"]) HelpText=@(Loc["CharacterBasicDetailsText"])>
@@ -76,14 +74,17 @@
     {
         <ErrorAlertAlt Message="@_errorMessage"/>
     }
+    
+    <FormSubmitButtonContainer OnReset="@(() => _createCharacterRequest = new CreateCharacterRequest())"/>
+    
+</EditForm>*@
 
-    <div class="mt-4 mb-5">
-        <div class="row">
-            <div class="offset-4 col-8 text-right">
-                <button class="btn btn-outline-secondary" type="button"
-                        @onclick="@(() => _createCharacterRequest = new CreateCharacterRequest())">Reset</button>
-                <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
-            </div>
-        </div>
-    </div>
-</EditForm>
+<CharacterForm CharacterRequest="_characterRequest" OnHandleSubmit="onHandleSubmit"></CharacterForm>
+@{
+    async Task<bool> onHandleSubmit()
+    {
+        CharacterRequest? character = await CharacterService.AddCharacterAsync(_characterRequest);
+
+        return character is not null;
+    }
+}

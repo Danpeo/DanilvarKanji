@@ -1,0 +1,55 @@
+@page "/Characters/Edit/{Id}"
+
+@using DanilvarKanji.Shared.Requests.Characters
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Domain.Shared.Entities
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Client.Data
+
+@inject IStringLocalizer<App> Loc;
+
+
+<PageTitle>@Loc["EditCharacter"] - @AppDisplaySettings.AppTitle</PageTitle>
+
+<h1 class="mt-5 mb-4 animated-blink main-font display-3">
+    @Loc["EditCharacter"]
+</h1>
+
+<CharacterForm CharacterRequest="_characterRequest" OnHandleSubmit="onHandleSubmit"></CharacterForm>
+@{
+    async Task<bool> onHandleSubmit()
+    {
+        var updatedCharacter =  await CharacterService.UpdateCharacterAsync(_characterRequest, Id);
+
+        return updatedCharacter is not null;
+    }
+}
+
+@code {
+
+    [Parameter, EditorRequired] public string Id { get; set; } = null!;
+
+    [Inject] public ICharacterService CharacterService { get; set; } = default!;
+    private CharacterResponseResponseFull? _characterResponse;
+    private CharacterRequest _characterRequest = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _characterResponse = await CharacterService.GetCharacterAsync(Id);
+        if (_characterResponse != null)
+        {
+            _characterRequest = new CharacterRequest
+            {
+                CharacterType = _characterResponse.CharacterType,
+                Definition = _characterResponse.Definition,
+                JlptLevel = _characterResponse.JlptLevel,
+                KanjiMeanings = _characterResponse.KanjiMeanings,
+                Kunyomis = (List<Kunyomi>)_characterResponse.Kunyomis,
+                Onyomis = (List<Onyomi>)_characterResponse.Onyomis,
+                Mnemonics = _characterResponse.Mnemonics,
+                StrokeCount = _characterResponse.StrokeCount,
+            };
+        }
+    }
+
+}

@@ -42,9 +42,9 @@ public class AccountController : ApiController
     [HttpPost("Login")]
     [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> LoginAsync([FromBody] LoginUserRequest? request)
+    public async Task<IActionResult> LoginAsync([FromBody] LoginUserRequest request)
     {
-        var command = _mapper.Map<LoginUserCommand>(request);
+        var command = new LoginUserCommand(request.Email, request.Password);
 
         Result<LoginResponse> result = await Mediator.Send(command);
 
@@ -54,27 +54,18 @@ public class AccountController : ApiController
     [HttpPost("Refresh")]
     [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> RefreshAsync([FromBody] RefreshKeyRequest? request)
+    public async Task<IActionResult> RefreshAsync([FromBody] RefreshKeyRequest request)
     {
-        var command = _mapper.Map<RefreshKeyCommand>(request);
+        var command = new RefreshKeyCommand(request.AccessToken, request.RefreshToken);
 
-        Result<LoginResponse> result = await Mediator.Send(command);
+        var result = await Mediator.Send(command);
 
         return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
     }
 
-    [HttpPost("GeneratePassword")]
-    [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GeneratePasswordAsync([FromBody] GeneratePasswordRequest request)
-    {
-        string result = await Mediator.Send(new GeneratePasswordCommand(request.Length, request.RequireLowercase,
-            request.RequierUppercase, request.RequireNonAlphanumeric));
-
-        return Ok(result);
-    }
 
     [Authorize]
-    [HttpDelete]
+    [HttpDelete("Revoke")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> RevokeAsync([FromServices] UserManager<AppUser> _userManager)
@@ -96,6 +87,8 @@ public class AccountController : ApiController
         return Ok();
     }
 
+    [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IdentityError), StatusCodes.Status400BadRequest)]
     [HttpPatch("ConfirmEmail")]
     public async Task<IActionResult> ConfirmEmailAsync([FromBody] ConfirmRegistrationRequest request)
     {
@@ -111,7 +104,10 @@ public class AccountController : ApiController
 
         return BadRequest(ModelState);
     }
-    
+
+    [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IdentityError), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status401Unauthorized)]
     [Authorize(Roles = UserRole.SuperAdmin)]
     [HttpPatch("ConfirmEmailForced/{userEmail}")]
     public async Task<IActionResult> ConfirmEmailForced(string userEmail)

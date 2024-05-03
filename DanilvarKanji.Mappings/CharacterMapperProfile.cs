@@ -31,10 +31,10 @@ public class CharacterMapperProfile : Profile
             .ForMember(x => x.Id, opt => opt.Ignore())
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<CreateCharacterCommand, CreateCharacterRequest>()
+        CreateMap<CreateCharacterCommand, CharacterRequest>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        CreateMap<CreateCharacterRequest, CreateCharacterCommand>()
+        CreateMap<CharacterRequest, CreateCharacterCommand>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<Character, ListCharactersQuery>()

@@ -32,7 +32,7 @@ public class CharacterController : ApiController
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status403Forbidden)]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateCharacterRequest? request)
+    public async Task<IActionResult> CreateAsync([FromBody] CharacterRequest? request)
     {
         var command = _mapper.Map<CreateCharacterCommand>(request);
 
@@ -47,9 +47,8 @@ public class CharacterController : ApiController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(string id, [FromBody] UpdateCharacterRequest request)
     {
-        var command = _mapper.Map<UpdateCharacterCommand>(request);
+        var command = _mapper.Map<UpdateCharacterCommand>(request) ;
         command.Id = id;
-
         var result = await Mediator.Send(command);
 
         if (result.IsFailure)

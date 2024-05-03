@@ -1,0 +1,106 @@
+@using DanilvarKanji.Shared.Requests.Characters
+@using DanilvarKanji.Domain.Shared.Enumerations
+
+@inject IStringLocalizer<App> Loc;
+
+
+<EditForm Model="CharacterRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+    <FluentValidationValidator/>
+
+    <FormSection Title=@(Loc["CharacterBasicDetails"]) HelpText=@(Loc["CharacterBasicDetailsText"])>
+
+        <FormFieldSet Label="@Loc["Definition"]" LabelFor="characterDefinition" HelpText="">
+            <InputText @bind-Value="CharacterRequest.Definition"
+                       class="form-control bg-main txt-green-dim jap-font no-border"
+                       id="characterDefinition" placeholder="見"/>
+            <ValidationMessage For="@(() => CharacterRequest.Definition)"/>
+        </FormFieldSet>
+
+        <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
+            <InputSelect @bind-Value="CharacterRequest.JlptLevel" class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
+                <option value="@JlptLevel.N5">JLPT N5</option>
+                <option value="@JlptLevel.N4">JLPT N4</option>
+                <option value="@JlptLevel.N3">JLPT N3</option>
+                <option value="@JlptLevel.N2">JLPT N2</option>
+                <option value="@JlptLevel.N1">JLPT N1</option>
+            </InputSelect>
+        </FormFieldSet>
+
+        <FormFieldSet Label="@Loc["CharacterType"]" LabelFor="characterType" HelpText="">
+            <InputSelect @bind-Value="CharacterRequest.CharacterType" class="form-control bg-main txt-green-dim no-border" id="characterType">
+                <option value="@CharacterType.Kanji">@Loc["Kanji"]</option>
+                <option value="@CharacterType.Radical">@Loc["Radical"]</option>
+            </InputSelect>
+        </FormFieldSet>
+
+        <FormFieldSet Label="@Loc["StrokeCount"]" LabelFor="strokeCount" HelpText="">
+            <InputNumber @bind-Value="CharacterRequest.StrokeCount" class="form-control bg-main txt-green-dim no-border" id="strokeCount" placeholder="Stroke Count"/>
+            <ValidationMessage For="@(() => CharacterRequest.StrokeCount)"/>
+        </FormFieldSet>
+    </FormSection>
+
+    <FormSection Title="Character Mnemonics" HelpText="Add Character Mnemonics with different cultures">
+        <DynamicStringDefinition StringDefinitions="CharacterRequest.Mnemonics" AddButtonText="Add Mnemonic"/>
+        <ValidationMessage For="@(() => CharacterRequest.Mnemonics)"/>
+    </FormSection>
+
+    <FormSection Title="Character Meanings" HelpText="Add Character Meanings with different cultures">
+        <AddKanjiMeanings Meanings="CharacterRequest.KanjiMeanings"/>
+        <ValidationMessage For="@(() => CharacterRequest.KanjiMeanings)"/>
+    </FormSection>
+
+    @if (CharacterRequest.CharacterType == CharacterType.Kanji)
+    {
+        <FormSection Title="Kunyomi Readings" HelpText="Add kunyomi readings">
+            <AddKunyomis Kunyomis="CharacterRequest.Kunyomis"/>
+        </FormSection>
+
+        <FormSection Title="Onyomi Readings" HelpText="Add onyomi readings">
+            <AddOnyomis Onyomis="CharacterRequest.Onyomis"/>
+        </FormSection>
+    }
+
+    @if (_submitSuccessful)
+    {
+        <SuccessAlertAlt Message="Your character has been added successfully!"/>
+    }
+    else if (_errorMessage is not null)
+    {
+        <ErrorAlertAlt Message="@_errorMessage"/>
+    }
+
+    <FormSubmitButtonContainer OnReset="@(() => CharacterRequest = new CharacterRequest())"/>
+
+</EditForm>
+
+@code {
+
+    [Parameter, EditorRequired] public CharacterRequest CharacterRequest { get; set; } = null!;
+
+    [Parameter, EditorRequired] public Func<Task<bool>> OnHandleSubmit { get; set; } = null!;
+
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            bool result = await OnHandleSubmit.Invoke();
+            if (result)
+            {
+                _submitSuccessful = true;
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
+        }
+    }
+
+    private void HandleInvalidSubmit()
+    {
+        _submitSuccessful = false;
+    }
+    
+}

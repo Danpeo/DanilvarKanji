@@ -10,13 +10,15 @@ public static class ApplicationSettingsSetup
     {
         services.Configure<CharacterLearningSettings>(config
             .GetSection("CharacterLearningSettings"));
-        
+
         services.Configure<CloudinarySettings>(config
             .GetSection("CloudinarySettings"));
 
         services.Configure<TesseractSettings>(config
             .GetSection("TesseractSettings"));
-        
+
+        services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
+
         return services;
     }
 }

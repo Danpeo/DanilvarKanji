@@ -14,7 +14,7 @@ public partial class AddCharacter
     [Inject] public required AppState AppState { get; set; }
 
     private GetKanjiResponse_KAD? _KAD_Kanji { get; set; }
-    private CreateCharacterRequest _createCharacterRequest = new();
+    private CharacterRequest _characterRequest = new();
     private bool _submitSuccessful;
     private string? _errorMessage;
 
@@ -24,7 +24,7 @@ public partial class AddCharacter
 
         if (_KAD_Kanji is not null)
         {
-            _createCharacterRequest = _KAD_Kanji.ToCreateCharacterRequest();
+            _characterRequest = _KAD_Kanji.ToCreateCharacterRequest();
         }
     }
 
@@ -32,7 +32,7 @@ public partial class AddCharacter
     {
         try
         {
-            CreateCharacterRequest? character = await CharacterService.AddCharacterAsync(_createCharacterRequest);
+            CharacterRequest? character = await CharacterService.AddCharacterAsync(_characterRequest);
 
             if (character is not null)
             {

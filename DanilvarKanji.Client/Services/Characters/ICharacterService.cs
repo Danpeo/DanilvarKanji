@@ -19,11 +19,12 @@ public interface ICharacterService
 
     Task<IEnumerable<CharacterResponseResponseFull>> ListCharactersFilteredBy(string filter, string term);
     Task<IEnumerable<CharacterResponseResponseFull>> SearchCharacters(string searchTerm);
-    Task<CreateCharacterRequest?> AddCharacterAsync(CreateCharacterRequest request);
+    Task<CharacterRequest?> AddCharacterAsync(CharacterRequest request);
 
     Task<IEnumerable<CharacterResponseBase?>?> ListLearnQueueAsync(int pageNumber = 0,
         int pageSize = 0, bool listOnlyDayDosage = false);
 
     Task<CharacterResponseBase?> GetNextInLearnQueue();
     Task DeleteCharacterAsync(string id);
+    Task<CharacterResponseResponseFull?> UpdateCharacterAsync(CharacterRequest request, string id);
 }

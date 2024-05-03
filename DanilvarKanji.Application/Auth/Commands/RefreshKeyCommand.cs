@@ -4,8 +4,4 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Auth.Commands;
 
-public class RefreshKeyCommand : IRequest<Result<LoginResponse>>
-{
-    public required string AccessToken { get; set; }
-    public required string RefreshToken { get; set; }
-}
+public record RefreshKeyCommand(string AccessToken, string RefreshToken) : IRequest<Result<LoginResponse>>;

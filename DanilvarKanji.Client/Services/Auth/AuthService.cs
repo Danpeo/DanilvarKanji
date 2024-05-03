@@ -89,7 +89,7 @@ public class AuthService : IAuthService
     public async Task ConfirmRegistrationAsync(ConfirmRegistrationRequest request)
     {
         var http = _httpFactory.CreateClient("ServerApi");
-        
+
         await Http.PatchAsync(request, "api/Accounts/ConfirmEmail", http);
     }
 
@@ -120,12 +120,8 @@ public class AuthService : IAuthService
 
     public async Task<bool> RefreshAsync()
     {
-        var request = new RefreshKeyRequest()
-        {
-            AccessToken = await _localStorageService.GetItemAsync<string>(JwtKey),
-            RefreshToken = await _localStorageService.GetItemAsync<string>(RefreshKey)
-        };
-
+        var request = new RefreshKeyRequest(await _localStorageService.GetItemAsync<string>(JwtKey),
+            await _localStorageService.GetItemAsync<string>(RefreshKey));
         HttpResponseMessage response = await _httpFactory
             .CreateClient("ServerApi")
             .PostAsync($"api/{_baseUrl}/refresh",

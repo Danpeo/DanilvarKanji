@@ -5,7 +5,7 @@ using DanilvarKanji.Domain.Shared.ValueObjects;
 
 namespace DanilvarKanji.Shared.Requests.Characters;
 
-public class CreateCharacterRequest
+public class CharacterRequest
 {
     [DefaultValue("来")] public string Definition { get; set; } = "来";
 

@@ -41,6 +41,9 @@ else
                 <button @onclick=@(() => { DeleteCharacter(character); }) class="btn btn-danger">
                     @Loc["Delete"]
                 </button>
+                <button @onclick="@(() => NavigationManager.NavigateTo($"/Characters/Edit/{character.Id}"))" class="btn btn-primary">
+                    @Loc["Edit"]
+                </button>
             </HasAnyRole>
             <a class="pointer-cursor" @onclick="@(async () => await OnSelected.InvokeAsync(character))">
                 <div class="card bg-secondary-2">

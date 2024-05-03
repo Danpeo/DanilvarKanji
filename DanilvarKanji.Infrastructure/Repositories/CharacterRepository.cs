@@ -67,7 +67,7 @@ public class CharacterRepository : ICharacterRepository
         characterToUpdate.Words = character.Words;
         */
 
-        _context.Characters.Update(characterToUpdate);
+        _context.Characters.Update(character);
     }
 
     public async Task DeleteAsync(string id)

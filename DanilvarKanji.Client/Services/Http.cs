@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
+using DanilvarKanji.Shared.Responses.Character;
 using DanilvarKanji.Shared.Responses.Review;
 
 namespace DanilvarKanji.Client.Services;
@@ -42,6 +43,20 @@ public static class Http
             throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
         }
     }
+
+    public static async Task<TResponse?> PutAsync<TRequest, TResponse>(TRequest request, string requestUri, HttpClient http)
+    {
+        HttpResponseMessage response =
+            await http.PutAsJsonAsync(requestUri, request);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            return await response.Content.ReadFromJsonAsync<TResponse>();
+        }
+
+        string message = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
+    } 
 
     public static async Task PatchAsync<TRequest>(TRequest request, string requestUri, HttpClient http)
     {

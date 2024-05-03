@@ -8,9 +8,9 @@ namespace DanilvarKanji.Client.Mappers;
 
 public static class CharacterMapper
 {
-    public static CreateCharacterRequest ToCreateCharacterRequest(this GetKanjiResponse_KAD KAD_Kanji)
+    public static CharacterRequest ToCreateCharacterRequest(this GetKanjiResponse_KAD KAD_Kanji)
     {
-        var createCharacterRequest = new CreateCharacterRequest
+        var createCharacterRequest = new CharacterRequest
         {
             Definition = KAD_Kanji.Kanji,
             CharacterType = CharacterType.Kanji,

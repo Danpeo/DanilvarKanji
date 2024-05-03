@@ -21,23 +21,19 @@ public class UpdateCharacterHandler : IRequestHandler<UpdateCharacterCommand, Re
 
     public async Task<Result<string>> Handle(UpdateCharacterCommand request, CancellationToken cancellationToken)
     {
-        var character = new Character()
+        var character = await _characterRepository.GetAsync(request.Id);
+
+        if (character != null)
         {
-            Definition = request.Definition,
-            StrokeCount = request.StrokeCount,
-            JlptLevel = request.JlptLevel,
-            CharacterType = request.CharacterType,
-            /*
-            ChildCharacterIds = request.ChildCharacterIds,
-            */
-            KanjiMeanings = request.KanjiMeanings,
-            Kunyomis = request.Kunyomis,
-            Onyomis = request.Onyomis,
-            Mnemonics = request.Mnemonics,
-            /*
-            Words = request.Words
-        */
-        };
+            character.Definition = request.Definition;
+            character.StrokeCount = request.StrokeCount;
+            character.JlptLevel = request.JlptLevel;
+            character.CharacterType = request.CharacterType;
+            character.KanjiMeanings = request.KanjiMeanings;
+            character.Kunyomis = request.Kunyomis;
+            character.Onyomis = request.Onyomis;
+            character.Mnemonics = request.Mnemonics;
+        }
 
         await _characterRepository.UpdateAsync(request.Id, character);
 
