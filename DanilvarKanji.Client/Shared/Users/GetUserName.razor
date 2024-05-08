@@ -1,5 +1,6 @@
 @using DanilvarKanji.Client.Services.Auth
 @using DanilvarKanji.Shared.Responses.User
+@using System.Net
 
 <span>@_user?.UserName</span>
 
@@ -12,7 +13,19 @@
 
     protected override async void OnInitialized()
     {
-        _user = await UserService.GetUserAsync();
-        StateHasChanged();
+        try
+        {
+            _user = await UserService.GetUserAsync();
+            StateHasChanged();
+        }
+        catch (HttpRequestException e)
+        {
+            if (e.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                return;
+            }
+
+            throw;
+        }
     }
 }

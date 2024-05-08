@@ -222,6 +222,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3Rlck9uUmVhZGluZ3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCharactersAsMinimalCards.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNoYXJhY3RlcnNBc01pbmltYWxDYXJkcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayCompletelyLearnedCharacters.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUNvbXBsZXRlbHlMZWFybmVkQ2hhcmFjdGVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danil/source/repos/LearningJapanese/DanilvarKanji.Client/Shared/Characters/DisplayFutureReviewQueue.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJhY3RlcnNcRGlzcGxheUZ1dHVyZVJldmlld1F1ZXVlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

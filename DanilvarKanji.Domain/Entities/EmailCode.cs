@@ -1,18 +1,18 @@
+using System.ComponentModel.DataAnnotations;
 using Danilvar.Entity;
 
 namespace DanilvarKanji.Domain.Entities;
 
 public class EmailCode : Entity
 {
-    public string Email { get; set; } = string.Empty;
+    [MaxLength(100)] public string Email { get; } = string.Empty;
 
-    public string? GeneratedCode { get; set; } = string.Empty;
+    [MaxLength(15)] public string? GeneratedCode { get; } = string.Empty;
 
     public EmailCode()
     {
-        
     }
-    
+
     public EmailCode(string email, string? generatedCode)
     {
         Email = email;

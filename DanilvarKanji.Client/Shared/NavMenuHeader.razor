@@ -28,18 +28,19 @@
 
             </NotAuthorized>
             <Authorized>
-                <HasAnyRole Roles="@(new[] { "Admin, SuperAdmin" })">
-                    <p>@Loc["Admin"]</p>
-                </HasAnyRole>
+                <HasRole Role="@("SuperAdmin")">
+                    <p class="txt-yellow mx-2">@Loc["SuperAdmin"]</p>
+                </HasRole>
+                <HasRole Role="@("Admin")">
+                    <p class="txt-yellow mx-2">@Loc["Admin"]</p>
+                </HasRole>
                 <p class="mx-2 card-text txt-mid-pink fs-5">
 
                     <GetUserName/>
                     <span class="txt-green-dim fs-6">
                         <GetUserJlpt/>
                     </span>
-                    @*<span class="txt-yellow">
-                        @(new string($" {_user?.XP} XP"))
-                    </span>*@
+
                 </p>
 
                 <li class="nav-item active mx-1">

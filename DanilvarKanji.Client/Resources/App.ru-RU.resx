@@ -297,4 +297,7 @@
     <data name="ConfirmEmail" xml:space="preserve">
         <value>Подтвердить Email</value>
     </data>
+    <data name="ShowMore" xml:space="preserve">
+        <value>Показать еще</value>
+    </data>
 </root>

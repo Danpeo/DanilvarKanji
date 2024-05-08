@@ -4,12 +4,12 @@
 
 @inject IStringLocalizer<App> Loc;
 
+<PageTitle>@Loc["ConfirmEmail"]</PageTitle>
 
 <div class="text-center">
-    <h1 class="display-3 main-font txt-bright-pink">
-        @Loc["AccountRegistered"]
+    <h1 class="display-5 main-font txt-bright-pink">
+        @Loc["ConfirmEmail"]
     </h1>
-    <NavLink href="login" class="btn btn-lg btn-primary">@Loc["Login"]</NavLink>
     <EditForm Model="_confirmRegistrationRequest" OnSubmit="ConfirmRegistrationAsync">
         <FluentValidationValidator/>
 
@@ -43,7 +43,7 @@
     [Inject] public IAuthService AuthService { get; set; } = null!;
 
     private ConfirmRegistrationRequest _confirmRegistrationRequest = new();
-    
+
     private async Task ConfirmRegistrationAsync(EditContext obj)
     {
         await AuthService.ConfirmRegistrationAsync(_confirmRegistrationRequest);

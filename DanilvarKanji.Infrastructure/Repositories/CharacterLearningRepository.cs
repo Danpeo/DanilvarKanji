@@ -81,7 +81,6 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             characterLearning.LearningProgress.Value += _learningSettings.PointAfterCorrectExercise;
         */
             characterLearning.LearningLevelValue += _learningSettings.PointAfterCorrectExercise;
-
         }
 
         _context.CharacterLearnings.Update(characterLearning);
@@ -121,6 +120,20 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .ToListAsync();
 
         return paginationParams != null ? Paginator.Paginate(charLearnings, paginationParams) : charLearnings;
+    }
+
+    public async Task<IEnumerable<CharacterLearning>> ListCompletelyLearnedCharactersAsync(
+        PaginationParams? paginationParams, AppUser user)
+    {
+        var characterLearnings = await GetCharacterLearningsWithRelatedData()
+            .Where(c => c.AppUser == user)
+            .Where(c => c.LearningState == LearningState.CompletelyLearned)
+            .OrderBy(c => c.Character.JlptLevel)
+            .ThenBy(c => c.Character.CharacterType)
+            .ThenBy(c => c.Character.Definition)
+            .ToListAsync();
+
+        return paginationParams != null ? Paginator.Paginate(characterLearnings, paginationParams) : characterLearnings;
     }
 
     public async Task<IEnumerable<CharacterLearning>> ListSkippedAsync(PaginationParams? paginationParams, AppUser user)
@@ -235,9 +248,6 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         var characters = _context.CharacterLearnings
             .AsSplitQuery()
             .Include(x => x.Character);
-            /*
-            .Include(x => x.LearningProgress);
-            */
 
         return characters.OrderByDescending(x => x.LearningState);
     }
@@ -248,15 +258,9 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .AsSplitQuery()
             .Include(c => c.Character)
             .ThenInclude(ch => ch.KanjiMeanings)
-            /*
-            .Include(c => c.LearningProgress)
-            */
             .Where(condition)
             .OrderBy(c => c.LearningState)
             .ThenBy(c => c.LastReviewDateTime)
-            /*
-            .ThenBy(c => c.LearningProgress.Value)
-            */
             .ThenBy(c => c.LearningLevelValue)
             .ThenBy(c => c.LearnedCount)
             .ThenBy(c => c.LastReviewWasCorrect);
@@ -271,9 +275,6 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             learning.NextReviewDateTime <= DateTime.Today &&
             learning.LearningState == LearningState.Learning &&
             learning.LearningState != LearningState.Skipped &&
-            /*
-            learning.LearningProgress.Value < _learningSettings.MaxLearningRate
-            */
             learning.LearningLevelValue < _learningSettings.MaxLearningRate
         );
     }
@@ -285,22 +286,16 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             learning.NextReviewDateTime > DateTime.Today &&
             learning.LearningState == LearningState.Learning &&
             learning.LearningState != LearningState.Skipped &&
-            /*
-            learning.LearningProgress.Value < _learningSettings.MaxLearningRate
-            */
             learning.LearningLevelValue < _learningSettings.MaxLearningRate
         );
     }
-    
+
     private IOrderedQueryable<CharacterLearning> GetFullReviewQueue(AppUser appUser)
     {
         return GetReviewQueue(learning =>
             learning.AppUser == appUser &&
             learning.LearningState == LearningState.Learning &&
             learning.LearningState != LearningState.Skipped &&
-            /*
-            learning.LearningProgress.Value < _learningSettings.MaxLearningRate
-            */
             learning.LearningLevelValue < _learningSettings.MaxLearningRate
         );
     }

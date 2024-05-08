@@ -5,21 +5,22 @@ using MediatR;
 
 namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
-public class ListSkippedHandler : IRequestHandler<ListSkippedQuery, IEnumerable<CharacterLearning>>
+public class ListCompletelyLearnedHandler : IRequestHandler<ListCompletelyLearnedQuery, IEnumerable<CharacterLearning>>
 {
     private readonly ICharacterLearningRepository _characterLearningRepository;
 
-    public ListSkippedHandler(ICharacterLearningRepository characterLearningRepository)
+    public ListCompletelyLearnedHandler(ICharacterLearningRepository characterLearningRepository)
     {
         _characterLearningRepository = characterLearningRepository;
     }
 
-    public async Task<IEnumerable<CharacterLearning>> Handle(ListSkippedQuery request,
+    public async Task<IEnumerable<CharacterLearning>> Handle(ListCompletelyLearnedQuery request,
         CancellationToken cancellationToken)
     {
         if (await _characterLearningRepository.AnyExistAsync())
         {
-            return await _characterLearningRepository.ListSkippedAsync(request.PaginationParams, request.AppUser);
+            return await _characterLearningRepository.ListCompletelyLearnedCharactersAsync(request.PaginationParams,
+                request.AppUser);
         }
 
         return Enumerable.Empty<CharacterLearning>();

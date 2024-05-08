@@ -75,4 +75,10 @@ public class UserService : IUserService
 
     public async Task UpdateUserAsync(string userEmail, UpdateUserRequest request) =>
         await Http.PutAsync(request, $"api/Users/UpdateUser?email={userEmail}", _httpClient);
+
+    public async Task ConfirmEmailForUserAsync(string userEmail)
+    {
+        await Http.PatchAsync(userEmail, $"api/Accounts/ConfirmEmailForced/{userEmail}", _httpClient);
+
+    }
 }

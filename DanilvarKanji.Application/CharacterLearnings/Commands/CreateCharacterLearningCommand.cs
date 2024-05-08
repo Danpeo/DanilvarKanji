@@ -8,12 +8,10 @@ namespace DanilvarKanji.Application.CharacterLearnings.Commands;
 public class CreateCharacterLearningCommand : IRequest<Result<string>>
 {
     public string Id { get; set; } = "";
-    public AppUser AppUser { get; set; }
-    public LearningState LearningState { get; set; }
-    public int LearnedCount { get; set; }
-    public string CharacterId { get; set; }
-
-
+    public AppUser AppUser { get; init; }
+    public LearningState LearningState { get; init; }
+    public string CharacterId { get; init; }
+    
     public CreateCharacterLearningCommand(AppUser appUser, string characterId, LearningState learningState)
     {
         AppUser = appUser;

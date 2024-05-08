@@ -39,4 +39,7 @@ public interface ICharacterLearningRepository
         PaginationParams? paginationParams,
         AppUser user
     );
+
+    Task<IEnumerable<CharacterLearning>> ListCompletelyLearnedCharactersAsync(
+        PaginationParams? paginationParams, AppUser user);
 }

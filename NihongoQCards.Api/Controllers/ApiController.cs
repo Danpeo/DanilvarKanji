@@ -28,8 +28,7 @@ public class ApiController : Controller
             ))
         };
     }
-
-
+    
     protected IMediator Mediator { get; }
 
     protected IActionResult BadRequest(Error error)
@@ -39,7 +38,7 @@ public class ApiController : Controller
 
     protected new IActionResult NotFound() => base.NotFound();
 
-    protected Task<AppUser?> GetCurrentUser(UserManager<AppUser> userManager) => 
+    protected Task<AppUser?> GetCurrentUser(UserManager<AppUser> userManager) =>
         userManager.GetUserAsync(User);
 
     private static ProblemDetails CreateProblemDetails(string title, int status, Error error, Error[]?

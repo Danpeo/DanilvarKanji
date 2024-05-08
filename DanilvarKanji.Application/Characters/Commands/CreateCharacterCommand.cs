@@ -6,7 +6,7 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Commands;
 
-public record CreateCharacterCommand : IRequest<Result<string>>
+public class CreateCharacterCommand : IRequest<Result<string>>
 {
     public string? Definition { get; set; }
 
@@ -23,12 +23,11 @@ public record CreateCharacterCommand : IRequest<Result<string>>
     public ICollection<Kunyomi>? Kunyomis { get; set; } = new List<Kunyomi>();
 
     public ICollection<Onyomi>? Onyomis { get; set; } = new List<Onyomi>();
-
-    public ICollection<Word>? Words { get; set; }
-
+    
     public List<string>? ChildCharacterIds { get; set; }
 
-    public CreateCharacterCommand(string? definition, JlptLevel jlptLevel, CharacterType characterType, int? strokeCount)
+    public CreateCharacterCommand(string? definition, JlptLevel jlptLevel, CharacterType characterType,
+        int? strokeCount)
     {
         Definition = definition;
         JlptLevel = jlptLevel;

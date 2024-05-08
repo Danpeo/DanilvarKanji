@@ -24,6 +24,9 @@ public record ListFutureReviewQuery(PaginationParams? PaginationParams, AppUser 
 public record ListSkippedQuery(PaginationParams? PaginationParams, AppUser AppUser)
     : IRequest<IEnumerable<CharacterLearning>>;
 
+public record ListCompletelyLearnedQuery(PaginationParams? PaginationParams, AppUser AppUser)
+    : IRequest<IEnumerable<CharacterLearning>>;
+
 public record GetNextToReviewInQueueQuery(AppUser AppUser) : IRequest<CharacterLearningResponseBase?>;
 
 public record GetRandomMeaningsInReviewQuery(string CharacterId, AppUser AppUser, Culture Culture, int Qty)

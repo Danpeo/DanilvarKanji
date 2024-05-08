@@ -90,8 +90,19 @@ public class CharacterLearningController : ApiController
     {
         AppUser? user = await _userManager.GetUserAsync(User);
 
-        IEnumerable<CharacterLearning> characters =
-            await Mediator.Send(new ListSkippedQuery(paginationParams, user!));
+        var characters = await Mediator.Send(new ListSkippedQuery(paginationParams, user!));
+
+        return characters.Any() ? Ok(characters) : NoContent();
+    }
+
+    [HttpGet("CompletelyLearned")]
+    [ProducesResponseType(typeof(IEnumerable<CharacterLearning>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> ListCompletelyLearnedAsync([FromQuery] PaginationParams paginationParams)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+
+        var characters = await Mediator.Send(new ListCompletelyLearnedQuery(paginationParams, user!));
 
         return characters.Any() ? Ok(characters) : NoContent();
     }

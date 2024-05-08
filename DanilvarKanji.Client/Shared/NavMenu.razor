@@ -72,24 +72,29 @@
                     @Loc2["Flashcards"]
                 </NavLink>
             </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link main-font" href="init-add">
-                    <span class="jap-font pe-2">
-                        <b>新しい</b>
-                    </span>
-                    @Loc2["AddNewChar"]
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link main-font" href="Users">
-                    <span class="jap-font pe-2">
-                        <b>
-                            ユーザー
-                        </b>
-                    </span>
-                    @Loc2["Users"]
-                </NavLink>
-            </div>
+
+            <HasAnyRole Roles="@(new[] { "Admin", "SuperAdmin" })">
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link main-font" href="init-add">
+                        <span class="jap-font pe-2">
+                            <b>新しい</b>
+                        </span>
+                        @Loc2["AddNewChar"]
+                    </NavLink>
+                </div>
+            </HasAnyRole>
+            <HasRole Role="@("SuperAdmin")">
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link main-font" href="Users">
+                        <span class="jap-font pe-2">
+                            <b>
+                                ユーザー
+                            </b>
+                        </span>
+                        @Loc2["Users"]
+                    </NavLink>
+                </div>
+            </HasRole>
         </Authorized>
 
     </nav>
@@ -97,11 +102,12 @@
 
 @code {
     private bool _collapseNavMenu;
-    
+
     private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
         _collapseNavMenu = !_collapseNavMenu;
     }
+
 }

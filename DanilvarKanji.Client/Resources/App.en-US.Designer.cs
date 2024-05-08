@@ -771,6 +771,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show More.
+        /// </summary>
+        internal static string ShowMore {
+            get {
+                return ResourceManager.GetString("ShowMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stroke Number.
         /// </summary>
         internal static string StrokeCount {

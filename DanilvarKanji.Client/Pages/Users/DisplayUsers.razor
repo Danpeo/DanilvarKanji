@@ -48,11 +48,12 @@ else
                 <td>@appUser.Email</td>
                 <td>@appUser.RegistrationDate</td>
                 <td>
-                    <InputSelect @bind-Value="appUser.Role" class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
+                    <InputSelect @bind-Value="appUser.Role" class="dropdown-toggle btn bg-main txt-green-dim no-border" id="jlptLevel">
                         <option value="@UserRole.User">@Loc["PlainUser"]</option>
                         <option value="@UserRole.Admin">@Loc["Admin"]</option>
                         <option value="@UserRole.SuperAdmin">@Loc["SuperAdmin"]</option>
                     </InputSelect>
+
                 </td>
                 <td>
                     <a class="btn btn-secondary-alt mx-2" @onclick="async () => await UpdateUserAsync(appUser.Email!, new UpdateUserRequest(appUser.UserName!, appUser.Role))">
@@ -60,6 +61,9 @@ else
                     </a>
                     <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteUserAsync(appUser.Email!)">
                         @Loc["Delete"]
+                    </a>
+                    <a class="btn btn-outline-danger mx-2" @onclick="async () => await ConfirmEmailForUserAsync(appUser.Email!)">
+                        @Loc["ConfirmEmail"]
                     </a>
                 </td>
             </tr>
@@ -97,6 +101,10 @@ else
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    private async Task ConfirmEmailForUserAsync(string email)
+    {
     }
 
     private async Task UpdateAllUsers()

@@ -32,4 +32,7 @@ public interface ICharacterLearningApiService
         int pageNumber = 0,
         int pageSize = 0
     );
+
+    Task<List<CharacterLearningResponseBase>?> ListCompletelyLearnedAsync(int pageNumber = 0,
+        int pageSize = 0);
 }

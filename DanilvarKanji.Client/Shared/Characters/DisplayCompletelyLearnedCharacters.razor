@@ -1,0 +1,12 @@
+@using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Shared.Responses.CharacterLearning
+
+@inject ICharacterLearningApiService CharacterLearningApiService;
+
+<DisplayCharactersAsMinimalCards Title="Completely Learned Characters" OnListCharactersAsync="onListCharactersAsync"/>
+@{
+    async Task<List<CharacterLearningResponseBase>?> onListCharactersAsync()
+    {
+        return await CharacterLearningApiService.ListCompletelyLearnedAsync();
+    }
+}
