@@ -8,27 +8,30 @@ namespace DanilvarKanji.Application.Auth.Handlers;
 // ReSharper disable once UnusedType.Global
 public class RevokeHandler : IRequestHandler<RevokeCommand, IdentityResult>
 {
-    private readonly UserManager<AppUser> _userManager;
+  private readonly UserManager<AppUser> _userManager;
 
-    public RevokeHandler(UserManager<AppUser> userManager)
-    {
-        _userManager = userManager;
-    }
+  public RevokeHandler(UserManager<AppUser> userManager)
+  {
+    _userManager = userManager;
+  }
 
-    public async Task<IdentityResult> Handle(RevokeCommand request, CancellationToken cancellationToken)
-    {
-        /*var username = HttpContext.User.Identity?.Name;
+  public async Task<IdentityResult> Handle(
+    RevokeCommand request,
+    CancellationToken cancellationToken
+  )
+  {
+    /*var username = HttpContext.User.Identity?.Name;
 
 
-        var user = await _userManager.FindByEmailAsync(request.Email);
+    var user = await _userManager.FindByEmailAsync(request.Email);
 
-        if (user is null)
-            return IdentityResult.Failed(Identity.NotFound);
+    if (user is null)
+        return IdentityResult.Failed(Identity.NotFound);
 
-        user.RefreshToken = null;
+    user.RefreshToken = null;
 
-        await _userManager.UpdateAsync(user);*/
+    await _userManager.UpdateAsync(user);*/
 
-        return IdentityResult.Success;
-    }
+    return IdentityResult.Success;
+  }
 }

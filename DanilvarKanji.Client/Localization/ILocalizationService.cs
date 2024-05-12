@@ -4,5 +4,5 @@ namespace DanilvarKanji.Client.Localization;
 
 public interface ILocalizationService
 {
-    Task<Culture> GetCurrentCulture();
+  Task<Culture> GetCurrentCulture();
 }

@@ -4,33 +4,35 @@
 
 namespace DanilvarKanji.Migrations
 {
+  /// <inheritdoc />
+  public partial class RemoveNullableEnums : Migration
+  {
     /// <inheritdoc />
-    public partial class RemoveNullableEnums : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AlterColumn<int>(
-                name: "JlptLevel",
-                table: "Characters",
-                type: "integer",
-                nullable: false,
-                defaultValue: 0,
-                oldClrType: typeof(int),
-                oldType: "integer",
-                oldNullable: true);
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AlterColumn<int>(
-                name: "JlptLevel",
-                table: "Characters",
-                type: "integer",
-                nullable: true,
-                oldClrType: typeof(int),
-                oldType: "integer");
-        }
+      migrationBuilder.AlterColumn<int>(
+        name: "JlptLevel",
+        table: "Characters",
+        type: "integer",
+        nullable: false,
+        defaultValue: 0,
+        oldClrType: typeof(int),
+        oldType: "integer",
+        oldNullable: true
+      );
     }
+
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+      migrationBuilder.AlterColumn<int>(
+        name: "JlptLevel",
+        table: "Characters",
+        type: "integer",
+        nullable: true,
+        oldClrType: typeof(int),
+        oldType: "integer"
+      );
+    }
+  }
 }

@@ -1,8 +1,3 @@
 ﻿module Danilvar.MathUtils
 
-let calcPercentage numerator denominator =
-  (numerator / denominator) * 100.0
-  
-  
-  
-
+let calcPercentage numerator denominator = (numerator / denominator) * 100.0

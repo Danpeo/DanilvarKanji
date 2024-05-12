@@ -1,66 +1,65 @@
+@using DanilvarKanji.Client.JsWrapper
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.CharacterLearning
-@using DanilvarKanji.Client.JsWrapper
-
 @if (_characterLearning != null)
 {
-    <div class="progress bg-secondary-2" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar" id="progress-bar" style="width: 100%"></div>
-    </div>
+  <div class="progress bg-secondary-2" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar" id="progress-bar" style="width: 100%"></div>
+  </div>
 }
 else
 {
-    <DisplayLoading/>
+  <DisplayLoading/>
 }
 
 @code {
-    [Parameter, EditorRequired] public required string CharacterLearningId { get; set; }
+  [Parameter] [EditorRequired] public required string CharacterLearningId { get; set; }
 
-    [Inject] public required ICharacterLearningApiService LearningApiService { get; set; }
+  [Inject] public required ICharacterLearningApiService LearningApiService { get; set; }
 
-    [Inject] public required Js Js { get; set; }
+  [Inject] public required Js Js { get; set; }
 
-    private CharacterLearningResponseFull? _characterLearning;
-    private const int DelayAfterSetProgressMs = 100;
+  private CharacterLearningResponseFull? _characterLearning;
+  private const int DelayAfterSetProgressMs = 100;
 
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
+  {
+    _characterLearning = await LearningApiService.GetLearningAsync(CharacterLearningId);
+
+    StateHasChanged();
+
+    if (_characterLearning != null)
+      await SetProgressBarStyle(_characterLearning.LearningLevelValue);
+  }
+
+  private async Task SetProgressBarStyle(float progress)
+  {
+    var styles = new
     {
-        _characterLearning = await LearningApiService.GetLearningAsync(CharacterLearningId);
+      width = $"{progress}%"
+    };
 
-        StateHasChanged();
+    var cssClass = setBarCssFromProgress();
 
-        if (_characterLearning != null)
-            await SetProgressBarStyle(_characterLearning.LearningLevelValue);
-    }
+    await Js.Dom.AddClassToElementAsync("progress-bar", cssClass);
 
-    private async Task SetProgressBarStyle(float progress)
+    await Task.Delay(DelayAfterSetProgressMs);
+
+    await Js.Dom.SetElementStylesAsync("progress-bar", styles);
+
+    return;
+
+    string setBarCssFromProgress()
     {
-        var styles = new
-        {
-            width = $"{progress}%",
-        };
-
-        string cssClass = setBarCssFromProgress();
-
-        await Js.Dom.AddClassToElementAsync("progress-bar", cssClass);
-
-        await Task.Delay(DelayAfterSetProgressMs);
-
-        await Js.Dom.SetElementStylesAsync("progress-bar", styles);
-
-        return;
-
-        string setBarCssFromProgress()
-        {
-            return progress switch
-            {
-                > 80 => "l5-progress",
-                > 60 => "l4-progress",
-                > 40 => "l3-progress",
-                > 20 => "l2-progress",
-                _ => "l1-progress"
-            };
-        }
+      return progress switch
+      {
+        > 80 => "l5-progress",
+        > 60 => "l4-progress",
+        > 40 => "l3-progress",
+        > 20 => "l2-progress",
+        _ => "l1-progress"
+      };
     }
+  }
 
 }

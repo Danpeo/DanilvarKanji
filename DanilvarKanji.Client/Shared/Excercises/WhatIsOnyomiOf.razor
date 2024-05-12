@@ -1,16 +1,13 @@
 @using DanilvarKanji.Shared.Responses.Character
-
 <div class="text-center">
-    <p class="text-body fs-3 txt-green-dim main-font">
-        @Loc["WhatIsOnyomiFor"]
-        <span class="txt-mid-pink jap-font">@CharacterForVerification.Definition</span>
-    </p>
+  <p class="text-body fs-3 txt-green-dim main-font">
+    @Loc["WhatIsOnyomiFor"]
+    <span class="txt-mid-pink jap-font">@CharacterForVerification.Definition</span>
+  </p>
 </div>
 
 @code {
-    [Parameter, EditorRequired]
-    public required CharacterResponseResponseFull CharacterForVerification { get; set; }
-    
-    [Inject]
-    public required IStringLocalizer<App> Loc { get; set; }
+  [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
+
+  [Inject] public required IStringLocalizer<App> Loc { get; set; }
 }

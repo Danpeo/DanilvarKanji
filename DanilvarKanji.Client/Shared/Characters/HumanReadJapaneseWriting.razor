@@ -1,39 +1,37 @@
 @using System.Text.RegularExpressions
 @{
-    // Given the input string '。abc', the regular expression would capture abc
-    var regex = new Regex(@"\。([^)]+)");
-    MatchCollection matches = regex.Matches(JapaneseWriting);
+  // Given the input string '。abc', the regular expression would capture abc
+  var regex = new Regex(@"\。([^)]+)");
+  MatchCollection matches = regex.Matches(JapaneseWriting);
 
-    if (matches.Count > 0)
+  if (matches.Count > 0)
+  {
+    var startIndex = 0;
+
+    foreach (Match match in matches)
     {
-        int startIndex = 0;
+      var matchIndex = match.Index;
+      var matchLength = match.Length;
 
-        foreach (Match match in matches)
-        {
-            int matchIndex = match.Index;
-            int matchLength = match.Length;
+      <span>@JapaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
 
-            <span>@JapaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
+      <span class="@CapturedTextStyle">@match.Groups[1].Value</span>
 
-            <span class="@CapturedTextStyle">@match.Groups[1].Value</span>
-
-            startIndex = matchIndex + matchLength;
-        }
-
-        <span>@JapaneseWriting.Substring(startIndex)</span>
+      startIndex = matchIndex + matchLength;
     }
-    else
-    {
-        @JapaneseWriting
-    }
+
+    <span>@JapaneseWriting.Substring(startIndex)</span>
+  }
+  else
+  {
+    @JapaneseWriting
+  }
 }
 
 
 @code {
-    [Parameter, EditorRequired]
-    public required string JapaneseWriting { get; set; }
+  [Parameter] [EditorRequired] public required string JapaneseWriting { get; set; }
 
-    [Parameter]
-    public string CapturedTextStyle { get; set; } = "txt-white";
+  [Parameter] public string CapturedTextStyle { get; set; } = "txt-white";
 
 }

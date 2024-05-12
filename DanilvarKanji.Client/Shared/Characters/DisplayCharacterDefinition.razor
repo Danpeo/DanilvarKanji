@@ -1,45 +1,44 @@
-@using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.Extensions
 @using DanilvarKanji.Domain.Shared.Enumerations
-
+@using DanilvarKanji.Shared.Responses.Character
 <h1 class="txt-mid-pink display-1 text-center @(RandomFont ? GetRandomFont() : "jap-font")">
-    @Character?.Definition
+  @Character?.Definition
 </h1>
 <p class="card-text txt-gray jap-font text-center">
-    JLPT @Character?.JlptLevel.GetDisplayName(),
-    <span class="txt-light-pink">@GetCharacterTypeLocalizedName(Character?.CharacterType)</span>
+  JLPT @Character?.JlptLevel.GetDisplayName(),
+  <span class="txt-light-pink">@GetCharacterTypeLocalizedName(Character?.CharacterType)</span>
 </p>
 
 @code {
-    [Parameter, EditorRequired] public CharacterResponseBase? Character { get; set; }
+  [Parameter] [EditorRequired] public CharacterResponseBase? Character { get; set; }
 
-    [Parameter] public bool RandomFont { get; set; }
+  [Parameter] public bool RandomFont { get; set; }
 
-    [Inject] public required IStringLocalizer<App> Localizer { get; set; }
+  [Inject] public required IStringLocalizer<App> Localizer { get; set; }
 
-    private string GetCharacterTypeLocalizedName(CharacterType? characterType)
+  private string GetCharacterTypeLocalizedName(CharacterType? characterType)
+  {
+    var localizedName = characterType switch
     {
-        string localizedName = characterType switch
-        {
-            CharacterType.Radical => Localizer["Radical"],
-            CharacterType.Kanji => Localizer["Kanji"],
-            _ => ""
-        };
+      CharacterType.Radical => Localizer["Radical"],
+      CharacterType.Kanji => Localizer["Kanji"],
+      _ => ""
+    };
 
-        return localizedName;
-    }
+    return localizedName;
+  }
 
-    private string GetRandomFont()
+  private string GetRandomFont()
+  {
+    var r = new Random();
+    string[] fonts =
     {
-        var r = new Random();
-        string[] fonts =
-        {
-            new("jap-font"),
-            new("dotgothic16-regular"),
-            new("reggae-one-regular"),
-        };
+      new("jap-font"),
+      new("dotgothic16-regular"),
+      new("reggae-one-regular")
+    };
 
-        return fonts[r.Next(fonts.Length)];
-    }
+    return fonts[r.Next(fonts.Length)];
+  }
 
 }

@@ -1,5 +1,4 @@
 @page "/My-Learning"
-
 @using DanilvarKanji.Client.State
 
 
@@ -8,11 +7,11 @@
 
 @if (!string.IsNullOrEmpty(_learningId))
 {
-    <ReviewCharactersSection Learningid="@_learningId" />
+  <ReviewCharactersSection Learningid="@_learningId"/>
 }
 else
 {
-    <Message Text="No characters to review :(" />
+  <Message Text="No characters to review :("/>
 }
 
 <DislpaySkippedCharacters/>
@@ -20,14 +19,13 @@ else
 <DisplayCompletelyLearnedCharacters/>
 
 @code {
-    [Inject]
-    public required AppState AppState { get; set; }
-    
-    private string? _learningId;
+  [Inject] public required AppState AppState { get; set; }
 
-    protected override void OnInitialized()
-    {
-        _learningId = AppState.ReviewCharState.NextToReview.Id;
-    }
+  private string? _learningId;
+
+  protected override void OnInitialized()
+  {
+    _learningId = AppState.ReviewCharState.NextToReview.Id;
+  }
 
 }

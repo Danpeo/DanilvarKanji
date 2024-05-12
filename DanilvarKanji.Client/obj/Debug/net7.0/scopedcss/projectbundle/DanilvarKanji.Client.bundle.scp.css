@@ -17,6 +17,7 @@
     opacity: 0.5;
     visibility: visible;
 }
+
 .drawer-wrapper.slide .drawer[b-igrduns1kb] {
     transform: translateX(0);
 }
@@ -96,32 +97,32 @@ main[b-s586sxsw3p] {
 }
 
 
-    .page[b-s586sxsw3p] {
-        flex-direction: row;
-    }
+.page[b-s586sxsw3p] {
+    flex-direction: row;
+}
 
-    .sidebar[b-s586sxsw3p] {
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
+.sidebar[b-s586sxsw3p] {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
 
-    .top-row[b-s586sxsw3p] {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
+.top-row[b-s586sxsw3p] {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
 
-    .top-row.auth[b-s586sxsw3p]  a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
+.top-row.auth[b-s586sxsw3p]  a:first-child {
+    flex: 1;
+    text-align: right;
+    width: 0;
+}
 
-    .top-row[b-s586sxsw3p], article[b-s586sxsw3p] {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
+.top-row[b-s586sxsw3p], article[b-s586sxsw3p] {
+    padding-left: 2rem !important;
+    padding-right: 1.5rem !important;
+}
 /* /Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-m80avslso6] {
     background-color: rgba(255, 255, 255, 0.1);
@@ -129,7 +130,7 @@ main[b-s586sxsw3p] {
 
 .top-row[b-m80avslso6] {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .navbar-brand[b-m80avslso6] {
@@ -148,30 +149,30 @@ main[b-s586sxsw3p] {
     padding-bottom: 0.5rem;
 }
 
-    .nav-item:first-of-type[b-m80avslso6] {
-        padding-top: 1rem;
-    }
+.nav-item:first-of-type[b-m80avslso6] {
+    padding-top: 1rem;
+}
 
-    .nav-item:last-of-type[b-m80avslso6] {
-        padding-bottom: 1rem;
-    }
+.nav-item:last-of-type[b-m80avslso6] {
+    padding-bottom: 1rem;
+}
 
-    .nav-item[b-m80avslso6]  a {
-        color: var(--accent-color-secondary);
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
+.nav-item[b-m80avslso6]  a {
+    color: var(--accent-color-secondary);
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    line-height: 3rem;
+}
 
 .nav-item[b-m80avslso6]  a.active {
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     color: var(--accent-color-secondary);
 }
 
 .nav-item[b-m80avslso6]  a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     color: var(--accent-color-secondary);
 }
 

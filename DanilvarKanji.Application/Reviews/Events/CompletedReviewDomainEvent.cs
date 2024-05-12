@@ -5,17 +5,20 @@ namespace DanilvarKanji.Application.Reviews.Events;
 
 public class CompletedReviewDomainEvent : IDomainEvent
 {
-    public ICollection<Exercise> Exercises { get; init; }
+  public CompletedReviewDomainEvent(
+    ICollection<Exercise> exercises,
+    AppUser appUser,
+    DateTime reviewDataTime
+  )
+  {
+    Exercises = exercises;
+    AppUser = appUser;
+    ReviewDataTime = reviewDataTime;
+  }
 
-    public AppUser AppUser { get; init; }
+  public ICollection<Exercise> Exercises { get; init; }
 
-    public DateTime ReviewDataTime { get; init; }
+  public AppUser AppUser { get; init; }
 
-    public CompletedReviewDomainEvent(ICollection<Exercise> exercises, AppUser appUser, DateTime reviewDataTime)
-    {
-        Exercises = exercises;
-        AppUser = appUser;
-        ReviewDataTime = reviewDataTime;
-    }
+  public DateTime ReviewDataTime { get; init; }
 }
-

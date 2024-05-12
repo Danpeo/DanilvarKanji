@@ -5,17 +5,17 @@ namespace DanilvarKanji.Domain.Shared.Entities;
 
 public class KanjiMeaning : Entity
 {
-    public float? Priority { get; set; }
+  public KanjiMeaning()
+  {
+  }
 
-    public ICollection<StringDefinition>? Definitions { get; set; } = new List<StringDefinition>();
+  public KanjiMeaning(float priority, ICollection<StringDefinition> definitions)
+  {
+    Priority = priority;
+    Definitions = definitions;
+  }
 
-    public KanjiMeaning()
-    {
-    }
+  public float? Priority { get; set; }
 
-    public KanjiMeaning(float priority, ICollection<StringDefinition> definitions)
-    {
-        Priority = priority;
-        Definitions = definitions;
-    }
+  public ICollection<StringDefinition>? Definitions { get; set; } = new List<StringDefinition>();
 }

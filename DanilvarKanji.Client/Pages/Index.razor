@@ -1,11 +1,10 @@
 ﻿@page "/"
-
+@using System.Net
 @using DanilvarKanji.Client.Data
 @using DanilvarKanji.Client.Localization.LocaleKeys
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Shared.Responses.CharacterLearning
-@using System.Net
 
 @inject IStringLocalizer<Index> Loc
 @inject NavigationManager NavManager
@@ -14,103 +13,103 @@
 
 <div class="text-center">
 
-    <Authorized>
-        <h1 class="display-4 txt-green-dim main-font ">
-            @Loc["Hello"],
-            <b class="animated-blink">
-                <GetUserName/>
-            </b>
-        </h1>
-    </Authorized>
+  <Authorized>
+    <h1 class="display-4 txt-green-dim main-font ">
+      @Loc["Hello"],
+      <b class="animated-blink">
+        <GetUserName/>
+      </b>
+    </h1>
+  </Authorized>
 
-    <NotAuthorized>
-        <h1 class="display-4 txt-green-dim main-font ">
-            @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
-        </h1>
+  <NotAuthorized>
+    <h1 class="display-4 txt-green-dim main-font ">
+      @Loc[nameof(IndexLocaleKeys.WelcomeToApp)] <b class="animated-blink">@AppDisplaySettings.AppTitle</b>
+    </h1>
 
-        <NavLink href="register" class="btn btn-elg btn-primary mx-1">@Loc["Register"]</NavLink>
-        <NavLink href="login" class="btn btn-elg btn-primary">@Loc["Login"]</NavLink>
+    <NavLink href="register" class="btn btn-elg btn-primary mx-1">@Loc["Register"]</NavLink>
+    <NavLink href="login" class="btn btn-elg btn-primary">@Loc["Login"]</NavLink>
 
-        <NihongoQuest/>
+    <NihongoQuest/>
 
-    </NotAuthorized>
+  </NotAuthorized>
 </div>
 
 <Authorized>
-    @if (!string.IsNullOrEmpty(_errorMessage))
-    {
-        <ErrorAlertAlt Message="@_errorMessage"/>
-    }
+  @if (!string.IsNullOrEmpty(_errorMessage))
+  {
+    <ErrorAlertAlt Message="@_errorMessage"/>
+  }
 
-    <h2 class="display-6 txt-green-dim main-font">
-        @Loc["YourStudyQueue"]
-    </h2>
+  <h2 class="display-6 txt-green-dim main-font">
+    @Loc["YourStudyQueue"]
+  </h2>
 
-    @if (_characterToLearn != null)
-    {
-        <div class="ms-2 pb-4">
-            <button onclick="@(() => { { NavManager.NavigateTo($"/study-new/{_characterToLearn.Id}"); } })"
-                    class="btn btn-elg btn-primary">
-                @Loc["StudyNew"]
-            </button>
-        </div>
-    }
+  @if (_characterToLearn != null)
+  {
+    <div class="ms-2 pb-4">
+      <button onclick="@(() => { { NavManager.NavigateTo($"/study-new/{_characterToLearn.Id}"); } })"
+              class="btn btn-elg btn-primary">
+        @Loc["StudyNew"]
+      </button>
+    </div>
+  }
 
-    <DisplayLearnQueue ListOnlyDayDosage="@(true)"/>
+  <DisplayLearnQueue ListOnlyDayDosage="@(true)"/>
 
-    <h2 class="display-6 txt-green-dim main-font">
-        @Loc["YourReviewQueue"]
-    </h2>
+  <h2 class="display-6 txt-green-dim main-font">
+    @Loc["YourReviewQueue"]
+  </h2>
 
-    @if (_learning != null)
-    {
-        <div class="ms-2 pb-4">
-            <button onclick="@(() => { { NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
-                    class="btn btn-elg btn-primary">
-                @Loc["ReviewNew"]
-            </button>
-        </div>
-    }
+  @if (_learning != null)
+  {
+    <div class="ms-2 pb-4">
+      <button onclick="@(() => { { NavManager.NavigateTo($"/review/{_learning?.Id}"); } })"
+              class="btn btn-elg btn-primary">
+        @Loc["ReviewNew"]
+      </button>
+    </div>
+  }
 
-    <DisplayReviewQueue/>
+  <DisplayReviewQueue/>
 
-    <h2 class="display-6 txt-green-dim main-font">
-        @Loc["YourFutureQueue"]
-    </h2>
-    <DisplayFutureReviewQueue/>
+  <h2 class="display-6 txt-green-dim main-font">
+    @Loc["YourFutureQueue"]
+  </h2>
+  <DisplayFutureReviewQueue/>
 
 </Authorized>
 
 @code
 {
 
-    [Inject] public required ICharacterService CharacterService { get; set; }
+  [Inject] public required ICharacterService CharacterService { get; set; }
 
-    [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
+  [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
-    private CharacterResponseBase? _characterToLearn;
-    private CharacterLearningResponseBase? _learning;
-    private string _errorMessage = string.Empty;
+  private CharacterResponseBase? _characterToLearn;
+  private CharacterLearningResponseBase? _learning;
+  private string _errorMessage = string.Empty;
 
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
+  {
+    await GetCharacterNextInLearn();
+  }
+
+  private async Task GetCharacterNextInLearn()
+  {
+    try
     {
-        await GetCharacterNextInLearn();
+      _characterToLearn = await CharacterService.GetNextInLearnQueue();
+      _learning = await CharacterLearningApiService.GetNextInReviewQueueAsync();
     }
-
-    private async Task GetCharacterNextInLearn()
+    catch (HttpRequestException e)
     {
-        try
-        {
-            _characterToLearn = await CharacterService.GetNextInLearnQueue();
-            _learning = await CharacterLearningApiService.GetNextInReviewQueueAsync();
-        }
-        catch (HttpRequestException e)
-        {
-            if (e.StatusCode is HttpStatusCode.NotFound or HttpStatusCode.NoContent)
-                return;
+      if (e.StatusCode is HttpStatusCode.NotFound or HttpStatusCode.NoContent)
+        return;
 
-            _errorMessage = e.Message;
-        }
+      _errorMessage = e.Message;
     }
+  }
 
 }

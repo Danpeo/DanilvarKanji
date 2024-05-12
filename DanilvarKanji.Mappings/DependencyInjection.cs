@@ -5,19 +5,18 @@ namespace DanilvarKanji.Mappings;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddMappings(this IServiceCollection services)
+  public static IServiceCollection AddMappings(this IServiceCollection services)
+  {
+    var mappers = new Profile[]
     {
-        var mappers = new Profile[]
-        {
-            new CharacterMapperProfile(),
-            new UserMapperProfile(),
-            new CharacterLearningProfile(),
-            new ExerciseProfile()
-        };
-        
+      new CharacterMapperProfile(),
+      new UserMapperProfile(),
+      new CharacterLearningProfile(),
+      new ExerciseProfile()
+    };
 
-        services.AddAutoMapper(c => c.AddProfiles(mappers));
-        
-        return services;
-    }
+    services.AddAutoMapper(c => c.AddProfiles(mappers));
+
+    return services;
+  }
 }

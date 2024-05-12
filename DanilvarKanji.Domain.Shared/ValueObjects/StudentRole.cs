@@ -5,33 +5,33 @@ namespace DanilvarKanji.Domain.Shared.ValueObjects;
 
 public enum Role
 {
-    User,
-    Admin,
-    SuperAdmin
+  User,
+  Admin,
+  SuperAdmin
 }
 
 [Owned]
 public class StudentRole : ValueObject
 {
-    public string Value { get; set; } = string.Empty;
+  public StudentRole()
+  {
+  }
 
-    public StudentRole()
+  public StudentRole(Role role)
+  {
+    Value = role switch
     {
-    }
+      Role.User => "User",
+      Role.Admin => "Admin",
+      Role.SuperAdmin => "SuperAdmin",
+      _ => "User"
+    };
+  }
 
-    public StudentRole(Role role)
-    {
-        Value = role switch
-        {
-            Role.User => "User",
-            Role.Admin => "Admin",
-            Role.SuperAdmin => "SuperAdmin",
-            _ => "User"
-        };
-    }
+  public string Value { get; set; } = string.Empty;
 
-    public override IEnumerable<object> GetAtomicValues()
-    {
-        yield return Value;
-    }
+  public override IEnumerable<object> GetAtomicValues()
+  {
+    yield return Value;
+  }
 }

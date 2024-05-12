@@ -4,19 +4,13 @@
 
 namespace DanilvarKanji.Migrations
 {
+  /// <inheritdoc />
+  public partial class TestDeleteChar_1 : Migration
+  {
     /// <inheritdoc />
-    public partial class TestDeleteChar_1 : Migration
-    {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+    protected override void Up(MigrationBuilder migrationBuilder) { }
 
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-
-        }
-    }
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder) { }
+  }
 }

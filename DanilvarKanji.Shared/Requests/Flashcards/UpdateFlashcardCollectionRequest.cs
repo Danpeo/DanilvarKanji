@@ -6,29 +6,33 @@ namespace DanilvarKanji.Shared.Requests.Flashcards;
 
 public class UpdateFlashcardCollectionRequest
 {
-    public string CollectionToUpdateId { get; set; }
-    public string Name { get; set; }
+  public UpdateFlashcardCollectionRequest()
+  {
+    CollectionToUpdateId = "";
+    Name = $"Collection {RandGen.PasswordDefault}";
+    Flashcards = new List<Flashcard>();
+  }
 
-    public List<Flashcard> Flashcards { get; set; }
+  public UpdateFlashcardCollectionRequest(FlashcardCollectionResponse collection)
+  {
+    Name = collection.Name;
+    Flashcards = collection.Flashcards;
+    CollectionToUpdateId = collection.Id;
+  }
 
-    public UpdateFlashcardCollectionRequest()
-    {
-        CollectionToUpdateId = "";
-        Name = $"Collection {RandGen.PasswordDefault}";
-        Flashcards = new List<Flashcard>();
-    }
+  public UpdateFlashcardCollectionRequest(
+    string name,
+    List<Flashcard> flashcards,
+    string collectionToUpdateId
+  )
+  {
+    Name = name;
+    Flashcards = flashcards;
+    CollectionToUpdateId = collectionToUpdateId;
+  }
 
-    public UpdateFlashcardCollectionRequest(FlashcardCollectionResponse collection)
-    {
-        Name = collection.Name;
-        Flashcards = collection.Flashcards;
-        CollectionToUpdateId = collection.Id;
-    }
+  public string CollectionToUpdateId { get; set; }
+  public string Name { get; set; }
 
-    public UpdateFlashcardCollectionRequest(string name, List<Flashcard> flashcards, string collectionToUpdateId)
-    {
-        Name = name;
-        Flashcards = flashcards;
-        CollectionToUpdateId = collectionToUpdateId;
-    }
+  public List<Flashcard> Flashcards { get; set; }
 }

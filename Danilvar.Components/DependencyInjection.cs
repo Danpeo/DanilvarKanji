@@ -5,10 +5,10 @@ namespace Danilvar.Components;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddComponents(this IServiceCollection services)
-    {
-        services.AddSingleton<JSDomFunctions>();  
+  public static IServiceCollection AddComponents(this IServiceCollection services)
+  {
+    services.AddSingleton<JSDomFunctions>();
 
-        return services;
-    }
+    return services;
+  }
 }

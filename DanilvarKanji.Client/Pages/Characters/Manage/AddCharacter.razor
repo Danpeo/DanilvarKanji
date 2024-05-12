@@ -7,7 +7,7 @@
 <PageTitle>@Loc["AddNewChar"] - @AppDisplaySettings.AppTitle</PageTitle>
 
 <h1 class="mt-5 mb-4 animated-blink main-font display-3">
-    @Loc["AddNewChar"]
+  @Loc["AddNewChar"]
 </h1>
 
 @*<EditForm Model="_createCharacterRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
@@ -81,10 +81,10 @@
 
 <CharacterForm CharacterRequest="_characterRequest" OnHandleSubmit="onHandleSubmit"></CharacterForm>
 @{
-    async Task<bool> onHandleSubmit()
-    {
-        CharacterRequest? character = await CharacterService.AddCharacterAsync(_characterRequest);
+  async Task<bool> onHandleSubmit()
+  {
+    CharacterRequest? character = await CharacterService.AddCharacterAsync(_characterRequest);
 
-        return character is not null;
-    }
+    return character is not null;
+  }
 }

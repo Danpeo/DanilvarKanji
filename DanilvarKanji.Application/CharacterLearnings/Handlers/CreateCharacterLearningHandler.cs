@@ -10,45 +10,54 @@ using Microsoft.Extensions.Logging;
 namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
 // ReSharper disable once UnusedType.Global
-public class CreateCharacterLearningHandler : IRequestHandler<CreateCharacterLearningCommand, Result<string>>
+public class CreateCharacterLearningHandler
+  : IRequestHandler<CreateCharacterLearningCommand, Result<string>>
 {
-    private readonly ICharacterLearningRepository _characterLearningRepository;
-    private readonly ICharacterRepository _characterRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<CreateCharacterLearningHandler> _logger;
+  private readonly ICharacterLearningRepository _characterLearningRepository;
+  private readonly ICharacterRepository _characterRepository;
+  private readonly ILogger<CreateCharacterLearningHandler> _logger;
+  private readonly IUnitOfWork _unitOfWork;
 
-    public CreateCharacterLearningHandler(ICharacterLearningRepository characterLearningRepository,
-        IUnitOfWork unitOfWork, ICharacterRepository characterRepository,
-        ILogger<CreateCharacterLearningHandler> logger)
+  public CreateCharacterLearningHandler(
+    ICharacterLearningRepository characterLearningRepository,
+    IUnitOfWork unitOfWork,
+    ICharacterRepository characterRepository,
+    ILogger<CreateCharacterLearningHandler> logger
+  )
+  {
+    _characterLearningRepository = characterLearningRepository;
+    _unitOfWork = unitOfWork;
+    _characterRepository = characterRepository;
+    _logger = logger;
+  }
+
+  public async Task<Result<string>> Handle(
+    CreateCharacterLearningCommand request,
+    CancellationToken cancellationToken
+  )
+  {
+    Character? character = await _characterRepository.GetAsync(request.CharacterId);
+
+    _logger.LogInformation("Getted character: {@character}", character);
+
+    var characterLearning = new CharacterLearning
     {
-        _characterLearningRepository = characterLearningRepository;
-        _unitOfWork = unitOfWork;
-        _characterRepository = characterRepository;
-        _logger = logger;
+      AppUser = request.AppUser,
+      Character = character ?? new Character(),
+      LearningState = request.LearningState
+    };
+
+    _characterLearningRepository.Create(characterLearning);
+    if (await _unitOfWork.CompleteAsync())
+    {
+      _logger.LogInformation("Created character learning: {@characterLearning}", characterLearning);
+      return Result.Success(characterLearning.Id);
     }
 
-    public async Task<Result<string>> Handle(CreateCharacterLearningCommand request,
-        CancellationToken cancellationToken)
-    {
-        Character? character = await _characterRepository.GetAsync(request.CharacterId);
-
-        _logger.LogInformation("Getted character: {@character}", character);
-
-        var characterLearning = new CharacterLearning()
-        {
-            AppUser = request.AppUser,
-            Character = character ?? new Character(),
-            LearningState = request.LearningState
-        };
-
-        _characterLearningRepository.Create(characterLearning);
-        if (await _unitOfWork.CompleteAsync())
-        {
-            _logger.LogInformation("Created character learning: {@characterLearning}", characterLearning);
-            return Result.Success(characterLearning.Id);
-        }
-
-        _logger.LogError("Failed to create character learning: {@characterLearning}", characterLearning);
-        return Result.Failure<string>(General.UnProcessableRequest);
-    }
+    _logger.LogError(
+      "Failed to create character learning: {@characterLearning}",
+      characterLearning
+    );
+    return Result.Failure<string>(General.UnProcessableRequest);
+  }
 }

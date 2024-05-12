@@ -8,30 +8,34 @@ namespace DanilvarKanji.Application.Characters.Commands;
 
 public class CreateCharacterCommand : IRequest<Result<string>>
 {
-    public string? Definition { get; set; }
+  public CreateCharacterCommand(
+    string? definition,
+    JlptLevel jlptLevel,
+    CharacterType characterType,
+    int? strokeCount
+  )
+  {
+    Definition = definition;
+    JlptLevel = jlptLevel;
+    CharacterType = characterType;
+    StrokeCount = strokeCount;
+  }
 
-    public JlptLevel JlptLevel { get; set; }
+  public string? Definition { get; set; }
 
-    public CharacterType CharacterType { get; set; } = CharacterType.Kanji;
+  public JlptLevel JlptLevel { get; set; }
 
-    public ICollection<StringDefinition>? Mnemonics { get; set; } = new List<StringDefinition>();
+  public CharacterType CharacterType { get; set; } = CharacterType.Kanji;
 
-    public int? StrokeCount { get; set; }
+  public ICollection<StringDefinition>? Mnemonics { get; set; } = new List<StringDefinition>();
 
-    public ICollection<KanjiMeaning>? KanjiMeanings { get; set; } = new List<KanjiMeaning>();
+  public int? StrokeCount { get; set; }
 
-    public ICollection<Kunyomi>? Kunyomis { get; set; } = new List<Kunyomi>();
+  public ICollection<KanjiMeaning>? KanjiMeanings { get; set; } = new List<KanjiMeaning>();
 
-    public ICollection<Onyomi>? Onyomis { get; set; } = new List<Onyomi>();
-    
-    public List<string>? ChildCharacterIds { get; set; }
+  public ICollection<Kunyomi>? Kunyomis { get; set; } = new List<Kunyomi>();
 
-    public CreateCharacterCommand(string? definition, JlptLevel jlptLevel, CharacterType characterType,
-        int? strokeCount)
-    {
-        Definition = definition;
-        JlptLevel = jlptLevel;
-        CharacterType = characterType;
-        StrokeCount = strokeCount;
-    }
+  public ICollection<Onyomi>? Onyomis { get; set; } = new List<Onyomi>();
+
+  public List<string>? ChildCharacterIds { get; set; }
 }

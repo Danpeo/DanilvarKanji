@@ -1,6 +1,3 @@
-using Danilvar.ValueObject;
-using Microsoft.EntityFrameworkCore;
-
 namespace DanilvarKanji.Domain.Shared.ValueObjects;
 
 /*public enum Role

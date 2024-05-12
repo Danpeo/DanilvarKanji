@@ -6,88 +6,87 @@ namespace DanilvarKanji.Client.Services.Dictionary;
 
 public class DictionaryService : IDictionaryService
 {
-    private readonly HttpClient _httpClient;
+  private readonly HttpClient _httpClient;
 
-    public DictionaryService(IHttpClientFactory factory)
+  public DictionaryService(IHttpClientFactory factory)
+  {
+    _httpClient = factory.CreateClient("JMdict");
+  }
+
+  public async Task<IEnumerable<Word?>?> ListWordsByKanaAsync(string entry, bool useRomaji = false)
+  {
+    try
     {
-        _httpClient = factory.CreateClient("JMdict");
+      HttpResponseMessage response = await _httpClient.GetAsync(
+        $"Words/kana/{entry}?useRomaji={useRomaji}"
+      );
+
+      if (response.IsSuccessStatusCode)
+      {
+        if (response.StatusCode == HttpStatusCode.NoContent)
+          return Enumerable.Empty<Word>();
+
+        return await response.Content.ReadFromJsonAsync<IEnumerable<Word>>()
+               ?? Enumerable.Empty<Word>();
+      }
+
+      var message = await response.Content.ReadAsStringAsync();
+      throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
-    
-    public async Task<IEnumerable<Word?>?> ListWordsByKanaAsync(string entry, bool useRomaji = false)
+    catch (HttpRequestException e)
     {
-        try
-        {
-            HttpResponseMessage response =
-                await _httpClient.GetAsync($"Words/kana/{entry}?useRomaji={useRomaji}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<Word>();
-
-                return await response.Content.ReadFromJsonAsync<IEnumerable<Word>>() ??
-                       Enumerable.Empty<Word>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      Console.WriteLine(e);
+      throw;
     }
-    
-    public async Task<IEnumerable<Word?>?> ListWordsByKanjiAsync(string entry)
+  }
+
+  public async Task<IEnumerable<Word?>?> ListWordsByKanjiAsync(string entry)
+  {
+    try
     {
-        try
-        {
-            HttpResponseMessage response =
-                await _httpClient.GetAsync($"Words/kanji/{entry}");
+      HttpResponseMessage response = await _httpClient.GetAsync($"Words/kanji/{entry}");
 
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<Word>();
+      if (response.IsSuccessStatusCode)
+      {
+        if (response.StatusCode == HttpStatusCode.NoContent)
+          return Enumerable.Empty<Word>();
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<Word>>() ??
-                       Enumerable.Empty<Word>();
-            }
+        return await response.Content.ReadFromJsonAsync<IEnumerable<Word>>()
+               ?? Enumerable.Empty<Word>();
+      }
 
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      var message = await response.Content.ReadAsStringAsync();
+      throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
-    
-    public async Task<IEnumerable<Word?>?> ListWordsByTranslationAsync(string entry)
+    catch (HttpRequestException e)
     {
-        try
-        {
-            HttpResponseMessage response =
-                await _httpClient.GetAsync($"Words/translation/{entry}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == HttpStatusCode.NoContent)
-                    return Enumerable.Empty<Word>();
-
-                return await response.Content.ReadFromJsonAsync<IEnumerable<Word>>() ??
-                       Enumerable.Empty<Word>();
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      Console.WriteLine(e);
+      throw;
     }
+  }
+
+  public async Task<IEnumerable<Word?>?> ListWordsByTranslationAsync(string entry)
+  {
+    try
+    {
+      HttpResponseMessage response = await _httpClient.GetAsync($"Words/translation/{entry}");
+
+      if (response.IsSuccessStatusCode)
+      {
+        if (response.StatusCode == HttpStatusCode.NoContent)
+          return Enumerable.Empty<Word>();
+
+        return await response.Content.ReadFromJsonAsync<IEnumerable<Word>>()
+               ?? Enumerable.Empty<Word>();
+      }
+
+      var message = await response.Content.ReadAsStringAsync();
+      throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
+    }
+    catch (HttpRequestException e)
+    {
+      Console.WriteLine(e);
+      throw;
+    }
+  }
 }

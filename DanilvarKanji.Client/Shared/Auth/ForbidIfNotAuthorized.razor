@@ -1,12 +1,10 @@
-@using DanilvarKanji.Client.Services.Auth
 @inherits Authorized
 
 @if (IsAuthorized)
 {
-    @ChildContent
+  @ChildContent
 }
 else
 {
-    <Forbidden/>
+  <Forbidden/>
 }
-

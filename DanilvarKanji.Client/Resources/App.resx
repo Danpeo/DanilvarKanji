@@ -6,252 +6,256 @@
         <value>1.3</value>
     </resheader>
     <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
     </resheader>
     <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
     </resheader>
     <data name="PasswordRequiresUpper" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="PasswordRequiresLower" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="PasswordRepeatMismath" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Login" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Register" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Radical" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Kanji" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="WhatIsMeaningFor" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="WhatIsKunyomiFor" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="WhatIsOnyomiFor" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="GoToReview" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="StudyIsComplete" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Fin" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ValueTooSmall" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Settings" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="LogOut" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Admin" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Dictionary" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ExtractText" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="AddNewChar" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Flashcards" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="MyLearning" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="BackButton" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Reset" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Authorization" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Password" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="LogInToYourAccount" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="AccountRegistered" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Registration" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="RegisterNewAccount" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="UserName" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="LoggenIn" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="GenCreds" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="PasswordRepeat" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ExtractTextTitle" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="OpenImage" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Horizontal" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Vertical" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="CanvasSize" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ExtractTextFrom" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="AddNewCollection" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ToView" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Review" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Delete" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Memorized" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Create" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="RemoveLast" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Add" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Collection" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="CollectionName" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Users" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="EnterCharacterDefinition" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ForExample" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Definition" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="CharacterBasicDetails" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="CharacterBasicDetailsText" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="StrokeCount" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="CharacterType" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="NewToJapanese1" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="NewToJapanese2" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="NihongoQuest" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="DoYouRemember" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Forgot" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Remember" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="IRememberItPerfectly" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Front" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="FlashcardBack" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="TimesInARow" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="RegistrationDate" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Role" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Action" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="PlainUser" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="SuperAdmin" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="JapaneseWriting" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Update" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="Search" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="DictionaryPlaceholder" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="CharacterSearchPlaceholder" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ConfirmEmail" xml:space="preserve">
-        <value />
+        <value/>
     </data>
     <data name="ShowMore" xml:space="preserve">
-        <value />
+        <value/>
     </data>
 </root>

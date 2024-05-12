@@ -8,18 +8,21 @@ namespace DanilvarKanji.Application.Characters.Handlers;
 // ReSharper disable once UnusedType.Global
 public class GetCharacterHandler : IRequestHandler<GetCharacterQuery, Character?>
 {
-    private readonly ICharacterRepository _characterRepository;
+  private readonly ICharacterRepository _characterRepository;
 
-    public GetCharacterHandler(ICharacterRepository characterRepository)
-    {
-        _characterRepository = characterRepository;
-    }
+  public GetCharacterHandler(ICharacterRepository characterRepository)
+  {
+    _characterRepository = characterRepository;
+  }
 
-    public async Task<Character?> Handle(GetCharacterQuery request, CancellationToken cancellationToken)
-    {
-        if (await _characterRepository.ExistAsync(request.Id))
-            return await _characterRepository.GetAsync(request.Id);
+  public async Task<Character?> Handle(
+    GetCharacterQuery request,
+    CancellationToken cancellationToken
+  )
+  {
+    if (await _characterRepository.ExistAsync(request.Id))
+      return await _characterRepository.GetAsync(request.Id);
 
-        return null;
-    }
+    return null;
+  }
 }

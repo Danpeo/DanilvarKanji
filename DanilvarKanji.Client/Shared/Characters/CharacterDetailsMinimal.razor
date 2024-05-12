@@ -1,16 +1,15 @@
-@using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Client.State
-
+@using DanilvarKanji.Shared.Responses.Character
 <div class="char-details">
-    <DisplayCharacterDefinition Character="Character"/>
-    <DisplayCharacterMeanings Character="Character" Culture="AppState.CultureState.Culture"/>
-    <DisplayCharacterMnemonics Character="Character" Culture="AppState.CultureState.Culture"/>
-    <DisplayCharacterKunReadings Character="Character"/>
-    <DisplayCharacterOnReadings Character="Character"/>
+  <DisplayCharacterDefinition Character="Character"/>
+  <DisplayCharacterMeanings Character="Character" Culture="AppState.CultureState.Culture"/>
+  <DisplayCharacterMnemonics Character="Character" Culture="AppState.CultureState.Culture"/>
+  <DisplayCharacterKunReadings Character="Character"/>
+  <DisplayCharacterOnReadings Character="Character"/>
 </div>
 
 @code {
-    [Parameter, EditorRequired] public required CharacterResponseResponseFull Character { get; set; }
-    
-    [Inject] public required AppState AppState { get; set; }
+  [Parameter] [EditorRequired] public required CharacterResponseResponseFull Character { get; set; }
+
+  [Inject] public required AppState AppState { get; set; }
 }

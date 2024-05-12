@@ -1,31 +1,30 @@
+@using System.Net
 @using DanilvarKanji.Client.Services.Auth
 @using DanilvarKanji.Shared.Responses.User
-@using System.Net
-
 <span>JLPT @_user?.JlptLevel</span>
 
 @code {
 
-    [Inject] public IUserService UserService { get; set; } = default!;
+  [Inject] public IUserService UserService { get; set; } = default!;
 
-    private UserResponseBase? _user;
+  private UserResponseBase? _user;
 
-    protected override async void OnInitialized()
+  protected override async void OnInitialized()
+  {
+    try
     {
-        try
-        {
-            _user = await UserService.GetUserAsync();
-            StateHasChanged();
-        }
-        catch (HttpRequestException e)
-        {
-            if (e.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                return;
-            }
-
-            throw;
-        }
+      _user = await UserService.GetUserAsync();
+      StateHasChanged();
     }
+    catch (HttpRequestException e)
+    {
+      if (e.StatusCode == HttpStatusCode.Unauthorized)
+      {
+        return;
+      }
+
+      throw;
+    }
+  }
 
 }

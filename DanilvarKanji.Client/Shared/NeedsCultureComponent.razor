@@ -2,13 +2,13 @@
 @using DanilvarKanji.Domain.Shared.Enumerations
 
 @code {
-    [Inject] public required ILocalizationService LocalizationService { get; set; }
+  [Inject] public required ILocalizationService LocalizationService { get; set; }
 
-    protected Culture Culture;
+  protected Culture Culture;
 
-    protected override async Task OnInitializedAsync()
-    {
-        Culture = await LocalizationService.GetCurrentCulture();
-    }
+  protected override async Task OnInitializedAsync()
+  {
+    Culture = await LocalizationService.GetCurrentCulture();
+  }
 
 }

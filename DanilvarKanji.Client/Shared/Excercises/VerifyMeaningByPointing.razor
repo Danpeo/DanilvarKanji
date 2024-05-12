@@ -1,69 +1,65 @@
-@using DanilvarKanji.Client.Services.Characters
-@using DanilvarKanji.Shared.Responses.Character
-@using DanilvarKanji.Client.JsWrapper
 @using DanilvarKanji.Shared.Responses.CharacterLearning
-
 @inherits VerifyByPointingBase
 
 @if (_meanings != null)
 {
-    <BaseExercise OnForgot="OnForgot.Invoke">
-        <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
+  <BaseExercise OnForgot="OnForgot.Invoke">
+    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
 
-        <div class="d-grid gap-4">
-            @for (var i = 0; i < _meanings.RandomItems.Count; i++)
-            {
-                string meaning = _meanings.RandomItems[i];
-                string buttonId = $"optionBtn_{i}";
-                <button class="btn btn-dark txt-white btn-lg"
-                        style="font-size: 1.75rem"
-                        id="@buttonId"
-                        @onclick="() => CheckAnswer(meaning, buttonId)">
-                    @meaning
-                </button>
-            }
-        </div>
-    </BaseExercise>
+    <div class="d-grid gap-4">
+      @for (var i = 0; i < _meanings.RandomItems.Count; i++)
+      {
+        var meaning = _meanings.RandomItems[i];
+        var buttonId = $"optionBtn_{i}";
+        <button class="btn btn-dark txt-white btn-lg"
+                style="font-size: 1.75rem"
+                id="@buttonId"
+                @onclick="() => CheckAnswer(meaning, buttonId)">
+          @meaning
+        </button>
+      }
+    </div>
+  </BaseExercise>
 }
 else
 {
-    <DisplayLoading/>
+  <DisplayLoading/>
 }
 
 @code {
 
-    private RandomItemsInReviewResponse? _meanings;
+  private RandomItemsInReviewResponse? _meanings;
 
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
+  {
+    _meanings =
+      await CharacterLearningApiService.GetRandomMeaningsInReviewAsync(CharacterForVerification.Id, Culture, OptionCount);
+  }
+
+  private async Task CheckAnswer(string meaning, string? buttonId)
+  {
+    if (meaning == _meanings?.CorrectMeaning)
     {
-        _meanings =
-            await CharacterLearningApiService.GetRandomMeaningsInReviewAsync(CharacterForVerification.Id, Culture, OptionCount);
-    }
+      await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "bg-success", "txt-dark" });
 
-    private async Task CheckAnswer(string meaning, string? buttonId)
+      if (OnCorrect != null)
+      {
+        await OnCorrect.Invoke();
+        OnCorrect = null;
+        OnIncorrect = null;
+      }
+    }
+    else
     {
-        if (meaning == _meanings?.CorrectMeaning)
-        {
-            await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "bg-success", "txt-dark" });
+      await Js.Dom.AddClassesToElementForTimeAsync(buttonId, new[] { "shake" }, 500);
+      await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "danger-border", "bg-danger", "txt-dark" });
 
-            if (OnCorrect != null)
-            {
-                await OnCorrect.Invoke();
-                OnCorrect = null;
-                OnIncorrect = null;
-            }
-        }
-        else
-        {
-            await Js.Dom.AddClassesToElementForTimeAsync(buttonId, new[] { "shake" }, 500);
-            await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "danger-border", "bg-danger", "txt-dark" });
-
-            if (OnIncorrect != null)
-            {
-                await OnIncorrect.Invoke();
-                OnIncorrect = null;
-            }
-        }
+      if (OnIncorrect != null)
+      {
+        await OnIncorrect.Invoke();
+        OnIncorrect = null;
+      }
     }
+  }
 
 }

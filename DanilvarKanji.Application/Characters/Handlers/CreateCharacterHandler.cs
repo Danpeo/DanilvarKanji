@@ -12,25 +12,32 @@ namespace DanilvarKanji.Application.Characters.Handlers;
 // ReSharper disable once UnusedType.Global
 public class CreateCharacterHandler : IRequestHandler<CreateCharacterCommand, Result<string>>
 {
-    private readonly ICharacterRepository _characterRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
+  private readonly ICharacterRepository _characterRepository;
+  private readonly IMapper _mapper;
+  private readonly IUnitOfWork _unitOfWork;
 
-    public CreateCharacterHandler(ICharacterRepository characterRepository, IMapper mapper, IUnitOfWork unitOfWork)
-    {
-        _characterRepository = characterRepository;
-        _mapper = mapper;
-        _unitOfWork = unitOfWork;
-    }
+  public CreateCharacterHandler(
+    ICharacterRepository characterRepository,
+    IMapper mapper,
+    IUnitOfWork unitOfWork
+  )
+  {
+    _characterRepository = characterRepository;
+    _mapper = mapper;
+    _unitOfWork = unitOfWork;
+  }
 
-    public async Task<Result<string>> Handle(CreateCharacterCommand request, CancellationToken cancellationToken)
-    {
-        var character = _mapper.Map<Character>(request);
+  public async Task<Result<string>> Handle(
+    CreateCharacterCommand request,
+    CancellationToken cancellationToken
+  )
+  {
+    var character = _mapper.Map<Character>(request);
 
-        _characterRepository.Create(character);
-        if (await _unitOfWork.CompleteAsync())
-            return Result.Success(character.Id);
+    _characterRepository.Create(character);
+    if (await _unitOfWork.CompleteAsync())
+      return Result.Success(character.Id);
 
-        return Result.Failure<string>(General.UnProcessableRequest);
-    }
+    return Result.Failure<string>(General.UnProcessableRequest);
+  }
 }

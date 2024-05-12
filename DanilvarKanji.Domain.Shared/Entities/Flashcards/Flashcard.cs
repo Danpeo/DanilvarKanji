@@ -4,27 +4,27 @@ namespace DanilvarKanji.Domain.Shared.Entities.Flashcards;
 
 public class Flashcard : Entity
 {
-    public string Main { get; set; }
+  public Flashcard()
+  {
+    Main = "";
+    Sub = "";
+    Back = "";
+  }
 
-    public string Sub { get; set; }
+  public Flashcard(string back, string main, string sub)
+  {
+    Back = back;
+    Main = main;
+    Sub = sub;
+  }
 
-    public string Back { get; set; }
+  public string Main { get; set; }
 
-    public bool DoRemember { get; set; }
+  public string Sub { get; set; }
 
-    public int RememberedInARow { get; set; }
+  public string Back { get; set; }
 
-    public Flashcard()
-    {
-        Main = "";
-        Sub = "";
-        Back = "";
-    }
+  public bool DoRemember { get; set; }
 
-    public Flashcard(string back, string main, string sub)
-    {
-        Back = back;
-        Main = main;
-        Sub = sub;
-    }
+  public int RememberedInARow { get; set; }
 }

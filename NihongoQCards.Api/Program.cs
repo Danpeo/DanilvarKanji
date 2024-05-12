@@ -2,9 +2,9 @@ using System.Text;
 using DanilvarKanji.Application;
 using DanilvarKanji.Application.Behaviors;
 using DanilvarKanji.Domain.Shared.Entities;
-using DanilvarKanji.Mappings;
 using DanilvarKanji.Infrastructure;
 using DanilvarKanji.Infrastructure.Data;
+using DanilvarKanji.Mappings;
 using DanilvarKanji.Setup;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -15,14 +15,16 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddIdentityCore<AppUser>()
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder
+  .Services.AddIdentityCore<AppUser>()
+  .AddRoles<IdentityRole>()
+  .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true)
-    .AddFluentValidationClientsideAdapters();
+builder
+  .Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true)
+  .AddFluentValidationClientsideAdapters();
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -32,32 +34,29 @@ builder.Services.AddApplicationSettings(builder.Configuration);
 
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo
+  options.SwaggerDoc("v1", new OpenApiInfo { Title = "DanilvarKanji API", Version = "v1" });
+  options.AddSecurityDefinition(
+    "Bearer",
+    new OpenApiSecurityScheme
     {
-        Title = "DanilvarKanji API",
-        Version = "v1"
-    });
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+      In = ParameterLocation.Header,
+      Description = "Please insert JWT with Bearer into field",
+      Name = "Authorization",
+      Type = SecuritySchemeType.ApiKey
+    }
+  );
+  options.AddSecurityRequirement(
+    new OpenApiSecurityRequirement
     {
-        In = ParameterLocation.Header,
-        Description = "Please insert JWT with Bearer into field",
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
+      {
+        new OpenApiSecurityScheme
         {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            new string[] { }
-        }
-    });
+          Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+        },
+        new string[] { }
+      }
+    }
+  );
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -66,7 +65,6 @@ builder.Services.AddMappings();
 builder.Services.AddValidatorsFromAssemblyContaining<Application>();
 
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBeh<,>));
-
 
 // Add services to the container.
 
@@ -78,31 +76,34 @@ builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipeli
 
 builder.Services.AddCors();
 
-builder.Services.AddControllers()
-    .AddJsonOptions(options => { });
+builder.Services.AddControllers().AddJsonOptions(options => { });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication(options =>
+builder
+  .Services.AddAuthentication(options =>
+  {
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+  })
+  .AddJwtBearer(x =>
+    x.TokenValidationParameters = new TokenValidationParameters
     {
-        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
-    });
+      ValidateIssuer = true,
+      ValidateAudience = true,
+      ValidateLifetime = true,
+      ValidateIssuerSigningKey = true,
+      ValidIssuer = builder.Configuration["Jwt:Issuer"],
+      ValidAudience = builder.Configuration["Jwt:Audience"],
+      IssuerSigningKey = new SymmetricSecurityKey(
+        Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])
+      )
+    }
+  );
 
 builder.Services.ConfigureOptions<JwtOptionsSetup>();
 
@@ -110,25 +111,20 @@ builder.Services.ConfigureOptions<JwtOptionsSetup>();
 builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 */
 
-builder.Host.UseSerilog((context, config) =>
-{
-    config.ReadFrom.Configuration(context.Configuration);
-});
+builder.Host.UseSerilog(
+  (context, config) => { config.ReadFrom.Configuration(context.Configuration); }
+);
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
-app.UseCors(policy =>
-        policy.WithOrigins("*")
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-);
+app.UseCors(policy => policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader());
 
 app.UseSerilogRequestLogging();
 

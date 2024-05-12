@@ -5,25 +5,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DanilvarKanji.Migrations
 {
+  /// <inheritdoc />
+  public partial class AddCompositionToChar : Migration
+  {
     /// <inheritdoc />
-    public partial class AddCompositionToChar : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<List<string>>(
-                name: "ChildCharacterIds",
-                table: "Characters",
-                type: "text[]",
-                nullable: true);
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "ChildCharacterIds",
-                table: "Characters");
-        }
+      migrationBuilder.AddColumn<List<string>>(
+        name: "ChildCharacterIds",
+        table: "Characters",
+        type: "text[]",
+        nullable: true
+      );
     }
+
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+      migrationBuilder.DropColumn(name: "ChildCharacterIds", table: "Characters");
+    }
+  }
 }

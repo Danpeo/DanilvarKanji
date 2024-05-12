@@ -1,19 +1,19 @@
+@using DanilvarKanji.Client.JsWrapper
 @using DanilvarKanji.Client.Models
 @using DanilvarKanji.Client.State
-@using DanilvarKanji.Client.JsWrapper
 @inject NavigationManager Navigation
 @inject ILocalStorageService LocalStorage
 
 
 <select class="form-select bg-secondary-2 txt-green-dim" @onchange="ChangeThemeAsync">
 
-    @if (_themes != null)
+  @if (_themes != null)
+  {
+    @foreach (ThemeData theme in _themes)
     {
-        @foreach (var theme in _themes)
-        {
-            <option selected="@(_currentTheme == theme.CssName)" value="@theme.CssName">@theme.ThemeName</option>
-        }
+      <option selected="@(_currentTheme == theme.CssName)" value="@theme.CssName">@theme.ThemeName</option>
     }
+  }
 
 
 </select>
@@ -21,31 +21,31 @@
 
 @code
 {
-    [Inject] public HttpClient HttpClient { get; set; } = null!;
+  [Inject] public HttpClient HttpClient { get; set; } = null!;
 
-    [Inject] public AppState AppState { get; set; } = null!;
+  [Inject] public AppState AppState { get; set; } = null!;
 
-    [Inject] public Js Js { get; set; } = null!;
+  [Inject] public Js Js { get; set; } = null!;
 
-    private ThemeData[]? _themes;
-    private string _currentTheme = "default-theme";
+  private ThemeData[]? _themes;
+  private string _currentTheme = "default-theme";
 
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
+  {
+    _themes = await HttpClient.GetFromJsonAsync<ThemeData[]>("data/theme-data.json");
+    _currentTheme = AppState.ThemeState.CurrentTheme;
+  }
+
+  private async Task ChangeThemeAsync(ChangeEventArgs args)
+  {
+    var theme = args.Value?.ToString();
+
+    if (theme != null)
     {
-        _themes = await HttpClient.GetFromJsonAsync<ThemeData[]>("data/theme-data.json");
-        _currentTheme = AppState.ThemeState.CurrentTheme;
+      await Js.Dom.RemoveAllThemesAsync();
+      await Js.Dom.ApplyThemeAsync(theme);
+      await AppState.ThemeState.UpdateAsync(theme);
     }
-
-    private async Task ChangeThemeAsync(ChangeEventArgs args)
-    {
-        string? theme = args.Value?.ToString();
-
-        if (theme != null)
-        {
-            await Js.Dom.RemoveAllThemesAsync();
-            await Js.Dom.ApplyThemeAsync(theme);
-            await AppState.ThemeState.UpdateAsync(theme);
-        }
-    }
+  }
 
 }

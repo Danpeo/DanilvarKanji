@@ -1,5 +1,4 @@
 @page "/Flashcards/Collection/{CollectionId}"
-
 @using DanilvarKanji.Client.Services.Flashcards
 @using DanilvarKanji.Domain.Shared.Entities.Flashcards
 @using DanilvarKanji.Shared.Requests.Flashcards
@@ -8,86 +7,86 @@
 @inject IStringLocalizer<App> Loc;
 
 <ForbidIfNotAuthorized>
-    <FlashcardDetails Flashcard="_selectedFlashcard" FlashcardCollection="_flashcardCollection"/>
-    @if (_flashcardCollection is not null)
-    {
-        <h1 class="txt-mid-pink display-3 text-center jap-font">
-            @_flashcardCollection.Name
-        </h1>
-        <table class="table bg-secondary-2 txt-green-dim">
-            <thead>
-            <tr class="txt-mid-pink">
-                <th scope="col">#</th>
-                <th scope="col">Front Main</th>
-                <th scope="col">Front Sub</th>
-                <th scope="col">Back</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            @for (var i = 0; i < _flashcardCollection.Flashcards.Count; i++)
-            {
-                Flashcard flashcard = _flashcardCollection.Flashcards[i];
-                <tbody>
-                <tr>
-                    <th scope="row">@(i + 1)</th>
-                    <td>@flashcard.Main</td>
-                    <td>@flashcard.Sub</td>
-                    <td>@flashcard.Back</td>
-                    <td>
-                        <a class="btn btn-primary mx-2" @onclick="() => _selectedFlashcard = flashcard">
-                            @Loc["View"]
-                        </a>
-                        <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteFlashcard(flashcard.Id)">
-                            @Loc["Delete"]
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            }
-        </table>
-    }
-    else
-    {
-        <DisplayLoading/>
-    }
+  <FlashcardDetails Flashcard="_selectedFlashcard" FlashcardCollection="_flashcardCollection"/>
+  @if (_flashcardCollection is not null)
+  {
+    <h1 class="txt-mid-pink display-3 text-center jap-font">
+      @_flashcardCollection.Name
+    </h1>
+    <table class="table bg-secondary-2 txt-green-dim">
+      <thead>
+      <tr class="txt-mid-pink">
+        <th scope="col">#</th>
+        <th scope="col">Front Main</th>
+        <th scope="col">Front Sub</th>
+        <th scope="col">Back</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      @for (var i = 0; i < _flashcardCollection.Flashcards.Count; i++)
+      {
+        Flashcard flashcard = _flashcardCollection.Flashcards[i];
+        <tbody>
+        <tr>
+          <th scope="row">@(i + 1)</th>
+          <td>@flashcard.Main</td>
+          <td>@flashcard.Sub</td>
+          <td>@flashcard.Back</td>
+          <td>
+            <a class="btn btn-primary mx-2" @onclick="() => _selectedFlashcard = flashcard">
+              @Loc["View"]
+            </a>
+            <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteFlashcard(flashcard.Id)">
+              @Loc["Delete"]
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      }
+    </table>
+  }
+  else
+  {
+    <DisplayLoading/>
+  }
 </ForbidIfNotAuthorized>
 
 @code {
-    [Parameter, EditorRequired] public required string CollectionId { get; set; }
+  [Parameter] [EditorRequired] public required string CollectionId { get; set; }
 
-    [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
+  [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
 
-    private FlashcardCollectionResponse? _flashcardCollection;
-    private Flashcard? _selectedFlashcard;
+  private FlashcardCollectionResponse? _flashcardCollection;
+  private Flashcard? _selectedFlashcard;
 
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
+  {
+    try
     {
-        try
-        {
-            _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
     }
-
-    private async Task DeleteFlashcard(string id)
+    catch (HttpRequestException e)
     {
-        try
-        {
-            _flashcardCollection!.Flashcards.RemoveAll(f => f.Id == id);
-            await FlashcardApiService.UpdateFlashcardCollectionAsync
-            (
-                new UpdateFlashcardCollectionRequest(_flashcardCollection)
-            );
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      Console.WriteLine(e);
+      throw;
     }
+  }
+
+  private async Task DeleteFlashcard(string id)
+  {
+    try
+    {
+      _flashcardCollection!.Flashcards.RemoveAll(f => f.Id == id);
+      await FlashcardApiService.UpdateFlashcardCollectionAsync
+      (
+        new UpdateFlashcardCollectionRequest(_flashcardCollection)
+      );
+    }
+    catch (HttpRequestException e)
+    {
+      Console.WriteLine(e);
+      throw;
+    }
+  }
 
 }

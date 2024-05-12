@@ -7,23 +7,28 @@ namespace DanilvarKanji.Application.Exercises.Commands;
 
 public class CreateExerciseCommand : IRequest<Result<string>>
 {
-    public string Id { get; set; } = "";
-    public string CharacterId { get; set; }
+  public CreateExerciseCommand(
+    string characterId,
+    AppUser appUser,
+    bool isCorrect,
+    ExerciseType exerciseType,
+    ExerciseSubject exerciseSubject
+  )
+  {
+    CharacterId = characterId;
+    AppUser = appUser;
+    IsCorrect = isCorrect;
+    ExerciseType = exerciseType;
+    ExerciseSubject = exerciseSubject;
+  }
 
-    public AppUser AppUser { get; set; }
+  public string Id { get; set; } = "";
+  public string CharacterId { get; set; }
 
-    public bool IsCorrect { get; set; }
+  public AppUser AppUser { get; set; }
 
-    public ExerciseType ExerciseType { get; set; } = ExerciseType.Point;
-    public ExerciseSubject ExerciseSubject { get; set; }
+  public bool IsCorrect { get; set; }
 
-
-    public CreateExerciseCommand(string characterId, AppUser appUser, bool isCorrect, ExerciseType exerciseType, ExerciseSubject exerciseSubject)
-    {
-        CharacterId = characterId;
-        AppUser = appUser;
-        IsCorrect = isCorrect;
-        ExerciseType = exerciseType;
-        ExerciseSubject = exerciseSubject;
-    }
+  public ExerciseType ExerciseType { get; set; } = ExerciseType.Point;
+  public ExerciseSubject ExerciseSubject { get; set; }
 }

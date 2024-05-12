@@ -16,6 +16,7 @@
     opacity: 0.5;
     visibility: visible;
 }
+
 .drawer-wrapper.slide .drawer {
     transform: translateX(0);
 }

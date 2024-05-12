@@ -11,118 +11,118 @@
 <h3 class="mb-5 display-3 txt-bright-pink main-font">@Loc["Flashcards"]</h3>
 
 <div class="d-flex">
-    <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/Add"))" class="btn btn-secondary-alt mb-2">
-        @Loc["AddNewCollection"]
-    </button>
+  <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/Add"))" class="btn btn-secondary-alt mb-2">
+    @Loc["AddNewCollection"]
+  </button>
 </div>
 
 @if (_flashcardCollections is null)
 {
-    <DisplayLoading/>
+  <DisplayLoading/>
 }
 else if (!_flashcardCollections.Any())
 {
-    <Message Text="No collections found"/>
+  <Message Text="No collections found"/>
 }
 else
 {
-    @foreach (FlashcardCollectionResponse collection in _flashcardCollections)
-    {
-        <div class="col-md-3 mb-2">
-            <div class="card bg-secondary-2">
-                <div class="card-body">
-                    <h1 class="card-title fs-3 mb-3 jap-font txt-mid-pink text-center">
-                        @collection.Name
-                    </h1>
-                    <p class="fs-6">
-                        @collection.Flashcards.Count @Loc["Flashcards"].Value.ToLower(),
+  @foreach (FlashcardCollectionResponse collection in _flashcardCollections)
+  {
+    <div class="col-md-3 mb-2">
+      <div class="card bg-secondary-2">
+        <div class="card-body">
+          <h1 class="card-title fs-3 mb-3 jap-font txt-mid-pink text-center">
+            @collection.Name
+          </h1>
+          <p class="fs-6">
+            @collection.Flashcards.Count @Loc["Flashcards"].Value.ToLower(),
 
-                        <span>
-                            @collection.Flashcards.Where(f => f.DoRemember).ToList().Count
-                            @Loc["Memorized"].Value.ToLower()
-                        </span>
-                    </p>
-                    <LongElement>
-                        <button class="btn btn-lg btn-primary mb-2"
-                                @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/Review/{collection.Id}"))">
-                            @Loc["Review"]
-                        </button>
-                    </LongElement>
-                    <button class="btn btn-outline-primary"
-                            @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/{collection.Id}"))">
-                        @Loc["ToView"]
-                    </button>
-                    <button class="btn btn-outline-warning"
-                            @onclick="@(() => ResetCollection(collection))">
-                        @Loc["Reset"]
-                    </button>
-                    <button class="btn btn-outline-danger"
-                            @onclick="@(() => DeleteCollection(collection.Id))">
-                        @Loc["Delete"]
-                    </button>
-                    <p class="fs-6">
-                        @collection.ModifiedDateTime.ToLocalTime();
-                    </p>
-                </div>
-            </div>
+            <span>
+              @collection.Flashcards.Where(f => f.DoRemember).ToList().Count
+              @Loc["Memorized"].Value.ToLower()
+            </span>
+          </p>
+          <LongElement>
+            <button class="btn btn-lg btn-primary mb-2"
+                    @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/Review/{collection.Id}"))">
+              @Loc["Review"]
+            </button>
+          </LongElement>
+          <button class="btn btn-outline-primary"
+                  @onclick="@(() => NavigationManager.NavigateTo($"Flashcards/Collection/{collection.Id}"))">
+            @Loc["ToView"]
+          </button>
+          <button class="btn btn-outline-warning"
+                  @onclick="@(() => ResetCollection(collection))">
+            @Loc["Reset"]
+          </button>
+          <button class="btn btn-outline-danger"
+                  @onclick="@(() => DeleteCollection(collection.Id))">
+            @Loc["Delete"]
+          </button>
+          <p class="fs-6">
+            @collection.ModifiedDateTime.ToLocalTime();
+          </p>
         </div>
-    }
+      </div>
+    </div>
+  }
 }
 
 @code {
-    [Inject] public required NavigationManager NavigationManager { get; set; }
+  [Inject] public required NavigationManager NavigationManager { get; set; }
 
-    [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
+  [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
 
-    private List<FlashcardCollectionResponse>? _flashcardCollections;
+  private List<FlashcardCollectionResponse>? _flashcardCollections;
 
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
+  {
+    try
     {
-        try
-        {
-            _flashcardCollections = await FlashcardApiService.ListFlashcardCollectionsAsync();
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      _flashcardCollections = await FlashcardApiService.ListFlashcardCollectionsAsync();
     }
-
-    private void ResetCollection(FlashcardCollectionResponse collection)
+    catch (HttpRequestException e)
     {
-        try
-        {
-            collection.Flashcards.ForEach(f =>
-            {
-                f.DoRemember = false;
-                f.RememberedInARow = 0;
-            });
-
-            FlashcardApiService.UpdateFlashcardCollectionAsync
-            (
-                new UpdateFlashcardCollectionRequest(collection.Name, collection.Flashcards, collection.Id)
-            );
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      Console.WriteLine(e);
+      throw;
     }
+  }
 
-    private void DeleteCollection(string collectionId)
+  private void ResetCollection(FlashcardCollectionResponse collection)
+  {
+    try
     {
-        try
-        {
-            _flashcardCollections!.RemoveAll(f => f.Id == collectionId);
-            FlashcardApiService.DeleteCollectionAsync(collectionId);
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+      collection.Flashcards.ForEach(f =>
+      {
+        f.DoRemember = false;
+        f.RememberedInARow = 0;
+      });
+
+      FlashcardApiService.UpdateFlashcardCollectionAsync
+      (
+        new UpdateFlashcardCollectionRequest(collection.Name, collection.Flashcards, collection.Id)
+      );
     }
+    catch (HttpRequestException e)
+    {
+      Console.WriteLine(e);
+      throw;
+    }
+  }
+
+  private void DeleteCollection(string collectionId)
+  {
+    try
+    {
+      _flashcardCollections!.RemoveAll(f => f.Id == collectionId);
+      FlashcardApiService.DeleteCollectionAsync(collectionId);
+    }
+    catch (HttpRequestException e)
+    {
+      Console.WriteLine(e);
+      throw;
+    }
+  }
 
 }

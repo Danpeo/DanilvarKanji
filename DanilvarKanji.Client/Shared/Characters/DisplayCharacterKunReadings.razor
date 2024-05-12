@@ -1,42 +1,40 @@
 @using DanilvarKanji.Shared.Responses.Character
-
 <CardWrapper Title="Kunyomi">
-    @if (Character.Kunyomis != null && _kunReadings.Any())
-    {
-        <ul style="list-style-type: none;">
-            @foreach (string reading in _kunReadings)
-            {
-                <li>
-                    <p class="main-font txt-mid-pink fs-2">
-                        <HumanReadJapaneseWriting JapaneseWriting="@reading" CapturedTextStyle="txt-green-dim"/>
-                    </p>
-                </li>
-            }
+  @if (Character.Kunyomis != null && _kunReadings.Any())
+  {
+    <ul style="list-style-type: none;">
+      @foreach (var reading in _kunReadings)
+      {
+        <li>
+          <p class="main-font txt-mid-pink fs-2">
+            <HumanReadJapaneseWriting JapaneseWriting="@reading" CapturedTextStyle="txt-green-dim"/>
+          </p>
+        </li>
+      }
 
-        </ul>
-    }
-    else
-    {
-        <p class="main-font txt-mid-pink fs-2">
-            No Kunyomi Readings!
-        </p>
-    }
+    </ul>
+  }
+  else
+  {
+    <p class="main-font txt-mid-pink fs-2">
+      No Kunyomi Readings!
+    </p>
+  }
 </CardWrapper>
 
 
 @code {
 
-    [Parameter, EditorRequired]
-    public required CharacterResponseResponseFull Character { get; set; }
+  [Parameter] [EditorRequired] public required CharacterResponseResponseFull Character { get; set; }
 
-    private List<string> _kunReadings = new();
+  private List<string> _kunReadings = new();
 
-    protected override void OnInitialized()
-    {
-        if (Character.Kunyomis != null)
-            _kunReadings = Character.Kunyomis
-                .Select(x => x.JapaneseWriting)
-                .ToList();
-    }
+  protected override void OnInitialized()
+  {
+    if (Character.Kunyomis != null)
+      _kunReadings = Character.Kunyomis
+        .Select(x => x.JapaneseWriting)
+        .ToList();
+  }
 
 }

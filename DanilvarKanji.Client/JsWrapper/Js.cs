@@ -4,16 +4,16 @@ namespace DanilvarKanji.Client.JsWrapper;
 
 public class Js
 {
-    public Dom Dom { get; }
+  public Js(IJSRuntime jsRuntime)
+  {
+    Dom = new Dom(jsRuntime);
+    Gen = new Gen(jsRuntime);
+    Wanakana = new Wanakana(jsRuntime);
+  }
 
-    public Gen Gen { get; }
+  public Dom Dom { get; }
 
-    public Wanakana Wanakana { get; }
+  public Gen Gen { get; }
 
-    public Js(IJSRuntime jsRuntime)
-    {
-        Dom = new Dom(jsRuntime);
-        Gen = new Gen(jsRuntime);
-        Wanakana = new Wanakana(jsRuntime);
-    }
+  public Wanakana Wanakana { get; }
 }

@@ -20,29 +20,29 @@ main[b-s586sxsw3p] {
 }
 
 
-    .page[b-s586sxsw3p] {
-        flex-direction: row;
-    }
+.page[b-s586sxsw3p] {
+    flex-direction: row;
+}
 
-    .sidebar[b-s586sxsw3p] {
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
+.sidebar[b-s586sxsw3p] {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
 
-    .top-row[b-s586sxsw3p] {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
+.top-row[b-s586sxsw3p] {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
 
-    .top-row.auth[b-s586sxsw3p]  a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
+.top-row.auth[b-s586sxsw3p]  a:first-child {
+    flex: 1;
+    text-align: right;
+    width: 0;
+}
 
-    .top-row[b-s586sxsw3p], article[b-s586sxsw3p] {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
+.top-row[b-s586sxsw3p], article[b-s586sxsw3p] {
+    padding-left: 2rem !important;
+    padding-right: 1.5rem !important;
+}

@@ -5,37 +5,40 @@ namespace DanilvarKanji.Infrastructure.Common;
 
 public static class EnumHelper
 {
-    public static BindingList<string?> GetEnumDescriptions(Type enumType)
+  public static BindingList<string?> GetEnumDescriptions(Type enumType)
+  {
+    Array values = Enum.GetValues(enumType);
+    var descriptions = new BindingList<string?>();
+
+    foreach (var value in values)
     {
-        Array values = Enum.GetValues(enumType);
-        var descriptions = new BindingList<string?>();
+      FieldInfo field = enumType.GetField(value.ToString());
+      var descriptionAttribute = (DescriptionAttribute)
+        Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
 
-        foreach (object value in values)
-        {
-            FieldInfo field = enumType.GetField(value.ToString());
-            var descriptionAttribute =
-                (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
-
-            descriptions.Add(descriptionAttribute != null ? descriptionAttribute.Description : value.ToString());
-        }
-
-        return descriptions;
+      descriptions.Add(
+        descriptionAttribute != null ? descriptionAttribute.Description : value.ToString()
+      );
     }
 
-    public static string? GetEnumDescription(Enum enumeration)
+    return descriptions;
+  }
+
+  public static string? GetEnumDescription(Enum enumeration)
+  {
+    FieldInfo? fieldInfo = enumeration.GetType().GetField(enumeration.ToString());
+
+    if (fieldInfo != null)
     {
-        FieldInfo? fieldInfo = enumeration.GetType().GetField(enumeration.ToString());
+      if (
+        Attribute.GetCustomAttribute(fieldInfo, typeof(DescriptionAttribute))
+        is DescriptionAttribute descriptionAttribute
+      )
+        return descriptionAttribute.Description;
 
-        if (fieldInfo != null)
-        {
-            if (Attribute.GetCustomAttribute(fieldInfo, typeof(DescriptionAttribute)) is DescriptionAttribute descriptionAttribute)
-            {
-                return descriptionAttribute.Description;
-            }
-
-            return enumeration.ToString();
-        }
-
-        return default;
+      return enumeration.ToString();
     }
+
+    return default;
+  }
 }

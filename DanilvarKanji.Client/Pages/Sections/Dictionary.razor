@@ -1,6 +1,6 @@
 @page "/Dictionary"
-@using DanilvarKanji.Client.Services.Dictionary
 @using DanilvarKanji.Client.Models.Responses.JMdict
+@using DanilvarKanji.Client.Services.Dictionary
 @using DanilvarKanji.Client.State
 @using WanaKanaNet
 
@@ -11,145 +11,143 @@
 <p class="fs-3 text-center">@Loc["DictionaryPlaceholder"]</p>
 
 <div class="input-group mb-4">
-    <input @onkeydown="SearchForWordsOnKey"
-           @bind="_entry"
-           @bind:event="oninput"
-           type="search"
-           placeholder="@Loc["DictionaryPlaceholder"]"
-           class="form-control bg-secondary-2 no-border txt-light-pink main-font"/>
+  <input @onkeydown="SearchForWordsOnKey"
+         @bind="_entry"
+         @bind:event="oninput"
+         type="search"
+         placeholder="@Loc["DictionaryPlaceholder"]"
+         class="form-control bg-secondary-2 no-border txt-light-pink main-font"/>
 
-    <div class="ms-2">
-        <button @onclick="SearchForWords" class="btn btn-outline-primary" type="submit">
-            @Loc["Search"]
-        </button>
-    </div>
+  <div class="ms-2">
+    <button @onclick="SearchForWords" class="btn btn-outline-primary" type="submit">
+      @Loc["Search"]
+    </button>
+  </div>
 </div>
 
 @if (_words == null)
 {
-    <DisplayLoading/>
+  <DisplayLoading/>
 }
 else if (!_words.Any())
 {
-    <p>No words... yet...</p>
+  <p>No words... yet...</p>
 }
 else if (_words != null)
 {
-    @foreach (var word in _words)
-    {
-        <div class="card mb-2 bg-secondary-2">
-            <div class="row g-0">
-                <div class="col-md-4 px-5">
+  @foreach (Word? word in _words)
+  {
+    <div class="card mb-2 bg-secondary-2">
+      <div class="row g-0">
+        <div class="col-md-4 px-5">
 
-                    @if (word.Kanjis.Count > 1)
-                    {
-                        @foreach (var kanji in word!.Kanjis)
-                        {
-                            if (kanji.Common.Value)
-                            {
-                                <h1 class="display-3 txt-mid-pink jap-font">@kanji.Text</h1>
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (var kanji in word!.Kanjis)
-                        {
-                            <h1 class="display-3 txt-mid-pink jap-font">@kanji.Text</h1>
-                        }
-                    }
+          @if (word.Kanjis.Count > 1)
+          {
+            @foreach (Kanji kanji in word!.Kanjis)
+            {
+              if (kanji.Common.Value)
+              {
+                <h1 class="display-3 txt-mid-pink jap-font">@kanji.Text</h1>
+              }
+            }
+          }
+          else
+          {
+            foreach (Kanji kanji in word!.Kanjis)
+            {
+              <h1 class="display-3 txt-mid-pink jap-font">@kanji.Text</h1>
+            }
+          }
 
-                    @foreach (var kana in word.Kanas)
-                    {
-                        <div class="px-2">
-                            <h2 class="fs-5 jap-font">@kana.Text</h2>
-                        </div>
-                    }
-                </div>
-
-
-                @foreach (var sense in word.Senses)
-                {
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            @if (sense.Glosses.Count > 1)
-                            {
-                                int i = 1;
-                                @foreach (var gloss in sense.Glosses)
-                                {
-                                    <h5 class="card-title">
-                                        <span>@i. </span> @gloss.Text?[2..]
-                                    </h5>
-                                    i++;
-                                }
-                            }
-                            else
-                            {
-                                <h5 class="card-title">
-                                    @sense.Glosses[0].Text
-                                </h5>
-                            }
-                        </div>
-                    </div>
-                }
+          @foreach (Kana kana in word.Kanas)
+          {
+            <div class="px-2">
+              <h2 class="fs-5 jap-font">@kana.Text</h2>
             </div>
+          }
         </div>
-    }
+
+
+        @foreach (Sense sense in word.Senses)
+        {
+          <div class="col-md-8">
+            <div class="card-body">
+              @if (sense.Glosses.Count > 1)
+              {
+                var i = 1;
+                @foreach (Gloss gloss in sense.Glosses)
+                {
+                  <h5 class="card-title">
+                    <span>@i. </span> @gloss.Text?[2..]
+                  </h5>
+                  i++;
+                }
+              }
+              else
+              {
+                <h5 class="card-title">
+                  @sense.Glosses[0].Text
+                </h5>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
 }
 
 @code {
 
-    [Inject]
-    public required IDictionaryService DictionaryService { get; set; }
+  [Inject] public required IDictionaryService DictionaryService { get; set; }
 
-    [Inject]
-    public required AppState AppState { get; set; }
+  [Inject] public required AppState AppState { get; set; }
 
-    [Inject] public IStringLocalizer<App> Loc { get; set; } = null!;
+  [Inject] public IStringLocalizer<App> Loc { get; set; } = null!;
 
-    private IEnumerable<Word?>? _words = new List<Word?>();
-    private string _entry = string.Empty;
+  private IEnumerable<Word?>? _words = new List<Word?>();
+  private string _entry = string.Empty;
 
-    protected override void OnInitialized()
+  protected override void OnInitialized()
+  {
+    _words = AppState.DictionaryState.LastWords;
+  }
+
+  private async Task SearchForWordsOnKey(KeyboardEventArgs args)
+  {
+    if (args.Key != "Enter")
+      return;
+
+    await SearchForWords();
+  }
+
+  private async Task SearchForWords()
+  {
+    _words = null;
+
+    if (WanaKana.IsHiragana(_entry) || WanaKana.IsKatakana(_entry) || WanaKana.IsKana(_entry))
     {
-        _words = AppState.DictionaryState.LastWords;
+      _words = await DictionaryService.ListWordsByKanaAsync(_entry);
+      return;
     }
 
-    private async Task SearchForWordsOnKey(KeyboardEventArgs args)
+    if (WanaKana.IsMixed(_entry))
     {
-        if (args.Key != "Enter")
-            return;
-
-        await SearchForWords();
+      _words = await DictionaryService.ListWordsByKanaAsync(_entry);
+      return;
     }
 
-    private async Task SearchForWords()
-    {
-        _words = null;
+    var isKanji = _entry.Any(c => WanaKana.IsKanji(c));
 
-        if (WanaKana.IsHiragana(_entry) || WanaKana.IsKatakana(_entry) || WanaKana.IsKana(_entry))
-        {
-            _words = await DictionaryService.ListWordsByKanaAsync(_entry);
-            return;
-        }
+    if (isKanji)
+      _words = await DictionaryService.ListWordsByKanjiAsync(_entry);
+    else
+      _words = await DictionaryService.ListWordsByTranslationAsync(_entry);
 
-        if (WanaKana.IsMixed(_entry))
-        {
-            _words = await DictionaryService.ListWordsByKanaAsync(_entry);
-            return;
-        }
+    _words ??= Enumerable.Empty<Word>();
 
-        bool isKanji = _entry.Any(c => WanaKana.IsKanji(c));
-        
-        if (isKanji)
-            _words = await DictionaryService.ListWordsByKanjiAsync(_entry);
-        else
-            _words = await DictionaryService.ListWordsByTranslationAsync(_entry);
-
-        _words ??= Enumerable.Empty<Word>();
-
-        await AppState.DictionaryState.UpdateNextToReview(_words);
-    }
+    await AppState.DictionaryState.UpdateNextToReview(_words);
+  }
 
 
 }

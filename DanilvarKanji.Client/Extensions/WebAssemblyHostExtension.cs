@@ -7,16 +7,16 @@ namespace DanilvarKanji.Client.Extensions;
 
 public static class WebAssemblyHostExtension
 {
-    public static async Task SetDefaultCulture(this WebAssemblyHost host)
-    {
-        ILocalStorageService localStorage = host.Services.GetRequiredService<ILocalStorageService>();
-        string? cultureString = await localStorage.GetItemAsync<string>("culture");
+  public static async Task SetDefaultCulture(this WebAssemblyHost host)
+  {
+    var localStorage = host.Services.GetRequiredService<ILocalStorageService>();
+    var cultureString = await localStorage.GetItemAsync<string>("culture");
 
-        CultureInfo cultureInfo = !string.IsNullOrWhiteSpace(cultureString)
-            ? new CultureInfo(cultureString)
-            : new CultureInfo(LocalizerSettings.NeutralCulture.Name);
+    CultureInfo cultureInfo = !string.IsNullOrWhiteSpace(cultureString)
+      ? new CultureInfo(cultureString)
+      : new CultureInfo(LocalizerSettings.NeutralCulture.Name);
 
-        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
-    }
+    CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+    CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+  }
 }

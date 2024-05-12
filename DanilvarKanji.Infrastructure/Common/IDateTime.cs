@@ -2,5 +2,5 @@ namespace DanilvarKanji.Infrastructure.Common;
 
 public interface IDateTime
 {
-    DateTime UtcNow { get; }
+  DateTime UtcNow { get; }
 }

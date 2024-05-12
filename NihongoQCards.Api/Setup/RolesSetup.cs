@@ -6,15 +6,12 @@ namespace DanilvarKanji.Setup;
 
 public static class RolesSetup
 {
-    public static async Task AddRoles(RoleManager<AppUserRole> roleManager)
+  public static async Task AddRoles(RoleManager<AppUserRole> roleManager)
+  {
+    foreach (var role in UserRole.Roles)
     {
-        foreach (string role in UserRole.Roles)
-        {
-            bool roleExists = await roleManager.RoleExistsAsync(role);
-            if (!roleExists)
-            {
-                await roleManager.CreateAsync(new AppUserRole(role));
-            }
-        }
+      var roleExists = await roleManager.RoleExistsAsync(role);
+      if (!roleExists) await roleManager.CreateAsync(new AppUserRole(role));
     }
+  }
 }

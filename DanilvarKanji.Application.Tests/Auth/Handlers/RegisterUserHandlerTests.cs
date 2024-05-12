@@ -60,7 +60,7 @@ public class RegisterUserHandlerTests
         //Act
         IdentityResult result = await handler.Handle(command, default);
 
-        //Assert        
+        //Assert
         Assert.Contains(Identity.PasswordsDontMatch.Code, result.Errors.Select(error => error.Code));
     }
 
@@ -80,3 +80,4 @@ public class RegisterUserHandlerTests
             .CreateAsync(It.IsAny<AppUser>(), It.IsAny<string>()), Times.Once);
     }
 }*/
+

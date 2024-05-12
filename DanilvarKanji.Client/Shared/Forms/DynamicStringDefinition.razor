@@ -1,65 +1,63 @@
-@using DanilvarKanji.Domain.Shared.Entities
 @using DanilvarKanji.Domain.Shared.Enumerations
 @using DanilvarKanji.Domain.Shared.ValueObjects
-
 @foreach (StringDefinition definition in StringDefinitions)
 {
-    <FluentValidationValidator/>
+  <FluentValidationValidator/>
 
-    <div class="row">
-        <div class="col mb-3">
-            <div class="form-group">
-                <InputText @bind-Value="@definition.Value"
-                           class="form-control bg-main-2 txt-green-dim no-border" id="value" placeholder="Value"/>
-                <ValidationMessage For="() => definition.Value"/>
-            </div>
-        </div>
-
-        <div class="col-3 mb-3">
-            <div class="form-group">
-                <InputSelect @bind-Value="@definition.Culture" class="form-control bg-main-2 txt-green-dim no-border" id="culture">
-                    <option value="@Culture.EnUS">English</option>
-                    <option value="@Culture.RuRU">Russian</option>
-                </InputSelect>
-            </div>
-        </div>
-
-        <div class="col-1 d-grid gap-2 mb-4">
-            <CrossButton OnClick="@(() => StringDefinitions.Remove(definition))"/>
-        </div>
+  <div class="row">
+    <div class="col mb-3">
+      <div class="form-group">
+        <InputText @bind-Value="@definition.Value"
+                   class="form-control bg-main-2 txt-green-dim no-border" id="value" placeholder="Value"/>
+        <ValidationMessage For="() => definition.Value"/>
+      </div>
     </div>
+
+    <div class="col-3 mb-3">
+      <div class="form-group">
+        <InputSelect @bind-Value="@definition.Culture" class="form-control bg-main-2 txt-green-dim no-border" id="culture">
+          <option value="@Culture.EnUS">English</option>
+          <option value="@Culture.RuRU">Russian</option>
+        </InputSelect>
+      </div>
+    </div>
+
+    <div class="col-1 d-grid gap-2 mb-4">
+      <CrossButton OnClick="@(() => StringDefinitions.Remove(definition))"/>
+    </div>
+  </div>
 }
 
 
 <div class="d-inline-flex gap-1">
-    <button class="btn btn-outline-primary mx-1" type="button"
-            @onclick="@(() => StringDefinitions.Add(new StringDefinition()))">
-        @AddButtonText
-    </button>
+  <button class="btn btn-outline-primary mx-1" type="button"
+          @onclick="@(() => StringDefinitions.Add(new StringDefinition()))">
+    @AddButtonText
+  </button>
 
-    @if (UseDeleteBtn)
-    {
-        <button class="btn btn-outline-warning mx-1" type="button"
-                @onclick="OnDeleteClickHandler">
-            @DeleteBtnText
-        </button>
-    }
+  @if (UseDeleteBtn)
+  {
+    <button class="btn btn-outline-warning mx-1" type="button"
+            @onclick="OnDeleteClickHandler">
+      @DeleteBtnText
+    </button>
+  }
 </div>
 
 @code
 {
-    [Parameter, EditorRequired] public ICollection<StringDefinition> StringDefinitions { get; set; } = default!;
+  [Parameter] [EditorRequired] public ICollection<StringDefinition> StringDefinitions { get; set; } = default!;
 
-    [Parameter] public EventCallback OnDeleteClick { get; set; }
+  [Parameter] public EventCallback OnDeleteClick { get; set; }
 
-    [Parameter] public string AddButtonText { get; set; } = "+";
+  [Parameter] public string AddButtonText { get; set; } = "+";
 
-    [Parameter] public bool UseDeleteBtn { get; set; }
+  [Parameter] public bool UseDeleteBtn { get; set; }
 
-    [Parameter] public string DeleteBtnText { get; set; } = "Delete Definition";
+  [Parameter] public string DeleteBtnText { get; set; } = "Delete Definition";
 
-    private async Task OnDeleteClickHandler()
-    {
-        await OnDeleteClick.InvokeAsync();
-    }
+  private async Task OnDeleteClickHandler()
+  {
+    await OnDeleteClick.InvokeAsync();
+  }
 }

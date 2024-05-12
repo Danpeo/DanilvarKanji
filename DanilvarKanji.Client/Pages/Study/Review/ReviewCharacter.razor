@@ -11,6 +11,7 @@
 @using DanilvarKanji.Shared.Responses.Review
 @using Blazored.Modal.Services
 @using DanilvarKanji.Domain.Shared.Enumerations
+@using DanilvarKanji.Shared.Responses.Exercise
 
 <PageTitle>Review</PageTitle>
 
@@ -44,7 +45,7 @@
 
 
 @code {
-    [Parameter, EditorRequired] public required string CharacterLearningId { get; set; }
+    [Parameter][EditorRequired] public required string CharacterLearningId { get; set; }
 
     [CascadingParameter] public required IModalService ModalService { get; set; }
 
@@ -72,10 +73,10 @@
     private CharacterLearningResponseFull? _learning;
     private CharacterResponseResponseFull? _character;
     private Culture _culture;
-    private List<RenderFragment> _exercises = new();
+    private readonly List<RenderFragment> _exercises = new();
     private ReviewSession _reviewSession;
     private ReviewSessionResponseBase _reviewSessionResponse = new();
-    private CreateReviewSessionRequest _createReviewSessionRequest = new();
+    private readonly CreateReviewSessionRequest _createReviewSessionRequest = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -155,7 +156,7 @@
     private async Task OnCorrectExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: true, exerciseType, exerciseSubject);
+            await AddExerciseToReviewSession(true, exerciseType, exerciseSubject);
 
         await OnConfirmExercise();
     }
@@ -163,14 +164,14 @@
     private async Task OnIncorrectExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: false, exerciseType, exerciseSubject);
+            await AddExerciseToReviewSession(false, exerciseType, exerciseSubject);
         await OnConfirmExercise();
     }
 
     private async Task OnForgotExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: false, exerciseType, exerciseSubject);
+            await AddExerciseToReviewSession(false, exerciseType, exerciseSubject);
 
         await OnConfirmExercise();
     }
@@ -178,17 +179,17 @@
     private async Task OnIncorrectPointExercise(ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
         if (!_isAdditional)
-            await AddExerciseToReviewSession(isCorrect: false, exerciseType, exerciseSubject);
+            await AddExerciseToReviewSession(false, exerciseType, exerciseSubject);
     }
 
     private async Task OnIncorrectMeaning()
     {
-        await AddExerciseToReviewSession(isCorrect: false, ExerciseType.Input, ExerciseSubject.Meaning);
+        await AddExerciseToReviewSession(false, ExerciseType.Input, ExerciseSubject.Meaning);
     }
 
     private void SkipCharacterFromLearning()
     {
-        CharacterLearningService.ToggleCharLearningSkipState(_learning!.Id, naviteToAfterSkip: "/");
+        CharacterLearningService.ToggleCharLearningSkipState(_learning!.Id, "/");
         /*try
         {
             var options = new ModalOptions
@@ -237,21 +238,21 @@
         {
             if (!_isAdditional)
             {
-                var review = await ReviewService.CreateReviewSessionAsync(_createReviewSessionRequest);
+                ReviewSessionResponseBase? review = await ReviewService.CreateReviewSessionAsync(_createReviewSessionRequest);
                 NavigationManager.NavigateTo($"/Review/Result/{review?.Id}/{_character?.Id}");
             }
             else
             {
-                NavigationManager.NavigateTo($"/");
+                NavigationManager.NavigateTo("/");
             }
         }
     }
 
     private async Task AddExerciseToReviewSession(bool isCorrect, ExerciseType exerciseType, ExerciseSubject exerciseSubject)
     {
-        var exercise = await ExerciseService
+        ExerciseResponseFull? exercise = await ExerciseService
             .CreateExerciseAsync(new CreateExerciseRequest(_character!.Id,
-                isCorrect: isCorrect,
+                isCorrect,
                 exerciseType,
                 exerciseSubject));
 

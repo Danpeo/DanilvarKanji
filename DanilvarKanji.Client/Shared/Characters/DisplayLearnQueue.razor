@@ -1,55 +1,53 @@
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.Character
-@using DanilvarKanji.Client.Extensions
-
 @if (_characterItems == null)
 {
-    <DisplayLoading></DisplayLoading>
+  <DisplayLoading></DisplayLoading>
 }
 else if (!string.IsNullOrEmpty(_errMsg))
 {
-    <h3 class="txt-light-pink main-font text-center mt-1">@_errMsg</h3>
+  <h3 class="txt-light-pink main-font text-center mt-1">@_errMsg</h3>
 }
 else if (!_characterItems.Any())
 {
-    <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
+  <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
 }
 else
 {
-    <div class="row">
-        @foreach (CharacterResponseBase? character in _characterItems)
-        {
-            <CharacterMinimalCard CharacterResponseBaseInfo="character"
-                                  NavigateTo="@(new string($"study-new/{character?.Id}"))"/>
-        }
-    </div>
+  <div class="row">
+    @foreach (CharacterResponseBase? character in _characterItems)
+    {
+      <CharacterMinimalCard CharacterResponseBaseInfo="character"
+                            NavigateTo="@(new string($"study-new/{character?.Id}"))"/>
+    }
+  </div>
 }
 
 @code {
 
-    [Inject] public required ICharacterService CharacterService { get; set; }
+  [Inject] public required ICharacterService CharacterService { get; set; }
 
-    [Inject] public required NavigationManager NavigationManager { get; set; }
+  [Inject] public required NavigationManager NavigationManager { get; set; }
 
-    [Parameter] public int PageNumber { get; set; } = 1;
+  [Parameter] public int PageNumber { get; set; } = 1;
 
-    [Parameter] public int PageSize { get; set; } = int.MaxValue;
+  [Parameter] public int PageSize { get; set; } = int.MaxValue;
 
-    [Parameter] public bool ListOnlyDayDosage { get; set; }
+  [Parameter] public bool ListOnlyDayDosage { get; set; }
 
-    private IEnumerable<CharacterResponseBase?>? _characterItems;
-    private string _errMsg = string.Empty;
+  private IEnumerable<CharacterResponseBase?>? _characterItems;
+  private string _errMsg = string.Empty;
 
-    protected override async Task OnInitializedAsync()
+  protected override async Task OnInitializedAsync()
+  {
+    try
     {
-        try
-        {
-            _characterItems = await CharacterService.ListLearnQueueAsync(PageNumber, PageSize, ListOnlyDayDosage);
-        }
-        catch (HttpRequestException e)
-        {
-            _errMsg = e.Message;
-        }
+      _characterItems = await CharacterService.ListLearnQueueAsync(PageNumber, PageSize, ListOnlyDayDosage);
     }
+    catch (HttpRequestException e)
+    {
+      _errMsg = e.Message;
+    }
+  }
 
 }

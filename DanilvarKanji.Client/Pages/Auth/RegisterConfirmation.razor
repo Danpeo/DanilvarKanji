@@ -1,52 +1,52 @@
 @page "/EmailConfirmation"
-@using DanilvarKanji.Shared.Requests.Auth
 @using DanilvarKanji.Client.Services.Auth
+@using DanilvarKanji.Shared.Requests.Auth
 
 @inject IStringLocalizer<App> Loc;
 
 <PageTitle>@Loc["ConfirmEmail"]</PageTitle>
 
 <div class="text-center">
-    <h1 class="display-5 main-font txt-bright-pink">
-        @Loc["ConfirmEmail"]
-    </h1>
-    <EditForm Model="_confirmRegistrationRequest" OnSubmit="ConfirmRegistrationAsync">
-        <FluentValidationValidator/>
+  <h1 class="display-5 main-font txt-bright-pink">
+    @Loc["ConfirmEmail"]
+  </h1>
+  <EditForm Model="_confirmRegistrationRequest" OnSubmit="ConfirmRegistrationAsync">
+    <FluentValidationValidator/>
 
-        <FormSection Title="Confirmation" HelpText="">
-            <FormFieldSet Label="Email" LabelFor="Email" HelpText="">
-                <InputText @bind-Value="_confirmRegistrationRequest.Email" class="form-control bg-main txt-green-dim no-border"
-                           id="email" placeholder="Email">
-                    <ValidationMessage For="@(() => _confirmRegistrationRequest.Email)"/>
-                </InputText>
-            </FormFieldSet>
-            <FormFieldSet Label="ConfirmationCode" LabelFor="ConfirmationCode" HelpText="">
-                <InputText @bind-Value="_confirmRegistrationRequest.ConfirmationCode" class="form-control bg-main txt-green-dim no-border"
-                           id="confirmationCode" placeholder="Confirmation Code">
+    <FormSection Title="Confirmation" HelpText="">
+      <FormFieldSet Label="Email" LabelFor="Email" HelpText="">
+        <InputText @bind-Value="_confirmRegistrationRequest.Email" class="form-control bg-main txt-green-dim no-border"
+                   id="email" placeholder="Email">
+          <ValidationMessage For="@(() => _confirmRegistrationRequest.Email)"/>
+        </InputText>
+      </FormFieldSet>
+      <FormFieldSet Label="ConfirmationCode" LabelFor="ConfirmationCode" HelpText="">
+        <InputText @bind-Value="_confirmRegistrationRequest.ConfirmationCode" class="form-control bg-main txt-green-dim no-border"
+                   id="confirmationCode" placeholder="Confirmation Code">
 
-                    <ValidationMessage For="@(() => _confirmRegistrationRequest.ConfirmationCode)"/>
+          <ValidationMessage For="@(() => _confirmRegistrationRequest.ConfirmationCode)"/>
 
-                </InputText>
-            </FormFieldSet>
+        </InputText>
+      </FormFieldSet>
 
-            <FormSubmitButtonContainer OnReset="@(() => _confirmRegistrationRequest = new ConfirmRegistrationRequest())">
+      <FormSubmitButtonContainer OnReset="@(() => _confirmRegistrationRequest = new ConfirmRegistrationRequest())">
 
-            </FormSubmitButtonContainer>
+      </FormSubmitButtonContainer>
 
-        </FormSection>
-    </EditForm>
+    </FormSection>
+  </EditForm>
 
 </div>
 
 @code {
 
-    [Inject] public IAuthService AuthService { get; set; } = null!;
+  [Inject] public IAuthService AuthService { get; set; } = null!;
 
-    private ConfirmRegistrationRequest _confirmRegistrationRequest = new();
+  private ConfirmRegistrationRequest _confirmRegistrationRequest = new();
 
-    private async Task ConfirmRegistrationAsync(EditContext obj)
-    {
-        await AuthService.ConfirmRegistrationAsync(_confirmRegistrationRequest);
-    }
+  private async Task ConfirmRegistrationAsync(EditContext obj)
+  {
+    await AuthService.ConfirmRegistrationAsync(_confirmRegistrationRequest);
+  }
 
 }

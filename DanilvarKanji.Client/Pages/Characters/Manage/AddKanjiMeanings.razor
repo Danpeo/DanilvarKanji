@@ -1,36 +1,32 @@
 @using DanilvarKanji.Domain.Shared.Entities
-@using DanilvarKanji.Domain.Shared.ValueObjects
-
 @foreach (KanjiMeaning meaning in Meanings)
 {
-    <div class="row">
-        <div class="col mb-3">
-            <div class="form-group">
-                <InputNumber @bind-Value="@meaning.Priority" 
-                             class="form-control bg-main-2 txt-green-dim no-border" id="meaningPriority" 
-                             placeholder="Meaning Priority"/>
-            </div>
-        </div>
-        @if (meaning.Definitions is not null)
-        {
-            <DynamicStringDefinition 
-                StringDefinitions="meaning.Definitions"
-                UseDeleteBtn="true"
-                OnDeleteClick="@(() => Meanings.Remove(meaning))"
-                />
-        }
+  <div class="row">
+    <div class="col mb-3">
+      <div class="form-group">
+        <InputNumber @bind-Value="@meaning.Priority"
+                     class="form-control bg-main-2 txt-green-dim no-border" id="meaningPriority"
+                     placeholder="Meaning Priority"/>
+      </div>
     </div>
+    @if (meaning.Definitions is not null)
+    {
+      <DynamicStringDefinition
+        StringDefinitions="meaning.Definitions"
+        UseDeleteBtn="true"
+        OnDeleteClick="@(() => Meanings.Remove(meaning))"/>
+    }
+  </div>
 }
 <div class="row mt-3">
-    <div class="col">
-        <button class="btn btn-outline-primary" type="button" @onclick="@(() => Meanings.Add(new KanjiMeaning()))">
-            Add
-        </button>
-    </div>
+  <div class="col">
+    <button class="btn btn-outline-primary" type="button" @onclick="@(() => Meanings.Add(new KanjiMeaning()))">
+      Add
+    </button>
+  </div>
 </div>
 
 @code
 {
-    [Parameter, EditorRequired]
-    public ICollection<KanjiMeaning> Meanings { get; set; } = default!;
+  [Parameter] [EditorRequired] public ICollection<KanjiMeaning> Meanings { get; set; } = default!;
 }

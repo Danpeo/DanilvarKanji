@@ -5,22 +5,24 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Users.Handlers;
 
-public class GetUserLearningSettingsQueryHandler : IRequestHandler<GetUserLearningSettingsQuery, LearningSettings?>
+public class GetUserLearningSettingsQueryHandler
+  : IRequestHandler<GetUserLearningSettingsQuery, LearningSettings?>
 {
-    private readonly IUserRepository _userRepository;
+  private readonly IUserRepository _userRepository;
 
-    public GetUserLearningSettingsQueryHandler(IUserRepository userRepository)
-    {
-        _userRepository = userRepository;
-    }
+  public GetUserLearningSettingsQueryHandler(IUserRepository userRepository)
+  {
+    _userRepository = userRepository;
+  }
 
-    public async Task<LearningSettings?> Handle(GetUserLearningSettingsQuery request, CancellationToken cancellationToken)
-    {
-        if (await _userRepository.ExistByEmail(request.Email))
-        {
-            return await _userRepository.GetUserLearningSettingsAsync(request.Email);
-        }
-        
-        return null;
-    }
+  public async Task<LearningSettings?> Handle(
+    GetUserLearningSettingsQuery request,
+    CancellationToken cancellationToken
+  )
+  {
+    if (await _userRepository.ExistByEmail(request.Email))
+      return await _userRepository.GetUserLearningSettingsAsync(request.Email);
+
+    return null;
+  }
 }

@@ -12,41 +12,52 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DanilvarKanji.Application.Auth.Handlers;
 
-public class RequestToChangePasswordHandler : IRequestHandler<RequestToChangePasswordCommand, Result<string>>
+public class RequestToChangePasswordHandler
+  : IRequestHandler<RequestToChangePasswordCommand, Result<string>>
 {
-    private readonly IEmailService _emailService;
-    private readonly UserManager<AppUser> _userManager;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IUserRepository _userRepository;
+  private readonly IEmailService _emailService;
+  private readonly IUnitOfWork _unitOfWork;
+  private readonly UserManager<AppUser> _userManager;
+  private readonly IUserRepository _userRepository;
 
-    public RequestToChangePasswordHandler(IEmailService emailService, UserManager<AppUser> userManager, IUnitOfWork unitOfWork,
-        IUserRepository userRepository)
+  public RequestToChangePasswordHandler(
+    IEmailService emailService,
+    UserManager<AppUser> userManager,
+    IUnitOfWork unitOfWork,
+    IUserRepository userRepository
+  )
+  {
+    _emailService = emailService;
+    _userManager = userManager;
+    _unitOfWork = unitOfWork;
+    _userRepository = userRepository;
+  }
+
+  public async Task<Result<string>> Handle(
+    RequestToChangePasswordCommand request,
+    CancellationToken cancellationToken
+  )
+  {
+    AppUser? user = await _userManager.FindByEmailAsync(request.Email);
+
+    if (user != null)
     {
-        _emailService = emailService;
-        _userManager = userManager;
-        _unitOfWork = unitOfWork;
-        _userRepository = userRepository;
+      var code = RandGen.Numbers(6);
+      _userRepository.CreateEmailCode(new EmailCode(user.Email!, code));
+      if (await _unitOfWork.CompleteAsync())
+      {
+        await _emailService.SendEmailAsync(
+          request.Email,
+          "Change password",
+          $"Enter this code to change password: {code}"
+        );
+
+        return Result.Success(request.Email);
+      }
+
+      return Result.Failure<string>(General.UnProcessableRequest);
     }
 
-    public async Task<Result<string>> Handle(RequestToChangePasswordCommand request, CancellationToken cancellationToken)
-    {
-        AppUser? user = await _userManager.FindByEmailAsync(request.Email);
-
-        if (user != null)
-        {
-            string? code = RandGen.Numbers(6);
-            _userRepository.CreateEmailCode(new EmailCode(user.Email!, code));
-            if (await _unitOfWork.CompleteAsync())
-            {
-                await _emailService.SendEmailAsync(request.Email, "Change password",
-                    $"Enter this code to change password: {code}");
-
-                return Result.Success(request.Email);
-            }
-
-            return Result.Failure<string>(General.UnProcessableRequest);
-        }
-
-        return Result.Failure<string>(General.UnProcessableRequest);
-    }
+    return Result.Failure<string>(General.UnProcessableRequest);
+  }
 }

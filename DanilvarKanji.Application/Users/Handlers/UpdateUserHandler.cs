@@ -10,36 +10,43 @@ namespace DanilvarKanji.Application.Users.Handlers;
 
 public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, Result<string>>
 {
-    private readonly IUserRepository _userRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<UpdateUserHandler> _logger;
+  private readonly ILogger<UpdateUserHandler> _logger;
+  private readonly IUnitOfWork _unitOfWork;
+  private readonly IUserRepository _userRepository;
 
-    public UpdateUserHandler(IUserRepository userRepository, IUnitOfWork unitOfWork, ILogger<UpdateUserHandler> logger)
+  public UpdateUserHandler(
+    IUserRepository userRepository,
+    IUnitOfWork unitOfWork,
+    ILogger<UpdateUserHandler> logger
+  )
+  {
+    _userRepository = userRepository;
+    _unitOfWork = unitOfWork;
+    _logger = logger;
+  }
+
+  public async Task<Result<string>> Handle(
+    UpdateUserCommand request,
+    CancellationToken cancellationToken
+  )
+  {
+    await _userRepository.UpdateUserAsync(request.Email, request.NewUserName, request.NewUserRole);
+
+    if (await _unitOfWork.CompleteAsync())
     {
-        _userRepository = userRepository;
-        _unitOfWork = unitOfWork;
-        _logger = logger;
+      log(LogLevel.Information);
+      return Result.Success(request.Email);
     }
 
-    public async Task<Result<string>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    log(LogLevel.Error);
+    return Result.Failure<string>(General.UnProcessableRequest);
+
+    void log(LogLevel logLevel)
     {
-        await _userRepository.UpdateUserAsync(request.Email, request.NewUserName, request.NewUserRole);
-
-        if (await _unitOfWork.CompleteAsync())
-        {
-            log(LogLevel.Information);
-            return Result.Success(request.Email);
-        }
-
-        log(LogLevel.Error);
-        return Result.Failure<string>(General.UnProcessableRequest);
-
-        void log(LogLevel logLevel)
-        {
-            if (logLevel == LogLevel.Information)
-                _logger.LogInformation("UPDATE User: {@request}", request);
-            else if (logLevel == LogLevel.Error)
-                _logger.LogInformation("UPDATE FAILED for User: {@request}", request);
-        }
+      if (logLevel == LogLevel.Information)
+        _logger.LogInformation("UPDATE User: {@request}", request);
+      else if (logLevel == LogLevel.Error)
+        _logger.LogInformation("UPDATE FAILED for User: {@request}", request);
     }
+  }
 }

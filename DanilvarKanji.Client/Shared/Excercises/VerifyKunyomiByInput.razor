@@ -1,57 +1,48 @@
-@using DanilvarKanji.Shared.Responses.Character
-@using DanilvarKanji.Client.JsWrapper
-@using System.Text
 @using DanilvarKanji.Client.Extensions
-@using WanaKanaNet
-
+@using DanilvarKanji.Client.JsWrapper
+@using DanilvarKanji.Shared.Responses.Character
 <BaseExercise OnForgot="OnForgot.Invoke">
-    <WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
+  <WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
 
-    <VerifyValueByInput
-        CharacterForVerification="CharacterForVerification"
-        VerifyCondition="VerifyCondition"
-        OnIncorrect="OnIncorrect"
-        OnCorrect="OnCorrect"
-        OnConfirm="OnConfirm"
-        InputPlaceholder="Kun reading"
-        OnInput="OnInput"/>
+  <VerifyValueByInput
+    CharacterForVerification="CharacterForVerification"
+    VerifyCondition="VerifyCondition"
+    OnIncorrect="OnIncorrect"
+    OnCorrect="OnCorrect"
+    OnConfirm="OnConfirm"
+    InputPlaceholder="Kun reading"
+    OnInput="OnInput"/>
 </BaseExercise>
 
 
 @code {
 
-    [Parameter, EditorRequired]
-    public required CharacterResponseResponseFull CharacterForVerification { get; set; }
+  [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
 
-    [Parameter, EditorRequired]
-    public Action? OnConfirm { get; set; }
+  [Parameter] [EditorRequired] public Action? OnConfirm { get; set; }
 
-    [Parameter, EditorRequired]
-    public Func<Task>? OnCorrect { get; set; }
+  [Parameter] [EditorRequired] public Func<Task>? OnCorrect { get; set; }
 
-    [Parameter, EditorRequired]
-    public Func<Task>? OnIncorrect { get; set; }
+  [Parameter] [EditorRequired] public Func<Task>? OnIncorrect { get; set; }
 
-    [Parameter, EditorRequired]
-    public required Func<Task> OnForgot {get; set;}
-    
-    [Inject]
-    public required Js Js { get; set; }
+  [Parameter] [EditorRequired] public required Func<Task> OnForgot { get; set; }
 
-    private bool VerifyCondition(CharacterResponseResponseFull character, string enteredValue)
-    {
-        return character.Kunyomis != null
-               && character
-                   .Kunyomis
-                   .Any(
-                       k => k.JapaneseWriting == enteredValue.IgnoreNonJapanese()
-                   );
-    }
+  [Inject] public required Js Js { get; set; }
+
+  private bool VerifyCondition(CharacterResponseResponseFull character, string enteredValue)
+  {
+    return character.Kunyomis != null
+           && character
+             .Kunyomis
+             .Any(
+               k => k.JapaneseWriting == enteredValue.IgnoreNonJapanese()
+             );
+  }
 
 
-    private async Task OnInput(string elementId)
-    {
-        await Js.Wanakana.ToHiragana(elementId);
-    }
+  private async Task OnInput(string elementId)
+  {
+    await Js.Wanakana.ToHiragana(elementId);
+  }
 
 }

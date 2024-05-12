@@ -5,19 +5,19 @@ namespace DanilvarKanji.Shared.Requests.Flashcards;
 
 public class CreateFlashcardCollectionRequest
 {
-    public string Name { get; set; }
+  public CreateFlashcardCollectionRequest()
+  {
+    Name = $"Collection {RandGen.PasswordDefault}";
+    Flashcards = new List<Flashcard>();
+  }
 
-    public List<Flashcard> Flashcards { get; set; }
+  public CreateFlashcardCollectionRequest(string name, List<Flashcard> flashcards)
+  {
+    Name = name;
+    Flashcards = flashcards;
+  }
 
-    public CreateFlashcardCollectionRequest()
-    {
-        Name = $"Collection {RandGen.PasswordDefault}";
-        Flashcards = new List<Flashcard>();
-    }
+  public string Name { get; set; }
 
-    public CreateFlashcardCollectionRequest(string name, List<Flashcard> flashcards)
-    {
-        Name = name;
-        Flashcards = flashcards;
-    }
+  public List<Flashcard> Flashcards { get; set; }
 }

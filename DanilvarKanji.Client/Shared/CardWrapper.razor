@@ -1,26 +1,22 @@
 <div class="card card-brand mb-2 bg-secondary-2">
-    <div class="card-body">
-        <div class="row">
-            <div class="@ColumnStyle">
-                <h4 class="txt-green-dim main-font">@Title</h4>
-                <p class="txt-gray main-font">@HelpText</p>
-                @ChildContent
-            </div>
-        </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="@ColumnStyle">
+        <h4 class="txt-green-dim main-font">@Title</h4>
+        <p class="txt-gray main-font">@HelpText</p>
+        @ChildContent
+      </div>
     </div>
+  </div>
 </div>
 
 @code {
-    [Parameter, EditorRequired]
-    public required RenderFragment ChildContent { get; set; }
+  [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
 
-    [Parameter]
-    public string Title { get; set; } = default!;
+  [Parameter] public string Title { get; set; } = default!;
 
-    [Parameter]
-    public string HelpText { get; set; } = default!;
+  [Parameter] public string HelpText { get; set; } = default!;
 
-    [Parameter]
-    public string ColumnStyle { get; set; } = string.Empty;
+  [Parameter] public string ColumnStyle { get; set; } = string.Empty;
 
 }

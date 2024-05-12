@@ -1,116 +1,116 @@
 @page "/Add"
-@using DanilvarKanji.Shared.Requests.Flashcards
-@using DVar.Extensions
 @using DanilvarKanji.Client.Services.Flashcards
 @using DanilvarKanji.Domain.Shared.Entities.Flashcards
+@using DanilvarKanji.Shared.Requests.Flashcards
+@using DVar.Extensions
 
 @inject IStringLocalizer<App> Loc;
 
 <PageTitle>@Loc["AddNewCollection"] - @Loc["Flashcards"]</PageTitle>
 
 <h1 class="mt-5 mb-4 animated-blink main-font display-3">
-    @Loc["AddNewCollection"]
+  @Loc["AddNewCollection"]
 </h1>
 
 <EditForm Model="_createFCRequest" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandeInvalidSubmit">
 
-    <FluentValidationValidator/>
+  <FluentValidationValidator/>
 
-    <FormSection Title="@(new string($"{Loc["CollectionName"]}"))" HelpText="">
-        <InputText @bind-Value="_createFCRequest.Name"
-                   class="form-control bg-main txt-green-dim jap-font no-border"
-                   id="collectionName" placeholder="@(new string($"{Loc["CollectionName"]}"))"/>
-        <ValidationMessage For="@(() => _createFCRequest.Name)"/>
+  <FormSection Title="@(new string($"{Loc["CollectionName"]}"))" HelpText="">
+    <InputText @bind-Value="_createFCRequest.Name"
+               class="form-control bg-main txt-green-dim jap-font no-border"
+               id="collectionName" placeholder="@(new string($"{Loc["CollectionName"]}"))"/>
+    <ValidationMessage For="@(() => _createFCRequest.Name)"/>
 
-    </FormSection>
+  </FormSection>
 
-    <FormSection Title="@(new string($"{Loc["Flashcards"]}"))" HelpText="">
-        @foreach (Flashcard flashcard in _createFCRequest.Flashcards)
-        {
-            <div class="col mb-3">
-                <div class="form-group">
-                    <InputText @bind-Value="@flashcard.Main"
-                               class="form-control bg-secondary txt-white no-border"
-                               id="frontMain" placeholder="Main"/>
-                </div>
-            </div>
-
-            <div class="col mb-3">
-                <div class="form-group">
-                    <InputText @bind-Value="@flashcard.Sub"
-                               class="form-control bg-secondary txt-white no-border"
-                               id="frontSub" placeholder="Sub"/>
-                </div>
-            </div>
-
-            <div class="col mb-3">
-                <div class="form-group">
-                    <InputText @bind-Value="@flashcard.Back"
-                               class="form-control bg-secondary txt-white no-border"
-                               id="back" placeholder="Back"/>
-                </div>
-            </div>
-        }
-        <div class="d-inline-flex gap-1">
-            <button class="btn btn-outline-primary mx-1" type="button"
-                    @onclick="@(() => _createFCRequest.Flashcards.Add(new Flashcard()))">
-                @Loc["Add"]
-            </button>
-            <button class="btn btn-outline-warning mx-1" type="button"
-                    @onclick="@(() => _createFCRequest.Flashcards.RemoveLast())">
-                @Loc["RemoveLast"]
-            </button>
-        </div>
-        <ValidationMessage For="@(() => _createFCRequest.Flashcards)"/>
-
-    </FormSection>
-
-    @if (_submitSuccessful)
+  <FormSection Title="@(new string($"{Loc["Flashcards"]}"))" HelpText="">
+    @foreach (Flashcard flashcard in _createFCRequest.Flashcards)
     {
-        <SuccessAlertAlt Message="Collection created successfully!"/>
-    }
-    else if (_errorMessage is not null)
-    {
-        <ErrorAlertAlt Message="@_errorMessage"/>
-    }
-
-    <div class="mt-4 mb-5">
-        <div class="row">
-            <div class="offset-4 col-8 text-right">
-                <button class="btn btn-outline-secondary" type="button"
-                        @onclick="@(() => _createFCRequest = new CreateFlashcardCollectionRequest())">
-                    @Loc["Reset"]
-                </button>
-                <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">@Loc["Create"]</button>
-            </div>
+      <div class="col mb-3">
+        <div class="form-group">
+          <InputText @bind-Value="@flashcard.Main"
+                     class="form-control bg-secondary txt-white no-border"
+                     id="frontMain" placeholder="Main"/>
         </div>
+      </div>
+
+      <div class="col mb-3">
+        <div class="form-group">
+          <InputText @bind-Value="@flashcard.Sub"
+                     class="form-control bg-secondary txt-white no-border"
+                     id="frontSub" placeholder="Sub"/>
+        </div>
+      </div>
+
+      <div class="col mb-3">
+        <div class="form-group">
+          <InputText @bind-Value="@flashcard.Back"
+                     class="form-control bg-secondary txt-white no-border"
+                     id="back" placeholder="Back"/>
+        </div>
+      </div>
+    }
+    <div class="d-inline-flex gap-1">
+      <button class="btn btn-outline-primary mx-1" type="button"
+              @onclick="@(() => _createFCRequest.Flashcards.Add(new Flashcard()))">
+        @Loc["Add"]
+      </button>
+      <button class="btn btn-outline-warning mx-1" type="button"
+              @onclick="@(() => _createFCRequest.Flashcards.RemoveLast())">
+        @Loc["RemoveLast"]
+      </button>
     </div>
+    <ValidationMessage For="@(() => _createFCRequest.Flashcards)"/>
+
+  </FormSection>
+
+  @if (_submitSuccessful)
+  {
+    <SuccessAlertAlt Message="Collection created successfully!"/>
+  }
+  else if (_errorMessage is not null)
+  {
+    <ErrorAlertAlt Message="@_errorMessage"/>
+  }
+
+  <div class="mt-4 mb-5">
+    <div class="row">
+      <div class="offset-4 col-8 text-right">
+        <button class="btn btn-outline-secondary" type="button"
+                @onclick="@(() => _createFCRequest = new CreateFlashcardCollectionRequest())">
+          @Loc["Reset"]
+        </button>
+        <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">@Loc["Create"]</button>
+      </div>
+    </div>
+  </div>
 </EditForm>
 
 @code {
 
-    [Inject] public required IFlashcardApiService FlashcardService { get; set; }
+  [Inject] public required IFlashcardApiService FlashcardService { get; set; }
 
-    private CreateFlashcardCollectionRequest _createFCRequest = new();
-    private string? _errorMessage;
-    private bool _submitSuccessful;
+  private CreateFlashcardCollectionRequest _createFCRequest = new();
+  private string? _errorMessage;
+  private bool _submitSuccessful;
 
-    private async Task HandleSubmit()
+  private async Task HandleSubmit()
+  {
+    try
     {
-        try
-        {
-            await FlashcardService.CreateFlashcardCollectionAsync(_createFCRequest);
-            _submitSuccessful = true;
-        }
-        catch (HttpRequestException e)
-        {
-            _errorMessage = e.Message;
-        }
+      await FlashcardService.CreateFlashcardCollectionAsync(_createFCRequest);
+      _submitSuccessful = true;
     }
-
-    private void HandeInvalidSubmit()
+    catch (HttpRequestException e)
     {
-        _submitSuccessful = false;
+      _errorMessage = e.Message;
     }
+  }
+
+  private void HandeInvalidSubmit()
+  {
+    _submitSuccessful = false;
+  }
 
 }

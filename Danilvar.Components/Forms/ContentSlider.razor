@@ -40,64 +40,64 @@
 *@
 
 <div class="row">
-    @if (_currentContent > 0)
-    {
-        <div class="col d-grid gap-2">
-            <button class="btn btn-lg btn-dark fs-3"
-                    @onclick="PrevContent">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-        </div>
-    }
-    <div id="flashcard" class="col-8">
-        <div class="pointer-cursor" @onclick="NextContent">
-            @ContentDictionary[_currentContent]
-        </div>
+  @if (_currentContent > 0)
+  {
+    <div class="col d-grid gap-2">
+      <button class="btn btn-lg btn-dark fs-3"
+              @onclick="PrevContent">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
     </div>
-    @if (_currentContent < ContentDictionary.Count)
-    {
-        <div class="col d-grid gap-2">
-            <button class="btn btn-lg btn-dark fs-3"
-                    @onclick="NextContent">
-                <span class="carousel-control-next-icon txt-dark" aria-hidden="true"></span>
-            </button>
-        </div>
-    }
+  }
+  <div id="flashcard" class="col-8">
+    <div class="pointer-cursor" @onclick="NextContent">
+      @ContentDictionary[_currentContent]
+    </div>
+  </div>
+  @if (_currentContent < ContentDictionary.Count)
+  {
+    <div class="col d-grid gap-2">
+      <button class="btn btn-lg btn-dark fs-3"
+              @onclick="NextContent">
+        <span class="carousel-control-next-icon txt-dark" aria-hidden="true"></span>
+      </button>
+    </div>
+  }
 </div>
 
 
 @code {
 
-    [Parameter, EditorRequired] public required Dictionary<int, RenderFragment> ContentDictionary { get; set; }
+  [Parameter] [EditorRequired] public required Dictionary<int, RenderFragment> ContentDictionary { get; set; }
 
-    [Parameter] public string? ButtonStyle { get; set; }
+  [Parameter] public string? ButtonStyle { get; set; }
 
-    [Parameter] public string NextBtnText { get; set; } = "Next";
+  [Parameter] public string NextBtnText { get; set; } = "Next";
 
-    [Parameter] public string PrevBtnText { get; set; } = "Prev";
+  [Parameter] public string PrevBtnText { get; set; } = "Prev";
 
-    [Parameter] public Action? OnContentEnd { get; set; }
+  [Parameter] public Action? OnContentEnd { get; set; }
 
-    [Parameter] public string ContentContainerStyles { get; set; } = "mb-4";
+  [Parameter] public string ContentContainerStyles { get; set; } = "mb-4";
 
-    private int _currentContent;
+  private int _currentContent;
 
-    private void NextContent()
+  private void NextContent()
+  {
+    _currentContent++;
+
+    if (_currentContent >= ContentDictionary.Count)
     {
-        _currentContent++;
-
-        if (_currentContent >= ContentDictionary.Count)
-        {
-            _currentContent = 0;
-            OnContentEnd?.Invoke();
-        }
+      _currentContent = 0;
+      OnContentEnd?.Invoke();
     }
+  }
 
-    private void PrevContent()
-    {
-        _currentContent--;
-        if (_currentContent <= 0)
-            _currentContent = 0;
-    }
+  private void PrevContent()
+  {
+    _currentContent--;
+    if (_currentContent <= 0)
+      _currentContent = 0;
+  }
 
 }

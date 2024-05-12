@@ -5,9 +5,8 @@ using MediatR;
 
 namespace DanilvarKanji.Application.Flashcards.Queries;
 
-public record ListFlashcardCollectionsQuery(
-    PaginationParams? PaginationParams,
-    AppUser AppUser
-) : IRequest<IEnumerable<FlashcardCollection>>;
+public record ListFlashcardCollectionsQuery(PaginationParams? PaginationParams, AppUser AppUser)
+  : IRequest<IEnumerable<FlashcardCollection>>;
 
-public record GetFlashcardCollectionQuery(string Id, AppUser AppUser) : IRequest<FlashcardCollection?>;
+public record GetFlashcardCollectionQuery(string Id, AppUser AppUser)
+  : IRequest<FlashcardCollection?>;

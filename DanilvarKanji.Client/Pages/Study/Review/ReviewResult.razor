@@ -6,6 +6,7 @@
 @using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Shared.Responses.Exercise
 
 @inherits NeedsCultureComponent
 
@@ -33,9 +34,9 @@
             }
 
 
-            @for (int i = 0; i < _reviewSession?.Exercises.Count; i++)
+            @for (var i = 0; i < _reviewSession?.Exercises.Count; i++)
             {
-                var exer = _reviewSession.Exercises[i];
+                ExerciseResponseBase exer = _reviewSession.Exercises[i];
                 <p class="fs-4 @(exer.IsCorrect ? "txt-green" : "text-danger")">
                     @(i + 1). @exer.FromExerciseTypeToText() - @(exer.IsCorrect ? "Correct" : "Wrong")
                 </p>
@@ -57,10 +58,10 @@
 
 @code {
 
-    [Parameter, EditorRequired]
+    [Parameter][EditorRequired]
     public required string ReviewSessionId { get; set; }
 
-    [Parameter, EditorRequired]
+    [Parameter][EditorRequired]
     public required string CharacterId { get; set; }
 
     [Inject]
@@ -78,8 +79,10 @@
         _character = await CharacterService.GetCharacterAsync(CharacterId);
     }
 
-    private bool ReviewIsSuccess() =>
-        _reviewSession!.Exercises
+    private bool ReviewIsSuccess()
+    {
+        return _reviewSession!.Exercises
             .TrueForAll(x => x.IsCorrect);
+    }
 
 }

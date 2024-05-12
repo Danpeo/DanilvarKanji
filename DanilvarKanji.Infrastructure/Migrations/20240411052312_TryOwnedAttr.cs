@@ -4,26 +4,25 @@
 
 namespace DanilvarKanji.Infrastructure.Migrations
 {
+  /// <inheritdoc />
+  public partial class TryOwnedAttr : Migration
+  {
     /// <inheritdoc />
-    public partial class TryOwnedAttr : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<int>(
-                name: "InTest_B",
-                table: "Tests",
-                type: "integer",
-                nullable: false,
-                defaultValue: 0);
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "InTest_B",
-                table: "Tests");
-        }
+      migrationBuilder.AddColumn<int>(
+        name: "InTest_B",
+        table: "Tests",
+        type: "integer",
+        nullable: false,
+        defaultValue: 0
+      );
     }
+
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+      migrationBuilder.DropColumn(name: "InTest_B", table: "Tests");
+    }
+  }
 }

@@ -6,28 +6,33 @@ using Microsoft.Extensions.Logging;
 
 namespace DanilvarKanji.Application.Flashcards.Handlers;
 
-public class GetFlashcardCollectionHandler : IRequestHandler<GetFlashcardCollectionQuery, FlashcardCollection?>
+public class GetFlashcardCollectionHandler
+  : IRequestHandler<GetFlashcardCollectionQuery, FlashcardCollection?>
 {
-    private readonly IFlashcardRepository _flashcardRepository;
-    private readonly ILogger<GetFlashcardCollectionHandler> _logger;
+  private readonly IFlashcardRepository _flashcardRepository;
+  private readonly ILogger<GetFlashcardCollectionHandler> _logger;
 
-    public GetFlashcardCollectionHandler(IFlashcardRepository flashcardRepository,
-        ILogger<GetFlashcardCollectionHandler> logger)
+  public GetFlashcardCollectionHandler(
+    IFlashcardRepository flashcardRepository,
+    ILogger<GetFlashcardCollectionHandler> logger
+  )
+  {
+    _flashcardRepository = flashcardRepository;
+    _logger = logger;
+  }
+
+  public async Task<FlashcardCollection?> Handle(
+    GetFlashcardCollectionQuery request,
+    CancellationToken cancellationToken
+  )
+  {
+    if (await _flashcardRepository.ExistAsync(request.Id, request.AppUser))
     {
-        _flashcardRepository = flashcardRepository;
-        _logger = logger;
+      FlashcardCollection? collection = await _flashcardRepository.GetCollectionAsync(request.Id, request.AppUser);
+      _logger.LogInformation("Get Flashcard Collection: {@collection}", collection);
+      return collection;
     }
 
-    public async Task<FlashcardCollection?> Handle(GetFlashcardCollectionQuery request,
-        CancellationToken cancellationToken)
-    {
-        if (await _flashcardRepository.ExistAsync(request.Id, request.AppUser))
-        {
-            var collection = await _flashcardRepository.GetCollectionAsync(request.Id, request.AppUser);
-            _logger.LogInformation("Get Flashcard Collection: {@collection}", collection);
-            return collection;
-        }
-
-        return default;
-    }
+    return default;
+  }
 }

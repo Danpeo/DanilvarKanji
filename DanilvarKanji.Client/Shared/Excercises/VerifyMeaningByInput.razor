@@ -1,39 +1,38 @@
 @using DanilvarKanji.Shared.Responses.Character
-
 <BaseExercise OnForgot="OnForgot.Invoke">
 
-    <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
+  <WhatIsMeaningOf CharacterForVerification="CharacterForVerification"/>
 
-    <VerifyValueByInput
-        CharacterForVerification="CharacterForVerification"
-        VerifyCondition="VerifyCondition"
-        OnIncorrect="OnIncorrect"
-        OnCorrect="OnCorrect"
-        InputPlaceholder="Meaning of the character"
-        OnConfirm="OnConfirm"/>
+  <VerifyValueByInput
+    CharacterForVerification="CharacterForVerification"
+    VerifyCondition="VerifyCondition"
+    OnIncorrect="OnIncorrect"
+    OnCorrect="OnCorrect"
+    InputPlaceholder="Meaning of the character"
+    OnConfirm="OnConfirm"/>
 </BaseExercise>
 
 
 @code {
 
-    [Parameter, EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
+  [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
 
-    [Parameter, EditorRequired] public Action? OnConfirm { get; set; }
+  [Parameter] [EditorRequired] public Action? OnConfirm { get; set; }
 
-    [Parameter, EditorRequired] public Func<Task>? OnCorrect { get; set; }
+  [Parameter] [EditorRequired] public Func<Task>? OnCorrect { get; set; }
 
-    [Parameter, EditorRequired] public Func<Task>? OnIncorrect { get; set; }
+  [Parameter] [EditorRequired] public Func<Task>? OnIncorrect { get; set; }
 
-    [Parameter, EditorRequired] public required Func<Task> OnForgot { get; set; }
+  [Parameter] [EditorRequired] public required Func<Task> OnForgot { get; set; }
 
-    private bool VerifyCondition(CharacterResponseResponseFull character, string enteredValue)
-    {
-        return character.KanjiMeanings != null
-               && character
-                   .KanjiMeanings
-                   .Any(
-                       k => k.Definitions != null
-                            && k.Definitions.Any(d => d.Value == enteredValue));
-    }
+  private bool VerifyCondition(CharacterResponseResponseFull character, string enteredValue)
+  {
+    return character.KanjiMeanings != null
+           && character
+             .KanjiMeanings
+             .Any(
+               k => k.Definitions != null
+                    && k.Definitions.Any(d => d.Value == enteredValue));
+  }
 
 }

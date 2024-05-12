@@ -5,17 +5,17 @@ namespace DanilvarKanji.Domain.Entities;
 
 public class EmailCode : Entity
 {
-    [MaxLength(100)] public string Email { get; } = string.Empty;
+  public EmailCode()
+  {
+  }
 
-    [MaxLength(15)] public string? GeneratedCode { get; } = string.Empty;
+  public EmailCode(string email, string? generatedCode)
+  {
+    Email = email;
+    GeneratedCode = generatedCode;
+  }
 
-    public EmailCode()
-    {
-    }
+  [MaxLength(100)] public string Email { get; } = string.Empty;
 
-    public EmailCode(string email, string? generatedCode)
-    {
-        Email = email;
-        GeneratedCode = generatedCode;
-    }
+  [MaxLength(15)] public string? GeneratedCode { get; } = string.Empty;
 }

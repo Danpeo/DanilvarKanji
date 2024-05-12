@@ -4,25 +4,19 @@
 
 namespace DanilvarKanji.Migrations
 {
+  /// <inheritdoc />
+  public partial class ModifyCharacter : Migration
+  {
     /// <inheritdoc />
-    public partial class ModifyCharacter : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.RenameColumn(
-                name: "Mnemonic",
-                table: "Characters",
-                newName: "Definition");
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.RenameColumn(
-                name: "Definition",
-                table: "Characters",
-                newName: "Mnemonic");
-        }
+      migrationBuilder.RenameColumn(name: "Mnemonic", table: "Characters", newName: "Definition");
     }
+
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+      migrationBuilder.RenameColumn(name: "Definition", table: "Characters", newName: "Mnemonic");
+    }
+  }
 }

@@ -4,19 +4,20 @@ namespace DanilvarKanji.Domain.Shared.Entities;
 
 public class ReviewSession : Entity
 {
-    public ICollection<Exercise> Exercises { get; set; }
+  public ReviewSession()
+  {
+  }
 
-    public AppUser AppUser { get; set; }
+  public ReviewSession(ICollection<Exercise> exercises, AppUser appUser)
+    : this()
+  {
+    Exercises = exercises;
+    AppUser = appUser;
+  }
 
-    public DateTime ReviewDataTime { get; set; } = DateTime.UtcNow;
+  public ICollection<Exercise> Exercises { get; set; }
 
-    public ReviewSession()
-    {
-    }
-    
-    public ReviewSession(ICollection<Exercise> exercises, AppUser appUser) : this()
-    {
-        Exercises = exercises;
-        AppUser = appUser;
-    }
+  public AppUser AppUser { get; set; }
+
+  public DateTime ReviewDataTime { get; set; } = DateTime.UtcNow;
 }

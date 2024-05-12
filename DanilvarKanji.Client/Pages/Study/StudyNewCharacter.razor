@@ -6,6 +6,7 @@
 @using Blazored.Modal.Services
 @using DanilvarKanji.Client.State
 @using DanilvarKanji.Domain.Shared.Enumerations
+@using DanilvarKanji.Shared.Responses.CharacterLearning
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -33,7 +34,7 @@
     [CascadingParameter]
     public required IModalService ModalService { get; set; }
 
-    [Parameter, EditorRequired]
+    [Parameter][EditorRequired]
     public required string CharacterId { get; set; }
 
     [Inject] public required AppState AppState { get; set; }
@@ -76,7 +77,7 @@
         if (_character != null)
         {
             _characterLearningRequest = new CreateCharacterLearningRequest(_character.Id, LearningState.Learning);
-            var characterLearning = await CharacterLearningApiService.CreateCharacterLearningAsync(_characterLearningRequest);
+            CharacterLearningResponseFull? characterLearning = await CharacterLearningApiService.CreateCharacterLearningAsync(_characterLearningRequest);
 
             var options = new ModalOptions
             {
@@ -84,7 +85,7 @@
                 Class = "custom-modal"
             };
 
-            var parameters = new ModalParameters()
+            ModalParameters parameters = new ModalParameters()
                 .Add(nameof(ConfirmCancelModal.Message), Loc["StudyIsComplete"].ToString())
                 .Add(nameof(ConfirmCancelModal.OnConfirm), () => 
                 { NavigationManager.NavigateTo($"/review/{characterLearning?.Id}"); });
@@ -95,7 +96,7 @@
 
     private void InitializeKanjiContent()
     {
-        _contentDictionary = new Dictionary<int, RenderFragment>()
+        _contentDictionary = new Dictionary<int, RenderFragment>
         {
             {
                 0, @<div class="dvar-slide">
@@ -122,7 +123,7 @@
 
     private void InitializeRadicalContent()
     {
-        _contentDictionary = new Dictionary<int, RenderFragment>()
+        _contentDictionary = new Dictionary<int, RenderFragment>
         {
             {
                 0, @<div class="fade-in-el">

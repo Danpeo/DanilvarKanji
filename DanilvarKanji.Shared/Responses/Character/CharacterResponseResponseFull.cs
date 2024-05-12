@@ -5,17 +5,17 @@ namespace DanilvarKanji.Shared.Responses.Character;
 
 public class CharacterResponseResponseFull : CharacterResponseBase
 {
-    //public ICollection<StringDefinition>? Definitions { get; set; } = new List<StringDefinition>();
-    public ICollection<StringDefinition>? Mnemonics { get; set; } = new List<StringDefinition>();
+  public CharacterResponseResponseFull()
+  {
+    Id = Guid.NewGuid().ToString("N");
+  }
 
-    public ICollection<KanjiMeaning>? KanjiMeanings { get; set; } = new List<KanjiMeaning>();
-    public ICollection<Kunyomi>? Kunyomis { get; set; } = new List<Kunyomi>();
-    public ICollection<Onyomi>? Onyomis { get; set; } = new List<Onyomi>();
+  //public ICollection<StringDefinition>? Definitions { get; set; } = new List<StringDefinition>();
+  public ICollection<StringDefinition>? Mnemonics { get; set; } = new List<StringDefinition>();
 
-    public List<string>? ChildCharacterIds { get; set; }
+  public ICollection<KanjiMeaning>? KanjiMeanings { get; set; } = new List<KanjiMeaning>();
+  public ICollection<Kunyomi>? Kunyomis { get; set; } = new List<Kunyomi>();
+  public ICollection<Onyomi>? Onyomis { get; set; } = new List<Onyomi>();
 
-    public CharacterResponseResponseFull()
-    {
-        Id = Guid.NewGuid().ToString("N");
-    }
+  public List<string>? ChildCharacterIds { get; set; }
 }

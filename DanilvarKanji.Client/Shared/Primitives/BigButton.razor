@@ -1,18 +1,17 @@
 <button @onclick="OnClickHandler"
         class="btn btn-elg btn-primary">
-    @Text
+  @Text
 </button>
 
 @code {
-    [Parameter, EditorRequired]
-    public required string Text { get; set; }
-    
-  
-    [Parameter, EditorRequired]
-    public EventCallback OnClick { get; set; }
+  [Parameter] [EditorRequired] public required string Text { get; set; }
 
-    private async Task OnClickHandler()
-    {
-        await OnClick.InvokeAsync();
-    }
+
+  [Parameter] [EditorRequired] public EventCallback OnClick { get; set; }
+
+  private async Task OnClickHandler()
+  {
+    await OnClick.InvokeAsync();
+  }
+
 }

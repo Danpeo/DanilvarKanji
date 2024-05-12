@@ -4,26 +4,25 @@
 
 namespace DanilvarKanji.Infrastructure.Migrations
 {
+  /// <inheritdoc />
+  public partial class AddLearnCharQtyForDayAppUser : Migration
+  {
     /// <inheritdoc />
-    public partial class AddLearnCharQtyForDayAppUser : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<int>(
-                name: "QtyOfCharsForLearningForDay",
-                table: "AspNetUsers",
-                type: "integer",
-                nullable: false,
-                defaultValue: 0);
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "QtyOfCharsForLearningForDay",
-                table: "AspNetUsers");
-        }
+      migrationBuilder.AddColumn<int>(
+        name: "QtyOfCharsForLearningForDay",
+        table: "AspNetUsers",
+        type: "integer",
+        nullable: false,
+        defaultValue: 0
+      );
     }
+
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+      migrationBuilder.DropColumn(name: "QtyOfCharsForLearningForDay", table: "AspNetUsers");
+    }
+  }
 }

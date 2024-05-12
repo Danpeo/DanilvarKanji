@@ -22,3 +22,4 @@ public class ListChildCharactersHandler : IRequestHandler<ListChildCharactersQue
         return await _characterRepository.ListChildCharacters(request.CharacterId);
     }
 }*/
+

@@ -1,45 +1,44 @@
 @using DanilvarKanji.Client.Localization
-@using DanilvarKanji.Client.Localization.LocaleKeys
 @inject NavigationManager Navigation
 @inject ILocalStorageService LocalStorage
 @inject IStringLocalizer<App> Loc
 
 <select class="form-select bg-secondary-2 txt-green-dim" @onchange="NewCultureSelectedAsync">
 
-    @foreach (var culture in LocalizerSettings.SupportedCulturesWithName)
+  @foreach (CultureWithName culture in LocalizerSettings.SupportedCulturesWithName)
+  {
+    @if (_selectedCulture != null && culture == _selectedCulture)
     {
-        @if (_selectedCulture != null && culture == _selectedCulture)
-        {
-            <option selected value="@culture.Culture">@culture.Name</option>
-        }
-        else
-        {
-            <option value="@culture.Culture">@culture.Name</option>
-        }
+      <option selected value="@culture.Culture">@culture.Name</option>
     }
+    else
+    {
+      <option value="@culture.Culture">@culture.Name</option>
+    }
+  }
 </select>
 
 
 @code
 {
-    private CultureWithName? _selectedCulture;
+  private CultureWithName? _selectedCulture;
 
-    protected override async Task OnInitializedAsync()
-    {
-        string? culture = await LocalStorage.GetItemAsync<string>("culture");
-        if (culture == "")
-            _selectedCulture = LocalizerSettings.NeutralCulture;
-        else
-            _selectedCulture = (LocalizerSettings.SupportedCulturesWithName
-                    .Where(x => x.Culture == culture))
-                .FirstOrDefault();
-    }
+  protected override async Task OnInitializedAsync()
+  {
+    var culture = await LocalStorage.GetItemAsync<string>("culture");
+    if (culture == "")
+      _selectedCulture = LocalizerSettings.NeutralCulture;
+    else
+      _selectedCulture = LocalizerSettings.SupportedCulturesWithName
+        .Where(x => x.Culture == culture)
+        .FirstOrDefault();
+  }
 
-    private async Task NewCultureSelectedAsync(ChangeEventArgs args)
-    {
-        string cultureString = args.Value.ToString();
-        await LocalStorage.SetItemAsync<string>("culture", cultureString);
-        Navigation.NavigateTo(Navigation.Uri, true);
-    }
+  private async Task NewCultureSelectedAsync(ChangeEventArgs args)
+  {
+    var cultureString = args.Value.ToString();
+    await LocalStorage.SetItemAsync<string>("culture", cultureString);
+    Navigation.NavigateTo(Navigation.Uri, true);
+  }
 
 }

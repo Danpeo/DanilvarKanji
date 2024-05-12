@@ -1,40 +1,39 @@
-@using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Domain.Shared.Enumerations
-
+@using DanilvarKanji.Shared.Responses.Character
 @if (Character.Mnemonics is not null)
 {
-    <CardWrapper Title="Mnemonics">
-        <ul style="list-style-type: none;">
-            @foreach (string mnemonic in _characterMnemonics)
-            {
-                <li>
-                    <p class="main-font txt-mid-pink fs-2">
-                        @{
-                            string resultMeaning = $"{char.ToUpper(mnemonic[0])}{mnemonic[1..]}";
-                        }
-                        @resultMeaning
-                    </p>
-                </li>
+  <CardWrapper Title="Mnemonics">
+    <ul style="list-style-type: none;">
+      @foreach (var mnemonic in _characterMnemonics)
+      {
+        <li>
+          <p class="main-font txt-mid-pink fs-2">
+            @{
+              var resultMeaning = $"{char.ToUpper(mnemonic[0])}{mnemonic[1..]}";
             }
-        </ul>
-    </CardWrapper>
+            @resultMeaning
+          </p>
+        </li>
+      }
+    </ul>
+  </CardWrapper>
 }
 
 @code {
 
-    [Parameter, EditorRequired] public required CharacterResponseResponseFull Character { get; set; }
+  [Parameter] [EditorRequired] public required CharacterResponseResponseFull Character { get; set; }
 
-    [Parameter, EditorRequired] public Culture Culture { get; set; }
+  [Parameter] [EditorRequired] public Culture Culture { get; set; }
 
-    private List<string> _characterMnemonics = new();
+  private List<string> _characterMnemonics = new();
 
-    protected override void OnInitialized()
-    {
-        if (Character.Mnemonics != null)
-            _characterMnemonics = Character.Mnemonics
-                .Where(x => x.Culture == Culture)
-                .Select(x => x.Value)
-                .ToList();
-    }
+  protected override void OnInitialized()
+  {
+    if (Character.Mnemonics != null)
+      _characterMnemonics = Character.Mnemonics
+        .Where(x => x.Culture == Culture)
+        .Select(x => x.Value)
+        .ToList();
+  }
 
 }

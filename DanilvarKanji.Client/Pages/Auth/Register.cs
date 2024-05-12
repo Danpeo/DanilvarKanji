@@ -11,69 +11,60 @@ namespace DanilvarKanji.Client.Pages.Auth;
 
 public partial class Register
 {
-    [Inject] public IAuthService AuthService { get; set; } = default!;
+  private const string PasswordElId = "password";
+  private const string UsernameElid = "userName";
+  private const string EmailElId = "email";
+  private string? _errorMessage;
 
-    [Inject] public required Js Js { get; set; }
+  private RegisterUserRequest _registerUserRequest = new();
+  private bool _submitSuccessful;
 
-    private const string PasswordElId = "password";
-    private const string UsernameElid = "userName";
-    private const string EmailElId = "email";
+  [Inject] public IAuthService AuthService { get; set; } = default!;
 
-    private RegisterUserRequest _registerUserRequest = new();
-    private bool _submitSuccessful;
-    private string? _errorMessage;
+  [Inject] public required Js Js { get; set; }
 
-    private async Task HandleSubmitAsync()
+  private async Task HandleSubmitAsync()
+  {
+    try
     {
-        try
-        {
-            RegisterUserRequest? request = await AuthService.RegisterUserAsync(_registerUserRequest);
-            if (request is not null)
-            {
-                _submitSuccessful = true;
-            }
-        }
-        catch (HttpRequestException e)
-        {
-            _errorMessage = e.Message;
-        }
+      RegisterUserRequest? request = await AuthService.RegisterUserAsync(_registerUserRequest);
+      if (request is not null) _submitSuccessful = true;
     }
-
-    private void HandleInvalidSubmit()
+    catch (HttpRequestException e)
     {
-        _submitSuccessful = false;
-        /*
-        _errorMessage = "There was a problem";
-    */
+      _errorMessage = e.Message;
     }
+  }
 
-    private async Task GenerateCredentials()
-    {
-        var passwordOptions = new PasswordOptions
-        (
-            length: 8,
-            lowercase: true,
-            uppercase: true,
-            nonAlpha: true
-        );
+  private void HandleInvalidSubmit()
+  {
+    _submitSuccessful = false;
+    /*
+    _errorMessage = "There was a problem";
+*/
+  }
 
-        var userNameOptions = new UsernameOptions
-        (
-            prefix: "naruto",
-            postfixLength: 6
-        );
+  private async Task GenerateCredentials()
+  {
+    var passwordOptions = new PasswordOptions(
+      8,
+      true,
+      true,
+      true
+    );
 
-        var emailOptions = new EmailOptions
-        (
-            prefix: "naruto",
-            domains: new[] { "mail.ru", "gmail.com" },
-            randomCharLength: 4
-        );
+    var userNameOptions = new UsernameOptions("naruto", 6);
 
-        await Js.Dom.ChangeElementValueAsync(PasswordElId, RandGen.Password(passwordOptions));
-        _registerUserRequest.PasswordRepeat = _registerUserRequest.Password;
-        await Js.Dom.ChangeElementValueAsync(UsernameElid, RandGen.Username(userNameOptions));
-        await Js.Dom.ChangeElementValueAsync(EmailElId, RandGen.EmailDefault(emailOptions));
-        _registerUserRequest.JlptLevel = (JlptLevel)RandomNumberGenerator.GetInt32(4);
-    }
+    var emailOptions = new EmailOptions(
+      "naruto",
+      new[] { "mail.ru", "gmail.com" },
+      4
+    );
+
+    await Js.Dom.ChangeElementValueAsync(PasswordElId, RandGen.Password(passwordOptions));
+    _registerUserRequest.PasswordRepeat = _registerUserRequest.Password;
+    await Js.Dom.ChangeElementValueAsync(UsernameElid, RandGen.Username(userNameOptions));
+    await Js.Dom.ChangeElementValueAsync(EmailElId, RandGen.EmailDefault(emailOptions));
+    _registerUserRequest.JlptLevel = (JlptLevel)RandomNumberGenerator.GetInt32(4);
+  }
 }

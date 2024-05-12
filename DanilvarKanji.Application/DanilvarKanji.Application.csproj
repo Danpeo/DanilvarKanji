@@ -7,28 +7,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-      <PackageReference Include="DVar.RandCreds" Version="1.1.1" />
-      <PackageReference Include="DVar.TextFromImage" Version="1.0.0" />
-      <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
-      <PackageReference Include="MediatR" Version="12.1.1" />
-      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
-      <PackageReference Include="Tesseract" Version="5.2.0" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1"/>
+        <PackageReference Include="DVar.RandCreds" Version="1.1.1"/>
+        <PackageReference Include="DVar.TextFromImage" Version="1.0.0"/>
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0"/>
+        <PackageReference Include="MediatR" Version="12.1.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14"/>
+        <PackageReference Include="Tesseract" Version="5.2.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Danilvar.MathUtils\Danilvar.MathUtils.fsproj" />
-      <ProjectReference Include="..\DanilvarKanji.Infrastructure\DanilvarKanji.Infrastructure.csproj" />
-<!--
-      <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
--->
+        <ProjectReference Include="..\Danilvar.MathUtils\Danilvar.MathUtils.fsproj"/>
+        <ProjectReference Include="..\DanilvarKanji.Infrastructure\DanilvarKanji.Infrastructure.csproj"/>
+        <!--
+              <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
+        -->
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Auth\Queries" />
-      <Folder Include="Exercises\Validators\" />
-      <Folder Include="Users\Events\" />
+        <Folder Include="Auth\Queries"/>
+        <Folder Include="Exercises\Validators\"/>
+        <Folder Include="Users\Events\"/>
     </ItemGroup>
 
 </Project>

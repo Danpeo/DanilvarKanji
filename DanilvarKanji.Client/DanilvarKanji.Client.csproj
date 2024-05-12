@@ -5,33 +5,33 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="Blazored.FluentValidation" Version="2.1.0" />
-        <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
-        <PackageReference Include="Blazored.Modal" Version="7.1.0" />
-        <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
-        <PackageReference Include="DVar.RandCreds" Version="1.1.0" />
-        <PackageReference Include="FluentValidation" Version="11.8.0" />
-        <PackageReference Include="KristofferStrube.Blazor.FileSystemAccess" Version="3.2.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.14" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
-        <PackageReference Include="WanaKana-net" Version="1.0.0" />
+        <PackageReference Include="Blazored.FluentValidation" Version="2.1.0"/>
+        <PackageReference Include="Blazored.LocalStorage" Version="4.4.0"/>
+        <PackageReference Include="Blazored.Modal" Version="7.1.0"/>
+        <PackageReference Include="Blazored.SessionStorage" Version="2.4.0"/>
+        <PackageReference Include="DVar.RandCreds" Version="1.1.0"/>
+        <PackageReference Include="FluentValidation" Version="11.8.0"/>
+        <PackageReference Include="KristofferStrube.Blazor.FileSystemAccess" Version="3.2.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.14"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13"/>
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0"/>
+        <PackageReference Include="WanaKana-net" Version="1.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Danilvar.Components\Danilvar.Components.csproj" />
-        <ProjectReference Include="..\Danilvar.MathUtils\Danilvar.MathUtils.fsproj" />
-        <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj" />
-        <ProjectReference Include="..\DVar.Extensions\DVar.Extensions.csproj" />
+        <ProjectReference Include="..\Danilvar.Components\Danilvar.Components.csproj"/>
+        <ProjectReference Include="..\Danilvar.MathUtils\Danilvar.MathUtils.fsproj"/>
+        <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj"/>
+        <ProjectReference Include="..\DVar.Extensions\DVar.Extensions.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -45,82 +45,82 @@
             <DependentUpon>DisplayCharacters.razor</DependentUpon>
         </Compile>
         <Compile Update="Resources\Pages\Index.en-US.Designer.cs">
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>Index.en-US.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Index.en-US.resx</DependentUpon>
         </Compile>
         <Compile Update="Resources\App.en-US.Designer.cs">
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>App.en-US.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>App.en-US.resx</DependentUpon>
         </Compile>
         <Compile Update="Resources\App.ru-RU.Designer.cs">
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>App.ru-Ru.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>App.ru-Ru.resx</DependentUpon>
         </Compile>
         <Compile Update="Resources\App.ru-RU.Designer.cs">
-          <DependentUpon>App.ru-RU.resx</DependentUpon>
+            <DependentUpon>App.ru-RU.resx</DependentUpon>
         </Compile>
         <Compile Update="Resources\Pages\Shared\NavMenu.en-US.Designer.cs">
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>NavMenu.en-US.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>NavMenu.en-US.resx</DependentUpon>
         </Compile>
         <Compile Update="Resources\Pages\Shared\NavMenu.ru-RU.Designer.cs">
-          <DesignTime>True</DesignTime>
-          <AutoGen>True</AutoGen>
-          <DependentUpon>NavMenu.ru-RU.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>NavMenu.ru-RU.resx</DependentUpon>
         </Compile>
         <Compile Update="Pages\Characters\Manage\AddCharacter.cs">
-          <DependentUpon>AddCharacter.razor</DependentUpon>
+            <DependentUpon>AddCharacter.razor</DependentUpon>
         </Compile>
         <Compile Update="Pages\Auth\Register.cs">
-          <DependentUpon>Register.razor</DependentUpon>
+            <DependentUpon>Register.razor</DependentUpon>
         </Compile>
     </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Update="Resources\Pages\Index.en-US.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>Index.en-US.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Index.en-US.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\Pages\Index.ru-RU.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>Index.ru-RU.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Index.ru-RU.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\App.en-US.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>App.en-US.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>App.en-US.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\App.ru-RU.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>App.ru-RU.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>App.ru-RU.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\Pages\Shared\NavMenu.en-US.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>NavMenu.en-US.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>NavMenu.en-US.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\Pages\Shared\NavMenu.ru-RU.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>NavMenu.ru-RU.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>NavMenu.ru-RU.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\Shared\NavMenu.en-US.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>NavMenu.en-US.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>NavMenu.en-US.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\Shared\NavMenu.ru-RU.resx">
-          <Generator>ResXFileCodeGenerator</Generator>
-          <LastGenOutput>NavMenu.ru-RU.Designer.cs</LastGenOutput>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>NavMenu.ru-RU.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models\Responses\JMdict\" />
+        <Folder Include="Models\Responses\JMdict\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Shared\Common\TimerComponent.razor" />
+        <_ContentIncludedByDefault Remove="Shared\Common\TimerComponent.razor"/>
     </ItemGroup>
 
 </Project>

@@ -6,10 +6,10 @@ namespace DanilvarKanji.Client.Validation.Validators;
 
 public class LearningSettings : ValidatorBase<Domain.Shared.Params.LearningSettings>
 {
-    public LearningSettings(IStringLocalizer<App> loc)
-    {
-        RuleFor(x => x.QtyOfCharsForLearningForDay)
-            .GreaterThan(0)
-            .WithMessage($"{loc["ValueTooSmall"]}0");
-    }
+  public LearningSettings(IStringLocalizer<App> loc)
+  {
+    RuleFor(x => x.QtyOfCharsForLearningForDay)
+      .GreaterThan(0)
+      .WithMessage($"{loc["ValueTooSmall"]}0");
+  }
 }

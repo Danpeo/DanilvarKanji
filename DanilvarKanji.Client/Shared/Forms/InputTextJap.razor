@@ -1,5 +1,3 @@
-@using WanaKanaNet
-
 @*
 <input @CssClass type="text" @onchange="SetJapaneseText" value="@_text" />
 *@
@@ -22,21 +20,23 @@
     }
 }*@
 
-<input type="text" @bind="inputText" @oninput="UpdateText" />
+<input type="text" @bind="inputText" @oninput="UpdateText"/>
 
 <p>@outputText</p>
 
 @code {
-    private string inputText = "";
-    private string outputText = "";
+  private string inputText = "";
+  private string outputText = "";
 
-    private void UpdateText(ChangeEventArgs e)
+  private void UpdateText(ChangeEventArgs e)
+  {
+    var newText = "";
+    foreach (var c in inputText)
     {
-        string newText = "";
-        foreach (char c in inputText)
-        {
-            newText += c + "2";
-        }
-        outputText = newText;
+      newText += c + "2";
     }
+
+    outputText = newText;
+  }
+
 }

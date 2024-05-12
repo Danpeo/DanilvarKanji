@@ -16,165 +16,177 @@ namespace DanilvarKanji.Controllers.Characters;
 
 public class CharacterController : ApiController
 {
-    private readonly IMapper _mapper;
-    private readonly UserManager<AppUser> _userManager;
-    
-    public CharacterController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager) :
-        base(mediator)
-    {
-        _mapper = mapper;
-        _userManager = userManager;
-    }
+  private readonly IMapper _mapper;
+  private readonly UserManager<AppUser> _userManager;
 
-    [Authorize (Roles = $"{UserRole.Admin},{UserRole.SuperAdmin}")]
-    [HttpPost]
-    [ProducesResponseType(typeof(Character), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status403Forbidden)]
-    public async Task<IActionResult> CreateAsync([FromBody] CharacterRequest? request)
-    {
-        var command = _mapper.Map<CreateCharacterCommand>(request);
+  public CharacterController(IMediator mediator, IMapper mapper, UserManager<AppUser> userManager)
+    : base(mediator)
+  {
+    _mapper = mapper;
+    _userManager = userManager;
+  }
 
-        var result = await Mediator.Send(command);
+  [Authorize(Roles = $"{UserRole.Admin},{UserRole.SuperAdmin}")]
+  [HttpPost]
+  [ProducesResponseType(typeof(Character), StatusCodes.Status201Created)]
+  [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+  [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status401Unauthorized)]
+  [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status403Forbidden)]
+  public async Task<IActionResult> CreateAsync([FromBody] CharacterRequest? request)
+  {
+    var command = _mapper.Map<CreateCharacterCommand>(request);
 
-        if (result.IsFailure)
-            return HandleFailure(result);
+    var result = await Mediator.Send(command);
 
-        return CreatedAtAction("Get", new { id = result.Value }, command);
-    }
+    if (result.IsFailure)
+      return HandleFailure(result);
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(string id, [FromBody] UpdateCharacterRequest request)
-    {
-        var command = _mapper.Map<UpdateCharacterCommand>(request) ;
-        command.Id = id;
-        var result = await Mediator.Send(command);
+    return CreatedAtAction("Get", new { id = result.Value }, command);
+  }
 
-        if (result.IsFailure)
-            return HandleFailure(result);
+  [HttpPut("{id}")]
+  public async Task<IActionResult> UpdateAsync(string id, [FromBody] UpdateCharacterRequest request)
+  {
+    var command = _mapper.Map<UpdateCharacterCommand>(request);
+    command.Id = id;
+    var result = await Mediator.Send(command);
 
-        return Ok(command);
-    }
+    if (result.IsFailure)
+      return HandleFailure(result);
 
-    [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Character>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
-    {
-        IEnumerable<Character> characters = await Mediator.Send(new ListCharactersQuery(paginationParams));
+    return Ok(command);
+  }
 
-        return characters.Any() ? Ok(characters) : NoContent();
-    }
+  [HttpGet]
+  [ProducesResponseType(typeof(IEnumerable<Character>), StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
+  {
+    var characters = await Mediator.Send(
+      new ListCharactersQuery(paginationParams)
+    );
 
-    [Authorize]
-    [HttpGet("LearnQueue")]
-    [ProducesResponseType(typeof(IEnumerable<CharacterResponseBase>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> ListLearnQueueAsync([FromQuery] PaginationParams paginationParams,
-        bool listOnlyDayDosage = false)
-    {
-        AppUser? user = await _userManager.GetUserAsync(User);
+    return characters.Any() ? Ok(characters) : NoContent();
+  }
 
-        if (user is null)
-            return Unauthorized();
+  [Authorize]
+  [HttpGet("LearnQueue")]
+  [ProducesResponseType(typeof(IEnumerable<CharacterResponseBase>), StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public async Task<IActionResult> ListLearnQueueAsync(
+    [FromQuery] PaginationParams paginationParams,
+    bool listOnlyDayDosage = false
+  )
+  {
+    AppUser? user = await _userManager.GetUserAsync(User);
 
-        IEnumerable<CharacterResponseBase> characters =
-            await Mediator.Send(new ListLearnQueueQuery(paginationParams, user.JlptLevel, user, listOnlyDayDosage));
+    if (user is null)
+      return Unauthorized();
 
-        return characters.Any() ? Ok(characters) : NoContent();
-    }
+    var characters = await Mediator.Send(
+      new ListLearnQueueQuery(paginationParams, user.JlptLevel, user, listOnlyDayDosage)
+    );
 
-    [Authorize]
-    [HttpGet("GetNextInLearnQueue")]
-    [ProducesResponseType(typeof(CharacterResponseBase), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetNextInLearnQueueAsync()
-    {
-        AppUser? user = await _userManager.GetUserAsync(User);
-        if (user is null)
-            return Unauthorized();
+    return characters.Any() ? Ok(characters) : NoContent();
+  }
 
-        CharacterResponseBase? character = await Mediator.Send(new GetNextInLearnQueueQuery(user));
+  [Authorize]
+  [HttpGet("GetNextInLearnQueue")]
+  [ProducesResponseType(typeof(CharacterResponseBase), StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status204NoContent)]
+  public async Task<IActionResult> GetNextInLearnQueueAsync()
+  {
+    AppUser? user = await _userManager.GetUserAsync(User);
+    if (user is null)
+      return Unauthorized();
 
-        if (character is not null)
-            return Ok(character);
+    CharacterResponseBase? character = await Mediator.Send(new GetNextInLearnQueueQuery(user));
 
-        return NoContent();
-    }
+    if (character is not null)
+      return Ok(character);
 
-    [HttpGet("{searchTerm}:Search")]
-    [ProducesResponseType(typeof(IEnumerable<Character>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> SearchAsync([FromQuery] PaginationParams paginationParams,
-        string searchTerm = "any")
-    {
-        IEnumerable<Character> characters =
-            await Mediator.Send(new SearchCharactersQuery(searchTerm, paginationParams));
+    return NoContent();
+  }
 
-        return characters.Any() ? Ok(characters) : NoContent();
-    }
+  [HttpGet("{searchTerm}:Search")]
+  [ProducesResponseType(typeof(IEnumerable<Character>), StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status204NoContent)]
+  public async Task<IActionResult> SearchAsync(
+    [FromQuery] PaginationParams paginationParams,
+    string searchTerm = "any"
+  )
+  {
+    var characters = await Mediator.Send(
+      new SearchCharactersQuery(searchTerm, paginationParams)
+    );
 
-    [HttpGet("{id}:Child")]
-    public async Task<IActionResult> ListChildCharacters(string id)
-    {
-        IEnumerable<Character> characters = await Mediator.Send(new ListChildCharactersQuery(id));
+    return characters.Any() ? Ok(characters) : NoContent();
+  }
 
-        return characters.Any() ? Ok(characters) : NoContent();
-    }
+  [HttpGet("{id}:Child")]
+  public async Task<IActionResult> ListChildCharacters(string id)
+  {
+    var characters = await Mediator.Send(new ListChildCharactersQuery(id));
 
-    [HttpGet("{id}")]
-    [ProducesResponseType(typeof(Character), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetAsync(string id)
-    {
-        Character? character = await Mediator.Send(new GetCharacterQuery(id));
+    return characters.Any() ? Ok(characters) : NoContent();
+  }
 
-        if (character is not null)
-            return Ok(character);
+  [HttpGet("{id}")]
+  [ProducesResponseType(typeof(Character), StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public async Task<IActionResult> GetAsync(string id)
+  {
+    Character? character = await Mediator.Send(new GetCharacterQuery(id));
 
-        return NotFound("Character with this ID was not found");
-    }
+    if (character is not null)
+      return Ok(character);
 
-    [HttpGet("{id}:KanjiMeanings")]
-    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(string id, Culture culture = Culture.EnUS,
-        int takeQty = int.MaxValue)
-    {
-        IEnumerable<string> kanjiMeanings =
-            await Mediator.Send(new GetKanjiMeaningsByPriorityQuery(id, culture, takeQty));
+    return NotFound("Character with this ID was not found");
+  }
 
-        return kanjiMeanings.Any() ? Ok(kanjiMeanings) : NotFound();
-    }
+  [HttpGet("{id}:KanjiMeanings")]
+  [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public async Task<IActionResult> GetKanjiMeaningsByPriorityAsync(
+    string id,
+    Culture culture = Culture.EnUS,
+    int takeQty = int.MaxValue
+  )
+  {
+    var kanjiMeanings = await Mediator.Send(
+      new GetKanjiMeaningsByPriorityQuery(id, culture, takeQty)
+    );
 
-    [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
-    [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteAsync(string id)
-    {
-        Result result = await Mediator.Send(new DeleteCharacterCommand(id));
+    return kanjiMeanings.Any() ? Ok(kanjiMeanings) : NotFound();
+  }
 
-        if (result.IsSuccess)
-            return Ok();
+  [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
+  [HttpDelete("{id}")]
+  [ProducesResponseType(StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status403Forbidden)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public async Task<IActionResult> DeleteAsync(string id)
+  {
+    Result result = await Mediator.Send(new DeleteCharacterCommand(id));
 
-        return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
-    }
+    if (result.IsSuccess)
+      return Ok();
 
-    [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [HttpDelete("All")]
-    public async Task<IActionResult> DeleteAllAsync()
-    {
-        Result result = await Mediator.Send(new DeleteAllCharactersCommand());
+    return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
+  }
 
-        if (result.IsSuccess)
-            return Ok();
+  [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
+  [ProducesResponseType(StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status403Forbidden)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  [HttpDelete("All")]
+  public async Task<IActionResult> DeleteAllAsync()
+  {
+    Result result = await Mediator.Send(new DeleteAllCharactersCommand());
 
-        return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
-    }
+    if (result.IsSuccess)
+      return Ok();
+
+    return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
+  }
 }

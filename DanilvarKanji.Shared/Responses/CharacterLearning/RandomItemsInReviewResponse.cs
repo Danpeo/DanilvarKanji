@@ -2,13 +2,13 @@ namespace DanilvarKanji.Shared.Responses.CharacterLearning;
 
 public class RandomItemsInReviewResponse
 {
-    public List<string> RandomItems { get; set; }
+  public RandomItemsInReviewResponse(List<string> randomItems, string correctMeaning)
+  {
+    RandomItems = randomItems;
+    CorrectMeaning = correctMeaning;
+  }
 
-    public string CorrectMeaning { get; set; }
+  public List<string> RandomItems { get; set; }
 
-    public RandomItemsInReviewResponse(List<string> randomItems, string correctMeaning)
-    {
-        RandomItems = randomItems;
-        CorrectMeaning = correctMeaning;
-    }
+  public string CorrectMeaning { get; set; }
 }
