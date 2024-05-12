@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DanilvarKanji.Domain.Shared.ValueObjects;
 
-public enum Role
+/*public enum Role
 {
     User,
     Admin,
@@ -34,4 +34,4 @@ public class UserRole : ValueObject
     {
         yield return Value;
     }
-}
+}*/

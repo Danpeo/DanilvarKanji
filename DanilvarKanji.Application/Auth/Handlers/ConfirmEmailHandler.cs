@@ -48,8 +48,7 @@ public class ConfirmEmailHandler : IRequestHandler<ConfirmEmailCommand, Identity
                 return IdentityResult.Failed(Identity.ConfirmationCodeIsNotValid);
             }
         }
-
-
+        
         IdentityResult result = await _userManager.UpdateAsync(user);
 
         return result;

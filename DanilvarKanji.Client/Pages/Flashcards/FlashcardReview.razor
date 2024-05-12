@@ -46,6 +46,9 @@
                             <h5 class="card-title text-center  display-4">
                                 @_flashcardsToReview[_currentFlashcard].Back
                             </h5>
+                            <p class="card-text  text-center fs-4">
+                                @_flashcardsToReview[_currentFlashcard].Main
+                            </p>
                         }
                         <p class="fs-5">
                             @(_currentFlashcard + 1)/@(_flashcardsToReview.Count)
@@ -97,11 +100,11 @@ else
     [Inject] public required AppState AppState { get; set; }
 
     [Inject] public required NavigationManager NavManager { get; set; }
-    
+
     [Inject] public required Js Js { get; set; }
-    
+
     [Inject] public required IStringLocalizer<App> Loc { get; set; }
-    
+
     private FlashcardCollectionResponse? _flashcardCollection;
     private List<Flashcard>? _flashcardsToReview;
     private int _currentFlashcard;
@@ -166,7 +169,7 @@ else
                     _forgot,
                     _rememberedPerfectly,
                     _remembered + _forgot + _rememberedPerfectly
-                    )
+                )
             );
 
             NavManager.NavigateTo("Flashcards/Collection/Review/Complete");

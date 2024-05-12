@@ -1,13 +1,11 @@
 function addClassToElement(elementId, cssClass) {
     let element = document.getElementById(elementId);
-
-    element.classList.add(cssClass);
+    if (element) element.classList.add(cssClass);
 }
 
 function removeClassFromElement(elementId, cssClass) {
     let element = document.getElementById(elementId);
-
-    element.classList.remove(cssClass);
+    if (element) element.classList.remove(cssClass);
 }
 
 function addClassToElementForTime(elementId, cssClass, time) {

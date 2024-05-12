@@ -40,6 +40,4 @@ public static class ListExtensions
             (array[k], array[n]) = (array[n], array[k]);
         }
     }
-
-  
 }
