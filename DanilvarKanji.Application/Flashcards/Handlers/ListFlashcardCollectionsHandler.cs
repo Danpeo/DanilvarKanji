@@ -6,26 +6,26 @@ using MediatR;
 namespace DanilvarKanji.Application.Flashcards.Handlers;
 
 public class ListFlashcardCollectionsHandler
-  : IRequestHandler<ListFlashcardCollectionsQuery, IEnumerable<FlashcardCollection>>
+    : IRequestHandler<ListFlashcardCollectionsQuery, IEnumerable<FlashcardCollection>>
 {
-  private readonly IFlashcardRepository _flashcardRepository;
+    private readonly IFlashcardRepository _flashcardRepository;
 
-  public ListFlashcardCollectionsHandler(IFlashcardRepository flashcardRepository)
-  {
-    _flashcardRepository = flashcardRepository;
-  }
+    public ListFlashcardCollectionsHandler(IFlashcardRepository flashcardRepository)
+    {
+        _flashcardRepository = flashcardRepository;
+    }
 
-  public async Task<IEnumerable<FlashcardCollection>> Handle(
-    ListFlashcardCollectionsQuery request,
-    CancellationToken cancellationToken
-  )
-  {
-    if (await _flashcardRepository.AnyCollectionsExistAsync(request.AppUser))
-      return await _flashcardRepository.ListCollectionsAsync(
-        request.PaginationParams,
-        request.AppUser
-      );
+    public async Task<IEnumerable<FlashcardCollection>> Handle(
+        ListFlashcardCollectionsQuery request,
+        CancellationToken cancellationToken
+    )
+    {
+        if (await _flashcardRepository.AnyCollectionsExistAsync(request.AppUser))
+            return await _flashcardRepository.ListCollectionsAsync(
+                request.PaginationParams,
+                request.AppUser
+            );
 
-    return Enumerable.Empty<FlashcardCollection>();
-  }
+        return Enumerable.Empty<FlashcardCollection>();
+    }
 }

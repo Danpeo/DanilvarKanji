@@ -7,13 +7,13 @@
 
 <select class="form-select bg-secondary-2 txt-green-dim" @onchange="ChangeThemeAsync">
 
-  @if (_themes != null)
-  {
-    @foreach (ThemeData theme in _themes)
+    @if (_themes != null)
     {
-      <option selected="@(_currentTheme == theme.CssName)" value="@theme.CssName">@theme.ThemeName</option>
+        @foreach (ThemeData theme in _themes)
+        {
+            <option selected="@(_currentTheme == theme.CssName)" value="@theme.CssName">@theme.ThemeName</option>
+        }
     }
-  }
 
 
 </select>
@@ -21,31 +21,31 @@
 
 @code
 {
-  [Inject] public HttpClient HttpClient { get; set; } = null!;
+    [Inject] public HttpClient HttpClient { get; set; } = null!;
 
-  [Inject] public AppState AppState { get; set; } = null!;
+    [Inject] public AppState AppState { get; set; } = null!;
 
-  [Inject] public Js Js { get; set; } = null!;
+    [Inject] public Js Js { get; set; } = null!;
 
-  private ThemeData[]? _themes;
-  private string _currentTheme = "default-theme";
+    private ThemeData[]? _themes;
+    private string _currentTheme = "default-theme";
 
-  protected override async Task OnInitializedAsync()
-  {
-    _themes = await HttpClient.GetFromJsonAsync<ThemeData[]>("data/theme-data.json");
-    _currentTheme = AppState.ThemeState.CurrentTheme;
-  }
-
-  private async Task ChangeThemeAsync(ChangeEventArgs args)
-  {
-    var theme = args.Value?.ToString();
-
-    if (theme != null)
+    protected override async Task OnInitializedAsync()
     {
-      await Js.Dom.RemoveAllThemesAsync();
-      await Js.Dom.ApplyThemeAsync(theme);
-      await AppState.ThemeState.UpdateAsync(theme);
+        _themes = await HttpClient.GetFromJsonAsync<ThemeData[]>("data/theme-data.json");
+        _currentTheme = AppState.ThemeState.CurrentTheme;
     }
-  }
+
+    private async Task ChangeThemeAsync(ChangeEventArgs args)
+    {
+        var theme = args.Value?.ToString();
+
+        if (theme != null)
+        {
+            await Js.Dom.RemoveAllThemesAsync();
+            await Js.Dom.ApplyThemeAsync(theme);
+            await AppState.ThemeState.UpdateAsync(theme);
+        }
+    }
 
 }

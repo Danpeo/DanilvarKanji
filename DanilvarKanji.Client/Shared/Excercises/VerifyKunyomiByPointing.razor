@@ -3,50 +3,50 @@
 
 @if (_kunReadings != null)
 {
-  <BaseExercise OnForgot="OnForgot.Invoke">
-    <WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
+    <BaseExercise OnForgot="OnForgot.Invoke">
+        <WhatIsKunyomiOf CharacterForVerification="CharacterForVerification"/>
 
-    <div class="d-grid gap-4">
-      @for (var i = 0; i < _kunReadings.RandomItems.Count; i++)
-      {
-        var reading = _kunReadings.RandomItems[i];
-        var buttonId = $"optionBtn_{i}";
-        <button class="btn btn-dark txt-white btn-lg"
-                style="font-size: 1.75rem"
-                id="@buttonId"
-                @onclick="() => CheckAnswer(reading, buttonId)">
-          <HumanReadJapaneseWriting JapaneseWriting="@reading"/>
-        </button>
-      }
+        <div class="d-grid gap-4">
+            @for (var i = 0; i < _kunReadings.RandomItems.Count; i++)
+            {
+                var reading = _kunReadings.RandomItems[i];
+                var buttonId = $"optionBtn_{i}";
+                <button class="btn btn-dark txt-white btn-lg"
+                        style="font-size: 1.75rem"
+                        id="@buttonId"
+                        @onclick="() => CheckAnswer(reading, buttonId)">
+                    <HumanReadJapaneseWriting JapaneseWriting="@reading"/>
+                </button>
+            }
 
-    </div>
-  </BaseExercise>
+        </div>
+    </BaseExercise>
 }
 else
 {
-  <DisplayLoading/>
+    <DisplayLoading/>
 }
 
 @code {
 
-  private RandomItemsInReviewResponse? _kunReadings;
+    private RandomItemsInReviewResponse? _kunReadings;
 
-  protected override async Task OnInitializedAsync()
-  {
-    _kunReadings =
-      await CharacterLearningApiService.GetRandomKunReadingsInReviewAsync(CharacterForVerification.Id, OptionCount);
-  }
+    protected override async Task OnInitializedAsync()
+    {
+        _kunReadings =
+            await CharacterLearningApiService.GetRandomKunReadingsInReviewAsync(CharacterForVerification.Id, OptionCount);
+    }
 
-  private async Task CheckAnswer(string reading, string? buttonId)
-  {
-    if (reading == _kunReadings?.CorrectMeaning)
+    private async Task CheckAnswer(string reading, string? buttonId)
     {
-      await OnCorrectAnswer(buttonId);
+        if (reading == _kunReadings?.CorrectMeaning)
+        {
+            await OnCorrectAnswer(buttonId);
+        }
+        else
+        {
+            await OnIncorrectAnswer(buttonId);
+        }
     }
-    else
-    {
-      await OnIncorrectAnswer(buttonId);
-    }
-  }
 
 }

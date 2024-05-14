@@ -7,11 +7,11 @@
 
 @if (!string.IsNullOrEmpty(_learningId))
 {
-  <ReviewCharactersSection Learningid="@_learningId"/>
+    <ReviewCharactersSection Learningid="@_learningId"/>
 }
 else
 {
-  <Message Text="No characters to review :("/>
+    <Message Text="No characters to review :("/>
 }
 
 <DislpaySkippedCharacters/>
@@ -19,13 +19,13 @@ else
 <DisplayCompletelyLearnedCharacters/>
 
 @code {
-  [Inject] public required AppState AppState { get; set; }
+    [Inject] public required AppState AppState { get; set; }
 
-  private string? _learningId;
+    private string? _learningId;
 
-  protected override void OnInitialized()
-  {
-    _learningId = AppState.ReviewCharState.NextToReview.Id;
-  }
+    protected override void OnInitialized()
+    {
+        _learningId = AppState.ReviewCharState.NextToReview.Id;
+    }
 
 }

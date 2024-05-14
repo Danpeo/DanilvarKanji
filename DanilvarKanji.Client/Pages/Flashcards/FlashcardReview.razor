@@ -9,216 +9,216 @@
 
 @if (_flashcardsToReview is not null)
 {
-  <h3 class="mb-5 display-5 txt-bright-pink main-font text-center">@Loc["DoYouRemember"]</h3>
+    <h3 class="mb-5 display-5 txt-bright-pink main-font text-center">@Loc["DoYouRemember"]</h3>
 
-  <TimerComponent @ref="_timer" TimerOut="EventCallback.Empty"/>
-  <div class="row">
-    <div class="col d-grid gap-2">
-      <button class="btn btn-lg btn-outline-danger fs-3"
-              @onclick="Forgot">
-        <b>@Loc["Forgot"]</b>
-      </button>
-    </div>
-    <div id="flashcard" class="col-8">
-      <a class="pointer-cursor" @onclick="FlipCardAsync">
-        <div class="card bg-success txt-dark @(_showFront ? "bg-green" : "bg-orange") text-bg-primary mb-3">
-          <div class="card-header fs-4">
-            <b>
-              @(_showFront ? Loc["Front"].Value.ToUpper() : Loc["FlashcardBack"].Value.ToUpper())
-            </b>
-
-          </div>
-          <div class="card-body">
-            @if (_showFront)
-            {
-              <h5 class="card-title text-center  display-4">
-                <b>
-                  @_flashcardsToReview[_currentFlashcard].Main
-                </b>
-              </h5>
-              <p class="card-text  text-center fs-4">
-                @_flashcardsToReview[_currentFlashcard].Sub
-              </p>
-            }
-            else
-            {
-              <h5 class="card-title text-center  display-4">
-                @_flashcardsToReview[_currentFlashcard].Back
-              </h5>
-              <p class="card-text  text-center fs-4">
-                @_flashcardsToReview[_currentFlashcard].Main
-              </p>
-            }
-            <p class="fs-5">
-              @(_currentFlashcard + 1)/@(_flashcardsToReview.Count)
-              <span class="fs-5">
-                @Loc["Memorised"]
-                <b>
-                  @_flashcardsToReview[_currentFlashcard].RememberedInARow
-                </b>
-                @Loc["TimesInARow"]
-              </span>
-            </p>
-
-          </div>
-
+    <TimerComponent @ref="_timer" TimerOut="EventCallback.Empty"/>
+    <div class="row">
+        <div class="col d-grid gap-2">
+            <button class="btn btn-lg btn-outline-danger fs-3"
+                    @onclick="Forgot">
+                <b>@Loc["Forgot"]</b>
+            </button>
         </div>
-      </a>
+        <div id="flashcard" class="col-8">
+            <a class="pointer-cursor" @onclick="FlipCardAsync">
+                <div class="card bg-success txt-dark @(_showFront ? "bg-green" : "bg-orange") text-bg-primary mb-3">
+                    <div class="card-header fs-4">
+                        <b>
+                            @(_showFront ? Loc["Front"].Value.ToUpper() : Loc["FlashcardBack"].Value.ToUpper())
+                        </b>
+
+                    </div>
+                    <div class="card-body">
+                        @if (_showFront)
+                        {
+                            <h5 class="card-title text-center  display-4">
+                                <b>
+                                    @_flashcardsToReview[_currentFlashcard].Main
+                                </b>
+                            </h5>
+                            <p class="card-text  text-center fs-4">
+                                @_flashcardsToReview[_currentFlashcard].Sub
+                            </p>
+                        }
+                        else
+                        {
+                            <h5 class="card-title text-center  display-4">
+                                @_flashcardsToReview[_currentFlashcard].Back
+                            </h5>
+                            <p class="card-text  text-center fs-4">
+                                @_flashcardsToReview[_currentFlashcard].Main
+                            </p>
+                        }
+                        <p class="fs-5">
+                            @(_currentFlashcard + 1)/@(_flashcardsToReview.Count)
+                            <span class="fs-5">
+                                @Loc["Memorised"]
+                                <b>
+                                    @_flashcardsToReview[_currentFlashcard].RememberedInARow
+                                </b>
+                                @Loc["TimesInARow"]
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+            </a>
+        </div>
+        <div class="col d-grid gap-2">
+            <button class="btn btn-lg btn-outline-success fs-3"
+                    @onclick="Remember">
+                <b>@Loc["Remember"]</b>
+            </button>
+        </div>
     </div>
-    <div class="col d-grid gap-2">
-      <button class="btn btn-lg btn-outline-success fs-3"
-              @onclick="Remember">
-        <b>@Loc["Remember"]</b>
-      </button>
-    </div>
-  </div>
-  <LongElement>
-    <button class="btn btn-lg btn-outline-warning mt-2 fs-3"
-            @onclick="RememberPerfectly">
-      <b>@Loc["IRememberItPerfectly"]</b>
-    </button>
-  </LongElement>
-  <LongElement>
-    <button class="btn btn btn-outline-primary mt-2 fs-3"
-            @onclick="FinishReview">
-      <b>@Loc["Fin"].Value.ToUpper()</b>
-    </button>
-  </LongElement>
+    <LongElement>
+        <button class="btn btn-lg btn-outline-warning mt-2 fs-3"
+                @onclick="RememberPerfectly">
+            <b>@Loc["IRememberItPerfectly"]</b>
+        </button>
+    </LongElement>
+    <LongElement>
+        <button class="btn btn btn-outline-primary mt-2 fs-3"
+                @onclick="FinishReview">
+            <b>@Loc["Fin"].Value.ToUpper()</b>
+        </button>
+    </LongElement>
 }
 else
 {
-  <DisplayLoading/>
+    <DisplayLoading/>
 }
 
 
 @code {
-  [Parameter] [EditorRequired] public required string CollectionId { get; set; }
+    [Parameter] [EditorRequired] public required string CollectionId { get; set; }
 
-  [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
+    [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
 
-  [Inject] public required AppState AppState { get; set; }
+    [Inject] public required AppState AppState { get; set; }
 
-  [Inject] public required NavigationManager NavManager { get; set; }
+    [Inject] public required NavigationManager NavManager { get; set; }
 
-  [Inject] public required Js Js { get; set; }
+    [Inject] public required Js Js { get; set; }
 
-  [Inject] public required IStringLocalizer<App> Loc { get; set; }
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
 
-  private FlashcardCollectionResponse? _flashcardCollection;
-  private List<Flashcard>? _flashcardsToReview;
-  private int _currentFlashcard;
-  private bool _showFront = true;
-  private TimerComponent? _timer;
-  private int _remembered;
-  private int _forgot;
-  private int _rememberedPerfectly;
+    private FlashcardCollectionResponse? _flashcardCollection;
+    private List<Flashcard>? _flashcardsToReview;
+    private int _currentFlashcard;
+    private bool _showFront = true;
+    private TimerComponent? _timer;
+    private int _remembered;
+    private int _forgot;
+    private int _rememberedPerfectly;
 
-  protected override async Task OnInitializedAsync()
-  {
-    _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
-
-    if (_flashcardCollection is not null)
+    protected override async Task OnInitializedAsync()
     {
-      _flashcardsToReview = _flashcardCollection.Flashcards
-        .Where(f => f.DoRemember == false)
-        .ToList();
+        _flashcardCollection = await FlashcardApiService.GetFlashcardsCollectionAsync(CollectionId);
 
-      _flashcardsToReview.Shuffle();
+        if (_flashcardCollection is not null)
+        {
+            _flashcardsToReview = _flashcardCollection.Flashcards
+                .Where(f => f.DoRemember == false)
+                .ToList();
 
-      await AppState.FlashcardReviewState.NewReviewSession();
-    }
-  }
+            _flashcardsToReview.Shuffle();
 
-  protected override Task OnAfterRenderAsync(bool firstRender)
-  {
-    _timer?.Start();
-
-    return base.OnAfterRenderAsync(firstRender);
-  }
-
-  private async Task FlipCardAsync()
-  {
-    await AnimateFlashcard();
-    _showFront = !_showFront;
-  }
-
-  private async Task AnimateFlashcard()
-  {
-    await Js.Dom.RemoveClassFromElementAsync("flashcard", "card-flip");
-    await Js.Dom.AddClassesToElementForTimeAsync("flashcard", new[] { "card-flip" }, 500);
-  }
-
-  private async Task FinishReview()
-  {
-    try
-    {
-      await FlashcardApiService.UpdateFlashcardCollectionAsync(new UpdateFlashcardCollectionRequest(
-        _flashcardCollection!.Name,
-        _flashcardCollection.Flashcards,
-        _flashcardCollection.Id
-      ));
-
-      _timer!.Stop();
-      await AppState.FlashcardReviewState.UpdateReviewSession
-      (
-        new State.FlashcardReview(
-          _flashcardCollection.Name,
-          _timer.Time,
-          _remembered,
-          _forgot,
-          _rememberedPerfectly,
-          _remembered + _forgot + _rememberedPerfectly
-        )
-      );
-
-      NavManager.NavigateTo("Flashcards/Collection/Review/Complete");
-    }
-    catch (HttpRequestException e)
-    {
-      Console.WriteLine(e);
-      throw;
-    }
-  }
-
-  private async Task Remember()
-  {
-    _flashcardsToReview![_currentFlashcard].RememberedInARow++;
-    _remembered++;
-    await NextCard();
-  }
-
-  private async Task Forgot()
-  {
-    _flashcardsToReview![_currentFlashcard].RememberedInARow = 0;
-    _forgot++;
-    await NextCard();
-  }
-
-  private async Task RememberPerfectly()
-  {
-    _flashcardsToReview![_currentFlashcard].RememberedInARow++;
-    _flashcardsToReview![_currentFlashcard].DoRemember = true;
-    _rememberedPerfectly++;
-    await NextCard();
-  }
-
-  private async Task NextCard()
-  {
-    var reviewFinished = false;
-    if (_currentFlashcard >= _flashcardsToReview!.Count - 1)
-    {
-      reviewFinished = true;
-    }
-    else
-    {
-      await AnimateFlashcard();
-      _currentFlashcard++;
+            await AppState.FlashcardReviewState.NewReviewSession();
+        }
     }
 
-    if (reviewFinished)
+    protected override Task OnAfterRenderAsync(bool firstRender)
     {
-      await FinishReview();
+        _timer?.Start();
+
+        return base.OnAfterRenderAsync(firstRender);
     }
-  }
+
+    private async Task FlipCardAsync()
+    {
+        await AnimateFlashcard();
+        _showFront = !_showFront;
+    }
+
+    private async Task AnimateFlashcard()
+    {
+        await Js.Dom.RemoveClassFromElementAsync("flashcard", "card-flip");
+        await Js.Dom.AddClassesToElementForTimeAsync("flashcard", new[] { "card-flip" }, 500);
+    }
+
+    private async Task FinishReview()
+    {
+        try
+        {
+            await FlashcardApiService.UpdateFlashcardCollectionAsync(new UpdateFlashcardCollectionRequest(
+                _flashcardCollection!.Name,
+                _flashcardCollection.Flashcards,
+                _flashcardCollection.Id
+            ));
+
+            _timer!.Stop();
+            await AppState.FlashcardReviewState.UpdateReviewSession
+            (
+                new State.FlashcardReview(
+                    _flashcardCollection.Name,
+                    _timer.Time,
+                    _remembered,
+                    _forgot,
+                    _rememberedPerfectly,
+                    _remembered + _forgot + _rememberedPerfectly
+                )
+            );
+
+            NavManager.NavigateTo("Flashcards/Collection/Review/Complete");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private async Task Remember()
+    {
+        _flashcardsToReview![_currentFlashcard].RememberedInARow++;
+        _remembered++;
+        await NextCard();
+    }
+
+    private async Task Forgot()
+    {
+        _flashcardsToReview![_currentFlashcard].RememberedInARow = 0;
+        _forgot++;
+        await NextCard();
+    }
+
+    private async Task RememberPerfectly()
+    {
+        _flashcardsToReview![_currentFlashcard].RememberedInARow++;
+        _flashcardsToReview![_currentFlashcard].DoRemember = true;
+        _rememberedPerfectly++;
+        await NextCard();
+    }
+
+    private async Task NextCard()
+    {
+        var reviewFinished = false;
+        if (_currentFlashcard >= _flashcardsToReview!.Count - 1)
+        {
+            reviewFinished = true;
+        }
+        else
+        {
+            await AnimateFlashcard();
+            _currentFlashcard++;
+        }
+
+        if (reviewFinished)
+        {
+            await FinishReview();
+        }
+    }
 
 }

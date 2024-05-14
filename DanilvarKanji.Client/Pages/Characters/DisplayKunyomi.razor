@@ -1,19 +1,19 @@
 @using System.Diagnostics
 @using DanilvarKanji.Shared.Responses.Character
 @{
-  Debug.Assert(Character.Kunyomis != null, "Character.Kunyomis != null");
+    Debug.Assert(Character.Kunyomis != null, "Character.Kunyomis != null");
 }
 
 @{
-  var kunyomiList = Character.Kunyomis.ToList();
+    var kunyomiList = Character.Kunyomis.ToList();
 
-  for (var i = 0; i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count); i++)
-  {
-    var japaneseWriting = kunyomiList[i].JapaneseWriting;
+    for (var i = 0; i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count); i++)
+    {
+        var japaneseWriting = kunyomiList[i].JapaneseWriting;
 
-    <HumanReadJapaneseWriting JapaneseWriting="@japaneseWriting"/>
+        <HumanReadJapaneseWriting JapaneseWriting="@japaneseWriting"/>
 
-    @*// Given the input string '。abc', the regular expression would capture abc
+        @*// Given the input string '。abc', the regular expression would capture abc
         var regex = new Regex(@"\。([^)]+)");
         MatchCollection matches = regex.Matches(japaneseWriting);
 
@@ -40,16 +40,16 @@
             @japaneseWriting
         }*@
 
-    if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
-    {
-      <span>、</span>
+        if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
+        {
+            <span>、</span>
+        }
     }
-  }
 }
 
 @code
 {
-  [Parameter] [EditorRequired] public CharacterResponseResponseFull Character { get; set; } = default!;
+    [Parameter] [EditorRequired] public CharacterResponseResponseFull Character { get; set; } = default!;
 
-  [Parameter] public int MaxReadingsToDisplay { get; set; } = int.MaxValue;
+    [Parameter] public int MaxReadingsToDisplay { get; set; } = int.MaxValue;
 }

@@ -4,92 +4,92 @@
 @using DanilvarKanji.Domain.Shared.Params
 
 <ForbidIfNotAuthorized>
-  @if (_learningSettings is null)
-  {
-    <DisplayLoading/>
-  }
-  else
-  {
-    <EditForm Model="_learningSettings" OnSubmit="OnChangeSettings">
+    @if (_learningSettings is null)
+    {
+        <DisplayLoading/>
+    }
+    else
+    {
+        <EditForm Model="_learningSettings" OnSubmit="OnChangeSettings">
 
-      <FluentValidationValidator/>
+            <FluentValidationValidator/>
 
-      <FormSection Title="Learning Settings" HelpText="">
-        <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
-          <InputSelect @bind-Value="_learningSettings.JlptLevel"
-                       class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
-            <option value="@JlptLevel.N5">JLPT N5</option>
-            <option value="@JlptLevel.N4">JLPT N4</option>
-            <option value="@JlptLevel.N3">JLPT N3</option>
-            <option value="@JlptLevel.N2">JLPT N2</option>
-            <option value="@JlptLevel.N1">JLPT N1</option>
-          </InputSelect>
-        </FormFieldSet>
+            <FormSection Title="Learning Settings" HelpText="">
+                <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
+                    <InputSelect @bind-Value="_learningSettings.JlptLevel"
+                                 class="form-control bg-main txt-green-dim no-border" id="jlptLevel">
+                        <option value="@JlptLevel.N5">JLPT N5</option>
+                        <option value="@JlptLevel.N4">JLPT N4</option>
+                        <option value="@JlptLevel.N3">JLPT N3</option>
+                        <option value="@JlptLevel.N2">JLPT N2</option>
+                        <option value="@JlptLevel.N1">JLPT N1</option>
+                    </InputSelect>
+                </FormFieldSet>
 
-        <FormFieldSet Label="Number of new characters you want to learn per day"
-                      LabelFor="QtyOfCharsForLearningForDay" HelpText="">
-          <InputNumber @bind-Value="_learningSettings.QtyOfCharsForLearningForDay"
-                       class="form-control bg-main txt-green-dim no-border"
-                       id="strokeCount" placeholder="Quantity"/>
+                <FormFieldSet Label="Number of new characters you want to learn per day"
+                              LabelFor="QtyOfCharsForLearningForDay" HelpText="">
+                    <InputNumber @bind-Value="_learningSettings.QtyOfCharsForLearningForDay"
+                                 class="form-control bg-main txt-green-dim no-border"
+                                 id="strokeCount" placeholder="Quantity"/>
 
-          <ValidationMessage For="@(() => _learningSettings.QtyOfCharsForLearningForDay)"/>
+                    <ValidationMessage For="@(() => _learningSettings.QtyOfCharsForLearningForDay)"/>
 
-        </FormFieldSet>
+                </FormFieldSet>
 
-        <div class="mt-4 mb-5">
-          <div class="row">
-            <div class="offset-4 col-8 text-right">
-              <button class="btn btn-outline-secondary" type="button"
-                      @onclick="@(() => _learningSettings = new LearningSettings())">
-                Reset
-              </button>
-              <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
-            </div>
-          </div>
-        </div>
+                <div class="mt-4 mb-5">
+                    <div class="row">
+                        <div class="offset-4 col-8 text-right">
+                            <button class="btn btn-outline-secondary" type="button"
+                                    @onclick="@(() => _learningSettings = new LearningSettings())">
+                                Reset
+                            </button>
+                            <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
 
-        @if (_successSubmit)
-        {
-          <SuccessAlertAlt Message="Settings updated successfully!"/>
-        }
-        else if (_errorMessage is not null && !_successSubmit)
-        {
-          <ErrorAlertAlt Message="@_errorMessage"/>
-        }
+                @if (_successSubmit)
+                {
+                    <SuccessAlertAlt Message="Settings updated successfully!"/>
+                }
+                else if (_errorMessage is not null && !_successSubmit)
+                {
+                    <ErrorAlertAlt Message="@_errorMessage"/>
+                }
 
-      </FormSection>
-    </EditForm>
-  }
+            </FormSection>
+        </EditForm>
+    }
 </ForbidIfNotAuthorized>
 
 @code {
 
-  [Inject] public required IUserService UserService { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
 
-  private LearningSettings? _learningSettings;
-  private string? _errorMessage;
-  private bool _successSubmit;
+    private LearningSettings? _learningSettings;
+    private string? _errorMessage;
+    private bool _successSubmit;
 
-  protected override async Task OnInitializedAsync()
-  {
-    _learningSettings = await UserService.GetLearningSettingsAsync();
-  }
-
-  private async Task OnChangeSettings()
-  {
-    try
+    protected override async Task OnInitializedAsync()
     {
-      if (_learningSettings != null)
-      {
-        await UserService.UpdateLearningSettingsAsync(_learningSettings);
-        _successSubmit = true;
-      }
+        _learningSettings = await UserService.GetLearningSettingsAsync();
     }
-    catch (HttpRequestException e)
+
+    private async Task OnChangeSettings()
     {
-      _errorMessage = e.Message;
-      _successSubmit = false;
+        try
+        {
+            if (_learningSettings != null)
+            {
+                await UserService.UpdateLearningSettingsAsync(_learningSettings);
+                _successSubmit = true;
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
+            _successSubmit = false;
+        }
     }
-  }
 
 }

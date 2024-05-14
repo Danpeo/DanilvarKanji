@@ -5,6 +5,6 @@ namespace DanilvarKanji.Shared.Responses.CharacterLearning;
 
 public class CharacterLearningResponseFull : CharacterLearningResponseBase
 {
-  public AppUser AppUser { get; set; }
-  public CharacterResponseResponseFull CharacterFull { get; set; }
+    public AppUser AppUser { get; set; }
+    public CharacterResponseResponseFull CharacterFull { get; set; }
 }

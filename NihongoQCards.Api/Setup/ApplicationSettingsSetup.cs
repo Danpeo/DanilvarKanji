@@ -5,17 +5,17 @@ namespace DanilvarKanji.Setup;
 
 public static class ApplicationSettingsSetup
 {
-  public static IServiceCollection AddApplicationSettings(
-    this IServiceCollection services,
-    IConfiguration config
-  )
-  {
-    services.Configure<CharacterLearningSettings>(config.GetSection("CharacterLearningSettings"));
+    public static IServiceCollection AddApplicationSettings(
+        this IServiceCollection services,
+        IConfiguration config
+    )
+    {
+        services.Configure<CharacterLearningSettings>(config.GetSection("CharacterLearningSettings"));
 
-    services.Configure<TesseractSettings>(config.GetSection("TesseractSettings"));
+        services.Configure<TesseractSettings>(config.GetSection("TesseractSettings"));
 
-    services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
+        services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
 
-    return services;
-  }
+        return services;
+    }
 }

@@ -13,29 +13,29 @@ namespace DanilvarKanji.Infrastructure;
 
 public static class DependencyInjection
 {
-  public static IServiceCollection AddInfrastructure(
-    this IServiceCollection services,
-    IConfiguration configuration
-  )
-  {
-    services.AddDbContext<ApplicationDbContext>(options =>
-      options.UseNpgsql(configuration.GetConnectionString("PostgresSql"))
-    );
+    public static IServiceCollection AddInfrastructure(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("PostgresSql"))
+        );
 
-    services.AddTransient<IDateTime, MachineDateTime>();
-    services.AddTransient<IEmailService, EmailService>();
-    services.AddScoped<IJwtProvider, JwtProvider>();
-    services.AddScoped<IUnitOfWork, UnitOfWork>();
-    services.AddScoped<ICharacterRepository, CharacterRepository>();
-    services.AddScoped<ICharacterLearningRepository, CharacterLearningRepository>();
-    services.AddScoped<IUserRepository, UserRepository>();
-    services.AddScoped<IExerciseRepository, ExerciseRepository>();
-    services.AddScoped<IReviewRepository, ReviewRepository>();
-    services.AddScoped<IFlashcardRepository, FlashcardRepository>();
-    services.AddSingleton<ICacheService, CacheService>();
+        services.AddTransient<IDateTime, MachineDateTime>();
+        services.AddTransient<IEmailService, EmailService>();
+        services.AddScoped<IJwtProvider, JwtProvider>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ICharacterRepository, CharacterRepository>();
+        services.AddScoped<ICharacterLearningRepository, CharacterLearningRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IExerciseRepository, ExerciseRepository>();
+        services.AddScoped<IReviewRepository, ReviewRepository>();
+        services.AddScoped<IFlashcardRepository, FlashcardRepository>();
+        services.AddSingleton<ICacheService, CacheService>();
 
-    services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
+        services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
-    return services;
-  }
+        return services;
+    }
 }

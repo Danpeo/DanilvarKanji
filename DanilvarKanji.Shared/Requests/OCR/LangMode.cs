@@ -2,23 +2,23 @@ namespace DanilvarKanji.Shared.Requests.OCR;
 
 public static class Lang
 {
-  public static string GetLangModeStr(LangMode langMode)
-  {
-    return langMode switch
+    public static string GetLangModeStr(LangMode langMode)
     {
-      LangMode.JapHorizontal => "jpn",
-      LangMode.JapVertical => "jpn_vert",
-      LangMode.JapHorizontalAlt => "Japanese",
-      LangMode.JapVerticalAlt => "Japanese_vert",
-      _ => "jpn"
-    };
-  }
+        return langMode switch
+        {
+            LangMode.JapHorizontal => "jpn",
+            LangMode.JapVertical => "jpn_vert",
+            LangMode.JapHorizontalAlt => "Japanese",
+            LangMode.JapVerticalAlt => "Japanese_vert",
+            _ => "jpn"
+        };
+    }
 }
 
 public enum LangMode
 {
-  JapHorizontal,
-  JapVertical,
-  JapHorizontalAlt,
-  JapVerticalAlt
+    JapHorizontal,
+    JapVertical,
+    JapHorizontalAlt,
+    JapVerticalAlt
 }

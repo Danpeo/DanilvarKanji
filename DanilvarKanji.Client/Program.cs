@@ -32,23 +32,23 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient
 {
-  BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 });
 
 builder
-  .Services.AddHttpClient("ServerApi")
-  .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ServerUrl"] ?? ""))
-  .AddHttpMessageHandler<AuthHandler>();
+    .Services.AddHttpClient("ServerApi")
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["ServerUrl"] ?? ""))
+    .AddHttpMessageHandler<AuthHandler>();
 
 builder
-  .Services.AddHttpClient("KanjiApiDev")
-  .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["KanjiApiDev"] ?? ""))
-  .AddHttpMessageHandler<AuthHandler>();
+    .Services.AddHttpClient("KanjiApiDev")
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["KanjiApiDev"] ?? ""))
+    .AddHttpMessageHandler<AuthHandler>();
 
 builder
-  .Services.AddHttpClient("JMdict")
-  .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["JMdict"] ?? ""))
-  .AddHttpMessageHandler<AuthHandler>();
+    .Services.AddHttpClient("JMdict")
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["JMdict"] ?? ""))
+    .AddHttpMessageHandler<AuthHandler>();
 
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddTransient<AuthHandler>();
@@ -58,8 +58,8 @@ builder.Services.AddScoped<IDictionaryService, DictionaryService>();
 builder.Services.AddScoped<ICharacterLearningApiService, CharacterLearningApiService>();
 builder.Services.AddScoped<CharacterLearningService>();
 builder.Services.AddScoped<
-  IBaseQueryService<CharacterResponseResponseFull>,
-  BaseQueryService<CharacterResponseResponseFull>
+    IBaseQueryService<CharacterResponseResponseFull>,
+    BaseQueryService<CharacterResponseResponseFull>
 >();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -80,9 +80,9 @@ builder.Services.AddBlazoredModal();
 builder.Services.AddFileSystemAccessService();
 builder.Services.AddFileSystemAccessServiceInProcess(options =>
 {
-  // The file at this path in this example is manually copied to wwwroot folder
-  // options.BasePath = "content/";
-  // options.ScriptPath = $"custom-path/{FileSystemAccessOptions.DefaultNamespace}.js";
+    // The file at this path in this example is manually copied to wwwroot folder
+    // options.BasePath = "content/";
+    // options.ScriptPath = $"custom-path/{FileSystemAccessOptions.DefaultNamespace}.js";
 });
 
 builder.Services.AddAuthorizationCore();

@@ -1,7 +1,7 @@
 namespace Danilvar.Components.Pagination;
 
 public class PageResult<T> : PaginationInfo
-  where T : class
+    where T : class
 {
-  public T[] Results { get; set; }
+    public T[] Results { get; set; }
 }

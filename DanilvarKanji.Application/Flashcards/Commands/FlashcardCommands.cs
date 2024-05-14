@@ -6,17 +6,17 @@ using MediatR;
 namespace DanilvarKanji.Application.Flashcards.Commands;
 
 public record CreateFlashcardCollectionCommand(
-  string Name,
-  List<Flashcard> Flashcards,
-  AppUser AppUser
+    string Name,
+    List<Flashcard> Flashcards,
+    AppUser AppUser
 ) : IRequest<Result<string>>;
 
 public record UpdateFlashcardCollectionCommand(
-  string CollectionId,
-  AppUser AppUser,
-  string Name,
-  List<Flashcard> Flashcards
+    string CollectionId,
+    AppUser AppUser,
+    string Name,
+    List<Flashcard> Flashcards
 ) : IRequest<Result<string>>;
 
 public record DeleteCollectionCommand(string CollectionId, AppUser AppUser)
-  : IRequest<Result<string>>;
+    : IRequest<Result<string>>;

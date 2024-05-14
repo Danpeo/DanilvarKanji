@@ -2,89 +2,89 @@
 @using DanilvarKanji.Client.Services.Auth
 <nav class="navbar navbar-expand-lg navbar-light">
 
-  <div id="navbarNav">
-    <ul class="navbar-nav main-font">
-      <li class="nav-item active me-5">
-        <GoBackButton/>
-      </li>
-      <li class="nav-item active me-2">
-        <CultureSelector/>
-      </li>
-      <li class="nav-item active">
-        <ThemeSelector/>
-      </li>
-      <NotAuthorized>
-        <li class="nav-item active mx-1">
-          <NavLink class="btn btn-primary" href="register">@Loc["Register"]</NavLink>
-        </li>
-        <li class="nav-item active me-1">
-          <NavLink class="btn btn-primary" href="login">@Loc["Login"]</NavLink>
-        </li>
-        <li class="nav-item active me-1">
-          <NavLink class="btn btn-primary" href="EmailConfirmation">@Loc["ConfirmEmail"]</NavLink>
-        </li>
+    <div id="navbarNav">
+        <ul class="navbar-nav main-font">
+            <li class="nav-item active me-5">
+                <GoBackButton/>
+            </li>
+            <li class="nav-item active me-2">
+                <CultureSelector/>
+            </li>
+            <li class="nav-item active">
+                <ThemeSelector/>
+            </li>
+            <NotAuthorized>
+                <li class="nav-item active mx-1">
+                    <NavLink class="btn btn-primary" href="register">@Loc["Register"]</NavLink>
+                </li>
+                <li class="nav-item active me-1">
+                    <NavLink class="btn btn-primary" href="login">@Loc["Login"]</NavLink>
+                </li>
+                <li class="nav-item active me-1">
+                    <NavLink class="btn btn-primary" href="EmailConfirmation">@Loc["ConfirmEmail"]</NavLink>
+                </li>
 
-      </NotAuthorized>
-      <Authorized>
-        <HasRole Role="@("SuperAdmin")">
-          <p class="txt-yellow mx-2">@Loc["SuperAdmin"]</p>
-        </HasRole>
-        <HasRole Role="@("Admin")">
-          <p class="txt-yellow mx-2">@Loc["Admin"]</p>
-        </HasRole>
-        <p class="mx-2 card-text txt-mid-pink fs-5">
+            </NotAuthorized>
+            <Authorized>
+                <HasRole Role="@("SuperAdmin")">
+                    <p class="txt-yellow mx-2">@Loc["SuperAdmin"]</p>
+                </HasRole>
+                <HasRole Role="@("Admin")">
+                    <p class="txt-yellow mx-2">@Loc["Admin"]</p>
+                </HasRole>
+                <p class="mx-2 card-text txt-mid-pink fs-5">
 
-          <GetUserName/>
-          <span class="txt-green-dim fs-6">
-            <GetUserJlpt/>
-          </span>
+                    <GetUserName/>
+                    <span class="txt-green-dim fs-6">
+                        <GetUserJlpt/>
+                    </span>
 
-        </p>
+                </p>
 
-        <li class="nav-item active mx-1">
-          <NavLink
-            href="/User/Learning-Settings"
-            class="btn btn-outline-primary ">
-            @Loc["Settings"]
-          </NavLink>
-        </li>
+                <li class="nav-item active mx-1">
+                    <NavLink
+                        href="/User/Learning-Settings"
+                        class="btn btn-outline-primary ">
+                        @Loc["Settings"]
+                    </NavLink>
+                </li>
 
-        <li class="nav-item active">
-          <button class="btn btn-primary bg-light-pink txt-dark" @onclick="LogoutAsync">@Loc["LogOut"]</button>
-        </li>
-      </Authorized>
-    </ul>
-  </div>
+                <li class="nav-item active">
+                    <button class="btn btn-primary bg-light-pink txt-dark" @onclick="LogoutAsync">@Loc["LogOut"]</button>
+                </li>
+            </Authorized>
+        </ul>
+    </div>
 </nav>
 
 @code {
 
-  [CascadingParameter] public required IModalService ModalService { get; set; }
+    [CascadingParameter] public required IModalService ModalService { get; set; }
 
-  [Inject] public required IAuthService AuthService { get; set; }
+    [Inject] public required IAuthService AuthService { get; set; }
 
-  /*
-  [Inject] public required IUserService UserService { get; set; }
-  */
+    /*
+    [Inject] public required IUserService UserService { get; set; }
+    */
 
-  [Inject] public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-  [Inject] public required IStringLocalizer<App> Loc { get; set; }
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
 
-  /*
-  private UserResponseBase? _user;
+    /*
+    private UserResponseBase? _user;
 
-  protected override async Task OnInitializedAsync()
-  {
-      _user = await UserService.GetUserAsync();
-  }
-  */
+    protected override async Task OnInitializedAsync()
+    {
+        _user = await UserService.GetUserAsync();
+    }
+    */
 
-  private async Task LogoutAsync()
-  {
-    ModalService.Show<LoadingModal>();
-    await AuthService.LogoutAsync();
-    NavigationManager.NavigateTo("/", true);
-  }
+    private async Task LogoutAsync()
+    {
+        ModalService.Show<LoadingModal>();
+        await AuthService.LogoutAsync();
+        NavigationManager.NavigateTo("/", true);
+    }
 
 }

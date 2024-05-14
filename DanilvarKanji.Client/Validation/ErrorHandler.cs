@@ -4,29 +4,29 @@ namespace DanilvarKanji.Client.Validation;
 
 public static class ErrorHandler
 {
-  public static TRequest? HandleLists<TRequest>(IError? error)
-  {
-    if (error is null)
-      return default;
-
-    var properties = error.GetType().GetProperties();
-
-    foreach (PropertyInfo property in properties)
+    public static TRequest? HandleLists<TRequest>(IError? error)
     {
-      if (property.PropertyType != typeof(List<string>))
-        continue;
-      var errorList = (List<string>)property.GetValue(error);
+        if (error is null)
+            return default;
 
-      if (errorList != null)
-      {
-        var completeMessage = errorList.Aggregate(
-          "",
-          (current, errorMessage) => current + errorMessage
-        );
-        throw new HttpRequestException($"{completeMessage}");
-      }
+        var properties = error.GetType().GetProperties();
+
+        foreach (PropertyInfo property in properties)
+        {
+            if (property.PropertyType != typeof(List<string>))
+                continue;
+            var errorList = (List<string>)property.GetValue(error);
+
+            if (errorList != null)
+            {
+                var completeMessage = errorList.Aggregate(
+                    "",
+                    (current, errorMessage) => current + errorMessage
+                );
+                throw new HttpRequestException($"{completeMessage}");
+            }
+        }
+
+        return default;
     }
-
-    return default;
-  }
 }

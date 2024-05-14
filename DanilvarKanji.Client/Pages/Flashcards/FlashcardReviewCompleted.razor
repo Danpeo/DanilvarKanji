@@ -4,32 +4,32 @@
 
 @if (_flashcardReview is not null)
 {
-  <h3 class="mb-5 display-5 txt-bright-pink main-font text-center">Last Flashcard Review</h3>
-  <p class="fs-3">Collection - <b>@_flashcardReview.CollectionName</b></p>
-  <p class="fs-3">@_flashcardReview.FlashcardReviewedCount flashcards reviewed</p>
-  <p class="fs-3">@_flashcardReview.Remembered flashcards remembered</p>
-  <p class="fs-3">@_flashcardReview.Remembered flashcards forgot</p>
-  <p class="fs-3">@_flashcardReview.RememberedPerfectly flashcards remembered perfectly</p>
-  <p class="fs-3">Review Took: @_flashcardReview.ReviewTime</p>
+    <h3 class="mb-5 display-5 txt-bright-pink main-font text-center">Last Flashcard Review</h3>
+    <p class="fs-3">Collection - <b>@_flashcardReview.CollectionName</b></p>
+    <p class="fs-3">@_flashcardReview.FlashcardReviewedCount flashcards reviewed</p>
+    <p class="fs-3">@_flashcardReview.Remembered flashcards remembered</p>
+    <p class="fs-3">@_flashcardReview.Remembered flashcards forgot</p>
+    <p class="fs-3">@_flashcardReview.RememberedPerfectly flashcards remembered perfectly</p>
+    <p class="fs-3">Review Took: @_flashcardReview.ReviewTime</p>
 
-  <LongElement>
-    <NavLink class="btn btn-lg btn-primary" href="/Flashcards">OK</NavLink>
-  </LongElement>
+    <LongElement>
+        <NavLink class="btn btn-lg btn-primary" href="/Flashcards">OK</NavLink>
+    </LongElement>
 }
 else
 {
-  <DisplayLoading/>
+    <DisplayLoading/>
 }
 
 
 @code {
-  [Inject] public required AppState AppState { get; set; }
+    [Inject] public required AppState AppState { get; set; }
 
-  private State.FlashcardReview? _flashcardReview;
+    private State.FlashcardReview? _flashcardReview;
 
-  protected override void OnInitialized()
-  {
-    _flashcardReview = AppState.FlashcardReviewState.FlashcardReview;
-  }
+    protected override void OnInitialized()
+    {
+        _flashcardReview = AppState.FlashcardReviewState.FlashcardReview;
+    }
 
 }

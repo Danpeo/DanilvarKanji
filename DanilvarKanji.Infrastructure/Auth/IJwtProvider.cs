@@ -6,8 +6,8 @@ namespace DanilvarKanji.Infrastructure.Auth;
 
 public interface IJwtProvider
 {
-  JwtSecurityToken GenerateJwt(AppUser user);
-  string GenerateRefreshToken();
-  string GetTokenValue(JwtSecurityToken token);
-  ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
+    JwtSecurityToken GenerateJwt(AppUser user);
+    string GenerateRefreshToken();
+    string GetTokenValue(JwtSecurityToken token);
+    ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
 }

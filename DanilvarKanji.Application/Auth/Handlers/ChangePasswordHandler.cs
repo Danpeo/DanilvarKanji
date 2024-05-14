@@ -12,42 +12,42 @@ namespace DanilvarKanji.Application.Auth.Handlers;
 
 public class ChangePasswordHandler : IRequestHandler<ChangePasswordCommand, Result<string>>
 {
-  private readonly IEmailService _emailService;
-  private readonly IUnitOfWork _unitOfWork;
-  private readonly UserManager<AppUser> _userManager;
-  private readonly IUserRepository _userRepository;
+    private readonly IEmailService _emailService;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly UserManager<AppUser> _userManager;
+    private readonly IUserRepository _userRepository;
 
-  public ChangePasswordHandler(
-    UserManager<AppUser> userManager,
-    IUnitOfWork unitOfWork,
-    IUserRepository userRepository,
-    IEmailService emailService
-  )
-  {
-    _userManager = userManager;
-    _unitOfWork = unitOfWork;
-    _userRepository = userRepository;
-    _emailService = emailService;
-  }
-
-  public async Task<Result<string>> Handle(
-    ChangePasswordCommand request,
-    CancellationToken cancellationToken
-  )
-  {
-    /*AppUser? user = await _userManager.FindByEmailAsync(request.Email);
-
-    if (user == null)
-        return Result.Failure<string>(General.UnProcessableRequest);
-
-    await _emailService.CheckConfirmationCodeAsync(request.Email, request.ConfirmationCode, onConfirmedAsync,)
-
-    async Task onConfirmedAsync()
+    public ChangePasswordHandler(
+        UserManager<AppUser> userManager,
+        IUnitOfWork unitOfWork,
+        IUserRepository userRepository,
+        IEmailService emailService
+    )
     {
-        await _userManager.res
-        await _unitOfWork.CompleteAsync();
-    }*/
+        _userManager = userManager;
+        _unitOfWork = unitOfWork;
+        _userRepository = userRepository;
+        _emailService = emailService;
+    }
 
-    return Result.Failure<string>(General.UnProcessableRequest);
-  }
+    public async Task<Result<string>> Handle(
+        ChangePasswordCommand request,
+        CancellationToken cancellationToken
+    )
+    {
+        /*AppUser? user = await _userManager.FindByEmailAsync(request.Email);
+
+        if (user == null)
+            return Result.Failure<string>(General.UnProcessableRequest);
+
+        await _emailService.CheckConfirmationCodeAsync(request.Email, request.ConfirmationCode, onConfirmedAsync,)
+
+        async Task onConfirmedAsync()
+        {
+            await _userManager.res
+            await _unitOfWork.CompleteAsync();
+        }*/
+
+        return Result.Failure<string>(General.UnProcessableRequest);
+    }
 }

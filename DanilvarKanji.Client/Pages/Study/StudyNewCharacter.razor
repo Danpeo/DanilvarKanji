@@ -1,11 +1,10 @@
 @page "/study-new/{CharacterId}"
-
-@using DanilvarKanji.Shared.Responses.Character
-@using DanilvarKanji.Client.Services.Characters
-@using DanilvarKanji.Shared.Requests.CharacterLearnings
 @using Blazored.Modal.Services
+@using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Client.State
 @using DanilvarKanji.Domain.Shared.Enumerations
+@using DanilvarKanji.Shared.Requests.CharacterLearnings
+@using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 
 <ForbidIfNotAuthorized>
@@ -31,26 +30,20 @@
 
 @code {
 
-    [CascadingParameter]
-    public required IModalService ModalService { get; set; }
+    [CascadingParameter] public required IModalService ModalService { get; set; }
 
-    [Parameter][EditorRequired]
-    public required string CharacterId { get; set; }
+    [Parameter] [EditorRequired] public required string CharacterId { get; set; }
 
     [Inject] public required AppState AppState { get; set; }
-    
-    [Inject]
-    public required ICharacterService CharacterService { get; set; }
 
-    [Inject]
-    public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required ICharacterService CharacterService { get; set; }
 
-    [Inject]
-    public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-    [Inject]
-    public required IStringLocalizer<App> Loc { get; set; }
-    
+    [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
+
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
+
     private bool _contentEnded;
     private CreateCharacterLearningRequest _characterLearningRequest = new();
     private CharacterResponseResponseFull? _character;
@@ -87,8 +80,7 @@
 
             ModalParameters parameters = new ModalParameters()
                 .Add(nameof(ConfirmCancelModal.Message), Loc["StudyIsComplete"].ToString())
-                .Add(nameof(ConfirmCancelModal.OnConfirm), () => 
-                { NavigationManager.NavigateTo($"/review/{characterLearning?.Id}"); });
+                .Add(nameof(ConfirmCancelModal.OnConfirm), () => { NavigationManager.NavigateTo($"/review/{characterLearning?.Id}"); });
 
             ModalService.Show<ConfirmCancelModal>(Loc["GoToReview"].ToString(), parameters, options);
         }
@@ -138,6 +130,5 @@
         };
     }
 
-   
 
 }

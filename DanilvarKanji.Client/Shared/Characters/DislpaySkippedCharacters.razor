@@ -1,62 +1,62 @@
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.CharacterLearning
 <h2 class="display-6 txt-mid-pink">
-  Your Skipped Characters
-  <span class="fs-4 txt-green-dim">
-    (@_characterItems?.Count() Items)
-  </span>
+    Your Skipped Characters
+    <span class="fs-4 txt-green-dim">
+        (@_characterItems?.Count() Items)
+    </span>
 </h2>
 
 @if (_characterItems == null)
 {
-  <DisplayLoading/>
+    <DisplayLoading/>
 }
 else if (!string.IsNullOrEmpty(_errMsg))
 {
-  <h3 class="txt-light-pink main-font text-center mt-1">@_errMsg</h3>
+    <h3 class="txt-light-pink main-font text-center mt-1">@_errMsg</h3>
 }
 else if (!_characterItems.Any())
 {
-  <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
+    <h3 class="txt-light-pink main-font text-center mt-1">No characters found</h3>
 }
 else
 {
-  <div class="row">
-    @foreach (CharacterLearningResponseBase? charLearning in _characterItems)
-    {
-      <CharacterMinimalCard
-        NavigateTo="@(new string($"Character/{charLearning.Character.Id}"))" CharacterResponseBaseInfo="charLearning.Character"/>
-    }
-  </div>
+    <div class="row">
+        @foreach (CharacterLearningResponseBase? charLearning in _characterItems)
+        {
+            <CharacterMinimalCard
+                NavigateTo="@(new string($"Character/{charLearning.Character.Id}"))" CharacterResponseBaseInfo="charLearning.Character"/>
+        }
+    </div>
 }
 
 @code {
 
-  [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
+    [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
-  [Inject] public required CharacterLearningService CharacterLearningService { get; set; }
+    [Inject] public required CharacterLearningService CharacterLearningService { get; set; }
 
-  [Inject] public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-  [Parameter] public int PageNumber { get; set; } = 1;
+    [Parameter] public int PageNumber { get; set; } = 1;
 
-  [Parameter] public int PageSize { get; set; } = int.MaxValue;
+    [Parameter] public int PageSize { get; set; } = int.MaxValue;
 
-  [Parameter] public bool ListOnlyDayDosage { get; set; }
+    [Parameter] public bool ListOnlyDayDosage { get; set; }
 
-  private List<CharacterLearningResponseBase>? _characterItems;
-  private string _errMsg = string.Empty;
+    private List<CharacterLearningResponseBase>? _characterItems;
+    private string _errMsg = string.Empty;
 
-  protected override async Task OnInitializedAsync()
-  {
-    try
+    protected override async Task OnInitializedAsync()
     {
-      _characterItems = await CharacterLearningApiService.ListSkippedAsync(PageNumber, PageSize);
+        try
+        {
+            _characterItems = await CharacterLearningApiService.ListSkippedAsync(PageNumber, PageSize);
+        }
+        catch (HttpRequestException e)
+        {
+            _errMsg = e.Message;
+        }
     }
-    catch (HttpRequestException e)
-    {
-      _errMsg = e.Message;
-    }
-  }
 
 }

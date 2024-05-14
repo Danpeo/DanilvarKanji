@@ -2,52 +2,52 @@
 @using System.Text.RegularExpressions
 @using DanilvarKanji.Shared.Responses.Character
 @{
-  Debug.Assert(Character.Onyomis != null, "Character.Onyomis != null");
+    Debug.Assert(Character.Onyomis != null, "Character.Onyomis != null");
 }
 
 @{
-  var onymiList = Character.Onyomis.ToList();
+    var onymiList = Character.Onyomis.ToList();
 
-  for (var i = 0; i < Math.Min(MaxReadingsToDisplay, onymiList.Count); i++)
-  {
-    var japaneseWriting = onymiList[i].JapaneseWriting;
-
-    var regex = new Regex(@"\(([^)]+)\)");
-    MatchCollection matches = regex.Matches(japaneseWriting);
-
-    if (matches.Count > 0)
+    for (var i = 0; i < Math.Min(MaxReadingsToDisplay, onymiList.Count); i++)
     {
-      var startIndex = 0;
+        var japaneseWriting = onymiList[i].JapaneseWriting;
 
-      foreach (Match match in matches)
-      {
-        var matchIndex = match.Index;
-        var matchLength = match.Length;
+        var regex = new Regex(@"\(([^)]+)\)");
+        MatchCollection matches = regex.Matches(japaneseWriting);
 
-        <span>@japaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
+        if (matches.Count > 0)
+        {
+            var startIndex = 0;
 
-        <span class="txt-gray">@match.Groups[1].Value</span>
+            foreach (Match match in matches)
+            {
+                var matchIndex = match.Index;
+                var matchLength = match.Length;
 
-        startIndex = matchIndex + matchLength;
-      }
+                <span>@japaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
 
-      <span>@japaneseWriting.Substring(startIndex)</span>
+                <span class="txt-gray">@match.Groups[1].Value</span>
+
+                startIndex = matchIndex + matchLength;
+            }
+
+            <span>@japaneseWriting.Substring(startIndex)</span>
+        }
+        else
+        {
+            @japaneseWriting
+        }
+
+        if (i < Math.Min(MaxReadingsToDisplay, onymiList.Count) - 1)
+        {
+            <span>、</span>
+        }
     }
-    else
-    {
-      @japaneseWriting
-    }
-
-    if (i < Math.Min(MaxReadingsToDisplay, onymiList.Count) - 1)
-    {
-      <span>、</span>
-    }
-  }
 }
 
 @code
 {
-  [Parameter] [EditorRequired] public CharacterResponseResponseFull Character { get; set; } = default!;
+    [Parameter] [EditorRequired] public CharacterResponseResponseFull Character { get; set; } = default!;
 
-  [Parameter] public int MaxReadingsToDisplay { get; set; } = int.MaxValue;
+    [Parameter] public int MaxReadingsToDisplay { get; set; } = int.MaxValue;
 }

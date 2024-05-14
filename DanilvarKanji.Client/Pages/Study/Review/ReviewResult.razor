@@ -1,13 +1,11 @@
 @page "/Review/Result/{ReviewSessionId}/{CharacterId}"
 
-@using DanilvarKanji.Shared.Responses.Review
-@using DanilvarKanji.Client.Services.Review
 @using DanilvarKanji.Client.Extensions
-@using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.Services.Characters
+@using DanilvarKanji.Client.Services.Review
 @using DanilvarKanji.Shared.Responses.Character
 @using DanilvarKanji.Shared.Responses.Exercise
-
+@using DanilvarKanji.Shared.Responses.Review
 @inherits NeedsCultureComponent
 
 <ForbidIfNotAuthorized>
@@ -58,17 +56,13 @@
 
 @code {
 
-    [Parameter][EditorRequired]
-    public required string ReviewSessionId { get; set; }
+    [Parameter] [EditorRequired] public required string ReviewSessionId { get; set; }
 
-    [Parameter][EditorRequired]
-    public required string CharacterId { get; set; }
+    [Parameter] [EditorRequired] public required string CharacterId { get; set; }
 
-    [Inject]
-    public required IReviewService ReviewService { get; set; }
+    [Inject] public required IReviewService ReviewService { get; set; }
 
-    [Inject]
-    public required ICharacterService CharacterService { get; set; }
+    [Inject] public required ICharacterService CharacterService { get; set; }
 
     private ReviewSessionResponseBase? _reviewSession;
     private CharacterResponseResponseFull? _character;

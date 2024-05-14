@@ -14,127 +14,127 @@
 
 @if (_appUsers is null)
 {
-  <DisplayLoading/>
+    <DisplayLoading/>
 }
 else if (!_appUsers.Any())
 {
-  <Message Text="No users found"/>
+    <Message Text="No users found"/>
 }
 else
 {
-  @*<LongElement>
+    @*<LongElement>
         <a class="btn btn-lg btn-primary mx-2" @onclick="async () => await UpdateAllUsers()">
             @Loc["UpdateAll"]
         </a>
     </LongElement>*@
-  <table class="table bg-secondary-2 txt-green-dim">
-    <thead>
-    <tr class="txt-mid-pink">
-      <th scope="col">#</th>
-      <th scope="col">@Loc["UserName"]</th>
-      <th scope="col">Email</th>
-      <th scope="col">@Loc["RegistrationDate"]</th>
-      <th scope="col">@Loc["Role"]</th>
-      <th scope="col">@Loc["Action"]</th>
-    </tr>
-    </thead>
-    @for (var i = 0; i < _appUsers.Count; i++)
-    {
-      AppUser appUser = _appUsers[i];
-      <tbody>
-      <tr>
-        <th scope="row">@(i + 1)</th>
-        <td>@appUser.UserName</td>
-        <td>@appUser.Email</td>
-        <td>@appUser.RegistrationDate</td>
-        <td>
-          <InputSelect @bind-Value="appUser.Role" class="dropdown-toggle btn bg-main txt-green-dim no-border" id="jlptLevel">
-            <option value="@UserRole.User">@Loc["PlainUser"]</option>
-            <option value="@UserRole.Admin">@Loc["Admin"]</option>
-            <option value="@UserRole.SuperAdmin">@Loc["SuperAdmin"]</option>
-          </InputSelect>
+    <table class="table bg-secondary-2 txt-green-dim">
+        <thead>
+        <tr class="txt-mid-pink">
+            <th scope="col">#</th>
+            <th scope="col">@Loc["UserName"]</th>
+            <th scope="col">Email</th>
+            <th scope="col">@Loc["RegistrationDate"]</th>
+            <th scope="col">@Loc["Role"]</th>
+            <th scope="col">@Loc["Action"]</th>
+        </tr>
+        </thead>
+        @for (var i = 0; i < _appUsers.Count; i++)
+        {
+            AppUser appUser = _appUsers[i];
+            <tbody>
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td>@appUser.UserName</td>
+                <td>@appUser.Email</td>
+                <td>@appUser.RegistrationDate</td>
+                <td>
+                    <InputSelect @bind-Value="appUser.Role" class="dropdown-toggle btn bg-main txt-green-dim no-border" id="jlptLevel">
+                        <option value="@UserRole.User">@Loc["PlainUser"]</option>
+                        <option value="@UserRole.Admin">@Loc["Admin"]</option>
+                        <option value="@UserRole.SuperAdmin">@Loc["SuperAdmin"]</option>
+                    </InputSelect>
 
-        </td>
-        <td>
-          <a class="btn btn-secondary-alt mx-2" @onclick="async () => await UpdateUserAsync(appUser.Email!, new UpdateUserRequest(appUser.UserName!, appUser.Role))">
-            @Loc["Update"]
-          </a>
-          <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteUserAsync(appUser.Email!)">
-            @Loc["Delete"]
-          </a>
-          <a class="btn btn-outline-danger mx-2" @onclick="async () => await ConfirmEmailForUserAsync(appUser.Email!)">
-            @Loc["ConfirmEmail"]
-          </a>
-        </td>
-      </tr>
-      </tbody>
-    }
-  </table>
+                </td>
+                <td>
+                    <a class="btn btn-secondary-alt mx-2" @onclick="async () => await UpdateUserAsync(appUser.Email!, new UpdateUserRequest(appUser.UserName!, appUser.Role))">
+                        @Loc["Update"]
+                    </a>
+                    <a class="btn btn-outline-danger mx-2" @onclick="async () => await DeleteUserAsync(appUser.Email!)">
+                        @Loc["Delete"]
+                    </a>
+                    <a class="btn btn-outline-danger mx-2" @onclick="async () => await ConfirmEmailForUserAsync(appUser.Email!)">
+                        @Loc["ConfirmEmail"]
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        }
+    </table>
 }
 
 @code {
-  [Inject] public required IUserService UserService { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
 
-  private List<AppUser>? _appUsers;
+    private List<AppUser>? _appUsers;
 
-  protected override async Task OnInitializedAsync()
-  {
-    try
+    protected override async Task OnInitializedAsync()
     {
-      _appUsers = (List<AppUser>?)await UserService.ListUsersAsync();
+        try
+        {
+            _appUsers = (List<AppUser>?)await UserService.ListUsersAsync();
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
-    catch (HttpRequestException e)
-    {
-      Console.WriteLine(e);
-      throw;
-    }
-  }
 
-  private async Task UpdateUserAsync(string email, UpdateUserRequest request)
-  {
-    try
+    private async Task UpdateUserAsync(string email, UpdateUserRequest request)
     {
-      await UserService.UpdateUserAsync(email, request);
+        try
+        {
+            await UserService.UpdateUserAsync(email, request);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
-    catch (HttpRequestException e)
-    {
-      Console.WriteLine(e);
-      throw;
-    }
-  }
 
-  private async Task ConfirmEmailForUserAsync(string email)
-  {
-  }
+    private async Task ConfirmEmailForUserAsync(string email)
+    {
+    }
 
-  private async Task UpdateAllUsers()
-  {
-    try
+    private async Task UpdateAllUsers()
     {
-      foreach (AppUser appUser in _appUsers!)
-      {
-        await UserService.UpdateUserAsync(appUser.Email!, new UpdateUserRequest(appUser.UserName!, appUser.Role));
-      }
+        try
+        {
+            foreach (AppUser appUser in _appUsers!)
+            {
+                await UserService.UpdateUserAsync(appUser.Email!, new UpdateUserRequest(appUser.UserName!, appUser.Role));
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
-    catch (HttpRequestException e)
-    {
-      Console.WriteLine(e);
-      throw;
-    }
-  }
 
-  private async Task DeleteUserAsync(string email)
-  {
-    try
+    private async Task DeleteUserAsync(string email)
     {
-      await UserService.DeleteUserAsync(email);
-      _appUsers!.RemoveAll(u => u.Email == email);
+        try
+        {
+            await UserService.DeleteUserAsync(email);
+            _appUsers!.RemoveAll(u => u.Email == email);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
-    catch (HttpRequestException e)
-    {
-      Console.WriteLine(e);
-      throw;
-    }
-  }
 
 }

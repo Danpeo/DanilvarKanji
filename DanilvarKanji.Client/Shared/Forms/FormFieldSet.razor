@@ -1,22 +1,22 @@
 <div class="form-group mb-3">
-  <label for="@LabelFor" class="txt-light-pink">@Label</label>
-  @ChildContent
-  @if (!string.IsNullOrEmpty(HelpText))
-  {
-    <small id="@helpTextId" class="form-text text-muted">@HelpText</small>
-  }
+    <label for="@LabelFor" class="txt-light-pink">@Label</label>
+    @ChildContent
+    @if (!string.IsNullOrEmpty(HelpText))
+    {
+        <small id="@helpTextId" class="form-text text-muted">@HelpText</small>
+    }
 </div>
 
 @code {
 
-  [Parameter] [EditorRequired] public RenderFragment ChildContent { get; set; } = default!;
+    [Parameter] [EditorRequired] public RenderFragment ChildContent { get; set; } = default!;
 
-  [Parameter] [EditorRequired] public string Label { get; set; } = default!;
+    [Parameter] [EditorRequired] public string Label { get; set; } = default!;
 
-  [Parameter] [EditorRequired] public string LabelFor { get; set; } = default!;
+    [Parameter] [EditorRequired] public string LabelFor { get; set; } = default!;
 
-  [Parameter] public string? HelpText { get; set; }
+    [Parameter] public string? HelpText { get; set; }
 
-  private string helpTextId => $"{LabelFor}Help";
+    private string helpTextId => $"{LabelFor}Help";
 
 }

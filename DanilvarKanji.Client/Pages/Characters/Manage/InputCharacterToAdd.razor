@@ -7,57 +7,57 @@
 @inject IStringLocalizer<App> Loc;
 
 <div class="text-center">
-  <p class="text-body txt-green-dim fs-1 main-font">
-    @(Loc["EnterCharacterDefinition"])
-  </p>
-  <p class="fs-3">
-    <i>@(Loc["ForExample"]): <span class="txt-mid-pink">蛍</span></i>
-  </p>
+    <p class="text-body txt-green-dim fs-1 main-font">
+        @(Loc["EnterCharacterDefinition"])
+    </p>
+    <p class="fs-3">
+        <i>@(Loc["ForExample"]): <span class="txt-mid-pink">蛍</span></i>
+    </p>
 </div>
 
 <div class="">
-  <EditForm Model="_enteredCharacter" OnSubmit="OnSubmitAsync">
-    <InputText @bind-Value="_enteredCharacter"
-               class="form-control-plaintext input-lg text-center display-6 bg-main txt-mid-pink jap-font"
-               id="charInput" placeholder=@(Loc["Definition"])/>
+    <EditForm Model="_enteredCharacter" OnSubmit="OnSubmitAsync">
+        <InputText @bind-Value="_enteredCharacter"
+                   class="form-control-plaintext input-lg text-center display-6 bg-main txt-mid-pink jap-font"
+                   id="charInput" placeholder=@(Loc["Definition"])/>
 
-    <div class="mt-4 d-grid gap-2">
-      <button class="btn btn-elg btn-secondary-alt" type="submit">@Loc["Add"]</button>
-    </div>
-  </EditForm>
+        <div class="mt-4 d-grid gap-2">
+            <button class="btn btn-elg btn-secondary-alt" type="submit">@Loc["Add"]</button>
+        </div>
+    </EditForm>
 
 </div>
 
 @code {
-  [CascadingParameter] public required IModalService ModalService { get; set; }
+    [CascadingParameter] public required IModalService ModalService { get; set; }
 
-  [Inject] public required IKanjiService KanjiService { get; set; }
+    [Inject] public required IKanjiService KanjiService { get; set; }
 
-  [Inject] public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-  [Inject] public required AppState AppState { get; init; }
+    [Inject] public required AppState AppState { get; init; }
 
-  private string _enteredCharacter = string.Empty;
-  private GetKanjiResponse_KAD? _kanjiResponse;
+    private string _enteredCharacter = string.Empty;
+    private GetKanjiResponse_KAD? _kanjiResponse;
 
-  private async Task OnSubmitAsync()
-  {
-    IModalReference loadingModal = ModalService.Show<CubeLoadModal>();
-
-    try
+    private async Task OnSubmitAsync()
     {
-      _kanjiResponse = await KanjiService.GetKanjiAsync(_enteredCharacter);
+        IModalReference loadingModal = ModalService.Show<CubeLoadModal>();
 
-      if (_kanjiResponse != null)
-        AppState.AddCharacterState.KanjiToAdd = _kanjiResponse;
+        try
+        {
+            _kanjiResponse = await KanjiService.GetKanjiAsync(_enteredCharacter);
 
-      NavigationManager.NavigateTo("Characters/Add");
-      loadingModal.Close();
+            if (_kanjiResponse != null)
+                AppState.AddCharacterState.KanjiToAdd = _kanjiResponse;
+
+            NavigationManager.NavigateTo("Characters/Add");
+            loadingModal.Close();
+        }
+        catch (HttpRequestException e)
+        {
+            NavigationManager.NavigateTo("Characters/Add");
+        }
     }
-    catch (HttpRequestException e)
-    {
-      NavigationManager.NavigateTo("Characters/Add");
-    }
-  }
 
 }

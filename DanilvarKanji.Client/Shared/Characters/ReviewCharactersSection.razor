@@ -1,17 +1,17 @@
 <h2 class="display-6 txt-mid-pink">
-  Your Review Queue
+    Your Review Queue
 </h2>
 
 <div class="ms-2 pb-4">
-  <BigButton Text="Review" OnClick="@(() => { NavManager.NavigateTo($"/review/{Learningid}"); })"/>
+    <BigButton Text="Review" OnClick="@(() => { NavManager.NavigateTo($"/review/{Learningid}"); })"/>
 </div>
 
 <DisplayReviewQueue/>
 
 @code{
 
-  [Parameter] [EditorRequired] public required string Learningid { get; set; }
+    [Parameter] [EditorRequired] public required string Learningid { get; set; }
 
-  [Inject] public required NavigationManager NavManager { get; set; }
+    [Inject] public required NavigationManager NavManager { get; set; }
 
 }

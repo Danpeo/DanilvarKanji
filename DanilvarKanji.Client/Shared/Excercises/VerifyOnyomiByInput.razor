@@ -4,40 +4,40 @@
 <WhatIsOnyomiOf CharacterForVerification="CharacterForVerification"/>
 
 <VerifyValueByInput
-  CharacterForVerification="CharacterForVerification"
-  VerifyCondition="VerifyCondition"
-  OnIncorrect="OnIncorrect"
-  OnCorrect="OnCorrect"
-  OnConfirm="OnConfirm"
-  InputPlaceholder="On reading"
-  OnInput="OnInput"/>
+    CharacterForVerification="CharacterForVerification"
+    VerifyCondition="VerifyCondition"
+    OnIncorrect="OnIncorrect"
+    OnCorrect="OnCorrect"
+    OnConfirm="OnConfirm"
+    InputPlaceholder="On reading"
+    OnInput="OnInput"/>
 
 @code {
 
-  [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
+    [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
 
-  [Parameter] [EditorRequired] public Action? OnConfirm { get; set; }
+    [Parameter] [EditorRequired] public Action? OnConfirm { get; set; }
 
-  [Parameter] [EditorRequired] public Func<Task>? OnCorrect { get; set; }
+    [Parameter] [EditorRequired] public Func<Task>? OnCorrect { get; set; }
 
-  [Parameter] [EditorRequired] public Func<Task>? OnIncorrect { get; set; }
+    [Parameter] [EditorRequired] public Func<Task>? OnIncorrect { get; set; }
 
-  [Inject] public required Js Js { get; set; }
+    [Inject] public required Js Js { get; set; }
 
-  private bool VerifyCondition(CharacterResponseResponseFull character, string enteredValue)
-  {
-    return character.Onyomis != null
-           && character
-             .Onyomis
-             .Any(
-               k => k.JapaneseWriting == enteredValue.IgnoreNonJapanese()
-             );
-  }
+    private bool VerifyCondition(CharacterResponseResponseFull character, string enteredValue)
+    {
+        return character.Onyomis != null
+               && character
+                   .Onyomis
+                   .Any(
+                       k => k.JapaneseWriting == enteredValue.IgnoreNonJapanese()
+                   );
+    }
 
 
-  private async Task OnInput(string elementId)
-  {
-    await Js.Wanakana.ToKatakana(elementId);
-  }
+    private async Task OnInput(string elementId)
+    {
+        await Js.Wanakana.ToKatakana(elementId);
+    }
 
 }

@@ -5,10 +5,10 @@ namespace DanilvarKanji.Application.Auth.Commands;
 
 public class RevokeCommand : IRequest<IdentityResult>
 {
-  /*public string Email { get; set; }
+    /*public string Email { get; set; }
 
-  public RevokeCommand(string email)
-  {
-      Email = email;
-  }*/
+    public RevokeCommand(string email)
+    {
+        Email = email;
+    }*/
 }

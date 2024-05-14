@@ -1,17 +1,16 @@
 @page "/review/{CharacterLearningId}"
-
-@using DanilvarKanji.Shared.Responses.Character
-@using DanilvarKanji.Shared.Responses.CharacterLearning
+@using Blazored.Modal.Services
+@using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Client.Services.Review
-@using DanilvarKanji.Shared.Requests.Exercises
-@using DanilvarKanji.Client.Localization
 @using DanilvarKanji.Client.State
-@using DanilvarKanji.Shared.Requests.Reviews
-@using DanilvarKanji.Shared.Responses.Review
-@using Blazored.Modal.Services
 @using DanilvarKanji.Domain.Shared.Enumerations
+@using DanilvarKanji.Shared.Requests.Exercises
+@using DanilvarKanji.Shared.Requests.Reviews
+@using DanilvarKanji.Shared.Responses.Character
+@using DanilvarKanji.Shared.Responses.CharacterLearning
 @using DanilvarKanji.Shared.Responses.Exercise
+@using DanilvarKanji.Shared.Responses.Review
 
 <PageTitle>Review</PageTitle>
 
@@ -45,7 +44,7 @@
 
 
 @code {
-    [Parameter][EditorRequired] public required string CharacterLearningId { get; set; }
+    [Parameter] [EditorRequired] public required string CharacterLearningId { get; set; }
 
     [CascadingParameter] public required IModalService ModalService { get; set; }
 

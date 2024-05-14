@@ -4,14 +4,14 @@ namespace DanilvarKanji.Domain.Shared.Entities;
 
 public class AppUserRole : Entity
 {
-  public AppUserRole()
-  {
-  }
+    public AppUserRole()
+    {
+    }
 
-  public AppUserRole(string name)
-  {
-    Name = name;
-  }
+    public AppUserRole(string name)
+    {
+        Name = name;
+    }
 
-  public string Name { get; set; }
+    public string Name { get; set; }
 }

@@ -8,36 +8,36 @@ namespace DanilvarKanji.Client.Mappers;
 
 public static class CharacterMapper
 {
-  public static CharacterRequest ToCreateCharacterRequest(this GetKanjiResponse_KAD KAD_Kanji)
-  {
-    var createCharacterRequest = new CharacterRequest
+    public static CharacterRequest ToCreateCharacterRequest(this GetKanjiResponse_KAD KAD_Kanji)
     {
-      Definition = KAD_Kanji.Kanji,
-      CharacterType = CharacterType.Kanji,
-      StrokeCount = KAD_Kanji.Stroke_Count
-    };
+        var createCharacterRequest = new CharacterRequest
+        {
+            Definition = KAD_Kanji.Kanji,
+            CharacterType = CharacterType.Kanji,
+            StrokeCount = KAD_Kanji.Stroke_Count
+        };
 
-    createCharacterRequest.FromIntToJlpt(KAD_Kanji.Jlpt);
+        createCharacterRequest.FromIntToJlpt(KAD_Kanji.Jlpt);
 
-    foreach (var kunReading in KAD_Kanji.Kun_Readings)
-      createCharacterRequest.Kunyomis.Add(new Kunyomi(kunReading));
+        foreach (var kunReading in KAD_Kanji.Kun_Readings)
+            createCharacterRequest.Kunyomis.Add(new Kunyomi(kunReading));
 
-    foreach (var onReading in KAD_Kanji.On_Readings)
-      createCharacterRequest.Onyomis.Add(new Onyomi(onReading));
+        foreach (var onReading in KAD_Kanji.On_Readings)
+            createCharacterRequest.Onyomis.Add(new Onyomi(onReading));
 
-    foreach (var meaning in KAD_Kanji.Meanings)
-    {
-      var strDefs = new List<StringDefinition>
-      {
-        new(meaning, Culture.EnUS),
-        new(meaning, Culture.RuRU)
-      };
-      createCharacterRequest.KanjiMeanings.Add(new KanjiMeaning(100, strDefs));
+        foreach (var meaning in KAD_Kanji.Meanings)
+        {
+            var strDefs = new List<StringDefinition>
+            {
+                new(meaning, Culture.EnUS),
+                new(meaning, Culture.RuRU)
+            };
+            createCharacterRequest.KanjiMeanings.Add(new KanjiMeaning(100, strDefs));
+        }
+
+        createCharacterRequest.Mnemonics.Add(new StringDefinition("Kanji", Culture.EnUS));
+        createCharacterRequest.Mnemonics.Add(new StringDefinition("Кандзи", Culture.RuRU));
+
+        return createCharacterRequest;
     }
-
-    createCharacterRequest.Mnemonics.Add(new StringDefinition("Kanji", Culture.EnUS));
-    createCharacterRequest.Mnemonics.Add(new StringDefinition("Кандзи", Culture.RuRU));
-
-    return createCharacterRequest;
-  }
 }

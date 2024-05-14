@@ -7,14 +7,14 @@ namespace DanilvarKanji.Client.Services.Auth;
 
 public interface IUserService
 {
-  Task<UserResponseBase?> GetUserAsync();
+    Task<UserResponseBase?> GetUserAsync();
 
-  Task UpdateLearningSettingsAsync(LearningSettings settings);
+    Task UpdateLearningSettingsAsync(LearningSettings settings);
 
-  Task<LearningSettings?> GetLearningSettingsAsync();
+    Task<LearningSettings?> GetLearningSettingsAsync();
 
-  Task<IEnumerable<AppUser>?> ListUsersAsync(int pageNumber = 0, int pageSize = 0);
+    Task<IEnumerable<AppUser>?> ListUsersAsync(int pageNumber = 0, int pageSize = 0);
 
-  Task DeleteUserAsync(string email);
-  Task UpdateUserAsync(string userEmail, UpdateUserRequest request);
+    Task DeleteUserAsync(string email);
+    Task UpdateUserAsync(string userEmail, UpdateUserRequest request);
 }

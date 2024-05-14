@@ -10,47 +10,47 @@ namespace DanilvarKanji.Application.Characters.Handlers;
 
 // ReSharper disable once UnusedType.Global
 public class ListLearnQueueHandler
-  : IRequestHandler<ListLearnQueueQuery, IEnumerable<CharacterResponseBase>>
+    : IRequestHandler<ListLearnQueueQuery, IEnumerable<CharacterResponseBase>>
 {
-  private readonly ICharacterRepository _characterRepository;
-  private readonly IMapper _mapper;
+    private readonly ICharacterRepository _characterRepository;
+    private readonly IMapper _mapper;
 
-  public ListLearnQueueHandler(ICharacterRepository characterRepository, IMapper mapper)
-  {
-    _characterRepository = characterRepository;
-    _mapper = mapper;
-  }
-
-  public async Task<IEnumerable<CharacterResponseBase>> Handle(
-    ListLearnQueueQuery request,
-    CancellationToken cancellationToken
-  )
-  {
-    if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
+    public ListLearnQueueHandler(ICharacterRepository characterRepository, IMapper mapper)
     {
-      IEnumerable<Character> characters;
-      if (request.listOnlyDayDosage)
-      {
-        var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
-
-        characters = await _characterRepository.ListLearnQueueAsync(
-          paginationParams,
-          request.AppUser,
-          request.JlptLevel
-        );
-      }
-      else
-      {
-        characters = await _characterRepository.ListLearnQueueAsync(
-          request.PaginationParams,
-          request.AppUser,
-          request.JlptLevel
-        );
-      }
-
-      return _mapper.Map<IEnumerable<CharacterResponseBase>>(characters);
+        _characterRepository = characterRepository;
+        _mapper = mapper;
     }
 
-    return Enumerable.Empty<CharacterResponseBase>();
-  }
+    public async Task<IEnumerable<CharacterResponseBase>> Handle(
+        ListLearnQueueQuery request,
+        CancellationToken cancellationToken
+    )
+    {
+        if (await _characterRepository.AnyInLearnQueueAsync(request.AppUser))
+        {
+            IEnumerable<Character> characters;
+            if (request.listOnlyDayDosage)
+            {
+                var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
+
+                characters = await _characterRepository.ListLearnQueueAsync(
+                    paginationParams,
+                    request.AppUser,
+                    request.JlptLevel
+                );
+            }
+            else
+            {
+                characters = await _characterRepository.ListLearnQueueAsync(
+                    request.PaginationParams,
+                    request.AppUser,
+                    request.JlptLevel
+                );
+            }
+
+            return _mapper.Map<IEnumerable<CharacterResponseBase>>(characters);
+        }
+
+        return Enumerable.Empty<CharacterResponseBase>();
+    }
 }

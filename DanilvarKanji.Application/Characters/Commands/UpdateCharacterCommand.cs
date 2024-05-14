@@ -8,14 +8,14 @@ namespace DanilvarKanji.Application.Characters.Commands;
 
 public class UpdateCharacterCommand : IRequest<Result<string>>
 {
-  public string Id { get; set; }
-  public string Definition { get; set; }
-  public JlptLevel JlptLevel { get; init; }
-  public CharacterType CharacterType { get; init; } = CharacterType.Kanji;
-  public ICollection<StringDefinition>? Mnemonics { get; init; } = new List<StringDefinition>();
+    public string Id { get; set; }
+    public string Definition { get; set; }
+    public JlptLevel JlptLevel { get; init; }
+    public CharacterType CharacterType { get; init; } = CharacterType.Kanji;
+    public ICollection<StringDefinition>? Mnemonics { get; init; } = new List<StringDefinition>();
 
-  public int StrokeCount { get; set; }
-  public ICollection<KanjiMeaning> KanjiMeanings { get; set; } = new List<KanjiMeaning>();
-  public ICollection<Kunyomi>? Kunyomis { get; init; } = new List<Kunyomi>();
-  public ICollection<Onyomi>? Onyomis { get; init; } = new List<Onyomi>();
+    public int StrokeCount { get; set; }
+    public ICollection<KanjiMeaning> KanjiMeanings { get; set; } = new List<KanjiMeaning>();
+    public ICollection<Kunyomi>? Kunyomis { get; init; } = new List<Kunyomi>();
+    public ICollection<Onyomi>? Onyomis { get; init; } = new List<Onyomi>();
 }

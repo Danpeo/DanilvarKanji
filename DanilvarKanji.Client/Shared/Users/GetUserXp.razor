@@ -3,13 +3,13 @@
 <h3>GetUserXp</h3>
 
 @code {
-  [Inject] public required IUserService UserService { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
 
-  private UserResponseBase? _user;
+    private UserResponseBase? _user;
 
-  protected override async Task OnInitializedAsync()
-  {
-    _user = await UserService.GetUserAsync();
-  }
+    protected override async Task OnInitializedAsync()
+    {
+        _user = await UserService.GetUserAsync();
+    }
 
 }

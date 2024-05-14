@@ -12,71 +12,71 @@
 
 
 <EditForm Model="_registerUserRequest" OnValidSubmit="HandleSubmitAsync" OnInvalidSubmit="HandleInvalidSubmit">
-  <FluentValidationValidator/>
+    <FluentValidationValidator/>
 
-  <FormSection Title="@(new string($"{Loc["Registration"]}"))" HelpText="@(new string($"{Loc["RegisterNewAccount"]}"))">
+    <FormSection Title="@(new string($"{Loc["Registration"]}"))" HelpText="@(new string($"{Loc["RegisterNewAccount"]}"))">
 
-    <FormFieldSet Label="@(new string($"{Loc["UserName"]}"))" LabelFor="@UsernameElid" HelpText="">
-      <InputText @bind-Value="_registerUserRequest.UserName" class="form-control bg-secondary txt-white jap-font no-border"
-                 id="@UsernameElid" placeholder="@(new string($"{Loc["UserName"]}"))"/>
-      <ValidationMessage For="@(() => _registerUserRequest.UserName)"/>
-    </FormFieldSet>
+        <FormFieldSet Label="@(new string($"{Loc["UserName"]}"))" LabelFor="@UsernameElid" HelpText="">
+            <InputText @bind-Value="_registerUserRequest.UserName" class="form-control bg-secondary txt-white jap-font no-border"
+                       id="@UsernameElid" placeholder="@(new string($"{Loc["UserName"]}"))"/>
+            <ValidationMessage For="@(() => _registerUserRequest.UserName)"/>
+        </FormFieldSet>
 
-    <FormFieldSet Label="Email" LabelFor="@EmailElId" HelpText="">
-      <InputText @bind-Value="_registerUserRequest.Email" class="form-control bg-secondary txt-white jap-font no-border"
-                 id="@EmailElId" placeholder="Email"/>
-      <ValidationMessage For="@(() => _registerUserRequest.Email)"/>
-    </FormFieldSet>
+        <FormFieldSet Label="Email" LabelFor="@EmailElId" HelpText="">
+            <InputText @bind-Value="_registerUserRequest.Email" class="form-control bg-secondary txt-white jap-font no-border"
+                       id="@EmailElId" placeholder="Email"/>
+            <ValidationMessage For="@(() => _registerUserRequest.Email)"/>
+        </FormFieldSet>
 
-    <FormFieldSet Label="@(new string($"{Loc["Password"]}"))" LabelFor="@PasswordElId">
-      <InputText @bind-Value="_registerUserRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border"
-                 id="@PasswordElId" placeholder="@(new string($"{Loc["Password"]}"))"/>
-      <ValidationMessage For="@(() => _registerUserRequest.Password)"/>
-    </FormFieldSet>
+        <FormFieldSet Label="@(new string($"{Loc["Password"]}"))" LabelFor="@PasswordElId">
+            <InputText @bind-Value="_registerUserRequest.Password" type="password" class="form-control bg-secondary txt-white jap-font no-border"
+                       id="@PasswordElId" placeholder="@(new string($"{Loc["Password"]}"))"/>
+            <ValidationMessage For="@(() => _registerUserRequest.Password)"/>
+        </FormFieldSet>
 
-    <FormFieldSet Label="@(new string($"{Loc["PasswordRepeat"]}"))" LabelFor="passwordRepeat">
-      <InputText @bind-Value="_registerUserRequest.PasswordRepeat" type="password"
-                 class="form-control bg-secondary txt-white jap-font no-border" id="passwordRepeat"
-                 placeholder="@(new string($"{Loc["PasswordRepeat"]}"))"/>
-      <ValidationMessage For="@(() => _registerUserRequest.PasswordRepeat)"/>
-    </FormFieldSet>
+        <FormFieldSet Label="@(new string($"{Loc["PasswordRepeat"]}"))" LabelFor="passwordRepeat">
+            <InputText @bind-Value="_registerUserRequest.PasswordRepeat" type="password"
+                       class="form-control bg-secondary txt-white jap-font no-border" id="passwordRepeat"
+                       placeholder="@(new string($"{Loc["PasswordRepeat"]}"))"/>
+            <ValidationMessage For="@(() => _registerUserRequest.PasswordRepeat)"/>
+        </FormFieldSet>
 
-    <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
-      <InputSelect @bind-Value="_registerUserRequest.JlptLevel"
-                   class="form-control bg-secondary txt-white no-border" id="jlptLevel">
-        <option value="@JlptLevel.N5">JLPT N5</option>
-        <option value="@JlptLevel.N4">JLPT N4</option>
-        <option value="@JlptLevel.N3">JLPT N3</option>
-        <option value="@JlptLevel.N2">JLPT N2</option>
-        <option value="@JlptLevel.N1">JLPT N1</option>
-      </InputSelect>
-    </FormFieldSet>
+        <FormFieldSet Label="JLPT Level" LabelFor="JlptLevel" HelpText="">
+            <InputSelect @bind-Value="_registerUserRequest.JlptLevel"
+                         class="form-control bg-secondary txt-white no-border" id="jlptLevel">
+                <option value="@JlptLevel.N5">JLPT N5</option>
+                <option value="@JlptLevel.N4">JLPT N4</option>
+                <option value="@JlptLevel.N3">JLPT N3</option>
+                <option value="@JlptLevel.N2">JLPT N2</option>
+                <option value="@JlptLevel.N1">JLPT N1</option>
+            </InputSelect>
+        </FormFieldSet>
 
-  </FormSection>
+    </FormSection>
 
-  @if (_submitSuccessful)
-  {
-    <SuccessAlertAlt Message="@(new string($"{Loc["AccountRegistered"]}"))"/>
-    NavManager.NavigateTo("/EmailConfirmation");
-  }
-  else if (_errorMessage is not null)
-  {
-    <ErrorAlert Message="@_errorMessage"/>
-  }
+    @if (_submitSuccessful)
+    {
+        <SuccessAlertAlt Message="@(new string($"{Loc["AccountRegistered"]}"))"/>
+        NavManager.NavigateTo("/EmailConfirmation");
+    }
+    else if (_errorMessage is not null)
+    {
+        <ErrorAlert Message="@_errorMessage"/>
+    }
 
-  <div class="mt-4 mb-5">
-    <div class="row">
-      <div class="offset-4 col-8 text-right">
-        <button class="btn btn-lg btn-outline-secondary" type="button" @onclick="GenerateCredentials">
-          @Loc["GenCreds"]
-        </button>
-        <button class="btn btn-lg btn-outline-secondary" type="button"
-                @onclick="@(() => _registerUserRequest = new RegisterUserRequest())">
-          @Loc["Reset"]
-        </button>
-        <button class="btn btn-lg btn-primary" type="submit">@Loc["Register"]</button>
-      </div>
+    <div class="mt-4 mb-5">
+        <div class="row">
+            <div class="offset-4 col-8 text-right">
+                <button class="btn btn-lg btn-outline-secondary" type="button" @onclick="GenerateCredentials">
+                    @Loc["GenCreds"]
+                </button>
+                <button class="btn btn-lg btn-outline-secondary" type="button"
+                        @onclick="@(() => _registerUserRequest = new RegisterUserRequest())">
+                    @Loc["Reset"]
+                </button>
+                <button class="btn btn-lg btn-primary" type="submit">@Loc["Register"]</button>
+            </div>
+        </div>
     </div>
-  </div>
 
 </EditForm>

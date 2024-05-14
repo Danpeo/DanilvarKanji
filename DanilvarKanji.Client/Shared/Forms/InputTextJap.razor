@@ -25,18 +25,18 @@
 <p>@outputText</p>
 
 @code {
-  private string inputText = "";
-  private string outputText = "";
+    private string inputText = "";
+    private string outputText = "";
 
-  private void UpdateText(ChangeEventArgs e)
-  {
-    var newText = "";
-    foreach (var c in inputText)
+    private void UpdateText(ChangeEventArgs e)
     {
-      newText += c + "2";
-    }
+        var newText = "";
+        foreach (var c in inputText)
+        {
+            newText += c + "2";
+        }
 
-    outputText = newText;
-  }
+        outputText = newText;
+    }
 
 }

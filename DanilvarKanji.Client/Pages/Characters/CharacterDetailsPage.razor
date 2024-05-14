@@ -4,23 +4,23 @@
 
 @if (_character != null)
 {
-  <CharacterDetailsMinimal Character="_character"/>
+    <CharacterDetailsMinimal Character="_character"/>
 }
 else
 {
-  <DisplayLoading/>
+    <DisplayLoading/>
 }
 
 @code {
-  [Parameter] [EditorRequired] public required string CharacterId { get; set; }
+    [Parameter] [EditorRequired] public required string CharacterId { get; set; }
 
-  [Inject] public required ICharacterService CharacterService { get; set; }
+    [Inject] public required ICharacterService CharacterService { get; set; }
 
-  private CharacterResponseResponseFull? _character;
+    private CharacterResponseResponseFull? _character;
 
-  protected override async Task OnInitializedAsync()
-  {
-    _character = await CharacterService.GetCharacterAsync(CharacterId);
-  }
+    protected override async Task OnInitializedAsync()
+    {
+        _character = await CharacterService.GetCharacterAsync(CharacterId);
+    }
 
 }

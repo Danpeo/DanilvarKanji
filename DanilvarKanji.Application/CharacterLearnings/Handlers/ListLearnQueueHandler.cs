@@ -8,40 +8,40 @@ namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
 // ReSharper disable once UnusedType.Global
 public class ListLearnQueueHandler
-  : IRequestHandler<ListLearnQueueQuery, IEnumerable<CharacterLearning>>
+    : IRequestHandler<ListLearnQueueQuery, IEnumerable<CharacterLearning>>
 {
-  private readonly ICharacterLearningRepository _characterLearningRepository;
+    private readonly ICharacterLearningRepository _characterLearningRepository;
 
-  public ListLearnQueueHandler(ICharacterLearningRepository characterLearningRepository)
-  {
-    _characterLearningRepository = characterLearningRepository;
-  }
-
-  public async Task<IEnumerable<CharacterLearning>> Handle(
-    ListLearnQueueQuery request,
-    CancellationToken cancellationToken
-  )
-  {
-    if (await _characterLearningRepository.AnyExistAsync())
+    public ListLearnQueueHandler(ICharacterLearningRepository characterLearningRepository)
     {
-      if (request.ListOnlyDayDosage)
-      {
-        var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
-
-        return await _characterLearningRepository.ListLearnQueueAsync(
-          paginationParams,
-          request.AppUser,
-          request.JlptLevel
-        );
-      }
-
-      return await _characterLearningRepository.ListLearnQueueAsync(
-        request.PaginationParams,
-        request.AppUser,
-        request.JlptLevel
-      );
+        _characterLearningRepository = characterLearningRepository;
     }
 
-    return Enumerable.Empty<CharacterLearning>();
-  }
+    public async Task<IEnumerable<CharacterLearning>> Handle(
+        ListLearnQueueQuery request,
+        CancellationToken cancellationToken
+    )
+    {
+        if (await _characterLearningRepository.AnyExistAsync())
+        {
+            if (request.ListOnlyDayDosage)
+            {
+                var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
+
+                return await _characterLearningRepository.ListLearnQueueAsync(
+                    paginationParams,
+                    request.AppUser,
+                    request.JlptLevel
+                );
+            }
+
+            return await _characterLearningRepository.ListLearnQueueAsync(
+                request.PaginationParams,
+                request.AppUser,
+                request.JlptLevel
+            );
+        }
+
+        return Enumerable.Empty<CharacterLearning>();
+    }
 }

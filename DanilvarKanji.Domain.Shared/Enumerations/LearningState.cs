@@ -2,13 +2,13 @@ namespace DanilvarKanji.Domain.Shared.Enumerations;
 
 public enum LearningState
 {
-  NotLearned,
+    NotLearned,
 
-  Learning,
+    Learning,
 
-  LearnedForSomeTime,
+    LearnedForSomeTime,
 
-  Skipped,
+    Skipped,
 
-  CompletelyLearned
+    CompletelyLearned
 }

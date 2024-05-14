@@ -1,27 +1,27 @@
 <p class="card-text @DisplayStyle txt-light-pink main-font">
-  @if (KanjiMeanings.ContainsKey(CharacterId))
-  {
-    for (var i = 0; i < KanjiMeanings[CharacterId].Count; i++)
+    @if (KanjiMeanings.ContainsKey(CharacterId))
     {
-      var kanjiMeaning = KanjiMeanings[CharacterId][i];
-      var resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
+        for (var i = 0; i < KanjiMeanings[CharacterId].Count; i++)
+        {
+            var kanjiMeaning = KanjiMeanings[CharacterId][i];
+            var resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
 
-      @resultMeaning
+            @resultMeaning
 
-      if (i < KanjiMeanings[CharacterId].Count - 1)
-      {
-        <span>, </span>
-      }
+            if (i < KanjiMeanings[CharacterId].Count - 1)
+            {
+                <span>, </span>
+            }
+        }
     }
-  }
 </p>
 
 @code {
 
-  [Parameter] [EditorRequired] public Dictionary<string, List<string>> KanjiMeanings { get; set; } = default!;
+    [Parameter] [EditorRequired] public Dictionary<string, List<string>> KanjiMeanings { get; set; } = default!;
 
-  [Parameter] [EditorRequired] public string CharacterId { get; set; } = default!;
+    [Parameter] [EditorRequired] public string CharacterId { get; set; } = default!;
 
-  [Parameter] public string DisplayStyle { get; set; } = "display-7";
+    [Parameter] public string DisplayStyle { get; set; } = "display-7";
 
 }

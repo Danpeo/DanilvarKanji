@@ -6,26 +6,26 @@ using MediatR;
 namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
 public class ListCompletelyLearnedHandler
-  : IRequestHandler<ListCompletelyLearnedQuery, IEnumerable<CharacterLearning>>
+    : IRequestHandler<ListCompletelyLearnedQuery, IEnumerable<CharacterLearning>>
 {
-  private readonly ICharacterLearningRepository _characterLearningRepository;
+    private readonly ICharacterLearningRepository _characterLearningRepository;
 
-  public ListCompletelyLearnedHandler(ICharacterLearningRepository characterLearningRepository)
-  {
-    _characterLearningRepository = characterLearningRepository;
-  }
+    public ListCompletelyLearnedHandler(ICharacterLearningRepository characterLearningRepository)
+    {
+        _characterLearningRepository = characterLearningRepository;
+    }
 
-  public async Task<IEnumerable<CharacterLearning>> Handle(
-    ListCompletelyLearnedQuery request,
-    CancellationToken cancellationToken
-  )
-  {
-    if (await _characterLearningRepository.AnyExistAsync())
-      return await _characterLearningRepository.ListCompletelyLearnedCharactersAsync(
-        request.PaginationParams,
-        request.AppUser
-      );
+    public async Task<IEnumerable<CharacterLearning>> Handle(
+        ListCompletelyLearnedQuery request,
+        CancellationToken cancellationToken
+    )
+    {
+        if (await _characterLearningRepository.AnyExistAsync())
+            return await _characterLearningRepository.ListCompletelyLearnedCharactersAsync(
+                request.PaginationParams,
+                request.AppUser
+            );
 
-    return Enumerable.Empty<CharacterLearning>();
-  }
+        return Enumerable.Empty<CharacterLearning>();
+    }
 }

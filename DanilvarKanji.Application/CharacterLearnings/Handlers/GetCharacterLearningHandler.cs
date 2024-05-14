@@ -7,23 +7,23 @@ namespace DanilvarKanji.Application.CharacterLearnings.Handlers;
 
 // ReSharper disable once UnusedType.Global
 public class GetCharacterLearningHandler
-  : IRequestHandler<GetCharacterLearningQuery, CharacterLearning?>
+    : IRequestHandler<GetCharacterLearningQuery, CharacterLearning?>
 {
-  private readonly ICharacterLearningRepository _learningRepository;
+    private readonly ICharacterLearningRepository _learningRepository;
 
-  public GetCharacterLearningHandler(ICharacterLearningRepository learningRepository)
-  {
-    _learningRepository = learningRepository;
-  }
+    public GetCharacterLearningHandler(ICharacterLearningRepository learningRepository)
+    {
+        _learningRepository = learningRepository;
+    }
 
-  public async Task<CharacterLearning?> Handle(
-    GetCharacterLearningQuery request,
-    CancellationToken cancellationToken
-  )
-  {
-    if (await _learningRepository.Exist(request.Id, request.AppUser))
-      return await _learningRepository.GetAsync(request.Id, request.AppUser);
+    public async Task<CharacterLearning?> Handle(
+        GetCharacterLearningQuery request,
+        CancellationToken cancellationToken
+    )
+    {
+        if (await _learningRepository.Exist(request.Id, request.AppUser))
+            return await _learningRepository.GetAsync(request.Id, request.AppUser);
 
-    return null;
-  }
+        return null;
+    }
 }

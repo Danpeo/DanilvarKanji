@@ -5,7 +5,7 @@ namespace DanilvarKanji.Client.Services.Review;
 
 public interface IReviewService
 {
-  Task<ReviewSessionResponseBase?> CreateReviewSessionAsync(CreateReviewSessionRequest request);
+    Task<ReviewSessionResponseBase?> CreateReviewSessionAsync(CreateReviewSessionRequest request);
 
-  Task<ReviewSessionResponseBase?> GetReviewSessionAsync(string? id);
+    Task<ReviewSessionResponseBase?> GetReviewSessionAsync(string? id);
 }

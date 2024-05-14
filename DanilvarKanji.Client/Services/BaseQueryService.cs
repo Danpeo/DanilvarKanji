@@ -5,40 +5,40 @@ namespace DanilvarKanji.Client.Services;
 
 public class BaseQueryService<TItem> : IBaseQueryService<TItem>
 {
-  private readonly HttpClient _httpClient;
+    private readonly HttpClient _httpClient;
 
-  public BaseQueryService(HttpClient httpClient)
-  {
-    _httpClient = httpClient;
-  }
-
-  public async Task<IEnumerable<TItem>> ListItemsFilteredBy(
-    string items,
-    string filter,
-    string term
-  )
-  {
-    try
+    public BaseQueryService(HttpClient httpClient)
     {
-      HttpResponseMessage response = await _httpClient.GetAsync(
-        $"api/{items}?$filter={filter.ToLower()} eq '{term}'"
-      );
-
-      if (response.IsSuccessStatusCode)
-      {
-        if (response.StatusCode == HttpStatusCode.NoContent) return Enumerable.Empty<TItem>();
-
-        return await response.Content.ReadFromJsonAsync<IEnumerable<TItem>>()
-               ?? Array.Empty<TItem>();
-      }
-
-      var message = await response.Content.ReadAsStringAsync();
-      throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+        _httpClient = httpClient;
     }
-    catch (Exception e)
+
+    public async Task<IEnumerable<TItem>> ListItemsFilteredBy(
+        string items,
+        string filter,
+        string term
+    )
     {
-      Console.WriteLine(e);
-      throw;
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync(
+                $"api/{items}?$filter={filter.ToLower()} eq '{term}'"
+            );
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NoContent) return Enumerable.Empty<TItem>();
+
+                return await response.Content.ReadFromJsonAsync<IEnumerable<TItem>>()
+                       ?? Array.Empty<TItem>();
+            }
+
+            var message = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
-  }
 }

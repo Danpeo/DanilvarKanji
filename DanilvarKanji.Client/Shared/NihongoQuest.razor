@@ -3,35 +3,35 @@
 
 <div class="text-center mb-2">
 
-  <p class="fs-4 mt-4">
-    @Loc["NewToJapanese1"]
-    <span class="txt-mid-pink">
-      @Loc["NihongoQuest"]
-    </span> @Loc["NewToJapanese2"]
+    <p class="fs-4 mt-4">
+        @Loc["NewToJapanese1"]
+        <span class="txt-mid-pink">
+            @Loc["NihongoQuest"]
+        </span> @Loc["NewToJapanese2"]
 
-  </p>
-  <NavLink target="_blank" rel="noopener noreferrer" href="https://yandex.ru/games/developer?name=Varov%27s%20Games#app=236654" class="btn btn-outline-primary mx-1">
-    Yandex Games
-  </NavLink>
-  <NavLink target="_blank" rel="noopener noreferrer" href="https://vkplay.ru/play/game/nihongo_quest/" class="btn btn-outline-primary">
-    VK Play
-  </NavLink>
+    </p>
+    <NavLink target="_blank" rel="noopener noreferrer" href="https://yandex.ru/games/developer?name=Varov%27s%20Games#app=236654" class="btn btn-outline-primary mx-1">
+        Yandex Games
+    </NavLink>
+    <NavLink target="_blank" rel="noopener noreferrer" href="https://vkplay.ru/play/game/nihongo_quest/" class="btn btn-outline-primary">
+        VK Play
+    </NavLink>
 </div>
 
 @if (_images != null)
 {
-  <Carousel Images="_images"/>
+    <Carousel Images="_images"/>
 }
 
 
 @code {
-  private ImageData[]? _images;
+    private ImageData[]? _images;
 
-  [Inject] public required HttpClient HttpClient { get; set; }
+    [Inject] public required HttpClient HttpClient { get; set; }
 
-  protected override async Task OnInitializedAsync()
-  {
-    _images = await HttpClient.GetFromJsonAsync<ImageData[]>("data/nihongo-quest-images.json");
-  }
+    protected override async Task OnInitializedAsync()
+    {
+        _images = await HttpClient.GetFromJsonAsync<ImageData[]>("data/nihongo-quest-images.json");
+    }
 
 }

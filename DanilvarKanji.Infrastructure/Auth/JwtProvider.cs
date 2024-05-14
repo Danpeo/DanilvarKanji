@@ -13,81 +13,80 @@ namespace DanilvarKanji.Infrastructure.Auth;
 
 public class JwtProvider : IJwtProvider
 {
-  private readonly IDateTime _dateTime;
-  private readonly JwtOptions _jwtOptions;
+    private readonly IDateTime _dateTime;
+    private readonly JwtOptions _jwtOptions;
 
-  public JwtProvider(IOptions<JwtOptions> jwtOptions, IDateTime dateTime)
-  {
-    _dateTime = dateTime;
-    _jwtOptions = jwtOptions.Value;
-  }
-
-  public JwtSecurityToken GenerateJwt(AppUser user)
-  {
-    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey));
-
-    var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
-    var claims = new Claim[]
+    public JwtProvider(IOptions<JwtOptions> jwtOptions, IDateTime dateTime)
     {
-      new(JwtRegisteredClaimNames.Sub, user.Id),
-      new(JwtRegisteredClaimNames.Email, user.Email!),
-      new(JwtRegisteredClaimNames.Name, user.UserName!),
-      new(ClaimTypes.Role, user.Role),
-      new(JwtClaim.XP.ToString(), user.XP.ToString())
-    };
+        _dateTime = dateTime;
+        _jwtOptions = jwtOptions.Value;
+    }
 
-    DateTime tokenExpirationTime = _dateTime.UtcNow.AddMinutes(
-      _jwtOptions.TokenExpirationInMinutes
-    );
-
-    var token = new JwtSecurityToken(
-      _jwtOptions.Issuer,
-      _jwtOptions.Audience,
-      claims,
-      null,
-      tokenExpirationTime,
-      signingCredentials
-    );
-
-    /*string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
-
-    return tokenValue;*/
-
-    return token;
-  }
-
-  public string GetTokenValue(JwtSecurityToken token)
-  {
-    var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
-
-    return tokenValue;
-  }
-
-  public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
-  {
-    var secret =
-      _jwtOptions.SecretKey ?? throw new InvalidOperationException("Secret not configured");
-
-    var validation = new TokenValidationParameters
+    public JwtSecurityToken GenerateJwt(AppUser user)
     {
-      ValidIssuer = _jwtOptions.Issuer,
-      ValidAudience = _jwtOptions.Audience,
-      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
-      ValidateLifetime = false
-    };
+        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey));
 
-    return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
-  }
+        var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-  public string GenerateRefreshToken()
-  {
-    var randomNumber = new byte[64];
+        var claims = new Claim[]
+        {
+            new(JwtRegisteredClaimNames.Sub, user.Id),
+            new(JwtRegisteredClaimNames.Email, user.Email!),
+            new(JwtRegisteredClaimNames.Name, user.UserName!),
+            new(ClaimTypes.Role, user.Role),
+        };
 
-    using var generator = RandomNumberGenerator.Create();
+        DateTime tokenExpirationTime = _dateTime.UtcNow.AddMinutes(
+            _jwtOptions.TokenExpirationInMinutes
+        );
 
-    generator.GetBytes(randomNumber);
+        var token = new JwtSecurityToken(
+            _jwtOptions.Issuer,
+            _jwtOptions.Audience,
+            claims,
+            null,
+            tokenExpirationTime,
+            signingCredentials
+        );
 
-    return Convert.ToBase64String(randomNumber);
-  }
+        /*string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+
+        return tokenValue;*/
+
+        return token;
+    }
+
+    public string GetTokenValue(JwtSecurityToken token)
+    {
+        var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+
+        return tokenValue;
+    }
+
+    public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
+    {
+        var secret =
+            _jwtOptions.SecretKey ?? throw new InvalidOperationException("Secret not configured");
+
+        var validation = new TokenValidationParameters
+        {
+            ValidIssuer = _jwtOptions.Issuer,
+            ValidAudience = _jwtOptions.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
+            ValidateLifetime = false
+        };
+
+        return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
+    }
+
+    public string GenerateRefreshToken()
+    {
+        var randomNumber = new byte[64];
+
+        using var generator = RandomNumberGenerator.Create();
+
+        generator.GetBytes(randomNumber);
+
+        return Convert.ToBase64String(randomNumber);
+    }
 }

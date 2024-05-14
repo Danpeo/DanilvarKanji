@@ -6,13 +6,13 @@ namespace DanilvarKanji.Application.Reviews.Commands;
 
 public class CreateReviewSessionCommand : IRequest<Result<string>>
 {
-  public CreateReviewSessionCommand(ICollection<string> exerciseIds, AppUser appUser)
-  {
-    ExerciseIds = exerciseIds;
-    AppUser = appUser;
-  }
+    public CreateReviewSessionCommand(ICollection<string> exerciseIds, AppUser appUser)
+    {
+        ExerciseIds = exerciseIds;
+        AppUser = appUser;
+    }
 
-  public ICollection<string> ExerciseIds { get; set; }
+    public ICollection<string> ExerciseIds { get; set; }
 
-  public AppUser AppUser { get; set; }
+    public AppUser AppUser { get; set; }
 }

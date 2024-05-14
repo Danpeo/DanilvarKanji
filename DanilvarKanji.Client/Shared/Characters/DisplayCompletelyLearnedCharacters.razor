@@ -4,8 +4,8 @@
 
 <DisplayCharactersAsMinimalCards Title="Completely Learned Characters" OnListCharactersAsync="onListCharactersAsync"/>
 @{
-  async Task<List<CharacterLearningResponseBase>?> onListCharactersAsync()
-  {
-    return await CharacterLearningApiService.ListCompletelyLearnedAsync();
-  }
+    async Task<List<CharacterLearningResponseBase>?> onListCharactersAsync()
+    {
+        return await CharacterLearningApiService.ListCompletelyLearnedAsync();
+    }
 }

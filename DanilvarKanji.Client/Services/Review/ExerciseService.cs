@@ -6,29 +6,29 @@ namespace DanilvarKanji.Client.Services.Review;
 
 public class ExerciseService : IExerciseService
 {
-  private readonly HttpClient _httpClient;
+    private readonly HttpClient _httpClient;
 
-  public ExerciseService(IHttpClientFactory factory)
-  {
-    _httpClient = factory.CreateClient("ServerApi");
-  }
-
-  public async Task<ExerciseResponseFull?> CreateExerciseAsync(CreateExerciseRequest request)
-  {
-    try
+    public ExerciseService(IHttpClientFactory factory)
     {
-      HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Exercises", request);
-
-      if (response.IsSuccessStatusCode)
-        return await response.Content.ReadFromJsonAsync<ExerciseResponseFull>();
-
-      var message = await response.Content.ReadAsStringAsync();
-      throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
+        _httpClient = factory.CreateClient("ServerApi");
     }
-    catch (HttpRequestException e)
+
+    public async Task<ExerciseResponseFull?> CreateExerciseAsync(CreateExerciseRequest request)
     {
-      Console.WriteLine(e);
-      throw;
+        try
+        {
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Exercises", request);
+
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadFromJsonAsync<ExerciseResponseFull>();
+
+            var message = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Http status:{response.StatusCode} Message -{message}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
-  }
 }

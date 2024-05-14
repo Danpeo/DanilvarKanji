@@ -8,36 +8,36 @@
 @inject NavigationManager NavigationManager;
 
 <CascadingBlazoredModal Class="custom-modal">
-  <Router AppAssembly="@typeof(App).Assembly">
-    <Found Context="routeData">
-      <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
-      <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
-    </Found>
-    <NotFound>
-      <PageTitle>@Loc["NotFound"]</PageTitle>
-      <LayoutView Layout="@typeof(MainLayout)">
-        <p role="alert">@Loc["NothingAtAddress"]</p>
-      </LayoutView>
-    </NotFound>
-  </Router>
+    <Router AppAssembly="@typeof(App).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
+            <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+        </Found>
+        <NotFound>
+            <PageTitle>@Loc["NotFound"]</PageTitle>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p role="alert">@Loc["NothingAtAddress"]</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
 </CascadingBlazoredModal>
 
 @code
 {
-  protected override async Task OnInitializedAsync()
-  {
-    await HotkeyService.RegisterHotkeyAsync("e", "r", () => NavigationManager.NavigateTo("/counter"));
-  }
-
-  protected override async Task OnAfterRenderAsync(bool firstRender)
-  {
-    if (firstRender)
+    protected override async Task OnInitializedAsync()
     {
-      await AppState.Init();
-
-      var currentTheme = AppState.ThemeState.CurrentTheme;
-      if (!string.IsNullOrEmpty(currentTheme))
-        await Js.Dom.ApplyThemeAsync(currentTheme);
+        await HotkeyService.RegisterHotkeyAsync("e", "r", () => NavigationManager.NavigateTo("/counter"));
     }
-  }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await AppState.Init();
+
+            var currentTheme = AppState.ThemeState.CurrentTheme;
+            if (!string.IsNullOrEmpty(currentTheme))
+                await Js.Dom.ApplyThemeAsync(currentTheme);
+        }
+    }
 }

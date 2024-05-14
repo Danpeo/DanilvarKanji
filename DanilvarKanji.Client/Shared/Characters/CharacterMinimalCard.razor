@@ -1,47 +1,47 @@
 @using DanilvarKanji.Client.Extensions
 @using DanilvarKanji.Shared.Responses.Character
 <div class="@ColStyle" @onclick="OnCardClick">
-  <div class="card mb-1 bg-secondary-2">
-    <div class="card-body shadow-box  pointer-cursor">
-      <h5 class="fs-3 jap-font txt-mid-pink text-center">@CharacterResponseBaseInfo.Definition</h5>
-      <p class="text-center">
-        @CharacterResponseBaseInfo.GetCharTypeStr()-@CharacterResponseBaseInfo.JlptLevel.GetDisplayName()
-      </p>
-      @if (SubText2 != null)
-      {
-        <p class="text-center txt">
-          <span class="txt-mid-pink">
-            @SubText1
-          </span>
-          <i>@SubText2</i>
-        </p>
-      }
+    <div class="card mb-1 bg-secondary-2">
+        <div class="card-body shadow-box  pointer-cursor">
+            <h5 class="fs-3 jap-font txt-mid-pink text-center">@CharacterResponseBaseInfo.Definition</h5>
+            <p class="text-center">
+                @CharacterResponseBaseInfo.GetCharTypeStr()-@CharacterResponseBaseInfo.JlptLevel.GetDisplayName()
+            </p>
+            @if (SubText2 != null)
+            {
+                <p class="text-center txt">
+                    <span class="txt-mid-pink">
+                        @SubText1
+                    </span>
+                    <i>@SubText2</i>
+                </p>
+            }
+        </div>
     </div>
-  </div>
 </div>
 
 @code {
 
-  [Parameter] [EditorRequired] public required CharacterResponseBase CharacterResponseBaseInfo { get; set; }
+    [Parameter] [EditorRequired] public required CharacterResponseBase CharacterResponseBaseInfo { get; set; }
 
-  [Parameter] public Action? OnClick { get; set; }
+    [Parameter] public Action? OnClick { get; set; }
 
-  [Parameter] public string? NavigateTo { get; set; }
+    [Parameter] public string? NavigateTo { get; set; }
 
-  [Parameter] public string? SubText2 { get; set; }
+    [Parameter] public string? SubText2 { get; set; }
 
-  [Parameter] public string SubText1 { get; set; } = "";
+    [Parameter] public string SubText1 { get; set; } = "";
 
-  [Parameter] public string ColStyle { get; set; } = "col-1";
+    [Parameter] public string ColStyle { get; set; } = "col-1";
 
-  [Inject] public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-  private void OnCardClick()
-  {
-    OnClick?.Invoke();
+    private void OnCardClick()
+    {
+        OnClick?.Invoke();
 
-    if (NavigateTo != null)
-      NavigationManager.NavigateTo($"/{NavigateTo}");
-  }
+        if (NavigateTo != null)
+            NavigationManager.NavigateTo($"/{NavigateTo}");
+    }
 
 }

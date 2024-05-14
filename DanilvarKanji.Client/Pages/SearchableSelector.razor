@@ -8,21 +8,21 @@
 <button @onclick="ToggleTheme">Toggle Theme</button>
 
 @code {
-  bool isDarkTheme;
+    bool isDarkTheme;
 
-  async Task ToggleTheme()
-  {
-    isDarkTheme = !isDarkTheme;
-    if (isDarkTheme)
+    async Task ToggleTheme()
     {
-      await JSRuntime.Dom.ApplyThemeAsync("purple-theme");
-      await AppState.ThemeState.UpdateAsync("purple-theme");
+        isDarkTheme = !isDarkTheme;
+        if (isDarkTheme)
+        {
+            await JSRuntime.Dom.ApplyThemeAsync("purple-theme");
+            await AppState.ThemeState.UpdateAsync("purple-theme");
+        }
+        else
+        {
+            await JSRuntime.Dom.RemoveThemeAsync("purple-theme");
+            await AppState.ThemeState.UpdateAsync("");
+        }
     }
-    else
-    {
-      await JSRuntime.Dom.RemoveThemeAsync("purple-theme");
-      await AppState.ThemeState.UpdateAsync("");
-    }
-  }
 
 }

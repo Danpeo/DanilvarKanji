@@ -8,23 +8,23 @@ namespace DanilvarKanji.Controllers;
 [Route("api/[controller]")]
 public class _DEBUG : ControllerBase
 {
-  private readonly ICharacterLearningRepository _characterLearningRepository;
+    private readonly ICharacterLearningRepository _characterLearningRepository;
 
-  public _DEBUG(ICharacterLearningRepository characterLearningRepository)
-  {
-    _characterLearningRepository = characterLearningRepository;
-  }
+    public _DEBUG(ICharacterLearningRepository characterLearningRepository)
+    {
+        _characterLearningRepository = characterLearningRepository;
+    }
 
-  [Authorize]
-  [HttpGet("AUTHORIZED")]
-  public async Task<IActionResult> Authorized()
-  {
-    return Ok("AUTHORIZED");
-  }
+    [Authorize]
+    [HttpGet("AUTHORIZED")]
+    public async Task<IActionResult> Authorized()
+    {
+        return Ok("AUTHORIZED");
+    }
 
-  [HttpGet("TEST_CHARACTER_LEARNING_SETTINGS")]
-  public IActionResult TestCharacterLearningSettings()
-  {
-    return Ok(_characterLearningRepository.TestLearningSettings("ahah"));
-  }
+    [HttpGet("TEST_CHARACTER_LEARNING_SETTINGS")]
+    public IActionResult TestCharacterLearningSettings()
+    {
+        return Ok(_characterLearningRepository.TestLearningSettings("ahah"));
+    }
 }

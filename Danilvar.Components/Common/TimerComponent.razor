@@ -2,63 +2,63 @@
 @implements IDisposable
 
 <div class="@Css">
-  <h1>@Time</h1>
+    <h1>@Time</h1>
 </div>
 
 @code {
 
-  [Parameter] [EditorRequired] public EventCallback TimerOut { get; set; }
+    [Parameter] [EditorRequired] public EventCallback TimerOut { get; set; }
 
-  [Parameter] public string Css { get; set; } = "";
+    [Parameter] public string Css { get; set; } = "";
 
-  public string Time
-  {
-    get => GetTime();
-    private set => _time = value;
-  }
-
-  private Timer _timer = null!;
-  private int _seconds;
-  private string _time = "00:00";
-
-  public void Start()
-  {
-    Time = TimeSpan.FromSeconds(0).ToString(@"mm\:ss");
-    StateHasChanged();
-    _timer.Start();
-  }
-
-  public void Stop()
-  {
-    _timer.Stop();
-  }
-
-  protected override void OnInitialized()
-  {
-    _timer = new Timer(1000);
-    _timer.Elapsed += OnTimedEvent;
-    _timer.AutoReset = true;
-  }
-
-  private async void OnTimedEvent(object? sender, ElapsedEventArgs e)
-  {
-    _seconds++;
-
-    await InvokeAsync(() =>
+    public string Time
     {
-      Time = GetTime();
-      StateHasChanged();
-    });
-  }
+        get => GetTime();
+        private set => _time = value;
+    }
 
-  private string GetTime()
-  {
-    return TimeSpan.FromSeconds(_seconds).ToString(@"mm\:ss");
-  }
+    private Timer _timer = null!;
+    private int _seconds;
+    private string _time = "00:00";
 
-  public void Dispose()
-  {
-    _timer.Dispose();
-  }
+    public void Start()
+    {
+        Time = TimeSpan.FromSeconds(0).ToString(@"mm\:ss");
+        StateHasChanged();
+        _timer.Start();
+    }
+
+    public void Stop()
+    {
+        _timer.Stop();
+    }
+
+    protected override void OnInitialized()
+    {
+        _timer = new Timer(1000);
+        _timer.Elapsed += OnTimedEvent;
+        _timer.AutoReset = true;
+    }
+
+    private async void OnTimedEvent(object? sender, ElapsedEventArgs e)
+    {
+        _seconds++;
+
+        await InvokeAsync(() =>
+        {
+            Time = GetTime();
+            StateHasChanged();
+        });
+    }
+
+    private string GetTime()
+    {
+        return TimeSpan.FromSeconds(_seconds).ToString(@"mm\:ss");
+    }
+
+    public void Dispose()
+    {
+        _timer.Dispose();
+    }
 
 }

@@ -5,105 +5,105 @@
 
 
 <div class="container-fluid navbar navbar-dark">
-  <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 </div>
 <div id="sideNav" class="@NavMenuCssClass nav-scrollable mt-3" @onclick="ToggleNavMenu">
-  <nav class="flex-column">
-    <a class="navbar-brand" href="/">
-      <img alt="DVKanji" src="img/DVKanjiLogo_2%20copy.png" class="rounded img-fluid" width="128" height="128"/>
-    </a>
-    <div class="nav-item px-3">
-      <NavLink class="nav-link main-font" href="" Match="NavLinkMatch.All">
-        <span class="oi oi-home" aria-hidden="true"></span> @Loc[nameof(NavMenuLocaleKeys.Home)]
-      </NavLink>
-    </div>
-    <div class="nav-item px-3">
-      <NavLink class="nav-link main-font" href="characters">
-        <span class="jap-font pe-4">
-          <b>字</b>
-        </span>
-        @Loc[nameof(NavMenuLocaleKeys.Kanji)]
-      </NavLink>
-    </div>
-    <div class="nav-item px-3">
-      <NavLink class="nav-link main-font" href="dictionary">
-        <span class="jap-font pe-2">
-          <b>辞書</b>
-        </span>
-        @Loc2["Dictionary"]
-      </NavLink>
-    </div>
-    <div class="nav-item px-3">
-      <NavLink class="nav-link main-font" href="NihongoQuest">
-        <span class="jap-font pe-2">
-          <b>辞書</b>
-        </span>
-        @Loc2["NihongoQuest"]
-      </NavLink>
-    </div>
-    <div class="nav-item px-3">
-      <NavLink class="nav-link main-font" href="Extract-Text">
-        <span class="jap-font pe-2">
-          <b>[T]</b>
-        </span>
-        @Loc2["ExtractText"]
-      </NavLink>
-    </div>
-    <Authorized>
-      <div class="nav-item px-3">
-        <NavLink class="nav-link main-font" href="My-Learning">
-          <span class="jap-font pe-2">
-            <b>学習</b>
-          </span>
-          @Loc2["MyLearning"]
-        </NavLink>
-      </div>
-      <div class="nav-item px-3">
-        <NavLink class="nav-link main-font" href="Flashcards">
-          <span class="jap-font pe-2">
-            <b>[|]</b>
-          </span>
-          @Loc2["Flashcards"]
-        </NavLink>
-      </div>
-
-      <HasAnyRole Roles="@(new[] { "Admin", "SuperAdmin" })">
+    <nav class="flex-column">
+        <a class="navbar-brand" href="/">
+            <img alt="DVKanji" src="img/DVKanjiLogo_2%20copy.png" class="rounded img-fluid" width="128" height="128"/>
+        </a>
         <div class="nav-item px-3">
-          <NavLink class="nav-link main-font" href="init-add">
-            <span class="jap-font pe-2">
-              <b>新しい</b>
-            </span>
-            @Loc2["AddNewChar"]
-          </NavLink>
+            <NavLink class="nav-link main-font" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> @Loc[nameof(NavMenuLocaleKeys.Home)]
+            </NavLink>
         </div>
-      </HasAnyRole>
-      <HasRole Role="@("SuperAdmin")">
         <div class="nav-item px-3">
-          <NavLink class="nav-link main-font" href="Users">
-            <span class="jap-font pe-2">
-              <b>
-                ユーザー
-              </b>
-            </span>
-            @Loc2["Users"]
-          </NavLink>
+            <NavLink class="nav-link main-font" href="characters">
+                <span class="jap-font pe-4">
+                    <b>字</b>
+                </span>
+                @Loc[nameof(NavMenuLocaleKeys.Kanji)]
+            </NavLink>
         </div>
-      </HasRole>
-    </Authorized>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link main-font" href="dictionary">
+                <span class="jap-font pe-2">
+                    <b>辞書</b>
+                </span>
+                @Loc2["Dictionary"]
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link main-font" href="NihongoQuest">
+                <span class="jap-font pe-2">
+                    <b>辞書</b>
+                </span>
+                @Loc2["NihongoQuest"]
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link main-font" href="Extract-Text">
+                <span class="jap-font pe-2">
+                    <b>[T]</b>
+                </span>
+                @Loc2["ExtractText"]
+            </NavLink>
+        </div>
+        <Authorized>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link main-font" href="My-Learning">
+                    <span class="jap-font pe-2">
+                        <b>学習</b>
+                    </span>
+                    @Loc2["MyLearning"]
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link main-font" href="Flashcards">
+                    <span class="jap-font pe-2">
+                        <b>[|]</b>
+                    </span>
+                    @Loc2["Flashcards"]
+                </NavLink>
+            </div>
 
-  </nav>
+            <HasAnyRole Roles="@(new[] { "Admin", "SuperAdmin" })">
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link main-font" href="init-add">
+                        <span class="jap-font pe-2">
+                            <b>新しい</b>
+                        </span>
+                        @Loc2["AddNewChar"]
+                    </NavLink>
+                </div>
+            </HasAnyRole>
+            <HasRole Role="@("SuperAdmin")">
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link main-font" href="Users">
+                        <span class="jap-font pe-2">
+                            <b>
+                                ユーザー
+                            </b>
+                        </span>
+                        @Loc2["Users"]
+                    </NavLink>
+                </div>
+            </HasRole>
+        </Authorized>
+
+    </nav>
 </div>
 
 @code {
-  private bool _collapseNavMenu;
+    private bool _collapseNavMenu;
 
-  private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
 
-  private void ToggleNavMenu()
-  {
-    _collapseNavMenu = !_collapseNavMenu;
-  }
+    private void ToggleNavMenu()
+    {
+        _collapseNavMenu = !_collapseNavMenu;
+    }
 
 }

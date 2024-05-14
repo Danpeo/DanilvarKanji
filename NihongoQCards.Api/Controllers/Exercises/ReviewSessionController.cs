@@ -14,47 +14,47 @@ namespace DanilvarKanji.Controllers.Exercises;
 [Authorize]
 public class ReviewSessionController : ApiController
 {
-  private readonly IMapper _mapper;
-  private readonly UserManager<AppUser> _userManager;
+    private readonly IMapper _mapper;
+    private readonly UserManager<AppUser> _userManager;
 
-  public ReviewSessionController(
-    IMediator mediator,
-    UserManager<AppUser> userManager,
-    IMapper mapper
-  )
-    : base(mediator)
-  {
-    _userManager = userManager;
-    _mapper = mapper;
-  }
+    public ReviewSessionController(
+        IMediator mediator,
+        UserManager<AppUser> userManager,
+        IMapper mapper
+    )
+        : base(mediator)
+    {
+        _userManager = userManager;
+        _mapper = mapper;
+    }
 
-  [HttpPost]
-  [ProducesResponseType(typeof(ReviewSession), StatusCodes.Status201Created)]
-  [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
-  public async Task<IActionResult> CreateAsync([FromBody] CreateReviewSessionRequest request)
-  {
-    AppUser? user = await _userManager.GetUserAsync(User);
+    [HttpPost]
+    [ProducesResponseType(typeof(ReviewSession), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateReviewSessionRequest request)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
 
-    var command = new CreateReviewSessionCommand(request.ExerciseIds, user!);
+        var command = new CreateReviewSessionCommand(request.ExerciseIds, user!);
 
-    var result = await Mediator.Send(command);
+        var result = await Mediator.Send(command);
 
-    if (result.IsFailure)
-      return HandleFailure(result);
+        if (result.IsFailure)
+            return HandleFailure(result);
 
-    return await GetAsync(result.Value);
+        return await GetAsync(result.Value);
 
-    //        return CreatedAtAction("Get", new { id = result.Value }, command);
-  }
+        //        return CreatedAtAction("Get", new { id = result.Value }, command);
+    }
 
-  [HttpGet("{id}")]
-  [ProducesResponseType(typeof(Character), StatusCodes.Status200OK)]
-  [ProducesResponseType(StatusCodes.Status404NotFound)]
-  public async Task<IActionResult> GetAsync(string id)
-  {
-    AppUser? user = await _userManager.GetUserAsync(User);
-    ReviewSession? reviewSession = await Mediator.Send(new GetReviewSessionQuery(id, user!));
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(Character), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetAsync(string id)
+    {
+        AppUser? user = await _userManager.GetUserAsync(User);
+        ReviewSession? reviewSession = await Mediator.Send(new GetReviewSessionQuery(id, user!));
 
-    return reviewSession != null ? Ok(reviewSession) : NotFound(Review.NotFound);
-  }
+        return reviewSession != null ? Ok(reviewSession) : NotFound(Review.NotFound);
+    }
 }

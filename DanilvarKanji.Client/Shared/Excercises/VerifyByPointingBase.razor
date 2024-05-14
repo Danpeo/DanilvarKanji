@@ -5,54 +5,54 @@
 
 @code {
 
-  [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
+    [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
 
-  [Parameter] [EditorRequired] public Culture Culture { get; set; }
+    [Parameter] [EditorRequired] public Culture Culture { get; set; }
 
-  /// <summary>
-  ///   Invoked only once, then assigned NULL
-  /// </summary>
-  [Parameter]
-  [EditorRequired]
-  public Func<Task>? OnCorrect { get; set; }
+    /// <summary>
+    ///     Invoked only once, then assigned NULL
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public Func<Task>? OnCorrect { get; set; }
 
-  /// <summary>
-  ///   Invoked only once, then assigned NULL
-  /// </summary>
-  [Parameter]
-  [EditorRequired]
-  public Func<Task>? OnIncorrect { get; set; }
+    /// <summary>
+    ///     Invoked only once, then assigned NULL
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public Func<Task>? OnIncorrect { get; set; }
 
-  [Parameter] [EditorRequired] public required Func<Task> OnForgot { get; set; }
+    [Parameter] [EditorRequired] public required Func<Task> OnForgot { get; set; }
 
-  [Parameter] public int OptionCount { get; set; } = 4;
+    [Parameter] public int OptionCount { get; set; } = 4;
 
-  [Inject] public required Js Js { get; set; }
+    [Inject] public required Js Js { get; set; }
 
-  [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
+    [Inject] public required ICharacterLearningApiService CharacterLearningApiService { get; set; }
 
-  protected async Task OnIncorrectAnswer(string buttonId)
-  {
-    await Js.Dom.AddClassesToElementForTimeAsync(buttonId, new[] { "shake" }, 500);
-    await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "danger-border", "bg-danger", "txt-dark" });
-
-    if (OnIncorrect != null)
+    protected async Task OnIncorrectAnswer(string buttonId)
     {
-      await OnIncorrect.Invoke();
-      OnIncorrect = null;
+        await Js.Dom.AddClassesToElementForTimeAsync(buttonId, new[] { "shake" }, 500);
+        await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "danger-border", "bg-danger", "txt-dark" });
+
+        if (OnIncorrect != null)
+        {
+            await OnIncorrect.Invoke();
+            OnIncorrect = null;
+        }
     }
-  }
 
-  protected async Task OnCorrectAnswer(string? buttonId)
-  {
-    await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "bg-success", "txt-dark" });
-
-    if (OnCorrect != null)
+    protected async Task OnCorrectAnswer(string? buttonId)
     {
-      await OnCorrect.Invoke();
-      OnCorrect = null;
-      OnIncorrect = null;
+        await Js.Dom.AddClassesToElementAsync(buttonId, new[] { "bg-success", "txt-dark" });
+
+        if (OnCorrect != null)
+        {
+            await OnCorrect.Invoke();
+            OnCorrect = null;
+            OnIncorrect = null;
+        }
     }
-  }
 
 }

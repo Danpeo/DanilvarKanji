@@ -2,112 +2,112 @@
 @using DanilvarKanji.Client.JsWrapper
 @using DanilvarKanji.Shared.Responses.Character
 <div class="">
-  <EditForm Model="_enteredValue" OnSubmit="Verify">
-    <InputText @bind-Value="_enteredValue" @oninput="OnInputText"
-               class="form-control-plaintext input-lg display-6 bg-main txt-mid-pink jap-font"
-               id="@ValueInputId" placeholder="@InputPlaceholder"/>
+    <EditForm Model="_enteredValue" OnSubmit="Verify">
+        <InputText @bind-Value="_enteredValue" @oninput="OnInputText"
+                   class="form-control-plaintext input-lg display-6 bg-main txt-mid-pink jap-font"
+                   id="@ValueInputId" placeholder="@InputPlaceholder"/>
 
-    @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
-    {
-      <div class="d-grid gap-2 mt-4 mb-4">
-        <button class="btn btn-lg btn-primary bg-light-pink" type="submit">@Loc["Confirm"]</button>
-      </div>
-    }
-  </EditForm>
+        @if (_attempts <= StudyParams.AllowedInputMeaningAttempts && !_isCorrect)
+        {
+            <div class="d-grid gap-2 mt-4 mb-4">
+                <button class="btn btn-lg btn-primary bg-light-pink" type="submit">@Loc["Confirm"]</button>
+            </div>
+        }
+    </EditForm>
 
 </div>
 
 
 @if (_attempts > StudyParams.AllowedInputMeaningAttempts)
 {
-  <button>okay</button>
+    <button>okay</button>
 }
 @if (_isCorrect)
 {
-  <button>yay</button>
+    <button>yay</button>
 }
 
 @code {
 
-  [Inject] public required Js Js { get; set; }
+    [Inject] public required Js Js { get; set; }
 
-  [Inject] public required IStringLocalizer<App> Loc { get; set; }
+    [Inject] public required IStringLocalizer<App> Loc { get; set; }
 
-  [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
+    [Parameter] [EditorRequired] public required CharacterResponseResponseFull CharacterForVerification { get; set; }
 
-  [Parameter] [EditorRequired] public required Func<CharacterResponseResponseFull, string, bool> VerifyCondition { get; set; }
+    [Parameter] [EditorRequired] public required Func<CharacterResponseResponseFull, string, bool> VerifyCondition { get; set; }
 
-  [Parameter] [EditorRequired] public Action? OnConfirm { get; set; }
+    [Parameter] [EditorRequired] public Action? OnConfirm { get; set; }
 
-  [Parameter] [EditorRequired] public Func<Task>? OnCorrect { get; set; }
+    [Parameter] [EditorRequired] public Func<Task>? OnCorrect { get; set; }
 
-  [Parameter] public string InputPlaceholder { get; set; } = "Input";
+    [Parameter] public string InputPlaceholder { get; set; } = "Input";
 
-  [Parameter] public Func<string?, Task>? OnInput { get; set; }
+    [Parameter] public Func<string?, Task>? OnInput { get; set; }
 
-  [Parameter] public int OnInputDelayMs { get; set; } = 500;
+    [Parameter] public int OnInputDelayMs { get; set; } = 500;
 
-  /// <summary>
-  ///   Invoked only once, then assigned NULL
-  /// </summary>
-  [Parameter]
-  [EditorRequired]
-  public Func<Task>? OnIncorrect { get; set; }
+    /// <summary>
+    ///     Invoked only once, then assigned NULL
+    /// </summary>
+    [Parameter]
+    [EditorRequired]
+    public Func<Task>? OnIncorrect { get; set; }
 
-  private string _enteredValue = string.Empty;
-  private bool _isCorrect;
-  private int _attempts;
-  private const string? ValueInputId = "valueInput";
+    private string _enteredValue = string.Empty;
+    private bool _isCorrect;
+    private int _attempts;
+    private const string? ValueInputId = "valueInput";
 
-  private async Task Verify()
-  {
-    var isCorrectInput = VerifyCondition(CharacterForVerification, _enteredValue);
-    const int delayAnimationTime = 500;
-
-    if (isCorrectInput)
+    private async Task Verify()
     {
-      _isCorrect = true;
+        var isCorrectInput = VerifyCondition(CharacterForVerification, _enteredValue);
+        const int delayAnimationTime = 500;
 
-      await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
-        new[] { "bg-success", "txt-dark" }, delayAnimationTime);
+        if (isCorrectInput)
+        {
+            _isCorrect = true;
 
-      await Task.Delay(delayAnimationTime);
+            await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
+                new[] { "bg-success", "txt-dark" }, delayAnimationTime);
 
-      if (OnCorrect != null)
-      {
-        OnCorrect?.Invoke();
-        OnCorrect = null;
-      }
+            await Task.Delay(delayAnimationTime);
+
+            if (OnCorrect != null)
+            {
+                OnCorrect?.Invoke();
+                OnCorrect = null;
+            }
+        }
+        else
+        {
+            _attempts++;
+
+            await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
+                new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
+                delayAnimationTime);
+
+            await Task.Delay(delayAnimationTime);
+
+            if (OnIncorrect != null)
+            {
+                OnIncorrect?.Invoke();
+                OnIncorrect = null;
+            }
+        }
+
+        StateHasChanged();
     }
-    else
+
+    private void OnConfirmClick()
     {
-      _attempts++;
-
-      await Js.Dom.AddClassesToElementForTimeAsync(ValueInputId,
-        new[] { "shake", "danger-border", "bg-danger-dim", "txt-dark" },
-        delayAnimationTime);
-
-      await Task.Delay(delayAnimationTime);
-
-      if (OnIncorrect != null)
-      {
-        OnIncorrect?.Invoke();
-        OnIncorrect = null;
-      }
+        OnConfirm?.Invoke();
     }
 
-    StateHasChanged();
-  }
-
-  private void OnConfirmClick()
-  {
-    OnConfirm?.Invoke();
-  }
-
-  private async Task OnInputText()
-  {
-    await Task.Delay(OnInputDelayMs);
-    OnInput?.Invoke(ValueInputId);
-  }
+    private async Task OnInputText()
+    {
+        await Task.Delay(OnInputDelayMs);
+        OnInput?.Invoke(ValueInputId);
+    }
 
 }

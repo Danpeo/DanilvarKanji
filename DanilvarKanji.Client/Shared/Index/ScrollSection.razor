@@ -1,28 +1,28 @@
 <section id="scroll">
-  <div class="container px-5">
-    <div class="row gx-5 align-items-center">
-      <div class="col-lg-6 @(FromRight ? "order-lg-2" : "")">
-        <div class="p-5">
-          <img class="img-fluid rounded-circle" src="@ImageSource" alt="..."/>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 @(FromRight ? "order-lg-2" : "")">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle" src="@ImageSource" alt="..."/>
+                </div>
+            </div>
+            <div class="col-lg-6 @(FromRight ? "order-lg-1" : "")">
+                <div class="p-5">
+                    <h2 class="display-4 txt-mid-pink main-font">@Title</h2>
+                    <p class="txt-light-pink main-font">@Text</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-6 @(FromRight ? "order-lg-1" : "")">
-        <div class="p-5">
-          <h2 class="display-4 txt-mid-pink main-font">@Title</h2>
-          <p class="txt-light-pink main-font">@Text</p>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
 @code
 {
-  [Parameter] [EditorRequired] public string ImageSource { get; set; } = default!;
+    [Parameter] [EditorRequired] public string ImageSource { get; set; } = default!;
 
-  [Parameter] [EditorRequired] public string Title { get; set; } = default!;
+    [Parameter] [EditorRequired] public string Title { get; set; } = default!;
 
-  [Parameter] [EditorRequired] public string Text { get; set; } = default!;
+    [Parameter] [EditorRequired] public string Text { get; set; } = default!;
 
-  [Parameter] public bool FromRight { get; set; } = true;
+    [Parameter] public bool FromRight { get; set; } = true;
 }
