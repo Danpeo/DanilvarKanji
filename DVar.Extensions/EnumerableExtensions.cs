@@ -63,4 +63,25 @@ public static class EnumerableExtensions
         Array.Reverse(arr, 0, n);
         Array.Reverse(arr, n, arr.Length - n);
     }
+
+    public static void RemoveDuplicates<T>(this T[] array, int allowedDuplicateNumber = 1) where T : notnull
+    {
+        int n = 0;
+        var countMap = new Dictionary<T, int>();
+
+        foreach (var item in array)
+        {
+            if (!countMap.TryGetValue(item, out int value) || value < allowedDuplicateNumber)
+            {
+                array[n] = item;
+                n++;
+                if (!countMap.TryAdd(item, 1))
+                {
+                    countMap[item]++;
+                }
+            }
+        }
+
+        Array.Resize(ref array, n);
+    }
 }

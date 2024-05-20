@@ -9,10 +9,8 @@ public interface IFlashcardRepository
     void CreateCollection(FlashcardCollection collection);
     Task AddFlashcardToCollectionAsync(string collectionId, AppUser user, Flashcard flashcard);
 
-    Task<IEnumerable<FlashcardCollection>> ListCollectionsAsync(
-        PaginationParams? paginationParams,
-        AppUser user
-    );
+    Task<IEnumerable<FlashcardCollection>> ListCollectionsAsync(PaginationParams paginationParams,
+        AppUser user);
 
     ValueTask<bool> AnyCollectionsExistAsync(AppUser user);
     Task<FlashcardCollection?> GetCollectionAsync(string id, AppUser user);

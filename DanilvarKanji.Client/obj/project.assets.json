@@ -107,7 +107,7 @@
           }
         }
       },
-      "FSharp.Core/8.0.200": {
+      "FSharp.Core/7.0.403": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -1012,7 +1012,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.4": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -1175,19 +1175,6 @@
           "bin/placeholder/Danilvar.Components.dll": {}
         }
       },
-      "Danilvar.MathUtils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "FSharp.Core": "8.0.200"
-        },
-        "compile": {
-          "bin/placeholder/Danilvar.MathUtils.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Danilvar.MathUtils.dll": {}
-        }
-      },
       "DanilvarKanji.Domain.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -1344,7 +1331,7 @@
           }
         }
       },
-      "FSharp.Core/8.0.200": {
+      "FSharp.Core/7.0.403": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -2249,7 +2236,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.4": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -2433,19 +2420,6 @@
           "bin/placeholder/Danilvar.Components.dll": {}
         }
       },
-      "Danilvar.MathUtils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "FSharp.Core": "8.0.200"
-        },
-        "compile": {
-          "bin/placeholder/Danilvar.MathUtils.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Danilvar.MathUtils.dll": {}
-        }
-      },
       "DanilvarKanji.Domain.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -2621,15 +2595,15 @@
         "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
-    "FSharp.Core/8.0.200": {
-      "sha512": "qnxoF3Fu0HzfOeYdrwmQOsLP1v+OtOMSIYkNVUwf6nGqWzL03Hh4r6VFCvCb54jlsgtt3WADVYkKkrgdeY5kiQ==",
+    "FSharp.Core/7.0.403": {
+      "sha512": "QYCYEhAj3GccfPdK6EDZu3Yz7I8p75nVHmNnV/9duxTAcqmstbG87waXDC4LBz0/8Jb0teb0ry/xLM2pjk/UAw==",
       "type": "package",
-      "path": "fsharp.core/8.0.200",
+      "path": "fsharp.core/7.0.403",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.8.0.200.nupkg.sha512",
+        "fsharp.core.7.0.403.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -3942,10 +3916,10 @@
         "tools/net7.0/illink.runtimeconfig.json"
       ]
     },
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.4": {
-      "sha512": "D4kK4zXW43HvIX0lG9rBGGVzNtY6WwbCGAHJEi6iChU5Dgw8VenJS7Jc1g9Yy8pq4mEQA5PCcZicA16hGTjRpw==",
+    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.5": {
+      "sha512": "CABBOqZZEDgiVSjkwUr+pJEGEtQbrT+6dltzJnBDap7mOSvfn53+zwb112hRGB7ynm9ikAocGZTUp+GizbH7XQ==",
       "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.4",
+      "path": "microsoft.net.sdk.webassembly.pack/8.0.5",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -3973,7 +3947,7 @@
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
-        "microsoft.net.sdk.webassembly.pack.8.0.4.nupkg.sha512",
+        "microsoft.net.sdk.webassembly.pack.8.0.5.nupkg.sha512",
         "microsoft.net.sdk.webassembly.pack.nuspec",
         "tools/net472/Microsoft.Bcl.AsyncInterfaces.dll",
         "tools/net472/Microsoft.Build.dll",
@@ -3981,6 +3955,7 @@
         "tools/net472/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
         "tools/net472/Microsoft.NET.StringTools.dll",
         "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll",
+        "tools/net472/Microsoft.VisualStudio.Setup.Configuration.Interop.dll",
         "tools/net472/System.Buffers.dll",
         "tools/net472/System.Collections.Immutable.dll",
         "tools/net472/System.Configuration.ConfigurationManager.dll",
@@ -4003,6 +3978,7 @@
         "tools/net8.0/Microsoft.NET.WebAssembly.Webcil.dll",
         "tools/net8.0/Microsoft.Win32.SystemEvents.dll",
         "tools/net8.0/System.Configuration.ConfigurationManager.dll",
+        "tools/net8.0/System.Diagnostics.EventLog.dll",
         "tools/net8.0/System.Drawing.Common.dll",
         "tools/net8.0/System.Reflection.MetadataLoadContext.dll",
         "tools/net8.0/System.Security.Cryptography.ProtectedData.dll",
@@ -4498,11 +4474,6 @@
       "path": "../Danilvar.Components/Danilvar.Components.csproj",
       "msbuildProject": "../Danilvar.Components/Danilvar.Components.csproj"
     },
-    "Danilvar.MathUtils/1.0.0": {
-      "type": "project",
-      "path": "../Danilvar.MathUtils/Danilvar.MathUtils.fsproj",
-      "msbuildProject": "../Danilvar.MathUtils/Danilvar.MathUtils.fsproj"
-    },
     "DanilvarKanji.Domain.Shared/1.0.0": {
       "type": "project",
       "path": "../DanilvarKanji.Domain.Shared/DanilvarKanji.Domain.Shared.csproj",
@@ -4528,7 +4499,6 @@
       "DVar.Extensions >= 1.0.0",
       "DVar.RandCreds >= 1.1.0",
       "Danilvar.Components >= 1.0.0",
-      "Danilvar.MathUtils >= 1.0.0",
       "DanilvarKanji.Shared >= 1.0.0",
       "FluentValidation >= 11.8.0",
       "KristofferStrube.Blazor.FileSystemAccess >= 3.2.2",
@@ -4539,7 +4509,7 @@
       "Microsoft.Extensions.Localization >= 7.0.13",
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.4",
+      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.5",
       "System.IdentityModel.Tokens.Jwt >= 6.24.0",
       "WanaKana-net >= 1.0.0"
     ]
@@ -4573,9 +4543,6 @@
           "projectReferences": {
             "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj": {
               "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj"
-            },
-            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.MathUtils\\Danilvar.MathUtils.fsproj": {
-              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.MathUtils\\Danilvar.MathUtils.fsproj"
             },
             "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
               "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
@@ -4660,7 +4627,7 @@
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.4, )",
+            "version": "[8.0.5, )",
             "autoReferenced": true
           },
           "System.IdentityModel.Tokens.Jwt": {
@@ -4686,7 +4653,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[7.0.18, 7.0.18]"
+            "version": "[7.0.19, 7.0.19]"
           }
         ],
         "frameworkReferences": {
@@ -4694,7 +4661,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

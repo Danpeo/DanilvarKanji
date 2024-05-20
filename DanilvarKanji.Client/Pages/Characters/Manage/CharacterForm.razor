@@ -68,6 +68,11 @@
         <ErrorAlertAlt Message="@_errorMessage"/>
     }
 
+    @if (_showLoading)
+    {
+        <p class="fs-3 fw-bold">@Loc["Loading"]...</p>
+    }
+
     <FormSubmitButtonContainer OnReset="@(() => CharacterRequest = new CharacterRequest())"/>
 
 </EditForm>
@@ -75,20 +80,22 @@
 @code {
 
     [Parameter] [EditorRequired] public CharacterRequest CharacterRequest { get; set; } = null!;
-
     [Parameter] [EditorRequired] public Func<Task<bool>> OnHandleSubmit { get; set; } = null!;
 
     private bool _submitSuccessful;
     private string? _errorMessage;
-
+    private bool _showLoading;
+    
     private async Task HandleSubmit()
     {
         try
         {
+            _showLoading = true;
             var result = await OnHandleSubmit.Invoke();
             if (result)
             {
                 _submitSuccessful = true;
+                _showLoading = false;
             }
         }
         catch (HttpRequestException e)
@@ -100,6 +107,7 @@
     private void HandleInvalidSubmit()
     {
         _submitSuccessful = false;
+        _showLoading = false;
     }
 
 }

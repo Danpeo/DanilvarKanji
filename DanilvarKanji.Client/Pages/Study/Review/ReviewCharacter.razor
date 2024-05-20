@@ -12,7 +12,9 @@
 @using DanilvarKanji.Shared.Responses.Exercise
 @using DanilvarKanji.Shared.Responses.Review
 
-<PageTitle>Review</PageTitle>
+@inject IStringLocalizer<App> Loc;
+
+<PageTitle>@Loc["Review"]</PageTitle>
 
 <ForbidIfNotAuthorized>
     @if (_character is not null)
@@ -30,7 +32,7 @@
         <div class="d-grid gap-4 mt-4 mb-4">
             <button class="btn btn btn-outline-secondary"
                     @onclick="SkipCharacterFromLearning">
-                Skip this character from learning
+                @Loc["SkipCharacterFromLearning"]
             </button>
         </div>
     }

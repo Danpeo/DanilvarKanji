@@ -2,7 +2,6 @@ using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Domain.Shared.Params;
-using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,22 +21,20 @@ public class CharacterRepository : ICharacterRepository
         _context.Characters.Add(character);
     }
 
-    public async Task<IEnumerable<Character>> ListAsync(PaginationParams? paginationParams)
+    public async Task<IEnumerable<Character>> ListAsync(PaginationParams paginationParams)
     {
         var characters = await GetCharactersWithRelatedData().ToListAsync();
 
-        return paginationParams != null ? Paginator.Paginate(characters, paginationParams) : characters;
+        return characters.Paginate(paginationParams);
     }
 
-    public async Task<IEnumerable<Character>> ListLearnQueueAsync(
-        PaginationParams? paginationParams,
+    public async Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams paginationParams,
         AppUser user,
-        JlptLevel jlptLevel = JlptLevel.N5
-    )
+        JlptLevel jlptLevel = JlptLevel.N5)
     {
         var characters = await GetLearnQueue(user, jlptLevel).ToListAsync();
 
-        return paginationParams != null ? Paginator.Paginate(characters, paginationParams) : characters;
+        return characters.Paginate(paginationParams);
     }
 
     public async Task<Character?> GetNextInLearnQueueAsync(AppUser user)
@@ -61,16 +58,10 @@ public class CharacterRepository : ICharacterRepository
         characterToUpdate.StrokeCount = character.StrokeCount;
         characterToUpdate.JlptLevel = character.JlptLevel;
         characterToUpdate.CharacterType = character.CharacterType;
-        /*
-        characterToUpdate.ChildCharacterIds = character.ChildCharacterIds;
-        */
         characterToUpdate.KanjiMeanings = character.KanjiMeanings;
         characterToUpdate.Kunyomis = character.Kunyomis;
         characterToUpdate.Onyomis = character.Onyomis;
         characterToUpdate.Mnemonics = character.Mnemonics;
-        /*
-        characterToUpdate.Words = character.Words;
-        */
 
         _context.Characters.Update(character);
     }
@@ -277,37 +268,15 @@ public class CharacterRepository : ICharacterRepository
             .ToListAsync();
     }
 
-    /*public async Task<IEnumerable<Character>> ListChildCharacters(string characterId)
-    {
-        Character? character = await GetAsync(characterId);
-
-        List<Character> childCharacters = new();
-
-        if (character?.ChildCharacterIds != null)
-            foreach (string childCharacterId in character.ChildCharacterIds)
-            {
-                Character? child = await _context.Characters.FirstOrDefaultAsync(x => x.Id == childCharacterId);
-
-                if (child != null)
-                    childCharacters.Add(child);
-            }
-
-        return childCharacters;
-    }*/
-
     private IQueryable<Character> GetCharactersWithRelatedData()
     {
         var characters = _context
-                .Characters.AsSplitQuery()
-                .Include(x => x.Mnemonics)
-                .Include(x => x.KanjiMeanings)
-                .ThenInclude(x => x.Definitions)
-                .Include(x => x.Kunyomis)
-                .Include(x =>
-                    x.Onyomis
-                )
-            /*.Include(x => x.Words)
-            .ThenInclude(x => x.WordMeanings)*/;
+            .Characters.AsSplitQuery()
+            .Include(c => c.Mnemonics)
+            .Include(c => c.KanjiMeanings)
+            .ThenInclude(km => km.Definitions)
+            .Include(c => c.Kunyomis)
+            .Include(c => c.Onyomis);
 
         return characters.OrderByDescending(x => x.Definition);
     }

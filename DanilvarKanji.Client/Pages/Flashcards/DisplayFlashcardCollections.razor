@@ -70,9 +70,9 @@ else
 }
 
 @code {
-    [Inject] public required NavigationManager NavigationManager { get; set; }
+    [Inject] public NavigationManager NavigationManager { get; set; } = null!;
 
-    [Inject] public required IFlashcardApiService FlashcardApiService { get; set; }
+    [Inject] public IFlashcardApiService FlashcardApiService { get; set; } = null!;
 
     private List<FlashcardCollectionResponse>? _flashcardCollections;
 

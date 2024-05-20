@@ -33,7 +33,7 @@ public static class DependencyInjection
         services.AddScoped<IReviewRepository, ReviewRepository>();
         services.AddScoped<IFlashcardRepository, FlashcardRepository>();
         services.AddSingleton<ICacheService, CacheService>();
-
+        
         services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
         return services;

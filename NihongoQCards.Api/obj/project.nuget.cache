@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "d9Gu/cLXER1Ko/UnNDHaVWmogvLIF6aJbVCarjtkxzMF7s1GxfKSBnbvbjvSfFxZtJ1hZxHB6QTsI6UTqacJzQ==",
+  "dgSpecHash": "A5f4n23o1xwuBEP/jrQxXayHyxnOMPHKaDcMx5wxc7DNCj0sFpJiS3XdljXluC1TbzGBglQKnMSP+R3Hb3+P3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\NihongoQCards.Api\\DanilvarKanji.Api.csproj",
   "expectedPackageFiles": [
@@ -18,13 +18,14 @@
     "C:\\Users\\danil\\.nuget\\packages\\cloudinarydotnet\\1.22.0\\cloudinarydotnet.1.22.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\dvar.mathutils\\0.0.1\\dvar.mathutils.0.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.1.1\\dvar.randcreds.1.1.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\dvar.textfromimage\\1.0.0\\dvar.textfromimage.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fastexpressioncompiler\\3.3.4\\fastexpressioncompiler.3.3.4.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.0\\fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.200\\fsharp.core.8.0.200.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\7.0.403\\fsharp.core.7.0.403.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\jasperfx.codegeneration\\3.0.0\\jasperfx.codegeneration.3.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\jasperfx.core\\1.4.0\\jasperfx.core.1.4.0.nupkg.sha512",

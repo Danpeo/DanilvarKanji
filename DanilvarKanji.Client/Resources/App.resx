@@ -258,4 +258,7 @@
     <data name="ShowMore" xml:space="preserve">
         <value/>
     </data>
+    <data name="SkipCharacterFromLearning" xml:space="preserve">
+        <value />
+    </data>
 </root>

@@ -17,15 +17,7 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public void Create(AppUser? user)
-    {
-        _context.AppUsers.Add(user);
-    }
-
-    public void CreateEmailCode(EmailCode emailCode)
-    {
-        _context.EmailCodes.Add(emailCode);
-    }
+    public void CreateEmailCode(EmailCode emailCode) => _context.EmailCodes.Add(emailCode);
 
     public async Task<string?> GetRegistrationConfirmationCodeAsync(string email)
     {
@@ -83,38 +75,24 @@ public class UserRepository : IUserRepository
 
         return new LearningSettings();
     }
-    
-    public async ValueTask<bool> AnyExistAsync()
-    {
-        return await _context.Characters.AnyAsync();
-    }
 
-    public async Task<AppUser?> GetByEmailAsync(string email)
-    {
-        return await _context.AppUsers.FirstOrDefaultAsync(x => x.Email == email);
-    }
+    public async ValueTask<bool> AnyExistAsync() => await _context.Characters.AnyAsync();
 
-    public async Task<IEnumerable<AppUser>> ListAsync(PaginationParams? paginationParams)
+    public async Task<AppUser?> GetByEmailAsync(string email) =>
+        await _context.AppUsers.FirstOrDefaultAsync(x => x.Email == email);
+
+    public async Task<IEnumerable<AppUser>> ListAsync(PaginationParams paginationParams)
     {
         var users = await _context.AppUsers.ToListAsync();
 
-        return paginationParams != null ? Paginator.Paginate(users, paginationParams) : users;
+        return users.Paginate(paginationParams);
     }
 
-    public async Task<bool> ExistById(string id)
-    {
-        return await _context.AppUsers.AnyAsync(x => x.Id == id);
-    }
+    public async Task<bool> ExistById(string id) => await _context.AppUsers.AnyAsync(user => user.Id == id);
 
-    public Task<bool> AnyExist()
-    {
-        return _context.AppUsers.AnyAsync();
-    }
+    public Task<bool> AnyExist() => _context.AppUsers.AnyAsync();
 
-    public async Task<bool> ExistByEmail(string email)
-    {
-        return await _context.AppUsers.AnyAsync(x => x!.Email == email);
-    }
+    public async Task<bool> ExistByEmail(string email) => await _context.AppUsers.AnyAsync(user => user.Email == email);
 
     private async Task<EmailCode?> GetEmailCodeAsync(string email)
     {
@@ -122,8 +100,6 @@ public class UserRepository : IUserRepository
         return emailCode;
     }
 
-    private async Task<AppUser?> GetUserByEmail(string email)
-    {
-        return await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == email);
-    }
+    private async Task<AppUser?> GetUserByEmail(string email) =>
+        await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == email);
 }

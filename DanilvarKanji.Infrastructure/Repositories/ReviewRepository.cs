@@ -14,10 +14,7 @@ public class ReviewRepository : IReviewRepository
         _context = context;
     }
 
-    public void Create(ReviewSession session)
-    {
-        _context.ReviewSessions.Add(session);
-    }
+    public void Create(ReviewSession session) => _context.ReviewSessions.Add(session);
 
     public async Task<ReviewSession?> GetAsync(string id, AppUser user)
     {

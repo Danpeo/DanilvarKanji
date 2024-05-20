@@ -18,6 +18,7 @@ public partial class Register
 
     private RegisterUserRequest _registerUserRequest = new();
     private bool _submitSuccessful;
+    private bool _showLoading;
 
     [Inject] public IAuthService AuthService { get; set; } = default!;
 
@@ -27,8 +28,14 @@ public partial class Register
     {
         try
         {
+            _showLoading = true;
             RegisterUserRequest? request = await AuthService.RegisterUserAsync(_registerUserRequest);
-            if (request is not null) _submitSuccessful = true;
+            if (request is not null)
+            {
+                _submitSuccessful = true;
+            }
+
+            _showLoading = false;
         }
         catch (HttpRequestException e)
         {
@@ -39,9 +46,7 @@ public partial class Register
     private void HandleInvalidSubmit()
     {
         _submitSuccessful = false;
-        /*
-        _errorMessage = "There was a problem";
-    */
+        _showLoading = false;
     }
 
     private async Task GenerateCredentials()

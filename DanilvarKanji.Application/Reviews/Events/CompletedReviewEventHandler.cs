@@ -16,20 +16,17 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
     private readonly CharacterLearningSettings _learningSettings;
     private readonly ILogger<CompletedReviewEventHandler> _logger;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IUserRepository _userRepository;
 
     public CompletedReviewEventHandler(
         ILogger<CompletedReviewEventHandler> logger,
         ICharacterLearningRepository characterLearningRepository,
         IUnitOfWork unitOfWork,
-        IOptions<CharacterLearningSettings> learningSettings,
-        IUserRepository userRepository
+        IOptions<CharacterLearningSettings> learningSettings
     )
     {
         _logger = logger;
         _characterLearningRepository = characterLearningRepository;
         _unitOfWork = unitOfWork;
-        _userRepository = userRepository;
         _learningSettings = learningSettings.Value;
     }
 
@@ -41,7 +38,7 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
         if (!notification.Exercises.Any())
             return;
 
-        var characterId = notification.Exercises.First().Character.Id;
+        string characterId = notification.Exercises.First().Character.Id;
         var isCorrect = notification.Exercises.All(e => e.IsCorrect);
 
         CharacterLearning? characterLearning = await _characterLearningRepository.GetByCharacterIdAsync(
@@ -100,7 +97,7 @@ public class CompletedReviewEventHandler : INotificationHandler<CompletedReviewD
                 _learningSettings.MaxLearningRate
             );
 
-            var shift = _learningSettings.InitRepeatingShiftHrs;
+            float shift = _learningSettings.InitRepeatingShiftHrs;
             var nextShiftMofifier = _learningSettings.NextShiftModifier;
 
             for (var percent = 10; percent <= 100; percent += 10)

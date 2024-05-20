@@ -29,7 +29,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Danilvar.Components\Danilvar.Components.csproj"/>
-        <ProjectReference Include="..\Danilvar.MathUtils\Danilvar.MathUtils.fsproj"/>
         <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj"/>
         <ProjectReference Include="..\DVar.Extensions\DVar.Extensions.csproj"/>
     </ItemGroup>

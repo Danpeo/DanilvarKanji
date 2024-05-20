@@ -7,7 +7,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\obj\Debug\ne
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Mappings.deps.json
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Mappings.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Mappings.pdb
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\Danilvar.MathUtils.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Application.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Domain.dll
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Infrastructure.dll
@@ -15,8 +14,6 @@ C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\ne
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Application.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Domain.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Shared.pdb
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\Danilvar.MathUtils.pdb
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\Danilvar.MathUtils.xml
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\bin\Debug\net7.0\DanilvarKanji.Infrastructure.pdb
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\obj\Debug\net7.0\Danilvar.7DC969D5.Up2Date
 C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Mappings\obj\Debug\net7.0\DanilvarKanji.Mappings.dll

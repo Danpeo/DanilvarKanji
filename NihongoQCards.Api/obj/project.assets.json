@@ -221,6 +221,22 @@
           "lib/net7.0/Danilvar.ValueObject.dll": {}
         }
       },
+      "DVar.MathUtils/0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "7.0.403"
+        },
+        "compile": {
+          "lib/net7.0/DVar.MathUtils.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/DVar.MathUtils.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "DVar.RandCreds/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -312,7 +328,7 @@
           }
         }
       },
-      "FSharp.Core/8.0.200": {
+      "FSharp.Core/7.0.403": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -3739,27 +3755,14 @@
           "bin/placeholder/Danilvar.Components.dll": {}
         }
       },
-      "Danilvar.MathUtils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "FSharp.Core": "8.0.200"
-        },
-        "compile": {
-          "bin/placeholder/Danilvar.MathUtils.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Danilvar.MathUtils.dll": {}
-        }
-      },
       "DanilvarKanji.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "DVar.MathUtils": "0.0.1",
           "DVar.RandCreds": "1.1.1",
           "DVar.TextFromImage": "1.0.0",
-          "Danilvar.MathUtils": "1.0.0",
           "DanilvarKanji.Infrastructure": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "FluentValidation.DependencyInjectionExtensions": "11.8.0",
@@ -3785,7 +3788,6 @@
           "DVar.Extensions": "1.0.0",
           "DVar.RandCreds": "1.1.0",
           "Danilvar.Components": "1.0.0",
-          "Danilvar.MathUtils": "1.0.0",
           "DanilvarKanji.Shared": "1.0.0",
           "FluentValidation": "11.8.0",
           "KristofferStrube.Blazor.FileSystemAccess": "3.2.2",
@@ -4134,6 +4136,19 @@
         "lib/net7.0/Danilvar.ValueObject.dll"
       ]
     },
+    "DVar.MathUtils/0.0.1": {
+      "sha512": "oNikBYsobn/c01QMtkPD/fcqIDH1QL1y9E+k9jb+Ljd+s1w6qiDQyqaVgIyCjXpC1bZrXSjAR1rF5vkoySfXeg==",
+      "type": "package",
+      "path": "dvar.mathutils/0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dvar.mathutils.0.0.1.nupkg.sha512",
+        "dvar.mathutils.nuspec",
+        "lib/net7.0/DVar.MathUtils.dll",
+        "lib/net7.0/DVar.MathUtils.xml"
+      ]
+    },
     "DVar.RandCreds/1.1.1": {
       "sha512": "ffT1LqrmUeo4S1j1Jfb+8rqzRenIo8aJixMbh5URXRnCfr8xKYWwV8/KMyqnCRdNZU1P3JoSniLRpdinenxzTQ==",
       "type": "package",
@@ -4238,15 +4253,15 @@
         "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.xml"
       ]
     },
-    "FSharp.Core/8.0.200": {
-      "sha512": "qnxoF3Fu0HzfOeYdrwmQOsLP1v+OtOMSIYkNVUwf6nGqWzL03Hh4r6VFCvCb54jlsgtt3WADVYkKkrgdeY5kiQ==",
+    "FSharp.Core/7.0.403": {
+      "sha512": "QYCYEhAj3GccfPdK6EDZu3Yz7I8p75nVHmNnV/9duxTAcqmstbG87waXDC4LBz0/8Jb0teb0ry/xLM2pjk/UAw==",
       "type": "package",
-      "path": "fsharp.core/8.0.200",
+      "path": "fsharp.core/7.0.403",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.8.0.200.nupkg.sha512",
+        "fsharp.core.7.0.403.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -10093,11 +10108,6 @@
       "path": "../Danilvar.Components/Danilvar.Components.csproj",
       "msbuildProject": "../Danilvar.Components/Danilvar.Components.csproj"
     },
-    "Danilvar.MathUtils/1.0.0": {
-      "type": "project",
-      "path": "../Danilvar.MathUtils/Danilvar.MathUtils.fsproj",
-      "msbuildProject": "../Danilvar.MathUtils/Danilvar.MathUtils.fsproj"
-    },
     "DanilvarKanji.Application/1.0.0": {
       "type": "project",
       "path": "../DanilvarKanji.Application/DanilvarKanji.Application.csproj",
@@ -10333,7 +10343,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -35,19 +35,15 @@ public class FlashcardRepository : IFlashcardRepository
         collection?.Flashcards.Add(flashcard);
     }
 
-    public async Task<IEnumerable<FlashcardCollection>> ListCollectionsAsync(
-        PaginationParams? paginationParams,
-        AppUser user
-    )
+    public async Task<IEnumerable<FlashcardCollection>> ListCollectionsAsync(PaginationParams paginationParams,
+        AppUser user)
     {
         var collections = await _context
             .FlashcardCollections.Include(c => c.Flashcards)
             .Where(c => c.AppUser == user)
             .ToListAsync();
 
-        return paginationParams != null
-            ? Paginator.Paginate(collections, paginationParams)
-            : collections;
+        return collections.Paginate(paginationParams);
     }
 
     public async Task UpdateCollectionAsync(
@@ -81,13 +77,9 @@ public class FlashcardRepository : IFlashcardRepository
         _context.FlashcardCollections.Remove(collection!);
     }
 
-    public async ValueTask<bool> AnyCollectionsExistAsync(AppUser user)
-    {
-        return await _context.FlashcardCollections.AnyAsync(fc => fc.AppUser == user);
-    }
+    public async ValueTask<bool> AnyCollectionsExistAsync(AppUser user) =>
+        await _context.FlashcardCollections.AnyAsync(fc => fc.AppUser == user);
 
-    public async ValueTask<bool> ExistAsync(string id, AppUser user)
-    {
-        return await _context.FlashcardCollections.AnyAsync(s => s.Id == id && s.AppUser == user);
-    }
+    public async ValueTask<bool> ExistAsync(string id, AppUser user) =>
+        await _context.FlashcardCollections.AnyAsync(s => s.Id == id && s.AppUser == user);
 }

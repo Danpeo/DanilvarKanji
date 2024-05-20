@@ -3,7 +3,6 @@ using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Domain.Shared.Params;
-using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -31,17 +30,16 @@ public class CharacterLearningRepository : ICharacterLearningRepository
 
     public async Task ToggleSkipStateAsync(string id, AppUser user)
     {
-        CharacterLearning? characterLearning = await _context.CharacterLearnings.FirstOrDefaultAsync(x =>
-            x.Id == id && x.AppUser == user
+        CharacterLearning? characterLearning = await _context.CharacterLearnings.FirstOrDefaultAsync(c =>
+            c.Id == id && c.AppUser == user
         );
 
         if (characterLearning is null)
             return;
 
-        if (characterLearning.LearningState == LearningState.Skipped)
-            characterLearning.LearningState = LearningState.Learning;
-        else
-            characterLearning.LearningState = LearningState.Skipped;
+        characterLearning.LearningState = characterLearning.LearningState == LearningState.Skipped
+            ? LearningState.Learning
+            : LearningState.Skipped;
 
         _context.CharacterLearnings.Update(characterLearning);
     }
@@ -71,9 +69,6 @@ public class CharacterLearningRepository : ICharacterLearningRepository
     )
     {
         CharacterLearning? characterLearning = await _context.CharacterLearnings
-            /*
-            .Include(characterLearning => characterLearning.LearningProgress)
-            */
             .FirstOrDefaultAsync(cl => cl.Character.Id == characterId && cl.AppUser == user);
 
         if (characterLearning is null)
@@ -83,9 +78,6 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         characterLearning.LastReviewWasCorrect = isCorrect;
 
         if (characterLearning.LastReviewWasCorrect)
-            /*
-            characterLearning.LearningProgress.Value += _learningSettings.PointAfterCorrectExercise;
-        */
             characterLearning.LearningLevelValue += _learningSettings.PointAfterCorrectExercise;
 
         _context.CharacterLearnings.Update(characterLearning);
@@ -113,11 +105,9 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .FirstOrDefaultAsync(x => x.Character.Id == id && x.AppUser == user);
     }
 
-    public async Task<IEnumerable<CharacterLearning>> ListLearnQueueAsync(
-        PaginationParams? paginationParams,
+    public async Task<IEnumerable<CharacterLearning>> ListLearnQueueAsync(PaginationParams paginationParams,
         AppUser user,
-        JlptLevel jlptLevel = JlptLevel.N5
-    )
+        JlptLevel jlptLevel = JlptLevel.N5)
     {
         var charLearnings = await GetCharacterLearningsWithRelatedData()
             .Where(x => x.AppUser == user)
@@ -128,15 +118,12 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .ThenBy(x => x.Character.Definition)
             .ToListAsync();
 
-        return paginationParams != null
-            ? Paginator.Paginate(charLearnings, paginationParams)
-            : charLearnings;
+        return charLearnings.Paginate(paginationParams);
     }
 
     public async Task<IEnumerable<CharacterLearning>> ListCompletelyLearnedCharactersAsync(
-        PaginationParams? paginationParams,
-        AppUser user
-    )
+        PaginationParams paginationParams,
+        AppUser user)
     {
         var characterLearnings = await GetCharacterLearningsWithRelatedData()
             .Where(c => c.AppUser == user)
@@ -146,15 +133,11 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .ThenBy(c => c.Character.Definition)
             .ToListAsync();
 
-        return paginationParams != null
-            ? Paginator.Paginate(characterLearnings, paginationParams)
-            : characterLearnings;
+        return characterLearnings.Paginate(paginationParams);
     }
 
-    public async Task<IEnumerable<CharacterLearning>> ListSkippedAsync(
-        PaginationParams? paginationParams,
-        AppUser user
-    )
+    public async Task<IEnumerable<CharacterLearning>> ListSkippedAsync(PaginationParams paginationParams,
+        AppUser user)
     {
         var charLearnings = await GetCharacterLearningsWithRelatedData()
             .Where(x => x.AppUser == user)
@@ -164,33 +147,22 @@ public class CharacterLearningRepository : ICharacterLearningRepository
             .ThenBy(x => x.Character.Definition)
             .ToListAsync();
 
-        return paginationParams != null
-            ? Paginator.Paginate(charLearnings, paginationParams)
-            : charLearnings;
+        return charLearnings.Paginate(paginationParams);
     }
 
-    public async Task<IEnumerable<CharacterLearning>> ListCurrentReviewQueueAsync(
-        PaginationParams? paginationParams,
-        AppUser user
-    )
+    public async Task<IEnumerable<CharacterLearning>> ListCurrentReviewQueueAsync(PaginationParams paginationParams,
+        AppUser user)
     {
         var characters = await GetCurrentReviewQueue(user).ToListAsync();
-
-        return paginationParams is not null
-            ? Paginator.Paginate(characters, paginationParams)
-            : characters;
+        return characters.Paginate(paginationParams);
     }
 
-    public async Task<IEnumerable<CharacterLearning>> ListFutureReviewQueueAsync(
-        PaginationParams? paginationParams,
-        AppUser user
-    )
+    public async Task<IEnumerable<CharacterLearning>> ListFutureReviewQueueAsync(PaginationParams paginationParams,
+        AppUser user)
     {
         var characters = await GetFutureReviewQueue(user).ToListAsync();
 
-        return paginationParams is not null
-            ? Paginator.Paginate(characters, paginationParams)
-            : characters;
+        return characters.Paginate(paginationParams);
     }
 
     public async Task<List<string>> GetRandomMeaningsInReviewQueueAsync(
@@ -205,7 +177,7 @@ public class CharacterLearningRepository : ICharacterLearningRepository
         var definitions = await GetFullReviewQueue(user)
             .Where(x => x.Character.Id != characterId)
             .AsSplitQuery()
-            .SelectMany(cl => cl.Character.KanjiMeanings!)
+            .SelectMany(cl => cl.Character.KanjiMeanings)
             .SelectMany(km => km.Definitions!.Where(sd => sd.Culture == culture).Select(sd => sd.Value))
             .ToListAsync();
 

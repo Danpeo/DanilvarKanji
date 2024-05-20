@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3jCL8JabJZqo80ChDVL25wLxXXFhFo5DDVNp8+It2iM/6mHcwNTgJaNWwQdylG1J8ydkLR+WVZs0zEuGnBSDyA==",
+  "dgSpecHash": "9wfTQc3/Su/+eMQrlvJ/RkjQUdWpJA54RzuQcV9+A+/WPRj4NDxpTCZtn++o1XPnTOG+sYuo2cE7IokPO91wBQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client.Tests\\DanilvarKanji.Client.Tests.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\dvar.randcreds\\1.1.0\\dvar.randcreds.1.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\8.0.200\\fsharp.core.8.0.200.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\fsharp.core\\7.0.403\\fsharp.core.7.0.403.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.fileapi\\0.3.0\\kristofferstrube.blazor.fileapi.0.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.filesystem\\0.3.1\\kristofferstrube.blazor.filesystem.0.3.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\kristofferstrube.blazor.filesystemaccess\\3.2.2\\kristofferstrube.blazor.filesystemaccess.3.2.2.nupkg.sha512",

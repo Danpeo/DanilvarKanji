@@ -64,6 +64,11 @@
         <ErrorAlert Message="@_errorMessage"/>
     }
 
+    @if (_showLoading)
+    {
+        <p class="fs-3 fw-bold">@Loc["Loading"]...</p>
+    }
+
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">

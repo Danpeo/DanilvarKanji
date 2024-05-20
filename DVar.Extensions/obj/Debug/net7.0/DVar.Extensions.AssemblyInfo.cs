@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DVar.Extensions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+326d9818847e5ee82af23c05fdf71fabc19cf8cc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8446d941175731ca8fb79b5432e08c10ed44f2f8")]
 [assembly: System.Reflection.AssemblyProductAttribute("DVar.Extensions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DVar.Extensions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

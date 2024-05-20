@@ -780,6 +780,16 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skip this character from learning
+        ///.
+        /// </summary>
+        internal static string SkipCharacterFromLearning {
+            get {
+                return ResourceManager.GetString("SkipCharacterFromLearning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stroke Number.
         /// </summary>
         internal static string StrokeCount {

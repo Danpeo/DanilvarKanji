@@ -306,4 +306,7 @@
     <data name="ShowMore" xml:space="preserve">
         <value>Показать еще</value>
     </data>
+    <data name="SkipCharacterFromLearning" xml:space="preserve">
+        <value>Пропустить иероглиф из процесса обучения</value>
+    </data>
 </root>
