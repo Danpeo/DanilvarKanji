@@ -16,10 +16,7 @@ public class CharacterRepository : ICharacterRepository
         _context = context;
     }
 
-    public void Create(Character character)
-    {
-        _context.Characters.Add(character);
-    }
+    public void Create(Character character) => _context.Characters.Add(character);
 
     public async Task<IEnumerable<Character>> ListAsync(PaginationParams paginationParams)
     {
@@ -37,19 +34,15 @@ public class CharacterRepository : ICharacterRepository
         return characters.Paginate(paginationParams);
     }
 
-    public async Task<Character?> GetNextInLearnQueueAsync(AppUser user)
-    {
-        return await GetLearnQueue(user, user.JlptLevel).FirstOrDefaultAsync();
-    }
+    public async Task<Character?> GetNextInLearnQueueAsync(AppUser user) =>
+        await GetLearnQueue(user, user.JlptLevel).FirstOrDefaultAsync();
 
-    public async Task<Character?> GetAsync(string id)
-    {
-        return await GetCharactersWithRelatedData().FirstOrDefaultAsync(x => x.Id == id);
-    }
+    public async Task<Character?> GetAsync(string id) =>
+        await GetCharactersWithRelatedData().FirstOrDefaultAsync(c => c.Id == id);
 
     public async Task UpdateAsync(string id, Character character)
     {
-        Character? characterToUpdate = await _context.Characters.FirstOrDefaultAsync(x => x.Id == id);
+        Character? characterToUpdate = await _context.Characters.FirstOrDefaultAsync(c => c.Id == id);
 
         if (characterToUpdate is null)
             return;

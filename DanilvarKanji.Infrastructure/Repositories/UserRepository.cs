@@ -1,8 +1,8 @@
 using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Domain.Shared.Params;
-using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -81,12 +81,8 @@ public class UserRepository : IUserRepository
     public async Task<AppUser?> GetByEmailAsync(string email) =>
         await _context.AppUsers.FirstOrDefaultAsync(x => x.Email == email);
 
-    public async Task<IEnumerable<AppUser>> ListAsync(PaginationParams paginationParams)
-    {
-        var users = await _context.AppUsers.ToListAsync();
-
-        return users.Paginate(paginationParams);
-    }
+    public IEnumerable<AppUser> List(PaginationParams paginationParams) =>
+        _context.AppUsers.Where(u => u.Role != UserRole.SuperAdmin).AsEnumerable().Paginate(paginationParams);
 
     public async Task<bool> ExistById(string id) => await _context.AppUsers.AnyAsync(user => user.Id == id);
 

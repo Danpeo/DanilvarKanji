@@ -1,4 +1,4 @@
-using DanilvarKanji.Infrastructure.Options;
+using DanilvarKanji.Infrastructure.Auth;
 using Microsoft.Extensions.Options;
 
 namespace DanilvarKanji.Setup;

@@ -8,4 +8,4 @@ public record GetUserByIdQuery(string Id) : IRequest<AppUser?>;
 
 public record GetUserLearningSettingsQuery(string Email) : IRequest<LearningSettings?>;
 
-public record ListUsersQuery(PaginationParams? PaginationParams) : IRequest<IEnumerable<AppUser>>;
+public record ListUsersQuery(PaginationParams PaginationParams) : IRequest<IEnumerable<AppUser>>;

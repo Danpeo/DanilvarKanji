@@ -1,6 +1,7 @@
 using DanilvarKanji.Application.Users.Commands;
 using DanilvarKanji.Application.Users.Queries;
 using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Domain.Shared.Params;
 using DanilvarKanji.Shared.Requests.Users;
 using MediatR;
@@ -32,9 +33,7 @@ public class UserController : ApiController
         return Unauthorized();
     }
 
-    /*
-    [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]
-    */
+    [Authorize(Roles = $"{UserRole.SuperAdmin}")]
     [HttpGet("All")]
     [ProducesResponseType(typeof(IEnumerable<AppUser>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

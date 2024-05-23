@@ -13,7 +13,7 @@ public interface IUserService
 
     Task<LearningSettings?> GetLearningSettingsAsync();
 
-    Task<IEnumerable<AppUser>?> ListUsersAsync(int pageNumber = 0, int pageSize = 0);
+    Task<List<AppUser>?> ListUsersAsync(int pageNumber = 0, int pageSize = 0);
 
     Task DeleteUserAsync(string email);
     Task UpdateUserAsync(string userEmail, UpdateUserRequest request);

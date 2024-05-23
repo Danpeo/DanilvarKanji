@@ -45,7 +45,7 @@ public class CreateFlashcardCollectionHandler
             return Result.Success(collection.Id);
         }
 
-        _logger.LogInformation("FAILED to create collection: {@colleciton}", collection);
+        _logger.LogError("FAILED to create collection: {@colleciton}", collection);
         return Result.Failure<string>(General.UnProcessableRequest);
     }
 }

@@ -8,7 +8,9 @@ public class CreateCollectionValidator : ValidatorBase<CreateFlashcardCollection
 {
     public CreateCollectionValidator()
     {
-        RuleFor(c => c.Name).NotEmpty().WithMessage("Name should have a value.");
+        RuleFor(c => c.Name)
+            .NotEmpty()
+            .WithMessage("Name should have a value.");
 
         RuleFor(c => c.Flashcards)
             .NotNull()

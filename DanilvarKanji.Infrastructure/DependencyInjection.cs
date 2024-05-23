@@ -1,7 +1,6 @@
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Auth;
 using DanilvarKanji.Infrastructure.Caching;
-using DanilvarKanji.Infrastructure.Common;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Infrastructure.Emails;
 using DanilvarKanji.Infrastructure.Repositories;
@@ -22,7 +21,6 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("PostgresSql"))
         );
 
-        services.AddTransient<IDateTime, MachineDateTime>();
         services.AddTransient<IEmailService, EmailService>();
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -1,4 +1,4 @@
-namespace DanilvarKanji.Infrastructure.Options;
+namespace DanilvarKanji.Infrastructure.Auth;
 
 public class JwtOptions
 {

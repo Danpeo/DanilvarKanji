@@ -6,7 +6,7 @@
 </button>
 
 @code {
-    [Inject] public required Js Js { get; set; }
+    [Inject] public Js Js { get; set; } = null!;
 
-    [Inject] public required IStringLocalizer<App> Loc { get; set; }
+    [Inject] public IStringLocalizer<App> Loc { get; set; } = null!;
 }

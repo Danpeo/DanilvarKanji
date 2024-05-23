@@ -48,7 +48,7 @@ public class UserService : IUserService
         throw new HttpRequestException($"Http status code: {response.StatusCode} message: {message}");
     }
 
-    public async Task<IEnumerable<AppUser>?> ListUsersAsync(int pageNumber = 0, int pageSize = 0)
+    public async Task<List<AppUser>?> ListUsersAsync(int pageNumber = 0, int pageSize = 0)
     {
         var requestUri = $"api/Users/All?PageNumber={pageNumber}&PageSize={pageSize}";
         return await Http.ListAsync<AppUser>(requestUri, _httpClient);

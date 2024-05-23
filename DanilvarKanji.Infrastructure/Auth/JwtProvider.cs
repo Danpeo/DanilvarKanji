@@ -3,8 +3,6 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using DanilvarKanji.Domain.Shared.Entities;
-using DanilvarKanji.Infrastructure.Common;
-using DanilvarKanji.Infrastructure.Options;
 using DanilvarKanji.Shared.Enums;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -13,12 +11,10 @@ namespace DanilvarKanji.Infrastructure.Auth;
 
 public class JwtProvider : IJwtProvider
 {
-    private readonly IDateTime _dateTime;
     private readonly JwtOptions _jwtOptions;
 
-    public JwtProvider(IOptions<JwtOptions> jwtOptions, IDateTime dateTime)
+    public JwtProvider(IOptions<JwtOptions> jwtOptions)
     {
-        _dateTime = dateTime;
         _jwtOptions = jwtOptions.Value;
     }
 
@@ -36,7 +32,7 @@ public class JwtProvider : IJwtProvider
             new(ClaimTypes.Role, user.Role),
         };
 
-        DateTime tokenExpirationTime = _dateTime.UtcNow.AddMinutes(
+        var tokenExpirationTime = DateTime.UtcNow.AddMinutes(
             _jwtOptions.TokenExpirationInMinutes
         );
 
@@ -48,11 +44,7 @@ public class JwtProvider : IJwtProvider
             tokenExpirationTime,
             signingCredentials
         );
-
-        /*string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
-
-        return tokenValue;*/
-
+        
         return token;
     }
 

@@ -41,10 +41,7 @@ public class FlashcardController : ApiController
             )
         );
 
-        if (result.IsFailure)
-            return HandleFailure(result);
-
-        return Ok();
+        return result.IsFailure ? HandleFailure(result) : Ok();
     }
 
     [HttpPut("Collection")]

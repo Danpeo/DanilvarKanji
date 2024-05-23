@@ -28,7 +28,8 @@ public class ListUsersHandler : IRequestHandler<ListUsersQuery, IEnumerable<AppU
             DateTime.UtcNow
         );
 
-        if (await _userRepository.AnyExistAsync()) return await _userRepository.ListAsync(request.PaginationParams);
+        if (await _userRepository.AnyExistAsync()) 
+            return _userRepository.List(request.PaginationParams);
 
         _logger.LogInformation("No Users - {@dt}", DateTime.UtcNow);
         return Enumerable.Empty<AppUser>();
