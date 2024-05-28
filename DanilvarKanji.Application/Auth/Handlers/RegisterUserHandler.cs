@@ -4,6 +4,7 @@ using DanilvarKanji.Domain.Entities;
 using DanilvarKanji.Domain.Errors;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Domain.Shared.Entities;
+using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Infrastructure.Emails;
 using DVar.RandCreds;
@@ -49,6 +50,11 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Identity
 
         var user = _mapper.Map<AppUser>(request);
 
+        if (!await _userRepository.AnyExistAsync())
+        {
+            user.Role = UserRole.SuperAdmin;
+        }
+        
         IdentityResult result = await _userManager.CreateAsync(user, request.Password);
         if (result.Succeeded)
         {

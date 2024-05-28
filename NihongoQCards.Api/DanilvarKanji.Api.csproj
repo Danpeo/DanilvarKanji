@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>aspnet-LearningJapanese-e11ef88b-27d4-4411-9567-4b0374222f19</UserSecretsId>
         <RootNamespace>DanilvarKanji</RootNamespace>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -49,7 +50,6 @@
             <ProjectReference Include="..\DanilvarKanji.Infrastructure\DanilvarKanji.Infrastructure.csproj" />
         -->
         <ProjectReference Include="..\DanilvarKanji.Shared\DanilvarKanji.Shared.csproj"/>
-        <ProjectReference Include="..\DanilvarKanji.Client\DanilvarKanji.Client.csproj"/>
     </ItemGroup>
 
 </Project>
