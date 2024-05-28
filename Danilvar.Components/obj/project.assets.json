@@ -548,11 +548,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj",
+      "projectUniqueName": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\Danilvar.Components.csproj",
       "projectName": "Danilvar.Components",
-      "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\Danilvar.Components.csproj",
+      "projectPath": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\Danilvar.Components.csproj",
       "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\",
+      "outputPath": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -575,6 +575,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

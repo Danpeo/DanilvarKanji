@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "htdGYAXqkk30bXZUSyZ8BEO8HO2RL/OaI3sJTGjxJ80=",
+  "Hash": "3X0ZD/7QWE1lYNX9WrrB7y7gqeezHK3kzCYh33UoSTw=",
   "Source": "Danilvar.Components",
   "BasePath": "_content/Danilvar.Components",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Danilvar.Components\\wwwroot",
       "Source": "Danilvar.Components",
-      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\",
       "BasePath": "_content/Danilvar.Components",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Danilvar.Components.styles.css",
+      "Identity": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Danilvar.Components.styles.css",
       "SourceId": "Danilvar.Components",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Danilvar.Components",
       "RelativePath": "Danilvar.Components.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Danilvar.Components.styles.css"
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Danilvar.Components.styles.css"
     },
     {
-      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css",
+      "Identity": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css",
       "SourceId": "Danilvar.Components",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/Danilvar.Components",
       "RelativePath": "Danilvar.Components.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\background.png",
+      "Identity": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\background.png",
       "SourceId": "Danilvar.Components",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\",
       "BasePath": "_content/Danilvar.Components",
       "RelativePath": "background.png",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\background.png"
     },
     {
-      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\dom-functions.js",
+      "Identity": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\dom-functions.js",
       "SourceId": "Danilvar.Components",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\",
       "BasePath": "_content/Danilvar.Components",
       "RelativePath": "dom-functions.js",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\dom-functions.js"
     },
     {
-      "Identity": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",
+      "Identity": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",
       "SourceId": "Danilvar.Components",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\",
       "BasePath": "_content/Danilvar.Components",
       "RelativePath": "exampleJsInterop.js",
       "AssetKind": "All",

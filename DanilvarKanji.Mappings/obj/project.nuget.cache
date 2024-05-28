@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "klZqIfINP+uOp5R/xRBMzxUTc+ytPI4i/Xn6JJ8I/5ofpJtV69MrAGh/T7c+x9DhrVhPy48kSl6czpcO75ZXhg==",
+  "dgSpecHash": "Jd5YJQOUAeszWdPaKBH82FQPjPrxIpSm3Tg08kG+kHnHV+ql5EtPzKYqa+Tp77cQ09olm5LU8JRmnXeUTa3uKA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
+  "projectFilePath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

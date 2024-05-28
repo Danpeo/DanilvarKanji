@@ -1,19 +1,19 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css",
+      "Id": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Danilvar.Components.bundle.scp.css",
       "PackagePath": "staticwebassets\\Danilvar.Components.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\background.png",
+      "Id": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\background.png",
       "PackagePath": "staticwebassets\\background.png"
     },
     {
-      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\dom-functions.js",
+      "Id": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\dom-functions.js",
       "PackagePath": "staticwebassets\\dom-functions.js"
     },
     {
-      "Id": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",
+      "Id": "C:\\Users\\danil\\source\\DanilvarKanji\\Danilvar.Components\\wwwroot\\exampleJsInterop.js",
       "PackagePath": "staticwebassets\\exampleJsInterop.js"
     },
     {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xC+aTjhFIxI8IOcZkpq3OiZWT20Yh7R82nvB2OU7eY4jxxu6b1F4rwXQ5IuHHh+Phf0v8E0WVSrcpcx67agSMQ==",
+  "dgSpecHash": "5s22K46LVNeE0xYeRUy7iEafAftPyLnSa8U2LPW2ugrRMAVCL7jU1fl1cCDM6iNOmlaU8Ti+z4FxbnRTjUtUfw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj",
+  "projectFilePath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.valueobject\\1.0.0\\danilvar.valueobject.1.0.0.nupkg.sha512",

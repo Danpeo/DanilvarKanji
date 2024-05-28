@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ve4c5Lo1m9p68shiJl6VuXopavN1lseQxnzqQNmVapZyVadgSTAyEUvFtTNFWtMkgSwBRud0NxlrsKKVqFXxaQ==",
+  "dgSpecHash": "lKam30ukbdZwRJ0NGXxcjtqoPMrhWR1RiGWvPulKWULY9+s+uc/cfiCtoKINEf5FoJ57JQhZHXcT9KeFBDjNAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Infrastructure\\DanilvarKanji.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Infrastructure\\DanilvarKanji.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\bouncycastle.cryptography\\2.3.0\\bouncycastle.cryptography.2.3.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\danilvar.entity\\1.0.0\\danilvar.entity.1.0.0.nupkg.sha512",

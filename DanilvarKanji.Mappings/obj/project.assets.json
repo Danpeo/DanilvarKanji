@@ -2706,11 +2706,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
+      "projectUniqueName": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
       "projectName": "DanilvarKanji.Mappings",
-      "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
+      "projectPath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Mappings\\DanilvarKanji.Mappings.csproj",
       "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Mappings\\obj\\",
+      "outputPath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Mappings\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2727,14 +2727,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Application\\DanilvarKanji.Application.csproj": {
-              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Application\\DanilvarKanji.Application.csproj"
+            "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Application\\DanilvarKanji.Application.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Application\\DanilvarKanji.Application.csproj"
             },
-            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj": {
-              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj"
+            "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Domain\\DanilvarKanji.Domain.csproj"
             },
-            "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
-              "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
+            "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj": {
+              "projectPath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Shared\\DanilvarKanji.Shared.csproj"
             }
           }
         }
@@ -2743,6 +2743,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

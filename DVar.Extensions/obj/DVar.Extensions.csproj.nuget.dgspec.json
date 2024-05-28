@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DVar.Extensions\\DVar.Extensions.csproj": {}
+    "C:\\Users\\danil\\source\\DanilvarKanji\\DVar.Extensions\\DVar.Extensions.csproj": {}
   },
   "projects": {
-    "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DVar.Extensions\\DVar.Extensions.csproj": {
+    "C:\\Users\\danil\\source\\DanilvarKanji\\DVar.Extensions\\DVar.Extensions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DVar.Extensions\\DVar.Extensions.csproj",
+        "projectUniqueName": "C:\\Users\\danil\\source\\DanilvarKanji\\DVar.Extensions\\DVar.Extensions.csproj",
         "projectName": "DVar.Extensions",
-        "projectPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DVar.Extensions\\DVar.Extensions.csproj",
+        "projectPath": "C:\\Users\\danil\\source\\DanilvarKanji\\DVar.Extensions\\DVar.Extensions.csproj",
         "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DVar.Extensions\\obj\\",
+        "outputPath": "C:\\Users\\danil\\source\\DanilvarKanji\\DVar.Extensions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {

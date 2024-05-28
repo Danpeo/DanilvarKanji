@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TBF2tKEC+LJml55VeBiwiKdCQOfTSrZCuqaTZGzGJUpbX0Put4WrfJ/+5dYE2i6McfABaHi/SJKf2PWi2KoB/w==",
+  "dgSpecHash": "CioGd6klQiZmn/pp/nGs9ZBgF72GwSSDlcLqzFbpxWzjt8HSI3BrmrDzkSBbEXY20RQlO1qzvGARnjiv0iNIvA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danil\\source\\repos\\LearningJapanese\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
+  "projectFilePath": "C:\\Users\\danil\\source\\DanilvarKanji\\DanilvarKanji.Client\\DanilvarKanji.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danil\\.nuget\\packages\\blazored.fluentvalidation\\2.1.0\\blazored.fluentvalidation.2.1.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
@@ -84,7 +84,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "message": "У пакета \"System.IdentityModel.Tokens.Jwt\" 6.24.0 есть известная уязвимость https://github.com/advisories/GHSA-59j7-ghrg-fj52 (уровень серьезности: средний уровень)",
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         "net7.0",
