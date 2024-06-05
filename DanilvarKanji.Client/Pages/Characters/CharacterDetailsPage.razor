@@ -1,4 +1,5 @@
 @page "/Character/{CharacterId}"
+
 @using DanilvarKanji.Client.Services.Characters
 @using DanilvarKanji.Shared.Responses.Character
 
@@ -22,5 +23,4 @@ else
     {
         _character = await CharacterService.GetCharacterAsync(CharacterId);
     }
-
 }

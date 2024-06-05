@@ -24,9 +24,7 @@
     [Parameter] [EditorRequired] public string Term { get; set; } = default!;
 
     [Inject] public IBaseQueryService<TItem> BaseQueryService { get; set; } = default!;
-
-    private string _searchTerm = "";
-
+    
     private async Task SearchForTrail(KeyboardEventArgs args)
     {
         if (args.Key != "Enter")

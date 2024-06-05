@@ -195,6 +195,15 @@ namespace DanilvarKanji.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation Code.
+        /// </summary>
+        internal static string ConfirmationCode {
+            get {
+                return ResourceManager.GetString("ConfirmationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Email.
         /// </summary>
         internal static string ConfirmEmail {

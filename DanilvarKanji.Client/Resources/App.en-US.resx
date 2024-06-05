@@ -313,4 +313,7 @@
     <data name="Edit" xml:space="preserve">
         <value>Edit</value>
     </data>
+    <data name="ConfirmationCode" xml:space="preserve">
+        <value>Confirmation Code</value>
+    </data>
 </root>

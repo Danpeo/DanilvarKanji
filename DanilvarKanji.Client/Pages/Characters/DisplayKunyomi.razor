@@ -1,48 +1,20 @@
-@using System.Diagnostics
 @using DanilvarKanji.Shared.Responses.Character
-@{
-    Debug.Assert(Character.Kunyomis != null, "Character.Kunyomis != null");
-}
 
 @{
-    var kunyomiList = Character.Kunyomis.ToList();
-
-    for (var i = 0; i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count); i++)
+    if (Character.Kunyomis != null)
     {
-        var japaneseWriting = kunyomiList[i].JapaneseWriting;
+        var kunyomiList = Character.Kunyomis.ToList();
 
-        <HumanReadJapaneseWriting JapaneseWriting="@japaneseWriting"/>
-
-        @*// Given the input string '。abc', the regular expression would capture abc
-        var regex = new Regex(@"\。([^)]+)");
-        MatchCollection matches = regex.Matches(japaneseWriting);
-
-        if (matches.Count > 0)
+        for (var i = 0; i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count); i++)
         {
-            int startIndex = 0;
+            var japaneseWriting = kunyomiList[i].JapaneseWriting;
 
-            foreach (Match match in matches)
+            <HumanReadJapaneseWriting JapaneseWriting="@japaneseWriting"/>
+
+            if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
             {
-                int matchIndex = match.Index;
-                int matchLength = match.Length;
-
-                <span>@japaneseWriting.Substring(startIndex, matchIndex - startIndex)</span>
-
-                <span class="txt-gray">@match.Groups[1].Value</span>
-
-                startIndex = matchIndex + matchLength;
+                <span>、</span>
             }
-
-            <span>@japaneseWriting.Substring(startIndex)</span>
-        }
-        else
-        {
-            @japaneseWriting
-        }*@
-
-        if (i < Math.Min(MaxReadingsToDisplay, kunyomiList.Count) - 1)
-        {
-            <span>、</span>
         }
     }
 }

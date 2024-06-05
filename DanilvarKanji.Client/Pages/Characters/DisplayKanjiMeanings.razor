@@ -3,7 +3,7 @@
     {
         for (var i = 0; i < KanjiMeanings[CharacterId].Count; i++)
         {
-            var kanjiMeaning = KanjiMeanings[CharacterId][i];
+            string kanjiMeaning = KanjiMeanings[CharacterId][i];
             var resultMeaning = $"{char.ToUpper(kanjiMeaning[0])}{kanjiMeaning[1..]}";
 
             @resultMeaning

@@ -9,9 +9,10 @@ public static class StringExtension
     {
         var stringBuilder = new StringBuilder();
 
-        foreach (var c in str)
-            if (WanaKana.IsJapanese(c))
-                stringBuilder.Append(c);
+        foreach (char c in str.Where(WanaKana.IsJapanese))
+        {
+            stringBuilder.Append(c);
+        }
 
         return str;
     }

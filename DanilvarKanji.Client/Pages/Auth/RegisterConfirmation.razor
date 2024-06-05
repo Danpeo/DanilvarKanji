@@ -13,14 +13,14 @@
     <EditForm Model="_confirmRegistrationRequest" OnSubmit="ConfirmRegistrationAsync">
         <FluentValidationValidator/>
 
-        <FormSection Title="Confirmation" HelpText="">
+        <FormSection Title="@Loc["ConfirmEmail"]" HelpText="">
             <FormFieldSet Label="Email" LabelFor="Email" HelpText="">
                 <InputText @bind-Value="_confirmRegistrationRequest.Email" class="form-control bg-main txt-green-dim no-border"
                            id="email" placeholder="Email">
                     <ValidationMessage For="@(() => _confirmRegistrationRequest.Email)"/>
                 </InputText>
             </FormFieldSet>
-            <FormFieldSet Label="ConfirmationCode" LabelFor="ConfirmationCode" HelpText="">
+            <FormFieldSet Label="@Loc["ConfirmationCode"]" LabelFor="ConfirmationCode" HelpText="">
                 <InputText @bind-Value="_confirmRegistrationRequest.ConfirmationCode" class="form-control bg-main txt-green-dim no-border"
                            id="confirmationCode" placeholder="Confirmation Code">
 

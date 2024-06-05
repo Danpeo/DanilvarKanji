@@ -264,4 +264,7 @@
     <data name="Edit" xml:space="preserve">
         <value />
     </data>
+    <data name="ConfirmationCode" xml:space="preserve">
+        <value />
+    </data>
 </root>

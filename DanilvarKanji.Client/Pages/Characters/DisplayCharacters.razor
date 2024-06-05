@@ -3,7 +3,9 @@
 @inject IStringLocalizer<App> Loc;
 
 <div class="d-flex">
-    <button type="button" @onclick="@(() => NavigationManager.NavigateTo("/init-add"))" class="btn btn-secondary-alt mb-2">
+    <button type="button" 
+            @onclick="@(() => NavigationManager.NavigateTo("/init-add"))"
+            class="btn btn-secondary-alt mb-2">
         @Loc["Add"]
     </button>
 </div>

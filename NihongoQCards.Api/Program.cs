@@ -107,22 +107,27 @@ builder
 
 builder.Services.ConfigureOptions<JwtOptionsSetup>();
 
-builder.Host.UseSerilog(
+/*builder.Host.UseSerilog(
     (context, config) => { config.ReadFrom.Configuration(context.Configuration); }
-);
+);*/
 
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+/*if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+}*/
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors(policy => policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader());
 
+/*
 app.UseSerilogRequestLogging();
+*/
 
 app.UseHttpsRedirection();
 
