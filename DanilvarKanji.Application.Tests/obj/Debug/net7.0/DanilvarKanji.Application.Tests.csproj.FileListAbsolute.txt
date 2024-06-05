@@ -1,7 +1,0 @@
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\bin\Debug\net7.0\CoverletSourceRootsMapping
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\DanilvarKanji.Application.Tests.csproj.AssemblyReference.cache
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\DanilvarKanji.Application.Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\DanilvarKanji.Application.Tests.AssemblyInfoInputs.cache
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\DanilvarKanji.Application.Tests.AssemblyInfo.cs
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\DanilvarKanji.Application.Tests.csproj.CoreCompileInputs.cache
-C:\Users\danil\source\repos\LearningJapanese\DanilvarKanji.Application.Tests\obj\Debug\net7.0\DanilvarKanji.Application.Tests.sourcelink.json

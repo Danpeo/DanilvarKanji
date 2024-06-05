@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\DanilvarKanji.Client.props" />
-</Project>
