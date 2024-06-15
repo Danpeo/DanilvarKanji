@@ -34,7 +34,7 @@ public class ListCharactersHandler : IRequestHandler<ListCharactersQuery, IEnume
         );
 
         if (await _characterRepository.AnyExistAsync())
-            return await _characterRepository.ListAsync(request.PaginationParams);
+            return _characterRepository.List(request.PaginationParams);
 
         _logger.LogInformation("No Characters - {@dt}", DateTime.UtcNow);
         return Enumerable.Empty<Character>();

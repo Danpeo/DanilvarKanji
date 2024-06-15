@@ -1,7 +1,6 @@
 using DanilvarKanji.Application.Characters.Queries;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Domain.Shared.Entities;
-using DanilvarKanji.Infrastructure.Caching;
 using MediatR;
 
 namespace DanilvarKanji.Application.Characters.Handlers;
@@ -12,8 +11,7 @@ public class GetKanjiMeaningsByPriorityHandler
     private readonly ICharacterRepository _characterRepository;
 
     public GetKanjiMeaningsByPriorityHandler(
-        ICharacterRepository characterRepository,
-        ICacheService cacheService
+        ICharacterRepository characterRepository
     )
     {
         _characterRepository = characterRepository;

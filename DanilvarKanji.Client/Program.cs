@@ -30,7 +30,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7106/") });
 
-builder.Services.AddScoped(sp => new HttpClient
+builder.Services.AddScoped(_ => new HttpClient
 {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 });
@@ -52,8 +52,8 @@ builder
 
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddTransient<AuthHandler>();
-builder.Services.AddSingleton<ICharacterService, CharacterService>();
 builder.Services.AddSingleton<IKanjiService, KanjiService_KAD>();
+builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IDictionaryService, DictionaryService>();
 builder.Services.AddScoped<ICharacterLearningApiService, CharacterLearningApiService>();
 builder.Services.AddScoped<CharacterLearningService>();
@@ -78,7 +78,7 @@ builder.Services.AddBlazoredSessionStorageAsSingleton();
 builder.Services.AddBlazoredLocalStorageAsSingleton();
 builder.Services.AddBlazoredModal();
 builder.Services.AddFileSystemAccessService();
-builder.Services.AddFileSystemAccessServiceInProcess(options =>
+builder.Services.AddFileSystemAccessServiceInProcess(_ =>
 {
     // The file at this path in this example is manually copied to wwwroot folder
     // options.BasePath = "content/";

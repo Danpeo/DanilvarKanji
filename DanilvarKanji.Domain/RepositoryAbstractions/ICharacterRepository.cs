@@ -17,12 +17,12 @@ public interface ICharacterRepository
     );
 
     void Create(Character character);
-    Task<IEnumerable<Character>> ListAsync(PaginationParams paginationParams);
+    IEnumerable<Character> List(PaginationParams paginationParams);
     Task<Character?> GetAsync(string id);
     Task<IEnumerable<Character>> SearchAsync(string searchTerm);
     Task UpdateAsync(string id, Character character);
 
-    Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams paginationParams,
+    IEnumerable<Character> ListLearnQueue(PaginationParams paginationParams,
         AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5);
 

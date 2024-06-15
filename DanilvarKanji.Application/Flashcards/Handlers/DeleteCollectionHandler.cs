@@ -1,5 +1,6 @@
 using DanilvarKanji.Application.Flashcards.Commands;
 using DanilvarKanji.Domain.Errors;
+using DanilvarKanji.Domain.Persistance;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;

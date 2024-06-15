@@ -24,7 +24,7 @@ public class SearchCharactersHandler
             return Enumerable.Empty<Character>();
 
         if (string.IsNullOrEmpty(request.SearchTerm) || request.SearchTerm.ToLower() == "any")
-            return await _characterRepository.ListAsync(request.PaginationParams);
+            return _characterRepository.List(request.PaginationParams);
 
         return await _characterRepository.SearchAsync(request.SearchTerm);
     }

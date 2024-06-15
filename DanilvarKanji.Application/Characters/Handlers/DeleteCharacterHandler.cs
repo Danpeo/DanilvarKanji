@@ -1,5 +1,7 @@
 using DanilvarKanji.Application.Characters.Commands;
+using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Errors;
+using DanilvarKanji.Domain.Persistance;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Data;
@@ -32,6 +34,6 @@ public class DeleteCharacterHandler : IRequestHandler<DeleteCharacterCommand, Re
                 return Result.Success();
         }
 
-        return Result.Failure(CharacterErr.NotFound);
+        return Result.Failure(CharacterErr.NotFound(request.Culture));
     }
 }

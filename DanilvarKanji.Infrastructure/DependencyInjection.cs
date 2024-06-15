@@ -1,6 +1,6 @@
+using DanilvarKanji.Domain.Persistance;
 using DanilvarKanji.Domain.RepositoryAbstractions;
 using DanilvarKanji.Infrastructure.Auth;
-using DanilvarKanji.Infrastructure.Caching;
 using DanilvarKanji.Infrastructure.Data;
 using DanilvarKanji.Infrastructure.Emails;
 using DanilvarKanji.Infrastructure.Repositories;
@@ -30,7 +30,6 @@ public static class DependencyInjection
         services.AddScoped<IExerciseRepository, ExerciseRepository>();
         services.AddScoped<IReviewRepository, ReviewRepository>();
         services.AddScoped<IFlashcardRepository, FlashcardRepository>();
-        services.AddSingleton<ICacheService, CacheService>();
         
         services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 

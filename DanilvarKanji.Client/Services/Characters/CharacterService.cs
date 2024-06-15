@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
+using DanilvarKanji.Client.Localization;
 using DanilvarKanji.Domain.Shared.Enumerations;
 using DanilvarKanji.Shared.Requests.Characters;
 using DanilvarKanji.Shared.Responses.Character;
@@ -9,9 +10,10 @@ namespace DanilvarKanji.Client.Services.Characters;
 public class CharacterService : ICharacterService
 {
     private readonly HttpClient _httpClient;
-
-    public CharacterService(IHttpClientFactory factory)
+    private readonly ILocalizationService _localizationService;
+    public CharacterService(IHttpClientFactory factory, ILocalizationService localizationService)
     {
+        _localizationService = localizationService;
         _httpClient = factory.CreateClient("ServerApi");
     }
 
@@ -255,7 +257,8 @@ public class CharacterService : ICharacterService
 
     public async Task DeleteCharacterAsync(string id)
     {
-        HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Characters/{id}");
+        Culture culture = await _localizationService.GetCurrentCulture();
+        HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Characters/{id}?culture={culture}");
 
         if (response.IsSuccessStatusCode)
             return;

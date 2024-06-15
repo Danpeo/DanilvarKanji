@@ -1,6 +1,7 @@
 using AutoMapper;
 using DanilvarKanji.Application.Characters.Commands;
 using DanilvarKanji.Application.Characters.Queries;
+using DanilvarKanji.Domain.Enumerations;
 using DanilvarKanji.Domain.Primitives.Result;
 using DanilvarKanji.Domain.Shared.Entities;
 using DanilvarKanji.Domain.Shared.Enumerations;
@@ -165,14 +166,17 @@ public class CharacterController : ApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteAsync(string id)
+    public async Task<IActionResult> DeleteAsync(string id, Culture culture)
     {
-        Result result = await Mediator.Send(new DeleteCharacterCommand(id));
+        Result result = await Mediator.Send(new DeleteCharacterCommand(id)
+        {
+            Culture = culture
+        });
 
         if (result.IsSuccess)
             return Ok();
 
-        return NotFound($"{result.Error.Code} - '{result.Error.Message}'");
+        return HandleFailure(result);
     }
 
     [Authorize(Roles = $"{UserRole.Admin}, {UserRole.SuperAdmin}")]

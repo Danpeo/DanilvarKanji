@@ -18,18 +18,18 @@ public class CharacterRepository : ICharacterRepository
 
     public void Create(Character character) => _context.Characters.Add(character);
 
-    public async Task<IEnumerable<Character>> ListAsync(PaginationParams paginationParams)
+    public IEnumerable<Character> List(PaginationParams paginationParams)
     {
-        var characters = await GetCharactersWithRelatedData().ToListAsync();
+        var characters =  GetCharactersWithRelatedData();
 
         return characters.Paginate(paginationParams);
     }
 
-    public async Task<IEnumerable<Character>> ListLearnQueueAsync(PaginationParams paginationParams,
+    public IEnumerable<Character> ListLearnQueue(PaginationParams paginationParams,
         AppUser user,
         JlptLevel jlptLevel = JlptLevel.N5)
     {
-        var characters = await GetLearnQueue(user, jlptLevel).ToListAsync();
+        var characters =  GetLearnQueue(user, jlptLevel);
 
         return characters.Paginate(paginationParams);
     }

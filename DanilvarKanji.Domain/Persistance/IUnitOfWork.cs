@@ -1,4 +1,4 @@
-namespace DanilvarKanji.Infrastructure.Data;
+namespace DanilvarKanji.Domain.Persistance;
 
 public interface IUnitOfWork
 {

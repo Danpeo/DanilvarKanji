@@ -33,7 +33,7 @@ public class ListLearnQueueHandler
             {
                 var paginationParams = new PaginationParams(1, request.AppUser.QtyOfCharsForLearningForDay);
 
-                characters = await _characterRepository.ListLearnQueueAsync(
+                characters = _characterRepository.ListLearnQueue(
                     paginationParams,
                     request.AppUser,
                     request.JlptLevel
@@ -41,7 +41,7 @@ public class ListLearnQueueHandler
             }
             else
             {
-                characters = await _characterRepository.ListLearnQueueAsync(
+                characters = _characterRepository.ListLearnQueue(
                     request.PaginationParams,
                     request.AppUser,
                     request.JlptLevel
